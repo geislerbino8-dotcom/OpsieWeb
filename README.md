@@ -63,14 +63,17 @@ flowchart TB
 root/
 │
 ├── backend/                   # Node.js + Express backend
-│   ├── controllers/         # Business logic for routes
-│   ├── middleware/          # Authentication, error handling, etc.
-│   ├── models/              # Mongoose models / database schemas
-│   ├── routes/              # API route definitions
-│   ├── utils/               # Common utility functions
+│   ├── src/                 # Node.js source code
+│   |   ├── controllers/     # Business logic for routes
+│   |   ├── middleware/      # Authentication, error handling, etc.
+│   |   ├── models/          # Mongoose models / database schemas
+│   |   ├── routes/          # API route definitions
+│   |   ├── utils/           # Common utility functions
+|   |   └── server.ts        # Main server entry point
+│   ├── eslint.config.mjs    # ESLint configuration file
 │   ├── gitignore            # Files/folders to ignore in Git
 │   ├── package.json         # Backend dependencies
-│   └── server.js            # Main server entry point
+│   └── tsconfig.json        # TS configuration file
 |
 ├── frontend/                  # React frontend
 │   ├── public/              # Static files
@@ -81,14 +84,14 @@ root/
 │   │   ├── pages/           # Page-level components
 │   |   ├── utils/           # Helper functions and components
 │   │   ├── App.css          # Main React component style
-│   │   ├── App.jsx          # Main React component
-│   │   ├── main.css         # React entry point style
-│   │   └── main.jsx         # React entry point
+│   │   ├── App.tsx          # Main React component
+│   │   ├── index.css        # React entry point style
+│   │   └── main.tsx         # React entry point
 |   ├── gitignore            # Files/folders to ignore in Git
-│   ├── package.json         # ESLint configuration file
+│   ├── eslint.config.js     # ESLint configuration file
 |   ├── index.html           # Main HTML template
 │   ├── package.json         # Frontend dependencies
-│   └── vite.config.js       # Vite configuration file
+│   └── vite.config.ts       # Vite configuration file
 │
 ├── README.md                # Project documentation
 └── package.json             # Root-level scripts and dependencies (optional)
@@ -100,13 +103,13 @@ git clone https://github.com/jbarbosagahr01/OpsieWebsite.git
 ```
 ### 2. Install Dependencies
 ```
-cd backend && npm install
+cd backend && npm install && npm run build
 cd ../frontend && npm install
 ```
 ### 3. Development
 ```
 # Run backend
-cd backend && npm start
+cd backend && npm run dev
 
 # Run frontend
 cd frontend && npm run dev
