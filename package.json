@@ -1,0 +1,42 @@
+{
+  "name": "opsiewebsite",
+  "version": "1.0.0",
+  "description": "![Opsie Logo.](/frontend/src/assets/opsie_full.jpg)\r Landing page for Opsie Software Solutions Inc., where ideas are turned into scalable and maintainable software systems.",
+  "homepage": "https://github.com/jbarbosagahr01/OpsieWebsite#readme",
+  "bugs": {
+    "url": "https://github.com/jbarbosagahr01/OpsieWebsite/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbarbosagahr01/OpsieWebsite.git"
+  },
+  "license": "ISC",
+  "author": "Opsie Software Solutions Inc.",
+  "contributors": [
+    {
+      "name": "Ansari Usman",
+      "email": "ansarikatugusman@gmail.com"
+    },
+    {
+      "name": "Junior Jorge Tecson",
+      "email": "tecsonprojects@gmail.com"
+    },
+    {
+      "name": "Jesun Rodrigo",
+      "email": "jesunrodrigo70@gmail.com"
+    },
+    {
+      "name": "Mark John Dequino",
+      "email": "mjdeqs24@gmail.com"
+    },
+    {
+      "name": "Carl Joshua T. Barbosa",
+      "email": "tongsonbarbs@gmail.com"
+    }
+  ],
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
