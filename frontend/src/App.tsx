@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import GetName from './api/getName';
 
-function App() {
+const App = () => {
   const [name, setName] = useState<string>('');
 
   const fetchName = async () => {

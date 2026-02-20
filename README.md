@@ -1,5 +1,5 @@
 # OPSIE SOFTWARE SOLUTIONS INC.
-![Opsie Logo.](/frontend/src/assets/opsie_full.jpg)
+![Opsie Logo.](/frontend/src/assets/opsie/opsie_full.jpg)
 Landing page for Opsie Software Solutions Inc., where ideas are turned into scalable and maintainable software systems.
 
 ## MERN Stack Technology
@@ -60,46 +60,51 @@ flowchart TB
     * Backend API built with Node.js & Express
 
 ## Repository Structure
-root/
+```
+/OpsieWebsite
 │
-├── backend/                   # Node.js + Express backend
-│   ├── src/                 # Node.js source code
-│   |   ├── controllers/     # Business logic for routes
-│   |   ├── middleware/      # Authentication, error handling, etc.
-│   |   ├── models/          # Mongoose models / database schemas
-│   |   ├── routes/          # API route definitions
-│   |   ├── utils/           # Common utility functions
-|   |   └── server.ts        # Main server entry point
+├── /backend                   # Node.js + Express backend
+│   ├── /src                 # Node.js source code
+│   │   ├── /controllers     # Business logic for routes
+│   │   ├── /middleware      # Authentication, error handling, etc.
+│   │   ├── /models          # Mongoose models / database schemas
+│   │   ├── /routes          # API route definitions
+│   │   ├── /utils           # Common utility functions
+│   │   ├── index.ts         # Entry point
+│   │   └── server.ts        # Server entry point
+│   ├── .env                 # File that stores environment variables
+│   ├── .gitignore           # Files/folders to ignore in Git
 │   ├── eslint.config.mjs    # ESLint configuration file
-│   ├── gitignore            # Files/folders to ignore in Git
 │   ├── package.json         # Backend dependencies
 │   └── tsconfig.json        # TS configuration file
-|
-├── frontend/                  # React frontend
-│   ├── public/              # Static files
-│   ├── src/                 # React source code
-│   │   ├── assets/          # Asset files
-│   │   ├── components/      # Reusable UI components
-│   │   ├── hooks/           # Custom hooks
-│   │   ├── pages/           # Page-level components
-│   |   ├── utils/           # Helper functions and components
+│
+├── /frontend                  # React frontend
+│   ├── /public              # Static files
+│   ├── /src                 # React source code
+│   │   ├── /api             # Reusable API layers
+│   │   ├── /assets          # Asset files
+│   │   ├── /components      # Reusable UI components
+│   │   ├── /hooks           # Custom hooks
+│   │   ├── /pages           # Page-level components
+│   │   ├── /utils           # Helper functions and components
 │   │   ├── App.css          # Main React component style
 │   │   ├── App.tsx          # Main React component
 │   │   ├── index.css        # React entry point style
 │   │   └── main.tsx         # React entry point
-|   ├── gitignore            # Files/folders to ignore in Git
+│   ├── .gitignore           # Files/folders to ignore in Git
 │   ├── eslint.config.js     # ESLint configuration file
-|   ├── index.html           # Main HTML template
+│   ├── index.html           # Main HTML template
 │   ├── package.json         # Frontend dependencies
 │   └── vite.config.ts       # Vite configuration file
 │
 ├── README.md                # Project documentation
-└── package.json             # Root-level scripts and dependencies (optional)
+└── package.json             # Root-level scripts and dependencies
+```
 
 ## Installations
 ### 1. Clone the repository
 ```
-git clone https://github.com/jbarbosagahr01/OpsieWebsite.git
+git clone https://github.com/OpsieDev/OpsieWebsite.git
 ```
 ### 2. Install Dependencies
 ```
@@ -124,7 +129,7 @@ Follow these steps to contribute effectively:
 * Clone Your Fork
     * Run:
 ```
-git clone https://github.com/jbarbosagahr01/OpsieWebsite.git
+git clone https://github.com/OpsieDev/OpsieWebsite.git
 ```
 
 * Create a Develop or Feature Branch
