@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import SampleRoute from './routes/sampleRoute';
 import cors from 'cors';
+import { HttpError } from './models/HttpError';
 
 export default class Server {
   public app: Application;
@@ -9,6 +10,7 @@ export default class Server {
   constructor() {
     this.app = express();
     this.initializeMiddlewares();
+    this.initializeNotFoundHandler();
     this.initializeErrorHandling();
     this.initializeRoutes();
   }
@@ -16,6 +18,12 @@ export default class Server {
   private initializeMiddlewares(): void {
     this.app.use(express.json());
     this.app.use(cors());
+  }
+
+  private initializeNotFoundHandler(): void {
+    this.app.use((req: Request, _res: Response, next: NextFunction) => {
+      next(new HttpError(`Route not found: ${req.method} ${req.originalUrl}`, 404));
+    });
   }
 
   private initializeErrorHandling(): void {
