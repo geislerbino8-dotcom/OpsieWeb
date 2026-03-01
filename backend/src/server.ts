@@ -1,7 +1,9 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-import SampleRoute from './routes/sampleRoute';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import { HttpError } from './models/HttpError';
+import SampleRoute from './routes/sampleRoute';
+import InquiryRoute from './routes/inquiryRoute'
 
 export default class Server {
   public app: Application;
@@ -10,23 +12,29 @@ export default class Server {
   constructor() {
     this.app = express();
     this.initializeMiddlewares();
+    this.initializeRoutes();
     this.initializeNotFoundHandler();
     this.initializeErrorHandling();
-    this.initializeRoutes();
   }
 
-  private initializeMiddlewares(): void {
+  private initializeMiddlewares = (): void => {
     this.app.use(express.json());
     this.app.use(cors());
   }
 
-  private initializeNotFoundHandler(): void {
+  private initializeRoutes = (): void => {
+    const sampleRoute = new SampleRoute();
+    const inquiryRoute = new InquiryRoute();
+    this.app.use('/api', inquiryRoute.router);
+  }
+
+  private initializeNotFoundHandler = (): void => {
     this.app.use((req: Request, _res: Response, next: NextFunction) => {
       next(new HttpError(`Route not found: ${req.method} ${req.originalUrl}`, 404));
     });
   }
 
-  private initializeErrorHandling(): void {
+  private initializeErrorHandling = (): void => {
     this.app.use(
       (err: Error, req: Request, res: Response, next: NextFunction) => {
         console.error(err.stack);
@@ -35,14 +43,18 @@ export default class Server {
     );
   }
 
-  private initializeRoutes(): void {
-    const sampleRoute = new SampleRoute();
-    this.app.use('/api', sampleRoute.router);
-  }
+  public startServer = async() => {
+    try {
+      await mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`);
 
-  public listen() {
-    this.app.listen(this.port, () => {
-      console.log(`Server running on http://localhost:${this.port}`);
-    });
+      console.log('MongoDB connected');
+
+      this.app.listen(this.port, () => {
+        console.log(`Server running on http://localhost:${this.port}`);
+      });
+
+    } catch (error) {
+      console.error('Startup error:', error);
+    }
   }
 }
