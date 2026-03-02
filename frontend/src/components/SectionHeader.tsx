@@ -22,11 +22,11 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   badgeClassName = "",
 }) => {
   return (
-    <div className={`flex items-center justify-center flex-col gap-4 ${containerClassName}`}>
+    <div className={`flex items-center justify-center  flex-col gap-4 ${containerClassName}`}>
       
       {/* Badge */}
       <div
-  className={`w-full px-4 py-2 flex items-center justify-center gap-2 ${badgeClassName}`}
+  className={`w-full px-4 py-2 flex items-center justify-center  gap-2 ${badgeClassName}`}
   style={{
     backgroundColor: "rgb(240, 242, 245)",
     borderRadius: "50px",
@@ -51,7 +51,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       {/* Title */}
       <h1
-        className={`font-poppins text-center tracking-[2px] 
+        className={`font-poppins text-center lg:text-left tracking-[2px] 
         text-[24px] md:text-[32px] lg:text-[40px] 
         leading-[32px] md:leading-[40px] ${titleClassName}`}
       >

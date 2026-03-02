@@ -26,12 +26,12 @@ export default function WhatWeDo() {
         className="absolute inset-0 w-full h-full object-cover"
       />
           {/* Content on top of image */}
-          <div className="relative z-10 flex flex-col items-center justify-end min-h-screen px-4 text-white">
-            <div className="mb-40 flex flex-col items-center justify-center">
-              <h1 className="font-poppins text-[40px] md:text-6xl leading-[40px] font-light text-center">
-              Code with Purpose. Solutions with Impact.
+          <div className="relative z-10 flex flex-col items-center justify-end md:justify-end  mt-0 md:mt-10 h-full px-4 text-white">
+          <div className="mb-24 flex flex-col items-center justify-center md:items-start w-full">
+            <h1 className="w-full max-w-[605px] font-poppins text-[40px] leading-[40px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
+                 A Team of Builders, Thinkers, and Problem-Solvers
               </h1>
-              <p className="font-poppins mt-4 text-[16px] md:text-xl font-light text-center max-w-2xl">
+              <p className="font-poppins mt-4 text-[16px] md:text-xl font-light text-center md:text-left  max-w-2xl">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               </p>
               <Button
@@ -99,14 +99,14 @@ export default function WhatWeDo() {
             />
             </div>
             <div className="flex justify-center md:justify-end md:w-1/2 mt-4 md:mt-0 relative">
-                <div className="w-full max-w-[500px] sm:max-w-[550px] md:max-w-[570px] lg:max-w-[700px] xl:max-w-[950px] relative  lg:ml-50">
+                <div className="w-full max-w-[500px] sm:max-w-[550px] md:max-w-[570px] lg:min-w-[400px] xl:max-w-[950px] relative  lg:ml-50">
                     <img
                     src="/Results-bg.png"
                     alt="Results Background"
-                    className="w-full h-[350px] sm:h-[500px] md:h-[500px] object-contain"
+                    className="w-full h-[350px] sm:h-[500px] md:h-[500px] lg: object-contain"
                     />
                     {/* Floating Card */}
-                    <div className="absolute top-1/2 -translate-y-1/2 -left-10 sm:-left-20 md:-left-6 z-50">
+                    <div className="absolute top-1/2 -translate-y-1/2 -left-10 sm:-left-20 md:-left-10 lg:-left-28 z-50">
                     <div className="skew-x-[-16deg] w-[180px] sm:w-[180px] md:w-[250px] bg-white h-[130px] sm:h-[150px] shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl">
                         <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
                         <div className="text-[#3CBDE6] text-3xl">★★★★★</div>
@@ -158,10 +158,10 @@ export default function WhatWeDo() {
                     </div>
                 </div>
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-6 px-2 flex items-center justify-center font-poppins">
+            <div className="flex flex-col gap-6 px-2 flex items-center justify-center lg:items-start font-poppins">
                 
             <div 
-            className="mt-6"
+            className="mt-6 flex items-center justify-center lg:items-start"
                 >
                 <SectionHeader
                     badgeText="Our Story"
@@ -171,12 +171,12 @@ export default function WhatWeDo() {
                 
             </div>
             <div className="flex flex-col lg:flex-row ">
-            <div className="flex flex-col items-center gap-6 md:gap-10 px-2">
-                <h1 className="w-full md:w-[410px] lg:w-[600px] font-poppins text-center lg:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[60px] md:leading-[50px] lg:leading-[65px]">Every Line of  <span className="text-[#3CBDE6] font-semibold">Code</span> Tells <span className="font-playfair italic text-[#3CBDE6] font-semibold">Our Story.</span></h1>
-                <p className="w-full lg:w-[600px] font-poppins text-center lg:text-left text-[14px] sm:text-[18px]  leading-[16px] font-light">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
+            <div className="flex flex-col items-center lg:items-start gap-6 md:gap-10 px-2">
+                <h1 className="w-full md:w-[410px] lg:w-[550px] font-poppins text-center lg:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[60px] md:leading-[50px] lg:leading-[65px]">Every Line of  <span className="text-[#3CBDE6] font-semibold">Code</span> Tells <span className="font-playfair italic text-[#3CBDE6] font-semibold">Our Story.</span></h1>
+                <p className="w-full lg:w-[500px] font-poppins text-center lg:text-left text-[14px] sm:text-[18px]  leading-[16px] font-light">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
             </div>
-            <div className="flex flex-col gap-6 items-center mr-34 sm:mr-20 md:mr-30 mt-6 sm:mt-8 md:mt-8 lg:mt-0">
-            <div className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible">
+            <div className="flex flex-col gap-6 items-center mr-34 sm:mr-20 md:mr-30  mt-6 sm:mt-8 md:mt-8 lg:mt-0 relative">
+            <div className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:ml-20 ">
 
                 <img
                     src="/Results-bg.png"
@@ -218,7 +218,7 @@ export default function WhatWeDo() {
           
        </div>
        <div className="flex flex-col gap-8 mt-8">
-                <div className="flex flex-col gap-2 px-2 flex items-center justify-center font-poppins">
+                <div className="flex flex-col gap-2 px-2 flex items-center justify-center font-poppins lg:items-start">
                     <div
                         className="w-[160px] list-none py-2 flex items-center justify-center gap-2"
                         style={{
@@ -244,25 +244,31 @@ export default function WhatWeDo() {
                     </div>
 
                     {/* Right Top Small */}
-                    <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
-
-                    {/* Right Bottom Small */}
-                    <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
+                    <div className="md:col-span-2">
+                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px] md:w-[380px] md:h-[170px]" />
+                        
+                    </div>
+                    <div className="md:col-start-4">
+                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
+                    </div>
 
                     {/* Full Width Card 1 */}
-                    <div className="col-span-2">
+                    
+                    <div className="col-span-2 md:col-start-3 md:row-start-2">
                     <Card className="bg-[#ECEDF1] w-[380px] h-[180px]" />
+                    </div>
+
+                    <div className="col-span-2 md:col-start-2 md:row-start-2">
+                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px] md:w-[180px] md:h-[170px]" />
                     </div>
 
                     {/* Full Width Card 2 */}
-                    <div className="col-span-2">
-                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px]" />
-                    </div>
+                    
 
                 </div>
                 </div>
                 <div className="flex flex-col gap-8 mt-8">
-                <div className="flex flex-col gap-2 px-2 flex items-center justify-center font-poppins">
+                <div className="flex flex-col gap-2 px-2 flex items-center justify-center font-poppins lg:items-start">
                     <div
                         className="w-[160px] list-none py-2 flex items-center justify-center gap-2"
                         style={{
@@ -273,7 +279,7 @@ export default function WhatWeDo() {
                         }}
                             >
                             <img src="/ICONS/our-story-icon.svg" alt="" />
-                            <p className="text-md">Our Vision</p>
+                            <p className="text-md">Our Mission</p>
                         </div>
                             <h1 className="font-poppins text-center leading-[34px] text-[36px]">The <span className="text-[#3CBDE6] font-semibold">Mission</span></h1>
                             <p className="font-poppins text-center text-[16px] leading-[15px] font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -283,26 +289,31 @@ export default function WhatWeDo() {
                 <div className="grid grid-cols-[180px_180px] gap-6">
 
                     {/* Left Tall Card */}
-                    
-
-                    {/* Right Top Small */}
-                    <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
                     <div className="row-span-2">
                     <Card className="bg-[#ECEDF1] w-[180px] h-[365px]" />
                     </div>
 
-                    {/* Right Bottom Small */}
-                    <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
+                    {/* Right Top Small */}
+                    <div className="md:col-span-2">
+                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px] md:w-[380px] md:h-[170px]" />
+                        
+                    </div>
+                    <div className="md:col-start-4">
+                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
+                    </div>
 
                     {/* Full Width Card 1 */}
-                    <div className="col-span-2">
+                    
+                    <div className="col-span-2 md:col-start-3 md:row-start-2">
                     <Card className="bg-[#ECEDF1] w-[380px] h-[180px]" />
+                    </div>
+
+                    <div className="col-span-2 md:col-start-2 md:row-start-2">
+                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px] md:w-[180px] md:h-[170px]" />
                     </div>
 
                     {/* Full Width Card 2 */}
-                    <div className="col-span-2">
-                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px]" />
-                    </div>
+                    
 
                 </div>
                 </div>
