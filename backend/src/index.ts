@@ -1,4 +1,3 @@
-
 import Server from './server';
 import dotenv from 'dotenv';
 

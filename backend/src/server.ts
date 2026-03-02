@@ -1,8 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { HttpError } from './models/HttpError';
-import SampleRoute from './routes/sampleRoute';
+import { HttpError } from './utils/httpError';
 import InquiryRoute from './routes/inquiryRoute'
 
 export default class Server {
@@ -23,9 +22,8 @@ export default class Server {
   }
 
   private initializeRoutes = (): void => {
-    const sampleRoute = new SampleRoute();
     const inquiryRoute = new InquiryRoute();
-    this.app.use('/api', inquiryRoute.router);
+    this.app.use('/inquiry', inquiryRoute.router);
   }
 
   private initializeNotFoundHandler = (): void => {

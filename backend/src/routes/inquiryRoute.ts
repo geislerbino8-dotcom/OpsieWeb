@@ -18,16 +18,34 @@ export default class InquiryRoute {
     );
 
     this.router.get(
-      '/getInquiries',
-      this.getInquiries.bind(this)
+      '/getAll',
+      this.getAll.bind(this)
     );
+
+    this.router.patch(
+      '/updateStatus/:id',
+      this.updateStatus.bind(this)
+    )
+
+    this.router.delete(
+      '/delete/:id',
+      this.delete.bind(this)
+    )
   }
 
   private create = (req: Request, res: Response): void => {
     this.controller.create(req, res);
   }
 
-  private getInquiries = (req: Request, res: Response): void => {
+  private getAll = (req: Request, res: Response): void => {
     this.controller.getAll(req, res);
+  }
+
+  private updateStatus = (req: Request, res: Response): void => {
+    this.controller.updateStatus(req, res);
+  }
+
+  private delete = (req: Request, res: Response): void => {
+    this.controller.delete(req, res);
   }
 }

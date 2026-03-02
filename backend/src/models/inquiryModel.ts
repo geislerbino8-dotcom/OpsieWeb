@@ -7,6 +7,11 @@ const InquirySchema = new Schema(
     phone: { type: String, required: true },
     address: String,
     message: { type: String, required: true},
+    status: {
+      type: String,
+      enum: ['new', 'contacted', 'closed'],
+      default: 'new',
+    },
   },
   
   { timestamps: true }
