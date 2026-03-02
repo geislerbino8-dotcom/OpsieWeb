@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import './App.css';
+import { Routes, Route } from "react-router-dom"
 import GetName from './api/getName';
+import WhatWeDo from "./pages/WhatWeDo"
+import WhoWeAre from './pages/WhoWeAre';
+import LandingPage from "./pages/LandingPage"
 
 const App = () => {
   const [name, setName] = useState<string>('');
@@ -22,9 +26,11 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <h1>Name from API: {name}</h1>
-      </div>
+      <Routes>
+         <Route path="/" element={<LandingPage />} />
+         <Route path="/whoWeAre" element={<WhoWeAre />} />
+         <Route path="/whatWeDo" element={<WhatWeDo />} />
+      </Routes>
     </>
   );
 }
