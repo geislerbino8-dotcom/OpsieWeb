@@ -1,0 +1,47 @@
+.contact-us-container p {
+    margin: 1em 0;
+
+}
+
+.contact-us-container h3 {
+    color: #242424;
+}
+
+.contact-header {
+   padding: 1em;
+  
+}
+
+.contact-header p {
+    color: gray;
+}
+
+.contact-wrapper {
+}
+
+.map-card {
+    flex-basis: 2;
+}
+
+.map-card p {
+    color: rgb(84, 84, 84);
+    margin: 0.5em 0;
+}
+
+
+
+@media (min-width: 550px){
+
+    .contact-us-container {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .contact-wrapper {
+        flex-direction: row;
+    }
+
+    .map-image {
+        width: 100;
+    }
+}

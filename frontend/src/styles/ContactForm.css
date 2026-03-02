@@ -1,0 +1,54 @@
+.contact-form-container {
+    background-color: rgba(255, 255, 255, 0.499);
+    padding: 1em;
+    border-radius: 0.5em;
+    width: 100%;
+
+  
+}
+
+.contact-wrapper {
+    justify-content: space-between;
+    margin: 1em 0;
+}
+
+.contact-wrapper h3 {
+    margin: 0.5em 0;
+}
+
+.contact-form-wrapper button {
+    width: 90%;
+    padding: 1em;
+    margin: 0.5em;
+    border-radius: 1em;
+    border: 0;
+    background-color: #3CBDE6;
+    font-weight: bold;
+    color: white;
+}
+
+
+.contact-form-wrapper input, .contact-form-wrapper select {
+    width: 90%;
+    padding: 1em;
+    border-radius: 1em;
+    border: 0;
+    margin: 0.5em 1em;
+    color: black;
+}
+
+.contact-form-wrapper select {
+    background-color: white;
+    color: black;
+}
+
+.contact-form-wrapper option {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+@media (min-width: 550px){
+    .contact-form-container {
+        width: 40%;
+    }
+}
