@@ -33,7 +33,6 @@ function Navigation() {
 
   const location = useLocation()
   const [ navIsOpen, setNavIsOpen ] = useState(false)
-  const [ activeNav, setActiveNav ] = useState()
   const navigate = useNavigate()
 
   useEffect(()=> {
