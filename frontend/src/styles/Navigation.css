@@ -1,13 +1,8 @@
 .logo-wrapper {
-
     position: relative;
     bottom: -0.2em;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.145));
 
-}
-
-.logo-wrapper :hover {
-    cursor: pointer;
 }
 
 .logo {
@@ -51,10 +46,12 @@
 }
 
 
+
+
+
 ul {
     padding: 0;
-    background-color: #00000072;
-    
+    background-color: white;
 }
 
 ul li {
@@ -67,21 +64,6 @@ ul li {
 
 .item-menu {
     font-weight:300;
-}
-
-.item-menu:hover {
-    color: white;
-    background-color: #0db5e96a;
-    border-radius: 2em;
-}
-
-.nav-link {
-    color: white;
-}
-
-
-.nav-link:hover {
-    color: white;
 }
 
 .desktop-nav {
@@ -103,16 +85,15 @@ ul li {
 .active-menu {
     background-color:  #3CBDE6;
     border-radius: 2rem;
-    color: white;
-     
+
+   
 }
 
 .burger-menu {
 }
 
-.active-l {
+.active-menu a {
     color: white;
-    font-weight: bold;
 }
 
 .mobile-nav {

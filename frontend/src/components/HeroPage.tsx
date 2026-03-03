@@ -1,44 +1,18 @@
 import '../styles/HeroPage.css'
 import LogoOnly from '../assets/icons/opsie_logo_only.png'
-import HomeHeroImg from '../assets/background-images/landing-hero.jpg'
-
-type HeroContent = {
-  heroText?: string
-  bgImage?: string
-}
 
 
-function HeroPage({heroText, bgImage} : HeroContent) {
-  return (  
-    <div className='hero-page-container vw100 vh100 flex fd-c ai-c flex jc-c'
-      style={{
-        backgroundImage: `url(${bgImage? bgImage : HomeHeroImg})`
-      }}
-    >
+function HeroPage() {
+  return (
+    <div className='hero-page-container vw100 vh100 flex fd-c ai-c jc-fe'>
       <div className="hero-content flex ai-c fd-c jc-c">
-       { /**<div>
+        <div>
           <img className='hero-visual' width={600} src={LogoOnly} alt="" />
-        </div> */}
+        </div>
           <div className="hero-text-content">
-            {
-              !heroText ? <h1 className='hero-title'>Turning
-              Ideas into 
-              <span className='playfair-text i blue-txt'> Reality</span>✨</h1>
-              : <h1>{heroText}</h1>
-            }
-
-            {
-              /**
-               * <div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus ipsa dolore laboriosam ea harum iure quo consequuntur dolorem rem nobis sint magni esse quam, hic laudantium dolorum aliquam suscipit?</p>
-            </div>
-
-            <div>
-              <button className='btn-hero'>GET STARTED</button>
-            </div>
-               */
-            }
-        
+            <h1 className='hero-title playfair-text'>Bringing Ideas into Reality</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis aperiam aliquam neque, vero labore nostrum accusantium atque molestias.</p>
+        <button className='btn-hero'>GET STARTED</button>
           </div>
       </div>
     </div>
