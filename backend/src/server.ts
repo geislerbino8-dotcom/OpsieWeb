@@ -4,6 +4,10 @@ import cors from 'cors';
 import { HttpError } from './utils/httpError';
 import InquiryRoute from './routes/inquiryRoute'
 
+const dns = require("node:dns/promises");
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
+
 export default class Server {
   public app: Application;
   private readonly port = process.env.PORT || 4000;

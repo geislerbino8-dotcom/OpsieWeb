@@ -1,6 +1,5 @@
 import '../styles/MobileMenu.css'
-import PrimaryButton from './buttons/PrimaryButton'
-
+import { Link } from 'react-router-dom'
 
 function MobileMenu() {
   return (
@@ -10,10 +9,18 @@ function MobileMenu() {
             </div>
             <div>
                 <ul>
-                    <li><a href="">What We Do</a></li>
-                    <li><a href="">Who We Are</a></li>
-                    <li><a href="">Contact Us</a></li>
-                    <li><a href="">Products</a></li>
+                    <li className=' item-menu'>
+                <Link to={'/what-we-do'}>What We Do</Link>
+              </li>
+              <li className='item-menu'>
+                <Link to={'/who-we-are'}>Who We Are</Link>
+              </li>
+              <li className='item-menu'>
+                <Link to={'./contact-us'}>Contact Us</Link>
+              </li>
+              <li className='item-menu'>
+                <Link to={'/products'}>Products</Link>
+              </li>
                 </ul>
 
                 <button>Get Started</button>

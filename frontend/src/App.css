@@ -21,7 +21,8 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: transparent;
+  background: #3CBDE6;
+  border-radius: 1em;
 }
 
 /* Handle on hover */

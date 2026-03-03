@@ -3,8 +3,12 @@ import LogoOnly from '../../assets/icons/opsie_logo_only.png'
 import ProductCard from '../cards/ProductCard'
 import P1 from '../../assets/Products/Product1.png'
 import TopSectionCard from '../cards/TopSectionCard'
+import { useNavigate } from 'react-router-dom'
 
 function ProductSection() {
+
+  const navigate = useNavigate()
+
   return (
     <div className="product-section-container vw100  flex fd-c">
       
@@ -18,9 +22,7 @@ function ProductSection() {
             <h1>Opsie's Products</h1>
           </div>
           <div>
-            <button>View all Products
-
-            </button>
+            <button onClick={()=> navigate('/products')}>View all Products</button>
           </div>
         </div>
 
