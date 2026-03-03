@@ -1,7 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { HttpError } from './utils/httpError';
+import { HttpError } from './utils/httpError'
 import InquiryRoute from './routes/inquiryRoute'
 
 export default class Server {
