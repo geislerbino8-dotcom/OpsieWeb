@@ -21,6 +21,7 @@ export class InquiryController {
         name: inq.name,
         email: inq.email,
         phone: inq.phone,
+        address: inq.address,
         message: inq.message,
         status: inq.status,
         createdAt: inq.createdAt.toLocaleString(),
