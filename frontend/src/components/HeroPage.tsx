@@ -27,17 +27,14 @@ function HeroPage({heroText, bgImage} : HeroContent) {
               : <h1>{heroText}</h1>
             }
 
-            {
-              /**
-               * <div>
+            <div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus ipsa dolore laboriosam ea harum iure quo consequuntur dolorem rem nobis sint magni esse quam, hic laudantium dolorum aliquam suscipit?</p>
             </div>
 
             <div>
               <button className='btn-hero'>GET STARTED</button>
             </div>
-               */
-            }
+              
         
           </div>
       </div>

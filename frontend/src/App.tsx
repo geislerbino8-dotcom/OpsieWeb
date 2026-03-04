@@ -1,13 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import './App.css';
 import GetName from './api/getName';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import { getInquiries } from './api/getInquiries';
 
 const App = () => {
   const [name, setName] = useState<string>('');
 
+  useEffect(() => {
+    const fetchInquiries = async () => {
+      try {
+        const data = await getInquiries();
+        console.log(data)
+      } catch (err: any) {
+        console.log(err)
+      } finally {
+      }
+    };
+
+    fetchInquiries();
+  }, []);
+
+  getInquiries()
   const fetchName = async () => {
     try {
       // Please see my note in getName.ts regarding the use of the class here.

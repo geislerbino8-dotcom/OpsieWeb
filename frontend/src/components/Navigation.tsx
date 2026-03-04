@@ -33,7 +33,6 @@ function Navigation() {
 
   const location = useLocation()
   const [ navIsOpen, setNavIsOpen ] = useState(false)
-  const [ activeNav, setActiveNav ] = useState()
   const navigate = useNavigate()
 
   useEffect(()=> {
@@ -52,7 +51,7 @@ function Navigation() {
   return (
     <div className='nav-container w100'>
       <div className="desktop-nav flex nav-wrapper ai-c fd-r jc-c">
-        <div className="desktop-nav-wrapper flex fd-r jc-c ai-c">
+        <div className="desktop-nav-wrapper flex fd-r ai-c jc-sb">
           <div className='logo-wrapper'>
           <img onClick={()=> {
             directToHome()

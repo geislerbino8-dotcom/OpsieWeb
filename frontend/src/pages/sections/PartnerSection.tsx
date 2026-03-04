@@ -1,7 +1,7 @@
 import P1 from '../../assets/visuals/HRIS.png'
 import '../../styles/PartnerSection.css'
 import PartnersImage from '../../assets/visuals/Partners.png'
-import TopSectionCard from '../cards/TopSectionCard'
+import TopSectionCard from '../../components/cards/TopSectionCard'
 
 function PartnerSection() {
   return (

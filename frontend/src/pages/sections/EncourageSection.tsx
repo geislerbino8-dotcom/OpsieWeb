@@ -1,4 +1,4 @@
-import EncourageCard from "../cards/EncourageCard"
+import EncourageCard from "../../components/cards/EncourageCard"
 import '../../styles/EncourageSection.css'
 
 function EncourageSection() {

@@ -1,7 +1,7 @@
 import '../../styles/ServicesSection.css'
-import ServicesCards from '../cards/ServicesCards'
+import ServicesCards from '../../components/cards/ServicesCards'
 import webdev from '../../assets/card-bg/webdev.png'
-import TopSectionCard from '../cards/TopSectionCard'
+import TopSectionCard from '../../components/cards/TopSectionCard'
 
 function ServicesSection() {
   return (

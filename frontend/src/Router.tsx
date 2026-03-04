@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom"
 import App from "./App"
-import ProductPage from "./components/pages/ProductPage"
-import WhoWeAre from "./components/pages/WhoWeAre"
-import WhatWeDoPage from "./components/pages/WhatWeDoPage"
-import ContactUsPage from "./components/pages/ContactUsPage"
-import Homepage from "./components/pages/Homepage"
+import ProductPage from "./pages/ProductPage"
+import WhoWeAre from "./pages/WhoWeAre"
+import WhatWeDoPage from "./pages/WhatWeDoPage"
+import ContactUsPage from "./pages/ContactUsPage"
+import Homepage from "./pages/Homepage"
+import ProductItemPage from "./pages/ProductItemPage"
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact-us',
                 element: <ContactUsPage />
+            },
+            {
+                path: '/products/:id',
+                element: <ProductItemPage />
             }
         ]
        

@@ -65,6 +65,11 @@ button:hover {
   justify-content: flex-end;
 }
 
+
+button {
+  padding: 1em;
+}
+
 .w100 {
   width: 100%;
 }

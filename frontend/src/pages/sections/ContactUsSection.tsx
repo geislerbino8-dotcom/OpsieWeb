@@ -1,7 +1,7 @@
-import ContactForm from "../cards/ContactForm"
+import ContactForm from "../../components/cards/ContactForm"
 import '../../styles/ContactUs.css'
-import MapCard from "../cards/MapCard"
-import TopSectionCard from "../cards/TopSectionCard"
+import MapCard from "../../components/cards/MapCard"
+import TopSectionCard from "../../components/cards/TopSectionCard"
 
 function ContactUsSection() {
   return (

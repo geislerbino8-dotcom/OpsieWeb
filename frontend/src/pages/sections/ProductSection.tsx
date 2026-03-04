@@ -1,8 +1,8 @@
 import '../../styles/ProductSection.css'
 import LogoOnly from '../../assets/icons/opsie_logo_only.png'
-import ProductCard from '../cards/ProductCard'
+import ProductCard from '../../components/cards/ProductCard'
 import P1 from '../../assets/Products/Product1.png'
-import TopSectionCard from '../cards/TopSectionCard'
+import TopSectionCard from '../../components/cards/TopSectionCard'
 import { useNavigate } from 'react-router-dom'
 
 function ProductSection() {

@@ -1,7 +1,7 @@
 import '../../styles/Analytics.css'
-import AnalyticsCards from '../cards/AnalyticsCards'
+import AnalyticsCards from '../../components/cards/AnalyticsCards'
 import OpsieLogo from '../../assets/icons/opsie_logo_only.png'
-import TopSectionCard from '../cards/TopSectionCard'
+import TopSectionCard from '../../components/cards/TopSectionCard'
 
 function Analytics() {
   return (

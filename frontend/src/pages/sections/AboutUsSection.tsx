@@ -1,7 +1,7 @@
 import React from 'react'
 import OpsieImage from '../../assets/opsie/opsie_full.jpg'
 import '../../styles/AboutUsSection.css'
-import TopSectionCard from '../cards/TopSectionCard'
+import TopSectionCard from '../../components/cards/TopSectionCard'
 
 function AboutUsSection() {
 

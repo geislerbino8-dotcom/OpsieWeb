@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroPage from '../HeroPage'
+import HeroPage from '../components/HeroPage'
 
 function WhatWeDoPage() {
   return (

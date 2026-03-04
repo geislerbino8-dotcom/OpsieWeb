@@ -1,5 +1,5 @@
 import '../../styles/FeedbackSection.css'
-import FeedbackSectionCard from '../cards/FeedbackSectionCard'
+import FeedbackSectionCard from '../../components/cards/FeedbackSectionCard'
 
 function FeedbackSection() {
   return (
