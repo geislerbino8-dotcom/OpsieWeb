@@ -1,0 +1,13 @@
+.encourage-section-container {
+    margin: 3em 0 1em 0;
+}
+
+@media (min-width: 550px){
+    .encourage-section-container {
+        margin: 1em auto;
+    }
+
+    .encourage-card-container {
+        width: 70%;
+    }
+}

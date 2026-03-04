@@ -1,0 +1,56 @@
+.mobile-menu-container {
+    background-color: rgba(24, 3, 3, 0.384);
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    z-index: 10;
+    
+}
+
+.mobile-menu-wrapper {
+    color: white;
+    position: relative;
+    bottom: 0;
+    justify-content: flex-end;
+    background-color: #3CBDE6;
+    height: 84%;
+    border-radius: 2em 2em 0 0;
+    padding-bottom: 5em;
+    z-index: 7;
+}
+
+.slide-bar {
+    height: 0.5em;
+    background-color: rgb(215, 215, 215);
+    width: 70vw;
+    border: 1em;
+    position: relative;
+    border-radius: 1em;
+    top: -10em;
+    
+}
+
+.mobile-menu-wrapper ul {
+    background-color: transparent;
+}
+.mobile-menu-wrapper a {
+    text-decoration: none;
+    color: white;
+}
+
+.mobile-menu-wrapper li {
+    margin: 1em;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.mobile-menu-wrapper button {
+    padding: 0.5em 1em;
+    font-size: 1.3em;
+    border: 0;
+    border-radius: 1em;
+    width: 80vw;
+    margin-top: 2em;
+}

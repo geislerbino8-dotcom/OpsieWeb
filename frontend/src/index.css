@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.fd-c {
+  flex-direction: column;
+}
+
+.fd-r {
+  flex-direction: row;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.jc-se {
+  justify-content: space-evenly;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-fe {
+  align-items: flex-end;
+}
+
+.jc-fe {
+  justify-content: flex-end;
+}
+
+
+button {
+  padding: 1em;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.vw100 {
+  width: 100vw;
+}
+
+.vh100 {
+  height: 100vh;
+}
+
+/*TEXT STYLES*/
+.header-title {
+  font-size: 2.5rem;
+  margin: 1em 0;
+}
+
+.txt-a-c {
+  text-align: center;
+}
+
+
+/***ROOT*/
+@media (min-width: 550px) {
+  
+}
+
+

@@ -101,7 +101,7 @@ flowchart TB
 └── package.json             # Root-level scripts and dependencies
 ```
 
-## Installations
+## Installation
 ### 1. Clone the repository
 ```
 git clone https://github.com/OpsieDev/OpsieWebsite.git
@@ -111,7 +111,15 @@ git clone https://github.com/OpsieDev/OpsieWebsite.git
 cd backend && npm install && npm run build
 cd ../frontend && npm install
 ```
-### 3. Development
+
+### 3. Add Environment Variables.
+Create a .env file in the backend root directory.
+```
+cd backend
+echo PORT=5000 MONGODB_USER=opsiessi MONGODB_PASSWORD=ZE9crHBxOuTvOwWH MONGODB_NAME=opsie-test > .env
+```
+
+### 4. Development
 ```
 # Run backend
 cd backend && npm run dev

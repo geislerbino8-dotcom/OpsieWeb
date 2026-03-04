@@ -1,0 +1,128 @@
+.logo-container {
+}
+
+.logo-wrapper {
+    position: relative;
+    bottom: -0.2em;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.145));
+
+}
+
+.logo {
+    padding: 1em;
+}
+
+.nav-container {
+    position: fixed;
+    background-color: transparent;
+    margin: 0;
+    z-index: 2;
+    width: 100%;
+
+}
+
+.nav-wrapper {
+    height: 5em;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-wrapper {
+    margin: 0 4rem;
+}
+
+.bm-wrapper {
+    background-color: transparent;
+    border: 0;
+}   
+
+.menu {
+    border-radius: 2em;
+}
+
+.menu li a {
+    text-decoration: none;
+    padding: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+ul {
+    padding: 0;
+    background-color: white;
+}
+
+ul li {
+    list-style: none;
+    padding: 0.5em;
+    color: #242424;
+    text-align: center;
+   
+}
+
+.item-menu {
+    font-weight:300;
+}
+
+.desktop-nav {
+    display: none;
+    /* From https://css.glass */
+
+}
+
+.desktop-nav-wrapper, .mobile-nav {
+    width:75vw;
+    padding: 0 1em;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2em;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.active-menu {
+    background-color:  #3CBDE6;
+    border-radius: 2rem;
+
+   
+}
+
+.burger-menu {
+}
+
+.active-menu a {
+    color: white;
+}
+
+.mobile-nav {
+    width: 100%;
+    display: flex;
+    padding: 0.5em 1em;
+    line-height: 1;
+    border-radius: 0;
+
+
+    button {
+        border: 0;
+        border-radius: 50%;
+    }
+}
+
+
+
+
+@media (min-width: 550px) {
+    .desktop-nav {
+        display: flex;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+}
