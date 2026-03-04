@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import SectionHeader from "../SectionHeader";
 
 export default function WhyChooseUs() {
@@ -6,7 +5,8 @@ export default function WhyChooseUs() {
 
     return(
         <div>
-            <div className="flex items-center justify-center md:items-start  flex-col gap-4">
+            <div data-aos="fade-down"
+                 className="flex items-center justify-center md:items-start  flex-col gap-4">
                 <SectionHeader
                     badgeText="Why Choose Us"
                     icon="/ICONS/text-white-icon.svg"
@@ -15,38 +15,51 @@ export default function WhyChooseUs() {
                     <h1 className="font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What Makes Us <span className="text-[#3CBDE6] font-semibold">Different</span></h1>
                     <p className="text-center md:text-start text-[16px] md:text-[20px] leading-[15px] md:leading-[22px] font-light md:font-normal w-full md:w-[600px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-10 md:mx-20">
-                <div className="col-span-2 md:col-span-2 rounded-3xl shadow-lg bg-[#E9E9E9] overflow-hidden">
+            <div  className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 mt-10 md:mx-20">
+                <div data-aos="fade-right" data-aos-duration="2000" className="col-span-2 md:col-span-2 rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] bg-white overflow-hidden">
                 <img
-                    src="/Cutting-Edge.png"
+                    src="/whyChooseUs1stCard3.svg"
                     alt="Cutting Edge"
-                    className="w-full overflow-hidden rounded-2xl"
-                />
-                <p className="p-6">Lorem ipsum dolor sit amet...</p>
-                </div>
-                <div className="col-span-1 md:col-span-1 rounded-3xl shadow-lg bg-white overflow-hidden">
-                    <img
-                        src="/Cutting-Edge.png"
-                        alt="Cutting Edge"
-                        className="w-full"
+                    className="w-full overflow-hidden  "
                     />
-                    <p className="mt-4">Lorem ipsum dolor sit amet...</p>
+                    <div className="p-4 flex flex-col items-start justify-start flex-col">
+                        <h1 className="font-poppins text-[22px] font-medium">Cutting-Edge Technology</h1>
+                        <p className=" text-left font-poppins text-[16px] font-light ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                    </div>
+                
                 </div>
-                <div className="col-span-1 md:col-span-1 rounded-3xl shadow-lg bg-white ">
+                <div data-aos="fade-right" data-aos-duration="2000" data-aos-delay="300" className="col-span-1 md:col-span-1 rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] bg-white overflow-hidden ">
                     <img
-                        src="/Cutting-Edge.png"
+                        src="/whyChooseUs2ndCard3.svg"
                         alt="Cutting Edge"
-                        className="w-full rounded-2xl"
+                        className="w-full "
                     />
-                    <p className="mt-4">Lorem ipsum dolor sit amet...</p>
+                    <div className="p-4 flex flex-col items-start justify-start flex-col">
+                        <h1 className="font-poppins text-[22px] font-medium">Expert Team</h1>
+                        <p className=" text-left font-poppins font-light leading-4 text-[12px] ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                    </div>
                 </div>
-                <div className="col-span-2 md:col-span-2 rounded-3xl shadow-lg bg-white overflow-hidden">
+                <div data-aos="fade-right" data-aos-duration="2000" data-aos-delay="300" className="col-span-1 md:col-span-1 rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] bg-white overflow-hidden ">
                     <img
-                        src="/Cutting-Edge.png"
+                        src="/whyChooseUs3rdCard2.svg"
                         alt="Cutting Edge"
-                        className="w-full overflow-hidden  rounded-2xl"
+                        className="w-full  "
                     />
-                    <p className="mt-4 py-3">Lorem ipsum dolor sit amet...</p>
+                    <div className="p-4 flex flex-col items-start justify-start flex-col">
+                        <h1 className="font-poppins text-[22px] font-medium">Expert Team</h1>
+                        <p className=" text-left font-poppins font-light leading-4 text-[12px] ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                    </div>
+                </div>
+                <div  data-aos="fade-left" data-aos-duration="2000" data-aos-delay="300" className="col-span-2 md:col-span-2 rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] bg-white overflow-hidden">
+                    <img
+                        src="/whyChooseUs4thCard4.svg"
+                        alt="Cutting Edge"
+                        className="w-full "
+                    />
+                    <div className="p-4 flex flex-col items-start justify-start flex-col">
+                        <h1 className="font-poppins text-[22px] font-medium">Reliable Support</h1>
+                        <p className=" text-left font-poppins text-[16px] font-light ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                    </div>
                 </div>
             </div>
         </div>

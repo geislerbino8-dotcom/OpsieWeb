@@ -3,6 +3,8 @@ import { Card } from "../Card/ServicesCard";
 import { Button } from "../Button";
 
 const ServicesSection: React.FC = () => {
+  
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const cards = [
@@ -16,7 +18,8 @@ const ServicesSection: React.FC = () => {
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="w-full flex flex-col">
+    <section className="w-full flex flex-col"
+  >
     {/* ================= MOBILE VIEW ================= */}
     <div className="md:hidden flex flex-col items-center overflow-hidden relative w-full">
       <div
@@ -54,9 +57,9 @@ const ServicesSection: React.FC = () => {
     </div>
 
       {/* ================= MD AND ABOVE ================= */}
-      <div className="hidden md:flex flex-col w-full mt-6">
+      <div data-aos="fade-right"  className="hidden md:flex flex-col w-full mt-6">
         {/* Navigation above cards */}
-        <div className="flex items-center gap-x-4 mb-6 ">
+        <div  className="flex items-center gap-x-4 mb-6 ">
           <Button variant="shadow" iconImage="/left-arrow1.svg" className="w-10 h-10 flex items-center justify-center cursor-pointer" onClick={handlePrev} />
           <hr className="w-[100px] border border-black" />
           <Button variant="shadow" iconImage="/right-arrow.svg" className="w-10 h-10 flex items-center justify-center cursor-pointer pl-4" onClick={handleNext} />

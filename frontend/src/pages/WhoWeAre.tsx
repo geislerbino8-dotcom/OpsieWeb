@@ -1,7 +1,6 @@
 import { Button } from "../components/Button/Button";
 import { Card }  from "../components/Card/ServicesCard/Card";
 import FAQAccordion from "../components/FaqSection/Faq";
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import { SiFacebook, SiInstagram, SiLinkedin, SiGmail } from "react-icons/si";
 import Header from "../components/Header";
@@ -19,7 +18,7 @@ export default function WhatWeDo() {
   {/* HERO SECTION */}
   <div className="w-full px-2">
   <div className="relative w-full  ">
-    <div className="relative h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10 ">
+  <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
       <img
         src="/WhatWeDo-Hero2.svg"
         alt="Hero Image"
@@ -28,12 +27,13 @@ export default function WhatWeDo() {
           {/* Content on top of image */}
           <div className="relative z-10 flex flex-col items-center justify-end md:justify-end  mt-0 md:mt-10 h-full px-4 text-white">
           <div className="mb-24 flex flex-col items-center justify-center md:items-start w-full">
-            <h1 className="w-full max-w-[605px] font-poppins text-[40px] leading-[40px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
+            <h1 data-aos="fade-right" className="w-full max-w-[605px] font-poppins text-[40px] leading-[40px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
                  A Team of Builders, Thinkers, and Problem-Solvers
               </h1>
-              <p className="font-poppins mt-4 text-[16px] md:text-xl font-light text-center md:text-left  max-w-2xl">
+              <p data-aos="fade-right" className="font-poppins mt-4 text-[16px] md:text-xl font-light text-center md:text-left  max-w-2xl">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               </p>
+              <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
               <Button
                 label="Learn More"
                 variant="secondary"
@@ -43,6 +43,7 @@ export default function WhatWeDo() {
                 weight="light"
                 onClick={() => navigate("/whatWeDo")}
               />
+              </div>
             </div>
             
           </div>
@@ -82,23 +83,26 @@ export default function WhatWeDo() {
         <div className="flex flex-col items-center justify-center md:flex-row gap-2 md:gap-16">
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-0 md:gap-0  lg:mt-10">
         <div className="flex flex-col items-center md:items-start justify-center md:w-1/2 gap-6 md:gap-10 px-2 md:mt-8">
-            <h1 className="w-full md:w-[410px] lg:w-[600px] font-poppins text-center md:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[60px] md:leading-[50px] lg:leading-[65px]">
+            <h1 data-aos="fade-right" className="w-full md:w-[410px] lg:w-[600px] font-poppins text-center md:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[60px] md:leading-[50px] lg:leading-[65px]">
                 We Believe in <span className="text-[#3CBDE6] font-semibold">Result </span>
                 Driven by <br />
                 <span className="font-playfair italic text-[#3CBDE6] font-semibold">Smart Technology</span>
             </h1>
-            <p className="w-full md:w-[350px] lg:w-[450px] font-poppins text-center md:text-left text-[16px] sm:text-[18px] md:text-[20px] leading-[18px] font-light">
+            <p data-aos="fade-right" data-aos-delay="200" className="w-full md:w-[350px] lg:w-[450px] font-poppins text-center md:text-left text-[16px] sm:text-[18px] md:text-[20px] leading-[18px] font-light">
                 At <span className="text-[#3CBDE6] font-semibold">Opsie</span>, we believe that real business growth is rooted in strategy, insight, and execution.
             </p>
-            <Button
-                label="Get Started"
-                icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}
-                iconPosition="right"
-                className="bg-[#3CBDE6] flex items-center justify-center text-white gap-2 text-lg px-3 w-[200px]"
-                onClick={() => alert("Button clicked!")}
-            />
+            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
+                <Button
+                    label="Get Started"
+                    icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}
+                    iconPosition="right"
+                    className="bg-[#3CBDE6] flex items-center justify-center text-white gap-2 text-lg px-3 w-[200px]"
+                    onClick={() => alert("Button clicked!")}
+                />
             </div>
-            <div className="flex justify-center md:justify-end md:w-1/2 mt-4 md:mt-0 relative">
+            
+            </div>
+            <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="600" className="flex justify-center md:justify-end md:w-1/2 mt-4 md:mt-0 relative">
                 <div className="w-full max-w-[500px] sm:max-w-[550px] md:max-w-[570px] lg:min-w-[400px] xl:max-w-[950px] relative  lg:ml-50">
                     <img
                     src="/Results-bg.png"
@@ -124,7 +128,7 @@ export default function WhatWeDo() {
                     </div>
                     </div>
 
-</div>
+                </div>
 
           </div>
           </div>
@@ -134,13 +138,13 @@ export default function WhatWeDo() {
                     <div className="w-full min-w-[400px] px-2 h-[1px] bg-[#B3B3B3] ">
                     </div>
                     <div className="flex flex-row  gap-2 mt-4 lg:mt-10  m-2">
-                        <div className="flex flex-row  items-center ">
+                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="100" className="flex flex-row  items-center ">
                             <div className="flex flex-col  mx-4 sm:mx-6 md:mx-8 lg:mx-10 ">
                             <h1 className="font-poppins text-[45px] sm:text-[70px] md:text-[80px] lg:text-[90px] font-bold  lg:leading-16">20+</h1>
                             <p className="font-poppins text-[12px] sm:text[16px] md:text-[18px] lg:text-[20px]">Satisfied Clients</p>
                             </div>
                         </div>
-                        <div className="flex flex-row items-center justify-center">
+                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="300" className="flex flex-row items-center justify-center">
                             <div className="h-[85px] bg-[#B3B3B3] w-[2px]"></div>
                             <div className="flex flex-col  mx-4 sm:mx-6 md:mx-8 lg:mx-10 ">
                                 <h1  className="font-poppins text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-16" >100%</h1>
@@ -148,7 +152,7 @@ export default function WhatWeDo() {
                             </div>
                             
                         </div>
-                        <div className="flex flex-row  items-center justify-center">
+                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="500" className="flex flex-row  items-center justify-center">
                             <div className="h-[85px] bg-[#B3B3B3] w-[2px] "></div>
                             <div className="flex flex-col mx-4 sm:mx-6  md:mx-8 lg:mx-10 ">
                                 <h1  className="font-poppins text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-16" >10+</h1>
@@ -161,6 +165,7 @@ export default function WhatWeDo() {
             <div className="flex flex-col gap-6 px-2 flex items-center justify-center lg:items-start font-poppins">
                 
             <div 
+            data-aos="fade-up"
             className="mt-6 flex items-center justify-center lg:items-start"
                 >
                 <SectionHeader
@@ -172,11 +177,11 @@ export default function WhatWeDo() {
             </div>
             <div className="flex flex-col lg:flex-row ">
             <div className="flex flex-col items-center lg:items-start gap-6 md:gap-10 px-2">
-                <h1 className="w-full md:w-[410px] lg:w-[550px] font-poppins text-center lg:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[60px] md:leading-[50px] lg:leading-[65px]">Every Line of  <span className="text-[#3CBDE6] font-semibold">Code</span> Tells <span className="font-playfair italic text-[#3CBDE6] font-semibold">Our Story.</span></h1>
-                <p className="w-full lg:w-[500px] font-poppins text-center lg:text-left text-[14px] sm:text-[18px]  leading-[16px] font-light">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
+                <h1 data-aos="fade-left" data-aos-offset="50" data-aos-delay="300" className="w-full md:w-[410px] lg:w-[550px] font-poppins text-center lg:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[60px] md:leading-[50px] lg:leading-[65px]">Every Line of  <span className="text-[#3CBDE6] font-semibold">Code</span> Tells <span className="font-playfair italic text-[#3CBDE6] font-semibold">Our Story.</span></h1>
+                <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full lg:w-[500px] font-poppins text-center lg:text-left text-[14px] sm:text-[18px]  leading-[16px] font-light">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
             </div>
             <div className="flex flex-col gap-6 items-center mr-34 sm:mr-20 md:mr-30  mt-6 sm:mt-8 md:mt-8 lg:mt-0 relative">
-            <div className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:ml-20 ">
+            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="800" className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:ml-20 ">
 
                 <img
                     src="/Results-bg.png"
@@ -185,8 +190,8 @@ export default function WhatWeDo() {
                 />
 
                 {/* Floating Card */}
-                <div className="absolute top-1/2 -translate-y-1/2 -right-[140px] sm:-right-[180px] md:-right-[180px] z-50 ">
-                <div className="flex flex-col gap-1 ml-16 sm:ml-24 md:ml-24">
+                <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="1000" className="absolute top-1/2 -translate-y-1/2 -right-[140px] sm:-right-[180px] md:-right-[180px] z-50 ">
+                <div  className="flex flex-col gap-1 ml-16 sm:ml-24 md:ml-24">
                         {["Humble Beginnings", "Proven Progress", "Dreamed It. Built It."].map((item) => (
                         <div key={item} className="flex items-center gap-1">
                             <img src="/ICONS/check.svg" className="w-4 h-4 shrink-0" />
@@ -240,30 +245,72 @@ export default function WhatWeDo() {
 
                     {/* Left Tall Card */}
                     <div className="row-span-2">
-                    <Card className="bg-[#ECEDF1] w-[180px] h-[365px]" />
+                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[180px] h-[370px] rounded-3xl ">
+                            <img src="/vision1st-pic.svg" alt="" className="w-full object-cover p-2 " />
+                        </div>
                     </div>
 
                     {/* Right Top Small */}
-                    <div className="md:col-span-2">
-                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px] md:w-[380px] md:h-[170px]" />
-                        
+                    <div className="md:col-span-1">
+                        <div className="flex items-center justify-center 
+                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                            w-[180px] h-[170px] rounded-3xl overflow-hidden">
+
+                            <div className="flex flex-col gap-2 px-2 ">
+                            <div className="">
+                                <img src="/ICONS/menu-icon.svg" alt="" className="w-8 h-8"/>
+                            </div>
+                            <div className="flex flex-col items-start justify-center">
+                                <h1 className="font-poppins text-[18px]">Intelligence</h1>
+                                <p className=" text-center font-poppins font-light text-[10px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut labore et. </p>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                    <div className="md:col-start-4">
-                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
+                    <div className="md:col-start-4 md:row-start-1">
+                        <div className="flex items-center justify-center 
+                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                            w-[180px] h-[180px] rounded-3xl overflow-hidden">
+
+                            <img 
+                                src="/vision2nd-pic.svg" 
+                                alt="" 
+                                className="w-full h-full object-cover p-2 rounded-3xl" 
+                            />
+                        </div>
                     </div>
 
-                    {/* Full Width Card 1 */}
+                    {/* in lg move to behind of tall card */}
                     
-                    <div className="col-span-2 md:col-start-3 md:row-start-2">
-                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px]" />
+                    <div className="col-span-2 md:col-start-2 md:row-start-1 ">
+                    <div className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px]">
+                        <div className="flex flex-row gap-4 ">
+                            <div className="">
+                                <img src="/ICONS/menu-icon.svg" alt="" className="w-20 h-20"/>
+                            </div>
+                            <div className="flex flex-col items-start justify-center">
+                                <h1 className="font-poppins text-[20px]">Scalability</h1>
+                                <p className=" text-left font-poppins font-light text-[10px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna . </p>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-row gap-4">
+                            <div className="">
+                                <img src="/ICONS/menu-icon.svg" alt="" className="w-20 h-20"/>
+                            </div>
+                            <div className="flex flex-col items-start justify-center">
+                                <h1 className="font-poppins text-[20px]">Innovation Partner</h1>
+                                <p className=" text-left font-poppins font-light text-[10px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna . </p>
+                            </div>
+                        </div>
+                    </div>
                     </div>
 
-                    <div className="col-span-2 md:col-start-2 md:row-start-2">
-                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px] md:w-[180px] md:h-[170px]" />
+                    <div className="col-span-2 md:col-start-3 md:row-start-2 ">
+                    <div className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px]">
+                        <img src="vision3rd-pic.svg" alt="" className="w-full object-contain" />
+                        </div>
                     </div>
-
-                    {/* Full Width Card 2 */}
-                    
 
                 </div>
                 </div>
@@ -341,11 +388,14 @@ export default function WhatWeDo() {
                         </div>
                         
                 </div>
+                
             </div>
-            <div className="flex items-center justify-center mt-8">
-                <FAQAccordion />
-            </div>
+            <div>
+                    <FAQAccordion />
+                </div>
+           
        </div>
+             
     </div>
 </div>
         

@@ -45,10 +45,12 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="w-full flex flex-col md:flex-row items-center">
+    <section className="w-full flex flex-col md:flex-row items-center"
+    >
+      
 
 <div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
-      <div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
+      <div data-aos="fade-right"  className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
         <SectionHeader
           badgeText="Review"
           icon="/ICONS/text-white-icon.svg"

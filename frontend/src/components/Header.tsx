@@ -6,7 +6,7 @@ export default function Header() {
   
   
   const baseStyle =
-    "px-4 py-3 rounded-full transition font-medium text-black shadow-[rgba(0,0,0,0.25)_0px_4px_4px_0px]";
+    "px-2 py-3 text-[12px] lg:text-[16px] rounded-full transition font-medium text-black shadow-[rgba(0,0,0,0.25)_0px_4px_4px_0px]";
 
   const baseShadow = { boxShadow: 'rgba(0,0,0,0.25) 0px 4px 4px 0px' };
 
@@ -21,7 +21,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full relative z-50">
+    <header data-aos="fade-down" data-aos-duration="1000" className="w-full relative z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between gap-8 pt-2 pb-1">
         {/* Logo */}
         <div className="text-xl flex items-start justify-start">
@@ -30,7 +30,7 @@ export default function Header() {
 
         {/* Navigation */}
         <ul
-          className=" flex-row gap-10 list-none py-2.5 hidden md:flex"
+          className=" flex-row gap-4 lg:gap-10 list-none py-2.5 hidden md:flex"
           style={{
             backgroundColor: "rgb(240, 242, 245)",
             borderRadius: "50px",
@@ -46,7 +46,7 @@ export default function Header() {
                     className={({ isActive }) =>
                       `${baseStyle} ${
                         isActive
-                          ? "bg-[#3CBDE6] text-white font-bold"
+                          ? "bg-[#3CBDE6]  text-white font-bold"
                           : "hover:bg-[#3CBDE6] hover:text-white"
                       }`
                 }
@@ -59,7 +59,7 @@ export default function Header() {
         </ul>
 
         {/* Button */}
-        <div className="hidden md:flex flex-row bg-[#3CBDE6] py-1  px-4  rounded-3xl text-white  transition">
+        <div className="hidden md:flex flex-row bg-[#3CBDE6] py-1  md:text-[12px] lg:text-[16px] lg:px-4  rounded-3xl text-white  transition">
 
         <Button
               label="Get Started"

@@ -201,7 +201,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     direction = 'left',
     width = '100%',
     logoHeight = 28,
-    gap = 32,
+    gap = 24,
     pauseOnHover,
     hoverSpeed,
     fadeOut = false,
