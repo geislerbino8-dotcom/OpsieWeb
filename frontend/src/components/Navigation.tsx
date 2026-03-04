@@ -1,72 +1,88 @@
-import '../styles/Navigation.css';
-import logo from  '../assets/opsie/WhiteLogoText.png';
-import burgermenu from '../assets/icons/bars-solid.png'
-import PrimaryButton from './buttons/PrimaryButton';
-import upArrow from '../assets/opsie/up-right-arrow.png'
-import MobileMenu from './MobileMenu';
-import { useState } from 'react';
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../assets/opsie/opsie_logo.png";
+import PrimaryButton from "./buttons/PrimaryButton";
+import upArrow from "../assets/opsie/up-right-arrow.png";
+import MobileMenu from "./MobileMenu";
+import burgermenu from "../assets/icons/bars-solid.png";
+
+const menuLists = [
+  { name: "What We Do", link: "/what-we-do" },
+  { name: "Who We Are", link: "/who-we-are" },
+  { name: "Contact Us", link: "/contact-us" },
+  { name: "Products", link: "/products" },
+];
 
 function Navigation() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [navIsOpen, setNavIsOpen] = useState(false);
 
-  const [ navIsOpen, setNavIsOpen ] = useState(false)
-<<<<<<< HEAD
-  const navigate = useNavigate()
-
-  useEffect(()=> {
-    
-  }, [])
-=======
->>>>>>> a68b8d75a068078bd35e10af51f81c773624a34b
-
-  const openMobileNav = ()=> {
-    setNavIsOpen(navIsOpen ? false : true)
-  }
+  const toggleMobileNav = () => setNavIsOpen(!navIsOpen);
+  const directToHome = () => {
+    navigate("/");
+    setNavIsOpen(false);
+  };
 
   return (
-    <div className='nav-container w100'>
-      <div className="desktop-nav flex nav-wrapper ai-c fd-r jc-c">
-        <div className="desktop-nav-wrapper flex fd-r ai-c jc-sb">
-          <div className='logo-wrapper'>
-          <img className='logo' width={120} src={logo} alt="" />
-        </div>
-
-        <div className="menu-wrapper">
-            <ul className='menu flex'>
-              <li className=' item-menu'><a href="">What We Do</a></li>
-              <li className='item-menu'><a href="">Who We Are</a></li>
-              <li className='item-menu'><a href="">Contact Us</a></li>
-              <li className='item-menu'><a href="">Products</a></li>
-          </ul> 
-        </div>
-
-        <div className="gt-button-wrapper">
-          <PrimaryButton text={"Get Started"} color='#3CBDE6' fontSize='1' borderRadius='2' 
-          margin='0' padding='1' image={upArrow}/>
-        </div>
-        </div>
+    <nav className="w-full fixed top-0 left-0 z-50 bg-transparent">
       
-
-        <div>
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center justify-between max-w-7xl mx-auto py-4 px-6">
+        {/* Desktop Logo */}
+        <div className="cursor-pointer" onClick={directToHome}>
+          <img src={logo} alt="Opsie Logo" className="w-32" />
         </div>
 
-       
+        {/* Desktop Menu Links */}
+      {/* Desktop Menu Links */}
+<ul className="flex space-x-4 bg-white rounded-3xl px-6 py-2 text-black">
+  {menuLists.map((item, index) => (
+    <li
+      key={index}
+      className="rounded-4xl transition-colors duration-200 hover:bg-[#3CBDE6] hover:text-white"
+    >
+      <Link
+        to={item.link}
+        className={`block px-4 py-2 font-medium ${
+          location.pathname === item.link ? "rounded-3xl bg-[#3CBDE6] text-white" : ""
+        }`}
+      >
+        {item.name}
+      </Link>
+    </li>
+  ))}
+</ul>
+
+        {/* Get Started Button */}
+        <PrimaryButton
+          text="Get Started"
+          color="#3CBDE6"
+          fontSize="1"
+          borderRadius="2"
+          margin="0"
+          padding="1"
+          image={upArrow}
+        />
       </div>
 
-       <div className='mobile-nav flex fd-r ai-c jc-sb'>
-        <div className='logo-wrapper'>
-          <img width={100} src={logo} alt="" />
+      {/* Mobile Navigation */}
+      <div className="flex md:hidden items-center justify-between px-6 py-4">
+        {/* Mobile Logo */}
+        <div className="cursor-pointer md:hidden" onClick={directToHome}>
+          <img src={logo} alt="Opsie Logo" className="w-24" />
         </div>
-          <button onClick={openMobileNav} className='bm-wrapper flex fd-c ai-c'>
-            <img  className='burger-menu' width={30} src={burgermenu} alt="" />
-          </button>
-          
-        </div>
-        {
-            navIsOpen ? <MobileMenu /> : null
-          }
 
-    </div>
-  )
+        {/* Hamburger Menu */}
+        <button onClick={toggleMobileNav} className="focus:outline-none">
+          <img src={burgermenu} alt="Menu" className="w-8" />
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {navIsOpen && <MobileMenu closeMenu={() => setNavIsOpen(false)} />}
+    </nav>
+  );
 }
 
-export default Navigation
+export default Navigation;

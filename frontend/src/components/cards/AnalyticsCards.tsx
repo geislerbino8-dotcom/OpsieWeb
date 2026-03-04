@@ -1,25 +1,15 @@
 type AnalyticsCardsProps = {
-    numbers: String,
-    desc : string,
+  numbers: string;
+  desc: string;
+};
 
-}
-
-function AnalyticsCards({numbers, desc} : AnalyticsCardsProps) {
+function AnalyticsCards({ numbers, desc }: AnalyticsCardsProps) {
   return (
-    <div style={{
-        backgroundColor: 'white',
-        borderRadius: '0.5em', 
-        padding: '1em',
-        width: '45%',
-        height: '9em',
-        boxShadow: '3px 4px 12px -6px rgba(66, 68, 90, 1)'
-
-      }}
-      className="flex-col-center">
-      <h1 style={{fontSize: '2rem', color: '#242424'}}>{numbers}</h1>
-      <h4 style={{color: 'gray', textAlign: 'center'}}>{desc}</h4>
+    <div className="bg-white rounded-lg p-4 w-full h-36 flex flex-col items-center justify-center shadow-md">
+      <h1 className="text-2xl text-gray-900 font-bold">{numbers}</h1>
+      <h4 className="text-gray-500 text-center mt-1">{desc}</h4>
     </div>
-  )
+  );
 }
 
-export default AnalyticsCards
+export default AnalyticsCards;

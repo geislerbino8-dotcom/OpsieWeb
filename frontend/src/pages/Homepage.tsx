@@ -8,12 +8,12 @@ import PartnerSection from './sections/PartnerSection'
 import ContactUsSection from './sections/ContactUsSection'
 import EncourageSection from './sections/EncourageSection'
 
-import HomeHeroImage from '../assets/background-images/LH1.jpg'
+import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
 
 function Homepage() {
   return (
     <div>
-        <HeroPage bgImage={HomeHeroImage} />
+        <HeroPage heroText='Bring your Ideas into Reality ✨' bgImage={HomeHeroImage} />
         <AboutUsSection />
         <ServicesSection />
         <ProductSection />

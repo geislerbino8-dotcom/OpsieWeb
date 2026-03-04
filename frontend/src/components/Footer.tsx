@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import '../styles/Footer.css'
-
-function Footer() {
-  return (
-    <div className='footer-container flex fd-c ai-c jc-c vw100'>
-      <h1>Footer Here</h1>
-=======
 import OpsieLogo from '../assets/opsie/opsie_full_inverted.jpg'
 
 const Footer = () => {
@@ -114,13 +106,8 @@ const Footer = () => {
         </div>
 
       </div>
->>>>>>> fbda06522007e01d08e3a970de61ec55ceaf9bbd
     </div>
   )
 }
 
-<<<<<<< HEAD
 export default Footer
-=======
-export default Footer
->>>>>>> fbda06522007e01d08e3a970de61ec55ceaf9bbd

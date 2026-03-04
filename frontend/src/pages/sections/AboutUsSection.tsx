@@ -1,40 +1,55 @@
-import React from 'react'
-import OpsieImage from '../../assets/opsie/opsie_full.jpg'
-import '../../styles/AboutUsSection.css'
-import TopSectionCard from '../../components/cards/TopSectionCard'
+import React from "react";
+import OpsieImage from "../../assets/opsie/opsie_full.jpg";
+import TopSectionCard from "../../components/cards/TopSectionCard";
 
 function AboutUsSection() {
-
-  
-
   return (
-    <div className='about-us-section-container flex fd-c'>
-      <div>
-        <TopSectionCard secName='About Us' />
+    <section className="w-full flex flex-col items-center py-16 px-4">
+
+      {/* Top Section Title */}
+      <div className="mb-12">
+        <TopSectionCard secName="About Us" />
       </div>
-     
-      <div className="about-us-section-wrapper flex">
-         
-        <div className='flex-col-center'>
-          
-          <img src={OpsieImage} width={300} alt="" />
+
+      {/* Main Content */}
+      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center gap-12">
+
+        {/* Image */}
+        <div className="flex justify-center md:w-1/2">
+          <img
+            src={OpsieImage}
+            alt="Opsie"
+            className="w-72 md:w-80 rounded-xl shadow-lg object-cover"
+          />
         </div>
-        <div className="about-us-desc flex">
+
+        {/* Text Content */}
+        <div className="flex flex-col gap-6 md:w-1/2">
+
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+            Let your Business into Digitally Real
+          </h2>
+
+          <p className="text-gray-600 leading-relaxed">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae sequi minus rerum fugit distinctio eos quis facere nihil fugiat non facilis voluptatibus, saepe, repudiandae natus quaerat modi dignissimos doloribus ducimus.
+          </p>
+
+          <p className="text-gray-600 leading-relaxed">
+            Dolores tempore perspiciatis minima quis animi eos, odio deleniti cum et delectus id suscipit tempora, mollitia magnam eum ex sint fugiat dignissimos quaerat quibusdam, consequatur similique culpa voluptas.
+          </p>
+
           <div>
-          <h2>Let your Business into Digitally Real</h2>
+            <button className="mt-4 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300">
+              Learn more
+            </button>
+          </div>
+
         </div>
-        <div>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae sequi minus rerum fugit distinctio eos quis facere nihil fugiat non facilis voluptatibus, saepe, repudiandae natus quaerat modi dignissimos doloribus ducimus?
-          Dolores tempore perspiciatis minima quis animi eos, odio deleniti cum et delectus id suscipit tempora, mollitia magnam eum ex sint fugiat dignissimos quaerat quibusdam, consequatur similique culpa voluptas. Voluptatibus, quas!
-          Minus itaque corrupti repellendus ducimus aperiam ipsa, cum voluptas architecto ratione! Dignissimos voluptatem reiciendis vel quod nisi molestiae sunt facilis necessitatibus ad, possimus modi velit fugiat nihil? Odio, quis aperiam!
-        </div>
-        <div className='learn-more-button-wrapper'>
-          <button>Learn more</button>
-        </div>
-        </div>
+
       </div>
-    </div>
-  )
+
+    </section>
+  );
 }
 
-export default AboutUsSection
+export default AboutUsSection;

@@ -8,11 +8,8 @@
     text-align: center;
     background-blend-mode: darken;
 
-    h1 {
-        width: 90%;
-    }
-
 }
+
 
 
 .hero-content p{
@@ -20,7 +17,7 @@
 }
 
 .hero-title {
-    font-size: 3em;
+    color: red  ;
 }
 
 .hero-content {

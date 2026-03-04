@@ -1,37 +1,69 @@
-import BlackButton from "../buttons/BlackButton"
-import '../../styles/ContactForm.css'
-import { useState } from "react"
+import { useState } from "react";
+import BlackButton from "../buttons/BlackButton";
 
 function ContactForm() {
+  const [selValue, setSelValue] = useState("Where did you find us?");
 
-  const [ selValue, setSelValue ] = useState('Where did you find us?')
-
-  const selectValue =(e: any)=> {
-    console.log(e.target.value)
-    setSelValue(e.target.value)
-  }
+  const selectValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelValue(e.target.value);
+  };
 
   return (
-    <div className="contact-form-container">
-      
-      <div className="contact-form-wrapper flex fd-c ai-c jc-c">
-        <h3>Let's Talk About Your Project</h3>
-        <input type="text" name="Full Name" placeholder="Full Name*"/>
-        <input type="text" name="Full Name" placeholder="Your Email*"/>
-        <input type="text" name="Full Name" placeholder="Your Mobile Number*"/>
-        <input type="text" name="Full Name" placeholder="Address*"/>
-        
-        <select onChange={(e)=> selectValue(e)} name="find" id="find" value={selValue}>
-            <option value="Inquire">Inquire</option>
-            <option value="Bug Fixing">Bug Fixing</option>
+    <div className="w-full flex justify-center px-4 py-8">
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 flex flex-col items-center space-y-4">
+        <h3 className="text-2xl font-bold text-gray-800 text-center">
+          Let's Talk About Your Project
+        </h3>
+
+        <input
+          type="text"
+          name="fullName"
+          placeholder="Full Name*"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email*"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+
+        <input
+          type="text"
+          name="mobile"
+          placeholder="Your Mobile Number*"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+
+        <input
+          type="text"
+          name="address"
+          placeholder="Address*"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+
+        <select
+          onChange={selectValue}
+          value={selValue}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <option value="Where did you find us?">Where did you find us?</option>
+          <option value="Inquire">Inquire</option>
+          <option value="Bug Fixing">Bug Fixing</option>
         </select>
 
-        <input type="text" placeholder="Message*"/>
+        <textarea
+          placeholder="Message*"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none h-32"
+        ></textarea>
 
-        <button>Send Message</button>
+        <button className="w-full py-2 bg-black text-white font-bold rounded-md hover:bg-gray-800 transition-colors">
+          Send Message
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default ContactForm
+export default ContactForm;
