@@ -1,18 +1,7 @@
-@import url('https://fonts.googleapis.com');
-
-.playfair-text {
-  font-family: 'Playfair Display', serif;
-}
-
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-button:hover {
-  cursor: pointer;
 }
 
 .flex {
@@ -84,18 +73,6 @@ button {
 
 .vh100 {
   height: 100vh;
-}
-
-.i{
-  font-style: italic;
-}
-
-.blue-txt {
-  color: #3CBDE6;
-}
-
-.white-txt {
-  color: white;
 }
 
 /*TEXT STYLES*/

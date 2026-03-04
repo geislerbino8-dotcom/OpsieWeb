@@ -1,11 +1,16 @@
 .hero-page-container {
-    background: #000000a5;
+    background-color: rgba(0, 0, 0, 0.707);
+    background-image: url('../assets/background-images/landing-hero.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
     text-align: center;
     background-blend-mode: darken;
+
+    h1 {
+        width: 90%;
+    }
 
 }
 
@@ -15,10 +20,7 @@
 }
 
 .hero-title {
-    font-size: 4em;
-    margin-bottom: 1em;
-    color: #E2E8F0;
-    
+    font-size: 3em;
 }
 
 .hero-content {
@@ -28,8 +30,6 @@
 .hero-text-content {
     z-index: 1;
     overflow: hidden;
-    position: relative;
-    top:  30%;
 }
 
 
@@ -64,7 +64,7 @@
       
 
         button {
-            width: 50%;
+            width: 70%;
         }
     }
 

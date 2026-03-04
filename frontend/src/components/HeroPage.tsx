@@ -1,25 +1,16 @@
 import '../styles/HeroPage.css'
 import LogoOnly from '../assets/icons/opsie_logo_only.png'
-import HomeHeroImg from '../assets/background-images/landing-hero.jpg'
-
-type HeroContent = {
-  heroText?: string
-  bgImage?: string
-}
 
 
-function HeroPage({heroText, bgImage} : HeroContent) {
-  return (  
-    <div className='hero-page-container vw100 vh100 flex fd-c ai-c flex jc-c'
-      style={{
-        backgroundImage: `url(${bgImage? bgImage : HomeHeroImg})`
-      }}
-    >
+function HeroPage() {
+  return (
+    <div className='hero-page-container vw100 vh100 flex fd-c ai-c jc-fe'>
       <div className="hero-content flex ai-c fd-c jc-c">
-       { /**<div>
+        <div>
           <img className='hero-visual' width={600} src={LogoOnly} alt="" />
-        </div> */}
+        </div>
           <div className="hero-text-content">
+<<<<<<< HEAD
             {
               !heroText ? <h1 className='hero-title'>Turning
               Ideas into 
@@ -36,6 +27,11 @@ function HeroPage({heroText, bgImage} : HeroContent) {
             </div>
               
         
+=======
+            <h1 className='hero-title playfair-text'>Bringing Ideas into Reality</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis aperiam aliquam neque, vero labore nostrum accusantium atque molestias.</p>
+        <button className='btn-hero'>GET STARTED</button>
+>>>>>>> a68b8d75a068078bd35e10af51f81c773624a34b
           </div>
       </div>
     </div>
