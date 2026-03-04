@@ -1,0 +1,56 @@
+
+.contact-section{
+    min-height: 100vh;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    background: #e9ecef;
+    padding: 40px;
+
+}
+.contact-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    max-width: 1100px;
+    width: 100%;
+}
+.contact-info{
+    flex: 1;
+    font-size: 19px;
+    
+}
+.contact-wrapper form{
+    flex: 1;
+}
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .social-icons .social-logo {
+    width: 40px;       /* adjust width */
+    height: 40px;      /* adjust height */
+    object-fit: contain; /* keeps the aspect ratio */
+    border-radius: 50%;  /* makes it circular, optional */
+    transition: 0.3s ease;
+  }
+  
+  .social-icons .social-logo:hover {
+    transform: scale(1.1); /* small zoom on hover */
+  }
+.meeting-btn{
+    width: 30%;
+    border-color: #3CBDE6;
+    background-color: #3CBDE6;
+    border-radius: 100px;
+    padding: 10px;
+    color:white;
+}
+.meeting-btn :hover{
+    transform: translateY(-4px);
+    background-color: #36b4d8;
+    box-shadow: 0 6px 15px rgba(54, 180, 216, 0.4);
+}

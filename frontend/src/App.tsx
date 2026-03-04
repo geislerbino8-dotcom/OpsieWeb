@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import GetName from './api/getName';
+import ContactUs from './components/ContactUs';
+
 
 const App = () => {
   const [name, setName] = useState<string>('');
@@ -23,7 +25,7 @@ const App = () => {
   return (
     <>
       <div>
-        <h1>Name from API: {name}</h1>
+        <ContactUs/>       
       </div>
     </>
   );
