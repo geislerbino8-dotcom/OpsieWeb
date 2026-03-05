@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const updateInquiryStatus = async (
+export const updateTicketStatus = async (
   id: string,
   status: 'open' | 'in progress' | 'resolved' | "won't fix" | 'closed'
 ) => {
@@ -8,7 +8,7 @@ export const updateInquiryStatus = async (
     const token = localStorage.getItem('token');
 
     const response = await axios.patch(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/inquiry/updateStatus/${id}`,
+      `${import.meta.env.VITE_BACKEND_BASE_URL}/ticket/updateStatus/${id}`,
       { status },
       {
         headers: {

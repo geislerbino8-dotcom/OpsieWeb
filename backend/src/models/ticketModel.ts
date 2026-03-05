@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-const InquirySchema = new Schema(
+const TicketSchema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true },
@@ -32,7 +32,7 @@ const InquirySchema = new Schema(
       ],
       default: 'open',
     },
-    taskReferenceUrl: { type: String, },
+    taskReferenceUrl: { type: String, match: /^https?:\/\// },
     assignee: {
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -42,4 +42,4 @@ const InquirySchema = new Schema(
   { timestamps: true }
 );
 
-export const InquiryModel = model('Inquiry', InquirySchema);
+export const TicketModel = model('Ticket', TicketSchema);

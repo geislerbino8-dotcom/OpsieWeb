@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const getInquiries = async () => {
+export const getTickets = async () => {
   try {
     const token = localStorage.getItem('token');
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/inquiry/getAll`,
+      `${import.meta.env.VITE_BACKEND_BASE_URL}/ticket/getAll`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -15,7 +15,7 @@ export const getInquiries = async () => {
 
     return response.data;
   } catch (error: any) {
-    console.error('Failed to get inquiries:', error.response?.data || error.message);
+    console.error('Failed to get tickets:', error.response?.data || error.message);
     throw error;
   }
 };

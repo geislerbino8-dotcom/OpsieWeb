@@ -1,35 +1,40 @@
 import { Router, Request, Response } from 'express';
-import { InquiryController } from '../controllers/inquiryController';
+import { TicketController } from '../controllers/ticketController';
 
-export default class InquiryRoute {
+export default class TicketRoute {
   public readonly router: Router;
-  public readonly controller: InquiryController;
+  public readonly controller: TicketController;
 
   constructor() {
     this.router = Router();
-    this.controller = new InquiryController();
+    this.controller = new TicketController();
     this.initializeRoutes();
   }
 
   private initializeRoutes = (): void => {
     this.router.post(
       '/create',
-      this.create.bind(this)
+      this.create
     );
 
     this.router.get(
       '/getAll',
-      this.getAll.bind(this)
+      this.getAll
     );
 
     this.router.patch(
       '/updateStatus/:id',
-      this.updateStatus.bind(this)
+      this.updateStatus
     )
+
+    this.router.patch(
+      '/assign/:id',
+      this.assign
+    );
 
     this.router.delete(
       '/delete/:id',
-      this.delete.bind(this)
+      this.delete
     )
   }
 
@@ -43,6 +48,10 @@ export default class InquiryRoute {
 
   private updateStatus = (req: Request, res: Response): void => {
     this.controller.updateStatus(req, res);
+  }
+
+  private assign = (req: Request, res: Response): void => {
+    this.controller.assign(req, res);
   }
 
   private delete = (req: Request, res: Response): void => {
