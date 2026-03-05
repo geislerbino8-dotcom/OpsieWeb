@@ -32,6 +32,17 @@
 
 }
 
+
+.service-card {
+    background-color: rgba(0, 0, 0, 0.293);
+    padding: 1em;
+}
+
+.service-card:hover {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.762);
+}
+
 @media (min-width: 550px) {
     .services-container {
         background-color: white;

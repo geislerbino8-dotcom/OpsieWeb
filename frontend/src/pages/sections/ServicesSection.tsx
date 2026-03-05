@@ -5,7 +5,7 @@ import webdev from "../../assets/card-bg/webdev.png";
 
 function ServicesSection() {
   return (
-    <section className="w-full flex flex-col items-center py-16 px-4">
+    <section className="w-full h-full flex flex-col items-center py-16 px-4">
 
       {/* Top Section Title */}
       <div className="mb-8">
@@ -22,8 +22,10 @@ function ServicesSection() {
         </p>
       </div>
 
+      
+
       {/* Services Cards */}
-      <div className="w-full max-w-6xl overflow-x-auto">
+      <div className="w-full max-w-6xl h-full max-h-6xl overflow-x-auto overflow-y-visible">
         <div className="flex gap-6 pb-4">
           <ServicesCards serviceName="Web Development" desc="Lorem*2" image={webdev} />
           <ServicesCards serviceName="Web Development" desc="Lorem*2" image={webdev} />

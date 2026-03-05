@@ -1,60 +1,63 @@
+import { useNavigate } from "react-router-dom"
+
 type ProductCardProps = {
-    itemName: string
-    image: string
-    bgColor: string
+  itemName: string
+  image: string
+  bgColor?: string
 }
 
+function ProductCard({ itemName, image }: ProductCardProps) {
 
-function ProductCard({itemName, image, bgColor} : ProductCardProps) {
+  const navigate = useNavigate()
+
   return (
-    <div className="product-card-container flex-col-center"
-        style={{
-            width: '20em',
-            justifyContent: 'center',
-            alignItems: 'center',
-            margin: '0.5em',
-            flexBasis: '2',
-            padding: '1em',
-            borderRadius: '1em',
-            backgroundColor: bgColor
 
-        }}
+    <div
+      className="
+        flex flex-col items-center justify-center
+        w-[14em] m-1.5 px-3 py-3
+        rounded-2xl
+        bg-white/10
+        backdrop-blur-lg
+        border border-white/20
+        shadow-xl
+      "
     >
-      <div className="product-card-wrapper flex fd-c ai-c jc-c">
-        <div className="product-item-card flex">
-          <div>
-            <div className="flex-col-center">
-            <img src={image} alt="" 
-              style={{
-                width: '10em',
-                height: '10em'
-              }}
-            />
-          </div>
-          <h3 style={{
-            margin: '0.5em 0',
-            width: '100%',
-            textAlign: 'center'
-          }}>{itemName}</h3>
-          <p style={{
-            overflow: 'hidden',
-            width: '100%',
-            textAlign: 'center',
-            padding: '0.5em 0'
-          }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, error.</p>
-          </div>
-          <div>
-            <button style={{
-              padding: '0.5em',
-              width: '100%',
-              borderRadius: '0.5em',
-              fontWeight: 'bold',
-              border: '1px solid white',
-              color: 'white',
-              backgroundColor: 'transparent'
-            }}>View Product</button>
-          </div>
+      <div className="flex flex-col items-center w-full">
+        <div className="bg-white rounded-2xl">
+          <img
+          src={image}
+          alt={itemName}
+          className="w-[10em] h-[10em] object-contain"
+        />
         </div>
+
+        <h3 className="my-2 w-full text-center text-white font-bold">
+          {itemName}
+        </h3>
+ 
+        <p className="w-full text-center py-2 text-white/80">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, error.
+        </p>
+
+        <button
+          className="
+            w-full mt-4 p-2
+            rounded-lg
+            font-bold
+            border border-white/40
+            text-white
+            bg-white/10
+            backdrop-blur-md
+            hover:bg-blue-400
+            transition-all duration-300
+            cursor-pointer
+            
+          "
+          onClick={()=> { navigate(`/products/${itemName}`)}}
+        >
+          View Product
+        </button>
       </div>
     </div>
   )

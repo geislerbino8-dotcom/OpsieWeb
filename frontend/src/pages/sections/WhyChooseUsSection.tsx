@@ -35,7 +35,9 @@ function WhyChooseUsSection() {
         </div>
 
         {/* Right Section */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center px-6
+          rounded-3xl
+        ">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left">
             Why do so many companies choose Opise software solutions?
           </h1>
