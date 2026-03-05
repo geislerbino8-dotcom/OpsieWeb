@@ -22,10 +22,19 @@ export class InquiryController {
         email: inq.email,
         phone: inq.phone,
         address: inq.address,
-        message: inq.message,
+        description: inq.description,
+        platform: inq.platform,
+        platformVersion: inq.platformVersion,
+        category: inq.category,
         status: inq.status,
-        createdAt: inq.createdAt.toLocaleString(),
-        updatedAt: inq.updatedAt.toLocaleString()
+        taskReferenceUrl: inq.taskReferenceUrl,
+        assignee: inq.assignee
+          ? {
+              name: (inq.assignee as any).name,
+            }
+          : null,
+        createdAt: inq.createdAt,
+        updatedAt: inq.updatedAt
       }));
 
       res.json(formattedInquries);
