@@ -23,7 +23,7 @@ export default function WhatWeDo() {
 
   const navigate = useNavigate();
     return (
-      <div className="w-full">
+      <div className="w-full overflow-hidden">
   <Header />
 
   {/* HERO SECTION */}
@@ -39,6 +39,9 @@ export default function WhatWeDo() {
     />
 
     {/* Overlay Content */}
+    <div>
+      
+    </div>
     <div  className="hidden md:block absolute md:right-2 md:bottom-4 lg:bottom-4 lg:right-0 mx-auto z-50 ">
       <div data-aos="fade-down"  className="flex flex-col items-start md:flex-row-reverse lg:justify-center leading-4  gap-2 ml-2 ">
           <div className="flex flex-col justify-start items-start md:items-start md:justify-center lg:leading-5">
@@ -98,7 +101,33 @@ export default function WhatWeDo() {
               
             </div>
           </div>
+          
       </div>
+      <div className="flex flex-row justify-center items-center md:items-start md:justify-center md:hidden gap-4 mb-6 sm:mb-10">
+
+          <div className="flex flex-row -space-x-2 mt-2 lg:mt-0">
+              <img src="/profiles/Rectangle 780.svg" className="w-12 h-12   object-cover  " />
+              <img src="/profiles/Rectangle 816.svg" className="w-12 h-12  rounded-full " />
+              <img src="/profiles/Rectangle 818.svg" className="w-12 h-12  rounded-full " />
+              <img src="/profiles/Rectangle 818-1.svg" className="w-12 h-12  rounded-full md:hidden lg:flex " />
+            </div>
+
+            <div className="flex flex-col leading-4 items-start mt-2">
+                <h1 className="flex font-poppins font-semibold text-[16px] xl:text-[20px]">
+                10+ Satisfied Clients
+                </h1>
+              <div className="flex flex-row items-center justify-center gap-2 ">
+                  <div className=" text-[#3CBDE6] text-[24px]">
+                    ★★★★★ 
+                  </div>
+                  <h1 className="font-poppins mt-2 text-[18px]">
+                      5/5
+                  </h1>
+              </div>
+            </div>
+
+            
+          </div>
       <div className="flex flex-col items-center md:items-start gap-6">
 
         {/* Badge */}

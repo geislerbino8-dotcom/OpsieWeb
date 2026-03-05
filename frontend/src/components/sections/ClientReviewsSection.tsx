@@ -57,7 +57,7 @@ const ClientReview: React.FC = () => {
         />
       </div>
 
-        <h1 className="font-poppins items-center md:text-start  leading-[35px] tracking-[2px] text-[32px]">What our <span className="text-[#3CBDE6] font-semibold">customers</span> are saying </h1>
+        <h1 className="font-poppins items-center md:text-start  leading-[35px] md:leading-[52px] tracking-[2px] font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What our <span className="text-[#3CBDE6] font-semibold">customers</span> are saying </h1>
         
           
         <div className="hidden md:flex items-center gap-x-4 mb:8 md:mb-20">

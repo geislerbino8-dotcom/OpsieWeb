@@ -12,7 +12,7 @@ export default function WhatWeDo() {
 
   const navigate = useNavigate();
     return (
-      <div className="w-full">
+      <div className="w-full overflow-hidden">
   <Header />
 
   {/* HERO SECTION */}
@@ -47,23 +47,26 @@ export default function WhatWeDo() {
             </div>
             
           </div>
-          <div className="absolute inline-block right-1/5 bottom-[-20px] md:right-16 md:bottom-0 ">
-            <div className="hidden md:flex flex-row gap-4">
-            <div className="w-14 h-14 md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
-                 <SiFacebook className="text-[#3CBDE6] text-3xl object-cover "/>
+          <div className="absolute inline-block right-1/5 bottom-[-20px] md:right-0 md:bottom-4 lg:right-4 lg:bottom-2 ">
+            <div className="hidden md:flex flex-row md:gap-1 lg:gap-4">
+            <div className="w-14 h-14 md:w-10 md:h-10 lg:w-14 lg:h-14 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
+                    <SiFacebook className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
                 </div>
-                <div className="w-14 h-14  md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
-                    <SiInstagram className="text-[#3CBDE6] text-3xl object-cover " />
+                <div className="w-14 h-14 md:w-10 md:h-10 lg:w-14 lg:h-14 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
+                    <SiInstagram className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8  " />
                 </div>
-                <div className="w-14 h-14  md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
-                    <SiLinkedin className="text-[#3CBDE6] text-3xl object-cover " />
+                <div className="w-14 h-14 md:w-10 md:h-10 lg:w-14 lg:h-14 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
+                    <SiLinkedin className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8  " />
                 </div>
-                <div className="w-14 h-14  md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
-                 <SiGmail className="text-[#3CBDE6] text-3xl object-cover " />
+                <div className="w-14 h-14 md:w-10 md:h-10 lg:w-14 lg:h-14 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
+                    <SiGmail className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8  " />
             </div>
             </div>
   </div>
-  <div className="flex md:hidden flex-row gap-4">
+  
+          
+        </div>
+        <div className="flex items-center justify-center md:hidden flex-row gap-4 mb-6 md:mb-10">
         <div className="w-14 h-14 md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
                  <SiFacebook className="text-[#3CBDE6] text-3xl object-cover "/>
                 </div>
@@ -77,8 +80,6 @@ export default function WhatWeDo() {
                  <SiGmail className="text-[#3CBDE6] text-3xl object-cover " />
         </div>
     </div>
-          
-        </div>
         
         <div className="flex flex-col items-center justify-center md:flex-row gap-2 md:gap-16">
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-0 md:gap-0  lg:mt-10">
@@ -138,13 +139,13 @@ export default function WhatWeDo() {
                     <div className="w-full min-w-[400px] px-2 h-[1px] bg-[#B3B3B3] ">
                     </div>
                     <div className="flex flex-row  gap-2 mt-4 lg:mt-10  m-2">
-                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="100" className="flex flex-row  items-center ">
+                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="200" className="flex flex-row  items-center ">
                             <div className="flex flex-col  mx-4 sm:mx-6 md:mx-8 lg:mx-10 ">
                             <h1 className="font-poppins text-[45px] sm:text-[70px] md:text-[80px] lg:text-[90px] font-bold  lg:leading-16">20+</h1>
                             <p className="font-poppins text-[12px] sm:text[16px] md:text-[18px] lg:text-[20px]">Satisfied Clients</p>
                             </div>
                         </div>
-                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="300" className="flex flex-row items-center justify-center">
+                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="500" className="flex flex-row items-center justify-center">
                             <div className="h-[85px] bg-[#B3B3B3] w-[2px]"></div>
                             <div className="flex flex-col  mx-4 sm:mx-6 md:mx-8 lg:mx-10 ">
                                 <h1  className="font-poppins text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-16" >100%</h1>
@@ -152,7 +153,7 @@ export default function WhatWeDo() {
                             </div>
                             
                         </div>
-                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="500" className="flex flex-row  items-center justify-center">
+                        <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="800" className="flex flex-row  items-center justify-center">
                             <div className="h-[85px] bg-[#B3B3B3] w-[2px] "></div>
                             <div className="flex flex-col mx-4 sm:mx-6  md:mx-8 lg:mx-10 ">
                                 <h1  className="font-poppins text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-16" >10+</h1>
@@ -222,10 +223,10 @@ export default function WhatWeDo() {
   
           
        </div>
-       <div className="flex flex-col gap-8 mt-8">
-                <div className="flex flex-col gap-2 px-2 flex items-center justify-center font-poppins lg:items-start">
-                    <div
-                        className="w-[160px] list-none py-2 flex items-center justify-center gap-2"
+       <div className="flex flex-col gap-8 mt-8 ">
+                <div className="flex flex-col gap-2 px-2  flex items-center justify-center font-poppins lg:items-start">
+                    <div data-aos="fade-up" 
+                        className="w-[160px] list-none py-2 flex items-center justify-center gap-2 my-4"
                         style={{
                             backgroundColor: "rgb(240, 242, 245)",
                             borderRadius: "50px",
@@ -236,41 +237,40 @@ export default function WhatWeDo() {
                             <img src="/ICONS/our-story-icon.svg" alt="" />
                             <p className="text-md">Our Vision</p>
                         </div>
-                            <h1 className="font-poppins text-center leading-[34px] text-[36px]">The <span className="text-[#3CBDE6] font-semibold">Vision</span></h1>
-                            <p className="font-poppins text-center text-[16px] leading-[15px] font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <h1 data-aos="fade-right"  data-aos-delay="300"  className="font-poppins text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[60px]">The <span className="text-[#3CBDE6] font-semibold">Vision</span></h1>
+                            <p  data-aos="fade-right" data-aos-delay="600" className="font-poppins text-center text-[16px] leading-[15px] font-light w-full text-start lg:w-[600px] lg:mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         </div>
                 </div>
-                <div className="flex items-center justify-center">
-                <div className="grid grid-cols-[180px_180px] gap-6">
-
+                <div className="flex items-center justify-center ">
+                 <div className="grid grid-cols-[180px_180px] gap-4 lg:gap-y-4 place-items-center">
                     {/* Left Tall Card */}
-                    <div className="row-span-2">
-                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[180px] h-[370px] rounded-3xl ">
-                            <img src="/vision1st-pic.svg" alt="" className="w-full object-cover p-2 " />
+                    <div  data-aos="fade-right" data-aos-delay="800" className="row-span-2 lg:mr-12">
+                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[190px] h-[380px] lg:w-[210px] lg:h-[440px]  rounded-3xl lg:ml-6">
+                            <img src="/vision1st-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
                         </div>
                     </div>
 
                     {/* Right Top Small */}
                     <div className="md:col-span-1">
-                        <div className="flex items-center justify-center 
+                        <div data-aos="fade-right"  className="flex items-center justify-center 
                             shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
-                            w-[180px] h-[170px] rounded-3xl overflow-hidden">
+                            w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] lg:ml-8  rounded-3xl overflow-hidden">
 
-                            <div className="flex flex-col gap-2 px-2 ">
-                            <div className="">
-                                <img src="/ICONS/menu-icon.svg" alt="" className="w-8 h-8"/>
-                            </div>
-                            <div className="flex flex-col items-start justify-center">
-                                <h1 className="font-poppins text-[18px]">Intelligence</h1>
-                                <p className=" text-center font-poppins font-light text-[10px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut labore et. </p>
+                            <div className="flex flex-col gap-2 px-2">
+                                <div className="flex items-center justify-center shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
+                                    <img src="/ICONS/modernization-icon.svg" alt="" className="w-7 h-7"/>
+                                </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <h1 className="font-poppins text-[18px]">Modernization</h1>
+                                <p className=" text-center font-poppins font-light text-[12px]">Digital Infrastructure for Small and Medium Enterprises(SME). </p>
                             </div>
                         </div>
                         </div>
                     </div>
                     <div className="md:col-start-4 md:row-start-1">
-                        <div className="flex items-center justify-center 
+                        <div data-aos="fade-left" data-aos-delay="800" className="flex items-center justify-center 
                             shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
-                            w-[180px] h-[180px] rounded-3xl overflow-hidden">
+                            w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] lg:mr-8 rounded-3xl overflow-hidden">
 
                             <img 
                                 src="/vision2nd-pic.svg" 
@@ -283,32 +283,32 @@ export default function WhatWeDo() {
                     {/* in lg move to behind of tall card */}
                     
                     <div className="col-span-2 md:col-start-2 md:row-start-1 ">
-                    <div className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px]">
+                    <div data-aos="fade-right" className="flex flex-col p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] ">
                         <div className="flex flex-row gap-4 ">
-                            <div className="">
-                                <img src="/ICONS/menu-icon.svg" alt="" className="w-20 h-20"/>
+                            <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
+                                <img src="/ICONS/digital-leader-icon.svg" alt="" className="w-7 h-7"/>
                             </div>
                             <div className="flex flex-col items-start justify-center">
-                                <h1 className="font-poppins text-[20px]">Scalability</h1>
-                                <p className=" text-left font-poppins font-light text-[10px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna . </p>
+                                <h1 className="font-poppins text-[20px]">Digital Leadership</h1>
+                                <p className=" text-left font-poppins font-light text-[10px]">To become a trusted software company that shapes the future through technology. </p>
                             </div>
                         </div>
 
                         <div className="flex flex-row gap-4">
-                            <div className="">
-                                <img src="/ICONS/menu-icon.svg" alt="" className="w-20 h-20"/>
+                            <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
+                                <img src="/ICONS/innovation-icon.svg" alt="" className="w-7 h-7"/>
                             </div>
                             <div className="flex flex-col items-start justify-center">
-                                <h1 className="font-poppins text-[20px]">Innovation Partner</h1>
-                                <p className=" text-left font-poppins font-light text-[10px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna . </p>
+                                <h1 className="font-poppins text-[20px]">Innovation</h1>
+                                <p className=" text-left font-poppins font-light text-[10px]">To lead the future of technology by creating innovative and impactful software solutions. </p>
                             </div>
                         </div>
                     </div>
                     </div>
 
-                    <div className="col-span-2 md:col-start-3 md:row-start-2 ">
-                    <div className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px]">
-                        <img src="vision3rd-pic.svg" alt="" className="w-full object-contain" />
+                    <div className="col-span-2 md:col-start-3 md:row-start-2  lg:col-span-2 lg:col-start-3 lg:row-start-2">
+                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px]  ">
+                        <img src="vision3rd-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
                         </div>
                     </div>
 
@@ -332,35 +332,76 @@ export default function WhatWeDo() {
                             <p className="font-poppins text-center text-[16px] leading-[15px] font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         </div>
                 </div>
-                <div className="flex items-center justify-center">
-                <div className="grid grid-cols-[180px_180px] gap-6">
-
+                <div className="flex items-center justify-center ">
+                 <div className="grid grid-cols-[180px_180px] gap-4 lg:gap-y-4 place-items-center">
                     {/* Left Tall Card */}
-                    <div className="row-span-2">
-                    <Card className="bg-[#ECEDF1] w-[180px] h-[365px]" />
+                    <div  data-aos="fade-right" data-aos-delay="800" className="row-span-2 lg:mr-12">
+                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[190px] h-[380px] lg:w-[210px] lg:h-[440px]  rounded-3xl lg:ml-6">
+                            <img src="/vision1st-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
+                        </div>
                     </div>
 
                     {/* Right Top Small */}
-                    <div className="md:col-span-2">
-                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px] md:w-[380px] md:h-[170px]" />
-                        
+                    <div className="md:col-span-1">
+                        <div data-aos="fade-right"  className="flex items-center justify-center 
+                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                            w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] lg:ml-8  rounded-3xl overflow-hidden">
+
+                            <div className="flex flex-col items-center justify-center gap-2 px-2">
+                                <div className="flex items-center justify-center shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
+                                    <img src="/ICONS/modernization-icon.svg" alt="" className="w-7 h-7"/>
+                                </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <h1 className="font-poppins text-[18px]">Modernization</h1>
+                                <p className=" text-center font-poppins font-light text-[12px]">Digital Infrastructure for Small and Medium Enterprises(SME). </p>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                    <div className="md:col-start-4">
-                        <Card className="bg-[#ECEDF1] w-[180px] h-[170px]" />
+                    <div className="md:col-start-4 md:row-start-1">
+                        <div data-aos="fade-left" data-aos-delay="800" className="flex items-center justify-center 
+                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                            w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] lg:mr-8 rounded-3xl overflow-hidden">
+
+                            <img 
+                                src="/vision2nd-pic.svg" 
+                                alt="" 
+                                className="w-full h-full object-cover p-2 rounded-3xl" 
+                            />
+                        </div>
                     </div>
 
-                    {/* Full Width Card 1 */}
+                    {/* in lg move to behind of tall card */}
                     
-                    <div className="col-span-2 md:col-start-3 md:row-start-2">
-                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px]" />
+                    <div className="col-span-2 md:col-start-2 md:row-start-1 ">
+                    <div data-aos="fade-right" className="flex flex-col p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] ">
+                        <div className="flex flex-row gap-4 mt-2 ">
+                            <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
+                                <img src="/ICONS/digital-leader-icon.svg" alt="" className="w-7 h-7"/>
+                            </div>
+                            <div className="flex flex-col items-start justify-center">
+                                <h1 className="font-poppins text-[20px]">Digital Leadership</h1>
+                                <p className=" text-left font-poppins font-light text-[12px]">To become a trusted software company that shapes the future through technology. </p>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-row gap-4">
+                            <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
+                                <img src="/ICONS/innovation-icon.svg" alt="" className="w-7 h-7"/>
+                            </div>
+                            <div className="flex flex-col items-start justify-center">
+                                <h1 className="font-poppins text-[20px]">Innovation</h1>
+                                <p className=" text-left font-poppins font-light text-[12px]">To lead the future of technology by creating innovative and impactful software solutions. </p>
+                            </div>
+                        </div>
+                    </div>
                     </div>
 
-                    <div className="col-span-2 md:col-start-2 md:row-start-2">
-                    <Card className="bg-[#ECEDF1] w-[380px] h-[180px] md:w-[180px] md:h-[170px]" />
+                    <div className="col-span-2 md:col-start-3 md:row-start-2  lg:col-span-2 lg:col-start-3 lg:row-start-2">
+                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px]  ">
+                        <img src="vision3rd-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
+                        </div>
                     </div>
-
-                    {/* Full Width Card 2 */}
-                    
 
                 </div>
                 </div>
