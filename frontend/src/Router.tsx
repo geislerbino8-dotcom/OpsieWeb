@@ -6,6 +6,7 @@ import WhatWeDoPage from "./pages/WhatWeDoPage"
 import ContactUsPage from "./pages/ContactUsPage"
 import Homepage from "./pages/Homepage"
 import ProductItemPage from "./pages/ProductItemPage"
+import OpsieTicketingSystem from "./pages/OpsieTicketingSystem"
 
 const router = createBrowserRouter([
     {
@@ -38,10 +39,16 @@ const router = createBrowserRouter([
             {
                 path: '/products/:id',
                 element: <ProductItemPage />
-            }
+            },
+            
         ]
        
     },
+
+    {
+        path: '/admin',
+        element: <OpsieTicketingSystem />
+    }
 
     
 ])

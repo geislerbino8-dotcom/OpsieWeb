@@ -32,7 +32,7 @@ function ServicesCards({ serviceName, desc, image }: ServicesCardsProps) {
    
   <button
     onClick={()=> window.location.href = '/what-we-do'}
-  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300  bg-blue-500 text-white rounded shadow-lg cursor-pointer ">
+  className="opacity-0 group-hover:opacity-100p transition-opacity duration-300  bg-blue-500 text-white rounded shadow-lg cursor-pointer ">
     View
   </button>
 

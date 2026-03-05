@@ -5,6 +5,12 @@ import { HttpError } from './utils/httpError'
 import TicketRoute from './routes/ticketRoute'
 
 
+const dns = require('dns');
+
+// Force Google DNS
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
+
 export default class Server {
   public app: Application;
   private readonly port = process.env.PORT || 4000;
@@ -45,6 +51,7 @@ export default class Server {
   }
 
   public startServer = async() => {
+    
     try {
       await mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`);
 

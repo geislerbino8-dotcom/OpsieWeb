@@ -6,9 +6,7 @@ type TopSectionCardProps = {
 function TopSectionCard({image, secName} : TopSectionCardProps) {
   return (
     <div className="top-section-card-container flex"
-      style={{
-        margin: '0em 1em'
-      }}
+    
     >
       <div className="top-section-card-wrapper flex fd-r ai-c jc-c"
         style={{
