@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const updateInquiryStatus = async (
   id: string,
-  status: 'new' | 'contacted' | 'closed'
+  status: 'open' | 'in progress' | 'resolved' | "won't fix" | 'closed'
 ) => {
   try {
     const token = localStorage.getItem('token');
