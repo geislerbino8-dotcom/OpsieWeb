@@ -6,10 +6,11 @@ function ContactForm() {
 
   const selectValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelValue(e.target.value);
-  };
+  }
+
 
   return (
-    <div className="w-full flex justify-center px-4 py-8">
+    <div className="w-full flex justify-end px-4 py-8">
       <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 flex flex-col items-center space-y-4">
         <h3 className="text-2xl font-bold text-gray-800 text-center">
           Let's Talk About Your Project
@@ -49,8 +50,12 @@ function ContactForm() {
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           <option value="Where did you find us?">Where did you find us?</option>
-          <option value="Inquire">Inquire</option>
-          <option value="Bug Fixing">Bug Fixing</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Tiktok">Tiktok</option>
+          <option value="Linkdn">Linkdn</option>
+          <option value="Friends">Friends</option>
+          <option value="Other">Other</option>
         </select>
 
         <textarea
@@ -61,6 +66,7 @@ function ContactForm() {
         <button className="w-full py-2 bg-black text-white font-bold rounded-md hover:bg-gray-800 transition-colors">
           Send Message
         </button>
+       
       </div>
     </div>
   );

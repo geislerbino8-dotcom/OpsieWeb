@@ -1,6 +1,8 @@
 import MapImage from '../../assets/visuals/Map.png';
 import BlackButton from '../buttons/BlackButton';
 
+
+
 function MapCard() {
   return (
     <div className="w-full max-w-xl flex flex-col p-6 bg-white rounded-xl shadow-md space-y-4">

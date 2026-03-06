@@ -1,5 +1,3 @@
-import "../styles/Form.css"
-
 
 function Form(){
     return(

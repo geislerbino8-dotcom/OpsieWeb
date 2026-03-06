@@ -43,7 +43,7 @@ const App = () => {
   return (
     <>
       <div>
-        <Navigation />
+          <Navigation />
           <Outlet />
         <Footer />
       </div>

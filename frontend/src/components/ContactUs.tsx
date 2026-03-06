@@ -4,18 +4,21 @@ import image1 from '../assets/opsie/fb.jpg'
 import image2 from '../assets/opsie/Instagram.jpg'
 import image3 from '../assets/opsie/Linkdn.jpg'
 
-
 function ContactUs(){
     return(
         <section className="contact-section">
         <div className="contact-wrapper">
             <div className="contact-info">
-                <h1>Contact Us</h1>
+                <h1 className='contact-title'> Contact Us</h1>
                 <p>For Contact details, kindly reach:</p>
 
                 <p >Mobile No. 12345678911</p>
                 <p>Mobile No. 21314456272</p>
                 <p>HR Department email: asdas@gmail.com</p>
+
+                <button className="meeting-btn">
+                    BOOK A MEETING SCHEDULE
+                </button>
 
                 <div className="social-icons">
                 <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
@@ -31,13 +34,8 @@ function ContactUs(){
                     <img src={image3} alt="Linkdnlogo" className="social-logo" />
                  </a>
                     </div>
-
-                <button className="meeting-btn">
-                    BOOK A MEETING SCHEDULE
-                </button>
-            </div>
-             
-             
+            </div>   
+            
         </div>
     </section>
 
