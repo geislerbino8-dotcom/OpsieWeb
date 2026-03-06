@@ -1,4 +1,7 @@
 .analytics-container {
+    background-color: rgba(8, 0, 0, 0.225);
+    background-image: url(../assets/background-images/LineBG.png);
+    background-blend-mode: darken;
     padding: 1em;
     box-sizing: border-box;
 -webkit-box-shadow: inset 3px 4px 12px -6px rgba(66, 68, 90, 1);

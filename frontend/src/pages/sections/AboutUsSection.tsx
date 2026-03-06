@@ -1,6 +1,8 @@
 import React from "react";
+import '../../styles/AboutUsSection.css'
 import OpsieImage from "../../assets/opsie/opsie_full.jpg";
 import TopSectionCard from "../../components/cards/TopSectionCard";
+import { Card } from "../../components/Card/ServicesCard";
 
 function AboutUsSection() {
   return (
@@ -16,15 +18,14 @@ function AboutUsSection() {
 
         {/* Image */}
         <div className="flex justify-center md:w-1/2">
-          <img
-            src={OpsieImage}
-            alt="Opsie"
-            className="w-72 md:w-80 rounded-xl shadow-lg object-cover"
-          />
+          <img width={300} src={OpsieImage} alt="" />
+         
         </div>
 
         {/* Text Content */}
-        <div className="flex flex-col gap-6 md:w-1/2">
+        <div className="about-text-card flex flex-col gap-6 md:w-1/2 p-10"
+          
+        >
 
           <h2 className="text-3xl md:text-4xl font-bold leading-tight">
             Let your Business into Digitally Real
@@ -39,7 +40,7 @@ function AboutUsSection() {
           </p>
 
           <div>
-            <button className="mt-4 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300">
+            <button className="btn-learn mt-4 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300">
               Learn more
             </button>
           </div>

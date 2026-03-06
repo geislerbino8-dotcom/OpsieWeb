@@ -62,7 +62,7 @@ function ProductItemPage() {
         {/* Product Title */}
         <div className="text-center">
           <h2 className="text-2xl md:text-3xl font-bold">
-            Opsie Human Resource Information Management (HRIS)
+            {id}
           </h2>
         </div>
 

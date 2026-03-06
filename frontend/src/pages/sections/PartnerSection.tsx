@@ -1,6 +1,15 @@
 import React from "react";
 import TopSectionCard from "../../components/cards/TopSectionCard";
 import PartnersImage from "../../assets/visuals/Partners.png";
+import LogoLoop from "../../components/LogoLoop";
+
+const imageLogos = [
+  { src: "/logo/Frame.svg", alt: "Company 1",  },
+  { src: "/logo/Frame-1.svg", alt: "Company 2",  },
+  { src: "/logo/Frame-2.svg", alt: "Company 3",  },
+  { src: "/logo/Frame-4.svg", alt: "Company 4",  },
+  { src: "/logo/Frame-3.svg", alt: "Company 5",  },
+];
 
 function PartnerSection() {
   return (
@@ -8,7 +17,7 @@ function PartnerSection() {
 
       {/* Top Section Card */}
       <div className="mb-8">
-        <TopSectionCard secName="Products" />
+        <TopSectionCard secName="Opsie's Network" />
       </div>
 
       {/* Header */}
@@ -25,9 +34,20 @@ function PartnerSection() {
       <div className="w-full max-w-6xl flex flex-col items-center md:flex-col gap-8">
 
         {/* Partner Image */}
-        <div className="flex justify-center items-center md:w-1/2">
-          <img src={PartnersImage} alt="Partners" className="w-full rounded-lg shadow-md" />
-        </div>
+      
+
+           <LogoLoop
+                  logos={imageLogos}
+                  speed={100}
+                  direction="left"
+                  logoHeight={60}
+                  gap={60}
+                  hoverSpeed={0}
+                  scaleOnHover
+                  fadeOut
+                  fadeOutColor="#ffffff"
+                  ariaLabel="Technology partners"
+                />
 
         {/* Description */}
         <div className="flex-1 text-gray-700 leading-relaxed">
@@ -37,9 +57,7 @@ function PartnerSection() {
           <p className="mb-4">
             Repudiandae pariatur eligendi omnis repellendus a laborum, maxime molestiae quis ex ipsum quo est adipisci facere porro officia enim ipsam ducimus quas totam nesciunt? Atque repudiandae modi id quae magni.
           </p>
-          <p>
-            Dolor obcaecati consequuntur adipisci sit doloribus illo, hic vel laborum veritatis ad accusantium cumque eos enim vero tenetur non ex! Illum accusantium fugit sit maiores suscipit voluptas ullam temporibus dolore.
-          </p>
+         
         </div>
 
       </div>

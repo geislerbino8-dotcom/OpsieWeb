@@ -4,6 +4,7 @@ import ProductSection from './sections/ProductSection';
 import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import Product1 from '../assets/Products/Product1.png';
+import ClientReview from '../components/sections/ClientReviewsSection';
 
 function ProductPage() {
   return (
@@ -48,7 +49,7 @@ function ProductPage() {
       {/* Sections */}
       <ServicesSection />
       <ProductSection />
-      <FeedbackSection />
+      <ClientReview />
       <WhyChooseUsSection />
       <ProductCTA />
 

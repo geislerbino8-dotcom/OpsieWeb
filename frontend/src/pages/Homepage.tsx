@@ -10,10 +10,16 @@ import EncourageSection from './sections/EncourageSection'
 import ScrollAnimatedSection from '../ScrollAnimationSection'
 
 import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
+import Header from '../components/Header'
+import ClientReview from '../components/sections/ClientReviewsSection'
+import Navigation from '../components/Navigation'
 
 function Homepage() {
   return (
     <div className="overflow-hidden">
+         <div className=''>
+        <Navigation />
+      </div>
 
       <ScrollAnimatedSection>
         <HeroPage heroText="Bring your Ideas into Reality ✨" bgImage={HomeHeroImage} />
@@ -36,7 +42,7 @@ function Homepage() {
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={500}>
-        <FeedbackSection />
+        <ClientReview />
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={600}>

@@ -2,10 +2,18 @@ import React from "react";
 import TopSectionCard from "../../components/cards/TopSectionCard";
 import AnalyticsCards from "../../components/cards/AnalyticsCards";
 import OpsieLogo from "../../assets/icons/opsie_logo_only.png";
+import LineImg from '../../assets/background-images/LineBG.png'
 
 function Analytics() {
   return (
-    <section className="w-full flex flex-col items-center py-16 px-4">
+    <section className="w-full flex flex-col items-center py-16 px-4"
+      style={{
+        background: '#015c7dc8',
+        backgroundImage: `url(${LineImg})`,
+        backgroundBlendMode: 'darken'
+      }}
+    >
+
 
       {/* Top Section Title */}
       <div className="mb-8">
@@ -21,11 +29,11 @@ function Analytics() {
             <img src={OpsieLogo} alt="Opsie Logo" className="w-20 h-20" />
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold">
-            Our <span className="text-indigo-600">Numbers</span> by Experience
+          <h1 className="text-3xl md:text-4xl font-bold text-white">
+            Our <span className="text-[#9ef7ff]">Numbers</span> by Experience
           </h1>
 
-          <p className="text-gray-600 max-w-xl">
+          <p className="text-gray-600 max-w-xl text-white">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam accusamus fugit quod alias consequatur non quisquam rerum voluptates laboriosam. Temporibus magni beatae, atque rem quae perferendis cumque cum odio vitae!
           </p>
         </div>

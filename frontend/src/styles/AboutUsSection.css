@@ -3,6 +3,18 @@
     margin: 1em;
 }
 
+.about-text-card:hover {
+     border-radius: "25px";
+     border-radius: 1em;
+     box-shadow: -5px -5px 10px 0px #FAFBFF, 5px 5px 10px 0px rgba(166, 171, 189, 0.25);
+
+     .btn-learn {
+        background-color: rgb(64, 64, 64);
+        width: 100%;
+        cursor: pointer;
+     }
+}
+
 
 .about-us-section-wrapper {
     color: white;

@@ -7,6 +7,7 @@ import ContactUsPage from "./pages/ContactUsPage"
 import Homepage from "./pages/Homepage"
 import ProductItemPage from "./pages/ProductItemPage"
 import OpsieTicketingSystem from "./pages/OpsieTicketingSystem"
+import WhatWeDo from "./pages/WhatWeDo"
 
 const router = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
 
             {
                 path: '/what-we-do',
-                element: <WhatWeDoPage />
+                element: <WhatWeDo />
             },
 
             {
