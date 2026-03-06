@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getTickets } from '../api/getTickets';
 import { deleteTicket } from '../api/deleteTicket';
-import { updateTicketStatus } from '../api/updateTicketStatus';
+import { updateTicket } from '../api/updateTicket';
+import { getUsers } from '../api/getUsers';
 
 type Ticket = {
   _id: string;
@@ -15,9 +16,14 @@ type Ticket = {
   category: 'Inquiry' | 'Bug Report' | 'Question' | 'Complaint' | 'Feature Request';
   status: 'open' | 'in progress' | 'resolved' | "won't fix" | 'closed';
   taskReferenceUrl: string;
-  assignee?: string | null;
+  assignee: string | null;
   createdAt: string;
   updatedAt: string;
+};
+
+type User = {
+  _id: string;
+  name: string;
 };
 
 const statusColors = {
@@ -38,35 +44,75 @@ const categoryColors = {
 
 const OpsieTicketingSystem = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [sortField, setSortField] = useState<'name' | 'email' | 'platform' | 'assignee' | 'createdAt' | 'updatedAt'>('updatedAt');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [editStatus, setEditStatus] = useState<Ticket['status']>('open');
+  const [editCategory, setEditCategory] = useState<Ticket['category']>('Inquiry');
+  const [editTaskUrl, setEditTaskUrl] = useState('');
+  const [editAssignee, setEditAssignee] = useState<string | null>(null);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
 
   useEffect(() => {
     fetchData();
+    fetchUsers();
   }, []);
+
+  useEffect(() => {
+    if (selectedTicket) {
+      setEditStatus(selectedTicket.status);
+      setEditCategory(selectedTicket.category);
+      setEditAssignee(selectedTicket.assignee || '');
+      setEditTaskUrl(selectedTicket.taskReferenceUrl || '');
+    }
+  }, [selectedTicket]);
 
   const fetchData = async () => {
     const data = await getTickets();
     setTickets(data);
   };
 
-  const handleDelete = async (id: string) => {
-    await deleteTicket(id);
-    setTickets(prev => prev.filter(i => i._id !== id));
+  const fetchUsers = async () => {
+    const data = await getUsers();
+    setUsers(data);
   };
 
-  const handleStatusChange = async (
-    id: string,
-    status: Ticket['status']
-  ) => {
-    await updateTicketStatus(id, status);
+  const handleDelete = async () => {
+    if (!selectedTicket) return;
+    await deleteTicket(selectedTicket._id);
+
+    setTickets(prev => prev.filter(t => t._id !== selectedTicket._id));
+    setSelectedTicket(null);
+  };
+
+  const handleUpdate = async () => {
+    if (!selectedTicket) return;
+
+    await updateTicket(selectedTicket._id, {
+      status: editStatus,
+      category: editCategory,
+      taskReferenceUrl: editTaskUrl,
+      assignee: editAssignee === '' ? null : editAssignee
+    });
+
     setTickets(prev =>
-      prev.map(i => (i._id === id ? { ...i, status } : i))
+      prev.map(t =>
+        t._id === selectedTicket._id
+          ? {
+              ...t,
+              status: editStatus,
+              category: editCategory,
+              taskReferenceUrl: editTaskUrl,
+              assignee: users.find(u => u._id === editAssignee)?.name || null
+            }
+          : t
+      )
     );
+
+    setSelectedTicket(null);
   };
 
   const handleSort = (field: typeof sortField) => {
@@ -85,7 +131,7 @@ const OpsieTicketingSystem = () => {
     >
       <div className='flex items-center gap-1'>
         <span>{label}</span>
-        <span className='w-1 text-gray-400'>
+        <span className='w-0.5 text-gray-400'>
           {sortField === field
             ? sortDirection === 'asc'
               ? '▲'
@@ -108,11 +154,11 @@ const OpsieTicketingSystem = () => {
 
   if (searchTerm.trim()) {
     const lower = searchTerm.toLowerCase();
-    filteredTickets = filteredTickets.filter(i =>
-      i.name.toLowerCase().includes(lower) ||
-      i.email.toLowerCase().includes(lower) ||
-      i.phone.toLowerCase().includes(lower) ||
-      (i.address && i.address.toLowerCase().includes(lower))
+    filteredTickets = filteredTickets.filter(t =>
+      t.name.toLowerCase().includes(lower) ||
+      t.email.toLowerCase().includes(lower) ||
+      t.phone.toLowerCase().includes(lower) ||
+      (t.address && t.address.toLowerCase().includes(lower))
     );
   }
 
@@ -205,17 +251,16 @@ const OpsieTicketingSystem = () => {
         <table className='min-w-full text-xs table-fixed'>
           <thead className='bg-gray-100 border-b text-gray-600 uppercase tracking-wide'>
             <tr>
-              <th className='px-4 py-2 min-w-[75px]'>ID</th>
+              <th className='px-4 py-2 w-[75px]'>ID</th>
               {renderHeader('Name', 'name')}
               {renderHeader('Email', 'email')}
               {renderHeader('Platform', 'platform')}
-              <th className='px-4 py-2 text-center min-w-[140px]'>Category</th>
-              <th className='px-4 py-2 text-center min-w-[100px]'>Status</th>
-              <th className='px-4 py-2 min-w-[70px]'>Task</th>
+              <th className='px-4 py-2 text-center w-[170px]'>Category</th>
+              <th className='px-4 py-2 text-center w-[125px]'>Status</th>
+              <th className='px-4 py-2 w-[125px]'>Task</th>
               {renderHeader('Created', 'createdAt')}
               {renderHeader('Updated', 'updatedAt')}
               {renderHeader('Assignee', 'assignee')}
-              <th className='px-4 py-2 min-w-[90px]'>Actions</th>
             </tr>
           </thead>
 
@@ -226,39 +271,27 @@ const OpsieTicketingSystem = () => {
                 className='hover:bg-gray-200 cursor-pointer'
                 onClick={() => setSelectedTicket(ticket)}
               >
-                <td className='px-4 py-3 text-gray-400 text-center min-w-[75px]'>
+                <td className='px-4 py-3 text-gray-400 text-center w-[75px]'>
                   {ticket._id.slice(-6)}
                 </td>
 
-                <td className='px-4 py-3 font-medium min-w-[115px]'>{ticket.name}</td>
-                <td className='px-4 py-3 text-gray-600 min-w-[160px]'>{ticket.email}</td>
-                <td className='px-4 py-3 text-gray-600 min-w-[110px]'>{ticket.platform || '—'}</td>
+                <td className='px-4 py-3 font-medium w-[130px]'>{ticket.name}</td>
+                <td className='px-4 py-3 text-gray-600 w-[170px]'>{ticket.email}</td>
+                <td className='px-4 py-3 text-gray-600 w-[95px]'>{ticket.platform || '—'}</td>
 
-                <td className='px-4 py-3 text-center min-w-[140px]'>
+                <td className='px-4 py-3 text-center w-[170px]'>
                   <div className={`text-center px-2 py-1 rounded text-xs font-medium ${categoryColors[ticket.category]}`}>
                     {ticket.category}
                   </div>
                 </td>
 
-                <td className='px-4 py-3 text-center min-w-[100px]'>
-                  <select
-                    value={ticket.status}
-                    onClick={e => e.stopPropagation()}
-                    onChange={e =>
-                      handleStatusChange(
-                        ticket._id,
-                        e.target.value as Ticket['status']
-                      )
-                    }
-                    className={`min-w-[100px] px-2 py-1 rounded text-xs font-medium cursor-pointer ${statusColors[ticket.status]}`}
-                  >
-                    {Object.entries(statusColors).map(s => (
-                      <option className={`${s[1]}`} key={s[0]} value={s[0]}>{s[0]}</option>
-                    ))}
-                  </select>
+                <td className='px-4 py-3 text-center w-[125px]'>
+                  <div className={`px-2 py-1 rounded text-xs font-medium ${statusColors[ticket.status]}`}>
+                    {ticket.status}
+                  </div>
                 </td>
-
-                <td className='px-4 py-3 text-center min-w-[70px]'>
+              
+                <td className='px-4 py-3 text-center w-[125px]'>
                   {ticket.taskReferenceUrl ? (
                     <a
                       href={ticket.taskReferenceUrl}
@@ -272,35 +305,23 @@ const OpsieTicketingSystem = () => {
                   ) : '—'}
                 </td>
 
-                <td className='px-4 py-3 text-gray-500 min-w-[110px]'>
+                <td className='px-4 py-3 text-gray-500 w-[100px]'>
                   {new Date(ticket.createdAt).toLocaleDateString()}
                 </td>
 
-                <td className='px-4 py-3 text-gray-500 min-w-[110px]'>
+                <td className='px-4 py-3 text-gray-500 w-[100px]'>
                   {new Date(ticket.updatedAt).toLocaleDateString()}
                 </td>
 
-                <td className='px-4 py-3 text-gray-600 min-w-[105px]'>
+                <td className='px-4 py-3 text-gray-600 w-[170px]'>
                   {ticket.assignee ? ( 
                     <div className='flex items-center gap-2'>
                       <div className='w-7 h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
                         {ticket.assignee.charAt(0)}
                       </div>
-                      <span> {ticket.assignee }</span>
+                      <span> {ticket.assignee}</span>
                     </div>
                   ) : ( <span className='text-gray-400'>Unassigned</span> )}
-                </td>
-
-                <td className='px-4 py-3 text-center min-w-[90px]'>
-                  <button
-                    onClick={e => {
-                      e.stopPropagation();
-                      handleDelete(ticket._id);
-                    }}
-                    className='text-red-600 hover:text-red-800 cursor-pointer'
-                  >
-                    Delete
-                  </button>
                 </td>
               </tr>
             ))}
@@ -310,105 +331,156 @@ const OpsieTicketingSystem = () => {
 
       {selectedTicket && (
         <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4'>
-          <div className='bg-white border rounded-md w-full max-w-3xl max-h-[90vh] overflow-y-auto relative shadow-lg'>
-
-            <div className='px-6 py-4 border-b flex justify-between items-start'>
+          <div className='bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-xl'>
+            <div className='px-6 py-4 border-b flex justify-between items-center'>
               <div>
                 <h2 className='text-lg font-semibold text-gray-800'>
                   {selectedTicket.name}
                 </h2>
-                <p className='text-xs text-gray-500 mt-1'>
+                <p className='text-xs text-gray-500'>
                   Ticket ID: {selectedTicket._id}
                 </p>
               </div>
 
               <button
                 onClick={() => setSelectedTicket(null)}
-                className='text-4xl hover:text-black text-lg cursor-pointer'
+                className='text-gray-500 hover:text-black text-xl cursor-pointer'
               >
-                ❌ 
+                ✕
               </button>
             </div>
 
-            <div className='p-6 text-sm text-gray-700 space-y-6'>
-
-              <div className='flex flex-wrap gap-3'>
-                <div className={`px-3 py-1 rounded text-xs font-medium ${categoryColors[selectedTicket.category]}`}>
-                  {selectedTicket.category}
+            {/* CONTENT */}
+            <div className='grid md:grid-cols-3 gap-6 p-6'>
+              <div className='md:col-span-2 space-y-6'>
+                <div>
+                  <p className='text-xs text-gray-500 mb-1'>Description</p>
+                  <div className='border rounded-md p-4 bg-gray-50 whitespace-pre-wrap text-sm'>
+                    {selectedTicket.description}
+                  </div>
                 </div>
 
-                <div className={`px-3 py-1 rounded text-xs font-medium ${statusColors[selectedTicket.status]}`}>
-                  {selectedTicket.status}
+                <div className='grid grid-cols-2 gap-4 text-sm'>
+
+                  <div>
+                    <p className='text-gray-500 text-xs'>Email</p>
+                    <p>{selectedTicket.email}</p>
+                  </div>
+
+                  <div>
+                    <p className='text-gray-500 text-xs'>Phone</p>
+                    <p>{selectedTicket.phone}</p>
+                  </div>
+
+                  <div>
+                    <p className='text-gray-500 text-xs'>Address</p>
+                    <p>{selectedTicket.address || '—'}</p>
+                  </div>
+
+                  <div>
+                    <p className='text-gray-500 text-xs'>Platform</p>
+                    <p>{selectedTicket.platform || '—'}</p>
+                  </div>
+
+                  <div>
+                    <p className='text-gray-500 text-xs'>Platform Version</p>
+                    <p>{selectedTicket.platformVersion || '—'}</p>
+                  </div>
+
+                  <div>
+                    <p className='text-gray-500 text-xs'>Created</p>
+                    <p>{new Date(selectedTicket.createdAt).toLocaleString()}</p>
+                  </div>
+
+                  <div>
+                    <p className='text-gray-500 text-xs'>Updated</p>
+                    <p>{new Date(selectedTicket.updatedAt).toLocaleString()}</p>
+                  </div>
                 </div>
               </div>
 
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
-
+              <div className='space-y-5'>
                 <div>
-                  <p className='text-gray-500 text-xs'>Email</p>
-                  <p>{selectedTicket.email}</p>
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs'>Phone</p>
-                  <p>{selectedTicket.phone}</p>
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs'>Address</p>
-                  <p>{selectedTicket.address || '—'}</p>
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs'>Assignee</p>
-                  <p>{selectedTicket.assignee || 'Unassigned'}</p>
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs'>Platform</p>
-                  <p>{selectedTicket.platform || '—'}</p>
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs'>Platform Version</p>
-                  <p>{selectedTicket.platformVersion || '—'}</p>
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs'>Created</p>
-                  <p>{new Date(selectedTicket.createdAt).toLocaleString()}</p>
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs'>Updated</p>
-                  <p>{new Date(selectedTicket.updatedAt).toLocaleString()}</p>
-                </div>
-
-              </div>
-
-              <div>
-                <p className='text-gray-500 text-xs mb-1'>Task Reference</p>
-                {selectedTicket.taskReferenceUrl ? (
-                  <a
-                    href={selectedTicket.taskReferenceUrl}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='text-blue-600 hover:underline break-all'
+                  <p className='text-xs text-gray-500 mb-1'>Category</p>
+                  <select
+                    value={editCategory}
+                    onChange={e => setEditCategory(e.target.value as Ticket['category'])}
+                    className='border rounded-md w-full px-3 py-2 text-sm'
                   >
-                    {selectedTicket.taskReferenceUrl}
-                  </a>
-                ) : (
-                  <p>—</p>
-                )}
-              </div>
+                    {Object.keys(categoryColors).map(c => (
+                      <option key={c}>{c}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <div>
-                <p className='text-gray-500 text-xs mb-2'>Description</p>
-                <div className='border rounded-md p-4 bg-gray-50 whitespace-pre-wrap'>
-                  {selectedTicket.description}
+                <div>
+                  <p className='text-xs text-gray-500 mb-1'>Status</p>
+                  <select
+                    value={editStatus}
+                    onChange={e => setEditStatus(e.target.value as Ticket['status'])}
+                    className='border rounded-md w-full px-3 py-2 text-sm'
+                  >
+                    {Object.keys(statusColors).map(s => (
+                      <option key={s}>{s}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <p className='text-xs text-gray-500 mb-1'>Task Reference</p>
+                  <input
+                    value={editTaskUrl}
+                    onChange={e => setEditTaskUrl(e.target.value)}
+                    className='border rounded-md w-full px-3 py-2 text-sm'
+                    placeholder='https://github.com/'
+                  />
+                </div>
+
+                <div>
+                  <p className='text-gray-500 text-xs mb-1'>Assignee</p>
+
+                  <select
+                    value={editAssignee || ''}
+                    onChange={(e) => setEditAssignee(e.target.value || null)}
+                    className='border rounded-md px-3 py-2 w-full text-sm'
+                  >
+                    <option key='unassigned' value='' >Unassigned</option>
+                    {users.map((user) => (
+                      <option key={user._id} value={user._id}>
+                        {user.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
+            </div>
 
+            <div className='px-6 py-4 border-t bg-gray-50'>
+              <div className='flex flex-col sm:flex-row sm:justify-between gap-3'>
+                <button
+                  onClick={handleDelete}
+                  className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 cursor-pointer'
+                >
+                  Delete Ticket
+                </button>
+
+                <div className='flex flex-col sm:flex-row gap-3 w-full sm:w-auto'>
+                  <button
+                    onClick={() => setSelectedTicket(null)}
+                    className='w-full sm:w-auto px-4 py-2 rounded-md border text-sm font-medium hover:bg-gray-100 cursor-pointer'
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    onClick={handleUpdate}
+                    className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                  >
+                    Save Changes
+                  </button>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
