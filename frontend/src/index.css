@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 
+
 body {
   margin: 0;
   padding: 0;
@@ -75,6 +76,12 @@ button {
 
 .vh100 {
   height: 100vh;
+}
+
+.card-shadow {
+  -webkit-box-shadow: 8px 8px 39px -20px rgba(66, 68, 90, 1);
+-moz-box-shadow: 8px 8px 39px -20px rgba(66, 68, 90, 1);
+box-shadow: 8px 8px 39px -20px rgba(66, 68, 90, 1);
 }
 
 /*TEXT STYLES*/

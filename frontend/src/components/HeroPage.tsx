@@ -1,4 +1,5 @@
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
+import github from '../assets/visuals/github.jpg'
 
 type HeroPageProps = {
   heroText?: string;
@@ -15,7 +16,9 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundBlendMode: 'darken'
+          
       }}
+
     >
       {/* Logo Overlay */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -45,6 +48,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
           GET STARTED
         </button>
       </div>
+
     </div>
   );
 }

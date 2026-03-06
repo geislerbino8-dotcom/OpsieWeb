@@ -10,8 +10,7 @@ function MapCard() {
       {/* Contact Info */}
       <div className="space-y-1">
         <h3 className="text-xl font-bold text-gray-800">Prefer a Direct Approach?</h3>
-        <p className="text-gray-700">+5654654654</p>
-        <p className="text-gray-700">contact@landing.com</p>
+        <p className="text-gray-700">HR Department email: asdas@gmail.com</p>
         <p className="text-gray-700">Monday to Friday, 9 AM - 6 PM (PHT)</p>
       </div>
 
@@ -23,7 +22,7 @@ function MapCard() {
       />
 
       {/* Address */}
-      <p className="text-gray-600 text-sm">
+      <p className="text-gray-600 text-">
         Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
       </p>
 
@@ -32,10 +31,10 @@ function MapCard() {
         <h1 className="text-lg font-bold text-gray-800">Visit Our Office</h1>
         <BlackButton
           text="Get Direction"
-          fontSize="1"
-          borderRadius="1"
+          fontSize="1.2"
+          borderRadius="2"
           margin="0"
-          padding="1"
+         padding="0"
           color=""
           image=""
         />

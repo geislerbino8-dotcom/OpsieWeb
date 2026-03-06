@@ -17,24 +17,21 @@ function Analytics() {
 
         {/* Header Section */}
         <div className="flex flex-col items-center text-center gap-4">
-          {/* Logo */}
           <div>
             <img src={OpsieLogo} alt="Opsie Logo" className="w-20 h-20" />
           </div>
 
-          {/* Title */}
           <h1 className="text-3xl md:text-4xl font-bold">
             Our <span className="text-indigo-600">Numbers</span> by Experience
           </h1>
 
-          {/* Description */}
           <p className="text-gray-600 max-w-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, blanditiis.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam accusamus fugit quod alias consequatur non quisquam rerum voluptates laboriosam. Temporibus magni beatae, atque rem quae perferendis cumque cum odio vitae!
           </p>
         </div>
 
         {/* Numbers / Analytics Cards */}
-        <div className="flex flex-wrap justify-center gap-6 mt-8 w-full">
+        <div className="grid grid-cols-2 grid-rows-2 gap-6 mt-8 w-full max-w-3xl">
           <AnalyticsCards numbers="10+" desc="HAPPY CLIENTS" />
           <AnalyticsCards numbers="10+" desc="COMPANIES" />
           <AnalyticsCards numbers="10+" desc="PROJECTS DONE" />

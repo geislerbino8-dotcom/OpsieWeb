@@ -4,8 +4,8 @@ import './App.css';
 import GetName from './api/getName';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import { getInquiries } from './api/getInquiries';
 
+import { getTickets } from './api/getTickets';
 
 const App = () => {
   const [name, setName] = useState<string>('');
@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     const fetchInquiries = async () => {
       try {
-        const data = await getInquiries();
+        const data = await getTickets();
         console.log(data)
       } catch (err: any) {
         console.log(err)
@@ -24,7 +24,7 @@ const App = () => {
     fetchInquiries();
   }, []);
 
-  getInquiries()
+  getTickets()
   const fetchName = async () => {
     try {
       // Please see my note in getName.ts regarding the use of the class here.

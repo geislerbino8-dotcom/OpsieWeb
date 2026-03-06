@@ -22,11 +22,11 @@ function PartnerSection() {
       </div>
 
       {/* Partners Content */}
-      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8">
+      <div className="w-full max-w-6xl flex flex-col items-center md:flex-col gap-8">
 
         {/* Partner Image */}
-        <div className="flex justify-center md:w-1/2">
-          <img src={PartnersImage} alt="Partners" className="w-full max-w-xs object-contain rounded-lg shadow-md" />
+        <div className="flex justify-center items-center md:w-1/2">
+          <img src={PartnersImage} alt="Partners" className="w-full rounded-lg shadow-md" />
         </div>
 
         {/* Description */}

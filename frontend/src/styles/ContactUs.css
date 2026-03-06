@@ -1,7 +1,7 @@
 .contact-section{
     padding: 20px 60px;
-    margin-bottom: 20px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family:'Poppins';
+    font-size:larger;
     line-height: 1.9;
 }
 .contact-title{
@@ -15,6 +15,7 @@
 }
 .contact-wrapper{
     max-width: 400px;
+    margin-top: 3em;
 }
 
 .social-icons{

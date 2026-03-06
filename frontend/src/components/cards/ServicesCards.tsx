@@ -1,3 +1,4 @@
+import '../../styles/ServicesSection.css'
 
 type ServicesCardsProps = {
     serviceName: string
@@ -9,7 +10,6 @@ function ServicesCards({ serviceName, desc, image }: ServicesCardsProps) {
   return (
     <div style={{minWidth: '20em'}}>
         <div style={{
-        backgroundColor: 'rgba(49, 43, 43, 0.55)',
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -22,9 +22,20 @@ function ServicesCards({ serviceName, desc, image }: ServicesCardsProps) {
         color: 'white'
 
 
-    }} className="flex fd-c">
-      <h2>{serviceName}</h2>
-      <p style={{textAlign: 'left', margin: '1em 0 2em 0', color: 'white'}}>L repellat veniam iste explicabo error facere enim, possimus harum expedita impedit et, ipsa at voluptas velit qui! Repellat soluta consequuntur nulla accusamus!</p>
+    }} className="group relative service-card text-center flex flex-col">
+      <h2 className='text-3xl font-bold'>{serviceName}</h2>
+      <p 
+        className='opacity-0 group-hover:opacity-100 transition-opacity duration-300'
+      style={{textAlign: 'left', margin: '1em 0 2em 0', color: 'white'}}>L repellat veniam iste explicabo error facere enim, possimus harum expedita impedit et, ipsa at voluptas velit qui! Repellat soluta consequuntur nulla accusamus!</p>
+
+
+   
+  <button
+    onClick={()=> window.location.href = '/what-we-do'}
+  className="opacity-0 group-hover:opacity-100p transition-opacity duration-300  bg-blue-500 text-white rounded shadow-lg cursor-pointer ">
+    View
+  </button>
+
 
     </div>
     </div>

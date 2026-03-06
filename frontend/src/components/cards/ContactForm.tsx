@@ -1,72 +1,176 @@
-import { useState } from "react";
+import { useState, version } from "react";
 import BlackButton from "../buttons/BlackButton";
+import { createInquiry } from "../../api/createInquiry";
 
 function ContactForm() {
+
+
+
   const [selValue, setSelValue] = useState("Where did you find us?");
+  const [ transSucc, setTransSucc ] = useState(Boolean)
 
   const selectValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelValue(e.target.value);
   }
 
 
+   const userInfo = {
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    description: "",
+    platform: "",
+    version: "",
+    category: "",
+  
+  }
+
+  const [ userData, setUserData ] = useState(userInfo)
+
+  const handleCreateInquiry = async (e: any, userData : any)=> {
+
+      e.preventDefault()
+
+      
+
+
+      try {
+        
+          const send = await createInquiry(userData)
+
+          setTransSucc(true)
+          setUserData(userInfo)
+
+      } catch (error) {
+        console.log(error)
+      }
+
+
+  }
+
+  const handleUserDataChange = (e: any)=> {
+
+    const { name, value } = e.target
+
+    
+
+     setUserData(prev => ({
+    ...prev,
+    [name]: value  
+  }));
+
+  }
+
+
   return (
-    <div className="w-full flex justify-end px-4 py-8">
+    <div className="flex px-4 py-8">
       <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 flex flex-col items-center space-y-4">
-        <h3 className="text-2xl font-bold text-gray-800 text-center">
+        {
+          !transSucc ?
+          <form onSubmit={(e)=> handleCreateInquiry(e, userData)}>
+              <h3 className="text-2xl font-bold text-gray-800 text-center">
           Let's Talk About Your Project
         </h3>
 
         <input
+          onChange={handleUserDataChange}
           type="text"
-          name="fullName"
+          name="name"
           placeholder="Full Name*"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          required
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
         <input
+          onChange={handleUserDataChange}
           type="email"
           name="email"
           placeholder="Your Email*"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          required
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
         <input
+          onChange={handleUserDataChange}
           type="text"
-          name="mobile"
-          placeholder="Your Mobile Number*"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          name="phone"
+          placeholder="Your Mobile Number (Optional)"
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
         <input
+          onChange={handleUserDataChange}
           type="text"
           name="address"
-          placeholder="Address*"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          placeholder="Address (Optional)"
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
-        <select
-          onChange={selectValue}
-          value={selValue}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          <option value="Where did you find us?">Where did you find us?</option>
-          <option value="Facebook">Facebook</option>
-          <option value="Instagram">Instagram</option>
-          <option value="Tiktok">Tiktok</option>
-          <option value="Linkdn">Linkdn</option>
-          <option value="Friends">Friends</option>
-          <option value="Other">Other</option>
-        </select>
-
         <textarea
+          onChange={handleUserDataChange}
+          name="description"
           placeholder="Message*"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none h-32"
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none h-32"
         ></textarea>
 
-        <button className="w-full py-2 bg-black text-white font-bold rounded-md hover:bg-gray-800 transition-colors">
-          Send Message
+        <select
+          onChange={handleUserDataChange}
+          name="platform"
+          value={selValue}
+          required
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <option value="Platform">- Platform -</option>
+          <option value="Windows">Windows</option>
+          <option value="macOS">macOS</option>
+          <option value="Linux">Linux</option>
+          <option value="Android">Android</option>
+          <option value="IOS">IOS</option>
+        </select>
+
+         <input
+          onChange={handleUserDataChange}
+          type="text"
+          name="version"
+          placeholder="Version (OS)"
+          required
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        
+
+        <select
+          onChange={handleUserDataChange}
+          name="category"
+          value={'dsadsadas'}
+          required
+          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <option value="select">- Category -</option>
+          <option value="Inquire">Inquire</option>
+          <option value="Question">Question</option>
+          <option value="Complaint">Complaint</option>
+          <option value="Bug Report">Bug Report</option>
+          <option value="Feature Request">Feature Request</option>
+        </select>
+        <button type="submit" className="w-full py-2 bg-black text-white font-bold my-2 rounded-md hover:bg-gray-800 transition-colors"
+         
+          style={{
+            backgroundColor: transSucc ? 'green' : ''
+          }}
+          disabled={transSucc}
+        >
+          {
+            !transSucc ? 'Send Message' : 'Message Sent. Thank you!'
+          }
         </button>
-       
+          </form> : 
+          <>
+            <h1 className="text-2xl text-center">Thanks for your feedback. We will contact you later.</h1>
+          </>
+        }
+
+        
       </div>
     </div>
   );
