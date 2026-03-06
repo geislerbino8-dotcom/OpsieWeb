@@ -6,6 +6,7 @@ import FAQAccordion from "../components/FaqSection/Faq"
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import SectionHeader from "../components/SectionHeader";
 
 
 
@@ -131,25 +132,21 @@ export default function WhatWeDo() {
       <div className="flex flex-col items-center md:items-start gap-6">
 
         {/* Badge */}
-        <div
-         data-aos="fade-right"
-          className="w-[160px] py-2 flex items-center justify-center gap-2 rounded-full"
-          style={{
-            backgroundColor: "rgb(240, 242, 245)",
-            boxShadow:
-              "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset, rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
-          }}
-        >
-          <p className="text-[#3CBDE6] font-poppins font-medium">
-            Our Services
-          </p>
-        </div>
+        <div 
+                                        data-aos="fade-up"
+                                        className="mt-6 flex items-center justify-center lg:items-start"
+                                            >
+                                            <SectionHeader
+                                                badgeText="Our Services"
+                                                icon="/ICONS/text-white-icon.svg"
+                                                />
+                                            </div>
 
         {/* Title + Description */}
         <div  className="flex flex-col md:flex-row lg:justify-between lg:items-start w-full gap-6">
 
           {/* LEFT SIDE */}
-          <h1 data-aos="fade-up" className="lg:w-[48%] text-center md:text-start font-poppins leading-[38px] md:leading-[43px] lg:leading-[55px] text-[32px] md:text-[40px] lg::text-[50px]">
+          <h1 data-aos="fade-up" className="lg:w-[48%] text-center md:text-start font-poppins leading-[38px] md:leading-[43px] lg:leading-[60px] text-[32px] md:text-[40px] lg:text-[50px]">
             Building <span className="text-[#3CBDE6] font-semibold"> Technology</span> That
             <span className="text-[#3CBDE6] font-semibold"> Works</span> for You
           </h1>

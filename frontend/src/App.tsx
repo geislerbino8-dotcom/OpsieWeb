@@ -6,6 +6,7 @@ import GetName from './api/getName';
 import WhatWeDo from "./pages/WhatWeDo"
 import WhoWeAre from './pages/WhoWeAre';
 import LandingPage from "./pages/LandingPage"
+import ChatBot from './components/ChatBot';
 
 
 import AOS from "aos";
@@ -68,6 +69,7 @@ const App = () => {
 
   return (
     <>
+    <ChatBot/>
       <Routes>
          <Route path="/" element={<LandingPage />} />
          <Route path="/whoWeAre" element={<WhoWeAre />} />

@@ -12,11 +12,11 @@ export default function WhatWeDo() {
 
   const navigate = useNavigate();
     return (
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden px-[2%]">
   <Header />
 
   {/* HERO SECTION */}
-  <div className="w-full px-2">
+  <div className="w-full  ">
   <div className="relative w-full  ">
   <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
       <img
@@ -84,6 +84,8 @@ export default function WhatWeDo() {
         <div className="flex flex-col items-center justify-center md:flex-row gap-2 md:gap-16">
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-0 md:gap-0  lg:mt-10">
         <div className="flex flex-col items-center md:items-start justify-center md:w-1/2 gap-6 md:gap-10 px-2 md:mt-8">
+            
+            
             <h1 data-aos="fade-right" className="w-full md:w-[410px] lg:w-[600px] font-poppins text-center md:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[60px] md:leading-[50px] lg:leading-[65px]">
                 We Believe in <span className="text-[#3CBDE6] font-semibold">Result </span>
                 Driven by <br />
@@ -162,7 +164,7 @@ export default function WhatWeDo() {
                         </div>
                     </div>
                 </div>
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 ">
             <div className="flex flex-col gap-6 px-2 flex items-center justify-center lg:items-start font-poppins">
                 
             <div 
@@ -171,7 +173,7 @@ export default function WhatWeDo() {
                 >
                 <SectionHeader
                     badgeText="Our Story"
-                    icon="/ICONS/text-white-icon.svg"
+                    icon="/ICONS/our-story-icon3.svg"
                     />
                 </div>
                 
@@ -182,7 +184,7 @@ export default function WhatWeDo() {
                 <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full lg:w-[500px] font-poppins text-center lg:text-left text-[14px] sm:text-[18px]  leading-[16px] font-light">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
             </div>
             <div className="flex flex-col gap-6 items-center mr-34 sm:mr-20 md:mr-30  mt-6 sm:mt-8 md:mt-8 lg:mt-0 relative">
-            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="800" className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:ml-20 ">
+            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="800" className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:ml-20   ">
 
                 <img
                     src="/Results-bg.png"
@@ -225,20 +227,16 @@ export default function WhatWeDo() {
        </div>
        <div className="flex flex-col gap-8 mt-8 ">
                 <div className="flex flex-col gap-2 px-2  flex items-center justify-center font-poppins lg:items-start">
-                    <div data-aos="fade-up" 
-                        className="w-[160px] list-none py-2 flex items-center justify-center gap-2 my-4"
-                        style={{
-                            backgroundColor: "rgb(240, 242, 245)",
-                            borderRadius: "50px",
-                            boxShadow:
-                            "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
-                        }}
+                    <div 
+                        data-aos="fade-up"
+                        className="mt-6 flex items-center justify-center lg:items-start"
                             >
-                            <img src="/ICONS/our-story-icon.svg" alt="" />
-                            <p className="text-md">Our Vision</p>
-                        </div>
-                            <h1 data-aos="fade-right"  data-aos-delay="300"  className="font-poppins text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[60px]">The <span className="text-[#3CBDE6] font-semibold">Vision</span></h1>
-                            <p  data-aos="fade-right" data-aos-delay="600" className="font-poppins text-center text-[16px] leading-[15px] font-light w-full text-start lg:w-[600px] lg:mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <SectionHeader
+                                badgeText="Our Vision"
+                                icon="/ICONS/Group-1.svg"
+                                />
+                            </div>
+                            
                         </div>
                 </div>
                 <div className="flex items-center justify-center ">
@@ -316,20 +314,18 @@ export default function WhatWeDo() {
                 </div>
                 <div className="flex flex-col gap-8 mt-8">
                 <div className="flex flex-col gap-2 px-2 flex items-center justify-center font-poppins lg:items-start">
-                    <div
-                        className="w-[160px] list-none py-2 flex items-center justify-center gap-2"
-                        style={{
-                            backgroundColor: "rgb(240, 242, 245)",
-                            borderRadius: "50px",
-                            boxShadow:
-                            "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
-                        }}
+                    <div 
+                        data-aos="fade-up"
+                        className="mt-6 flex items-center justify-center lg:items-start"
                             >
-                            <img src="/ICONS/our-story-icon.svg" alt="" />
-                            <p className="text-md">Our Mission</p>
-                        </div>
-                            <h1 className="font-poppins text-center leading-[34px] text-[36px]">The <span className="text-[#3CBDE6] font-semibold">Mission</span></h1>
-                            <p className="font-poppins text-center text-[16px] leading-[15px] font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <SectionHeader
+                                badgeText="Our Vision"
+                                icon="/ICONS/Group-1.svg"
+                                />
+                            </div>
+                            
+                            <h1 className="font-poppins text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[60px]">The <span className="text-[#3CBDE6] font-semibold">Mission</span></h1>
+                            <p className="font-poppins text-center text-[16px] leading-[15px] font-light w-full text-start lg:w-[600px] lg:mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         </div>
                 </div>
                 <div className="flex items-center justify-center ">
@@ -405,30 +401,49 @@ export default function WhatWeDo() {
 
                 </div>
                 </div>
-                <div className="flex flex-col gap-8 mt-8">
-                <div className="flex flex-col gap-2 px-2 flex items-center justify-center font-poppins">
-                    <div
-                        className="w-[160px] list-none py-2 flex items-center justify-center gap-2"
-                        style={{
-                            backgroundColor: "rgb(240, 242, 245)",
-                            borderRadius: "50px",
-                            boxShadow:
-                            "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
-                        }}
-                            >
-                            <img src="/ICONS/our-story-icon.svg" alt="" />
-                            <p className="text-md">Our Location</p>
-                        </div>
-                            <h1 className="font-poppins text-center leading-[34px] text-[36px]">Visit <span className="text-[#3CBDE6] font-semibold">Us</span> <br />Let’s Talk <span className="text-[#3CBDE6] font-semibold">Innovation</span></h1>
-                            <p className="font-poppins text-center text-[16px] leading-[15px] font-light">Our doors are open for clients and partners who are ready to innovate. Drop by our location and start the conversation that turns ideas into real solutions. </p>
-                        </div>
-                        <div className="flex items-center justify-center mx-2">
-                            <Card 
-                            title="Map"
-                            className="w-[375px] h-[340px]"/>
+                <div className="flex flex-col  gap-8 my-12">
+                <div className="flex flex-col   gap-2 px-2 flex items-center justify-center font-poppins">
                         </div>
                         
+                        <div className="flex items-center justify-center  lg:items-start gap-14 ">
+                                <div className=" w-full flex flex-row lg:items-start">
+                                <div className=" w-full flex items-center justify-center lg:items-start lg:flex-col gap-6">
+                                    <div 
+                                        data-aos="fade-up"
+                                        className="mt-6 flex items-center justify-center lg:items-start"
+                                            >
+                                            <SectionHeader
+                                                badgeText="Our Vision"
+                                                icon="/ICONS/text-white-icon.svg"
+                                                />
+                                            </div>
+                                    <h1 className="font-poppins text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[60px]">Visit <span className="text-[#3CBDE6] font-semibold">Us</span> Let’s Talk <span className="text-[#3CBDE6] font-semibold"><br />Innovation</span></h1>
+                                    <div className="flex lg:w-[500px]">
+                                        <p className="font-poppins text-center lg:text-start w-full text-[16px] leading-[15px] font-light">Our doors are open for clients and partners who are ready to innovate. Drop by our location and start the conversation that turns ideas into real solutions. </p>
+                                    </div>
+                                    <div className="flex items-s justify-center  bg-[#3CBDE6] py-1  md:text-[12px] lg:text-[16px] lg:px-4  rounded-3xl text-white lg:mt-4">
+                                    <Button
+                                        label="Get Direction"
+                                        icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}
+                                        iconPosition="right"
+                                        onClick={() => alert("Button clicked!")}
+                                        />
+                                </div>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <div className="w-[500px] p-2 rounded-3xl  flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]">
+                                        <img src="/map-placeholder.png" alt="" />
+                                    </div>  
+                                </div>
+                            </div>
+                            
+                                 
+                        </div>
+                        
+                        
+                        
                 </div>
+              
                 
             </div>
             <div>
