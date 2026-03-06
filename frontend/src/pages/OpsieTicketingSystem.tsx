@@ -268,7 +268,7 @@ const OpsieTicketingSystem = () => {
             {filteredTickets.map(ticket => (
               <tr
                 key={ticket._id}
-                className='hover:bg-gray-200 cursor-pointer'
+                className='h-[50px] hover:bg-gray-200 cursor-pointer'
                 onClick={() => setSelectedTicket(ticket)}
               >
                 <td className='px-4 py-3 text-gray-400 text-center w-[75px]'>
@@ -313,13 +313,13 @@ const OpsieTicketingSystem = () => {
                   {new Date(ticket.updatedAt).toLocaleDateString()}
                 </td>
 
-                <td className='px-4 py-3 text-gray-600 w-[170px]'>
+                <td className='px-4 py-3 text-gray-600'>
                   {ticket.assignee ? ( 
                     <div className='flex items-center gap-2'>
-                      <div className='w-7 h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
+                      <div className='min-w-7 min-h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
                         {ticket.assignee.charAt(0)}
                       </div>
-                      <span> {ticket.assignee}</span>
+                      <span className='text-center'> {ticket.assignee}</span>
                     </div>
                   ) : ( <span className='text-gray-400'>Unassigned</span> )}
                 </td>
