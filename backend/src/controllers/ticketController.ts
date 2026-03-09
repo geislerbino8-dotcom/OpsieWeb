@@ -29,7 +29,10 @@ export class TicketController {
         status: ticket.status,
         taskReferenceUrl: ticket.taskReferenceUrl,
         assignee: ticket.assignee
-          ? (ticket.assignee as any).name
+          ? {
+              _id: (ticket.assignee as any)._id,
+              name: (ticket.assignee as any).name
+            }
           : null,
         createdAt: ticket.createdAt,
         updatedAt: ticket.updatedAt
@@ -37,50 +40,49 @@ export class TicketController {
 
       res.json(formattedTickets);
     } catch (error) {
-      res.status(500).json({ message: 'Failed to fetch tickets' });
+      res.status(400).json({ message: 'Failed to fetch tickets' });
     }
   }
 
-  public updateStatus = async(req: Request, res: Response) => {
+  public async updateTicket(req: Request, res: Response) {
     try {
-      await TicketModel.findByIdAndUpdate(
-        req.params.id,
-        { status: req.body.status },
-        { returnDocument: 'after' }
-      );
+      const { id } = req.params;
+      const { status, category, taskReferenceUrl, assignee } = req.body;
 
-      res.json({ message: `Ticket status changed to ${req.body.status}` });
-    } catch (error) {
-      res.status(400).json({ message: 'Failed to update status' });
-    }
-  }
+      const updateFields: any = {};
 
-  public assign = async (req: Request, res: Response) => {
-    try {
-      const { assigneeId } = req.body;
-
-      const updatedTicket = await TicketModel.findByIdAndUpdate(
-        req.params.id,
-        { assignee: assigneeId },
-        { returnDocument: 'after' }
-      ).populate('assignee', 'name')
-
-      if (!updatedTicket) {
-        return res.status(404).json({ message: 'Ticket not found' });
+      if (status !== undefined) {
+        updateFields.status = status;
       }
 
-      res.json({
-        message: 'Ticket assigned successfully',
-        ticket: {
-          id: updatedTicket._id,
-          assignee: updatedTicket.assignee
-        }
-      });
+      if (category !== undefined) {
+        updateFields.category = category;
+      }
 
+      if (taskReferenceUrl !== undefined) {
+        updateFields.taskReferenceUrl = taskReferenceUrl;
+      }
+
+      if (assignee !== undefined) {
+        updateFields.assignee = assignee === '' || assignee === null ? null : assignee;
+      }
+
+      const updatedTicket = await TicketModel.findByIdAndUpdate(
+        id,
+        { $set: updateFields },
+        { returnDocument: 'after' }
+      ).populate('assignee', 'name');
+
+      if (!updatedTicket) {
+        res.status(404).json({ message: 'Ticket not found' });
+        return;
+      }
+
+      res.status(200).json({ message: 'Ticket updated successfully' });
     } catch (error) {
-      res.status(400).json({ message: 'Failed to assign ticket' });
+      res.status(400).json({ message: 'Failed to update ticket' });
     }
-  };
+  }
 
   public delete = async (req: Request, res: Response) => {
     try {
@@ -94,5 +96,5 @@ export class TicketController {
     } catch (error) {
       res.status(400).json({ message: 'Failed to delete ticket' });
     }
-  };
+  }
 }
