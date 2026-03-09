@@ -4,7 +4,7 @@ const TicketSchema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true },
-    phone: { type: String, required: true },
+    phone: String,
     address: String,
     description: { type: String, required: true},
     platform: { type: String, required: true},
@@ -32,7 +32,11 @@ const TicketSchema = new Schema(
       ],
       default: 'open',
     },
-    taskReferenceUrl: { type: String, match: /^https?:\/\// },
+    taskReferenceUrl: { 
+      type: String, 
+      match: /^https?:\/\//, 
+      default: '' 
+    },
     assignee: {
       type: Schema.Types.ObjectId,
       ref: 'User',
