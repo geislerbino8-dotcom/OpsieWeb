@@ -12,6 +12,8 @@ export const createInquiry = async (data: InquiryData) => {
   try {
     const token = localStorage.getItem('token');
 
+    console.log(token)
+
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_BASE_URL}/inquiry/create`,
       data,

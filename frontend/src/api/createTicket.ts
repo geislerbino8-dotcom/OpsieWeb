@@ -9,6 +9,7 @@ export interface TicketData {
 }
 
 export const createTicket = async (data: TicketData) => {
+  console.log(data)
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_BASE_URL}/ticket/create`,

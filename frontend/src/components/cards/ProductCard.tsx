@@ -11,54 +11,70 @@ function ProductCard({ itemName, image }: ProductCardProps) {
   const navigate = useNavigate()
 
   return (
-
     <div
       className="
-        flex flex-col items-center justify-center
-        w-[14em] m-1.5 px-3 py-3
+        group
+        flex flex-col items-center
+        w-[16rem] p-5
         rounded-2xl
         bg-white/10
-        backdrop-blur-lg
+        backdrop-blur-xl
         border border-white/20
-        shadow-xl
+        shadow-lg
+        hover:shadow-2xl
+        hover:-translate-y-2
+        transition-all duration-500
       "
     >
-      <div className="flex flex-col items-center w-full">
-        <div className="bg-white rounded-2xl">
-          <img
+
+      {/* Image Container */}
+      <div className="
+        w-full flex justify-center items-center
+        bg-white/20
+        rounded-xl
+        p-4
+        overflow-hidden
+      ">
+        <img
           src={image}
           alt={itemName}
-          className="w-[10em] h-[10em] object-contain"
-        />
-        </div>
-
-        <h3 className="my-2 w-full text-center text-white font-bold">
-          {itemName}
-        </h3>
- 
-        <p className="w-full text-center py-2 text-white/80">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, error.
-        </p>
-
-        <button
           className="
-            w-full mt-4 p-2
-            rounded-lg
-            font-bold
-            border border-white/40
-            text-white
-            bg-white/10
-            backdrop-blur-md
-            hover:bg-blue-400
-            transition-all duration-300
-            cursor-pointer
-            
+            w-[9rem] h-[9rem] object-contain
+            transition-transform duration-500
+            group-hover:scale-110
           "
-          onClick={()=> { navigate(`/products/${itemName}`)}}
-        >
-          View Product
-        </button>
+        />
       </div>
+
+      {/* Title */}
+      <h3 className="mt-4 text-lg font-semibold text-white text-center tracking-wide">
+        {itemName}
+      </h3>
+
+      {/* Description */}
+      <p className="text-sm text-white/70 text-center mt-2 leading-relaxed">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, error.
+      </p>
+
+      {/* Button */}
+    <button
+  onClick={() => navigate(`/products/${itemName}`)}
+  className="
+    hidden
+    group-hover:block
+    mt-5 w-full py-2.5
+    rounded-lg
+    font-semibold
+    text-white
+    border border-cyan-400
+    bg-transparent
+    hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500
+    transition-all duration-5000
+  "
+>
+  View Product
+</button>
+
     </div>
   )
 }

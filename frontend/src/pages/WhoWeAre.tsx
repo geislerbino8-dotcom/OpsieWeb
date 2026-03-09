@@ -424,6 +424,7 @@ export default function WhatWeDo() {
                         </div>
                         <div className="flex items-center justify-center mx-2">
                             <Card 
+                            
                             title="Map"
                             className="w-[375px] h-[340px]"/>
                         </div>

@@ -4,8 +4,10 @@ import { TicketModel } from '../models/ticketModel';
 export class TicketController {
 
   public create = async(req: Request, res: Response) => {
+    
     try {
       await TicketModel.create(req.body);
+      
       res.status(201).json({ message: 'Ticket created succesfully' });
     } catch (error) {
       res.status(400).json({ message: 'Failed to create ticket' });
@@ -37,6 +39,7 @@ export class TicketController {
 
       res.json(formattedTickets);
     } catch (error) {
+      console.log(error)
       res.status(500).json({ message: 'Failed to fetch tickets' });
     }
   }

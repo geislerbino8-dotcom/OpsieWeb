@@ -1,8 +1,7 @@
 
 import { useState, version } from "react";
 import BlackButton from "../buttons/BlackButton";
-import { createInquiry } from "../../api/createInquiry";
-
+import { createTicket } from "@/api/createTicket";
 function ContactForm() {
 
 
@@ -10,19 +9,20 @@ function ContactForm() {
   const [selValue, setSelValue] = useState("Where did you find us?");
   const [ transSucc, setTransSucc ] = useState(Boolean)
 
-  const selectValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const selectValue = (e: any) => {
     setSelValue(e.target.value);
   };
 
    const userInfo = {
     name: "",
     email: "",
-    phone: "",
-    address: "",
     description: "",
     platform: "",
-    version: "",
     category: "",
+    phone: "",
+    address: "",
+    version: "",
+    
   
   }
 
@@ -33,11 +33,11 @@ function ContactForm() {
       e.preventDefault()
 
       
-
-
       try {
         
-          const send = await createInquiry(userData)
+          const send = await createTicket(userData)
+
+          console.log(send)
 
           setTransSucc(true)
           setUserData(userInfo)
@@ -64,7 +64,7 @@ function ContactForm() {
 
 
   return (
-    <div className="w-full flex justify-center px-4 py-8">
+    <div className="w-full flex justify-center">
       <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 flex flex-col items-center space-y-4">
         {
           !transSucc ?
