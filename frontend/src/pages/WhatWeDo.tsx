@@ -6,6 +6,7 @@ import FAQAccordion from "../components/FaqSection/Faq"
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import Footer from "../components/Footer";
 
 
 
@@ -26,7 +27,7 @@ export default function WhatWeDo() {
       <div className="w-full overflow-hidden">
 
   {/* HERO SECTION */}
-  <div className="w-full px-2 h-[6000px] ">
+  <div className="w-full px-2 ">
     <div className="relative w-full  ">
     <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
   
@@ -192,6 +193,7 @@ export default function WhatWeDo() {
       <div>
         <FAQAccordion />
       </div>
+          <Footer/>
     </div>
   </div>
 </div>

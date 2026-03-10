@@ -1,6 +1,8 @@
 import Product1 from '../assets/Products/Product1.png'
 import '../styles/ProductItemPage.css'
 import { useParams } from 'react-router-dom'
+import OpsiePlanPricing from '../components/PlanPricing/OpsiePlanPricing'
+import Footer from "../components/Footer"
 
 function ProductItemPage() {
   const { id } = useParams<{ id: string }>()
@@ -8,7 +10,6 @@ function ProductItemPage() {
   return (
     <div className="w-full flex flex-col items-center"
     >
-
       {/* Top Section */}
       <div className="product-item-page-wrapper w-full min-h-screen flex items-center justify-center px-4 py-12">
         <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -98,9 +99,9 @@ function ProductItemPage() {
             ))}
           </div>
         </div>
-
       </div>
-
+            <OpsiePlanPricing/>
+            <Footer/>
     </div>
   )
 }

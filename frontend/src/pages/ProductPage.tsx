@@ -5,6 +5,11 @@ import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import Product1 from '../assets/Products/Product1.png';
 import ClientReview from '../components/sections/ClientReviewsSection';
+import OpsiePlanPricing from '../components/PlanPricing/OpsiePlanPricing'
+import PlanPricingTool from '../components/PlanPricing/PlanPricingTool'
+
+import Footer from '../components/Footer';
+
 
 function ProductPage() {
   return (
@@ -50,9 +55,13 @@ function ProductPage() {
       <ServicesSection />
       <ProductSection />
       <ClientReview />
-      <WhyChooseUsSection />
+      <OpsiePlanPricing/>
+      <PlanPricingTool/>   
+      <WhyChooseUsSection/>
+      <FeedbackSection/>
       <ProductCTA />
-
+      <Footer/>
+     
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { Card }  from "../components/Card/ServicesCard/Card";
 import FAQAccordion from "../components/FaqSection/Faq";
 import { useNavigate } from "react-router-dom";
 import { SiFacebook, SiInstagram, SiLinkerd, SiGmail } from "react-icons/si";
-import Header from "../components/Header";
 import SectionHeader from "../components/SectionHeader";
 import Footer from "../components/Footer";
 
@@ -433,9 +432,9 @@ export default function WhatWeDo() {
             </div>
             <div>
                     <FAQAccordion />
+                  
                 </div>
-
-                <Footer />
+                <Footer/>
            
        </div>
              

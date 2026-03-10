@@ -5,16 +5,25 @@ import image3 from '../assets/opsie/Instagram.jpg'
 import image4 from '../assets/opsie/Linkdn.jpg'
 import ContactForm from './cards/ContactForm'
 
+
 function ContactUs(){
     return(
         <section className="contact-section">
+        <div className="goals-text">
+        <h1>Let us work on your goals</h1>
+        <p>
+            Reach out to us and let’s discuss how we can help you with your goals.
+        </p>
+        <p>
+            Experience an easy and simplified way of achieving your goals thru
+            customized software solutions with our dedicated team.
+        </p>
+    </div>
         <div className="flex flex-row justify-between">
         <div className="contact-wrapper">
             <div className="contact-info">
                 <h1 className='contact-title'> Contact Us</h1>
                 <p>For Contact details, kindly reach:</p>
-
-
 
                 <p>Mobile No. 12345678911</p>
                 <p>Mobile No. 21314456272</p>
@@ -38,10 +47,9 @@ function ContactUs(){
                     <img src={image4} alt="Instagram logo" className="social-logo" />
                  </a>
                     </div>
-            </div>   
-            
+            </div>            
         </div>
-        <ContactForm />
+       <ContactForm/>
         </div>
     </section>
 

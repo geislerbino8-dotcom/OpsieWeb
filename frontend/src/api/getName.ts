@@ -11,7 +11,7 @@ export default class GetName {
     public async fetchName(): Promise<string> {
         try {
             const response = await axios.get(`${this.apiUrl}/api/test`);
-            return response.data.name;
+            return response.data.name;  
         }
         catch (error) {
             console.error('Error fetching name:', error);

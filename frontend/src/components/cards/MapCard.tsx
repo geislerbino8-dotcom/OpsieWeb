@@ -1,12 +1,10 @@
 import MapImage from '../../assets/visuals/Map.png';
 import BlackButton from '../buttons/BlackButton';
 
-
-
 function MapCard() {
   return (
-    <div className="w-full max-w-xl flex flex-col p-6 bg-white rounded-xl shadow-md space-y-4">
-      
+    <div className="-mt-140 flex flex-row justify-start">
+      <div className="w-full m-10 -inset-y-10 max-w-xl flex flex-col p-6 bg-white rounded-xl shadow-md space-y-4">
       {/* Contact Info */}
       <div className="space-y-1">
         <h3 className="text-xl font-bold text-gray-800">Prefer a Direct Approach?</h3>
@@ -21,25 +19,15 @@ function MapCard() {
         alt="Map"
       />
 
+
       {/* Address */}
       <p className="text-gray-600 text-">
         Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
       </p>
-
-      {/* Visit Office Section */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-gray-800">Visit Our Office</h1>
-        <BlackButton
-          text="Get Direction"
-          fontSize="1.2"
-          borderRadius="2"
-          margin="0"
-         padding="0"
-          color=""
-          image=""
-        />
-      </div>
+      
     </div>
+    </div>
+    
   );
 }
 

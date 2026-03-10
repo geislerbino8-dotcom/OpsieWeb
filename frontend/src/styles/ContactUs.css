@@ -48,3 +48,16 @@
     color: white;
     transform: translateY(-2px); /* slight lift effect */
 }
+.goals-text{ 
+    margin-bottom: 10px;
+
+}
+.goals-text h1{
+    font-size: 32px;
+    font-weight: bold;
+    color: #3CBDE6;
+}
+.goals-text p {
+    margin-top: 10px;
+    color: #555;
+}

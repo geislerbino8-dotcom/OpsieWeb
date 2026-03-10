@@ -8,11 +8,11 @@ import PartnerSection from './sections/PartnerSection'
 import ContactUsSection from './sections/ContactUsSection'
 import EncourageSection from './sections/EncourageSection'
 import ScrollAnimatedSection from '../ScrollAnimationSection'
-
 import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
 import Header from '../components/Header'
 import ClientReview from '../components/sections/ClientReviewsSection'
 import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
 
 function Homepage() {
   return (
@@ -46,7 +46,7 @@ function Homepage() {
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={600}>
-        <PartnerSection />
+        <FeedbackSection />
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={700}>
@@ -56,7 +56,8 @@ function Homepage() {
       <ScrollAnimatedSection delay={800}>
         <EncourageSection />
       </ScrollAnimatedSection>
-
+        
+      <Footer/>
     </div>
   )
 }

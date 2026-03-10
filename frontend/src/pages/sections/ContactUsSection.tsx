@@ -3,6 +3,8 @@ import TopSectionCard from "../../components/cards/TopSectionCard";
 import ContactForm from "../../components/cards/ContactForm";
 import MapCard from "../../components/cards/MapCard";
 
+
+
 function ContactUsSection() {
   return (
     <section className="w-full flex flex-col items-center py-16 px-4">
@@ -29,6 +31,7 @@ function ContactUsSection() {
         </div>
         <div className="flex-1">
           <MapCard />
+      
         </div>
       </div>
 

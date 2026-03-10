@@ -82,7 +82,6 @@ const App = () => {
       <div>
           <Navigation />
           <Outlet />
-        <Footer />
       </div>
 
     </>
