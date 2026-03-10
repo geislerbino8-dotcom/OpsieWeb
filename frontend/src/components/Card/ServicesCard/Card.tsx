@@ -14,6 +14,7 @@ export const Card: React.FC<CardOptions> = (props) => {
       src={props.image}
       alt={props.title}
       className="w-72 md:w-80 rounded-xl shadow-lg object-cover"
+      
     />
   )}
     {props.description && (

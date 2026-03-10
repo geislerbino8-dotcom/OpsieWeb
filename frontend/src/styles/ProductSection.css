@@ -8,7 +8,15 @@
     color: white;
     padding: 1em;
     margin: 2em 0;
+
+    
 }
+
+
+.p-cards-container::-webkit-scrollbar {
+    display: none;
+}
+
 
 .product-section-wrapper {
     justify-content: space-between;

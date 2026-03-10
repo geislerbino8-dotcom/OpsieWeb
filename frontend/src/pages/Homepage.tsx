@@ -8,6 +8,7 @@ import PartnerSection from './sections/PartnerSection'
 import ContactUsSection from './sections/ContactUsSection'
 import EncourageSection from './sections/EncourageSection'
 import ScrollAnimatedSection from '../ScrollAnimationSection'
+import Faq from '../components/FaqSection/Faq'
 import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
 import Header from '../components/Header'
 import ClientReview from '../components/sections/ClientReviewsSection'
@@ -48,6 +49,12 @@ function Homepage() {
       <ScrollAnimatedSection delay={600}>
         <FeedbackSection />
       </ScrollAnimatedSection>
+
+      <ScrollAnimatedSection delay={650}>
+        <Faq />
+      </ScrollAnimatedSection>
+
+
 
       <ScrollAnimatedSection delay={700}>
         <ContactUsSection />

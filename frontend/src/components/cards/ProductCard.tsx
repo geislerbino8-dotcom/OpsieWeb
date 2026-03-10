@@ -11,54 +11,76 @@ function ProductCard({ itemName, image }: ProductCardProps) {
   const navigate = useNavigate()
 
   return (
-
     <div
       className="
-        flex flex-col items-center justify-center
-        w-[14em] m-1.5 px-3 py-3
-        rounded-2xl
+        
+        group
+        flex flex-col items-center
+        w-[16rem] p-1 pb-4
         bg-white/10
-        backdrop-blur-lg
+        backdrop-blur-xl
         border border-white/20
-        shadow-xl
+        shadow-lg
+        hover:shadow-2xl
+        hover:-translate-y-2
+        hover:rounded-2xl
+        hover:scale-105 
+        hover:mx-5
+        hover:shadow-[0_0_25px_rgba(168,85,247,0.8)]
+        transition-all duration-500
       "
     >
-      <div className="flex flex-col items-center w-full">
-        <div className="bg-white rounded-2xl">
-          <img
+
+      {/* Image Container */}
+      <div className="
+        w-full flex justify-center items-center
+        bg-white/20
+        group-hover:rounded-2xl
+        grouo-hover:mt-5
+        overflow-hidden
+      ">
+        <img
           src={image}
           alt={itemName}
-          className="w-[10em] h-[10em] object-contain"
-        />
-        </div>
-
-        <h3 className="my-2 w-full text-center text-white font-bold">
-          {itemName}
-        </h3>
- 
-        <p className="w-full text-center py-2 text-white/80">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, error.
-        </p>
-
-        <button
           className="
-            w-full mt-4 p-2
-            rounded-lg
-            font-bold
-            border border-white/40
-            text-white
-            bg-white/10
-            backdrop-blur-md
-            hover:bg-blue-400
-            transition-all duration-300
-            cursor-pointer
-            
+            w-[9rem] h-[9rem] object-contain
+            transition-transform duration-500
+            group-hover:scale-200
           "
-          onClick={()=> { navigate(`/products/${itemName}`)}}
-        >
-          View Product
-        </button>
+        />
       </div>
+
+      {/* Title */}
+      <h3 className="mt-4 text-lg font-semibold text-white text-center tracking-wide">
+        {itemName}
+      </h3>
+
+      {/* Description */}
+      <p className="text-sm text-white/70 text-center mt-2 leading-relaxed">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, error.
+      </p>
+
+      {/* Button */}
+    <button
+      onClick={() => navigate(`/products/${itemName}`)}
+      className="
+        mt-5 py-2.5 px-4
+        rounded-lg
+        font-semibold
+        text-white
+        border border-cyan-400
+        bg-transparent
+        transition-all duration-300
+
+        block sm:hidden
+        sm:group-hover:block sm:opacity-0 sm:group-hover:opacity-100
+
+        hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500
+      "
+    >
+      View Product
+    </button>
+
     </div>
   )
 }

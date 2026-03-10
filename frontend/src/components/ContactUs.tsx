@@ -29,7 +29,11 @@ function ContactUs(){
                 <p>Mobile No. 21314456272</p>
                 <p>HR Department email: asdas@gmail.com</p>
 
-                <button className="meeting-btn">
+                <button className="meeting-btn"
+                    onClick={()=> {
+                        window.location.href = "/book-a-schedule"
+                    }}
+                >
                     BOOK A MEETING SCHEDULE
                 </button>
 

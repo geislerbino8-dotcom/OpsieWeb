@@ -27,23 +27,19 @@ const services = [
 
 function ServicesSection() {
   return (
-    <section className="w-full h-full flex flex-col items-center py-16 px-4">
+    <section className="w-full h-full flex flex-col items-center py-16 px-4 bg-white">
 
-      <div className="mb-8">
-        <TopSectionCard secName="What We Do" />
-      </div>
-
-      <div className="text-center mb-12 max-w-3xl">
+      <div className="text-center max-w-3xl py-16">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Opsie's <span className="text-indigo-600">Services</span> with Excellence
         </h1>
-        <p className="text-g  ray-600 text-base md:text-lg">
+        <p className="text-gray-600 text-base md:text-lg">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis, eveniet?
         </p>
       </div>
 
-            <div className="w-full max-w-6xl h-full max-h-6xl overflow-x-auto overflow-y-visible">
-        <div className="flex gap-6 pb-4">
+            <div className="w-full max-w-6xl h-full pb-16 max-h-6xl overflow-x-auto overflow-y-visible">
+        <div className="flex gap-6 pb-1">
           {
             services.map((item)=> (
               <ServicesCards serviceName={item.serviceName} desc={item.desc} image={item.image} />
@@ -60,6 +56,7 @@ function ServicesSection() {
 
     </section>
   );
+  
 }
 
 export default ServicesSection;

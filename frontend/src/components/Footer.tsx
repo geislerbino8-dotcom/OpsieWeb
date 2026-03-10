@@ -19,7 +19,7 @@ const Footer = () => {
   };
 
   return (
-    <div className='w-[99%] m-auto my-3 flex flex-col gap-4 py-4 rounded-2xl shadow-xl/30'>
+    <div className='w-[99%] z-5 m-auto my-3 flex flex-col gap-4 py-4 rounded-2xl shadow-xl/30'>
 
       <div className='flex flex-col min-[550px]:flex-row w-full'>
 

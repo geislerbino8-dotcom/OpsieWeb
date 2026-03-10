@@ -4,7 +4,7 @@ import logo from "../assets/opsie/opsie_logo.png";
 import PrimaryButton from "./buttons/PrimaryButton";
 import upArrow from "../assets/opsie/up-right-arrow.png";
 import MobileMenu from "./MobileMenu";
-import burgermenu from "../assets/icons/bars-solid.png";
+import burgermenu from "../assets/icons/burger-bar.png";
 
 const menuLists = [
   { name: "What We Do", link: "/what-we-do" },
@@ -47,7 +47,7 @@ function Navigation() {
         </div>
 
         {/* Menu Links */}
-        <ul className="flex space-x-4 bg-white rounded-3xl px-6 py-2 text-black"
+        <ul className="font-poppins flex space-x-4 bg-white rounded-3xl px-6 py-2 text-black"
           style={{
              boxShadow: "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset"
           }}

@@ -4,7 +4,6 @@ import cors from 'cors';
 import { HttpError } from './utils/httpError'
 import TicketRoute from './routes/ticketRoute'
 
-
 const dns = require('dns');
 
 // Force Google DNS
@@ -30,9 +29,7 @@ export default class Server {
 
   private initializeRoutes = (): void => {
     const ticketRoute = new TicketRoute();
-
     this.app.use('/ticket', ticketRoute.router);
-
   }
 
   private initializeNotFoundHandler = (): void => {

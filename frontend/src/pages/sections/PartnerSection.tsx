@@ -13,12 +13,8 @@ const imageLogos = [
 
 function PartnerSection() {
   return (
-    <section className="w-full flex flex-col items-center py-16 px-4">
+    <section className="w-full flex flex-col items-center py-16 px-4 bg-white">
 
-      {/* Top Section Card */}
-      <div className="mb-8">
-        <TopSectionCard secName="Opsie's Network" />
-      </div>
 
       {/* Header */}
       <div className="text-center mb-12 max-w-3xl">
@@ -27,6 +23,7 @@ function PartnerSection() {
         </h1>
         <p className="text-gray-600 text-base md:text-lg">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, laboriosam.
+          
         </p>
       </div>
 
@@ -34,8 +31,6 @@ function PartnerSection() {
       <div className="w-full max-w-6xl flex flex-col items-center md:flex-col gap-8">
 
         {/* Partner Image */}
-      
-
            <LogoLoop
                   logos={imageLogos}
                   speed={100}
