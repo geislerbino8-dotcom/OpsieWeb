@@ -31,5 +31,5 @@ export default class TicketRoute {
       '/delete/:id',
       this.controller.delete
     );
-  };
+  }
 }

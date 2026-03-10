@@ -16,5 +16,15 @@ export default class UserRoute {
       '/getAll',
       this.controller.getAll
     );
-  }
+
+    this.router.get(
+      '/getAllActive',
+      this.controller.getAllActive
+    );
+
+    this.router.patch(
+      '/update',
+      this.controller.updateProfile
+    )
+  } 
 }

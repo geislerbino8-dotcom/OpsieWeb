@@ -42,7 +42,6 @@ const TicketSchema = new Schema(
       ref: 'User',
     },
   },
-  
   { timestamps: true }
 );
 
