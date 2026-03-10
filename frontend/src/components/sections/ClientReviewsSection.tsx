@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TestimonialCard } from "../Card/ClientCard/Card";
 import { Button } from "../Button";
-import SectionHeader from "../../components/SectionHeader.tsx";
 
 
 const ClientReview: React.FC = () => {
@@ -50,12 +49,7 @@ const ClientReview: React.FC = () => {
       
 
 <div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
-      <div data-aos="fade-right"  className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
-        <SectionHeader
-          badgeText="Review"
-          icon="/ICONS/text-white-icon.svg"
-        />
-      </div>
+      
 
         <h1 className="font-poppins items-center md:text-start  leading-[35px] md:leading-[52px] tracking-[2px] font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What our <span className="text-[#3CBDE6] font-semibold">customers</span> are saying </h1>
         

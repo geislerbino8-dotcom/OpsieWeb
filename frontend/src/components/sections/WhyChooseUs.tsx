@@ -1,4 +1,3 @@
-import SectionHeader from "../SectionHeader";
 
 export default function WhyChooseUs() {
     
@@ -7,10 +6,7 @@ export default function WhyChooseUs() {
         <div>
             <div data-aos="fade-down"
                  className="flex items-center justify-center md:items-start  flex-col gap-4">
-                <SectionHeader
-                    badgeText="Why Choose Us"
-                    icon="/ICONS/text-white-icon.svg"
-                />
+                
 
                     <h1 data-aos="fade-right" data-aos-delay="200" className="font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What Makes Us <span className="text-[#3CBDE6] font-semibold">Different</span></h1>
                     <p  data-aos="fade-right" data-aos-delay="500" className="text-center md:text-start text-[16px] md:text-[20px] leading-[15px] md:leading-[22px] font-light md:font-normal w-full md:w-[600px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

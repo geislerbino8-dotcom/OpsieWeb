@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import SectionHeader from "../SectionHeader";
 
 interface FAQ {
   question: string;
@@ -51,13 +50,12 @@ const FAQAccordion = () => {
         data-aos="fade-up"
         className="mt-6 flex items-center justify-center lg:items-start"
       >
-        <SectionHeader badgeText="FAQs" icon="/ICONS/faqs-icon.svg" />
       </div>
 
       <h1
         data-aos="fade-right"
         data-aos-delay="200"
-        className="font-poppins font-medium text-center md:text-start leading-[34px] tracking-[2px] text-[32px] md:text-[50px] md:leading-[50px]"
+        className="font-poppins font-medium text-center md:text-start leading-[34px] tracking-[2px] text-[32px] md:text-[50px] md:leading-[50px] lg:text-[50px] lg:leading-[60px]"
       >
         Got Questions? <br />
         <span className="text-[#3CBDE6] font-semibold">We've Got Answers</span>

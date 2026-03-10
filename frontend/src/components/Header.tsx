@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <header data-aos="fade-down" data-aos-duration="1000" className="w-full relative z-50">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-8 pt-2 pb-1">
+      <div className="max-w-6xl mx-auto flex items-center justify-between gap-8">
         {/* Logo */}
         <div className="text-xl flex items-start justify-start">
           <img src="/Opsie-Logo.svg" alt="Opsie Logo"/>

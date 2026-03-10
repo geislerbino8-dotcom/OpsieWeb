@@ -6,7 +6,6 @@ import FAQAccordion from "../components/FaqSection/Faq"
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
-import SectionHeader from "../components/SectionHeader";
 
 
 
@@ -25,7 +24,6 @@ export default function WhatWeDo() {
   const navigate = useNavigate();
     return (
       <div className="w-full overflow-hidden">
-  <Header />
 
   {/* HERO SECTION */}
   <div className="w-full px-2 h-[6000px] ">
@@ -34,11 +32,11 @@ export default function WhatWeDo() {
   
     {/* Background Image */}
     <img
-      src="/WhatWeDo-Hero2.svg"
+      src="/WhoWeAre-Hero.svg"
       alt="Hero Image"
       className="absolute inset-0 w-full h-full object-cover"
     />
-
+    <div className="lg:w-[820px] md:via-black/70 absolute inset-0 bg-gradient-to-t from-black/100 via-black/20 sm:bg-gradient-to-t md:bg-gradient-to-r sm:from-black/100 sm:via-black/20 md:from-black/100  to-transparent"></div>
     {/* Overlay Content */}
     <div>
       
@@ -48,9 +46,9 @@ export default function WhatWeDo() {
           <div className="flex flex-col justify-start items-start md:items-start md:justify-center lg:leading-5">
           
           {/* MD VERSION */}
-          <div className="flex flex-col items-center justify-center lg:hidden mt-2">
-            <div className="text-[#3CBDE6] text-[20px] xl:text-[30px] lg:hidden mt-2 ml-1">
-              <span className="text-xl leading-0">★</span> 5/5
+          <div className="flex flex-col items-center justify-center lg:hidden mt-2 gap-2">
+            <div className="text-[#3CBDE6] text-[20px] xl:text-[30px] lg:hidden mt-2  flex items-center justify-center gap-1">
+              <span className="text-3xl leading-0 ml-2">★</span> 5/5
             </div>
           </div>
 
@@ -68,10 +66,10 @@ export default function WhatWeDo() {
           </div>
         </div>
 
-        <div className="flex flex-row -space-x-2 mt-2 lg:mt-0 ">
+        <div className="flex flex-row -space-x-3 lg:-space-x-2 xl:-space-x-4 mt-2 lg:mt-0 ">
           <img src="/profiles/Rectangle 780.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14  object-cover  " />
-          <img src="/profiles/Rectangle 816.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full " />
-          <img src="/profiles/Rectangle 818.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full " />
+          <img src="/profiles/Rectangle 816.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full object-cover " />
+          <img src="/profiles/Rectangle 818.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full object-cover " />
           <img src="/profiles/Rectangle 818-1.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full md:hidden lg:flex " />
         </div>
       </div>
@@ -80,23 +78,23 @@ export default function WhatWeDo() {
 
       {/* Header overlays the image */}
           {/* Content on top of image */}
-          <div className="relative z-10 flex flex-col items-center justify-end md:justify-end  mt-0 md:mt-10 h-full px-4 text-white">
+          <div className="relative z-10 flex flex-col items-center justify-end md:justify-end  mt-20 md:mt-10 h-full px-4 text-white">
             <div className="mb-24 flex flex-col items-center justify-center md:items-start w-full">
-              <h1 data-aos="fade-right" data-aos-once="false" data-aos-mirror="true" data-aos-offset="0"  className="w-full max-w-[605px] font-poppins text-[40px] leading-[40px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
+              <h1 data-aos="fade-right" data-aos-once="false" data-aos-mirror="true" data-aos-offset="0"  className="w-full max-w-[605px] font-poppins text-[40px] leading-[38px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
                 Code with Purpose. Solutions with Impact.
               </h1>
-              <p data-aos="fade-right" data-aos-offset="50"  data-aos-delay="300" className="font-poppins mt-4 text-[16px] md:text-xl font-light text-center md:text-left  max-w-2xl">
+              <p data-aos="fade-right" data-aos-offset="50"  data-aos-delay="300" className="font-poppins mt-4 text-[14px] leading-[14px] md:text-xl md:leading-[24px] font-light text-center md:text-left  max-w-xl">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               </p>
               <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
               <Button
                 label="Contact Us"
                 variant="secondary"
-                icon={<img src="/ICONS/contact-us.svg" className="w-4 h-4" />}
+                icon={<img src="/ICONS/contact-us.svg" className="w-3 h-3" />}
                 iconPosition="right"
-                className="font-poppins font-light my-4 text-lg"
+                className="font-poppins font-light my-4 px-4 text-md "
                 weight="light"
-                onClick={() => alert("Button Clicked")}
+                onClick={() => alert("Button Clicked")} //navigate to contact page
               />
               </div>
               
@@ -129,20 +127,10 @@ export default function WhatWeDo() {
 
             
           </div>
-      <div className="flex flex-col items-center md:items-start gap-6">
+      <div className="flex flex-col items-center md:items-start gap-6 md:px-[6%]">
 
         {/* Badge */}
-        <div 
-                                        data-aos="fade-up"
-                                        className="mt-6 flex items-center justify-center lg:items-start"
-                                            >
-                                            <SectionHeader
-                                                badgeText="Our Services"
-                                                icon="/ICONS/text-white-icon.svg"
-                                                />
-                                            </div>
-
-        {/* Title + Description */}
+       
         <div  className="flex flex-col md:flex-row lg:justify-between lg:items-start w-full gap-6">
 
           {/* LEFT SIDE */}
@@ -158,20 +146,18 @@ export default function WhatWeDo() {
           </p>
 
         </div>
+       
+      
       </div>
-     <div className="mt-2">
-     <ServicesSection />
-     </div>
-     
-
-     <div className="mt-2 md:mt-0">
+      <div className="mt-2 md:px-[6%]">
+        <ServicesSection />
+        </div>
+        <div className="mt-2 md:mt-0 md:px-[6%]">
         <WhyChooseUs/>
       </div>
-      <div data-aos="fade-right" className="mt-20 md:mt-20">
+      <div data-aos="fade-right" className="mt-20 md:mt-20 md:px-[6%]">
       <ClientCard/>
-      
       </div>
-      
       <div style={{ height: '200px', position: 'relative', overflow: 'hidden', marginTop: '40px' }}>
         {/* Basic horizontal loop */}
         <LogoLoop
@@ -187,11 +173,11 @@ export default function WhatWeDo() {
           ariaLabel="Technology partners"
         />
       </div>
-      <div>
+      <div className="md:px-[6%]">
         <FAQAccordion />
       </div>
+      </div>
     </div>
-  </div>
 </div>
       
     );
