@@ -5,7 +5,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
-
+import BookingPage from './components/BookingPage'
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -57,7 +57,6 @@ const App = () => {
 
   return (
     <>
-
       <div className='font-poppins'>
           <Navigation />
           <Outlet />

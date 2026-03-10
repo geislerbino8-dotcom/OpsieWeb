@@ -55,19 +55,19 @@ function Analytics() {
         <div className="grid grid-cols-2 grid-rows-2 gap-6 mt-0 w-full max-w-3xl">
 
           <div data-aos="flip-up" data-aos-delay="100">
-            <AnalyticsCards numbers="10" desc="HAPPY CLIENTS" />
+            <AnalyticsCards numbers="2456" desc="HAPPY CLIENTS" />
           </div>
 
           <div data-aos="flip-up" data-aos-delay="200">
-            <AnalyticsCards numbers="10" desc="COMPANIES" />
+            <AnalyticsCards numbers="300" desc="COMPANIES" />
           </div>
 
           <div data-aos="flip-up" data-aos-delay="300">
-            <AnalyticsCards numbers="10" desc="PROJECTS DONE" />
+            <AnalyticsCards numbers="1432" desc="PROJECTS DONE" />
           </div>
 
           <div data-aos="flip-up" data-aos-delay="400">
-            <AnalyticsCards numbers="10" desc="CONSULTANTS" />
+            <AnalyticsCards numbers="100" desc="CONSULTANTS" />
           </div>
 
         </div>

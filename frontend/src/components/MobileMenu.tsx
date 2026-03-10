@@ -2,17 +2,28 @@ import React from "react";
 import PrimaryButton from "./buttons/PrimaryButton";
 import upArrow from "../assets/opsie/up-right-arrow.png";
 
-function MobileMenu({ closeMenu } : any) {
+function MobileMenu({ closeMenu }: any) {
   return (
-    <div className="fixed inset-0 z-50 flex">
+    <div className="fixed inset-0 z-50 flex justify-center items-end">
+      
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black bg-opacity-50"
         onClick={closeMenu}
       ></div>
 
-      {/* Sliding Menu (full width) */}
-      <div className="relative ml-auto w-full max-w-full h-full bg-gray-900 text-white flex flex-col p-6 space-y-12 transition-transform duration-300 transform translate-x-0">
+      {/* Bottom Half Menu */}
+      <div
+        className="
+          bg-[#3CBDE6]
+          relative w-full max-w-full h-[75vh]
+          text-white
+          rounded-t-3xl
+          shadow-xl
+          flex flex-col p-6 space-y-8
+          transform transition-transform duration-300
+        "
+      >
         {/* Close Button */}
         <button
           onClick={closeMenu}
@@ -22,57 +33,49 @@ function MobileMenu({ closeMenu } : any) {
         </button>
 
         {/* Menu Links */}
-        <div className="flex fd-c ai-c jc-c">
-            <ul className="flex flex-col space-y-6 text-lg font-semibold">
-          <li>
-            <a
-              href="/what-we-do"
-              className="hover:text-indigo-400"
-              onClick={closeMenu}
-            >
-              What We Do
-            </a>
-          </li>
-          <li>
-            <a
-              href="/who-we-are"
-              className="hover:text-indigo-400"
-              onClick={closeMenu}
-            >
-              Who We Are
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contact-us"
-              className="hover:text-indigo-400"
-              onClick={closeMenu}
-            >
-              Contact Us
-            </a>
-          </li>
-          <li>
-            <a
-              href="/products"
-              className="hover:text-indigo-400"
-              onClick={closeMenu}
-            >
-              Products
-            </a>
-          </li>
-        </ul>
+        <nav className="flex-1 flex flex-col justify-center">
+          <ul className="flex flex-col justify-center space-y-6 text-lg font-semibold text-center">
+            <li>
+              <a
+                href="/what-we-do"
+                className="text-2xl hover:text-indigo-400"
+                onClick={closeMenu}
+              >
+                What We Do
+              </a>
+            </li>
+            <li>
+              <a
+                href="/who-we-are"
+                className="text-2xl hover:text-indigo-400"
+                onClick={closeMenu}
+              >
+                Who We Are
+              </a>
+            </li>
+            <li>
+              <a
+                href="/contact-us"
+                className="text-2xl hover:text-indigo-400"
+                onClick={closeMenu}
+              >
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <a
+                href="/products"
+                className="text-2xl hover:text-indigo-400"
+                onClick={closeMenu}
+              >
+                Products
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-        </div>
         {/* Get Started Button */}
-        <PrimaryButton
-          text="Get Started"
-          color="#3CBDE6"
-          fontSize="1"
-          borderRadius="2"
-          margin="0"
-          padding="1"
-          image={upArrow}
-        />
+        
       </div>
     </div>
   );

@@ -9,10 +9,6 @@ type HeroPageProps = {
 
 function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
-  const handleAnimationComplete = () => {
-    console.log('All letters have animated!');
-  };
-
   return (
     <div
       className="w-full h-screen font-poppins relative flex flex-col justify-end"
@@ -46,7 +42,6 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
             threshold={0.1}
             rootMargin="-100px"
             textAlign="center"
-            onLetterAnimationComplete={handleAnimationComplete}
           />
         </h1>
 
@@ -65,8 +60,11 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         <button
           className="bg-[#3CBDE6] text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-500 transition-colors"
           data-aos="fade-up"
+          onClick={()=> {
+            window.location.href = "/book-a-schedule"
+          }}
         >
-          GET STARTED
+          BOOK A MEETING NOW
         </button>
 
       </div>

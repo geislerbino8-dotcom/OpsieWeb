@@ -1,7 +1,9 @@
 import MapImage from '../../assets/visuals/Map.png';
 import BlackButton from '../buttons/BlackButton';
 
+import {APIProvider, Map} from '@vis.gl/react-google-maps';
 
+const API_KEY = import.meta.env.GOOGLE_MAPS_API_KEY
 
 function MapCard() {
   return (
@@ -15,11 +17,15 @@ function MapCard() {
       </div>
 
       {/* Map Image */}
-      <img
-        className="w-full rounded-xl border border-black object-cover"
-        src={MapImage}
-        alt="Map"
-      />
+      <APIProvider apiKey={API_KEY}>
+          <Map
+            style={{width: '100%', height: '50vh'}}
+            defaultCenter={{lat: 22.54992, lng: 0}}
+            defaultZoom={3}
+            gestureHandling='greedy'
+            disableDefaultUI
+          />
+        </APIProvider>
 
       {/* Address */}
       <p className="text-gray-600 text-">
@@ -39,6 +45,7 @@ function MapCard() {
           image=""
         />
       </div>
+        
     </div>
   );
 }

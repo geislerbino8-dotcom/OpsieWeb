@@ -42,12 +42,7 @@ export class TicketController {
 
       res.json(formattedTickets);
     } catch (error) {
-<<<<<<< HEAD
-      console.log(error)
-      res.status(500).json({ message: 'Failed to fetch tickets' });
-=======
       res.status(400).json({ message: 'Failed to fetch tickets' });
->>>>>>> 0b26a989b8a0d4458598063d5f3dfdb3f0d6eadb
     }
   }
 

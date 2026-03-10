@@ -4,7 +4,7 @@ import logo from "../assets/opsie/opsie_logo.png";
 import PrimaryButton from "./buttons/PrimaryButton";
 import upArrow from "../assets/opsie/up-right-arrow.png";
 import MobileMenu from "./MobileMenu";
-import burgermenu from "../assets/icons/bars-solid.png";
+import burgermenu from "../assets/icons/burger-bar.png";
 
 const menuLists = [
   { name: "What We Do", link: "/what-we-do" },

@@ -43,19 +43,7 @@ const FAQAccordion = () => {
 
   return (
     <div className="flex items-center justify-center md:items-start flex-col gap-4">
-        <div
-          data-aos="fade-down"
-          className="w-[160px] list-none py-2 flex items-center justify-center gap-2"
-          style={{
-            backgroundColor: "rgb(240, 242, 245)",
-            borderRadius: "50px",
-            boxShadow:
-              "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
-          }}
-            >
-              <img src="" alt="" />
-              <p className="font-poppins text-[#3CBDE6] text-[20px] font-medium ">FAQs</p>
-        </div>
+       
 
         <h1 data-aos="fade-right" data-aos-delay="200" className="font-poppins font-medium text-center md:text-start leading-[34px] tracking-[2px] text-[32px] md:text-[50px] md:leading-[50px]">Got Questions? <br /><span className="text-[#3CBDE6] font-semibold">We've Got Answers</span></h1>
         <p data-aos="fade-right" data-aos-delay="400" className="text-center text-[18px] md:text-[24px] leading-[20px] font-light">Quick, clear answers to help you get started with Opsie.</p>

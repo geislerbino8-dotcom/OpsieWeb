@@ -8,6 +8,7 @@ import Homepage from "./pages/Homepage"
 import ProductItemPage from "./pages/ProductItemPage"
 import OpsieTicketingSystem from "./pages/OpsieTicketingSystem"
 import WhatWeDo from "./pages/WhatWeDo"
+import BookingPage from './components/BookingPage'
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
                 path: '/products/:id',
                 element: <ProductItemPage />
             },
+
+            {
+                path: '/book-a-schedule',
+                element: <BookingPage />
+            }
             
         ]
        
@@ -49,7 +55,8 @@ const router = createBrowserRouter([
     {
         path: '/admin',
         element: <OpsieTicketingSystem />
-    }
+    },
+  
 
     
 ])

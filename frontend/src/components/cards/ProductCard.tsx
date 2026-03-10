@@ -13,16 +13,20 @@ function ProductCard({ itemName, image }: ProductCardProps) {
   return (
     <div
       className="
+        
         group
         flex flex-col items-center
-        w-[16rem] p-5
-        rounded-2xl
+        w-[16rem] p-1 pb-4
         bg-white/10
         backdrop-blur-xl
         border border-white/20
         shadow-lg
         hover:shadow-2xl
         hover:-translate-y-2
+        hover:rounded-2xl
+        hover:scale-105 
+        hover:mx-5
+        hover:shadow-[0_0_25px_rgba(168,85,247,0.8)]
         transition-all duration-500
       "
     >
@@ -31,8 +35,8 @@ function ProductCard({ itemName, image }: ProductCardProps) {
       <div className="
         w-full flex justify-center items-center
         bg-white/20
-        rounded-xl
-        p-4
+        group-hover:rounded-2xl
+        grouo-hover:mt-5
         overflow-hidden
       ">
         <img
@@ -41,7 +45,7 @@ function ProductCard({ itemName, image }: ProductCardProps) {
           className="
             w-[9rem] h-[9rem] object-contain
             transition-transform duration-500
-            group-hover:scale-110
+            group-hover:scale-200
           "
         />
       </div>
@@ -58,22 +62,24 @@ function ProductCard({ itemName, image }: ProductCardProps) {
 
       {/* Button */}
     <button
-  onClick={() => navigate(`/products/${itemName}`)}
-  className="
-    hidden
-    group-hover:block
-    mt-5 w-full py-2.5
-    rounded-lg
-    font-semibold
-    text-white
-    border border-cyan-400
-    bg-transparent
-    hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500
-    transition-all duration-5000
-  "
->
-  View Product
-</button>
+      onClick={() => navigate(`/products/${itemName}`)}
+      className="
+        mt-5 py-2.5 px-4
+        rounded-lg
+        font-semibold
+        text-white
+        border border-cyan-400
+        bg-transparent
+        transition-all duration-300
+
+        block sm:hidden
+        sm:group-hover:block sm:opacity-0 sm:group-hover:opacity-100
+
+        hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500
+      "
+    >
+      View Product
+    </button>
 
     </div>
   )

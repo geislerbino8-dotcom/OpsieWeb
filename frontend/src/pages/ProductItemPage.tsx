@@ -1,6 +1,8 @@
 import Product1 from '../assets/Products/Product1.png'
 import '../styles/ProductItemPage.css'
 import { useParams } from 'react-router-dom'
+import ProductSection from './sections/ProductSection'
+import ProductItemCTA from '@/components/cards/ProductItemCTA'
 
 function ProductItemPage() {
   const { id } = useParams<{ id: string }>()
@@ -42,7 +44,7 @@ function ProductItemPage() {
       </div>
 
       {/* Product Info Section */}
-      <div className="w-full max-w-5xl bg-white/5 backdrop-blur-xl rounded-3xl -mt-16 p-12 space-y-12 shadow-2xl">
+      <div className="w-full max-w-5xl bg-white/5 backdrop-blur-xl rounded-3xl m-16 p-12 space-y-12 shadow-2xl">
 
         {/* Gallery */}
         <div className="flex flex-wrap justify-center gap-4">
@@ -94,6 +96,12 @@ function ProductItemPage() {
               </div>
             ))}
           </div>
+          <div>
+            <ProductItemCTA />
+          </div>
+            <div className='overflow-x-hidden'>
+               <ProductSection />
+            </div>
         </div>
 
       </div>

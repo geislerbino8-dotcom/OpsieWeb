@@ -7,7 +7,7 @@ type AnalyticsCardsProps = {
 
 function AnalyticsCards({ numbers, desc }: AnalyticsCardsProps) {
   return (
-    <div className="bg-white rounded-lg p-4 w-full h-36 flex flex-col items-center justify-center card-shadow">
+    <div className="font-poppins bg-white rounded-lg p-1 w-full h-36 flex flex-col items-center justify-center card-shadow">
       <CountUp
         from={0}
         to={Number(numbers)}

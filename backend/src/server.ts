@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import { HttpError } from './utils/httpError'
 import TicketRoute from './routes/ticketRoute'
-import UserRoute from './routes/userRoute';
 
 const dns = require('dns');
 
@@ -30,9 +29,7 @@ export default class Server {
 
   private initializeRoutes = (): void => {
     const ticketRoute = new TicketRoute();
-    const userRoute = new UserRoute();
     this.app.use('/ticket', ticketRoute.router);
-    this.app.use('/user', userRoute.router)
   }
 
   private initializeNotFoundHandler = (): void => {

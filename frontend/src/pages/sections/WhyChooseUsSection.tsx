@@ -4,7 +4,7 @@ function WhyChooseUsSection() {
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 md:gap-16">
 
         {/* Left Boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 flex-1">
           <div className="bg-white rounded-xl shadow-lg p-6 flex items-center justify-start">
             <p>
               <strong>100% Web Based</strong><br />
