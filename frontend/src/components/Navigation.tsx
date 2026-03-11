@@ -36,8 +36,36 @@ function Navigation() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+   const [showNav, setShowNav] = useState(true);
+  const [lastScroll, setLastScroll] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > lastScroll) {
+        setShowNav(false); // scrolling down
+      } else {
+        setShowNav(true); // scrolling up
+      }
+
+      setLastScroll(currentScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScroll]);
+
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 bg-transparent">
+    <nav className="w-full fixed top-0 left-0 z-50 bg-transparent"
+      style={{
+        position: "fixed",
+        top: showNav ? 0 : "-80px",
+        width: "100%",
+        transition: "top 0.3s",
+      }}
+    >
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center justify-between max-w-7xl mx-auto py-4 px-6">

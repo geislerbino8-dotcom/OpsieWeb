@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TestimonialCard } from "../Card/ClientCard/Card";
 import { Button } from "../Button";
-import SectionHeader from "../../components/SectionHeader.tsx";
 
 
 const ClientReview: React.FC = () => {
@@ -45,17 +44,12 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="w-full flex flex-col md:flex-row items-center p-10"
+    <section className="w-full flex flex-col md:flex-row items-center"
     >
       
 
-<div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4" >
-      <div data-aos="fade-right"  className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
-        <SectionHeader
-          badgeText="Review"
-          icon="/ICONS/text-white-icon.svg"
-        />
-      </div>
+<div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
+      
 
         <h1 className="font-poppins items-center md:text-start  leading-[35px] md:leading-[52px] tracking-[2px] font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What our <span className="text-[#3CBDE6] font-semibold">customers</span> are saying </h1>
         
@@ -128,8 +122,7 @@ const ClientReview: React.FC = () => {
         
 
       </div>
-      <div className="flex sm:hidden items-center gap-x-4 mt-8">
-      
+      <div className="flex md:hidden items-center gap-x-4 mt-8">
           <Button
             variant="shadow"
             iconImage="/left-arrow1.svg"

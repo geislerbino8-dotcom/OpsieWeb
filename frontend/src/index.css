@@ -8,6 +8,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Marko+One&family=Marmelad&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:wght@500&family=Scheherazade+New:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
 @theme {
   --font-poppins: "Poppins", sans-serif;
   --font-playfair: "Playfair Display", serif;
@@ -260,4 +265,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .spin-slow {
   animation: slowSpin 20s linear infinite;
+}
+
+
+/* Other styles only, no default font */
+h1, h2, h3, h4, h5, h6 {
+  /* no font-family here either */
 }

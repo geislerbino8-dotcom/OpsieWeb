@@ -7,14 +7,13 @@ export const Card: React.FC<CardOptions> = (props) => {
   return (
     <div className={logic.getCardClass()} style={logic.getCardStyle()}>
   
-  <div className="p-2 m-2 md:px-6">
+  <div className="p-6  md:px-6">
     <h2 className="text-lg font-poppins  font-medium text-center text-[20px]">{props.title}</h2>
     {props.image && (
     <img
       src={props.image}
       alt={props.title}
-      className="w-72 md:w-80 rounded-xl shadow-lg object-cover"
-      
+      className="w-full object-cover my-4 rounded-xl w-[350px] h-[160px]"
     />
   )}
     {props.description && (
