@@ -20,7 +20,7 @@ const plans = [
 
 export default function PricingPlans() {
   return (
-    <section className="w-full py-16 flex justify-center bg-gradient-to-r from-violet-900 to-violet-900 m-10">
+    <section className="w-full py-16 flex justify-center bg-gradient-to-r from-green-900 to-green-900 m-10">
       <div className="max-w-6xl w-full border-3 border-white/40 rounded-2xl p-10 text-white">
         <h1 className="text-4xl m-5 font bold mb-4 flex justify-center ">
             Our pricing
@@ -47,11 +47,11 @@ export default function PricingPlans() {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className="bg-gradient-to-b from-blue-500 to-blue-700 rounded-xl p-6 text-center shadow-lg"
+              className="bg-gradient-to-b from-green-500 to-green-500 rounded-xl p-6 text-center shadow-lg"
             >
               
               {/* Plan Name */}
-              <div className="bg-cyan-400 text-white font-semibold py-2 rounded-full mb-4">
+              <div className="bg-[#02110D] text-white font-semibold py-2 rounded-full mb-4">
                 {plan.name}
               </div>
 
@@ -74,7 +74,8 @@ export default function PricingPlans() {
               </ul>
 
               {/* Button */}
-              <button className="bg-cyan-500 hover:bg-blue-500 text-xl text-white px-6 py-2 rounded-full">
+              <button className="bg-green-900 hover:bg-green-700 text-xl text-white px-6 py-2 rounded-full" 
+                onClick={() => {window.location.href="/buy-now"}}>
                 Buy now
               </button>
 
@@ -84,8 +85,8 @@ export default function PricingPlans() {
 
         {/* Subscribe Button */}
         <div className="flex justify-center mt-10">
-          <button className="bg-cyan-500 hover:bg-blue-500 px-10 py-3 rounded-full text-xl text-white font-semibold 
-          rounded-2xl border-3">
+          <button className="bg-green-500 hover:bg-green-700 px-10 py-3 rounded-full text-xl text-white font-semibold
+          rounded-2xl border-3" onClick={() => {window.location.href="/Subscribe-now"}}>
             Subscribe now
           </button>
         </div>

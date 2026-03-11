@@ -1,12 +1,12 @@
 import FeedbackSection from './sections/FeedbackSection';
-import ProductCTA from './sections/ProductCTA';
+import ProductItemCTA from '@/components/cards/ProductItemCTA';
 import ProductSection from './sections/ProductSection';
 import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import Product1 from '../assets/Products/Product1.png';
 import ClientReview from '../components/sections/ClientReviewsSection';
-import OpsiePlanPricing from '../components/PlanPricing/OpsiePlanPricing'
-import PlanPricingTool from '../components/PlanPricing/PlanPricingTool'
+import OpsiePlanPricing from '../components/PlanPricing/OpsieHRIS'
+import PlanPricingTool from '../components/PlanPricing/Opsync'
 
 import Footer from '../components/Footer';
 
@@ -59,7 +59,7 @@ function ProductPage() {
       <PlanPricingTool/>   
       <WhyChooseUsSection/>
       <FeedbackSection/>
-      <ProductCTA />
+      <ProductItemCTA/>
       <Footer/>
      
     </div>

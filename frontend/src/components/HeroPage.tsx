@@ -57,13 +57,13 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
         {/* CTA Button */}
         <button
-          className="bg-[#3CBDE6] text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-500 transition-colors"
+          className="bg-[#3CBDE6] text-black font-semibold cursor-pointer px-8 py-4 rounded-xl transition- all duration-300 ease-in-out hover:text-white hover:bg-cyan-600 transition-colors hover:-translate-y-[2px]"
           data-aos="fade-up"
           onClick={()=> {
             window.location.href = "/book-a-schedule"
           }}
         >
-          BOOK A MEETING NOW
+          BOOK A MEETING SCHEDULE
         </button>
 
       </div>

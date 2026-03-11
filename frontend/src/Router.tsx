@@ -46,6 +46,21 @@ const router = createBrowserRouter([
             {
                 path: '/book-a-schedule',
                 element: <BookingPage />
+            },
+
+            {
+                path: '/buy-now',
+                element: <ProductPage/>
+            },
+
+            {
+                path: '/buy-now',
+                element: <ProductPage/>
+            },
+
+            {
+              path: '/Subscribe-now',
+              element: <ProductPage/>
             }
             
         ]

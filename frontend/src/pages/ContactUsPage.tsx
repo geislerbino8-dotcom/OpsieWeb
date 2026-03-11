@@ -6,7 +6,7 @@ import Contactbg from '../assets/visuals/Contact-bg.png'
 import EncourageCard from '../components/cards/EncourageCard'
 import FAQAccordion from "../components/FaqSection/Faq"
 import Footer from '../components/Footer'
-import SunPlazaCard from '../components/cards/SunPlazaCard'
+import ProductItemCTA from '@/components/cards/ProductItemCTA'
 
 
 
@@ -15,10 +15,9 @@ function ContactUsPage() {
     <div>
       <HeroPage heroText='Contact Us' bgImage={Contactbg}/>
       <ContactUs/>
-      <SunPlazaCard/>
       <MapCard/>
-      <EncourageCard/>
       <FAQAccordion />
+      <ProductItemCTA/>
       <Footer/>
     </div>
   )

@@ -64,7 +64,7 @@ function ContactForm() {
 
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-end ">
       <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 flex flex-col items-center space-y-4">
         {
           !transSucc ?
@@ -172,6 +172,7 @@ function ContactForm() {
 
         
       </div>
+  
     </div>
   );
 }
