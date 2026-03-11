@@ -2,6 +2,11 @@ import { Request, Response } from 'express';
 import { TicketModel } from '../models/ticketModel';
 import { TicketHistoryModel } from '../models/ticketHistoryModel';
 import { UserModel } from '../models/userModel';
+import {
+  sendTicketCreatedEmail,
+  sendTicketUpdatedEmail,
+  sendTicketClosedEmail 
+} from '../services/emailService';
 
 export class TicketController {
 
@@ -13,6 +18,8 @@ export class TicketController {
         ticket: ticket._id,
         action: 'created'
       });
+
+      sendTicketCreatedEmail(ticket).catch(console.error);
 
       res.status(201).json({ message: 'Ticket created succesfully' });
     } catch (error) {
@@ -141,36 +148,50 @@ export class TicketController {
       }
 
       let updatedFields: any = {};
+      let changeMessages: string[] = [];
       let hasChanges = false;
 
       if (status !== undefined && status !== ticket.status) {
         updatedFields.status = status;
+        changeMessages.push(`Status changed from '${ticket.status}' to '${status}'`);
         hasChanges = true;
       }
 
       if (category !== undefined && category !== ticket.category) {
         updatedFields.category = category;
+        changeMessages.push(`Category changed from '${ticket.category}' to '${category}'`);
         hasChanges = true;
       }
 
-      if (
-        taskReferenceUrl !== undefined &&
-        taskReferenceUrl !== ticket.taskReferenceUrl
-      ) {
+      if (taskReferenceUrl !== undefined && taskReferenceUrl !== ticket.taskReferenceUrl) {
         updatedFields.taskReferenceUrl = taskReferenceUrl;
         hasChanges = true;
       }
 
-      const normalizedAssignee =
-        assignee === '' || assignee === null ? null : assignee;
+      if (assignee !== undefined) {
+        const newAssignee =
+          assignee === '' || assignee === null ? null : assignee;
 
-      const currentAssignee = ticket.assignee
-        ? ticket.assignee.toString()
-        : null;
+        const currentAssignee = ticket.assignee
+          ? ticket.assignee
+          : null;
 
-      if (normalizedAssignee !== currentAssignee) {
-        updatedFields.assignee = normalizedAssignee;
-        hasChanges = true;
+        if (newAssignee !== currentAssignee?._id.toString()) {
+          const user = await UserModel.findById(newAssignee);
+
+          if (user?.role === 'admin') {
+            res.status(400).json({ message: 'Tickets cannot be assigned to admins' });
+            return;
+          }
+
+          updatedFields.assignee = newAssignee ? newAssignee : null;
+
+          if (newAssignee) {
+            changeMessages.push(`Ticket assigned to our ${user?.role}`);
+          }
+          
+          hasChanges = true;
+        }
       }
 
       if (!hasChanges) {
@@ -217,12 +238,21 @@ export class TicketController {
         }
       }
 
-      await TicketModel.findByIdAndUpdate(id, updates);
+      const updatedTicket = await TicketModel.findByIdAndUpdate(
+        id, 
+        updates,
+        { returnDocument: 'after' }
+      );
+
+      if (updates.status === 'closed') {
+        sendTicketClosedEmail(updatedTicket);
+      } else {
+        sendTicketUpdatedEmail(updatedTicket, changeMessages);
+      }
 
       res.status(200).json({ message: 'Ticket updated successfully'});
     } catch (error) {
       res.status(400).json({ message: 'Failed to update ticket' });
-
     }
   }
 
