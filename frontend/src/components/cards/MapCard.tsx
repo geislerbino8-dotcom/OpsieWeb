@@ -50,18 +50,6 @@ function MapCard() {
           />
         </div>
       </div>
-
-      {/* Optional: placeholder for equal height on desktop */}
-      <div className="inline lg:flex flex-1 items-center justify-center bg-white rounded-xl shadow-md p-6 ">
-        <p className="text-gray-500 text-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies scelerisque congue.
-        Mauris cursus risus ac magna efficitur, sit amet ultrices nulla semper. Vivamus gravida iaculis eros,
-        at imperdiet diam faucibus a. Curabitur id venenatis odio. Class aptent taciti sociosqu ad litora torquent per 
-        conubia nostra, per inceptos himenaeos Quisque tincidunt quam quis consequat sodales. Etiam elit leo, gravida 
-        quis placerat sit amet, cursus a dui. Aenean fermentum laoreet felis sed efficitur. Praesent rhoncus, turpis 
-        non lacinia efficitur, enim nisl dictum tortor, aliquet ultricies purus est sit amet ipsum.
-        </p>
-      </div>
     </div>
   );
 }
