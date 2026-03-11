@@ -1,11 +1,19 @@
 import { Request, Response } from 'express';
 import { TicketModel } from '../models/ticketModel';
+import { TicketHistoryModel } from '../models/ticketHistoryModel';
+import { UserModel } from '../models/userModel';
 
 export class TicketController {
 
   public create = async(req: Request, res: Response) => {
     try {
-      await TicketModel.create(req.body);
+      const ticket = await TicketModel.create(req.body);
+
+      await TicketHistoryModel.create({
+        ticket: ticket._id,
+        action: 'created'
+      });
+
       res.status(201).json({ message: 'Ticket created succesfully' });
     } catch (error) {
       res.status(400).json({ message: 'Failed to create ticket' });
@@ -44,43 +52,177 @@ export class TicketController {
     }
   }
 
+  public async timeline(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      const history = await TicketHistoryModel
+        .find({ ticket: id })
+        .populate('user', 'name')
+        .sort({ createdAt: 1 });
+
+      const grouped: any[] = [];
+
+      for (const item of history) {
+
+        const userName = item.user
+          ? (item.user as any).name
+          : 'System';
+
+        const lastGroup = grouped[grouped.length - 1];
+
+        const sameAction =
+          lastGroup &&
+          lastGroup.user === userName &&
+          lastGroup.action === item.action &&
+          Math.abs(
+            new Date(lastGroup.time).getTime() -
+            new Date(item.createdAt).getTime()
+          ) < 2000;
+
+        if (sameAction) {
+          lastGroup.changes.push({
+            field: item.field,
+            oldValue: item.oldValue,
+            newValue: item.newValue
+          });
+        } else {
+          grouped.push({
+            user: userName,
+            action: item.action,
+            time: item.createdAt,
+            changes: item.action === 'created'
+              ? []
+              : [{
+                  field: item.field,
+                  oldValue: item.oldValue,
+                  newValue: item.newValue
+                }]
+          });
+        }
+      }
+
+      const timeline = grouped.map(group => {
+        if (group.action === 'created') {
+          return {
+            event: `${group.user} created the ticket`,
+            time: group.time,
+            changes: []
+          };
+        }
+
+        return {
+          event: `${group.user} updated the ticket`,
+          time: group.time,
+          changes: group.changes
+        };
+      });
+
+      res.status(200).json(timeline);
+
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch timeline' });
+    }
+  }
+
   public async updateTicket(req: Request, res: Response) {
     try {
       const { id } = req.params;
+
       const { status, category, taskReferenceUrl, assignee } = req.body;
 
-      const updateFields: any = {};
+      const ticket = await TicketModel
+        .findById(id)
+        .populate('assignee', 'name');
 
-      if (status !== undefined) {
-        updateFields.status = status;
-      }
-
-      if (category !== undefined) {
-        updateFields.category = category;
-      }
-
-      if (taskReferenceUrl !== undefined) {
-        updateFields.taskReferenceUrl = taskReferenceUrl;
-      }
-
-      if (assignee !== undefined) {
-        updateFields.assignee = assignee === '' || assignee === null ? null : assignee;
-      }
-
-      const updatedTicket = await TicketModel.findByIdAndUpdate(
-        id,
-        { $set: updateFields },
-        { returnDocument: 'after' }
-      ).populate('assignee', 'name');
-
-      if (!updatedTicket) {
+      if (!ticket) {
         res.status(404).json({ message: 'Ticket not found' });
         return;
       }
 
-      res.status(200).json({ message: 'Ticket updated successfully' });
+      let updatedFields: any = {};
+      let hasChanges = false;
+
+      if (status !== undefined && status !== ticket.status) {
+        updatedFields.status = status;
+        hasChanges = true;
+      }
+
+      if (category !== undefined && category !== ticket.category) {
+        updatedFields.category = category;
+        hasChanges = true;
+      }
+
+      if (
+        taskReferenceUrl !== undefined &&
+        taskReferenceUrl !== ticket.taskReferenceUrl
+      ) {
+        updatedFields.taskReferenceUrl = taskReferenceUrl;
+        hasChanges = true;
+      }
+
+      const normalizedAssignee =
+        assignee === '' || assignee === null ? null : assignee;
+
+      const currentAssignee = ticket.assignee
+        ? ticket.assignee.toString()
+        : null;
+
+      if (normalizedAssignee !== currentAssignee) {
+        updatedFields.assignee = normalizedAssignee;
+        hasChanges = true;
+      }
+
+      if (!hasChanges) {
+        res.status(200).json({ message: 'No changes detected' });
+        return;
+      }
+
+      const updates: any = {
+        ...(status !== undefined && { status }),
+        ...(category !== undefined && { category }),
+        ...(taskReferenceUrl !== undefined && { taskReferenceUrl }),
+        ...(assignee !== undefined && { assignee: assignee || null })
+      };
+
+      for (const field in updates) {
+        let oldValue: any = (ticket as any)[field];
+        let newValue: any = updates[field];
+
+        if (field === 'assignee') {
+          const oldName = ticket.assignee
+            ? (ticket.assignee as any).name
+            : 'Unassigned';
+
+          let newName = 'Unassigned';
+
+          if (newValue) {
+            const user = await UserModel.findById(newValue);
+            if (user) newName = user.name;
+          }
+
+          oldValue = oldName;
+          newValue = newName;
+        }
+
+        if (oldValue != newValue) {
+          await TicketHistoryModel.create({
+            ticket: id,
+            action: 'updated',
+            field,
+            oldValue: oldValue || 'none',
+            newValue: newValue || 'none',
+            user: (req as any).user?.id
+          });
+        }
+      }
+
+      await TicketModel.findByIdAndUpdate(id, updates);
+
+      res.status(200).json({ message: 'Ticket updated successfully'});
     } catch (error) {
       res.status(400).json({ message: 'Failed to update ticket' });
+
     }
   }
 

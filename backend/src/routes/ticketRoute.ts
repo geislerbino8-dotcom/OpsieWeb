@@ -22,6 +22,11 @@ export default class TicketRoute {
       this.controller.getAll
     );
 
+    this.router.get(
+      '/timeline/:id',
+      this.controller.timeline
+    );
+
     this.router.patch(
       '/update/:id',
       this.controller.updateTicket

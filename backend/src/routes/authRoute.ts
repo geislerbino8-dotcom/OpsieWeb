@@ -12,10 +12,10 @@ export default class AuthRoute {
   }
 
   private initializeRoutes = (): void => {
-      this.router.get(
-        '/me',
-        this.controller.me
-      );
+    this.router.get(
+      '/me',
+      this.controller.me
+    );
 
     this.router.post(
       '/create',

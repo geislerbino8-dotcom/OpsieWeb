@@ -10,6 +10,7 @@ export const PERMISSIONS = {
   USER_DELETE: 'user:delete',
 
   TICKET_VIEW: 'ticket:view',
+  TICKET_VIEW_TIMELINE: 'ticket:view_timeline',
   TICKET_CREATE: 'ticket:create',
   TICKET_UPDATE: 'ticket:update',
   TICKET_DELETE: 'ticket:delete'

@@ -1,8 +1,8 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { HttpError } from './utils/httpError'
-import TicketRoute from './routes/ticketRoute'
+import { HttpError } from './utils/httpError';
+import TicketRoute from './routes/ticketRoute';
 import UserRoute from './routes/userRoute';
 import AuthRoute from './routes/authRoute';
 
@@ -28,7 +28,7 @@ export default class Server {
     const userRoute = new UserRoute();
     const authRoute = new AuthRoute();
     this.app.use('/ticket', ticketRoute.router);
-    this.app.use('/user', userRoute.router)
+    this.app.use('/user', userRoute.router);
     this.app.use('/auth', authRoute.router);
   }
 

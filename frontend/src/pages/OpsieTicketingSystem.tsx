@@ -4,6 +4,14 @@ import { deleteTicket } from '../api/deleteTicket';
 import { updateTicket } from '../api/updateTicket';
 import { getUsers } from '../api/getUsers';
 
+import { useApiState } from '../hooks/useApiState';
+import { useToast } from '../hooks/useToast';
+
+
+import TicketModal from '../components/ticketing/TicketModal';
+import LoadingOverlay from '../components/common/LoadingOverlay';
+import ToastContainer from '../components/common/ToastComponent';
+
 type Ticket = {
   _id: string;
   name: string;
@@ -16,7 +24,10 @@ type Ticket = {
   category: 'Inquiry' | 'Bug Report' | 'Question' | 'Complaint' | 'Feature Request';
   status: 'open' | 'in progress' | 'resolved' | "won't fix" | 'closed';
   taskReferenceUrl: string;
-  assignee: string | null;
+  assignee: {
+    _id: string,
+    name: string
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -42,7 +53,7 @@ const categoryColors = {
   'Feature Request': 'bg-emerald-600 text-white'
 };
 
-const OpsieTicketingSystem = () => {
+const TicketingSystem = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -57,7 +68,7 @@ const OpsieTicketingSystem = () => {
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
 
   useEffect(() => {
-    fetchData();
+    fetchTickets();
     fetchUsers();
   }, []);
 
@@ -65,38 +76,72 @@ const OpsieTicketingSystem = () => {
     if (selectedTicket) {
       setEditStatus(selectedTicket.status);
       setEditCategory(selectedTicket.category);
-      setEditAssignee(selectedTicket.assignee || '');
       setEditTaskUrl(selectedTicket.taskReferenceUrl || '');
+      setEditAssignee(selectedTicket.assignee?._id || null)
     }
   }, [selectedTicket]);
 
-  const fetchData = async () => {
-    const data = await getTickets();
-    setTickets(data);
+  const fetchTickets = async () => {
+    try {
+      apiState.startLoading();
+
+      const data = await getTickets();
+
+      setTickets(data);
+    } catch (error: any) {
+      addToast(
+        error.response?.data?.message || 'Failed to load tickets',
+        'error'
+      );
+    } finally {
+      apiState.reset();
+    }
   };
 
   const fetchUsers = async () => {
-    const data = await getUsers();
-    setUsers(data);
-  };
+    try {
+      apiState.startLoading();
 
-  const handleDelete = async () => {
-    if (!selectedTicket) return;
-    await deleteTicket(selectedTicket._id);
+      const data = await getUsers();
 
-    setTickets(prev => prev.filter(t => t._id !== selectedTicket._id));
-    setSelectedTicket(null);
+      setUsers(data);
+    } catch (error: any) {
+      addToast(
+        error.response?.data?.message || 'Failed to fetch users',
+        'error'
+      );
+    } finally {
+      apiState.reset();
+    }
   };
 
   const handleUpdate = async () => {
     if (!selectedTicket) return;
 
-    await updateTicket(selectedTicket._id, {
-      status: editStatus,
-      category: editCategory,
-      taskReferenceUrl: editTaskUrl,
-      assignee: editAssignee === '' ? null : editAssignee
-    });
+    try {
+      apiState.startLoading();
+
+      await updateTicket(selectedTicket._id, {
+        status: editStatus,
+        category: editCategory,
+        taskReferenceUrl: editTaskUrl,
+        assignee: editAssignee
+      });
+
+      addToast('Ticket updated successfully', 'success');
+
+      await fetchTickets();
+      await fetchUsers();
+    } catch (error: any) {
+      addToast(
+        error.response?.data?.message || 'Failed to update ticket',
+        'error'
+      );
+    } finally {
+      apiState.reset();
+    }
+    
+    const user = users.find(u => u._id === editAssignee)
 
     setTickets(prev =>
       prev.map(t =>
@@ -106,12 +151,37 @@ const OpsieTicketingSystem = () => {
               status: editStatus,
               category: editCategory,
               taskReferenceUrl: editTaskUrl,
-              assignee: users.find(u => u._id === editAssignee)?.name || null
+              assignee: user ? { _id: user._id, name: user.name } : null,
             }
           : t
       )
     );
 
+    setSelectedTicket(null);
+  };
+
+  const handleDelete = async () => {
+    if (!selectedTicket) return;
+
+    try {
+      apiState.startLoading();
+
+      await deleteTicket(selectedTicket._id);
+
+      addToast('Ticket deleted', 'success');
+
+      await fetchTickets();
+      await fetchUsers();
+    } catch (error: any) {
+      addToast(
+        error.response?.data?.message || 'Delete failed',
+        'error'
+      );
+    } finally {
+      apiState.reset();
+    }
+
+    setTickets(prev => prev.filter(t => t._id !== selectedTicket._id));
     setSelectedTicket(null);
   };
 
@@ -185,6 +255,9 @@ const OpsieTicketingSystem = () => {
       : bVal.toString().localeCompare(aVal.toString());
   });
 
+  const apiState = useApiState();
+  const { toasts, addToast } = useToast();
+
   const total = tickets.length;
   const openCount = tickets.filter(i => i.status === 'open').length;
   const progressCount = tickets.filter(i => i.status === 'in progress').length;
@@ -193,7 +266,7 @@ const OpsieTicketingSystem = () => {
   return (
     <div className='min-h-screen bg-gray-50 p-6'>
       <h1 className='text-xl font-semibold mb-6 text-gray-800'>
-        Opsie SSI Ticket Dashboard
+        Ticket Dashboard
       </h1>
 
       <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-sm'>
@@ -251,13 +324,13 @@ const OpsieTicketingSystem = () => {
         <table className='min-w-full text-xs table-fixed'>
           <thead className='bg-gray-100 border-b text-gray-600 uppercase tracking-wide'>
             <tr>
-              <th className='px-4 py-2 w-[75px]'>ID</th>
+              <th className='px-4 py-2 w-18.75'>ID</th>
               {renderHeader('Name', 'name')}
               {renderHeader('Email', 'email')}
               {renderHeader('Platform', 'platform')}
-              <th className='px-4 py-2 text-center w-[170px]'>Category</th>
-              <th className='px-4 py-2 text-center w-[125px]'>Status</th>
-              <th className='px-4 py-2 w-[125px]'>Task</th>
+              <th className='px-4 py-2 text-center w-42.5'>Category</th>
+              <th className='px-4 py-2 text-center w-31.25'>Status</th>
+              <th className='px-4 py-2 w-31.25'>Task</th>
               {renderHeader('Created', 'createdAt')}
               {renderHeader('Updated', 'updatedAt')}
               {renderHeader('Assignee', 'assignee')}
@@ -268,30 +341,30 @@ const OpsieTicketingSystem = () => {
             {filteredTickets.map(ticket => (
               <tr
                 key={ticket._id}
-                className='h-[50px] hover:bg-gray-200 cursor-pointer'
+                className='h-12.5 hover:bg-gray-200 cursor-pointer'
                 onClick={() => setSelectedTicket(ticket)}
               >
-                <td className='px-4 py-3 text-gray-400 text-center w-[75px]'>
+                <td className='px-4 py-3 text-gray-400 text-center w-18.75'>
                   {ticket._id.slice(-6)}
                 </td>
 
-                <td className='px-4 py-3 font-medium w-[130px]'>{ticket.name}</td>
-                <td className='px-4 py-3 text-gray-600 w-[170px]'>{ticket.email}</td>
-                <td className='px-4 py-3 text-gray-600 w-[95px]'>{ticket.platform || '—'}</td>
+                <td className='px-4 py-3 font-medium w-32.5'>{ticket.name}</td>
+                <td className='px-4 py-3 text-gray-600 w-42.5'>{ticket.email}</td>
+                <td className='px-4 py-3 text-gray-600 w-23.75'>{ticket.platform || '—'}</td>
 
-                <td className='px-4 py-3 text-center w-[170px]'>
+                <td className='px-4 py-3 text-center w-42.5'>
                   <div className={`text-center px-2 py-1 rounded text-xs font-medium ${categoryColors[ticket.category]}`}>
                     {ticket.category}
                   </div>
                 </td>
 
-                <td className='px-4 py-3 text-center w-[125px]'>
+                <td className='px-4 py-3 text-center w-31.25'>
                   <div className={`px-2 py-1 rounded text-xs font-medium ${statusColors[ticket.status]}`}>
                     {ticket.status}
                   </div>
                 </td>
               
-                <td className='px-4 py-3 text-center w-[125px]'>
+                <td className='px-4 py-3 text-center w-31.25'>
                   {ticket.taskReferenceUrl ? (
                     <a
                       href={ticket.taskReferenceUrl}
@@ -305,11 +378,11 @@ const OpsieTicketingSystem = () => {
                   ) : '—'}
                 </td>
 
-                <td className='px-4 py-3 text-gray-500 w-[100px]'>
+                <td className='px-4 py-3 text-gray-500 w-25'>
                   {new Date(ticket.createdAt).toLocaleDateString()}
                 </td>
 
-                <td className='px-4 py-3 text-gray-500 w-[100px]'>
+                <td className='px-4 py-3 text-gray-500 w-25'>
                   {new Date(ticket.updatedAt).toLocaleDateString()}
                 </td>
 
@@ -317,11 +390,14 @@ const OpsieTicketingSystem = () => {
                   {ticket.assignee ? ( 
                     <div className='flex items-center gap-2'>
                       <div className='min-w-7 min-h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
-                        {ticket.assignee.charAt(0)}
+                        {ticket.assignee.name.charAt(0)}
                       </div>
-                      <span className='text-center'> {ticket.assignee}</span>
+
+                      <span className='text-center'> {ticket.assignee.name}</span>
                     </div>
-                  ) : ( <span className='text-gray-400'>Unassigned</span> )}
+                  ) : ( 
+                    <span className='text-gray-400'>Unassigned</span> 
+                  )}
                 </td>
               </tr>
             ))}
@@ -330,163 +406,30 @@ const OpsieTicketingSystem = () => {
       </div>
 
       {selectedTicket && (
-        <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4'>
-          <div className='bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-xl'>
-            <div className='px-6 py-4 border-b flex justify-between items-center'>
-              <div>
-                <h2 className='text-lg font-semibold text-gray-800'>
-                  {selectedTicket.name}
-                </h2>
-                <p className='text-xs text-gray-500'>
-                  Ticket ID: {selectedTicket._id}
-                </p>
-              </div>
-
-              <button
-                onClick={() => setSelectedTicket(null)}
-                className='text-gray-500 hover:text-black text-xl cursor-pointer'
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* CONTENT */}
-            <div className='grid md:grid-cols-3 gap-6 p-6'>
-              <div className='md:col-span-2 space-y-6'>
-                <div>
-                  <p className='text-xs text-gray-500 mb-1'>Description</p>
-                  <div className='border rounded-md p-4 bg-gray-50 whitespace-pre-wrap text-sm'>
-                    {selectedTicket.description}
-                  </div>
-                </div>
-
-                <div className='grid grid-cols-2 gap-4 text-sm'>
-
-                  <div>
-                    <p className='text-gray-500 text-xs'>Email</p>
-                    <p>{selectedTicket.email}</p>
-                  </div>
-
-                  <div>
-                    <p className='text-gray-500 text-xs'>Phone</p>
-                    <p>{selectedTicket.phone}</p>
-                  </div>
-
-                  <div>
-                    <p className='text-gray-500 text-xs'>Address</p>
-                    <p>{selectedTicket.address || '—'}</p>
-                  </div>
-
-                  <div>
-                    <p className='text-gray-500 text-xs'>Platform</p>
-                    <p>{selectedTicket.platform || '—'}</p>
-                  </div>
-
-                  <div>
-                    <p className='text-gray-500 text-xs'>Platform Version</p>
-                    <p>{selectedTicket.platformVersion || '—'}</p>
-                  </div>
-
-                  <div>
-                    <p className='text-gray-500 text-xs'>Created</p>
-                    <p>{new Date(selectedTicket.createdAt).toLocaleString()}</p>
-                  </div>
-
-                  <div>
-                    <p className='text-gray-500 text-xs'>Updated</p>
-                    <p>{new Date(selectedTicket.updatedAt).toLocaleString()}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className='space-y-5'>
-                <div>
-                  <p className='text-xs text-gray-500 mb-1'>Category</p>
-                  <select
-                    value={editCategory}
-                    onChange={e => setEditCategory(e.target.value as Ticket['category'])}
-                    className='border rounded-md w-full px-3 py-2 text-sm'
-                  >
-                    {Object.keys(categoryColors).map(c => (
-                      <option key={c}>{c}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <p className='text-xs text-gray-500 mb-1'>Status</p>
-                  <select
-                    value={editStatus}
-                    onChange={e => setEditStatus(e.target.value as Ticket['status'])}
-                    className='border rounded-md w-full px-3 py-2 text-sm'
-                  >
-                    {Object.keys(statusColors).map(s => (
-                      <option key={s}>{s}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <p className='text-xs text-gray-500 mb-1'>Task Reference</p>
-                  <input
-                    value={editTaskUrl}
-                    onChange={e => setEditTaskUrl(e.target.value)}
-                    className='border rounded-md w-full px-3 py-2 text-sm'
-                    placeholder='https://github.com/'
-                  />
-                </div>
-
-                <div>
-                  <p className='text-gray-500 text-xs mb-1'>Assignee</p>
-
-                  <select
-                    value={editAssignee || ''}
-                    onChange={(e) => setEditAssignee(e.target.value || null)}
-                    className='border rounded-md px-3 py-2 w-full text-sm'
-                  >
-                    <option key='unassigned' value='' >Unassigned</option>
-                    {users.map((user) => (
-                      <option key={user._id} value={user._id}>
-                        {user.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className='px-6 py-4 border-t bg-gray-50'>
-              <div className='flex flex-col sm:flex-row sm:justify-between gap-3'>
-                <button
-                  onClick={handleDelete}
-                  className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 cursor-pointer'
-                >
-                  Delete Ticket
-                </button>
-
-                <div className='flex flex-col sm:flex-row gap-3 w-full sm:w-auto'>
-                  <button
-                    onClick={() => setSelectedTicket(null)}
-                    className='w-full sm:w-auto px-4 py-2 rounded-md border text-sm font-medium hover:bg-gray-100 cursor-pointer'
-                  >
-                    Cancel
-                  </button>
-
-                  <button
-                    onClick={handleUpdate}
-                    className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 cursor-pointer'
-                  >
-                    Save Changes
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
+        <TicketModal
+          ticket={selectedTicket}
+          users={users}
+          editStatus={editStatus}
+          editCategory={editCategory}
+          editTaskUrl={editTaskUrl}
+          editAssignee={editAssignee}
+          setEditStatus={setEditStatus}
+          setEditCategory={setEditCategory}
+          setEditTaskUrl={setEditTaskUrl}
+          setEditAssignee={setEditAssignee}
+          onClose={() => setSelectedTicket(null)}
+          onDelete={handleDelete}
+          onSave={handleUpdate}
+          statusColors={statusColors}
+          categoryColors={categoryColors}
+        />
       )}
+
+      {apiState.status === 'loading' && <LoadingOverlay />}
+
+      <ToastContainer toasts={toasts} />
     </div>
   );
 };
 
-export default OpsieTicketingSystem;
+export default TicketingSystem;
