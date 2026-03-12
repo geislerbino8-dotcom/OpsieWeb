@@ -10,10 +10,24 @@ import ContactForm from './cards/ContactForm'
 
 function ContactUs(){
     return(
-        <section className=" contact-section px-6 lg:px-16 py-12">
-        <div className="flex flex-col lg:flex-row justify-between gap-20 mt-10">
 
-            <div className=" contact-wrapper w-full lg:w-[40%] ">
+       <section className=" contact-section px-6 lg:px-16 py-12 bg-gradient-to-r from-white-900 to-blue-200">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+            <h1 className="text-[#3CBDE6] text-3xl font-bold mb-4">
+                Let us work on our goals 
+            </h1>
+
+            <p className="text-black-600 mb-2 ">
+                Reach out to us and let's discuss how we can help you with your goals.
+            </p>
+
+            <p className="text-black-500">
+                Experience an easy and simplified way of achieving your goals through customized software solutions 
+                with our dedicated team.
+            </p> 
+            </div>
+        <div className="flex flex-col lg:flex-row justify-between gap-20 mt-2">
+            <div className="contact-wrapper  w-full lg:w-[40%]">
                 <div className="contact-info">
                     <h1 className='contact-title'>Contact Us</h1>
                     <p>For Contact details, kindly reach:</p>

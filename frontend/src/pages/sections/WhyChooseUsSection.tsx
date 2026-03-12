@@ -1,4 +1,5 @@
 function WhyChooseUsSection() {
+
   return (
     <section className="w-full bg-transparent py-16 px-4 bg-gray-50 flex justify-center">
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 md:gap-16">

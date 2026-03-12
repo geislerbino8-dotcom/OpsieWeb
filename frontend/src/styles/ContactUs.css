@@ -3,8 +3,9 @@
     font-family:'Poppins';
     font-size:larger;
     line-height: 1.9;
-  
-    
+}
+.contact-info{
+    margin-top: -60px;
 }
 .contact-title{
     font-size: 2em;
@@ -14,6 +15,7 @@
 .contact-info h1{
     font-size: 2.5em;
     color:#3CBDE6;
+    
 }
 .contact-wrapper{
     max-width: 400px;

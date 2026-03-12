@@ -20,12 +20,12 @@ const plans = [
 
 export default function PricingPlans() {
   return (
-    <section className="w-full py-16 flex justify-center bg-gradient-to-r from-green-900 to-green-900 m-10">
+    <section className="w-full py-16 flex justify-center bg-gradient-to-r from-green-900 via-green-900 m-10">
       <div className="max-w-6xl w-full border-3 border-white/40 rounded-2xl p-10 text-white">
         <h1 className="text-4xl m-5 font bold mb-4 flex justify-center ">
             Our pricing
         </h1>
-        <p className="text-gray-300 text-lg size-bold mb-10 flex justify-center">
+        <p className="text-black-900 text-lg size-bold mb-10 flex justify-center">
           Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet
           consectetur adipiscing elit quisque faucibus ex.
         </p>
