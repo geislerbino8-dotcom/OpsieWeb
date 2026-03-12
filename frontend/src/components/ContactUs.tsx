@@ -3,7 +3,6 @@ import image1 from '../assets/opsie/fb.jpg'
 import image2 from '../assets/visuals/github.jpg'
 import image3 from '../assets/opsie/Instagram.jpg'
 import image4 from '../assets/opsie/Linkdn.jpg'
-import OpsieLogo from './OpsieLogo'
 import ContactForm from './cards/ContactForm'
 
 
