@@ -244,6 +244,18 @@ export class TicketController {
         { returnDocument: 'after' }
       );
 
+      if (ticket.assignee?._id.toString() && ticket.assignee?._id.toString() !== assignee) {
+        await UserModel.findByIdAndUpdate(ticket.assignee?._id.toString(), {
+          $pull: { tickets: id }
+        });
+      }
+
+      if (assignee && ticket.assignee?._id.toString() !== assignee) {
+        await UserModel.findByIdAndUpdate(assignee, {
+          $addToSet: { tickets: id }
+        });
+      }
+
       if (updates.status === 'closed') {
         sendTicketClosedEmail(updatedTicket);
       } else {

@@ -6,8 +6,21 @@ import bcrypt from 'bcrypt';
 export class UserController {
   public getAll = async (req: AuthRequest, res: Response) => {
     try {
-      const users = await UserModel.find();
-      res.status(200).json(users);
+      const users = await UserModel.find()
+      .select('-password')
+      .lean();
+
+      const formattedUsers = users.map((user: any) => ({
+        _id: user._id,
+        name: user.name,
+        username: user.username,
+        role: user.role,
+        isActive: user.isActive,
+        tickets: user.tickets ? user.tickets.length : 0,
+        createdAt: user.createdAt
+      }));
+
+      res.status(200).json({ users: formattedUsers });
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch users' });
     }
@@ -24,14 +37,9 @@ export class UserController {
 
   public updateProfile = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
 
-      const { name, currentPassword, password } = req.body;
-
-      if (!name && !password) {
-        res.status(400).json({ message: 'Nothing to update' });
-        return;
-      }
+      const { name, currentPassword, newPassword } = req.body;
 
       const user = await UserModel.findById(userId);
 
@@ -40,35 +48,29 @@ export class UserController {
         return;
       }
 
-      if (name) user.name = name;
+      if (name && name !== user.name) {
+        user.name = name;
+      }
 
-      if (password) {
+      if (newPassword) {
         if (!currentPassword) {
-          res.status(400).json({ message: 'Current password is required' });
+          res.status(400).json({ message: 'Current password is required to set a new password' });
+          return ;
+        }
+
+        const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!passwordMatch) {
+          res.status(401).json({ message: 'Current password is incorrect' });
           return;
         }
 
-        const validPassword = await bcrypt.compare(currentPassword, user.password);
-
-        if (!validPassword) {
-          res.status(401).json({mmessage: 'Current password is incorrect' });
-          return;
-        }
-
-        const samePassword = await bcrypt.compare(password, user.password);
-
-        if (samePassword) {
-          res.status(400).json({ message: 'New password must be different from current password' });
-          return;
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-        user.password = hashedPassword;
+        const hashed = await bcrypt.hash(newPassword, 10);
+        user.password = hashed;
       }
 
       await user.save();
 
-      res.status(200).json({ message: 'Updated successful' });
+      res.status(200).json({ message: 'Update successful' });
     } catch (error) {
       res.status(500).json({ message: 'Failed to update profile' });
     }

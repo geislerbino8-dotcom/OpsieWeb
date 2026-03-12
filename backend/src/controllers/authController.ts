@@ -12,16 +12,20 @@ export class AuthController {
 
   public me = async (req: AuthRequest, res: Response) => {
     try {
-      const userId = req.user?.id;
-
-      const user = await UserModel.findById(userId).select('-password -permissions');
+      const user = await UserModel.findById(req.user.id).select('-password');
 
       if (!user) {
-        res.status(404).json({ message: 'User not found' });
-        return;
+        return res.status(404).json({ message: 'User not found' });
       }
 
-      res.status(200).json({ user });
+      res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        username: user.username,
+        role: user.role,
+        tickets: user.tickets ? user.tickets.length : 0,
+        createdAt: user.createdAt
+      });
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch user' });
     }
@@ -92,10 +96,6 @@ export class AuthController {
     try {
       const { id } = req.params;
       const { name, role } = req.body;
-
-      const existingUser = await UserModel.findOne({ name });
-
-      if (existingUser) return res.status(400).json({ message: 'Name already taken' });
 
       if (role === 'admin') {
         res.status(403).json({ message: 'Cannot assign admin role' });
