@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default class GetName {
     private readonly apiUrl = import.meta.env.VITE_BACKEND_BASE_URL;
