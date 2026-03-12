@@ -35,12 +35,12 @@ function WhyChooseUsSection() {
 
 
   return (
-    <section className="w-full py-5 px-4 bg-gray-50 flex justify-center py-10"
+    <section className="w-full py-10 bg-gray-50 flex justify-center"
       style={{
         backgroundColor: '#0082ba'
       }}
     >
-      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 md:gap-16">
+      <div className="w-full max-w-6xl flex flex-col-reverse flex-col  md:flex-row gap-8 md:gap-16 p-10">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 flex-1">
           {

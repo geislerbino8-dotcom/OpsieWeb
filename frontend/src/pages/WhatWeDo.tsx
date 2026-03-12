@@ -27,7 +27,7 @@ export default function WhatWeDo() {
       <div className="max-w-[1280px] mt-22 mx-auto overflow-hidden">
 
   {/* HERO SECTION */}
-  <div className="w-full px-2 h-[6000px]">
+  <div className="w-full px-2">
     <div className="relative w-full  ">
     <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
   
@@ -174,7 +174,7 @@ export default function WhatWeDo() {
           ariaLabel="Technology partners"
         />
       </div>
-      <div className="md:px-[6%]">
+      <div className="">
         <FAQAccordion />
       </div>
       </div>

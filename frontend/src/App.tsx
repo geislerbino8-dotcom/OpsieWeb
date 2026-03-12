@@ -19,11 +19,6 @@ import "aos/dist/aos.css";
 const App = () => {
   const [name, setName] = useState<string>('');
 
-
-  
-
-  
-
   const fetchName = async () => {
     try {
       // Please see my note in getName.ts regarding the use of the class here.
@@ -44,7 +39,7 @@ const App = () => {
       duration: 1000,
       once: false,
       mirror: true,
-      offset: 0, // important
+      offset: 0,
     });
   }, []);
 
@@ -72,13 +67,13 @@ const App = () => {
         if (rect.top < window.innerHeight && rect.bottom >= 0) {
           el.classList.add("aos-animate");
         } else {
-          el.classList.remove("aos-animate"); // This allows animation to re-trigger
+          el.classList.remove("aos-animate"); 
         }
       });
     };
   
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // initial check
+    handleScroll(); 
   
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -90,15 +85,19 @@ const App = () => {
     AOS.refreshHard();
   }, [location.pathname]);
 
-  const [openPanel, setOpenPanel] = useState(false);
 
 
   return (
     <>
       <div className='font-poppins'>
           <Navigation />
+<<<<<<< Updated upstream
           <Outlet />
           <Footer/>
+=======
+            <Outlet />
+          <Footer />
+>>>>>>> Stashed changes
       </div>
 
     </>

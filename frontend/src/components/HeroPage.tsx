@@ -27,7 +27,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
           <SplitText
-            text="Bring your Ideas into Reality"
+            text={ heroText ? heroText : "Bring your Ideas into Reality"}
             className="text-10xl font-bold text-center"
             delay={50}
             duration={1.25}

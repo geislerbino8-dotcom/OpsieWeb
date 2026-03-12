@@ -48,7 +48,7 @@ function MobileMenu({ closeMenu }: any) {
             >
               <Link
                 to={item.link}
-                className={`block px-4 py-2 font-medium ${
+                className={`block px-4 py-2 text-2xl ${
                   location.pathname === item.link
                     ? "rounded-3xl bg-[#3CBDE6] text-white"
                     : ""

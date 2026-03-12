@@ -16,7 +16,7 @@ export default function WhoWeAre() {
       >
 
   {/* HERO SECTION */}
-  <div className="w-full px-2 h-[6000px]">
+  <div className="w-full px-2">
     <div className="relative w-full  ">
     <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
   

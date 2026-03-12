@@ -44,7 +44,7 @@ function ProductItemPage() {
       </div>
 
       {/* Product Info Section */}
-      <div className="w-full max-w-5xl bg-white/5 backdrop-blur-xl rounded-3xl m-16 p-12 space-y-12 shadow-2xl">
+      <div className="w-full max-w-5xl bg-white/5 backdrop-blur-xl rounded-3xl m-16 md:p-12 space-y-12 shadow-2xl">
 
         {/* Gallery */}
         <div className="flex flex-wrap justify-center gap-4">
