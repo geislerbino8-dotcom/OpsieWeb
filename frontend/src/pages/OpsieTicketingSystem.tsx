@@ -317,9 +317,8 @@ const OpsieTicketingSystem = () => {
                   {ticket.assignee ? ( 
                     <div className='flex items-center gap-2'>
                       <div className='min-w-7 min-h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
-                        {ticket.assignee.charAt(0)}
                       </div>
-                      <span className='text-center'> {ticket.assignee}</span>
+                      <span className='text-center'></span>
                     </div>
                   ) : ( <span className='text-gray-400'>Unassigned</span> )}
                 </td>

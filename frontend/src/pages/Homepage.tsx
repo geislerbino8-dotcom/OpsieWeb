@@ -13,7 +13,7 @@ import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
 import Header from '../components/Header'
 import ClientReview from '../components/sections/ClientReviewsSection'
 import Navigation from '../components/Navigation'
-import Footer from '../components/Footer'
+import WhyChooseUsSection from './sections/WhyChooseUsSection'
 
 function Homepage() {
   return (
@@ -22,12 +22,14 @@ function Homepage() {
         <Navigation />
       </div>
 
-      <ScrollAnimatedSection>
         <HeroPage heroText="Bring your Ideas into Reality ✨" bgImage={HomeHeroImage} />
-      </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={100}>
         <AboutUsSection />
+      </ScrollAnimatedSection>
+
+      <ScrollAnimatedSection delay={150}>
+        <WhyChooseUsSection />
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={200}>
@@ -47,7 +49,7 @@ function Homepage() {
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={600}>
-        <FeedbackSection />
+        <PartnerSection />
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={650}>
@@ -63,8 +65,7 @@ function Homepage() {
       <ScrollAnimatedSection delay={800}>
         <EncourageSection />
       </ScrollAnimatedSection>
-        
-      <Footer/>
+
     </div>
   )
 }

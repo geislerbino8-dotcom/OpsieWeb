@@ -1,7 +1,7 @@
 import React from "react";
 import TopSectionCard from "../../components/cards/TopSectionCard";
 import ContactForm from "../../components/cards/ContactForm";
-import MapCard from "../../components/cards/MapCard";
+
 
 
 
@@ -44,7 +44,7 @@ function ContactUsSection() {
           data-aos="fade-left"
           data-aos-delay="300"
         >
-          <MapCard />
+          
       
         </div>
 

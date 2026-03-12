@@ -1,45 +1,85 @@
+import b1 from '../../assets/visuals/Products1.jpg'
+import b2 from '../../assets/visuals/Products2.jpg'
+import b3 from '../../assets/visuals/Products3.jpg'
+import b4 from '../../assets/visuals/Products4.jpg'
+
+
+const content = [
+  {
+    head: "100% Web Based",
+    desc: "Use freely on any device, anywhere with internet access.",
+    bgImage: b1
+  },
+
+  {
+    head: "Unlimited Users",
+    desc: "No additional cost for the number of Opise users.",
+    bgImage: b2
+  },
+
+  {
+    head: "Free Additional Services",
+    desc: "Mobile app and corporate messenger included.",
+    bgImage: b3
+  },
+
+  {
+    head: "Continuous Feature Upgrades",
+    desc: "Regular improvements and new functionality.",
+    bgImage: b4
+  }
+]
+
 function WhyChooseUsSection() {
 
+
+
   return (
-    <section className="w-full bg-transparent py-16 px-4 bg-gray-50 flex justify-center">
+    <section className="w-full py-5 px-4 bg-gray-50 flex justify-center py-10"
+      style={{
+        backgroundColor: '#0082ba'
+      }}
+    >
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 md:gap-16">
 
-        {/* Left Boxes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 flex-1">
-          <div className="bg-white rounded-xl shadow-lg p-6 flex items-center justify-start">
-            <p>
-              <strong>100% Web Based</strong><br />
-              Use freely on any device, anywhere with internet access.
-            </p>
-          </div>
+          {
+            content.map((item, index)=> {
+              return(
+                <div key={index} className="text-white bg-white rounded-xl shadow-lg p-6 flex items-center justify-start"
+                  style={{
+                    backgroundColor: '#00000083',
+                    backgroundImage: `url(${item.bgImage})`,
+                    backgroundBlendMode: 'darken',
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
 
-          <div className="bg-white rounded-xl shadow-lg p-6 flex items-center justify-start">
-            <p>
-              <strong>Unlimited Users</strong><br />
-              No additional cost for the number of Opise users.
-            </p>
-          </div>
+                  }}
+                >
+                  <p>   
+                    <strong>{item.head}</strong><br />
+                    {item.desc}
+                  </p>
+                </div>
+              )
+            })
+          }
 
-          <div className="bg-white rounded-xl shadow-lg p-6 flex items-center justify-start">
-            <p>
-              <strong>Free Additional Services</strong><br />
-              Mobile app and corporate messenger included.
-            </p>
-          </div>
+          
 
-          <div className="bg-white rounded-xl shadow-lg p-6 flex items-center justify-start">
-            <p>
-              <strong>Continuous Feature Upgrades</strong><br />
-              Regular improvements and new functionality.
-            </p>
-          </div>
+         
+
+          
         </div>
 
-        {/* Right Section */}
         <div className="flex-1 flex items-center justify-center px-6
           rounded-3xl
         ">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left"
+            style={{
+              color: '#cdf7ff'
+            }}
+          >
             Why do so many companies choose Opise software solutions?
           </h1>
         </div>

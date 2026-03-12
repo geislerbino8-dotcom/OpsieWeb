@@ -16,7 +16,7 @@ export class TicketController {
 
   public getAll = async(req: Request, res: Response) => {
     try {
-      const tickets = await TicketModel.find().populate('assignee', 'name');
+      const tickets = await TicketModel.find();
 
       const formattedTickets = tickets.map((ticket) => ({
         _id: ticket._id,

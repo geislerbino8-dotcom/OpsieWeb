@@ -98,6 +98,7 @@ function ProductItemPage() {
           </div>
           <div>
             <ProductItemCTA />
+          
           </div>
             <div className='overflow-x-hidden'>
                <ProductSection />

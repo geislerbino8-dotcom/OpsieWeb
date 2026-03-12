@@ -1,76 +1,71 @@
-import '../styles/ContactUs.css'
 import image1 from '../assets/opsie/fb.jpg'
 import image2 from '../assets/visuals/github.jpg'
 import image3 from '../assets/opsie/Instagram.jpg'
 import image4 from '../assets/opsie/Linkdn.jpg'
 import ContactForm from './cards/ContactForm'
 
+function ContactUs() {
+  return (
+    <section className="w-full py-12 px-4">
+      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-10 lg:gap-16">
 
+        {/* LEFT SIDE */}
+        <div className="flex flex-col gap-6 lg:w-1/2 text-center lg:text-left">
 
-function ContactUs(){
-    return(
+          <h1 className="text-3xl md:text-4xl font-semibold">
+            Contact Us
+          </h1>
 
-       <section className=" contact-section px-6 lg:px-16 py-12 bg-gradient-to-r from-white-900 to-blue-200">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-            <h1 className="text-[#3CBDE6] text-3xl font-bold mb-4">
-                Let us work on our goals 
-            </h1>
+          <p className="text-gray-600">
+            For contact details, kindly reach:
+          </p>
 
-            <p className="text-black-600 mb-2 ">
-                Reach out to us and let's discuss how we can help you with your goals.
-            </p>
+          <div className="space-y-2 text-gray-700">
+            <p>Mobile No. 12345678911</p>
+            <p>Mobile No. 21314456272</p>
+            <p>HR Department email: asdas@gmail.com</p>
+          </div>
 
-            <p className="text-black-500">
-                Experience an easy and simplified way of achieving your goals through customized software solutions 
-                with our dedicated team.
-            </p> 
-            </div>
-        <div className="flex flex-col lg:flex-row justify-between gap-20 mt-2">
-            <div className="contact-wrapper  w-full lg:w-[40%]">
-                <div className="contact-info">
-                    <h1 className='contact-title'>Contact Us</h1>
-                    <p>For Contact details, kindly reach:</p>
+          {/* BUTTON */}
+          <button
+            onClick={() => {
+              window.location.href = "/book-a-schedule"
+            }}
+            className="bg-[#3CBDE6] text-white px-6 py-3 rounded-full w-fit mx-auto lg:mx-0 hover:bg-[#2ca7cc] transition"
+          >
+            BOOK A MEETING SCHEDULE
+          </button>
 
-                    <p>Mobile No. 12345678911</p>
-                    <p>Mobile No. 21314456272</p>
-                    <p>HR Department email: asdas@gmail.com</p>
+          {/* SOCIAL ICONS */}
+          <div className="flex justify-center lg:justify-start gap-4 mt-4">
 
-                    <button
-                        className="meeting-btn"
-                        onClick={()=> {
-                            window.location.href = "/book-a-schedule"
-                        }}
-                    >
-                        BOOK A MEETING SCHEDULE
-                    </button>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+              <img src={image1} alt="Facebook" className="w-10 h-10 object-cover rounded-full" />
+            </a>
 
-                    <div className="social-icons flex gap-4 mt-4 ">
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-                            <img src={image1} alt="Facebook Logo" className="social-logo w-8"/>
-                        </a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+              <img src={image2} alt="Github" className="w-10 h-10 object-cover rounded-full" />
+            </a>
 
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
-                            <img src={image2} alt="Github logo" className="social-logo w-8"/>
-                        </a>
+            <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">
+              <img src={image3} alt="LinkedIn" className="w-10 h-10 object-cover rounded-full" />
+            </a>
 
-                        <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">
-                            <img src={image3} alt="Linkdn logo" className="social-logo w-8"/>
-                        </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+              <img src={image4} alt="Instagram" className="w-10 h-10 object-cover rounded-full" />
+            </a>
 
-                        <a href="https://www.instagram.com/?hl=en" target="_blank" rel="noopener noreferrer">
-                            <img src={image4} alt="Instagram logo" className="social-logo w-8"/>
-                        </a>
-                    </div>
-
-                </div>            
-            </div>
-            <div className="w-full lg:w-[55%]">
-                <ContactForm/>
-            </div>
-          
+          </div>
         </div>
 
+        {/* RIGHT SIDE FORM */}
+        <div className="lg:w-1/2">
+          <ContactForm />
+        </div>
+
+      </div>
     </section>
-    )
+  )
 }
+
 export default ContactUs

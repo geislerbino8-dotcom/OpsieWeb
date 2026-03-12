@@ -5,7 +5,7 @@ import ContactUs from '../components/ContactUs'
 import Contactbg from '../assets/visuals/Contact-bg.png'
 import EncourageCard from '../components/cards/EncourageCard'
 import FAQAccordion from "../components/FaqSection/Faq"
-import Footer from '../components/Footer'
+
 import ProductItemCTA from '@/components/cards/ProductItemCTA'
 
 
@@ -18,7 +18,7 @@ function ContactUsPage() {
       <MapCard/>
       <FAQAccordion />
       <ProductItemCTA/>
-      <Footer/>
+      
     </div>
   )
 }

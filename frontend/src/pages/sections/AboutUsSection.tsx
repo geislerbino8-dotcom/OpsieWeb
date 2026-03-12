@@ -20,11 +20,16 @@ function AboutUsSection() {
           className="flex justify-center md:w-1/2"
           data-aos="fade-right"
         >
-          <img width={300} src={OpsieImage} alt="Opsie" />
+          <img width={300} src={OpsieImage} alt="Opsie" 
+            className="hover:rounded-[50%]"
+
+          />
+
+          
         </div>
 
         {/* Text Content */}
-        <div className="about-text-card flex flex-col gap-6 md:w-1/2 p-10">
+        <div className="about-text-card flex flex-col gap-6 md:w-1/2 p-10 justify-start">
 
           <h2
             className="text-3xl md:text-4xl font-bold leading-tight"

@@ -1,67 +1,106 @@
-import FeedbackSection from './sections/FeedbackSection';
-import ProductItemCTA from '@/components/cards/ProductItemCTA';
-import ProductSection from './sections/ProductSection';
+import ProductCTA from './sections/ProductCTA';
 import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
-import Product1 from '../assets/Products/Product1.png';
+import OpsieHRIS from '../components/PlanPricing/OpsieHRIS'
 import ClientReview from '../components/sections/ClientReviewsSection';
-import OpsiePlanPricing from '../components/PlanPricing/OpsieHRIS'
-import PlanPricingTool from '../components/PlanPricing/Opsync'
 
-import Footer from '../components/Footer';
+import ProductCard from '@/components/cards/ProductCard';
 
+import Product1 from '../assets/Products/Product1.png';
+import hris from '../assets/Products/HRIS.png';
+import opsync from '../assets/Products/Opsync.png';
+import web from '../assets/Products/WebOpsie.png';
+
+const products = [
+  { name: "Opsie HRIS", image: hris },
+  { name: "Opsync", image: opsync },
+  { name: "Opsync Pro", image: opsync },
+  { name: "Opsync Cloud", image: opsync },
+  { name: "Opsync Lite", image: opsync },
+  { name: "Opsie Web", image: web },
+];
 
 function ProductPage() {
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="w-full bg-white text-gray-800">
 
-      {/* Product Header */}
-      <div className="w-full min-h-screen flex flex-col justify-center px-4 md:px-16 py-16 md:py-24">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
+      <div className="max-w-[1280px] mx-auto px-6">
 
-          {/* Header Text */}
-          <div className="flex flex-col space-y-6 md:w-1/2 text-center md:text-left">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-snug md:leading-tight">
-              Let’s build Products like Opsie
-            </h1>
-            <p className="text-gray-700 text-base md:text-lg">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit earum doloribus
-              molestiae enim eveniet quisquam quis temporibus quae perferendis harum, ipsum culpa
-              recusandae sunt, facilis voluptates. Sint, unde facere. Reiciendis.
-            </p>
-            <div className="flex justify-center md:justify-start">
-              <button className="bg-blue-400 text-white font-bold px-6 py-3 rounded-lg hover:bg-blue-500 transition-colors">
-                Get Started
-              </button>
+        <section className="min-h-[80vh] flex items-center py-20">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+
+            <div className="flex flex-col gap-6">
+              <h1 className="text-4xl md:text-6xl text-left lg:text-7xl font-bold leading-tight">
+                Build Smarter Products
+                <span className="text-[#3CBDE6]"> with Opsie</span>
+              </h1>
+
+              <p className="text-gray-600 text-lg max-w-lg">
+                We design powerful digital tools that help businesses
+                automate operations, scale faster, and work smarter.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <button className="bg-[#3CBDE6] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#2ca7cc] transition">
+                  Get Started
+                </button>
+                <button className="border border-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">
+                  View Products
+                </button>
+              </div>
             </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {[Product1, hris, opsync, web].map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={`Product ${idx + 1}`}
+                  className="rounded-xl shadow-lg object-cover w-full h-48 md:h-56 lg:h-64"
+                />
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        <section className="py-20 bg-gray-50">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Our <span className="text-[#3CBDE6]">Products</span>
+            </h2>
+            <p className="text-gray-600 mt-3">
+              Discover the solutions we built to empower businesses.
+            </p>
           </div>
 
-          {/* Product Images */}
-          <div className="flex flex-wrap gap-4 sm:w-1/2 justify-center md:justify-end">
-            {[1, 2, 3,].map((_, idx) => (
-              <img
-                key={idx}
-                src={Product1}
-                alt={`Product ${idx + 1}`}
-                className="w-30 md:w-48 lg:w-52 rounded-lg shadow-md"
-              />
+          <div className="p-cards-container flex md:flex-row overflow-x-auto gap-8 flex-wrap p-10 items-start
+          ">
+            {products.map((item, index) => (
+              <div
+                key={item.name}
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+              >
+                <ProductCard
+                  bgColor="white"
+                  itemName={item.name}
+                  image={item.image}
+                  textColor='black'
+                />
+                
+              </div>
             ))}
           </div>
+        </section>
 
-        </div>
       </div>
+            <OpsieHRIS/> 
+            <WhyChooseUsSection /> 
+            <ClientReview />
+            <ServicesSection />
+            <ProductCTA />
 
-      {/* Sections */}
-      <ServicesSection />
-      <ProductSection />
-      <ClientReview />
-      <OpsiePlanPricing/>
-      <PlanPricingTool/>   
-      <WhyChooseUsSection/>
-      <FeedbackSection/>
-      <ProductItemCTA/>
-      <Footer/>
-     
     </div>
   );
 }
