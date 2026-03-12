@@ -45,7 +45,7 @@ const FAQAccordion = () => {
   };
 
   return (
-    <div className="flex items-center justify-center md:items-start flex-col gap-4">
+    <div className="max-w-[1280px] mx-auto flex items-center justify-center md:items-start flex-col gap-4">
       <div
         data-aos="fade-up"
         className="mt-6 flex items-center justify-center lg:items-start"

@@ -55,7 +55,7 @@ function ProductSection() {
         <div className=" flex gap-4 items-end">
           {Object.values(products).map((item, index) => (
             <div
-              key={item.name}
+              key={index}
               data-aos="fade-up"
               data-aos-delay={index * 200}
               className="flex-shrink-0"

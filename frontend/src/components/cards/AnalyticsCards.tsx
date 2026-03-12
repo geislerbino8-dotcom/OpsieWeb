@@ -14,7 +14,7 @@ function AnalyticsCards({ numbers, desc }: AnalyticsCardsProps) {
         separator=","
         direction="up"
         duration={3}
-        className="count-up-text text-4xl text-[#242424] font-bold"
+        className="count-up-text text-5xl text-[#242424] font-bold"
       />
       <h4 className="text-xl text-[#010f4d] font-bold text-center mt-1">{desc}</h4>
     </div>

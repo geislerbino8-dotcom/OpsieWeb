@@ -117,7 +117,6 @@ function ContactForm() {
         <select
           onChange={handleUserDataChange}
           name="platform"
-          value={selValue}
           required
           className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
@@ -142,7 +141,6 @@ function ContactForm() {
         <select
           onChange={handleUserDataChange}
           name="category"
-          value={'dsadsadas'}
           required
           className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         >

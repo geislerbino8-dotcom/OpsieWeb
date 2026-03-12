@@ -1,11 +1,25 @@
-import MapImage from '../../assets/visuals/Map.png';
 import BlackButton from '../buttons/BlackButton';
+import MapBox from '../MapBox';
 
-import {APIProvider, Map} from '@vis.gl/react-google-maps';
+import "mapbox-gl/dist/mapbox-gl.css";
 
-const API_KEY = import.meta.env.GOOGLE_MAPS_API_KEY
+const markers = [
+  {
+    id: "sun-plaza",
+    lng: 121.0491499,
+    lat: 14.5852174,
+    popup: "<b>Sun Plaza Mandaluyong</b>",
+  },
+];
 
 function MapCard() {
+
+  const googleMapLink = "https://maps.app.goo.gl/8f4UVi7ixCB84TpM7"
+
+  const gotoMap = ()=> {
+    alert("DSAdsadas")
+  }
+
   return (
     <div className="w-full max-w-xl flex flex-col p-6 bg-white rounded-xl shadow-md space-y-4">
       
@@ -16,17 +30,14 @@ function MapCard() {
         <p className="text-gray-700">Monday to Friday, 9 AM - 6 PM (PHT)</p>
       </div>
 
-      {/* Map Image */}
-      <APIProvider apiKey={API_KEY}>
-          <Map
-            style={{width: '100%', height: '50vh'}}
-            defaultCenter={{lat: 22.54992, lng: 0}}
-            defaultZoom={3}
-            gestureHandling='greedy'
-            disableDefaultUI
-          />
-        </APIProvider>
+        <div style={{height: '50vh'}}>
+            <MapBox
+              center={[121.0491499, 14.5852174]}
+              zoom={18}
+              markers={markers}
+            />
 
+        </div>
       {/* Address */}
       <p className="text-gray-600 text-">
         Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
@@ -36,6 +47,7 @@ function MapCard() {
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-bold text-gray-800">Visit Our Office</h1>
         <BlackButton
+          onPress={()=> window.location.href = "https://maps.app.goo.gl/8f4UVi7ixCB84TpM7"}
           text="Get Direction"
           fontSize="1.2"
           borderRadius="2"
@@ -44,6 +56,7 @@ function MapCard() {
           color=""
           image=""
         />
+
       </div>
         
     </div>

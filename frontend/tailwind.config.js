@@ -13,9 +13,5 @@ export default {
       },
     },
   },
-<<<<<<< HEAD
   plugins: [require('tailwind-scrollbar-hide')],
-=======
-  plugins: [],
->>>>>>> ce0d012d2bfe38afad31dc5bdcba1e3c39f06cbc
 };

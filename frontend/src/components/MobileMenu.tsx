@@ -2,17 +2,24 @@ import React from "react";
 import PrimaryButton from "./buttons/PrimaryButton";
 import upArrow from "../assets/opsie/up-right-arrow.png";
 
+import { Link } from "react-router-dom";
+
+
+const menuLists = [
+  { name: "What We Do", link: "/what-we-do" },
+  { name: "Who We Are", link: "/who-we-are" },
+  { name: "Contact Us", link: "/contact-us" },
+  { name: "Products", link: "/products" },
+];
+
 function MobileMenu({ closeMenu }: any) {
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-end">
-      
-      {/* Overlay */}
       <div
         className="absolute inset-0 bg-black bg-opacity-50"
         onClick={closeMenu}
       ></div>
 
-      {/* Bottom Half Menu */}
       <div
         className="
           bg-[#3CBDE6]
@@ -24,7 +31,6 @@ function MobileMenu({ closeMenu }: any) {
           transform transition-transform duration-300
         "
       >
-        {/* Close Button */}
         <button
           onClick={closeMenu}
           className="self-end text-white text-2xl font-bold focus:outline-none"
@@ -32,49 +38,30 @@ function MobileMenu({ closeMenu }: any) {
           ×
         </button>
 
-        {/* Menu Links */}
         <nav className="flex-1 flex flex-col justify-center">
           <ul className="flex flex-col justify-center space-y-6 text-lg font-semibold text-center">
-            <li>
-              <a
-                href="/what-we-do"
-                className="text-2xl hover:text-indigo-400"
-                onClick={closeMenu}
+             {menuLists.map((item, index) => (
+            <li
+              onClick={()=> closeMenu(true)}
+              key={index}
+              className="rounded-3xl transition-colors duration-200 hover:bg-[#3CBDE6] hover:text-white"
+            >
+              <Link
+                to={item.link}
+                className={`block px-4 py-2 font-medium ${
+                  location.pathname === item.link
+                    ? "rounded-3xl bg-[#3CBDE6] text-white"
+                    : ""
+                }`}
               >
-                What We Do
-              </a>
+                {item.name}
+              </Link>
             </li>
-            <li>
-              <a
-                href="/who-we-are"
-                className="text-2xl hover:text-indigo-400"
-                onClick={closeMenu}
-              >
-                Who We Are
-              </a>
-            </li>
-            <li>
-              <a
-                href="/contact-us"
-                className="text-2xl hover:text-indigo-400"
-                onClick={closeMenu}
-              >
-                Contact Us
-              </a>
-            </li>
-            <li>
-              <a
-                href="/products"
-                className="text-2xl hover:text-indigo-400"
-                onClick={closeMenu}
-              >
-                Products
-              </a>
-            </li>
+          ))}
+           
           </ul>
         </nav>
 
-        {/* Get Started Button */}
         
       </div>
     </div>

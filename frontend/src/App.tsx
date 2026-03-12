@@ -5,7 +5,6 @@ import './App.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
-
 import "aos/dist/aos.css";
 
 import { useLocation } from "react-router-dom";
@@ -90,6 +89,8 @@ const App = () => {
     
     AOS.refreshHard();
   }, [location.pathname]);
+
+  const [openPanel, setOpenPanel] = useState(false);
 
 
   return (

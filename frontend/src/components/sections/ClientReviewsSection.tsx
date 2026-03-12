@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { TestimonialCard } from "../Card/ClientCard/Card";
 import { Button } from "../Button";
 
+import leftArrow from '../../assets/icons/left-arrow1.svg'
+import rightArrow from '../../assets/icons/right-arrow.svg'
+
 
 const ClientReview: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -44,7 +47,7 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="w-full flex flex-col md:flex-row items-center"
+    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center p-10"
     >
       
 
@@ -125,14 +128,14 @@ const ClientReview: React.FC = () => {
       <div className="flex md:hidden items-center gap-x-4 mt-8">
           <Button
             variant="shadow"
-            iconImage="/left-arrow1.svg"
+            iconImage={leftArrow}
             className="w-8 h-8 flex items-center justify-center pr-3"
             onClick={handlePrev}
           />
           <hr className="w-[100px] border border-black" />
           <Button
             variant="shadow"
-            iconImage="/right-arrow.svg"
+            iconImage={rightArrow}
             className="w-8 h-8 flex items-center justify-center  pl-3"
             onClick={handleNext}
           />

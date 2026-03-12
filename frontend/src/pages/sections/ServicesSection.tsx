@@ -41,8 +41,8 @@ function ServicesSection() {
             <div className="w-full max-w-6xl h-full pb-16 max-h-6xl overflow-x-auto overflow-y-visible">
         <div className="flex gap-6 pb-1">
           {
-            services.map((item)=> (
-              <ServicesCards serviceName={item.serviceName} desc={item.desc} image={item.image} />
+            services.map((item, index)=> (
+              <ServicesCards key={index} serviceName={item.serviceName} desc={item.desc} image={item.image} />
 
             ))
           }
