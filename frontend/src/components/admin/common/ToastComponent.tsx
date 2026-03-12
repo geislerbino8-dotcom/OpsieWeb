@@ -1,4 +1,4 @@
-import type { Toast } from '../../hooks/useToast';
+import type { Toast } from '../../../hooks/useToast';
 
 type Props = {
   toasts: Toast[];
@@ -7,15 +7,13 @@ type Props = {
 const ToastContainer = ({ toasts }: Props) => {
   return (
     <div className='fixed top-6 right-6 z-200 flex flex-col gap-3'>
-
       {toasts.map((toast) => {
-
         const color =
           toast.type === 'success'
             ? 'bg-green-600'
             : toast.type === 'error'
             ? 'bg-red-600'
-            : 'bg-blue-600';
+            : 'bg-[#3cbde6]';
 
         return (
           <div
@@ -28,6 +26,6 @@ const ToastContainer = ({ toasts }: Props) => {
       })}
     </div>
   );
-};
+}
 
 export default ToastContainer;

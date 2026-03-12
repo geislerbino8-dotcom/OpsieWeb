@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
-import { getTickets } from '../api/getTickets';
-import { deleteTicket } from '../api/deleteTicket';
-import { updateTicket } from '../api/updateTicket';
-import { getUsers } from '../api/getUsers';
+import { getTickets } from '../../../api/getTickets';
+import { deleteTicket } from '../../../api/deleteTicket';
+import { updateTicket } from '../../../api/updateTicket';
+import { getActiveUsers } from '../../../api/getActiveUsers';
+import { useApiState } from '../../../hooks/useApiState';
+import { useToast } from '../../../hooks/useToast';
+import { useConfirm } from '../context/ConfirmContext';
 
-import { useApiState } from '../hooks/useApiState';
-import { useToast } from '../hooks/useToast';
-
-
-import TicketModal from '../components/ticketing/TicketModal';
-import LoadingOverlay from '../components/common/LoadingOverlay';
-import ToastContainer from '../components/common/ToastComponent';
+import TicketModal from '../ticketing/TicketModal';
+import LoadingOverlay from '../common/LoadingOverlay';
+import ToastContainer from '../common/ToastComponent';
 
 type Ticket = {
   _id: string;
@@ -53,9 +52,9 @@ const categoryColors = {
   'Feature Request': 'bg-emerald-600 text-white'
 };
 
-const TicketingSystem = () => {
+const TicketingSupportSystemPage = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
+  const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -69,7 +68,7 @@ const TicketingSystem = () => {
 
   useEffect(() => {
     fetchTickets();
-    fetchUsers();
+    fetchActiveUsers();
   }, []);
 
   useEffect(() => {
@@ -89,71 +88,70 @@ const TicketingSystem = () => {
 
       setTickets(data);
     } catch (error: any) {
-      addToast(
-        error.response?.data?.message || 'Failed to load tickets',
-        'error'
-      );
+      addToast(error.response?.data?.message || 'Failed to load tickets', 'error');
     } finally {
       apiState.reset();
     }
-  };
+  }
 
-  const fetchUsers = async () => {
+  const fetchActiveUsers = async () => {
     try {
       apiState.startLoading();
 
-      const data = await getUsers();
+      const data = await getActiveUsers();
 
-      setUsers(data);
+      setActiveUsers(data);
     } catch (error: any) {
-      addToast(
-        error.response?.data?.message || 'Failed to fetch users',
-        'error'
-      );
+      addToast(error.response?.data?.message || 'Failed to fetch users', 'error');
     } finally {
       apiState.reset();
     }
-  };
+  }
 
   const handleUpdate = async () => {
     if (!selectedTicket) return;
 
     try {
+      const ok = await confirm({
+        title: 'Update Ticket',
+        message: 'Are you sure you want to update this ticket?',
+        confirmText: 'UPDATE'
+      })
+
+      if(!ok) return
+
       apiState.startLoading();
 
-      await updateTicket(selectedTicket._id, {
+      const data = await updateTicket(selectedTicket._id, {
         status: editStatus,
         category: editCategory,
         taskReferenceUrl: editTaskUrl,
         assignee: editAssignee
       });
 
-      addToast('Ticket updated successfully', 'success');
+      addToast(data.message, 'success');
 
       await fetchTickets();
-      await fetchUsers();
+      await fetchActiveUsers();
     } catch (error: any) {
-      addToast(
-        error.response?.data?.message || 'Failed to update ticket',
-        'error'
-      );
+      addToast(error.response?.data?.message || 'Failed to update ticket', 'error');
     } finally {
       apiState.reset();
     }
     
-    const user = users.find(u => u._id === editAssignee)
+    const user = activeUsers.find(user => user._id === editAssignee)
 
     setTickets(prev =>
-      prev.map(t =>
-        t._id === selectedTicket._id
+      prev.map(ticket =>
+        ticket._id === selectedTicket._id
           ? {
-              ...t,
+              ...ticket,
               status: editStatus,
               category: editCategory,
               taskReferenceUrl: editTaskUrl,
               assignee: user ? { _id: user._id, name: user.name } : null,
             }
-          : t
+          : ticket
       )
     );
 
@@ -164,6 +162,14 @@ const TicketingSystem = () => {
     if (!selectedTicket) return;
 
     try {
+      const ok = await confirm({
+        title: 'Delete Ticket',
+        message: 'Are you sure you want to delete this ticket?',
+        confirmText: 'DELETE'
+      })
+
+      if(!ok) return
+
       apiState.startLoading();
 
       await deleteTicket(selectedTicket._id);
@@ -171,7 +177,7 @@ const TicketingSystem = () => {
       addToast('Ticket deleted', 'success');
 
       await fetchTickets();
-      await fetchUsers();
+      await fetchActiveUsers();
     } catch (error: any) {
       addToast(
         error.response?.data?.message || 'Delete failed',
@@ -225,6 +231,7 @@ const TicketingSystem = () => {
   if (searchTerm.trim()) {
     const lower = searchTerm.toLowerCase();
     filteredTickets = filteredTickets.filter(t =>
+      t._id.toLowerCase().includes(lower) ||
       t.name.toLowerCase().includes(lower) ||
       t.email.toLowerCase().includes(lower) ||
       t.phone.toLowerCase().includes(lower) ||
@@ -258,15 +265,17 @@ const TicketingSystem = () => {
   const apiState = useApiState();
   const { toasts, addToast } = useToast();
 
+  const confirm = useConfirm();
+
   const total = tickets.length;
   const openCount = tickets.filter(i => i.status === 'open').length;
   const progressCount = tickets.filter(i => i.status === 'in progress').length;
   const resolvedCount = tickets.filter(i => i.status === 'resolved').length;
 
   return (
-    <div className='min-h-screen bg-gray-50 p-6'>
-      <h1 className='text-xl font-semibold mb-6 text-gray-800'>
-        Ticket Dashboard
+    <div className='min-h-full min-w-full bg-gray-50 p-6'>
+      <h1 className='text-xl font-semibold mb-6 text-gray-800 text-center'>
+        Opsie SSI Ticketing Support System Dashboard
       </h1>
 
       <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-sm'>
@@ -288,7 +297,7 @@ const TicketingSystem = () => {
         </div>
       </div>
 
-      <div className='flex flex-col md:flex-row gap-3 mb-4 text-sm'>
+      <div className='flex flex-col justify-center md:flex-row gap-3 mb-4 text-sm'>
         <input
           type='text'
           placeholder='Search...'
@@ -303,8 +312,8 @@ const TicketingSystem = () => {
           onChange={e => setCategoryFilter(e.target.value)}
         >
           <option value='all'>All Categories</option>
-          {Object.keys(categoryColors).map(c => (
-            <option key={c}>{c}</option>
+          {Object.keys(categoryColors).map(category => (
+            <option key={category}>{category}</option>
           ))}
         </select>
 
@@ -314,14 +323,14 @@ const TicketingSystem = () => {
           onChange={e => setStatusFilter(e.target.value)}
         >
           <option value='all'>All Status</option>
-          {Object.keys(statusColors).map(s => (
-            <option key={s}>{s}</option>
+          {Object.keys(statusColors).map(status => (
+            <option key={status}>{status}</option>
           ))}
         </select>
       </div>
 
-      <div className='bg-white border rounded-md overflow-x-auto overflow-y-scroll'>
-        <table className='min-w-full text-xs table-fixed'>
+      <div className='max-w-313 mx-auto bg-white border rounded-md overflow-x-auto'>
+        <table className='min-w-312.5 text-xs table-fixed'>
           <thead className='bg-gray-100 border-b text-gray-600 uppercase tracking-wide'>
             <tr>
               <th className='px-4 py-2 w-18.75'>ID</th>
@@ -330,7 +339,7 @@ const TicketingSystem = () => {
               {renderHeader('Platform', 'platform')}
               <th className='px-4 py-2 text-center w-42.5'>Category</th>
               <th className='px-4 py-2 text-center w-31.25'>Status</th>
-              <th className='px-4 py-2 w-31.25'>Task</th>
+              <th className='px-4 py-2 w-25'>Task</th>
               {renderHeader('Created', 'createdAt')}
               {renderHeader('Updated', 'updatedAt')}
               {renderHeader('Assignee', 'assignee')}
@@ -344,8 +353,8 @@ const TicketingSystem = () => {
                 className='h-12.5 hover:bg-gray-200 cursor-pointer'
                 onClick={() => setSelectedTicket(ticket)}
               >
-                <td className='px-4 py-3 text-gray-400 text-center w-18.75'>
-                  {ticket._id.slice(-6)}
+                <td className='px-4 py-3 text-gray-400 text-center w-22'>
+                  {ticket._id.slice(-8)}
                 </td>
 
                 <td className='px-4 py-3 font-medium w-32.5'>{ticket.name}</td>
@@ -364,7 +373,7 @@ const TicketingSystem = () => {
                   </div>
                 </td>
               
-                <td className='px-4 py-3 text-center w-31.25'>
+                <td className='px-4 py-3 text-center w-25'>
                   {ticket.taskReferenceUrl ? (
                     <a
                       href={ticket.taskReferenceUrl}
@@ -408,7 +417,7 @@ const TicketingSystem = () => {
       {selectedTicket && (
         <TicketModal
           ticket={selectedTicket}
-          users={users}
+          activeUsers={activeUsers}
           editStatus={editStatus}
           editCategory={editCategory}
           editTaskUrl={editTaskUrl}
@@ -432,4 +441,4 @@ const TicketingSystem = () => {
   );
 };
 
-export default TicketingSystem;
+export default TicketingSupportSystemPage;

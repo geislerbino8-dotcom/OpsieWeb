@@ -14,6 +14,6 @@ const LoadingOverlay = () => {
 
     </div>
   );
-};
+}
 
 export default LoadingOverlay;

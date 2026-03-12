@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { getToken } from '../utils/authToken';
 
-export const getTickets = async () => {
+export const deleteUser = async (id: string) => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/ticket/getAll`,
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/delete/${id}`,
       {
         headers: {
           Authorization: `Bearer ${getToken()}`,
@@ -14,7 +14,7 @@ export const getTickets = async () => {
 
     return response.data;
   } catch (error: any) {
-    console.error('Failed to fetch tickets:', error.response?.data || error.message);
+    console.error('Failed to delete user:', error.response?.data || error.message);
     throw error;
   }
 }

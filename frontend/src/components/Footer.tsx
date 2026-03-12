@@ -27,7 +27,7 @@ const Footer = () => {
           <div className='w-full flex justify-center'>
             <img
               src={OpsieLogo}
-              className='w-[200px] object-fill'
+              className='w-50 object-fill'
               alt='logo'
             />
           </div>
@@ -35,7 +35,7 @@ const Footer = () => {
 
         <div className='w-full min-[550px]:w-[60%] flex flex-col min-[550px]:flex-row justify-between gap-12 mb-6 px-6 py-4'>
 
-          <div className='w-full flex flex-col justify-between gap-3 min-[550px]: w-[30%]'>
+          <div className='w-full flex flex-col justify-between gap-3 min-[550px]:'>
             <div className='h-[37.5%] flex items-center justify-center mb-3 text-2xl font-bold text-center cursor-pointer transition-all duration-200 transform hover:text-[#3CBDE6] hover:scale-105'>
               Home
             </div>
@@ -45,7 +45,7 @@ const Footer = () => {
             <div className='h-[15%] flex justify-center text-center cursor-pointer transition-all duration-200 transform hover:text-[#3CBDE6] hover:scale-105'>Lorem Ipsum</div>
           </div>
 
-          <div className='w-full flex flex-col justify-between gap-3 min-[550px]: w-[30%]'>
+          <div className='flex flex-col justify-between gap-3 min-[550px]: w-[30%]'>
             <div className='h-[37.5%] flex items-center justify-center mb-3 text-2xl font-bold text-center cursor-pointer transition-all duration-200 transform hover:text-[#3CBDE6] hover:scale-105'>
               What We Do
             </div>
@@ -55,7 +55,7 @@ const Footer = () => {
             <div className='h-[15%] flex justify-center text-center cursor-pointer transition-all duration-200 transform hover:text-[#3CBDE6] hover:scale-105'>Lorem Ipsum</div>
           </div>
 
-          <div className='w-full flex flex-col justify-between gap-3 min-[550px]: w-[30%]'>
+          <div className='w-full flex flex-col justify-between gap-3 min-[550px]:'>
             <div className='h-[37.5%] flex items-center justify-center mb-3 text-2xl font-bold text-center cursor-pointer transition-all duration-200 transform hover:text-[#3CBDE6] hover:scale-105'>
               Who We Are
             </div>

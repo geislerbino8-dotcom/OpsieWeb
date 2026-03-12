@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTicketTimeline } from '../../api/getTicketTimeline';
+import { getTicketTimeline } from '../../../api/getTicketTimeline';
 
 interface Change {
   field: string;
@@ -37,7 +37,7 @@ export default function TicketTimeline({ ticketId }: Props) {
 
   if (loading) {
     return (
-      <div className='text-sm text-gray-500 mt-4'>
+      <div className='py-6 px-4 text-sm text-center italic text-gray-500 mt-4'>
         Loading ticket history...
       </div>
     );

@@ -25,7 +25,7 @@ type User = {
 
 type Props = {
   ticket: Ticket;
-  users: User[];
+  activeUsers: User[];
   editStatus: Ticket['status'];
   editCategory: Ticket['category'];
   editTaskUrl: string;
@@ -43,7 +43,7 @@ type Props = {
 
 const TicketModal = ({
   ticket,
-  users,
+  activeUsers,
   editStatus,
   editCategory,
   editTaskUrl,
@@ -59,7 +59,6 @@ const TicketModal = ({
   categoryColors
 }: Props) => {
 
-  // lock background scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -97,8 +96,8 @@ const TicketModal = ({
               </div>
             </div>
 
-            <div className='grid grid-cols-2 gap-4 text-sm'>
-              <div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-4  text-sm'>
+              <div className='overflow-x-auto'>
                 <p className='text-gray-500 text-xs'>Email</p>
                 <p>{ticket.email}</p>
               </div>
@@ -108,7 +107,7 @@ const TicketModal = ({
                 <p>{ticket.phone}</p>
               </div>
 
-              <div>
+              <div className='overflow-x-auto'>
                 <p className='text-gray-500 text-xs'>Address</p>
                 <p>{ticket.address || '—'}</p>
               </div>
@@ -143,8 +142,8 @@ const TicketModal = ({
                 onChange={(e) => setEditCategory(e.target.value as Ticket['category'])}
                 className='border rounded-md w-full px-3 py-2 text-sm'
               >
-                {Object.keys(categoryColors).map((c) => (
-                  <option key={c}>{c}</option>
+                {Object.keys(categoryColors).map((category) => (
+                  <option key={category}>{category}</option>
                 ))}
               </select>
             </div>
@@ -156,8 +155,8 @@ const TicketModal = ({
                 onChange={(e) => setEditStatus(e.target.value as Ticket['status'])}
                 className='border rounded-md w-full px-3 py-2 text-sm'
               >
-                {Object.keys(statusColors).map((s) => (
-                  <option key={s}>{s}</option>
+                {Object.keys(statusColors).map((status) => (
+                  <option key={status}>{status}</option>
                 ))}
               </select>
             </div>
@@ -182,7 +181,7 @@ const TicketModal = ({
               >
                 <option value=''>Unassigned</option>
 
-                {users.map((user) => (
+                {activeUsers.map((user) => (
                   <option key={user._id} value={user._id}>
                     {user.name}
                   </option>
@@ -198,7 +197,7 @@ const TicketModal = ({
           <div className='flex flex-col sm:flex-row sm:justify-between gap-3'>
             <button
               onClick={onDelete}
-              className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 cursor-pointer'
+              className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-red-500 hover:bg-red-700 cursor-pointer'
             >
               Delete Ticket
             </button>
@@ -213,7 +212,7 @@ const TicketModal = ({
 
               <button
                 onClick={onSave}
-                className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                className='w-full sm:w-auto px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-500 hover:bg-blue-700 cursor-pointer'
               >
                 Save Changes
               </button>
