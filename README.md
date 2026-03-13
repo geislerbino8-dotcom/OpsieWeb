@@ -106,28 +106,72 @@ flowchart TB
 ```
 git clone https://github.com/OpsieDev/OpsieWebsite.git
 ```
+
 ### 2. Install Dependencies
 ```
-cd backend && npm install && npm run build
-cd ../frontend && npm install
+cd backend
+npm install
+cd ../frontend
+npm install
 ```
 
 ### 3. Add Environment Variables.
-Create a .env file in the backend root directory.
+Create an .env file in the backend root directory
 ```
 cd backend
-echo PORT=5000 MONGODB_USER=opsiessi MONGODB_PASSWORD=ZE9crHBxOuTvOwWH MONGODB_NAME=opsie-test > .env
+echo PORT=5000 JWT_SECRET=opsiesecretkey EMAIL_USER= EMAIL_PASS= MONGODB_USER=opsiessi MONGODB_PASSWORD=ZE9crHBxOuTvOwWH MONGODB_NAME=opsie-test > .env
+```
+
+or manually create an .env and copy these environment variables.
+```
+PORT=5000
+JWT_SECRET=opsiesecretkey
+EMAIL_USER=
+EMAIL_PASS=
+MONGODB_USER=opsiessi
+MONGODB_PASSWORD=ZE9crHBxOuTvOwWH
+MONGODB_NAME=opsie-test
+```
+
+
+Create an .env file in the frontend root directory
+```
+cd frontend
+echo VITE_BACKEND_BASE_URL=http://localhost:5000 > .env
+```
+
+or manually create an .env and copy these environment variables.
+```
+VITE_BACKEND_BASE_URL=http://localhost:5000
 ```
 
 ### 4. Development
+Run backend
 ```
-# Run backend
-cd backend && npm run dev
+cd backend
+npm run dev
+```
 
-# Run frontend
-cd frontend && npm run dev
+Run frontend
 ```
+cd frontend
+npm run dev
+```
+
 Visit: http://localhost:5173
+
+### 5. Production
+During production use these MONGODB environment variables.
+```
+MONGODB_USER=opsiessi
+MONGODB_PASSWORD=ZE9crHBxOuTvOwWH
+MONGODB_NAME=opsie
+```
+
+**It's really important to change the MONGODB_NAME variable:**
+```
+MONGODB_NAME=opsie
+```
 
 ## Contribution Guidelines
 Follow these steps to contribute effectively:
