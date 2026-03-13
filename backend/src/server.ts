@@ -1,14 +1,15 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { HttpError } from './utils/httpError'
-import TicketRoute from './routes/ticketRoute'
+import { HttpError } from './utils/httpError';
+import TicketRoute from './routes/ticketRoute';
+import UserRoute from './routes/userRoute';
+import AuthRoute from './routes/authRoute';
 
 const dns = require('dns');
 
 // Force Google DNS
 dns.setServers(['8.8.8.8', '8.8.4.4']);
-
 
 export default class Server {
   public app: Application;
@@ -29,7 +30,11 @@ export default class Server {
 
   private initializeRoutes = (): void => {
     const ticketRoute = new TicketRoute();
+    const userRoute = new UserRoute();
+    const authRoute = new AuthRoute();
     this.app.use('/ticket', ticketRoute.router);
+    this.app.use('/user', userRoute.router);
+    this.app.use('/auth', authRoute.router);
   }
 
   private initializeNotFoundHandler = (): void => {

@@ -1,4 +1,5 @@
 
+import MapCard from "@/components/cards/MapCard";
 import ContactForm from "../../components/cards/ContactForm";
 
 
@@ -43,7 +44,7 @@ function ContactUsSection() {
           data-aos="fade-left"
           data-aos-delay="300"
         >
-          
+          <MapCard />
       
         </div>
 

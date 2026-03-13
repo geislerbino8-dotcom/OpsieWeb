@@ -8,16 +8,15 @@ const UserSchema = new Schema(
     role: { 
       type: String, 
       enum: [
-        'admin', 
+        'admin',
+        'manager',
         'developer',
         'support'
       ],
       default: 'support'
     },
     isActive: { type: Boolean, default: true },
-    permissions: [
-      { type: String }
-    ],
+    permissions: [{ type: String }],
     tickets: [
       { type: Schema.Types.ObjectId, 
         ref: 'Ticket'

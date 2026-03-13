@@ -8,7 +8,7 @@ type ServicesCardsProps = {
 
 function ServicesCards({ serviceName, desc, image }: ServicesCardsProps) {
   return (
-    <div style={{minWidth: '20em'}}>
+    <div style={{minWidth: '20em'}} data-aos="fade-down">
         <div style={{
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',

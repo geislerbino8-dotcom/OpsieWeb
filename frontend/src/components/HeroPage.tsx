@@ -52,7 +52,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         </p>
 
         <button
-          className="bg-[#3CBDE6] text-black font-semibold cursor-pointer px-8 py-4 rounded-xl transition- all duration-300 ease-in-out hover:text-white hover:bg-cyan-600 transition-colors hover:-translate-y-[2px]"
+          className="bg-[#3CBDE6] text-white font-semibold cursor-pointer px-8 py-4 rounded-xl transition- all duration-300 ease-in-out hover:text-white hover:bg-cyan-600 transition-colors hover:-translate-y-[2px]"
           data-aos="fade-up"
           onClick={()=> {
             window.location.href = "/book-a-schedule"

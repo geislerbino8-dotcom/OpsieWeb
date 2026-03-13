@@ -20,4 +20,4 @@ export const createTicket = async (data: TicketData) => {
     console.error('Failed to create ticket:', error.response?.data || error.message);
     throw error;
   }
-};
+}

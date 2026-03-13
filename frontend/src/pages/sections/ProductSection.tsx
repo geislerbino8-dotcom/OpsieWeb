@@ -67,7 +67,7 @@ function ProductSection() {
           </div>
 
           <div>
-            <p className="text-[#cacaca]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, assumenda neque velit exercitationem provident recusandae commodi asperiores, nostrum cumque aperiam minima a enim labore maxime perspiciatis, rerum sapiente numquam voluptatum.</p>
+            <p data-aos = "fade-left" className="text-[#cacaca]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, assumenda neque velit exercitationem provident recusandae commodi asperiores, nostrum cumque aperiam minima a enim labore maxime perspiciatis, rerum sapiente numquam voluptatum.</p>
 
             <button className="py-3 px-6 my-5 text-white border border-white rounded-[0.5em] 
               font-medium tracking-wide

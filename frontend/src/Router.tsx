@@ -6,9 +6,15 @@ import WhatWeDoPage from "./pages/WhatWeDoPage"
 import ContactUsPage from "./pages/ContactUsPage"
 import Homepage from "./pages/Homepage"
 import ProductItemPage from "./pages/ProductItemPage"
-import OpsieTicketingSystem from "./pages/OpsieTicketingSystem"
+import Admin from "./pages/Admin"
 import WhatWeDo from "./pages/WhatWeDo"
 import BookingPage from './components/BookingPage'
+import TicketingSupportSystemPage from "./components/admin/pages/TicketingSupportSystemPage"
+import UserManagementPage from "./components/admin/pages/UserManagementPage"
+import LoginPage from "./components/admin/pages/LoginPage"
+
+
+const token = localStorage.getItem('token')
 
 const router = createBrowserRouter([
     {
@@ -69,8 +75,23 @@ const router = createBrowserRouter([
 
     {
         path: '/admin',
-        element: <OpsieTicketingSystem />
+        element: token ? <Admin />  : <LoginPage /> ,
+
+        children: [
+
+            {
+                path: 'tickets',
+                element: <TicketingSupportSystemPage />
+            },
+
+            {
+                path: 'users',
+                element: <UserManagementPage />
+            }
+        ]
     },
+
+    
   
 
     

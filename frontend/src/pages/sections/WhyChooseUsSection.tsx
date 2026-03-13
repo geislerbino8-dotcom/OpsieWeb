@@ -46,7 +46,9 @@ function WhyChooseUsSection() {
           {
             content.map((item, index)=> {
               return(
-                <div key={index} className="text-white bg-white rounded-xl shadow-lg p-6 flex items-center justify-start"
+                <div
+                data-aos="fade-right"
+                key={index} className="text-white bg-white rounded-xl shadow-lg p-6 flex items-center justify-start"
                   style={{
                     backgroundColor: '#00000083',
                     backgroundImage: `url(${item.bgImage})`,
@@ -79,6 +81,7 @@ function WhyChooseUsSection() {
             style={{
               color: '#cdf7ff'
             }}
+            data-aos="fade-left"
           >
             Why do so many companies choose Opise software solutions?
           </h1>

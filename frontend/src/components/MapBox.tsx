@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiY2hhaWlpIiwiYSI6ImNtZjBnZzM4ZDE3aGoya3B6YTJmeDZ4N2oifQ.7rvg2UpEHaOEDSDo5FgZBA";
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOXTOKEN
+
+console.log(import.meta.env.VITE_MAPBOXTOKEN)
 
 export type MarkerData = {
   id: string;

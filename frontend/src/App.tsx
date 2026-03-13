@@ -91,13 +91,8 @@ const App = () => {
     <>
       <div className='font-poppins'>
           <Navigation />
-<<<<<<< Updated upstream
           <Outlet />
           <Footer/>
-=======
-            <Outlet />
-          <Footer />
->>>>>>> Stashed changes
       </div>
 
     </>
