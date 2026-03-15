@@ -69,6 +69,7 @@ flowchart TB
 │   │   ├── /middleware      # Authentication, error handling, etc.
 │   │   ├── /models          # Mongoose models / database schemas
 │   │   ├── /routes          # API route definitions
+│   │   ├── /services        # Business logics
 │   │   ├── /utils           # Common utility functions
 │   │   ├── index.ts         # Entry point
 │   │   └── server.ts        # Server entry point
@@ -137,12 +138,13 @@ MONGODB_NAME=opsie-test
 Create an .env file in the frontend root directory
 ```
 cd frontend
-echo VITE_BACKEND_BASE_URL=http://localhost:5000 > .env
+echo VITE_BACKEND_BASE_URL=http://localhost:5000 VITE_MAPBOXTOKEN=pk.eyJ1IjoiY2hhaWlpIiwiYSI6ImNtZjBnZzM4ZDE3aGoya3B6YTJmeDZ4N2oifQ.7rvg2UpEHaOEDSDo5FgZBA > .env
 ```
 
 or manually create an .env and copy these environment variables.
 ```
 VITE_BACKEND_BASE_URL=http://localhost:5000
+VITE_MAPBOXTOKEN=pk.eyJ1IjoiY2hhaWlpIiwiYSI6ImNtZjBnZzM4ZDE3aGoya3B6YTJmeDZ4N2oifQ.7rvg2UpEHaOEDSDo5FgZBA
 ```
 
 ### 4. Development
