@@ -28,7 +28,7 @@ export class UserController {
 
   public getAllActive = async (req: AuthRequest, res: Response) => {
     try {
-      const users = await UserModel.find({ isActive: true }).select('_id name');
+      const users = await UserModel.find({ isActive: true }).select('_id name role');
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch users' });

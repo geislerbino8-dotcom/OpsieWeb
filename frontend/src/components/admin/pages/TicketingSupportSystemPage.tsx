@@ -26,6 +26,7 @@ type Ticket = {
   assignee: {
     _id: string,
     name: string
+    role: string
   } | null;
   createdAt: string;
   updatedAt: string;
@@ -34,6 +35,7 @@ type Ticket = {
 type User = {
   _id: string;
   name: string;
+  role: string;
 };
 
 const statusColors = {
@@ -131,6 +133,22 @@ const TicketingSupportSystemPage = () => {
 
       addToast(data.message, 'success');
 
+      const user = activeUsers.find(user => user._id === editAssignee)
+
+      setTickets(prev =>
+        prev.map(ticket =>
+          ticket._id === selectedTicket._id
+            ? {
+                ...ticket,
+                status: editStatus,
+                category: editCategory,
+                taskReferenceUrl: editTaskUrl,
+                assignee: user ? { _id: user._id, name: user.name, role: user.role } : null,
+              }
+            : ticket
+        )
+      );
+
       await fetchTickets();
       await fetchActiveUsers();
     } catch (error: any) {
@@ -138,22 +156,6 @@ const TicketingSupportSystemPage = () => {
     } finally {
       apiState.reset();
     }
-    
-    const user = activeUsers.find(user => user._id === editAssignee)
-
-    setTickets(prev =>
-      prev.map(ticket =>
-        ticket._id === selectedTicket._id
-          ? {
-              ...ticket,
-              status: editStatus,
-              category: editCategory,
-              taskReferenceUrl: editTaskUrl,
-              assignee: user ? { _id: user._id, name: user.name } : null,
-            }
-          : ticket
-      )
-    );
 
     setSelectedTicket(null);
   };
@@ -402,7 +404,7 @@ const TicketingSupportSystemPage = () => {
                         {ticket.assignee.name.charAt(0)}
                       </div>
 
-                      <span className='text-center'> {ticket.assignee.name}</span>
+                      <span className='text-center'>{ticket.assignee.name}</span>
                     </div>
                   ) : ( 
                     <span className='text-gray-400'>Unassigned</span> 

@@ -163,9 +163,9 @@ const UserManagementPage = () => {
 
                 <td className='px-4 py-3'>
                   {user.isActive ? (
-                    <span className='text-red-600'>Active</span>
+                    <span className='text-green-600'>Active</span>
                   ) : (
-                    <span className='text-green-600'>Deleted</span>
+                    <span className='text-red-600'>Deleted</span>
                   )}
                 </td>
 

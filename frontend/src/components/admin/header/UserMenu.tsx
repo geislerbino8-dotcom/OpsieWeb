@@ -81,7 +81,7 @@ const UserMenu = () => {
       </button>
 
       <div
-        className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transform transition-all duration-200 ${
+        className={`absolute right-1 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transform transition-all duration-200 ${
           dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
         }`}
       >
