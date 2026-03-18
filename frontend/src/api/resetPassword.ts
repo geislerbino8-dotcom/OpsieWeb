@@ -1,16 +1,10 @@
-import axios from 'axios';
-import { getToken } from '../utils/authToken';
+import axiosClient from './axiosClient';
 
 export const resetPassword = async (id: string) => {
   try {
-    const response = await axios.patch(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/resetPassword/${id}`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+    const response = await axiosClient.patch(
+      `/auth/resetPassword/${id}`,
+      {}
     );
 
     return response.data;

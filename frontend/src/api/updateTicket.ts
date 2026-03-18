@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getToken } from '../utils/authToken';
+import axiosClient from './axiosClient';
 
 export interface UpdateTicketData {
   status?: 'open' | 'in progress' | 'resolved' | "won't fix" | 'closed';
@@ -10,14 +9,9 @@ export interface UpdateTicketData {
 
 export const updateTicket = async (id: string, data: UpdateTicketData) => {
   try {
-    const response = await axios.patch(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/ticket/update/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+    const response = await axiosClient.patch(
+      `/ticket/update/${id}`,
+      data
     );
 
     return response.data;

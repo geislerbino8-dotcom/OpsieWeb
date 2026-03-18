@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axiosClient from './axiosClient';
 
 export const login = async (username: string, password: string) => {
   try {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/login`,
+    const response = await axiosClient.post(
+      '/auth/login',
       {
         username,
         password,
