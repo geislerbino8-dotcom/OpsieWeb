@@ -60,12 +60,15 @@ export class UserController {
 
         const passwordMatch = await bcrypt.compare(currentPassword, user.password);
         if (!passwordMatch) {
-          res.status(401).json({ message: 'Current password is incorrect' });
+          res.status(400).json({ message: 'Current password is incorrect' });
           return;
         }
 
         const hashed = await bcrypt.hash(newPassword, 10);
         user.password = hashed;
+      } else {
+        res.status(400).json({ message: 'New password is required to set a new password' });
+        return ;
       }
 
       await user.save();
