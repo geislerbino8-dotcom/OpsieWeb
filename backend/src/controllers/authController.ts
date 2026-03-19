@@ -130,7 +130,7 @@ export class AuthController {
 
       await user.save();
 
-      res.status(200).json({ message: 'User role updated successfully' });
+      res.status(200).json({ message: 'User updated successfully' });
     } catch (error) {
       res.status(500).json({ message: 'Failed to update user role' });
     }

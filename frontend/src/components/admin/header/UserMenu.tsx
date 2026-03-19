@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../api/getMe';
-import { removeToken } from '../../../utils/authToken';
+import { useAuth } from '../../../hooks/useAuth';
 import ShowProfileModal from '../modals/ShowProfileModal';
 import EditProfileModal from '../modals/EditProfileModal';
 import { useConfirm } from '../context/ConfirmContext';
@@ -18,8 +19,12 @@ const UserMenu = () => {
   const [user, setUser] = useState<User | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditProfileModal, setShowEditProfileModal] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const navigate = useNavigate();
+
+  const { logoutUser } = useAuth();
 
   const confirm = useConfirm();
 
@@ -59,8 +64,8 @@ const UserMenu = () => {
 
       if(!ok) return
 
-      removeToken();
-      window.location.href = '/login';
+      logoutUser();
+      navigate('/login');
     } catch (error) {
       console.error(error)
     }
@@ -93,7 +98,7 @@ const UserMenu = () => {
         </button>
 
         <button
-          onClick={() => { setShowEditModal(true); setDropdownOpen(false); }}
+          onClick={() => { setShowEditProfileModal(true); setDropdownOpen(false); }}
           className='w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 cursor-pointer'
         >
           Edit Profile
@@ -108,7 +113,7 @@ const UserMenu = () => {
       </div>
 
       {showProfileModal && <ShowProfileModal user={user} onClose={() => setShowProfileModal(false)} />}
-      {showEditModal && <EditProfileModal user={user} onClose={() => setShowEditModal(false)} onUpdated={fetchUser} />}
+      {showEditProfileModal && <EditProfileModal user={user} onClose={() => setShowEditProfileModal(false)} onUpdated={fetchUser} />}
     </div>
   );
 };
