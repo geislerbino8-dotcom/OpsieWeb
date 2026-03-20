@@ -1,10 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../api/getMe';
+import { updateProfile } from '../../../api/updateProfile.ts';
 import { useAuth } from '../../../hooks/useAuth';
 import ShowProfileModal from '../modals/ShowProfileModal';
 import EditProfileModal from '../modals/EditProfileModal';
+import { useApiState } from '../../../hooks/useApiState';
+import { useToast } from '../../../hooks/useToast';
 import { useConfirm } from '../context/ConfirmContext';
+
+import LoadingOverlay from '../common/LoadingOverlay';
+import ToastContainer from '../common/ToastComponent';
 
 type User = {
   _id: string;
@@ -25,6 +31,9 @@ const UserMenu = () => {
   const navigate = useNavigate();
 
   const { logoutUser } = useAuth();
+
+  const apiState = useApiState();
+  const { toasts, addToast } = useToast();
 
   const confirm = useConfirm();
 
@@ -53,6 +62,29 @@ const UserMenu = () => {
       console.error('Failed to fetch user:', err);
     }
   };
+
+  const handleSave = async (name: string, currentPassword: string, newPassword: string) => {
+    try {
+      const ok = await confirm({
+        title: 'Update Your Profile',
+        message: 'Are you sure you want to update your information?',
+        confirmText: 'UPDATE'
+      })
+
+      if(!ok) return
+
+      apiState.startLoading();
+      const data = await updateProfile({ name, currentPassword, newPassword });
+
+      addToast(data.message, 'success');
+      fetchUser();
+      setShowEditProfileModal(false);
+    } catch (error: any) {
+      addToast(error.response?.data?.message, 'error');
+    } finally {
+      apiState.reset();
+    }
+  }
 
   const logout = async () => {
     try {
@@ -113,7 +145,11 @@ const UserMenu = () => {
       </div>
 
       {showProfileModal && <ShowProfileModal user={user} onClose={() => setShowProfileModal(false)} />}
-      {showEditProfileModal && <EditProfileModal user={user} onClose={() => setShowEditProfileModal(false)} onUpdated={fetchUser} />}
+      {showEditProfileModal && <EditProfileModal user={user} handleSave={handleSave} onClose={() => setShowEditProfileModal(false)} />}
+
+      {apiState.status === 'loading' && <LoadingOverlay />}
+
+      <ToastContainer toasts={toasts} />
     </div>
   );
 };

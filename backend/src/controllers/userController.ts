@@ -66,9 +66,6 @@ export class UserController {
 
         const hashed = await bcrypt.hash(newPassword, 10);
         user.password = hashed;
-      } else {
-        res.status(400).json({ message: 'New password is required to set a new password' });
-        return ;
       }
 
       await user.save();

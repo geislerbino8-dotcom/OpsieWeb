@@ -1,27 +1,15 @@
 import { useState, useEffect } from 'react';
-import { updateProfile } from '../../../api/updateProfile.ts';
-import { useApiState } from '../../../hooks/useApiState';
-import { useToast } from '../../../hooks/useToast';
-import { useConfirm } from '../context/ConfirmContext';
-
-import LoadingOverlay from '../common/LoadingOverlay';
-import ToastContainer from '../common/ToastComponent';
 
 type EditProfileModalProps = {
   user: any;
+  handleSave: (name: string, currentPassword: string, newPassword: string) => void;
   onClose: () => void;
-  onUpdated: () => void;
 };
 
-const EditProfileModal = ({ user, onClose, onUpdated }: EditProfileModalProps) => {
+const EditProfileModal = ({ user, handleSave, onClose}: EditProfileModalProps) => {
   const [name, setName] = useState(user.name);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
-
-  const apiState = useApiState();
-  const { toasts, addToast } = useToast();
-
-  const confirm = useConfirm();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -29,30 +17,7 @@ const EditProfileModal = ({ user, onClose, onUpdated }: EditProfileModalProps) =
       document.body.style.overflow = 'auto';
     };
   }, []);
-
-  const handleSave = async () => {
-    try {
-      const ok = await confirm({
-        title: 'Update Your Profile',
-        message: 'Are you sure you want to update your information?',
-        confirmText: 'UPDATE'
-      })
-
-      if(!ok) return
-
-      apiState.startLoading();
-      const data = await updateProfile({ name, currentPassword, newPassword });
-
-      addToast(data.message, 'success');
-      onUpdated();
-      onClose();
-    } catch (error: any) {
-      addToast(error.response?.data?.message, 'error');
-    } finally {
-      apiState.reset();
-    }
-  }
-
+  
   return (
     <>
       <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
@@ -96,17 +61,13 @@ const EditProfileModal = ({ user, onClose, onUpdated }: EditProfileModalProps) =
           </div>
 
           <button
-            onClick={handleSave}
+            onClick={() => { handleSave(name, currentPassword, newPassword) }}
             className='w-full px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-500 hover:bg-blue-700 cursor-pointer'
           >
             Save Changes
           </button>
         </div>
       </div>
-
-      {apiState.status === 'loading' && <LoadingOverlay />}
-
-      <ToastContainer toasts={toasts} />
     </>
   );
 };

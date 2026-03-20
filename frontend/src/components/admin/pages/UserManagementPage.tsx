@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
+import { createUser } from '../../../api/createUser';
 import { getAllUsers } from '../../../api/getAllUsers';
+import { updateUser } from '../../../api/updateUser';
 import { resetPassword } from '../../../api/resetPassword';
-import { deleteUser } from '../../../api/deleteUser';
 import { restoreUser } from '../../../api/restoreUser';
+import { deleteUser } from '../../../api/deleteUser';
 import { useApiState } from '../../../hooks/useApiState';
 import { useToast } from '../../../hooks/useToast';
 import { useConfirm } from '../context/ConfirmContext';
+
 
 import LoadingOverlay from '../common/LoadingOverlay';
 import ToastContainer from '../common/ToastComponent';
@@ -26,7 +29,7 @@ type User = {
 const UserManagementPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [createOpen, setCreateOpen] = useState(false);
-  const [updateUser, setUpdateUser] = useState<User | null>(null);
+  const [updatedUser, setUpdatedUser] = useState<User | null>(null);
 
   const apiState = useApiState();
   const { toasts, addToast } = useToast();
@@ -50,6 +53,52 @@ const UserManagementPage = () => {
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  const handleCreate = async (name: string, username: string, role: string) => {
+    try {
+      const ok = await confirm({
+        title: 'Create User',
+        message: 'Are you sure you want to create this user account?',
+        confirmText: 'CREATE'
+      })
+
+      if(!ok) return
+
+      apiState.startLoading();
+      const data = await createUser({ name, username, role });
+    
+      addToast(data.message, 'success');
+      fetchUsers()
+      setCreateOpen(false)
+    } catch (error: any) {
+      addToast(error.response?.data?.message, 'error');
+    } finally {
+      apiState.reset();
+    }
+  }
+
+  const handleUpdate = async (id: string, name:string, role: string ) => {
+    try {
+      const ok = await confirm({
+        title: 'Update User',
+        message: 'Are you sure you want to update this user?',
+        confirmText: 'UPDATE'
+      })
+
+      if(!ok) return
+
+      apiState.startLoading();
+      const data = await updateUser(id, { name, role });
+    
+      addToast(data.message, 'success');
+      fetchUsers();
+      setUpdatedUser(null);
+    } catch (error: any) {
+      addToast(error.response?.data?.message, 'error');
+    } finally {
+      apiState.reset();
+    }
+  }
 
   const handleReset = async (id: string) => {
     try {
@@ -175,7 +224,7 @@ const UserManagementPage = () => {
 
                 <td className='px-4 py-3 flex gap-3 flex-wrap'>
                   <button
-                    onClick={() => setUpdateUser(user)}
+                    onClick={() => setUpdatedUser(user)}
                     className='text-blue-600 hover:underline cursor-pointer'
                   >
                     Update
@@ -214,16 +263,17 @@ const UserManagementPage = () => {
 
       {createOpen && (
         <CreateUserModal
+          handleCreate={handleCreate}
           onClose={() => setCreateOpen(false)}
           onCreated={fetchUsers}
         />
       )}
 
-      {updateUser && (
+      {updatedUser && (
         <UpdateUserModal
-          user={updateUser}
-          onClose={() => setUpdateUser(null)}
-          onUpdated={fetchUsers}
+          handleSave={handleUpdate}
+          user={updatedUser}
+          onClose={() => setUpdatedUser(null)}
         />
       )}
 
