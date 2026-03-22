@@ -1,3 +1,4 @@
+import TextType from '@/components/TextType'
 import b1 from '../../assets/visuals/Products1.jpg'
 import b2 from '../../assets/visuals/Products2.jpg'
 import b3 from '../../assets/visuals/Products3.jpg'
@@ -35,7 +36,7 @@ function WhyChooseUsSection() {
 
 
   return (
-    <section className="w-full py-10 bg-gray-50 flex justify-center"
+    <section className="w-full py-20 bg-gray-50 flex justify-center"
       style={{
         backgroundColor: '#0082ba'
       }}
@@ -54,9 +55,12 @@ function WhyChooseUsSection() {
                     backgroundImage: `url(${item.bgImage})`,
                     backgroundBlendMode: 'darken',
                     backgroundPosition: 'center',
-                    backgroundSize: 'cover'
+                    backgroundSize: 'cover',
+                    
 
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundSize = '200%'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundSize = '100%'}
                 >
                   <p>   
                     <strong>{item.head}</strong><br />
@@ -77,14 +81,19 @@ function WhyChooseUsSection() {
         <div className="flex-1 flex items-center justify-center px-6
           rounded-3xl
         ">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left"
-            style={{
-              color: '#cdf7ff'
-            }}
-            data-aos="fade-left"
-          >
-            Why do so many companies choose Opise software solutions?
-          </h1>
+           <TextType 
+            className='mr-7 text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left
+              text-[#cdf7ff]'
+              data-aos="fade-left"
+            text={["Why do so many companies choose Opsie Software Solutions?"]}
+            typingSpeed={75}
+            pauseDuration={10000}
+            showCursor
+            cursorCharacter="_"
+            deletingSpeed={100}
+            cursorBlinkDuration={0.5}
+          />
+          
         </div>
 
       </div>

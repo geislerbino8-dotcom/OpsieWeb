@@ -2,23 +2,12 @@ import BlackButton from '../buttons/BlackButton';
 import MapBox from '../MapBox';
 
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useState } from 'react';
 
-const markers = [
-  {
-    id: "sun-plaza",
-    lng: 121.0491499,
-    lat: 14.5852174,
-    popup: "<b>Sun Plaza Mandaluyong</b>",
-  },
-];
 
 function MapCard() {
 
-  const googleMapLink = "https://maps.app.goo.gl/8f4UVi7ixCB84TpM7"
-
-  const gotoMap = ()=> {
-    alert("DSAdsadas")
-  }
+  const [ dirAction, setDirAction ] = useState(false)
 
   return (
     <div className="w-full max-w-xl flex-flex-col p-6 bg-white rounded-xl shadow-md space-y-4">
@@ -30,14 +19,10 @@ function MapCard() {
         <p className="text-gray-700">Monday to Friday, 9 AM - 6 PM (PHT)</p>
       </div>
 
-        <div style={{height: '50vh'}}>
-            <MapBox
-              center={[121.0491499, 14.5852174]}
-              zoom={18}
-              markers={markers}
-            />
+           
 
-        </div>
+            <MapBox getDirection={dirAction} />
+
       {/* Address */}
       <p className="text-gray-600 text-">
         Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
@@ -47,7 +32,7 @@ function MapCard() {
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-bold text-gray-800">Visit Our Office</h1>
         <BlackButton
-          onPress={()=> window.location.href = "https://maps.app.goo.gl/8f4UVi7ixCB84TpM7"}
+          onPress={()=> dirAction ? setDirAction(false): setDirAction(true)}
           text="Get Direction"
           fontSize="1.2"
           borderRadius="2"

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet } from "react-router-dom";
 import './App.css';
 
@@ -9,28 +9,14 @@ import "aos/dist/aos.css";
 
 import { useLocation } from "react-router-dom";
 import './App.css';
-import GetName from './api/getName';
 
+import ChatHelp from './components/ChatHelp';
 
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const App = () => {
-  const [name, setName] = useState<string>('');
-
-  const fetchName = async () => {
-    try {
-      // Please see my note in getName.ts regarding the use of the class here.
-      // In a real application, you might want to refactor this to be more functional
-      // or use a different pattern for API calls.
-      const getNameClass = new GetName();
-      const fetchedName = await getNameClass.fetchName();
-      setName(fetchedName);
-    } catch (error) {
-      console.error('Error fetching name:', error);
-    }
-  };
 
   const location = useLocation();
 
@@ -90,6 +76,7 @@ const App = () => {
   return (
     <>
       <div className='font-poppins'>
+          <ChatHelp />
           <Navigation />
           <Outlet />
           <Footer/>

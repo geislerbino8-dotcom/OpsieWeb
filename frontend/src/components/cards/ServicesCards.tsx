@@ -1,4 +1,3 @@
-import '../../styles/ServicesSection.css'
 
 type ServicesCardsProps = {
     serviceName: string
@@ -6,7 +5,7 @@ type ServicesCardsProps = {
     image: string
 }
 
-function ServicesCards({ serviceName, desc, image }: ServicesCardsProps) {
+function ServicesCards({ serviceName, image }: ServicesCardsProps) {
   return (
     <div style={{minWidth: '20em'}} data-aos="fade-down">
         <div style={{

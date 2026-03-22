@@ -26,6 +26,7 @@ type Ticket = {
   assignee: {
     _id: string,
     name: string
+    role: string
   } | null;
   createdAt: string;
   updatedAt: string;
@@ -34,6 +35,7 @@ type Ticket = {
 type User = {
   _id: string;
   name: string;
+  role: string;
 };
 
 const statusColors = {
@@ -99,6 +101,7 @@ const TicketingSupportSystemPage = () => {
       apiState.startLoading();
 
       const data = await getActiveUsers();
+      console.log(data)
 
       setActiveUsers(data);
     } catch (error: any) {
@@ -131,6 +134,22 @@ const TicketingSupportSystemPage = () => {
 
       addToast(data.message, 'success');
 
+      const user = activeUsers.find(user => user._id === editAssignee)
+
+      setTickets(prev =>
+        prev.map(ticket =>
+          ticket._id === selectedTicket._id
+            ? {
+                ...ticket,
+                status: editStatus,
+                category: editCategory,
+                taskReferenceUrl: editTaskUrl,
+                assignee: user ? { _id: user._id, name: user.name, role: user.role } : null,
+              }
+            : ticket
+        )
+      );
+
       await fetchTickets();
       await fetchActiveUsers();
     } catch (error: any) {
@@ -138,22 +157,6 @@ const TicketingSupportSystemPage = () => {
     } finally {
       apiState.reset();
     }
-    
-    const user = activeUsers.find(user => user._id === editAssignee)
-
-    setTickets(prev =>
-      prev.map(ticket =>
-        ticket._id === selectedTicket._id
-          ? {
-              ...ticket,
-              status: editStatus,
-              category: editCategory,
-              taskReferenceUrl: editTaskUrl,
-              assignee: user ? { _id: user._id, name: user.name } : null,
-            }
-          : ticket
-      )
-    );
 
     setSelectedTicket(null);
   };
@@ -399,10 +402,10 @@ const TicketingSupportSystemPage = () => {
                   {ticket.assignee ? ( 
                     <div className='flex items-center gap-2'>
                       <div className='min-w-7 min-h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
-                        {ticket.assignee.name.charAt(0)}
+                        {ticket.assignee.name}
                       </div>
 
-                      <span className='text-center'> {ticket.assignee.name}</span>
+                      <span className='text-center'>{ticket.assignee.name}</span>
                     </div>
                   ) : ( 
                     <span className='text-gray-400'>Unassigned</span> 

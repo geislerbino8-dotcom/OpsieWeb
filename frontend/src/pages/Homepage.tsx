@@ -3,14 +3,11 @@ import AboutUsSection from './sections/AboutUsSection'
 import ServicesSection from './sections/ServicesSection'
 import ProductSection from './sections/ProductSection'
 import Analytics from './sections/Analytics'
-import FeedbackSection from './sections/FeedbackSection'
 import PartnerSection from './sections/PartnerSection'
 import ContactUsSection from './sections/ContactUsSection'
-import EncourageSection from './sections/EncourageSection'
 import ScrollAnimatedSection from '../ScrollAnimationSection'
 import Faq from '../components/FaqSection/Faq'
 import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
-import Header from '../components/Header'
 import ClientReview from '../components/sections/ClientReviewsSection'
 import Navigation from '../components/Navigation'
 import WhyChooseUsSection from './sections/WhyChooseUsSection'
@@ -62,9 +59,7 @@ function Homepage() {
         <ContactUsSection />
       </ScrollAnimatedSection>
 
-      <ScrollAnimatedSection delay={800}>
-        <EncourageSection />
-      </ScrollAnimatedSection>
+  
 
     </div>
   )

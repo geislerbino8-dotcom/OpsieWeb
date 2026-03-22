@@ -8,15 +8,16 @@ import ContactForm from "../../components/cards/ContactForm";
 function ContactUsSection() {
   return (
     
-    <section className="w-full flex flex-col items-center py-16 px-4">
+    <section className="w-full flex flex-col items-center pt-16 pb-5  px-4">
 
       {/* Header */}
       <div className="text-center mb-12 max-w-3xl">
         <h1
-          className="text-3xl md:text-4xl font-bold mb-4"
+          className="text-3xl md:text-4xl font-semibold mb-4"
           data-aos="fade-up"
         >
-          Get in Touch with Our Team
+          Get in <span className="font-playfair italic text-[#3CBDE6] font-semibold"> Touch</span> with Our 
+          <span className="text-[#3CBDE6] font-semibold"> Team</span> 
         </h1>
 
         <p

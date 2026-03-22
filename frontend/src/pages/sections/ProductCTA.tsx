@@ -1,4 +1,3 @@
-import React from 'react'
 import EncourageCard from '../../components/cards/EncourageCard'
 
 function ProductCTA() {

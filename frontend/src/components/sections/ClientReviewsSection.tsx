@@ -47,7 +47,7 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center p-10"
+    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center px-10 py-20"
     >
       
 
@@ -55,19 +55,18 @@ const ClientReview: React.FC = () => {
       
 
         <h1 className="font-poppins items-center md:text-start  leading-[35px] md:leading-[52px] tracking-[2px] font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What our <span className="text-[#3CBDE6] font-semibold">customers</span> are saying </h1>
-        
           
         <div className="hidden md:flex items-center gap-x-4 mb:8 md:mb-20">
           <Button
             variant="shadow"
-            iconImage="/left-arrow1.svg"
+            iconImage={leftArrow}
             className="w-8 h-8 flex items-center justify-center pr-3"
             onClick={handlePrev}
           />
           <hr className="w-[100px] border border-black" />
           <Button
             variant="shadow"
-            iconImage="/right-arrow.svg"
+            iconImage={rightArrow}
             className="w-8 h-8 flex items-center justify-center  pl-3"
             onClick={handleNext}
           />
@@ -91,13 +90,13 @@ const ClientReview: React.FC = () => {
       </div>
 
       {/* ================= DESKTOP ================= */}
-      <div className="hidden md:flex flex-col w-full mt-16  ">
+      <div className="hidden md:flex flex-col w-full   ">
 
         {/* Navigation */}
         
 
         {/* Slider */}
-        <div className="relative w-full flex h-[300px] pb-6 mb-10 overflow-x-hidden overflow-y-visible">
+        <div className="relative w-full flex h-[300px] overflow-x-hidden overflow-y-visible">
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 60}%)` }}

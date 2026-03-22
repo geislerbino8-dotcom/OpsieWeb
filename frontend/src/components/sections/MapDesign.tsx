@@ -1,3 +1,4 @@
+import { Button } from "../Button";
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -15,20 +16,11 @@ type Location = {
   lat: number;
 };
 
-type MapBoxProps = {
-  getDirection: boolean
-}
-
-export default function MapBox({getDirection} : MapBoxProps) {
+export default function Maps() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
 
   const [userLocation, setUserLocation] = useState<Location | null>(null);
-
-  useEffect(()=> {
-    
-     getDirection == true ? handleDirections() : null
-  }, [getDirection])
 
   useEffect(() => {
     mapboxgl.accessToken = MAPBOX_TOKEN;
@@ -159,11 +151,43 @@ export default function MapBox({getDirection} : MapBoxProps) {
   };
 
   return (
-    
+    <div className="flex items-center justify-center lg:items-start gap-14">
+      <div className="w-full flex flex-col md:flex-row lg:items-start gap-4">
+
+        <div className="w-full flex flex-col items-center md:items-start gap-6">
+
+          <h1 className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px]">
+            Visit <span className="text-[#3CBDE6] font-semibold">Us</span> Let’s Talk
+            <span className="text-[#3CBDE6] font-semibold"><br />Innovation</span>
+          </h1>
+
+          <div className="flex lg:w-[500px]">
+            <p className="font-poppins text-center md:text-start w-full text-[16px] leading-[15px] font-light">
+              Our doors are open for clients and partners who are ready to innovate.
+              Drop by our location and start the conversation that turns ideas into real solutions.
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 rounded-3xl text-white lg:mt-4">
+            <Button
+              label="Get Direction"
+              icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}
+              iconPosition="right"
+              className="cursor-pointer"
+              onClick={handleDirections}
+            />
+          </div>
+
+        </div>
+
+        <div className="flex items-center justify-center mx-2 ">
           <div
             ref={mapContainer}
-            className=" md:w-[300px] lg:min-w-[510px] h-[400px] rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] "
+            className="w-[500px] md:w-[400px] lg:min-w-[600px] h-[400px] rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] "
           />
-    
+        </div>
+
+      </div>
+    </div>
   );
 }

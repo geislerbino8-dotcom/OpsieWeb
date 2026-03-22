@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import '../../styles/AboutUsSection.css';
 import OpsieImage from "../../assets/opsie/opsie_full.jpg";
-import TopSectionCard from "../../components/cards/TopSectionCard";
-import { Card } from "../../components/Card/ServicesCard";
+import '../../styles/AboutUsSection.css'
+
 
 function AboutUsSection() {
   useEffect(() => {
@@ -15,7 +14,6 @@ function AboutUsSection() {
     <section className="w-full flex flex-col items-center py-16 px-4">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center gap-12">
         
-        {/* Image */}
         <div
           className="flex justify-center md:w-1/2"
           data-aos="fade-right"
@@ -28,15 +26,15 @@ function AboutUsSection() {
           
         </div>
 
-        {/* Text Content */}
         <div className="about-text-card flex flex-col gap-6 md:w-1/2 p-10 justify-start">
 
           <h2
-            className="text-3xl md:text-4xl font-bold leading-tight"
+            className="text-3xl md:text-4xl leading-tight"
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            Let your Business into Digitally Real
+            Let your <span className="text-[#3CBDE6] font-semibold">Business </span>into Digitally 
+            <span className="text-[#3CBDE6] font-semibold"> Real</span>
           </h2>
 
           <p

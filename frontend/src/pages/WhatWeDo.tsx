@@ -3,10 +3,9 @@ import ServicesSection from "../components/sections/ServicesSections";
 import ClientCard from "../components/sections/ClientReviewsSection";
 import LogoLoop from "../components/PartnersLogo/PartnersLogoLoop";
 import FAQAccordion from "../components/FaqSection/Faq"
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
-import Footer from "../components/Footer";
+
+
 
 
 
@@ -22,7 +21,6 @@ const imageLogos = [
 export default function WhatWeDo() {
 
 
-  const navigate = useNavigate();
     return (
       <div className="max-w-[1280px] mt-22 mx-auto overflow-hidden">
 

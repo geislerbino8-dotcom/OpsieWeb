@@ -1,10 +1,9 @@
 import { Button } from "../components/Button/Button";
-import { Card }  from "../components/Card/ServicesCard/Card";
 import FAQAccordion from "../components/FaqSection/Faq";
 import { useNavigate } from "react-router-dom";
 import { SiFacebook, SiInstagram, SiGmail } from "react-icons/si";
-import Header from "../components/Header";
 import CountUp from "../components/CountUp";
+import MapDesign from "@/components/sections/MapDesign";
 
 
 export default function WhoWeAre() {
@@ -15,7 +14,7 @@ export default function WhoWeAre() {
          <div className="overflow-hidden "
       >
 
-  {/* HERO SECTION */}
+  {/* HE qqqqqqqqq sssRO SECTION */}
   <div className="w-full px-2">
     <div className="relative w-full  ">
     <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
@@ -412,29 +411,7 @@ export default function WhoWeAre() {
                         </div>
                         
                         <div className="flex items-center justify-center  lg:items-start gap-14 ">
-                                <div className=" w-full flex flex-col md:flex-row  lg:items-start gap-4">
-                                        <div className=" w-full flex flex-col md:flex-col   flex items-center justify-center md:items-start lg:flex-col gap-6">
-                                            
-                                            <h1 data-aos="fade-down" className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px]">Visit <span className="text-[#3CBDE6] font-semibold">Us</span> Let’s Talk <span className="text-[#3CBDE6] font-semibold"><br />Innovation</span></h1>
-                                            <div data-aos="fade-right" data-aos-delay="300" className="flex lg:w-[500px]">
-                                                <p className="font-poppins text-center md:text-start w-full text-[16px] leading-[15px] font-light">Our doors are open for clients and partners who are ready to innovate. Drop by our location and start the conversation that turns ideas into real solutions. </p>
-                                            </div>
-                                            <div data-aos="fade-right" data-aos-delay="500" className="flex items-center justify-center bg-[#3CBDE6] py-1  md:text-[12px] lg:text-[16px] lg:px-4  rounded-3xl text-white lg:mt-4">
-                                                <Button
-                                                    label="Get Direction"
-                                                    icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}
-                                                    iconPosition="right"
-                                                    onClick={() => alert("Button clicked!")}
-                                                    />
-                                            </div>
-                                    </div>
-                                    <div className="flex items-center justify-center">
-                                            <div data-aos="fade-left" data-aos-delay="700" className="w-[500px] md:w-[400px] p-2 rounded-3xl  flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]">
-                                                <img src="/map-placeholder.png" alt="" />
-                                            </div>  
-                                    </div>
-
-                            </div>
+                            <MapDesign />
                         </div>
                     </div>
                 <FAQAccordion />

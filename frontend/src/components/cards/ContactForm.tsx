@@ -1,17 +1,11 @@
-import { createInquiry } from "../../api/createInquiry";
-import { useState, version } from "react";
-import BlackButton from "../buttons/BlackButton";
+import { useState, } from "react";
 import { createTicket } from "@/api/createTicket";
 function ContactForm() {
 
 
 
-  const [selValue, setSelValue] = useState("Where did you find us?");
   const [ transSucc, setTransSucc ] = useState(Boolean)
 
-  const selectValue = (e: any) => {
-    setSelValue(e.target.value);
-  };
 
    const userInfo = {
     name: "",
@@ -64,14 +58,14 @@ function ContactForm() {
 
 
   return (
-    <div className="w-full flex justify-end ">
+    <div className="flex">
       <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 flex flex-col items-center space-y-4">
         {
           !transSucc ?
           <form onSubmit={(e)=> handleCreateInquiry(e, userData)}>
-              <h3 className="text-2xl font-bold text-gray-800 text-center">
-          Let's Talk About Your Project
-        </h3>
+              <h3 className="text-2xl font-bold my-1 text-gray-800 text-center">
+                Let's Talk About Your Project
+              </h3>
 
         <input
           onChange={handleUserDataChange}

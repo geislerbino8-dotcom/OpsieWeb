@@ -1,7 +1,3 @@
-import React from "react";
-import PrimaryButton from "./buttons/PrimaryButton";
-import upArrow from "../assets/opsie/up-right-arrow.png";
-
 import { Link } from "react-router-dom";
 
 

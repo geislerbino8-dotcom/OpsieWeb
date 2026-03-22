@@ -1,4 +1,3 @@
-import ProductCTA from './sections/ProductCTA';
 import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import OpsieHRIS from '../components/PlanPricing/OpsieHRIS'
@@ -30,9 +29,9 @@ function ProductPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
 
             <div className="flex flex-col gap-6">
-              <h1 className="text-4xl md:text-6xl text-left lg:text-7xl font-bold leading-tight">
-                Build Smarter Products
-                <span className="text-[#3CBDE6]"> with Opsie</span>
+              <h1 className="text-4xl md:text-6xl text-left lg:text-7xl leading-tight">
+                Build <span className='font-playfair italic text-[#3CBDE6] '> Smarter</span> Products with
+                <span className="text-[#3CBDE6] font-semibold"> Opsie</span>
               </h1>
 
               <p className="text-gray-600 text-lg max-w-lg">
@@ -64,9 +63,9 @@ function ProductPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-gray-50">
+        <section className="py-20">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <h2 className="text-3xl md:text-4xl font-semibold">
               Our <span className="text-[#3CBDE6]">Products</span>
             </h2>
             <p className="text-gray-600 mt-3">
@@ -74,7 +73,7 @@ function ProductPage() {
             </p>
           </div>
 
-          <div className="p-cards-container flex md:flex-row overflow-x-auto gap-8 flex-wrap p-10 items-start
+          <div className="p-cards-container flex justify-center md:flex-row md:overflow-x-auto overflow-x-hidden gap-8 flex-wrap p-10 items-start
           ">
             {products.map((item, index) => (
               <div
@@ -86,7 +85,6 @@ function ProductPage() {
                   bgColor="white"
                   itemName={item.name}
                   image={item.image}
-                  textColor='black'
                 />
                 
               </div>
@@ -99,7 +97,6 @@ function ProductPage() {
             <WhyChooseUsSection /> 
             <ClientReview />
             <ServicesSection />
-            <ProductCTA />
 
     </div>
   );

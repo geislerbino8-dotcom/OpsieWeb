@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Card } from "../Card/ServicesCard";
 import { Button } from "../Button";
+import leftArrow from '../../assets/icons/left-arrow1.svg'
+import rightArrow from '../../assets/icons/right-arrow.svg'
 
 const ServicesSection: React.FC = () => {
   
@@ -42,14 +44,14 @@ const ServicesSection: React.FC = () => {
       <div className="mt-8 flex items-center justify-center gap-x-4">
         <Button
           variant="shadow"
-          iconImage="/left-arrow1.svg"
+          iconImage={leftArrow}
           className="w-10 h-10 flex items-center justify-center"
           onClick={handlePrev}
         />
         <hr className="w-[200px] border border-black" />
         <Button
           variant="shadow"
-          iconImage="/right-arrow.svg"
+          iconImage={rightArrow}
           className="w-10 h-10 flex items-center justify-center"
           onClick={handleNext}
         />

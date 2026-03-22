@@ -22,7 +22,6 @@ export default function CountUp({
   delay = 0,
   duration = 2,
   className = '',
-  startWhen = true,
   startCounting = true,
   separator = '',
   onStart,

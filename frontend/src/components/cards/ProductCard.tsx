@@ -4,87 +4,93 @@ type ProductCardProps = {
   itemName: string
   image: string
   bgColor?: string
-  textColor?: string
 }
 
-function ProductCard({ itemName, image, bgColor, textColor }: ProductCardProps) {
+function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
   const navigate = useNavigate()
 
   return (
-    <div className="w-[16rem] flex-shrink-0">
-      
-      {/* Card */}
+    <div
+      className="
+        group relative w-[18rem] flex-shrink-0
+        rounded-2xl overflow-hidden
+        transition-all duration-500
+        hover:-translate-y-2
+        shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]
+      "
+    >
+      {/* Glow Effect */}
       <div
         className="
-          group flex flex-col items-center
-          p-4
+          absolute inset-0 rounded-2xl
+          opacity-0 group-hover:opacity-100
+          transition duration-500
+          blur-xl
+          bg-gradient-to-r from-cyan-400/30 to-blue-500/30
+        "
+      />
+
+      {/* Card Content */}
+      <div
+        className="
+          relative z-10
+          flex flex-col items-center
+          p-5
+          rounded-2xl
           backdrop-blur-xl
           border border-white/20
           shadow-lg
-          rounded-xl
-          hover:shadow-2xl
-          hover:scale-105
-          hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
-          transition-transform duration-300
+          transition-all duration-500
+          group-hover:shadow-2xl
         "
         style={{
-          backgroundColor: bgColor ? bgColor : "rgba(255,255,255,0.05)",
-          color: textColor ? textColor : "white"
+          backgroundColor: bgColor || "rgba(255,255,255,0.05)",
         }}
       >
-
-        {/* Image Container */}
-        <div
-          className="
-            w-full flex justify-center items-center
-            bg-white/20
-            rounded-lg
-            overflow-hidden
-          "
-        >
+        {/* Image */}
+        <div className="w-full flex justify-center items-center mb-4">
           <img
             src={image}
             alt={itemName}
             className="
-              w-[9rem] h-[9rem] object-contain
-              transition-transform duration-300
-              group-hover:scale-110
+              w-[10rem] h-[10rem] object-contain
+              transition-transform duration-500
+              group-hover:scale-110 group-hover:rotate-1
+              will-change-transform
             "
           />
         </div>
 
         {/* Title */}
-        <h3 className="mt-4 text-lg font-semibold text-center tracking-wide">
+        <h3 className="text-lg font-semibold text-[#242424] tracking-wide">
           {itemName}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-center mt-2 leading-relaxed opacity-80">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        <p className="text-sm text-[#242424] mt-2 text-center leading-relaxed">
+          Powerful solution designed to streamline your workflow and boost productivity.
         </p>
 
-        {/* Button */}
+        {/* CTA */}
         <button
           onClick={() => navigate(`/products/${itemName}`)}
           className="
-            mt-5 py-2 px-4
-            rounded-lg
-            font-semibold
-            border border-cyan-400
-            bg-transparent
-            transition-all duration-300
+            mt-6 px-5 py-2
+            rounded-lg font-semibold text-cyan
+            border border-cyan-400/50
 
-            block sm:hidden
-            sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:block
+            lg:opacity-0 translate-y-3
+            group-hover:opacity-100 group-hover:translate-y-0
 
+            transition-all duration-500
+            hover:text-white
             hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500
+            hover:shadow-lg hover:shadow-cyan-400/40
           "
         >
           View Product
         </button>
-
       </div>
-
     </div>
   )
 }

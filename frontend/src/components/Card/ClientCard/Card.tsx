@@ -12,7 +12,7 @@ type ClientCard = {
 export const TestimonialCard: React.FC<ClientCard> = (props) => {
   return (
     <div
-      className={`rounded-3xl p-6 bg-white ${props.className || ""}`}
+      className={`rounded-3xl w-full p-6 bg-white ${props.className || ""}`}
       style={{
         boxShadow: "-5px -5px 10px 0px #FAFBFF, 5px 5px 10px 0px rgba(166, 171, 189, 0.25)",
       }}

@@ -1,6 +1,3 @@
-import React from "react";
-import TopSectionCard from "../../components/cards/TopSectionCard";
-import PartnersImage from "../../assets/visuals/Partners.png";
 import LogoLoop from "../../components/LogoLoop";
 
 const imageLogos = [

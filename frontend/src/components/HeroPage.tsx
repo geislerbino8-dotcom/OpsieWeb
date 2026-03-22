@@ -1,5 +1,6 @@
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
 import SplitText from './SplitText'
+import { Button } from './Button';
 
 type HeroPageProps = {
   heroText?: string;
@@ -25,10 +26,10 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
       <div className="relative z-10 flex flex-col items-center text-center px-4 md:px-8 mb-16 space-y-6">
 
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
           <SplitText
             text={ heroText ? heroText : "Bring your Ideas into Reality"}
-            className="text-10xl font-bold text-center"
+            className="text-10xl text-center"
             delay={50}
             duration={1.25}
             ease="power3.out"
@@ -51,15 +52,15 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
           sint magni esse quam, hic laudantium dolorum aliquam suscipit?
         </p>
 
-        <button
-          className="bg-[#3CBDE6] text-white font-semibold cursor-pointer px-8 py-4 rounded-xl transition- all duration-300 ease-in-out hover:text-white hover:bg-cyan-600 transition-colors hover:-translate-y-[2px]"
-          data-aos="fade-up"
-          onClick={()=> {
-            window.location.href = "/book-a-schedule"
-          }}
-        >
-          BOOK A MEETING SCHEDULE
-        </button>
+        <Button
+                label="Contact Us"
+                variant="secondary"
+                icon={<img src="/ICONS/contact-us.svg" className="w-3 h-3" />}
+                iconPosition="right"
+                className="font-poppins font-light my-4 px-4 text-md "
+                weight="light"
+                onClick={() => alert("Button Clicked")} //navigate to contact page
+              />
 
       </div>
       

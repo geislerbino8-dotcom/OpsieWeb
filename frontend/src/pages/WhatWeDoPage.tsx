@@ -1,4 +1,3 @@
-import React from 'react'
 import HeroPage from '../components/HeroPage'
 
 

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/opsie/opsie_logo.png";
 import PrimaryButton from "./buttons/PrimaryButton";
-import upArrow from "../assets/opsie/up-right-arrow.png";
 import MobileMenu from "./MobileMenu";
 import burgermenu from "../assets/icons/burger-bar.png";
 
@@ -13,10 +12,20 @@ const menuLists = [
   { name: "Products", link: "/products" },
 ];
 
+const products = [
+  { name: "Opsie HRIS", link: "opsie-hris" },
+  { name: "Opsync", link: "opsync" },
+  { name: "Opsync Pro", link: "opsync-pro" },
+  { name: "Opsync Cloud", link: "opsync-cloud" },
+  { name: "Opsync Lite", link: "opsync-lite" },
+  { name: "Opsie Web", link: "opsie-web" },
+];
+
 function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
   const [navIsOpen, setNavIsOpen] = useState(false);
+const [isProductsHover, setIsProductsHover] = useState(false);
 
   const toggleMobileNav = () => setNavIsOpen(!navIsOpen);
 
@@ -25,7 +34,7 @@ function Navigation() {
     setNavIsOpen(false);
   };
 
-  // Auto close mobile menu when resizing to desktop
+  // Auto close mobile menu when resizing
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -36,7 +45,8 @@ function Navigation() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-   const [showNav, setShowNav] = useState(true);
+  // Hide/show nav on scroll
+  const [showNav, setShowNav] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
 
   useEffect(() => {
@@ -44,88 +54,118 @@ function Navigation() {
       const currentScroll = window.scrollY;
 
       if (currentScroll > lastScroll) {
-        setShowNav(false); // scrolling down
+        setShowNav(false);
       } else {
-        setShowNav(true); // scrolling up
+        setShowNav(true);
       }
 
       setLastScroll(currentScroll);
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScroll]);
 
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 bg-transparent"
+    <nav
+      className="w-full fixed left-0 z-50"
       style={{
-        position: "fixed",
         top: showNav ? 0 : "-80px",
-        width: "100%",
         transition: "top 0.3s",
       }}
     >
+      {/* Desktop */}
+      <div className="hidden md:flex flex-col max-w-7xl mx-auto py-4 px-6">
+        <div className="flex items-center justify-between w-full">
+          {/* Logo */}
+          <div className="cursor-pointer" onClick={directToHome}>
+            <img src={logo} alt="Opsie Logo" className="w-32" />
+          </div>
 
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center justify-between max-w-7xl mx-auto py-4 px-6">
-        {/* Logo */}
-        <div className="cursor-pointer" onClick={directToHome}>
-          <img src={logo} alt="Opsie Logo" className="w-32" />
+          {/* Menu */}
+          <ul className="font-poppins flex bg-white rounded-4xl px-6 py-2 text-black relative shadow-inner">
+            {menuLists.map((item, index) => {
+              const isProducts = item.name === "Products";
+
+              if (isProducts) {
+                return (
+                  <li
+                    key={index}
+                    className="relative"
+                    onMouseEnter={() => setIsProductsHover(true)}
+                    onMouseLeave={() => setIsProductsHover(false)}
+                  >
+                    {/* Trigger */}
+                    <Link
+                      to={item.link}
+                      className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
+                        hover:bg-[#3CBDE6] hover:text-white
+                        ${location.pathname === item.link ? "bg-[#3CBDE6] text-white" : ""}
+                      `}
+                    >
+                      {item.name}
+                    </Link>
+
+                    {/* Dropdown */}
+                    {isProductsHover && (
+                      <aside
+                        className="
+                          absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl p-4
+                          transition-all duration-300 ease-out
+                        "
+                      >
+                        {products.map((prod, i) => (
+                          <a
+                            key={i}
+                            href={`/products/${prod.name}`}
+                            className="block px-3 py-2 rounded-lg text-sm
+                            hover:bg-blue-50 hover:text-[#3CBDE6] transition"
+                          >
+                            {prod.name}
+                          </a>
+                        ))}
+                      </aside>
+                    )}
+                  </li>
+                );
+              }
+
+              return (
+                <li key={index}>
+                  <Link
+                    to={item.link}
+                    className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
+                    hover:bg-[#3CBDE6] hover:text-white
+                    ${
+                      location.pathname === item.link
+                        ? "bg-[#3CBDE6] text-white"
+                        : ""
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Button */}
+          <PrimaryButton text="Get Started" variant="primary" />
         </div>
-
-        {/* Menu Links */}
-        <ul className="font-poppins flex space-x-4 bg-white rounded-3xl px-6 py-2 text-black"
-          style={{
-             boxShadow: "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset"
-          }}
-        >
-          {menuLists.map((item, index) => (
-            <li
-              key={index}
-              className="rounded-3xl transition-colors duration-200 hover:bg-[#3CBDE6] hover:text-white"
-            >
-              <Link
-                to={item.link}
-                className={`block px-4 py-2 font-medium ${
-                  location.pathname === item.link
-                    ? "rounded-3xl bg-[#3CBDE6] text-white"
-                    : ""
-                }`}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {/* Get Started Button */}
-        <PrimaryButton
-          text="Get Started"
-          color="#3CBDE6"
-          fontSize="1"
-          borderRadius="2"
-          margin="0"
-          padding="1"
-          image={upArrow}
-        />
       </div>
 
-      {/* Mobile Navigation (Burger Menu) */}
-      {/** Only visible below md (mobile) */}
+      {/* Mobile */}
       <div className="flex items-center justify-between px-6 py-4 md:hidden">
-        {/* Mobile Logo */}
-        <div className="cursor-pointer md:hidden" onClick={directToHome}>
+        <div className="cursor-pointer" onClick={directToHome}>
           <img src={logo} alt="Opsie Logo" className="w-24" />
         </div>
 
-        {/* Hamburger Menu */}
-        <button onClick={toggleMobileNav} className="focus:outline-none md:hidden">
+        <button onClick={toggleMobileNav}>
           <img src={burgermenu} alt="Menu" className="w-8" />
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       {navIsOpen && <MobileMenu closeMenu={() => setNavIsOpen(false)} />}
     </nav>
   );
