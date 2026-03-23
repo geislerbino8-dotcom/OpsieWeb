@@ -101,7 +101,6 @@ const TicketingSupportSystemPage = () => {
       apiState.startLoading();
 
       const data = await getActiveUsers();
-      console.log(data)
 
       setActiveUsers(data);
     } catch (error: any) {
@@ -402,7 +401,7 @@ const TicketingSupportSystemPage = () => {
                   {ticket.assignee ? ( 
                     <div className='flex items-center gap-2'>
                       <div className='min-w-7 min-h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
-                        {ticket.assignee.name}
+                        {ticket.assignee.name?.charAt(0)}
                       </div>
 
                       <span className='text-center'>{ticket.assignee.name}</span>

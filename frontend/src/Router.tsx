@@ -11,6 +11,7 @@ import BookingPage from './components/BookingPage'
 import TicketingSupportSystemPage from "./components/admin/pages/TicketingSupportSystemPage"
 import UserManagementPage from "./components/admin/pages/UserManagementPage"
 import LoginPage from "./components/admin/pages/LoginPage"
+import { useAuth } from "./hooks/useAuth"
 
 
 const token = localStorage.getItem('token')
@@ -89,6 +90,11 @@ const router = createBrowserRouter([
             }
         ]
     },
+
+    {
+        path: '/login',
+        element: <LoginPage />
+    }
 
     
   

@@ -96,13 +96,9 @@ const UserMenu = () => {
 
       if(!ok) return
 
-<<<<<<< HEAD
-      removeToken();
       window.location.href = '/admin';
-=======
       logoutUser();
       navigate('/login');
->>>>>>> 7000b46365635dde9b00c67fd3fab0e9ebb26ea7
     } catch (error) {
       console.error(error)
     }

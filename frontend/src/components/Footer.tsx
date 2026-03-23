@@ -2,6 +2,7 @@ import logoOnly from '../assets/opsie/opsie_logo.png'
 import EncourageCard from './cards/EncourageCard';
 import { SiFacebook, SiInstagram, SiGmail } from 'react-icons/si';
 import LogoLoop from './PartnersLogo/PartnersLogoLoop';
+import { useNavigate } from 'react-router-dom';
 
 const imageLogos = [
   { src: "/logo/Frame.svg", alt: "Company 1",  },
@@ -12,6 +13,8 @@ const imageLogos = [
 ];
 
 const Footer = () => {
+
+  const navigate = useNavigate()
 
   return (
     <div className="relative w-full  flex justify-center py-6 md:px-4 px-2 overflow-hidden">
@@ -114,6 +117,7 @@ const Footer = () => {
                 <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Partnership</li>
                 <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Location</li>
                 <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">FAQ’s</li>
+                <li onClick={()=> navigate("/admin") } className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Admin</li>
               </ul>
             </div>
 
