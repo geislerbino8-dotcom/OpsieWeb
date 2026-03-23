@@ -1,16 +1,10 @@
-import axios from 'axios';
-import { getToken } from '../utils/authToken';
+import axiosClient from './axiosClient';
 
 export const createUser = async (userData: any) => {
   try {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/create`,
-      userData,
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+    const response = await axiosClient.post(
+      '/auth/create',
+      userData
     );
 
     return response.data;

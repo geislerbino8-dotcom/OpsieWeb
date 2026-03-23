@@ -29,7 +29,7 @@ export class UserController {
 
   public getAllActive = async (req: AuthRequest, res: Response) => {
     try {
-      const users = await UserModel.find({ isActive: true }).select('_id name');
+      const users = await UserModel.find({ isActive: true }).select('_id name role');
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch users' });
@@ -61,7 +61,7 @@ export class UserController {
 
         const passwordMatch = await bcrypt.compare(currentPassword, user.password);
         if (!passwordMatch) {
-          res.status(401).json({ message: 'Current password is incorrect' });
+          res.status(400).json({ message: 'Current password is incorrect' });
           return;
         }
 

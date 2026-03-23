@@ -1,15 +1,9 @@
-import axios from 'axios';
-import { getToken } from '../utils/authToken';
+import axiosClient from './axiosClient';
 
 export const deleteUser = async (id: string) => {
   try {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/delete/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+    const response = await axiosClient.delete(
+      `/auth/delete/${id}`
     );
 
     return response.data;

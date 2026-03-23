@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/login';
+import { useAuth } from '../../../hooks/useAuth';
 import { useApiState } from '../../../hooks/useApiState';
 import { useToast } from '../../../hooks/useToast';
-import { setToken } from '../../../utils/authToken';
 
 import LoadingOverlay from '../common/LoadingOverlay';
 import ToastContainer from '../common/ToastComponent';
@@ -12,6 +13,10 @@ import OpsieLogo from '../../../assets/opsie/opsie_full.jpg'
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+
+  const { loginUser } = useAuth();
 
   const apiState = useApiState();
   const { toasts, addToast } = useToast();
@@ -24,10 +29,10 @@ const LoginPage = () => {
 
       const data = await login(username, password);
 
-      setToken(data.token)
+      loginUser(data.token);
 
       addToast(data.message, 'success');
-      window.location.href = '/admin';
+      navigate('/admin');
     } catch (error: any) {
       addToast(error.response?.data?.message, 'error');
     }

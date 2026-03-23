@@ -1,15 +1,9 @@
-import axios from 'axios';
-import { getToken } from '../utils/authToken';
+import axiosClient from './axiosClient';
 
 export const getAllUsers = async () => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/user/getAll`,
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+    const response = await axiosClient.get(
+      '/user/getAll'
     );
 
     return response.data;

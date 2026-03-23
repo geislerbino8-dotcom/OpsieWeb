@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosClient from './axiosClient';
 
 export interface TicketData {
   name: string;
@@ -10,8 +10,8 @@ export interface TicketData {
 
 export const createTicket = async (data: TicketData) => {
   try {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/ticket/create`,
+    const response = await axiosClient.post(
+      '/ticket/create',
       data
     );
 

@@ -20,7 +20,7 @@ const Header = () => {
         )}
 
         {location.pathname === '/' && 
-          <img src='src/assets/opsie/opsie_logo.jpg' alt='Logo' className='h-10'/>
+          <img src='src/assets/opsie/opsie_logo.jpg' alt='Logo' className='h-10' draggable='false' />
         } 
       </div>
 

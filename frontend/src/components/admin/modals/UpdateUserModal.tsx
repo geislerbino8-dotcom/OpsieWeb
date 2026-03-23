@@ -1,43 +1,8 @@
 import { useState } from 'react';
-import { updateUser } from '../../../api/updateUser';
-import { useApiState } from '../../../hooks/useApiState';
-import { useToast } from '../../../hooks/useToast';
-import { useConfirm } from '../context/ConfirmContext';
 
-import LoadingOverlay from '../common/LoadingOverlay';
-import ToastContainer from '../common/ToastComponent';
-
-const UpdateUserModal = ({ user, onClose, onUpdated }: any) => {
+const UpdateUserModal = ({ user, handleSave, onClose }: any) => {
   const [name, setName] = useState(user.name);
   const [role, setRole] = useState(user.role);
-
-  const apiState = useApiState();
-  const { toasts, addToast } = useToast();
-
-  const confirm = useConfirm();
-
-  const handleSave = async () => {
-    try {
-      const ok = await confirm({
-        title: 'Update User',
-        message: 'Are you sure you want to update this user?',
-        confirmText: 'UPDATE'
-      })
-
-      if(!ok) return
-
-      apiState.startLoading();
-      const data = await updateUser(user._id, { name, role });
-    
-      addToast(data.message, 'success');
-      onUpdated();
-      onClose();
-    } catch (error: any) {
-      addToast(error.response?.data?.message, 'error');
-    } finally {
-      apiState.reset();
-    }
-  }
 
   return (
     <>
@@ -71,7 +36,7 @@ const UpdateUserModal = ({ user, onClose, onUpdated }: any) => {
             </button>
 
             <button
-              onClick={handleSave}
+              onClick={() => {handleSave(user._id, name, role)}}
               className='bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded cursor-pointer'
             >
               Save
@@ -79,10 +44,6 @@ const UpdateUserModal = ({ user, onClose, onUpdated }: any) => {
           </div>
         </div>
       </div>
-
-      {apiState.status === 'loading' && <LoadingOverlay />}
-
-      <ToastContainer toasts={toasts} />
     </>
     
   );

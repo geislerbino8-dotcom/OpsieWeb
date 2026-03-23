@@ -1,9 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../api/getMe';
-import { removeToken } from '../../../utils/authToken';
+import { updateProfile } from '../../../api/updateProfile.ts';
+import { useAuth } from '../../../hooks/useAuth';
 import ShowProfileModal from '../modals/ShowProfileModal';
 import EditProfileModal from '../modals/EditProfileModal';
+import { useApiState } from '../../../hooks/useApiState';
+import { useToast } from '../../../hooks/useToast';
 import { useConfirm } from '../context/ConfirmContext';
+
+import LoadingOverlay from '../common/LoadingOverlay';
+import ToastContainer from '../common/ToastComponent';
 
 type User = {
   _id: string;
@@ -18,8 +25,15 @@ const UserMenu = () => {
   const [user, setUser] = useState<User | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditProfileModal, setShowEditProfileModal] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const navigate = useNavigate();
+
+  const { logoutUser } = useAuth();
+
+  const apiState = useApiState();
+  const { toasts, addToast } = useToast();
 
   const confirm = useConfirm();
 
@@ -49,6 +63,29 @@ const UserMenu = () => {
     }
   };
 
+  const handleSave = async (name: string, currentPassword: string, newPassword: string) => {
+    try {
+      const ok = await confirm({
+        title: 'Update Your Profile',
+        message: 'Are you sure you want to update your information?',
+        confirmText: 'UPDATE'
+      })
+
+      if(!ok) return
+
+      apiState.startLoading();
+      const data = await updateProfile({ name, currentPassword, newPassword });
+
+      addToast(data.message, 'success');
+      fetchUser();
+      setShowEditProfileModal(false);
+    } catch (error: any) {
+      addToast(error.response?.data?.message, 'error');
+    } finally {
+      apiState.reset();
+    }
+  }
+
   const logout = async () => {
     try {
       const ok = await confirm({
@@ -59,8 +96,13 @@ const UserMenu = () => {
 
       if(!ok) return
 
+<<<<<<< HEAD
       removeToken();
       window.location.href = '/admin';
+=======
+      logoutUser();
+      navigate('/login');
+>>>>>>> 7000b46365635dde9b00c67fd3fab0e9ebb26ea7
     } catch (error) {
       console.error(error)
     }
@@ -81,7 +123,7 @@ const UserMenu = () => {
       </button>
 
       <div
-        className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transform transition-all duration-200 ${
+        className={`absolute right-1 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transform transition-all duration-200 ${
           dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
         }`}
       >
@@ -93,7 +135,7 @@ const UserMenu = () => {
         </button>
 
         <button
-          onClick={() => { setShowEditModal(true); setDropdownOpen(false); }}
+          onClick={() => { setShowEditProfileModal(true); setDropdownOpen(false); }}
           className='w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 cursor-pointer'
         >
           Edit Profile
@@ -108,7 +150,11 @@ const UserMenu = () => {
       </div>
 
       {showProfileModal && <ShowProfileModal user={user} onClose={() => setShowProfileModal(false)} />}
-      {showEditModal && <EditProfileModal user={user} onClose={() => setShowEditModal(false)} onUpdated={fetchUser} />}
+      {showEditProfileModal && <EditProfileModal user={user} handleSave={handleSave} onClose={() => setShowEditProfileModal(false)} />}
+
+      {apiState.status === 'loading' && <LoadingOverlay />}
+
+      <ToastContainer toasts={toasts} />
     </div>
   );
 };

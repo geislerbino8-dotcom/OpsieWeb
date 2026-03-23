@@ -1,44 +1,9 @@
-import { useState } from 'react';
-import { createUser } from '../../../api/createUser';
-import { useApiState } from '../../../hooks/useApiState';
-import { useToast } from '../../../hooks/useToast';
-import { useConfirm } from '../context/ConfirmContext';
+import { useState } from 'react';;
 
-import LoadingOverlay from '../common/LoadingOverlay';
-import ToastContainer from '../common/ToastComponent';
-
-const CreateUserModal = ({ onClose, onCreated }: any) => {
+const CreateUserModal = ({ handleCreate, onClose}: any) => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('support');
-
-  const apiState = useApiState();
-  const { toasts, addToast } = useToast();
-
-  const confirm = useConfirm();
-
-  const handleCreate = async () => {
-    try {
-      const ok = await confirm({
-        title: 'Create User',
-        message: 'Are you sure you want to create this user account?',
-        confirmText: 'CREATE'
-      })
-
-      if(!ok) return
-
-      apiState.startLoading();
-      const data = await createUser({ name, username, role });
-    
-      addToast(data.message, 'success');
-      onCreated();
-      onClose();
-    } catch (error: any) {
-      addToast(error.response?.data?.message, 'error');
-    } finally {
-      apiState.reset();
-    }
-  }
 
   return (
     <>
@@ -81,7 +46,7 @@ const CreateUserModal = ({ onClose, onCreated }: any) => {
             </button>
 
             <button
-              onClick={handleCreate}
+              onClick={() => { handleCreate(name, username, role) }}
               className='bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded cursor-pointer'
             >
               Create
@@ -89,10 +54,6 @@ const CreateUserModal = ({ onClose, onCreated }: any) => {
           </div>
         </div>
       </div>
-
-        {apiState.status === 'loading' && <LoadingOverlay />}
-
-        <ToastContainer toasts={toasts} />
     </>
     
   );

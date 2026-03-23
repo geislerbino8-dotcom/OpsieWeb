@@ -1,15 +1,9 @@
-import axios from 'axios';
-import { getToken } from '../utils/authToken';
+import axiosClient from './axiosClient';
 
 export const getTickets = async () => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/ticket/getAll`,
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+    const response = await axiosClient.get(
+      '/ticket/getAll'
     );
 
     return response.data;

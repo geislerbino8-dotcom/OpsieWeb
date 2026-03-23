@@ -37,7 +37,7 @@ const DashboardPage = () => {
               ${hoverIndex === i ? 'scale-102 shadow-lg' : 'scale-100'}
               hover:bg-gray-50`}
           >
-            <img src={card.icon} alt={card.title} className='w-16 h-16' />
+            <img src={card.icon} alt={card.title} className='w-16 h-16' draggable='false' />
             <h2 className='text-lg font-semibold text-gray-800'>{card.title}</h2>
             <p className='text-sm text-gray-500 text-center'>{card.description}</p>
           </div>

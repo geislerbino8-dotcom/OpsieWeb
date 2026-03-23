@@ -1,16 +1,10 @@
-import axios from 'axios';
-import { getToken } from '../utils/authToken';
+import axiosClient from './axiosClient';
 
 export const updateUser = async (id: string, data: any) => {
   try {
-    const response = await axios.patch(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/updateUser/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+    const response = await axiosClient.patch(
+      `/auth/updateUser/${id}`,
+      data
     );
 
     return response.data;
