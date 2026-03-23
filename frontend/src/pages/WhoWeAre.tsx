@@ -1,7 +1,7 @@
 import { Button } from "../components/Button/Button";
 import FAQAccordion from "../components/FaqSection/Faq";
 import { useNavigate } from "react-router-dom";
-import { SiFacebook, SiInstagram, SiGmail } from "react-icons/si";
+import { SiFacebook, SiInstagram, SiGmail, SiGithub } from "react-icons/si";
 import CountUp from "../components/CountUp";
 import MapDesign from "@/components/sections/MapDesign";
 
@@ -42,7 +42,7 @@ export default function WhoWeAre() {
                     iconPosition="right"
                     className="font-poppins font-light my-4 px-4 text-md "
                     weight="light"
-                    onClick={() => navigate("/whatWeDo")} //navigate to contact page
+                    onClick={() => navigate("/what-we-do")} //navigate to contact page
                 />
                 </div>
             </div>
@@ -55,6 +55,8 @@ export default function WhoWeAre() {
                     <SiInstagram className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8  " />
                 </div>
                 <div className="w-14 h-14 md:w-10 md:h-10 lg:w-14 lg:h-14 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
+                    <SiGithub className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8  " />
+
                 </div>
                 <div className="w-14 h-14 md:w-10 md:h-10 lg:w-14 lg:h-14 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
                     <SiGmail className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8  " />

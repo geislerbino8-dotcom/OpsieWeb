@@ -4,7 +4,7 @@ import ClientCard from "../components/sections/ClientReviewsSection";
 import LogoLoop from "../components/PartnersLogo/PartnersLogoLoop";
 import FAQAccordion from "../components/FaqSection/Faq"
 import WhyChooseUs from "../components/sections/WhyChooseUs";
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -19,6 +19,8 @@ const imageLogos = [
 ];
 
 export default function WhatWeDo() {
+
+  const Navigate = useNavigate()
 
 
     return (
@@ -93,7 +95,7 @@ export default function WhatWeDo() {
                 iconPosition="right"
                 className="font-poppins font-light my-4 px-4 text-md "
                 weight="light"
-                onClick={() => alert("Button Clicked")} //navigate to contact page
+                onClick={() => Navigate("/contact-us")} //navigate to contact page
               />
               </div>
               

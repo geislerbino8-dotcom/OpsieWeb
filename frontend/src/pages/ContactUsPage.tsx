@@ -1,14 +1,16 @@
-import { Button } from '@/components/Button'
 import ProductItemCTA from '@/components/cards/ProductItemCTA'
 import ContactForm from '@/components/cards/ContactForm'
 import ContactsCard from '@/components/cards/ContactsCard'
 import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
 import MapBox from '@/components/MapBox'
+import ContactBg from '../assets/background-images/ContactUsBg.png'
+import { useNavigate } from 'react-router-dom';
 
 
 function ContactUsPage() {
 
   const  dirAction = false
+  const navigate = useNavigate()
 
   return (
     <div className="max-w-[1280px] mt-22 mx-auto overflow-hidden">
@@ -20,7 +22,7 @@ function ContactUsPage() {
   
     {/* Background Image */}
     <img
-      src="/WhoWeAre-Hero.svg"
+      src={ContactBg}
       alt="Hero Image"
       className="absolute inset-0 w-full h-full object-cover"
     />
@@ -75,22 +77,14 @@ function ContactUsPage() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               </p>
               <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
-              <Button
-                label="Contact Us"
-                variant="secondary"
-                icon={<img src="/ICONS/contact-us.svg" className="w-3 h-3" />}
-                iconPosition="right"
-                className="font-poppins font-light my-4 px-4 text-md "
-                weight="light"
-                onClick={() => alert("Button Clicked")} //navigate to contact page
-              />
+            
               </div>
               
             </div>
           </div>
           
       </div>
-      <div className="flex flex-row justify-center items-center md:items-start md:justify-center md:hidden gap-4 mb-6 sm:mb-10">
+      <div data-aos="fade-left" className="flex flex-row justify-center items-center md:items-start md:justify-center md:hidden gap-4 mb-6 sm:mb-10">
 
           <div className="flex flex-row -space-x-2 mt-2 lg:mt-0">
               <img src="/profiles/Rectangle 780.svg" className="w-12 h-12   object-cover  " />
@@ -121,52 +115,52 @@ function ContactUsPage() {
             <ContactsCard title='Give us a Call.' 
               children={
                 <>
-                <p className="text-gray-600">
+                <p data-aos="fade-left" className="text-gray-600">
             For contact details, kindly reach:
           </p>
 
-            <p>Mobile No. 12345678911</p>
-            <p>Mobile No. 21314456272</p>
-            <p>HR Department email: asdas@gmail.com</p>
+            <p data-aos="fade-left">Mobile No. 12345678911</p>
+            <p data-aos="fade-left">Mobile No. 21314456272</p>
+            <p data-aos="fade-left">HR Department email: asdas@gmail.com</p>
                   <p>1-800-664-9073</p>
                 </>
               }
             />
-            <ContactsCard title='Chat with us.' 
+            <ContactsCard data-aos="fade-left" title='Chat with us.' 
               children={
                 <>
                  <div className="flex flex-row items-center">
-                    <SiFacebook className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
+                    <SiFacebook data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
                     
                     <div className="flex items-center">
-                      <a href="" className='ml-3'>
+                      <a data-aos="fade-left" href="" className='ml-3'>
                         www.facebook.com
                       </a>
                     </div>
                   </div>
                  <div className="flex flex-row items-center">
-                    <SiInstagram className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
+                    <SiInstagram data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
                     
                     <div className="flex items-center">
-                      <a href="" className='ml-3'>
+                      <a data-aos="fade-left" href="" className='ml-3'>
                         @opsiesoftware
                       </a>
                     </div>
                   </div>
                   <div className="flex flex-row items-center">
-                    <SiGmail className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
+                    <SiGmail data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
                     
                     <div className="flex items-center">
-                      <a href="" className='ml-3'>
+                      <a data-aos="fade-left" href="" className='ml-3'>
                         opsiesoftwaresolutions@gmail.com
                       </a>
                     </div>
                   </div>
                   <div className="flex flex-row items-center">
-                    <SiIndeed className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
+                    <SiIndeed data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
                     
                     <div className="flex items-center">
-                      <a href="" className='ml-3'>
+                      <a data-aos="fade-left" href="" className='ml-3'>
                         www.facebook.com
                       </a>
                     </div>
@@ -178,12 +172,16 @@ function ContactUsPage() {
               title="Meet us Virtually"
               children={
                 <div className="flex flex-col gap-3 text-center">
-                  <p className="text-gray-600">
+                  <p data-aos="fade-left" className="text-gray-600">
                     Schedule a virtual meeting with our team 
                     <span><br /></span>and let’s discuss how we can help you.
                   </p>
 
-                  <button className="bg-[#3CBDE6] text-white px-4 py-2 rounded-md hover:bg-[#34a9cc] transition">
+                  <button data-aos="fade-left" className="bg-[#3CBDE6] text-white px-4 py-2 rounded-md hover:bg-[#34a9cc] transition"
+                    onClick={()=> {
+                      navigate("/book-a-schedule")
+                    }}
+                  >
                     Book a Meeting
                   </button>
                 </div>
@@ -197,15 +195,17 @@ function ContactUsPage() {
   {/* LEFT: MAP */}
   <div className="bg-white p-4 rounded-2xl">
     
-    <div className='relative md:left-6'>
-      <MapBox getDirection={dirAction} />
+    <div className='relative md:left-9'>
+      <MapBox data-aos="fade-right" getDirection={dirAction} />
     </div>
     <div className='my-10'>
       <div className='my-3'>
-      <h1 className='text-3xl font-bold'>Main Office</h1>
-    Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
+      <h1 data-aos="fade-right" className='text-3xl font-bold'>Main Office</h1>
+      <p data-aos="fade-right">Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
+</p>
     </div>
     <button 
+          data-aos="fade-right"
           onClick={() => dirAction}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"
         >
@@ -215,13 +215,13 @@ function ContactUsPage() {
   </div>
 
   {/* RIGHT: OTHER LOCATIONS */}
-  <div className="flex flex-col gap-6">
+  <div className="w-full md:w-[90%] flex flex-col gap-6">
 
     <div>
-      <h1 className="text-3xl">
+      <h1 data-aos="fade-right" className="text-3xl">
         Other Locations
       </h1>
-      <p className="text-gray-500 text-sm mt-1">
+      <p data-aos="fade-right" className="text-gray-500 text-sm mt-1">
         Explore our branches across the Philippines.
       </p>
     </div>
@@ -231,8 +231,8 @@ function ContactUsPage() {
 
       {/* ITEM */}
       <div className="p-4 rounded-xl border hover:shadow-md transition">
-        <h2 className="font-semibold">Quezon City (HQ)</h2>
-        <p className="text-gray-500 text-sm">Diliman, Quezon City</p>
+        <h2 data-aos="fade-right" className="font-semibold">Quezon City (HQ)</h2>
+        <p data-aos="fade-right" className="text-gray-500 text-sm">Diliman, Quezon City</p>
         <button 
           onClick={() => dirAction}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"
@@ -243,8 +243,8 @@ function ContactUsPage() {
 
       {/* ITEM */}
       <div className="p-4 rounded-xl border hover:shadow-md transition">
-        <h2 className="font-semibold">Makati Office</h2>
-        <p className="text-gray-500 text-sm">Ayala Avenue, Makati</p>
+        <h2 data-aos="fade-right" className="font-semibold">Makati Office</h2>
+        <p data-aos="fade-right" className="text-gray-500 text-sm">Ayala Avenue, Makati</p>
         <button 
           onClick={() => dirAction}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"
@@ -255,8 +255,8 @@ function ContactUsPage() {
 
       {/* ITEM */}
       <div className="p-4 rounded-xl border hover:shadow-md transition">
-        <h2 className="font-semibold">Cebu Branch</h2>
-        <p className="text-gray-500 text-sm">IT Park, Cebu City</p>
+        <h2 data-aos="fade-right" className="font-semibold">Cebu Branch</h2>
+        <p data-aos="fade-right" className="text-gray-500 text-sm">IT Park, Cebu City</p>
         <button 
           onClick={() => dirAction}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"

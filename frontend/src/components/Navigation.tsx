@@ -99,7 +99,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     <Link
                       to={item.link}
                       className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
-                        hover:bg-[#3CBDE6] hover:text-white
+                         hover:text-[#3CDBE6] hover:scale-110
                         ${location.pathname === item.link ? "bg-[#3CBDE6] text-white" : ""}
                       `}
                     >
@@ -116,10 +116,10 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                       >
                         {products.map((prod, i) => (
                           <a
+                            onClick={()=> navigate(`/products/${prod.name}`)}
                             key={i}
-                            href={`/products/${prod.name}`}
-                            className="block px-3 py-2 rounded-lg text-sm
-                            hover:bg-blue-50 hover:text-[#3CBDE6] transition"
+                            className="cursor-pointer block px-3 py-2 rounded-lg text-sm
+                            hover:bg-blue-50 hover:text-[#3CBDE6] transition hover:scale-110"
                           >
                             {prod.name}
                           </a>
@@ -135,7 +135,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                   <Link
                     to={item.link}
                     className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
-                    hover:bg-[#3CBDE6] hover:text-white
+                    hover:text-[#3CBDE6] hover:scale-110
                     ${
                       location.pathname === item.link
                         ? "bg-[#3CBDE6] text-white"
@@ -150,7 +150,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
           </ul>
 
           {/* Button */}
-          <PrimaryButton text="Get Started" variant="primary" />
+          <PrimaryButton text="Get Started" variant="primary" onClick={()=> {
+            navigate("/book-a-schedule")
+          }}/>
         </div>
       </div>
 

@@ -73,13 +73,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row gap-12 items-start">
 
           {/* LEFT SIDE */}
-          <div className="md:w-1/3 text-center md:text-left">
-            <img src={logoOnly} className="w-70 mx-auto md:mx-0 mb-4" />
-
-            <p className="text-gray-500 text-sm mb-6">
-              Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-
+          <div className="w-full flex justify-center align-center md:w-1/3 text-center md:text-left">
+            <img src={logoOnly} className="w-70 mx-auto md:mx-0" />
         
           </div>
 
@@ -89,9 +84,15 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-3">Home</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">About</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Service Offers</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Products</li>
+                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">
+                  <a href="/who-we-are">About</a>
+                </li>
+                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">
+                  <a href="/#what-we-do">Service Offers</a>
+                </li>
+                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">
+                  <a href="/products">Products</a>
+                </li>
                 <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Contact Us</li>
               </ul>
             </div>

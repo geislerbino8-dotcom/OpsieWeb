@@ -13,9 +13,9 @@ function BookingPage() {
       />
 
       {/* Header Section */}
-      <div className="w-full max-w-3xl text-center mb-12">
+      <div className="w-full max-w-3xl text-center m-12">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-          Let's Start Communicating
+          Let's Discuss That.
         </h1>
         <p className="text-gray-600 text-lg md:text-xl">
           Schedule a quick meeting using the calendar below. Excited to connect with you!

@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom'
 import ProductItemCTA from '@/components/cards/ProductItemCTA'
-import { TestimonialCard } from '@/components/Card/ClientCard'
+//import { TestimonialCard } from '@/components/Card/ClientCard'
 import heroImg from '../assets/samples/HRIS/image.png'
 import ss1 from '../assets/samples/HRIS/ss1.png'
 import ss2 from '../assets/samples/HRIS/ss2.png'
 import ss3 from '../assets/samples/HRIS/ss3.png'
 import ss4 from '../assets/samples/HRIS/ss4.png'
 
-const cards = [
+{
+  /**
+   * const cards = [
     {
       name: "John Doe",
       role: "Co-Founder at Skale",
@@ -37,6 +39,8 @@ const cards = [
       rating: 5,
     },
   ];
+   */
+}
 
   const sampleKeyFeatures  = [
   {
@@ -103,7 +107,10 @@ function ProductItemPage() {
             </p>
 
             <div className="flex justify-center md:justify-start">
-              <button className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl font-bold text-white shadow-lg hover:scale-105 hover:shadow-cyan-400/50 transition-all duration-300">
+              <button className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl font-bold text-white shadow-lg hover:scale-105 hover:shadow-cyan-400/50 transition-all duration-300"
+                onClick={()=> window.location.href = "mailto:support@example.com"
+}
+              >
                 Get a Demo
               </button>
             </div>
@@ -197,7 +204,8 @@ function ProductItemPage() {
             ))}
           </div>
 
-          <div className='p-cards-container md:flex-row flex-col h-full w-full flex overflow-x-auto overflow-y-visible'>
+          {
+            /**<div className='p-cards-container md:flex-row flex-col h-full w-full flex overflow-x-auto overflow-y-visible'>
             {
               cards.map((card, item)=> (
                 <div key={item} className='p-cards-container flex-shrink-0 w-[40%] px-4'>
@@ -206,7 +214,8 @@ function ProductItemPage() {
               ))
             }
           </div>
-            
+             */
+          }
 
          
         </div>

@@ -1,6 +1,7 @@
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
 import SplitText from './SplitText'
 import { Button } from './Button';
+import { useNavigate } from 'react-router-dom';
 
 type HeroPageProps = {
   heroText?: string;
@@ -8,6 +9,9 @@ type HeroPageProps = {
 };
 
 function HeroPage({ heroText, bgImage }: HeroPageProps) {
+
+  const navigate = useNavigate()
+
   return (
     <div
       className="w-full h-screen font-poppins relative flex flex-col justify-end"
@@ -53,13 +57,13 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         </p>
 
         <Button
-                label="Contact Us"
+                label="Book a meeting now"
                 variant="secondary"
                 icon={<img src="/ICONS/contact-us.svg" className="w-3 h-3" />}
                 iconPosition="right"
                 className="font-poppins font-light my-4 px-4 text-md "
                 weight="light"
-                onClick={() => alert("Button Clicked")} //navigate to contact page
+                onClick={() => navigate("/book-a-schedule")} //navigate to contact page
               />
 
       </div>

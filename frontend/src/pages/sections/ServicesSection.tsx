@@ -1,24 +1,27 @@
 import ServicesCards from "../../components/cards/ServicesCards";
 import '../../styles/ServicesSection.css'
+import img1 from '../../assets/card-bg/webdev.png'
+import img2 from '../../assets/card-bg/mobiledev.png'
+import img3 from '../../assets/card-bg/aidev.png'
 
 
 const services = [
    {
       serviceName: "Web Development",
       desc: 'Lorem*2',
-      image: './src/assets/card-bg/webdev.png'
+      image: img1
    },
 
     {
       serviceName: "Mobile Development",
       desc: 'Lorem*2',
-      image: './src/assets/card-bg/mobiledev.png'
+      image: img2
    },
 
     {
       serviceName: "AI Modeling",
       desc: 'Lorem*2',
-      image: './src/assets/card-bg/aidev.png'
+      image: img3
    },
 
 ]
@@ -26,7 +29,7 @@ const services = [
 
 function ServicesSection() {
   return (
-    <section className="w-full h-full flex flex-col items-center py-16 px-4 bg-white">
+    <section id="service-section" className="w-full h-full flex flex-col items-center py-16 px-4 bg-white">
 
       <div className="text-center max-w-3xl py-16">
         <h1 className="text-3xl md:text-4xl mb-4">
