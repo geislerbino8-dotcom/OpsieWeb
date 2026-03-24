@@ -1,4 +1,4 @@
-name: Deploy Staging
+name: Deploy Staging Frontend
 
 on:
   push:
@@ -6,43 +6,31 @@ on:
       - 1.0.2_staging_test
 
 jobs:
-  deploy:
+  deploy-frontend:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Setup Node
       uses: actions/setup-node@v3
       with:
         node-version: 20
 
     - name: Install frontend dependencies
-      run: npm install
       working-directory: ./frontend
+      run: npm install
 
     - name: Build frontend
-      run: npm run build
       working-directory: ./frontend
-
-    - name: Install backend dependencies
-      run: npm install
-      working-directory: ./backend
-
-    - name: Build backend
       run: npm run build
-      working-directory: ./backend
 
-    - name: Deploy to VPS
-      uses: appleboy/ssh-action@v0.1.7
+    - name: Upload frontend build to VPS
+      uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_KEY }}
-        script: |
-          TARGET_DIR="/var/www/staging.opsiesoftware"
-
-          mkdir -p $TARGET_DIR
-
-          rsync -avz --delete ./frontend/dist/ $TARGET_DIR/
+        source: "frontend/dist/*"
+        target: "/var/www/opsie-staging/frontend"
