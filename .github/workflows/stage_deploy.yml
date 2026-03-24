@@ -26,7 +26,7 @@ jobs:
       working-directory: ./frontend
       run: npm run build
 
-    - name: Upload frontend build to VPS
+    - name: Deploy Frontend
       uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.VPS_HOST }}
