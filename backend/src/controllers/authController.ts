@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -29,7 +30,7 @@ export class AuthController {
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch user' });
     }
-  }
+  };
 
   public create = async (req: Request, res: Response) => {
     try {
@@ -62,7 +63,7 @@ export class AuthController {
     } catch (error) {
       res.status(500).json({ message: 'Failed to create user' });
     }
-  }
+  };
 
   public login = async (req: Request, res: Response) => {
     try {
@@ -90,7 +91,7 @@ export class AuthController {
     } catch (error) {
       res.status(500).json({ message: 'Login failed' });
     }
-  }
+  };
 
   public async updateUser(req: AuthRequest, res: Response) {
     try {
@@ -124,7 +125,7 @@ export class AuthController {
         return;
       }
 
-      user.name = name
+      user.name = name;
       user.role = role;
       user.permissions = ROLE_PERMISSIONS[role];
 
@@ -177,7 +178,7 @@ export class AuthController {
 
       const user = await UserModel.findById(id);
 
-      if (!user) return res.status(404).json({ message: 'User not found' })
+      if (!user) return res.status(404).json({ message: 'User not found' });
 
       if (user.role === 'admin') return res.status(403).json({ message: 'Cannot delete admin users' });
 

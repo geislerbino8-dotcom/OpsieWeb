@@ -4,7 +4,7 @@ const getStatusBadge = (status: string) => {
     'in progress': '#f59e0b',
     resolved: '#10b981',
     closed: '#6b7280',
-    "won't fix": '#ef4444'
+    'won\'t fix': '#ef4444'
   };
 
   const color = colors[status] || '#6b7280';

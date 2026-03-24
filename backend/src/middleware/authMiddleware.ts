@@ -20,7 +20,8 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
     next();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });
   }
-}
+};

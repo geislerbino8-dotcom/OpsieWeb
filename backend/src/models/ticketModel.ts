@@ -26,7 +26,7 @@ const TicketSchema = new Schema(
       enum: [
         'open',
         'in progress',
-        "won't fix",
+        'won\'t fix',
         'closed',
         'resolved',
       ],
