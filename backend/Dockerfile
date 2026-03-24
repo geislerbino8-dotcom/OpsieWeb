@@ -1,12 +1,22 @@
+FROM node:20 AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npx tsc
+
 FROM node:20
 
 WORKDIR /app
 
 COPY package*.json ./
-
 RUN npm install --production
 
-COPY dist ./dist
+COPY --from=builder /app/dist ./dist
 COPY .env ./
 
 EXPOSE 5000

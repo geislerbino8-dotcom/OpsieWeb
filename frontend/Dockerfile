@@ -1,14 +1,22 @@
-FROM node:20
+FROM node:20 AS builder
 
 WORKDIR /app
 
 COPY package*.json ./
+RUN npm install
 
-RUN npm install --production
+COPY . .
 
-COPY dist ./dist
+RUN npm run build
+
+FROM node:20
+
+WORKDIR /app
+
 RUN npm install -g serve
+
+COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "dist", "-p", "3000"]
+CMD ["serve", "-s", "dist", "-l", "3000"]
