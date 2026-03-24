@@ -33,4 +33,4 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_KEY }}
         source: "frontend/dist/*"
-        target: "/var/www/opsie-staging/frontend"
+        target: "/var/www/opsie-staging"
