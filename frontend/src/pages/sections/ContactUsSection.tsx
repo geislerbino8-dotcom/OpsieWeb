@@ -30,10 +30,10 @@ function ContactUsSection() {
       </div>
 
       {/* Contact Form & Map */}
-      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8">
+      <div className="w-full max-w-6xl flex flex-col justify-center md:flex-row gap-8">
 
         <div
-          className="flex-1"
+          className="flex justify-center flex-1"
           data-aos="fade-right"
           data-aos-delay="200"
         >
@@ -41,7 +41,7 @@ function ContactUsSection() {
         </div>
 
         <div
-          className="flex-1"
+          className="flex justify-center flex-1"
           data-aos="fade-left"
           data-aos-delay="300"
         >

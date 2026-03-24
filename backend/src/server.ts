@@ -11,6 +11,11 @@ const dns = require('dns');
 // Force Google DNS
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://opsiesoftwaresolutions.vercel.app"
+];
+
 export default class Server {
   public app: Application;
   private readonly port = process.env.PORT || 4000;
@@ -25,8 +30,21 @@ export default class Server {
 
   private initializeMiddlewares = (): void => {
     this.app.use(express.json());
-    this.app.use(cors());
+    this.app.use(
+      cors({  
+        origin: function (origin, callback) {
+          if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+          } else {
+            callback(new Error("Not allowed by CORS"));
+          }
+        },
+        credentials: true, 
+      })
+    );
   }
+
+  
 
   private initializeRoutes = (): void => {
     const ticketRoute = new TicketRoute();

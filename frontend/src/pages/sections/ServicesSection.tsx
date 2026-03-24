@@ -41,8 +41,8 @@ function ServicesSection() {
         </p>
       </div>
 
-            <div className="w-full max-w-6xl h-full pb-16 max-h-6xl overflow-x-auto overflow-y-visible">
-        <div className="flex gap-6 pb-1">
+      <div className="p-cards-container w-full max-w-6xl h-full max-h-6xl overflow-x-auto overflow-y-visible">
+        <div className="w-full flex md:justify-center gap-6">
           {
             services.map((item, index)=> (
               <ServicesCards key={index} serviceName={item.serviceName} desc={item.desc} image={item.image} />

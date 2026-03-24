@@ -34,7 +34,6 @@ const [isProductsHover, setIsProductsHover] = useState(false);
     setNavIsOpen(false);
   };
 
-  // Auto close mobile menu when resizing
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -45,7 +44,6 @@ const [isProductsHover, setIsProductsHover] = useState(false);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Hide/show nav on scroll
   const [showNav, setShowNav] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
 
@@ -55,6 +53,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
 
       if (currentScroll > lastScroll) {
         setShowNav(false);
+        setTimeout(()=> {
+          setShowNav(true)
+        }, 1000)
       } else {
         setShowNav(true);
       }
@@ -63,15 +64,21 @@ const [isProductsHover, setIsProductsHover] = useState(false);
     };
 
     window.addEventListener("scroll", handleScroll);
+    
     return () => window.removeEventListener("scroll", handleScroll);
+    
   }, [lastScroll]);
 
   return (
-    <nav
-      className="w-full fixed left-0 z-50"
+    <>
+      <nav
+      className="
+      bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 
+      w-full fixed left-0 z-20"
       style={{
         top: showNav ? 0 : "-80px",
         transition: "top 0.3s",
+        backgroundColor: '#00254fa6'
       }}
     >
       {/* Desktop */}
@@ -83,7 +90,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
           </div>
 
           {/* Menu */}
-          <ul className="font-poppins flex bg-white rounded-4xl px-6 py-2 text-black relative shadow-inner">
+          <ul className="flex px-6 py-2 text-white relative">
             {menuLists.map((item, index) => {
               const isProducts = item.name === "Products";
 
@@ -99,7 +106,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     <Link
                       to={item.link}
                       className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
-                         hover:text-[#3CDBE6] hover:scale-110
+                         hover:text-[#3CDBE6] 
                         ${location.pathname === item.link ? "bg-[#3CBDE6] text-white" : ""}
                       `}
                     >
@@ -110,7 +117,8 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     {isProductsHover && (
                       <aside
                         className="
-                          absolute top-full left-0 w-56 bg-white shadow-xl rounded-xl p-4
+
+                          absolute top-full left-0 w-56 shadow-xl p-2 bg-white/80
                           transition-all duration-300 ease-out
                         "
                       >
@@ -118,8 +126,8 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                           <a
                             onClick={()=> navigate(`/products/${prod.name}`)}
                             key={i}
-                            className="cursor-pointer block px-3 py-2 rounded-lg text-sm
-                            hover:bg-blue-50 hover:text-[#3CBDE6] transition hover:scale-110"
+                            className="text-black cursor-pointer block px-2 py-2 text-sm
+                            hover:bg-blue-50 hover:text-[#3CBDE6] transition"
                           >
                             {prod.name}
                           </a>
@@ -135,10 +143,10 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                   <Link
                     to={item.link}
                     className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
-                    hover:text-[#3CBDE6] hover:scale-110
+                    hover:text-[#3CBDE6]
                     ${
                       location.pathname === item.link
-                        ? "bg-[#3CBDE6] text-white"
+                        ? "bg-[#3CBDE6] text-white hover:text-black"
                         : ""
                     }`}
                   >
@@ -168,8 +176,11 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       </div>
 
       {/* Mobile Menu */}
-      {navIsOpen && <MobileMenu closeMenu={() => setNavIsOpen(false)} />}
+     
     </nav>
+    {navIsOpen ? <MobileMenu closeMenu={toggleMobileNav}/> : null}
+    </>
+    
   );
 }
 

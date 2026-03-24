@@ -1,3 +1,4 @@
+import { color } from "motion/react";
 import React from "react";
 
 type PrimaryButtonProps = {
@@ -21,8 +22,9 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
   // 🎨 Variants
   const variants = {
+    color: '#005a75',
     primary:
-      "bg-[#3CBDE6] text-white hover:bg-[#2da9cf] shadow-md hover:shadow-lg",
+      "bg-[#005a75] text-white hover:bg-[#2da9cf] shadow-md hover:shadow-lg",
     outline:
       "border border-[#3CBDE6] text-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white",
     ghost:

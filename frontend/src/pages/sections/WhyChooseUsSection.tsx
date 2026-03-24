@@ -36,12 +36,12 @@ function WhyChooseUsSection() {
 
 
   return (
-    <section className="w-full py-20 bg-gray-50 flex justify-center"
+    <section className="w-full h-full py-20 bg-gray-50 flex justify-center"
       style={{
         backgroundColor: '#0082ba'
       }}
     >
-      <div className="w-full max-w-6xl flex flex-col-reverse flex-col  md:flex-row gap-8 md:gap-16 p-10">
+      <div className="w-full max-w-6xl flex flex-col-reverse flex-col  md:flex-row gap-8 md:gap-16 p-5 md:p-10">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 flex-1">
           {
@@ -49,20 +49,22 @@ function WhyChooseUsSection() {
               return(
                 <div
                 data-aos="fade-right"
-                key={index} className="text-white bg-white rounded-xl shadow-lg p-6 flex items-center justify-start"
+                key={index} className="text-white bg-white hover:rounded-xl shadow-lg p-6 flex items-center justify-start"
                   style={{
+                    minHeight: '200px',
                     backgroundColor: '#00000083',
                     backgroundImage: `url(${item.bgImage})`,
                     backgroundBlendMode: 'darken',
                     backgroundPosition: 'center',
-                    backgroundSize: 'cover',
+                    backgroundSize: 'contain',
+                    transition: 'all 1s ease'
                     
 
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundSize = '200%'}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundSize = '150%'}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundSize = '100%'}
                 >
-                  <p>   
+                  <p className='text-[1.1rem] drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]'>   
                     <strong>{item.head}</strong><br />
                     {item.desc}
                   </p>

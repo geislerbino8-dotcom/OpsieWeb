@@ -59,7 +59,7 @@ function ContactForm() {
 
   return (
     <div className="flex">
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 flex flex-col items-center space-y-4">
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-lg md:p-8 p-5 flex flex-col items-center space-y-4">
         {
           !transSucc ?
           <form onSubmit={(e)=> handleCreateInquiry(e, userData)}>

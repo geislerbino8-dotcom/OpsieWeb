@@ -33,10 +33,7 @@
 }
 
 
-.service-card {
-    background-color: rgba(0, 0, 0, 0.293);
-    padding: 1em;
-}
+
 
 .service-card:hover {
     position: relative;

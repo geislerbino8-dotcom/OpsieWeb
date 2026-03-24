@@ -10,7 +10,7 @@ function MapCard() {
   const [ dirAction, setDirAction ] = useState(false)
 
   return (
-    <div className="w-full max-w-xl flex-flex-col p-6 bg-white rounded-xl shadow-md space-y-4">
+    <div className="text-center w-full max-w-xl flex-flex-col p-6 bg-white rounded-xl shadow-md space-y-4">
       
       {/* Contact Info */}
       <div className="space-y-1">

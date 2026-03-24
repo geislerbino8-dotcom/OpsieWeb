@@ -19,7 +19,7 @@ function Homepage() {
         <Navigation />
       </div>
 
-        <HeroPage heroText="Bring your Ideas into Reality ✨" bgImage={HomeHeroImage} />
+        <HeroPage heroText="Bring your Ideas into Reality" bgImage={HomeHeroImage} />
 
       <ScrollAnimatedSection delay={100}>
         <AboutUsSection />

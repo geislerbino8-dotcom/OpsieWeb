@@ -47,7 +47,7 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center px-10 py-20"
+    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center md:px-10 py-20"
     >
       
 
@@ -60,14 +60,14 @@ const ClientReview: React.FC = () => {
           <Button
             variant="shadow"
             iconImage={leftArrow}
-            className="w-8 h-8 flex items-center justify-center pr-3"
+            className="w-8 h-8 flex items-center justify-center pr-3 hover:bg-[#3CBDE6]"
             onClick={handlePrev}
           />
           <hr className="w-[100px] border border-black" />
           <Button
             variant="shadow"
             iconImage={rightArrow}
-            className="w-8 h-8 flex items-center justify-center  pl-3"
+            className="w-8 h-8 flex items-center justify-center  pl-3 hover:bg-[#3CBDE6]"
             onClick={handleNext}
           />
         </div>

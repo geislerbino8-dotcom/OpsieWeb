@@ -10,7 +10,7 @@ const imageLogos = [
 
 function PartnerSection() {
   return (
-    <section className="w-full flex flex-col items-center py-16 px-4 bg-white">
+    <section className="text-center  md:text-left w-full flex flex-col items-center py-16 px-4 bg-white">
 
 
       {/* Header */}
