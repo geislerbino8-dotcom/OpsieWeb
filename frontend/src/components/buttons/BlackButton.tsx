@@ -15,10 +15,11 @@ function BlackButton({text, fontSize, borderRadius, margin, image, onPress} : Bl
   return (
     <div>
       <button style={{fontSize: `${fontSize}em`, borderRadius: `${borderRadius}em`,
-        margin: `${margin}em`, padding: `0.5em 1em`, backgroundColor: '#3cbde6', color: 'white'
+        margin: `${margin}em`, padding: `0.5em 1em`, color: 'white'
         , border: 0, textAlign: 'center', 
         }}
           onClick={onPress}
+          className="hover:bg-black bg-[#3CBDE6]"
 
         >{text}{
       image ? <span><img style={{marginLeft: '0.5em'}} width={15} src={image} alt="" /></span> : null

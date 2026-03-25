@@ -1,7 +1,7 @@
 import  { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import OpsieImage from "../../assets/opsie/opsie_full.jpg";
+import OpsieImage from "../../assets/opsie/logo-png.png";
 
 
 function AboutUsSection() {
@@ -55,7 +55,7 @@ function AboutUsSection() {
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            <button className="btn-learn mt-4 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300">
+            <button className="border btn-learn mt-4 px-6 py-3 hover:bg-[#3CBDE6] text- hover:text-white rounded-lg hover:bg-gray-800 transition duration-300">
               Learn more
             </button>
           </div>

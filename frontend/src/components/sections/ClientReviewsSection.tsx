@@ -60,14 +60,14 @@ const ClientReview: React.FC = () => {
           <Button
             variant="shadow"
             iconImage={leftArrow}
-            className="w-8 h-8 flex items-center justify-center pr-3 hover:bg-[#3CBDE6]"
+            className="w-8 h-8 flex items-center justify-center pr-3 hover:bg-[#3CBDE6] transition-all-ease"
             onClick={handlePrev}
           />
           <hr className="w-[100px] border border-black" />
           <Button
             variant="shadow"
             iconImage={rightArrow}
-            className="w-8 h-8 flex items-center justify-center  pl-3 hover:bg-[#3CBDE6]"
+            className="w-8 h-8 flex items-center justify-center  pl-3 hover:bg-[#3CBDE6] transition-all duration-200 ease-in-out"
             onClick={handleNext}
           />
         </div>

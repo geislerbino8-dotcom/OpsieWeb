@@ -11,8 +11,6 @@ import dns from 'dns';
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 
-
-
 export default class Server {
   public app: Application;
   private readonly port = process.env.PORT || 4000;
@@ -61,14 +59,14 @@ export default class Server {
 
   public startServer = async () => {
     try {
-      // await mongoose.connect(
-      //   `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`,
-      // );
+       await mongoose.connect(
+       `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`,
+      );
 
-      const mongoUri =
-        process.env.MONGO_URI || 'mongodb://localhost:27017/opsie_db';
+      //const mongoUri =
+        //process.env.MONGO_URI || 'mongodb://localhost:27017/opsie_db';
 
-      await mongoose.connect(mongoUri);
+      //await mongoose.connect(mongoUri);
 
       console.log('MongoDB connected');
 

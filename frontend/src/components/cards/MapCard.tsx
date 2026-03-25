@@ -35,7 +35,7 @@ function MapCard() {
           onPress={()=> dirAction ? setDirAction(false): setDirAction(true)}
           text="Get Direction"
           fontSize="1.2"
-          borderRadius="2"
+          borderRadius="0"
           margin="0"
          padding="0"
           color=""

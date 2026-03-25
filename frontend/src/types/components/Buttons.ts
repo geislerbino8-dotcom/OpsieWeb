@@ -48,7 +48,7 @@ export class ButtonLogic {
   public getButtonClass(): string {
     const { disabled, className, variant = "primary", weight = "medium" } = this.options;
 
-    const base = "px-2 py-1 rounded-full font-medium flex items-center justify-center transition";
+    const base = "px-2 rounded-2xl py-1 rounded-full font-medium flex items-center justify-center transition";
     const variantStyle = ButtonLogic.variantClasses[variant] ?? ButtonLogic.variantClasses["primary"];
     const weightStyle = ButtonLogic.weightClasses[weight] ?? ButtonLogic.weightClasses["medium"];
     const disabledStyle = disabled ? "opacity-50 cursor-not-allowed" : "";

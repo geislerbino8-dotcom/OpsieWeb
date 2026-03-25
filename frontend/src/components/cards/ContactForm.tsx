@@ -145,7 +145,7 @@ function ContactForm() {
           <option value="Bug Report">Bug Report</option>
           <option value="Feature Request">Feature Request</option>
         </select>
-        <button type="submit" className="w-full py-2 bg-black text-white font-bold my-2 rounded-md hover:bg-gray-800 transition-colors"
+        <button type="submit" className="w-full py-2 bg-black text-white font-bold my-2 rounded-md hover:bg-[#3CDBE6] transition-colors"
          
           style={{
             backgroundColor: transSucc ? 'green' : ''

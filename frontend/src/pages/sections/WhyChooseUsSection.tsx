@@ -4,26 +4,22 @@ import b2 from '../../assets/visuals/Products2.jpg'
 import b3 from '../../assets/visuals/Products3.jpg'
 import b4 from '../../assets/visuals/Products4.jpg'
 
-
 const content = [
   {
     head: "100% Web Based",
     desc: "Use freely on any device, anywhere with internet access.",
     bgImage: b1
   },
-
   {
     head: "Unlimited Users",
     desc: "No additional cost for the number of Opise users.",
     bgImage: b2
   },
-
   {
     head: "Free Additional Services",
     desc: "Mobile app and corporate messenger included.",
     bgImage: b3
   },
-
   {
     head: "Continuous Feature Upgrades",
     desc: "Regular improvements and new functionality.",
@@ -32,61 +28,49 @@ const content = [
 ]
 
 function WhyChooseUsSection() {
-
-
-
   return (
-    <section className="w-full h-full py-20 bg-gray-50 flex justify-center"
-      style={{
-        backgroundColor: '#0082ba'
-      }}
+    <section
+      className="w-full h-full py-20 flex justify-center"
+      style={{ backgroundColor: '#0082ba' }}
     >
-      <div className="w-full max-w-6xl flex flex-col-reverse flex-col  md:flex-row gap-8 md:gap-16 p-5 md:p-10">
+      <div className="w-full max-w-6xl flex flex-col-reverse md:flex-row gap-8 md:gap-16 p-5 md:p-10">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 flex-1">
-          {
-            content.map((item, index)=> {
-              return(
-                <div
-                data-aos="fade-right"
-                key={index} className="text-white bg-white hover:rounded-xl shadow-lg p-6 flex items-center justify-start"
-                  style={{
-                    minHeight: '200px',
-                    backgroundColor: '#00000083',
-                    backgroundImage: `url(${item.bgImage})`,
-                    backgroundBlendMode: 'darken',
-                    backgroundPosition: 'center',
-                    backgroundSize: 'contain',
-                    transition: 'all 1s ease'
-                    
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+          {content.map((item, index) => (
+            <div
+              key={index}
+              data-aos="fade-right"
+              className="group relative overflow-hidden rounded-lg shadow-lg flex items-center p-6 text-white min-h-[200px]"
+            >
+              <img
+                src={item.bgImage}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover 
+                transition-transform duration-700 ease-in-out 
+                group-hover:scale-110"
+              />
 
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundSize = '150%'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundSize = '100%'}
-                >
-                  <p className='text-[1.1rem] drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]'>   
-                    <strong>{item.head}</strong><br />
-                    {item.desc}
-                  </p>
-                </div>
-              )
-            })
-          }
+              {/* Overlay */}
+              <div
+                className="absolute inset-0 bg-black/50 
+                transition-colors duration-500 
+                group-hover:bg-black/70"
+              ></div>
 
-          
-
-         
-
-          
+              {/* Content */}
+              <p className="relative z-10 text-[1.1rem] drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]">
+                <strong>{item.head}</strong><br />
+                {item.desc}
+              </p>
+            </div>
+          ))}
         </div>
 
-        <div className="flex-1 flex items-center justify-center px-6
-          rounded-3xl
-        ">
-           <TextType 
-            className='mr-7 text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left
-              text-[#cdf7ff]'
-              data-aos="fade-left"
+        {/* RIGHT - TEXT */}
+        <div className="flex-1 flex items-center justify-center px-6 rounded-3xl">
+          <TextType
+            className="mr-7 text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left text-[#cdf7ff]"
+            data-aos="fade-left"
             text={["Why do so many companies choose Opsie Software Solutions?"]}
             typingSpeed={75}
             pauseDuration={10000}
@@ -95,12 +79,11 @@ function WhyChooseUsSection() {
             deletingSpeed={100}
             cursorBlinkDuration={0.5}
           />
-          
         </div>
 
       </div>
     </section>
-  );
+  )
 }
 
-export default WhyChooseUsSection;
+export default WhyChooseUsSection

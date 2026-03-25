@@ -5,6 +5,7 @@ import '../../styles/ProductSection.css'
 import hris from '../../assets/Products/HRIS.png';
 import opsync from '../../assets/Products/Opsync.png';
 import web from '../../assets/Products/WebOpsie.png';
+import { useNavigate } from "react-router-dom";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,6 +21,9 @@ const products = {
 };
 
 function ProductSection() {
+
+  const navigate = useNavigate()
+
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
@@ -43,7 +47,7 @@ function ProductSection() {
 
         {/* Product Cards */}
        <div className="">
-        <div className="p-cards-container flex pb-10  mx-auto overflow-x-auto shadow-[inset_-8px_0_10px_-5px_rgba(0,0,0,0.3)]">
+        <div className="p-cards-container flex pt-2 pb-10  mx-auto overflow-x-auto">
         <div className="h-100 flex gap-4 items-end pl-3 pr-10
             
 ">
@@ -67,54 +71,24 @@ function ProductSection() {
           <div className="text-center">
             <p data-aos = "fade-left" className="text-[#242424] text-center md:text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, assumenda neque velit exercitationem provident recusandae commodi asperiores, nostrum cumque aperiam minima a enim labore maxime perspiciatis, rerum sapiente numquam voluptatum.</p>
 
-          <button
-  className="
-    group relative overflow-hidden
-    py-3 px-6 my-5
-    text-[#242424]
-    border border-[#242424]
-    rounded-[0.5em]
-    font-medium tracking-wide
+            <button
+              onClick={() => navigate(`/products`)}
+              className="
+                mt-6 px-5 py-2
+                rounded-lg font-semibold text-cyan-600
+                border border-cyan-400/40
 
-    transition-all duration-300 ease-out
-    hover:text-white
-    hover:shadow-lg hover:shadow-cyan-400/40
+       
 
-    /* remove translate if you want cleaner */
-  "
-  onClick={() => {
-    window.location.href = "/products"
-  }}
->
-  {/* Background fill */}
-  <span
-    className="
-      absolute inset-0
-      bg-gradient-to-r from-cyan-400 to-blue-500
-      scale-x-0 origin-left
-      transition-transform duration-500 ease-out
-      delay-150
-      group-hover:scale-x-100
-      z-0
-    "
-  />
+                transition-all duration-500 ease-out
 
-  {/* Border glow layer */}
-  <span
-    className="
-      absolute inset-0 rounded-[0.5em]
-      border border-transparent
-      group-hover:border-cyan-400
-      transition-all duration-300
-      z-10
-    "
-  />
-
-  {/* Text */}
-  <span className="relative z-20">
-    View All Product
-  </span>
-</button>
+                hover:text-white
+                hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500
+                hover:shadow-lg hover:shadow-cyan-400/40
+              "
+            >
+              View All Products
+            </button>
           </div>
        </div>
 
