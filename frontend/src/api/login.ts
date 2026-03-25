@@ -3,7 +3,7 @@ import axios from 'axios';
 export const login = async (username: string, password: string) => {
   try {
     const response = await axios.post(
-      `/api/auth/login`,
+      `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/login`,
       {
         username,
         password,
