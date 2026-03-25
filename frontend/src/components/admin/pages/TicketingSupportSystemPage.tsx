@@ -149,8 +149,8 @@ const TicketingSupportSystemPage = () => {
         )
       );
 
-      await fetchTickets();
-      await fetchActiveUsers();
+      fetchTickets();
+      fetchActiveUsers();
     } catch (error: any) {
       addToast(error.response?.data?.message || 'Failed to update ticket', 'error');
     } finally {
@@ -178,8 +178,8 @@ const TicketingSupportSystemPage = () => {
 
       addToast('Ticket deleted', 'success');
 
-      await fetchTickets();
-      await fetchActiveUsers();
+      fetchTickets();
+      fetchActiveUsers();
     } catch (error: any) {
       addToast(
         error.response?.data?.message || 'Delete failed',
