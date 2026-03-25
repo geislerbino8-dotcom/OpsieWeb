@@ -9,15 +9,6 @@ services:
       - certbot_data:/etc/letsencrypt
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done;'"
 
-  mongodb:
-    image: mongo:7
-    container_name: opsie-staging-mongodb
-    restart: always
-    volumes:
-      - mongodb_data:/data/db
-    ports:
-      - "27017:27017"
-
   backend:
     container_name: opsie-staging-backend
     build:
@@ -26,8 +17,6 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    depends_on:
-      - mongodb
     environment:
       PORT: 3000
       MONGO_URI: mongodb+srv://opsiessi:ZE9crHBxOuTvOwWH@opsiewebsite.8uu1hmi.mongodb.net/opsie-test?appName=OpsieWebsite
