@@ -19,6 +19,8 @@ jobs:
           script: |
             cd /var/www/opsie-staging/OpsieWebsite
 
+            git config --global --add safe.directory /var/www/opsie-staging/OpsieWebsite
+
             git fetch origin
             git reset --hard origin/1.0.2_staging_test
 
