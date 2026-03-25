@@ -32,6 +32,7 @@ const LoginPage = () => {
       loginUser(data.token);
 
       addToast(data.message, 'success');
+      window.location.href = '/admin';
       navigate('/');
     } catch (error: any) {
       addToast(error.response?.data?.message, 'error');

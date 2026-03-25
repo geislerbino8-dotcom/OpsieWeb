@@ -62,5 +62,5 @@ export default class AuthRoute {
       requirePermission(PERMISSIONS.USER_DELETE) || adminMiddleware,
       this.controller.deleteUser
     );
-  }
+  };
 }

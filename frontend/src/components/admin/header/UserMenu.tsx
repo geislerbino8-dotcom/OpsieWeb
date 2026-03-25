@@ -96,6 +96,7 @@ const UserMenu = () => {
 
       if(!ok) return
 
+      window.location.href = '/admin';
       logoutUser();
       navigate('/login');
     } catch (error) {
