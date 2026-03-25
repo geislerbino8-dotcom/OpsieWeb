@@ -2,6 +2,14 @@ version: "3.9"
 
 services:
 
+  certbot:
+    image: certbot/certbot
+    container_name: opsie-staging-certbot
+    volumes:
+      - certbot_data:/etc/letsencrypt
+      - certbot_logs:/var/log/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done;'"
+
   mongodb:
     image: mongo:7
     container_name: opsie-staging-mongodb

@@ -25,5 +25,5 @@ jobs:
             git reset --hard origin/1.0.2
 
             #Docker Run Containers
-            docker-compose down
+            docker-compose pull
             docker-compose up -d --build
