@@ -36,9 +36,13 @@ const Footer = () => {
 
         {/* HEADER */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-[#E6F7FC] text-[#3CBDE6] px-4 py-1 rounded-full text-sm mb-4">
+          {
+            /**
+             * <div className="inline-flex items-center gap-2 bg-[#E6F7FC] text-[#3CBDE6] px-4 py-1 rounded-full text-sm mb-4">
             ⚙️ Our Partnership
           </div>
+             */
+          }
 
           <h1 className="text-4xl font-semibold">
             <span className="text-[#3CBDE6] font-bold">Opsie’s</span> Partner Network

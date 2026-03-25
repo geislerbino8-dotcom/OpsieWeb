@@ -12,11 +12,12 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
   return (
     <div
       className="
+        cursor-pointer
         group relative w-[18rem] flex-shrink-0
         rounded-2xl overflow-hidden
-        transition-all duration-500
-        hover:-translate-y-2
+        transition-all duration-500 ease-out
         shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]
+        hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
       "
     >
       {/* Glow Effect */}
@@ -25,8 +26,8 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
           absolute inset-0 rounded-2xl
           opacity-0 group-hover:opacity-100
           transition duration-500
-          blur-xl
-          bg-gradient-to-r from-cyan-400/30 to-blue-500/30
+          blur-2xl
+          bg-gradient-to-r from-cyan-400/20 to-blue-500/20
         "
       />
 
@@ -39,9 +40,10 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
           rounded-2xl
           backdrop-blur-xl
           border border-white/20
-          shadow-lg
-          transition-all duration-500
-          group-hover:shadow-2xl
+          transition-all duration-500 ease-out
+
+          group-hover:border-cyan-300/40
+          group-hover:bg-white/10
         "
         style={{
           backgroundColor: bgColor || "rgba(255,255,255,0.05)",
@@ -54,20 +56,31 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
             alt={itemName}
             className="
               w-[10rem] h-[10rem] object-contain
-              transition-transform duration-500
-              group-hover:scale-110 group-hover:rotate-1
-              will-change-transform
+              transition-transform duration-500 ease-out
+              group-hover:scale-105
             "
           />
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-semibold text-[#242424] tracking-wide">
+        <h3
+          className="
+            text-lg font-semibold text-[#242424] tracking-wide
+            transition duration-300
+            group-hover:text-cyan-600
+          "
+        >
           {itemName}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-[#242424] mt-2 text-center leading-relaxed">
+        <p
+          className="
+            text-sm text-[#242424] mt-2 text-center leading-relaxed
+            transition duration-300
+            group-hover:text-[#111]
+          "
+        >
           Powerful solution designed to streamline your workflow and boost productivity.
         </p>
 
@@ -76,16 +89,17 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
           onClick={() => navigate(`/products/${itemName}`)}
           className="
             mt-6 px-5 py-2
-            rounded-lg font-semibold text-cyan
-            border border-cyan-400/50
+            rounded-lg font-semibold text-cyan-600
+            border border-cyan-400/40
 
-            lg:opacity-0 translate-y-3
-            group-hover:opacity-100 group-hover:translate-y-0
+            opacity-0
+            group-hover:opacity-100
 
-            transition-all duration-500
-            hover:text-white
-            hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500
-            hover:shadow-lg hover:shadow-cyan-400/40
+            transition-all duration-500 ease-out
+
+            group-hover:text-white
+            group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-500
+            group-hover:shadow-lg group-hover:shadow-cyan-400/40
           "
         >
           View Product

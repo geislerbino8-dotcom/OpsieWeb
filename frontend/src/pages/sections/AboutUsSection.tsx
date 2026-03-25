@@ -2,7 +2,6 @@ import  { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import OpsieImage from "../../assets/opsie/opsie_full.jpg";
-import '../../styles/AboutUsSection.css'
 
 
 function AboutUsSection() {
@@ -11,7 +10,7 @@ function AboutUsSection() {
   }, []);
 
   return (
-    <section className="w-full flex flex-col items-center py-16 px-4">
+    <section className="font-montserrat w-full flex flex-col items-center py-16 md:px-4 text-center md:text-left">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center gap-12">
         
         <div
@@ -19,14 +18,13 @@ function AboutUsSection() {
           data-aos="fade-right"
         >
           <img width={300} src={OpsieImage} alt="Opsie" 
-            className="hover:rounded-[50%]"
 
           />
 
           
         </div>
 
-        <div className="about-text-card flex flex-col gap-6 md:w-1/2 p-10 justify-start">
+        <div className="flex flex-col gap-6 md:w-1/2 md:p-10 p-5 justify-start">
 
           <h2
             className="text-3xl md:text-4xl leading-tight"

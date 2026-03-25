@@ -10,9 +10,9 @@ const menuLists = [
 
 function MobileMenu({ closeMenu }: any) {
   return (
-    <div className="fixed inset-0 z-50 flex justify-center items-end">
+    <div className="w-full fixed top-0 inset-0 z-50 flex justify-center items-end">
       <div
-        className="absolute inset-0 bg-black bg-opacity-50"
+        className="absolute inset-0 bg-black/50 bg-opacity-20"
         onClick={closeMenu}
       ></div>
 

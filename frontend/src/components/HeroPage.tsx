@@ -1,7 +1,7 @@
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
 import SplitText from './SplitText'
-import { Button } from './Button';
 import { useNavigate } from 'react-router-dom';
+import PrimaryButton from './buttons/PrimaryButton';
 
 type HeroPageProps = {
   heroText?: string;
@@ -14,7 +14,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
   return (
     <div
-      className="w-full h-screen font-poppins relative flex flex-col justify-end"
+      className="w-full h-screen relative flex flex-col justify-end"
       style={{
         backgroundColor: '#000000aa',
         backgroundImage: bgImage ? `url(${bgImage})` : undefined,
@@ -33,7 +33,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         <h1 className="text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
           <SplitText
             text={ heroText ? heroText : "Bring your Ideas into Reality"}
-            className="text-10xl text-center"
+            className="font-montserrat text-10xl text-center"
             delay={50}
             duration={1.25}
             ease="power3.out"
@@ -56,15 +56,13 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
           sint magni esse quam, hic laudantium dolorum aliquam suscipit?
         </p>
 
-        <Button
-                label="Book a meeting now"
-                variant="secondary"
-                icon={<img src="/ICONS/contact-us.svg" className="w-3 h-3" />}
-                iconPosition="right"
-                className="font-poppins font-light my-4 px-4 text-md "
-                weight="light"
-                onClick={() => navigate("/book-a-schedule")} //navigate to contact page
-              />
+
+
+        <div className='text-2xl'>
+          <PrimaryButton text="Book now" variant="primary" onClick={()=> {
+            navigate("/book-a-schedule")
+          }}/>
+        </div>
 
       </div>
       

@@ -42,10 +42,10 @@ const FAQAccordion = () => {
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
-  };
+  }
 
   return (
-    <div className="max-w-[1280px] mx-auto flex items-center justify-center md:items-start flex-col gap-4">
+    <div className="max-w-[1280px] mx-auto flex items-center justify-center md:items-start flex-col gap-4 md:px-10">
       <div
         data-aos="fade-up"
         className="mt-6 flex items-center justify-center lg:items-start"
@@ -93,7 +93,7 @@ const FAQAccordion = () => {
                 {isOpen ? (
                   <X className="h-6 w-6 flex-shrink-0" />
                 ) : (
-                  <Plus className="h-6 w-6 flex-shrink-0" />
+                  <Plus className="h-6 w-6 flex-shrink-0 text-[#3CBDE6]" />
                 )}
               </button>
 

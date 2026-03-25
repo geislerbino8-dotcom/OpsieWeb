@@ -10,6 +10,9 @@ import dns from 'dns';
 // Force Google DNS
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
+
+
+
 export default class Server {
   public app: Application;
   private readonly port = process.env.PORT || 4000;
@@ -26,6 +29,8 @@ export default class Server {
     this.app.use(express.json());
     this.app.use(cors());
   };
+
+  
 
   private initializeRoutes = (): void => {
     const ticketRoute = new TicketRoute();

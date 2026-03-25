@@ -23,11 +23,14 @@ const App = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      once: false,
+      once: true,
       mirror: true,
       offset: 0,
     });
   }, []);
+
+
+
 
   useEffect(() => {
     if (document.getElementById("botpress-script")) return;
@@ -75,7 +78,7 @@ const App = () => {
 
   return (
     <>
-      <div className='font-poppins'>
+      <div className='font-monserrat'>
           <ChatHelp />
           <Navigation />
           <Outlet />

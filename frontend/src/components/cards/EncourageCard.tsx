@@ -25,7 +25,7 @@ function EncourageCard() {
 
       {/* Button */}
       <button className="bg-white text-[#3CBDE6] text-sm font-medium px-6 py-2 rounded-full shadow-sm hover:bg-gray-100 transition">
-        Contact Us Now →
+        Contact Us Now 
       </button>
 
     </div>
