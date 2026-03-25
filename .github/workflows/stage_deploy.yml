@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.VPS_KEY }}
           script: |
             # Navigate to staging directory
-            cd /var/www/opsie-staging
+            cd /var/www/opsie-staging/OpsieWebsite
 
             # Reset branch to match remote
             git fetch origin
