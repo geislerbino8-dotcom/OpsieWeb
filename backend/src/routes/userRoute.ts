@@ -35,6 +35,6 @@ export default class UserRoute {
       authMiddleware,
       requirePermission(PERMISSIONS.USER_UPDATE_PROFILE) || adminMiddleware,
       this.controller.updateProfile
-    )
+    );
   } 
 }

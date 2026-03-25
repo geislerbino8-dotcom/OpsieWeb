@@ -48,5 +48,5 @@ export default class TicketRoute {
       requirePermission(PERMISSIONS.TICKET_DELETE) || adminMiddleware,
       this.controller.delete
     );
-  }
+  };
 }

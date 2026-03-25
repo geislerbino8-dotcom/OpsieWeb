@@ -27,7 +27,7 @@ export const sendTicketCreatedEmail = async (ticket: any) => {
     subject: `Ticket Created - (#${ticket._id.toString().slice(-8)})`,
     html: htmlEmail
   });
-}
+};
 
 export const sendTicketUpdatedEmail = async (ticket: any, changes: string[]) => {
   const htmlEmail = ticketUpdatedEmail(ticket, changes);
@@ -38,7 +38,7 @@ export const sendTicketUpdatedEmail = async (ticket: any, changes: string[]) => 
     subject: `Ticket Updated - (#${ticket._id.toString().slice(-8)})`,
     html: htmlEmail
   });
-}
+};
 
 export const sendTicketClosedEmail = async (ticket: any) => {
   const htmlEmail = ticketClosedEmail(ticket);
@@ -49,7 +49,7 @@ export const sendTicketClosedEmail = async (ticket: any) => {
     subject: `Ticket Closed - (#${ticket._id.toString().slice(-8)})`,
     html: htmlEmail
   });
-}
+};
 
 /*
 

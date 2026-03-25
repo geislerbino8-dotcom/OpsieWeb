@@ -82,7 +82,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       }}
     >
       {/* Desktop */}
-      <div className="hidden bg-red-500 md:flex flex-col max-w-7xl mx-auto py-1 px-6">
+      <div className="md:flex flex-col max-w-7xl max-[865px]:hidden mx-auto py-1 px-6">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <div className="cursor-pointer" onClick={directToHome}>
@@ -165,7 +165,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       </div>
 
       {/* Mobile */}
-      <div className="flex items-center justify-between px-6 py-4 min-[859px]:bg-red-600">
+      <div className="flex items-center justify-between px-6 py-4 md:hidden">
         <div className="cursor-pointer" onClick={directToHome}>
           <img src={logo} alt="Opsie Logo" className="w-24" />
         </div>

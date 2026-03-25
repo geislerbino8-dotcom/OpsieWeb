@@ -1,0 +1,29 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - 1.0.2
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            cd /var/www/opsie-staging/OpsieWebsite
+
+            git config --global --add safe.directory /var/www/opsie-staging/OpsieWebsite
+
+            git fetch origin
+            git reset --hard origin/1.0.2
+
+            #Docker Run Containers
+            docker-compose down
+            docker-compose up -d --build

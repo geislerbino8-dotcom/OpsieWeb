@@ -11,6 +11,7 @@ export default defineConfig(
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
     '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   {

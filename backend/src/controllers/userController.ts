@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Response } from 'express';
 import { UserModel } from '../models/userModel';
 import { AuthRequest } from '../middleware/authMiddleware';
@@ -25,7 +26,7 @@ export class UserController {
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch users' });
     }
-  }
+  };
 
   public getAllActive = async (req: AuthRequest, res: Response) => {
     try {
@@ -34,7 +35,7 @@ export class UserController {
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch users' });
     }
-  }
+  };
 
   public updateProfile = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
@@ -75,5 +76,5 @@ export class UserController {
     } catch (error) {
       res.status(500).json({ message: 'Failed to update profile' });
     }
-  }
+  };
 }
