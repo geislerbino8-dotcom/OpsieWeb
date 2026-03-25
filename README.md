@@ -120,15 +120,21 @@ npm install
 Create an .env file in the backend root directory
 ```
 cd backend
-echo PORT=5000 JWT_SECRET=opsiesecretkey EMAIL_USER= EMAIL_PASS= MONGODB_USER=opsiessi MONGODB_PASSWORD=ZE9crHBxOuTvOwWH MONGODB_NAME=opsie-test > .env
+echo PORT=5000 JWT_SECRET=opsiesecretkey EMAIL_HOST= EMAIL_PORT= EMAIL_SECURE= EMAIL_USER= EMAIL_PASS= MONGODB_USER=opsiessi MONGODB_PASSWORD=ZE9crHBxOuTvOwWH MONGODB_NAME=opsie-test > .env
 ```
 
 or manually create an .env and copy these environment variables.
 ```
 PORT=5000
+
 JWT_SECRET=opsiesecretkey
+
+EMAIL_HOST=
+EMAIL_PORT=
+EMAIL_SECURE=
 EMAIL_USER=
 EMAIL_PASS=
+
 MONGODB_USER=opsiessi
 MONGODB_PASSWORD=ZE9crHBxOuTvOwWH
 MONGODB_NAME=opsie-test
