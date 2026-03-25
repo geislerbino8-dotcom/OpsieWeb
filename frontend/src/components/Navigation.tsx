@@ -36,7 +36,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 860) {
         setNavIsOpen(false);
       }
     };
@@ -78,11 +78,11 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       style={{
         top: showNav ? 0 : "-80px",
         transition: "top 0.3s",
-        backgroundColor: '#00254fa6'
+        backgroundColor: '#0F4C5C'
       }}
     >
       {/* Desktop */}
-      <div className="hidden md:flex flex-col max-w-7xl mx-auto py-4 px-6">
+      <div className="hidden bg-red-500 md:flex flex-col max-w-7xl mx-auto py-1 px-6">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <div className="cursor-pointer" onClick={directToHome}>
@@ -165,7 +165,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       </div>
 
       {/* Mobile */}
-      <div className="flex items-center justify-between px-6 py-4 md:hidden">
+      <div className="flex items-center justify-between px-6 py-4 min-[859px]:bg-red-600">
         <div className="cursor-pointer" onClick={directToHome}>
           <img src={logo} alt="Opsie Logo" className="w-24" />
         </div>

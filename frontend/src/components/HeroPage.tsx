@@ -58,9 +58,11 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
 
 
-        <PrimaryButton text="Book now" variant="primary" onClick={()=> {
+        <div className='text-2xl'>
+          <PrimaryButton text="Book now" variant="primary" onClick={()=> {
             navigate("/book-a-schedule")
           }}/>
+        </div>
 
       </div>
       

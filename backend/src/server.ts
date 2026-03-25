@@ -16,6 +16,8 @@ const allowedOrigins = [
   "https://opsiesoftwaresolutions.vercel.app"
 ];
 
+
+
 export default class Server {
   public app: Application;
   private readonly port = process.env.PORT || 4000;
@@ -32,13 +34,8 @@ export default class Server {
     this.app.use(express.json());
     this.app.use(
       cors({  
-        origin: function (origin, callback) {
-          if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-          } else {
-            callback(new Error("Not allowed by CORS"));
-          }
-        },
+        origin: "*",
+        
         credentials: true, 
       })
     );
