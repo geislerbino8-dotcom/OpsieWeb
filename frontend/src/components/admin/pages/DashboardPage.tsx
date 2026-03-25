@@ -6,13 +6,13 @@ const cards = [
     title: 'User Management',
     description: 'Create users, reset passwords, update roles, and manage accounts.',
     icon: 'src/assets/icons/user_card.svg',
-    route: '/users',
+    route: 'users',
   },
   {
     title: 'Ticketing System',
     description: 'View, update, and manage all support tickets efficiently.',
     icon: 'src/assets/icons/ticket.svg',
-    route: '/tickets',
+    route: 'tickets',
   },
 ];
 

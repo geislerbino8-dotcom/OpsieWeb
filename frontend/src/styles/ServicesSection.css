@@ -1,0 +1,58 @@
+.services-container {
+    padding: 1em;
+    color: #242424;
+    
+}
+
+.service-item-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin: 1em 0;
+   
+}
+
+.services-header {
+    margin: 1em 0 0.5em 0;
+}
+
+.txt-desc {
+    margin-top: 0.5em;
+    text-align: left;
+}
+
+.txt-swipe {
+    text-align: end;
+    color: #3CBDE6;
+}
+
+.hl-txt {
+    color: #3CBDE6;
+
+}
+
+
+.service-card {
+    background-color: rgba(0, 0, 0, 0.293);
+    padding: 1em;
+}
+
+.service-card:hover {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.762);
+}
+
+@media (min-width: 550px) {
+    .services-container {
+        background-color: white;
+        width: 70%;
+        margin: 1em auto;
+        padding: 2em;
+        /* From https://css.glass */
+        -webkit-box-shadow: 1px 2px 12px -5px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 1px 2px 12px -5px rgba(66, 68, 90, 1);
+        box-shadow: 1px 2px 12px -5px rgba(66, 68, 90, 1);
+        border-radius: 1em;
+    }
+}
