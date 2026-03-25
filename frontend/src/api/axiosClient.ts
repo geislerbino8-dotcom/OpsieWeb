@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_BASE_URL || 'https://opsiebackend.vercel.app/',
+  baseURL: '/api',
 });
 
 axiosClient.interceptors.request.use((config) => {
