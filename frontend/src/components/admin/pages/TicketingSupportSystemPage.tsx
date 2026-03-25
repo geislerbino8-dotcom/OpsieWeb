@@ -88,6 +88,10 @@ const TicketingSupportSystemPage = () => {
 
       const data = await getTickets();
 
+      if (!Array.isArray(data)) {
+        throw new Error('Invalid data format');
+      }
+
       setTickets(data);
     } catch (error: any) {
       addToast(error.response?.data?.message || 'Failed to load tickets', 'error');
