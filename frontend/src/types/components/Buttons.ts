@@ -28,6 +28,10 @@ export class ButtonLogic {
         "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset, rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
       
     },
+
+    border: {
+      borderRadius: "50%"
+    }
   };
   
   public getButtonStyle(): React.CSSProperties {

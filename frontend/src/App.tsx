@@ -14,18 +14,17 @@ import ChatHelp from './components/ChatHelp';
 
 
 import AOS from "aos";
-import "aos/dist/aos.css";
 
 const App = () => {
 
   const location = useLocation();
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      mirror: true,
-      offset: 0,
+  AOS.init({
+      duration: 1000,         // animation duration in ms
+      once: true,             // ✅ animate only once
+      mirror: false,          // ✅ do NOT animate when scrolling back up
+      disableMutationObserver: true, // ✅ prevents React re-trigger on re-render
     });
   }, []);
 
@@ -78,7 +77,7 @@ const App = () => {
 
   return (
     <>
-      <div className='font-monserrat'>
+      <div className='select-none'>
           <ChatHelp />
           <Navigation />
           <Outlet />

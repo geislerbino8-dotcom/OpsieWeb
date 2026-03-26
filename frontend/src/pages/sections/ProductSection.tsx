@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ProductCard from "../../components/cards/ProductCard";
 import LogoOnly from "../../assets/icons/opsie_logo_only.png";
 import '../../styles/ProductSection.css'
@@ -7,7 +6,6 @@ import opsync from '../../assets/Products/Opsync.png';
 import web from '../../assets/Products/WebOpsie.png';
 import { useNavigate } from "react-router-dom";
 
-import AOS from "aos";
 import "aos/dist/aos.css";
 
 const products = {
@@ -23,10 +21,6 @@ const products = {
 function ProductSection() {
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
-  }, []);
 
   return (
     <section
@@ -52,15 +46,8 @@ function ProductSection() {
             
 ">
           {Object.values(products).map((item, index) => (
-            <div
-              key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 200}
-              className="flex-shrink-0 transform transition duration-300 ease-in-out 
-                        hover:-translate-y-2 hover:scale-105 hover:mx-5"
-            >
+            
               <ProductCard itemName={item.name} image={item.image} />
-            </div>
           ))}
         </div>
 
@@ -80,7 +67,7 @@ function ProductSection() {
 
        
 
-                transition-all duration-500 ease-out
+                transition-all duration-300 ease-out
 
                 hover:text-white
                 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500

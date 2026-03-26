@@ -19,7 +19,7 @@ function BlackButton({text, fontSize, borderRadius, margin, image, onPress} : Bl
         , border: 0, textAlign: 'center', 
         }}
           onClick={onPress}
-          className="hover:bg-black bg-[#3CBDE6]"
+          className="hover:bg-[#0F4C5C] bg-[#3CBDE6] transition duration-1000"
 
         >{text}{
       image ? <span><img style={{marginLeft: '0.5em'}} width={15} src={image} alt="" /></span> : null
