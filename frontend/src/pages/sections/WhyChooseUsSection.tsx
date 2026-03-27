@@ -39,9 +39,11 @@ function WhyChooseUsSection() {
           {content.map((item, index) => (
             <div
               key={index}
-              data-aos="fade-right"
-              className="group relative overflow-hidden rounded-lg shadow-lg flex items-center p-6 text-white min-h-[200px]"
-            >
+              style={{ willChange: 'transform' }} 
+              className="group relative overflow-hidden rounded-lg shadow-lg flex items-center p-6 text-white min-h-[200px]
+                transform transition-al l duration-500 ease-out 
+                hover:-translate-y-1 hover:scale-[1.1] hover:ring-3 hover:ring-white/50"
+                 >
               <img
                 src={item.bgImage}
                 alt=""
@@ -50,15 +52,19 @@ function WhyChooseUsSection() {
                 group-hover:scale-110"
               />
 
-              {/* Overlay */}
+              {/* Base dim */}
+              <div className="absolute inset-0 bg-black/50" />
+
+              {/* Animated overlay */}
               <div
-                className="absolute inset-0 bg-black/50 
-                transition-colors duration-500 
-                group-hover:bg-black/70"
-              ></div>
+                className="absolute inset-0 bg-black/40
+                origin-left scale-x-0
+                transition-transform duration-500 ease-out
+                group-hover:scale-x-100"
+              />
 
               {/* Content */}
-              <p className="relative z-10 text-[1.1rem] drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]">
+              <p className="relative text-white z-10 text-[1.1rem] drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]">
                 <strong>{item.head}</strong><br />
                 {item.desc}
               </p>
@@ -70,7 +76,6 @@ function WhyChooseUsSection() {
         <div className="flex-1 flex items-center justify-center px-6 rounded-3xl">
           <TextType
             className="mr-7 text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left text-[#cdf7ff]"
-            data-aos="fade-left"
             text={["Why do so many companies choose Opsie Software Solutions?"]}
             typingSpeed={75}
             pauseDuration={10000}

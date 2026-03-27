@@ -12,7 +12,6 @@ import TicketingSupportSystemPage from "./components/admin/pages/TicketingSuppor
 import UserManagementPage from "./components/admin/pages/UserManagementPage"
 import LoginPage from "./components/admin/pages/LoginPage"
 
-
 const token = localStorage.getItem('token')
 
 const router = createBrowserRouter([
@@ -95,11 +94,6 @@ const router = createBrowserRouter([
         element: <LoginPage />
     }
 
-    
-  
-
-    
 ])
-
 
 export default router

@@ -24,13 +24,14 @@ function ProductSection() {
 
   return (
     <section
-      className="w-full text-[#242424]font-poppins min-h-screen flex flex-col items-center px-4 py-10"
+      data-aos="fade-left"
+      className="w-full text-[#242424]font-poppins min-h-screen flex flex-col items-center px-4 py-20"
      
     >
       <div className="w-full max-w-6xl flex flex-col gap-12">
 
         {/* Header */}
-        <div className="relative top-9 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className=" flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4" data-aos="zoom-in">
             <img src={LogoOnly} alt="Opsie Logo" className="spin-slow w-14 h-14" />
             <h1 className="text-3xl md:text-4xl ">
@@ -41,17 +42,23 @@ function ProductSection() {
 
         {/* Product Cards */}
        <div className="">
-        <div className="p-cards-container flex pt-2 pb-10  mx-auto overflow-x-auto">
-        <div className="h-100 flex gap-4 items-end pl-3 pr-10
-            
-">
-          {Object.values(products).map((item, index) => (
-            
-              <ProductCard itemName={item.name} image={item.image} />
-          ))}
-        </div>
 
+        <div className="p-cards-container flex justify-center md:flex-row md:overflow-x-auto overflow-hidden gap-8 flex-wrap p-10 items-start
+          ">
+            {Object.values(products).splice(0,6).map((item, index) => (
+              <div
+                key={index}
+            
+              >
+                <ProductCard
+                  itemName={item.name}
+                  image={item.image}
+                />
+                
+              </div>
+            ))}
           </div>
+
 
         <h3 className="relative bottom-5 md:hidden text-gray-500 mt-2 text-right mr-4 italic text-sm md:text-base">swipe →</h3>
 
@@ -78,6 +85,8 @@ function ProductSection() {
             </button>
           </div>
        </div>
+
+       
 
           
       </div>

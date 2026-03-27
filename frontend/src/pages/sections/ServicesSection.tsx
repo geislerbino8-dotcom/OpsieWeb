@@ -29,7 +29,9 @@ const services = [
 
 function ServicesSection() {
   return (
-    <section id="service-section" className="w-full h-full flex flex-col items-center py-16 px-4 bg-white">
+    <section 
+      data-aos="fade-left"
+      id="service-section" className="w-full h-full flex flex-col items-center py-16 px-4 bg-white">
 
       <div className="text-center max-w-3xl py-16">
         <h1 className="text-3xl md:text-4xl mb-4 font-semibold">

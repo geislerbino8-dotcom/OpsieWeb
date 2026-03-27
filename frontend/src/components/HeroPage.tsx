@@ -48,9 +48,9 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
         <p
           className="text-white text-base md:text-lg max-w-2xl"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-aos="fade-down"
           data-aos-once="true"
+        
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus
           ipsa dolore laboriosam ea harum iure quo consequuntur dolorem rem nobis
@@ -66,6 +66,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         </div>
 
       </div>
+
       
     </div>
   );

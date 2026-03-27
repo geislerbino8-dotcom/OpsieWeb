@@ -61,8 +61,6 @@ const FAQAccordion = () => {
         <span className="text-[#3CBDE6] font-semibold">We've Got Answers</span>
       </h1>
       <p
-        data-aos="fade-right"
-        data-aos-delay="400"
         className="text-center text-[18px] md:text-[24px] leading-[20px] font-light"
       >
         Quick, clear answers to help you get started with Opsie.

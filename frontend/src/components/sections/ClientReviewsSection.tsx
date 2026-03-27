@@ -97,30 +97,41 @@ const ClientReview: React.FC = () => {
 
         {/* Slider */}
         <div className="relative w-full flex h-[300px] overflow-x-hidden overflow-y-visible">
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 60}%)` }}
-          >
-            {cards.map((card, idx) => {
-              const isActive = idx === currentIndex;
+  {/* Slider */}
+  <div
+    className="flex transition-transform duration-700 ease-in-out"
+    style={{ transform: `translateX(-${currentIndex * 60}%)` }}
+  >
+    {cards.map((card, idx) => {
+      const isActive = idx === currentIndex;
 
-              return (
-                <div
-                  key={idx}
-                  className="flex-shrink-0 w-[60%] px-4"
-                  style={{
-                    transform: `scale(${isActive ? 1 : 0.9})`,
-                    opacity: isActive ? 1 : 0.6,
-                    transition: "all 0.5s ease-in-out",
-                  }}
-                >
-                  <TestimonialCard {...card} />
-                </div>
-              );
-            })}
-          </div>
-          
+      return (
+        <div
+          key={idx}
+          className="flex-shrink-0 w-[60%] px-4"
+          style={{
+            transform: `scale(${isActive ? 1 : 0.9})`,
+            opacity: isActive ? 1 : 0.6,
+            transition: "all 0.5s ease-in-out",
+          }}
+        >
+          <TestimonialCard {...card} />
         </div>
+
+      );
+    })}
+  </div>
+
+  {/* Right gradient overlay */}
+  {/* Right gradient overlay */}
+<div
+  className="pointer-events-none absolute top-0 right-0 h-full w-24 
+    bg-gradient-to-l from-[#ECEDF1] via-[#ECEDF1]/10 to-transparent"
+></div>
+
+
+
+</div>
         
 
       </div>

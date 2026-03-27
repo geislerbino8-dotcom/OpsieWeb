@@ -1,8 +1,15 @@
 import OpsieImage from "../../assets/opsie/logo-png.png";
+import { useNavigate } from "react-router-dom";
 
 function AboutUsSection() {
+  
+  const navigate = useNavigate()
+
   return (
-    <section className="select-none font-montserrat w-full flex flex-col items-center py-16 md:px-4 text-center md:text-justify">
+    <section 
+    data-aos="fade-left"
+       
+    className="select-none font-montserrat w-full flex flex-col items-center py-16 md:px-4 text-center md:text-justify">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center gap-12">
         
         {/* Image */}
@@ -30,7 +37,9 @@ function AboutUsSection() {
           </p>
 
           <div>
-            <button className="border btn-learn mt-4 px-6 py-3 hover:bg-[#3CBDE6] hover:text-white rounded-lg transition duration-300">
+            <button 
+              onClick={()=> navigate('/who-we-are')}
+              className="border border-gray-300 btn-learn mt-4 px-6 py-3 hover:bg-[#3CBDE6] hover:text-white rounded-lg transition duration-300">
               Learn more
             </button>
           </div>

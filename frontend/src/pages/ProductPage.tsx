@@ -21,7 +21,7 @@ const products = [
 
 function ProductPage() {
   return (
-    <div className="w-full bg-white text-gray-800">
+    <div className="w-full bg-white text-gray-800 overflow-hidden">
 
       <div className="max-w-[1280px] mx-auto px-6">
 
@@ -52,10 +52,11 @@ function ProductPage() {
             <div className="grid grid-cols-2 gap-4">
               {[Product1, hris, opsync, web].map((img, idx) => (
                 <img
+                
                   key={idx}
                   src={img}
                   alt={`Product ${idx + 1}`}
-                  className="rounded-xl shadow-lg object-cover w-full h-48 md:h-56 lg:h-64"
+                  className="rounded-xl shadow-lg object-cover w-full h-48 md:h-56 lg:h-64 hover:scale-105 hover:bg-red-400"
                 />
               ))}
             </div>
@@ -73,7 +74,7 @@ function ProductPage() {
             </p>
           </div>
 
-          <div className="p-cards-container flex justify-center md:flex-row md:overflow-x-auto overflow-x-hidden gap-8 flex-wrap p-10 items-start
+          <div className="p-cards-container flex justify-center md:flex-row md:overflow-x-auto overflow-hidden gap-8 flex-wrap p-10 items-start
           ">
             {products.map((item, index) => (
               <div
@@ -93,7 +94,6 @@ function ProductPage() {
         </section>
 
       </div>
-            <OpsieHRIS/> 
             <WhyChooseUsSection /> 
             <ClientReview />
             <ServicesSection />
