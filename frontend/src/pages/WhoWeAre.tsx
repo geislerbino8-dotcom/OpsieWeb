@@ -10,7 +10,7 @@ export default function WhoWeAre() {
 
   const navigate = useNavigate();
     return (
-     <div className="max-w-[1280px] mx-auto mt-25">
+     <div className="max-w-[1280px] mx-auto mt-21">
          <div className="overflow-hidden "
       >
 

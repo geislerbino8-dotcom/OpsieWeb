@@ -9,9 +9,10 @@ export const Button: React.FC<ButtonOptions> = (props) => {
     <button
       type="button"
       className={logic.getButtonClass()}
-      style={logic.getButtonStyle()}
+      style={{borderRadius: '50%', transition: 'all 0.4s ease-in-out'}}
       onClick={(e) => logic.handleClick(e)}
       disabled={props.disabled}
+      
     >
       {props.icon && props.iconPosition !== "right" && (
        <span className={props.iconClassName}>

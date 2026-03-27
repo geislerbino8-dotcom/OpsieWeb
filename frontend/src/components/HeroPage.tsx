@@ -33,7 +33,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         <h1 className="text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
           <SplitText
             text={ heroText ? heroText : "Bring your Ideas into Reality"}
-            className="font-montserrat text-10xl text-center"
+            className="text-10xl text-center font-bold"
             delay={50}
             duration={1.25}
             ease="power3.out"
@@ -48,8 +48,9 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
 
         <p
           className="text-white text-base md:text-lg max-w-2xl"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-aos="fade-down"
+          data-aos-once="true"
+        
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus
           ipsa dolore laboriosam ea harum iure quo consequuntur dolorem rem nobis
@@ -65,6 +66,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         </div>
 
       </div>
+
       
     </div>
   );

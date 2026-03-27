@@ -230,7 +230,6 @@ export class TicketController {
 
         if (oldValue != newValue) {
           await TicketHistoryModel.create({
-            // @ts-expect-error - Type mismatch due to population
             ticket: id,
             action: 'updated',
             field,

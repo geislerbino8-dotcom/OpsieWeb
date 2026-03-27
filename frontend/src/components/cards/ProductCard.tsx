@@ -15,7 +15,8 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
         cursor-pointer
         group relative w-[18rem] flex-shrink-0
         rounded-2xl overflow-hidden
-        transition-all duration-500 ease-out
+        transition-all duration-1000 ease-out
+        hover:mx-3
         shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]
         hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
       "

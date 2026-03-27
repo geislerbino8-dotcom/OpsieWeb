@@ -91,37 +91,37 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-3">Home</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#3CBDE6] cursor-pointer">
                   <a href="/who-we-are">About</a>
                 </li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#3CBDE6] cursor-pointer">
                   <a href="/#what-we-do">Service Offers</a>
                 </li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#3CBDE6] cursor-pointer">
                   <a href="/products">Products</a>
                 </li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Contact Us</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">Contact Us</li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold text-lg mb-3">What We do</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Services</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Why Choose Us</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Clients</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">FAQ’s</li>
+                <li className=" hover:text-[#3CBDE6] cursor-pointer">Services</li>
+                <li className=" hover:text-[#3CBDE6] cursor-pointer">Why Choose Us</li>
+                <li className=" hover:text-[#3CBDE6] cursor-pointer">Clients</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">FAQ’s</li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold text-lg mb-3">Who We Are</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Vision</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Partnership</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Location</li>
-                <li className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">FAQ’s</li>
-                <li onClick={()=> navigate("/admin") } className="hover:scale-120 hover:text-[#3CBDE6] cursor-pointer">Admin</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">Vision</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">Partnership</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">Location</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">FAQ’s</li>
+                <li onClick={()=> navigate("/admin") } className="hover:text-[#3CBDE6] cursor-pointer">Admin</li>
               </ul>
             </div>
 

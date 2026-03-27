@@ -29,10 +29,12 @@ const services = [
 
 function ServicesSection() {
   return (
-    <section id="service-section" className="w-full h-full flex flex-col items-center py-16 px-4 bg-white">
+    <section 
+      data-aos="fade-left"
+      id="service-section" className="w-full h-full flex flex-col items-center py-16 px-4 bg-white">
 
       <div className="text-center max-w-3xl py-16">
-        <h1 className="text-3xl md:text-4xl mb-4">
+        <h1 className="text-3xl md:text-4xl mb-4 font-semibold">
           Opsie's <span className="text-[#3CBDE6] font-semibold">Services</span> with 
           <span className="font-playfair italic text-[#3CBDE6] font-semibold"> Excellence</span>
         </h1>

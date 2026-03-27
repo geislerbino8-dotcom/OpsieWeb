@@ -14,7 +14,7 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
     <div
       className={`
         group rounded-3xl w-full p-6 bg-white ${props.className || ""}
-
+        
         transition-all duration-500 ease-out
         hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-100
         hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)]

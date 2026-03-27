@@ -118,8 +118,8 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                       <aside
                         className="
 
-                          absolute top-full left-0 w-56 shadow-xl p-2 bg-white/80
-                          transition-all duration-300 ease-out
+                          absolute top-full left-0 w-56 shadow-xl p-2 bg-white
+                          transition-all duration-100 ease-out
                         "
                       >
                         {products.map((prod, i) => (

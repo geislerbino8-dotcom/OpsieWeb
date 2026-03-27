@@ -1,6 +1,4 @@
-import  { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 import AnalyticsCards from "../../components/cards/AnalyticsCards";
 import OpsieLogo from "../../assets/icons/opsie_logo_only.png";
@@ -8,12 +6,8 @@ import LineImg from "../../assets/background-images/LineBG.png";
 
 function Analytics() {
 
-  useEffect(() => {
-    AOS.init({ duration: 1200, once: true });
-  }, []);
-
   return (
-    <section className="relative w-full flex flex-col items-center py-16 px-4 overflow-hidden"
+    <section className="transtion duration-1000 relative w-full flex flex-col items-center py-16 px-4 overflow-hidden"
       style={{
         backgroundColor: '#015c7dc8',
         backgroundImage: `url(${LineImg})`,

@@ -1,32 +1,27 @@
 import { useEffect } from 'react';
 import { Outlet } from "react-router-dom";
 import './App.css';
-
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-
 import "aos/dist/aos.css";
-
 import { useLocation } from "react-router-dom";
 import './App.css';
-
 import ChatHelp from './components/ChatHelp';
-
-
 import AOS from "aos";
-import "aos/dist/aos.css";
 
 const App = () => {
 
   const location = useLocation();
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      mirror: true,
-      offset: 0,
+  AOS.init({
+      duration: 1000,         
+      once: true,            
+      mirror: false,        
+      disableMutationObserver: true, 
     });
+
+    AOS.refreshHard()
   }, []);
 
 
@@ -74,11 +69,9 @@ const App = () => {
     AOS.refreshHard();
   }, [location.pathname]);
 
-
-
   return (
     <>
-      <div className='font-monserrat'>
+      <div className='select-none'>
           <ChatHelp />
           <Navigation />
           <Outlet />

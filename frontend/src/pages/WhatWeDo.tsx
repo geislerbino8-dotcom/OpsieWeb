@@ -24,7 +24,7 @@ export default function WhatWeDo() {
 
 
     return (
-      <div className="max-w-[1280px] mt-25 mx-auto overflow-hidden">
+      <div className="max-w-[1280px] mt-21 mx-auto overflow-hidden">
 
   {/* HERO SECTION */}
   <div className="w-full px-2">

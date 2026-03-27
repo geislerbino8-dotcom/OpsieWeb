@@ -54,20 +54,20 @@ const ClientReview: React.FC = () => {
 <div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
       
 
-        <h1 className="font-poppins items-center md:text-start  leading-[35px] md:leading-[52px] tracking-[2px] font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What our <span className="text-[#3CBDE6] font-semibold">customers</span> are saying </h1>
+        <h1 className="items-center md:text-start  leading-[35px] md:leading-[52px] tracking-[2px] font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">What our <span className="text-[#3CBDE6] font-semibold">customers</span> are saying </h1>
           
         <div className="hidden md:flex items-center gap-x-4 mb:8 md:mb-20">
           <Button
             variant="shadow"
             iconImage={leftArrow}
-            className="w-8 h-8 flex items-center justify-center pr-3 hover:bg-[#3CBDE6]"
+            className="w-8 h-8 flex items-center justify-center pr-3 hover:bg-[#3CBDE6] transition-all-ease"
             onClick={handlePrev}
           />
           <hr className="w-[100px] border border-black" />
           <Button
             variant="shadow"
             iconImage={rightArrow}
-            className="w-8 h-8 flex items-center justify-center  pl-3 hover:bg-[#3CBDE6]"
+            className="w-8 h-8 flex items-center justify-center  pl-3 hover:bg-[#3CBDE6] transition-all duration-200 ease-in-out"
             onClick={handleNext}
           />
         </div>
@@ -97,30 +97,41 @@ const ClientReview: React.FC = () => {
 
         {/* Slider */}
         <div className="relative w-full flex h-[300px] overflow-x-hidden overflow-y-visible">
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 60}%)` }}
-          >
-            {cards.map((card, idx) => {
-              const isActive = idx === currentIndex;
+  {/* Slider */}
+  <div
+    className="flex transition-transform duration-700 ease-in-out"
+    style={{ transform: `translateX(-${currentIndex * 60}%)` }}
+  >
+    {cards.map((card, idx) => {
+      const isActive = idx === currentIndex;
 
-              return (
-                <div
-                  key={idx}
-                  className="flex-shrink-0 w-[60%] px-4"
-                  style={{
-                    transform: `scale(${isActive ? 1 : 0.9})`,
-                    opacity: isActive ? 1 : 0.6,
-                    transition: "all 0.5s ease-in-out",
-                  }}
-                >
-                  <TestimonialCard {...card} />
-                </div>
-              );
-            })}
-          </div>
-          
+      return (
+        <div
+          key={idx}
+          className="flex-shrink-0 w-[60%] px-4"
+          style={{
+            transform: `scale(${isActive ? 1 : 0.9})`,
+            opacity: isActive ? 1 : 0.6,
+            transition: "all 0.5s ease-in-out",
+          }}
+        >
+          <TestimonialCard {...card} />
         </div>
+
+      );
+    })}
+  </div>
+
+  {/* Right gradient overlay */}
+  {/* Right gradient overlay */}
+<div
+  className="pointer-events-none absolute top-0 right-0 h-full w-24 
+    bg-gradient-to-l from-[#ECEDF1] via-[#ECEDF1]/10 to-transparent"
+></div>
+
+
+
+</div>
         
 
       </div>

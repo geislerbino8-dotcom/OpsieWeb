@@ -21,9 +21,8 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
   // 🎨 Variants
   const variants = {
-    color: '#005a75',
     primary:
-      "bg-[#3CDBE6] text-white hover:bg-[#2da9cf] shadow-md hover:shadow-lg",
+      "text-white bg-[#2da9cf] hover:bg-[#242424]",
     outline:
       "border border-[#3CBDE6] text-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white",
     ghost:
@@ -32,9 +31,9 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 
   // 📏 Sizes
   const sizes = {
-    sm: "px-3 py-1 text-sm rounded-3xl",
-    md: "px-4 py-2 text-base rounded-3xl",
-    lg: "px-6 py-3 text-lg rounded-3xl",
+    sm: "px-3 py-1 text-sm",
+    md: "px-4 py-2 text-base",
+    lg: "px-6 py-3 text-lg",
   };
 
   return (
@@ -43,7 +42,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       className={`
         flex items-center justify-center gap-2
         font-semibold
-        transition-all duration-300 ease-out
+        transition-all duration-1000 ease-out
         active:scale-95
         ${variants[variant]}
         ${sizes[size]}
