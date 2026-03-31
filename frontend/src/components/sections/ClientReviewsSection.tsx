@@ -48,6 +48,7 @@ const ClientReview: React.FC = () => {
 
   return (
     <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center md:px-10 py-20"
+      data-aos="slide-up" data-aos-delay="500"
     >
       
 

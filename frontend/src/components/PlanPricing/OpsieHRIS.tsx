@@ -63,6 +63,8 @@ export default function PricingPlans() {
           {plans.map((plan, index) => (
             <div
               key={index}
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
               className={`relative rounded-2xl p-8 backdrop-blur-lg border border-white/10 shadow-xl transition transform hover:scale-105 ${
                 plan.popular
                   ? "bg-white/10 border-cyan-400"

@@ -4,28 +4,21 @@ import './App.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import "aos/dist/aos.css";
-import { useLocation } from "react-router-dom";
 import './App.css';
 import ChatHelp from './components/ChatHelp';
 import AOS from "aos";
 
 const App = () => {
 
-  const location = useLocation();
-
+  
   useEffect(() => {
   AOS.init({
       duration: 1000,         
       once: true,            
       mirror: false,        
-      disableMutationObserver: true, 
     });
 
-    AOS.refreshHard()
   }, []);
-
-
-
 
   useEffect(() => {
     if (document.getElementById("botpress-script")) return;
@@ -43,31 +36,7 @@ const App = () => {
     document.body.appendChild(script2);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const elements = document.querySelectorAll("[data-aos]");
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          el.classList.add("aos-animate");
-        } else {
-          el.classList.remove("aos-animate"); 
-        }
-      });
-    };
-  
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); 
-  
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    
-    window.scrollTo(0, 0);
-    
-    AOS.refreshHard();
-  }, [location.pathname]);
+ 
 
   return (
     <>

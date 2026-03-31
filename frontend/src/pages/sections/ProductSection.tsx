@@ -48,9 +48,12 @@ function ProductSection() {
             {Object.values(products).splice(0,6).map((item, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                  data-aos-delay={index * 150}
             
               >
                 <ProductCard
+                  
                   itemName={item.name}
                   image={item.image}
                 />

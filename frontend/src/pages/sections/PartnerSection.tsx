@@ -16,7 +16,7 @@ function PartnerSection() {
       {/* Header */}
       <div className="text-center mb-12 max-w-3xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          PARTNERS AND CLIENTS
+          <span className="text-[#3CBDE6]">PARTNERS </span> AND <span className="text-[#3CBDE6]">CLIENTS</span>
         </h1>
         <p className="text-gray-600 text-base md:text-lg">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, laboriosam.

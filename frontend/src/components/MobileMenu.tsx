@@ -10,7 +10,9 @@ const menuLists = [
 
 function MobileMenu({ closeMenu }: any) {
   return (
-    <div className="w-full fixed top-0 inset-0 z-50 flex justify-center items-end">
+    <div className="w-full fixed top-0 inset-0 z-50 flex justify-center items-end"
+      
+    >
       <div
         className="absolute inset-0 bg-black/50 bg-opacity-20"
         onClick={closeMenu}
@@ -26,6 +28,7 @@ function MobileMenu({ closeMenu }: any) {
           flex flex-col p-6 space-y-8
           transform transition-transform duration-300
         "
+        data-aos="slide-up"
       >
         <button
           onClick={closeMenu}

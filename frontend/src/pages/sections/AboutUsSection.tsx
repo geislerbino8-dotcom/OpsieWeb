@@ -15,6 +15,7 @@ function AboutUsSection() {
         {/* Image */}
         <div
           className="flex justify-center md:w-1/2"
+          data-aos="fade-right"
         >
           <img width={300} src={OpsieImage} alt="Opsie" />
         </div>
@@ -23,16 +24,18 @@ function AboutUsSection() {
         <div
           className="flex flex-col gap-6 md:w-1/2 md:p-10 p-5 justify-start"
         >
-          <h2 className="font-semibold text-3xl md:text-4xl leading-tight">
+          <h2 className="font-semibold text-3xl md:text-4xl leading-tight" data-aos="fade-right">
             Let your <span className="text-[#3CBDE6] font-semibold">Business </span>into Digitally 
             <span className="text-[#3CBDE6] font-semibold"> Real</span>
           </h2>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed"
+            data-aos="fade-right"
+          >
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae sequi minus rerum fugit distinctio eos quis facere nihil fugiat non facilis voluptatibus, saepe, repudiandae natus quaerat modi dignissimos doloribus ducimus.
           </p>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed" data-aos="fade-right">
             Dolores tempore perspiciatis minima quis animi eos, odio deleniti cum et delectus id suscipit tempora, mollitia magnam eum ex sint fugiat dignissimos quaerat quibusdam, consequatur similique culpa voluptas.
           </p>
 

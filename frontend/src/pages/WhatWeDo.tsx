@@ -6,10 +6,6 @@ import WhyChooseUs from "../components/sections/WhyChooseUs";
 import { useNavigate } from "react-router-dom";
 
 
-
-
-
-// Alternative with image sources
 const imageLogos = [
   { src: "/logo/Frame.svg", alt: "Company 1",  },
   { src: "/logo/Frame-1.svg", alt: "Company 2",  },
@@ -29,7 +25,7 @@ export default function WhatWeDo() {
   {/* HERO SECTION */}
   <div className="w-full px-2">
     <div className="relative w-full  ">
-    <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
+    <div  className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
   
     {/* Background Image */}
     <img

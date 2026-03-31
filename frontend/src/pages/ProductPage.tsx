@@ -36,12 +36,14 @@ function ProductPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
 
             <div className="flex flex-col gap-6">
-              <h1 className="text-4xl md:text-6xl text-left lg:text-7xl leading-tight">
+              <h1 className="text-4xl md:text-6xl text-left lg:text-7xl leading-tight" 
+                data-aos="fade-up" data-aos-easing="ease-in-out"
+              >
                 Build <span className='font-playfair italic text-[#3CBDE6] '> Smarter</span> Products with
                 <span className="text-[#3CBDE6] font-semibold"> Opsie</span>
               </h1>
 
-              <p className="text-gray-600 text-lg max-w-lg">
+              <p className="text-gray-600 text-lg max-w-lg" data-aos="fade-right">
                 We design powerful digital tools that help businesses
                 automate operations, scale faster, and work smarter.
               </p>
@@ -79,10 +81,10 @@ function ProductPage() {
 
         <section id='all-products' className="py-20">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-semibold">
+            <h2 className="text-3xl md:text-4xl font-semibold" data-aos="slide-up">
               Our <span className="text-[#3CBDE6]">Products</span>
             </h2>
-            <p className="text-gray-600 mt-3">
+            <p className="text-gray-600 mt-3" data-aos="slide-up">
               Discover the solutions we built to empower businesses.
             </p>
           </div>

@@ -143,8 +143,7 @@ export default function WhoWeAre() {
                                     className="count-up-text"
                                     startCounting={true}
                                     separator=","
-                                    onStart={() => console.log('Counting started')}
-                                    onEnd={() => console.log('Counting ended')}
+                             
                                 />+</h1>
                             <p className="font-poppins text-[12px] sm:text-[16px] md:text-[16px] lg:text-[20px]">Satisfied Clients</p>
                             </div>
@@ -162,8 +161,7 @@ export default function WhoWeAre() {
                                     className="count-up-text"
                                     startCounting={true}
                                     separator=","
-                                    onStart={() => console.log('Counting started')}
-                                    onEnd={() => console.log('Counting ended')}
+                                
                                 />
                                 %
                             </h1>
@@ -183,8 +181,7 @@ export default function WhoWeAre() {
                                     className="count-up-text"
                                     startCounting={true}
                                     separator=","
-                                    onStart={() => console.log('Counting started')}
-                                    onEnd={() => console.log('Counting ended')}
+                                  
                                 />+</h1>
                                     <p className="font-poppins text-[12px] sm:text-[16px] md:text-[16px] lg:text-[20px]">Projects Delivered</p>
                                 </div>
@@ -339,7 +336,7 @@ export default function WhoWeAre() {
                     {/* Left Tall Card */}
                     <div  data-aos="fade-right" data-aos-delay="800" className="row-span-2 lg:mr-12">
                         <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[190px] h-[380px] lg:w-[210px] lg:h-[440px] xl:w-[250px] xl:h-[500px]  rounded-3xl lg:ml-6 xl:ml-0">
-                            <img src="/empowerment.jpg"  alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
+                            <img src="/empowerment.jpg"  alt="" className="w-full h-full object-cover hover:scale-110 transtion-all dutation-700 p-2 rounded-3xl " />
                         </div>
                     </div>
 
