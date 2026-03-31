@@ -1,12 +1,49 @@
-name: Deploy Staging
+name: CI / Deploy Staging
 
 on:
   push:
     branches:
       - 1.0.2
+  pull_request:
+    branches:
+      - 1.0.2
 
 jobs:
+
+  ci-check:
+    name: Build Check
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Build Backend
+        working-directory: ./backend
+        run: npm run build
+
+
   deploy:
+    name: Deploy Staging
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
@@ -24,6 +61,5 @@ jobs:
             git fetch origin
             git reset --hard origin/1.0.2
 
-            #Docker Run Containers
             docker compose pull
             docker compose up -d --build
