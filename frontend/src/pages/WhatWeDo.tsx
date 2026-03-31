@@ -1,10 +1,10 @@
-import { Button } from "../components/Button/Button";
 import ServicesSection from "../components/sections/ServicesSections";
 import ClientCard from "../components/sections/ClientReviewsSection";
 import LogoLoop from "../components/PartnersLogo/PartnersLogoLoop";
 import FAQAccordion from "../components/FaqSection/Faq"
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -88,15 +88,12 @@ export default function WhatWeDo() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               </p>
               <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
-              <Button
-                label="Contact Us"
-                variant="secondary"
-                icon={<img src="/ICONS/contact-us.svg" className="w-3 h-3" />}
-                iconPosition="right"
-                className="font-poppins font-light my-4 px-4 text-md "
-                weight="light"
-                onClick={() => Navigate("/contact-us")} //navigate to contact page
-              />
+             
+              <button 
+                onClick={()=> Navigate("/contact-us")}
+                className="mt-5 bg-red-400 flex flex-row items-center justify-center align-center bg-white text-black p-3">
+                Contact Us <span><img src="/ICONS/contact-us.svg" className="w-3 h-3 ml-3" /></span>
+              </button>
               </div>
               
             </div>
@@ -153,10 +150,18 @@ export default function WhatWeDo() {
       <div className="mt-2 md:px-[6%]">
         <ServicesSection />
         </div>
-        <div className="mt-2 md:mt-0 md:px-[6%]">
+        <div className="w-full my-10">
+          <iframe
+            className="w-full h-[500px] md:h-[500px] rounded-2xl shadow-xl"
+            src="https://www.youtube.com/embed/aAvDI1qae-U"
+            title="YouTube video"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div className="mt-7 md:px-[6%]">
         <WhyChooseUs/>
       </div>
-      <div data-aos="fade-right" className="mt-20 md:mt-20 md:px-[6%]">
+      <div data-aos="fade-right" className="mt-20 md:mt-20">
       <ClientCard/>
       </div>
       <div style={{ height: '200px', position: 'relative', overflow: 'hidden', marginTop: '40px' }}>

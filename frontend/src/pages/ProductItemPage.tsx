@@ -154,9 +154,8 @@ function ProductItemPage() {
             <img
               key={index}
               src={_}
-              width={200}
               alt={`Gallery ${index + 1}`}
-              className="rounded-xl border border-white/20 shadow-md hover:scale-110 transition-transform duration-300"
+              className="md:w-[200px] rounded-xl border border-white/20 shadow-md hover:scale-110 transition-transform duration-300"
             />
           ))}
         </div>

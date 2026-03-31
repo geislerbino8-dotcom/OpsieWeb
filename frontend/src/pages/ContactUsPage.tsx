@@ -31,7 +31,7 @@ function ContactUsPage() {
     <div>
       
     </div>
-    <div  className="hidden md:block absolute md:right-2 md:bottom-4 lg:bottom-4 lg:right-0 mx-auto z-50 ">
+    <div  className="bg-white p-4 hidden md:block absolute md:right-2 md:bottom-4 lg:bottom-4 lg:right-0 mx-auto z-50 ">
       <div data-aos="fade-down"  className="flex flex-col items-start md:flex-row-reverse lg:justify-center leading-4  gap-2 ml-2 ">
           <div className="flex flex-col justify-start items-start md:items-start md:justify-center lg:leading-5">
           
@@ -110,7 +110,9 @@ function ContactUsPage() {
             
           </div>
         <div className="flex flex-col md:flex-row justify-center">
-          <ContactForm />
+          <div className='flex justify-center'>
+            <ContactForm />
+          </div>
           <div className="flex flex-col mt-5">
             <ContactsCard title='Give us a Call.' 
               children={
@@ -227,10 +229,10 @@ function ContactUsPage() {
     </div>
 
     {/* Locations List */}
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
 
       {/* ITEM */}
-      <div className="p-4 rounded-xl border hover:shadow-md transition">
+      <div className="p-4 rounded-xl  hover:shadow-md transition bg-white">
         <h2 data-aos="fade-right" className="font-semibold">Quezon City (HQ)</h2>
         <p data-aos="fade-right" className="text-gray-500 text-sm">Diliman, Quezon City</p>
         <button 
@@ -242,7 +244,7 @@ function ContactUsPage() {
       </div>
 
       {/* ITEM */}
-      <div className="p-4 rounded-xl border hover:shadow-md transition">
+      <div className="p-4 rounded-xl  hover:shadow-md transition bg-white">
         <h2 data-aos="fade-right" className="font-semibold">Makati Office</h2>
         <p data-aos="fade-right" className="text-gray-500 text-sm">Ayala Avenue, Makati</p>
         <button 
@@ -254,7 +256,7 @@ function ContactUsPage() {
       </div>
 
       {/* ITEM */}
-      <div className="p-4 rounded-xl border hover:shadow-md transition">
+      <div className="p-4 rounded-xl  hover:shadow-md transition bg-white">
         <h2 data-aos="fade-right" className="font-semibold">Cebu Branch</h2>
         <p data-aos="fade-right" className="text-gray-500 text-sm">IT Park, Cebu City</p>
         <button 
@@ -277,9 +279,9 @@ function ContactUsPage() {
       </div>
     </div>
 
-    <div className='w-full'>
+    
       <ProductItemCTA />
-    </div>
+    
 </div>
   )
 }

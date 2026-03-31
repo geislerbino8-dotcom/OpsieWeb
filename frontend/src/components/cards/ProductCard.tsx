@@ -93,7 +93,7 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
             rounded-lg font-semibold text-cyan-600
             border border-cyan-400/40
 
-            opacity-0
+            md:opacity-0
             group-hover:opacity-100
 
             transition-all duration-500 ease-out

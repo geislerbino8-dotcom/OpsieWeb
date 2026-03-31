@@ -125,11 +125,9 @@ const ClientReview: React.FC = () => {
   {/* Right gradient overlay */}
   {/* Right gradient overlay */}
 <div
-  className="pointer-events-none absolute top-0 right-0 h-full w-24 
-    bg-gradient-to-l from-[#ECEDF1] via-[#ECEDF1]/10 to-transparent"
-></div>
-
-
+    className="pointer-events-none absolute top-0 right-0 h-full w-24 
+      bg-gradient-to-l from-[#ECEDF1] via-[#ECEDF1]/10 to-transparent"
+  ></div>
 
 </div>
         

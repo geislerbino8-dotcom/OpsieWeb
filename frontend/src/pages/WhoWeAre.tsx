@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { SiFacebook, SiInstagram, SiGmail, SiGithub } from "react-icons/si";
 import CountUp from "../components/CountUp";
 import MapDesign from "@/components/sections/MapDesign";
+import Team from "@/components/Team";
 
 
 export default function WhoWeAre() {
@@ -35,15 +36,12 @@ export default function WhoWeAre() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolfore magna aliqua. 
                     </p>
                     <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
-                    <Button
-                    label="Learn More"
-                    variant="secondary"
-                    icon={<img src="/ICONS/contact-us.svg" className="w-3 h-3" />}
-                    iconPosition="right"
-                    className="font-poppins font-light my-4 px-4 text-md "
-                    weight="light"
-                    onClick={() => navigate("/what-we-do")} //navigate to contact page
-                />
+                        <button 
+                            onClick={()=> navigate("/what-we-do")}
+                            className="mt-5 bg-red-400 flex flex-row items-center justify-center align-center bg-white text-black p-3">
+                            Learn more<span><img src="/ICONS/contact-us.svg" className="w-3 h-3 ml-3" /></span>
+                        </button>
+                    
                 </div>
             </div>
             <div className="absolute inline-block right-1/5 bottom-[-20px] md:right-0 md:bottom-14   lg:right-12 lg:bottom-12  xl:right-24 xl:bottom-12 ">
@@ -73,7 +71,9 @@ export default function WhoWeAre() {
                 <div className="w-14 h-14  md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
                     <SiInstagram className="text-[#3CBDE6] text-3xl object-cover " />
                 </div>
-                <div className="w-14 h-14  md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
+                <div className="w-14 h-14 md:w-10 md:h-10 lg:w-14 lg:h-14 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
+                    <SiGithub className="text-[#3CBDE6] text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8  " />
+
                 </div>
                 <div className="w-14 h-14  md:w-18 md:h-18 border-1 border-[#3CBDE6] rounded-full object p-1 flex items-center justify-center">
                  <SiGmail className="text-[#3CBDE6] text-3xl object-cover " />
@@ -90,13 +90,12 @@ export default function WhoWeAre() {
             <p data-aos="fade-right" data-aos-delay="200" className="w-full md:w-[320px] lg:w-[450px] font-poppins text-center md:text-left text-[16px] sm:text-[14px] md:text-[18px] leading-[18px] font-light">
                 At <span className="text-[#3CBDE6]  font-semibold">Opsie</span>, we believe that real business growth is rooted in strategy, insight, and execution.
             </p>
-            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
+
+            <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
                 <Button
-                    label="Get Started"
-                    icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}
-                    iconPosition="right"
-                    className="bg-[#3CBDE6] flex items-center justify-center text-white gap-2 text-lg px-3 w-[200px]"
-                    onClick={() => alert("Button clicked!")}
+                label="Get Started"
+                iconPosition="right"
+                className="cursor-pointer"
                 />
             </div>
         </div>
@@ -408,6 +407,7 @@ export default function WhoWeAre() {
 
                 </div>
                 </div>
+                <Team />
                 <div className="flex flex-col  gap-8 my-12">
                 <div className="flex flex-col   gap-2 px-2 flex items-center justify-center font-poppins">
                         </div>
@@ -416,9 +416,11 @@ export default function WhoWeAre() {
                             <MapDesign />
                         </div>
                     </div>
-                <FAQAccordion />
                 </div>
             <div>
+
+                                <FAQAccordion />
+
                    
                 </div>
            
