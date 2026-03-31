@@ -8,9 +8,9 @@ import Product1 from '../assets/Products/Product1.png';
 import hris from '../assets/Products/HRIS.png';
 import opsync from '../assets/Products/Opsync.png';
 import web from '../assets/Products/WebOpsie.png';
-import EncourageCard from '@/components/cards/EncourageCard';
-import ProductCTA from './sections/ProductCTA';
+
 import ProductItemCTA from '@/components/cards/ProductItemCTA';
+import OpsieHRIS from '../components/PlanPricing/OpsieHRIS'
 
 const products = [
   { name: "Opsie HRIS", image: hris },
