@@ -1,6 +1,5 @@
 import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
-import OpsieHRIS from '../components/PlanPricing/OpsieHRIS'
 import ClientReview from '../components/sections/ClientReviewsSection';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '@/components/cards/ProductCard';

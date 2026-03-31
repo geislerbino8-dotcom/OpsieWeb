@@ -34,9 +34,10 @@ export default class Server {
     const ticketRoute = new TicketRoute();
     const userRoute = new UserRoute();
     const authRoute = new AuthRoute();
-    this.app.use('/ticket', ticketRoute.router);
-    this.app.use('/user', userRoute.router);
-    this.app.use('/auth', authRoute.router);
+    const API_PREFIX = process.env.API_PREFIX || '/api';
+    this.app.use(`${API_PREFIX}/ticket`, ticketRoute.router);
+    this.app.use(`${API_PREFIX}/user`, userRoute.router);
+    this.app.use(`${API_PREFIX}/auth`, authRoute.router);
   };
 
   private initializeNotFoundHandler = (): void => {
