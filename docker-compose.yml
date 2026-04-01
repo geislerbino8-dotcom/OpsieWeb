@@ -17,10 +17,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    environment:
-      PORT: 3000
-      MONGO_URI: mongodb+srv://opsiessi:ZE9crHBxOuTvOwWH@opsiewebsite.8uu1hmi.mongodb.net/opsie-test?appName=OpsieWebsite
-      MONGO_URI_TEST: mongodb://mongodb:27017/opsie_staging_db
+    env_file:
+      - .env
 
   frontend:
     container_name: opsie-staging-frontend
