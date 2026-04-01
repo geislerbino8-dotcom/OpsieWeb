@@ -58,7 +58,7 @@ function ContactForm() {
 
 
   return (
-    <div className="flex">
+    <div className="flex" data-aos="fade-up">
       <div className="w-full max-w-lg bg-white rounded-xl shadow-lg md:p-8 p-5 flex flex-col items-center space-y-4">
         {
           !transSucc ?

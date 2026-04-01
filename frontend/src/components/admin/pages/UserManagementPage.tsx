@@ -196,7 +196,7 @@ const UserManagementPage = () => {
           </thead>
 
           <tbody>
-            {users.map((user) => (
+            {users?.map((user) => (
               <tr key={user._id} className='border-t hover:bg-gray-200'>
                 <td className='px-4 py-3'>{user.name}</td>
 

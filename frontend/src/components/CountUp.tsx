@@ -1,4 +1,4 @@
-import { useInView, useMotionValue, useSpring } from 'motion/react';
+import { useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useCallback, useEffect, useRef } from 'react';
 
 interface CountUpProps {
@@ -9,7 +9,7 @@ interface CountUpProps {
   duration?: number;
   className?: string;
   startWhen?: boolean;
-  startCounting?: boolean;
+  startCounting?:boolean;
   separator?: string;
   onStart?: () => void;
   onEnd?: () => void;

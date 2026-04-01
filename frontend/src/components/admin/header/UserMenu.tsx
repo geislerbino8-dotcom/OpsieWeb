@@ -113,7 +113,7 @@ const UserMenu = () => {
         className='flex items-center gap-2 px-3 py-1 rounded-md hover:bg-gray-50 focus:outline-none cursor-pointer'
       >
         <div className='w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold'>
-          {user.name.charAt(0).toUpperCase()}
+          {user.name?.charAt(0).toUpperCase()}
         </div>
         <span className='text-sm font-medium text-gray-800'>{user.name}</span>
       </button>

@@ -168,7 +168,7 @@ export default function Maps() {
             </p>
           </div>
 
-          <div className="flex items-center justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 rounded-3xl text-white lg:mt-4">
+          <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
             <Button
               label="Get Direction"
               icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}

@@ -48,9 +48,12 @@ function ProductSection() {
             {Object.values(products).splice(0,6).map((item, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                  data-aos-delay={index * 150}
             
               >
                 <ProductCard
+                  
                   itemName={item.name}
                   image={item.image}
                 />
@@ -60,7 +63,6 @@ function ProductSection() {
           </div>
 
 
-        <h3 className="relative bottom-5 md:hidden text-gray-500 mt-2 text-right mr-4 italic text-sm md:text-base">swipe →</h3>
 
           <div className="text-center">
             <p data-aos = "fade-left" className="text-[#242424] text-center md:text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, assumenda neque velit exercitationem provident recusandae commodi asperiores, nostrum cumque aperiam minima a enim labore maxime perspiciatis, rerum sapiente numquam voluptatum.</p>

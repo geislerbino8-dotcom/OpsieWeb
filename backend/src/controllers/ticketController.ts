@@ -231,7 +231,7 @@ export class TicketController {
         if (oldValue != newValue) {
           await TicketHistoryModel.create({
             // @ts-expect-error - Mongoose ObjectId type
-            ticket: id,
+            ticket: new mongoose.Types.ObjectId(id),
             action: 'updated',
             field,
             oldValue: oldValue || 'none',

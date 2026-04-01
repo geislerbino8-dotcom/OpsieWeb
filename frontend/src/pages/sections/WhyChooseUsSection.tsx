@@ -64,7 +64,7 @@ function WhyChooseUsSection() {
               />
 
               {/* Content */}
-              <p className="relative text-white z-10 text-[1.1rem] drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]">
+              <p className="relative text-white z-10 text-[1.1rem] drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]" data-aos="fade-right">
                 <strong>{item.head}</strong><br />
                 {item.desc}
               </p>

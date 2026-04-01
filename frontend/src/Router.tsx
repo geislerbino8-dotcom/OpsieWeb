@@ -11,6 +11,7 @@ import BookingPage from './components/BookingPage'
 import TicketingSupportSystemPage from "./components/admin/pages/TicketingSupportSystemPage"
 import UserManagementPage from "./components/admin/pages/UserManagementPage"
 import LoginPage from "./components/admin/pages/LoginPage"
+import ErrorPage from "./components/ErrorPage"
 
 const token = localStorage.getItem('token')
 
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,

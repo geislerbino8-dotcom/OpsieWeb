@@ -1,13 +1,16 @@
 import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import ClientReview from '../components/sections/ClientReviewsSection';
-
+import { useNavigate } from 'react-router-dom';
 import ProductCard from '@/components/cards/ProductCard';
 
 import Product1 from '../assets/Products/Product1.png';
 import hris from '../assets/Products/HRIS.png';
 import opsync from '../assets/Products/Opsync.png';
 import web from '../assets/Products/WebOpsie.png';
+
+import ProductItemCTA from '@/components/cards/ProductItemCTA';
+import OpsieHRIS from '../components/PlanPricing/OpsieHRIS'
 
 const products = [
   { name: "Opsie HRIS", image: hris },
@@ -18,9 +21,14 @@ const products = [
   { name: "Opsie Web", image: web },
 ];
 
+
+
 function ProductPage() {
+
+  const navigate = useNavigate()
+
   return (
-    <div className="w-full bg-white text-gray-800 overflow-hidden">
+    <div className="w-full bg-white text-gray-800 overflow-hidden bg-[#ECEDF1]">
 
       <div className="max-w-[1280px] mx-auto px-6">
 
@@ -28,23 +36,30 @@ function ProductPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
 
             <div className="flex flex-col gap-6">
-              <h1 className="text-4xl md:text-6xl text-left lg:text-7xl leading-tight">
+              <h1 className="text-4xl md:text-6xl text-left lg:text-7xl leading-tight" 
+                data-aos="fade-up" data-aos-easing="ease-in-out"
+              >
                 Build <span className='font-playfair italic text-[#3CBDE6] '> Smarter</span> Products with
                 <span className="text-[#3CBDE6] font-semibold"> Opsie</span>
               </h1>
 
-              <p className="text-gray-600 text-lg max-w-lg">
+              <p className="text-gray-600 text-lg max-w-lg" data-aos="fade-right">
                 We design powerful digital tools that help businesses
                 automate operations, scale faster, and work smarter.
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <button className="bg-[#3CBDE6] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#2ca7cc] transition">
+                <button className="bg-[#3CBDE6] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#2ca7cc] transition"
+                  onClick={()=> navigate("/book-a-schedule")}
+                >
                   Get Started
                 </button>
-                <button className="border border-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">
+                <a href="#all-products">
+                  <button 
+                  className="border border-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">
                   View Products
                 </button>
+                </a>
               </div>
             </div>
 
@@ -55,7 +70,8 @@ function ProductPage() {
                   key={idx}
                   src={img}
                   alt={`Product ${idx + 1}`}
-                  className="rounded-xl shadow-lg object-cover w-full h-48 md:h-56 lg:h-64 hover:scale-105 hover:bg-red-400"
+                  className="rounded-xl shadow-lg object-cover w-full h-48 md:h-56 lg:h-64 hover:scale-105 
+                  transition-all duration-600"
                 />
               ))}
             </div>
@@ -63,12 +79,12 @@ function ProductPage() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section id='all-products' className="py-20">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-semibold">
+            <h2 className="text-3xl md:text-4xl font-semibold" data-aos="slide-up">
               Our <span className="text-[#3CBDE6]">Products</span>
             </h2>
-            <p className="text-gray-600 mt-3">
+            <p className="text-gray-600 mt-3" data-aos="slide-up">
               Discover the solutions we built to empower businesses.
             </p>
           </div>
@@ -93,9 +109,13 @@ function ProductPage() {
         </section>
 
       </div>
+            <OpsieHRIS />
             <WhyChooseUsSection /> 
-            <ClientReview />
+            <div className='bg-[#ECEDF1]'>
+              <ClientReview />
+            </div>
             <ServicesSection />
+            <ProductItemCTA />
 
     </div>
   );

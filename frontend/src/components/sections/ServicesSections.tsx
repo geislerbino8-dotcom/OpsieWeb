@@ -3,6 +3,7 @@ import { Card } from "../Card/ServicesCard";
 import { Button } from "../Button";
 import leftArrow from '../../assets/icons/left-arrow1.svg'
 import rightArrow from '../../assets/icons/right-arrow.svg'
+import ss from '../../assets/icons/left-arrow1.svg'
 
 const ServicesSection: React.FC = () => {
   
@@ -20,10 +21,12 @@ const ServicesSection: React.FC = () => {
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="w-full flex flex-col "
+    <section className="w-full flex flex-col"
+    
   >
     {/* ================= MOBILE VIEW ================= */}
     <div className="md:hidden w-full overflow-x-hidden">
+
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -44,7 +47,7 @@ const ServicesSection: React.FC = () => {
       <div className="mt-8 flex items-center justify-center gap-x-4">
         <Button
           variant="shadow"
-          iconImage={leftArrow}
+          iconImage={ss}
           className="w-10 h-10 flex items-center justify-center"
           onClick={handlePrev}
         />
@@ -61,14 +64,14 @@ const ServicesSection: React.FC = () => {
       {/* ================= MD AND ABOVE ================= */}
       <div data-aos="fade-right"  className="hidden md:flex flex-col w-full mt-6">
         {/* Navigation above cards */}
-        <div  className="flex items-center gap-x-4 mb-6 ">
-          <Button variant="shadow" iconImage="/left-arrow1.svg" className="w-10 h-10 flex items-center justify-center cursor-pointer" onClick={handlePrev} />
+        <div  className="flex items-center gap-x-4 mb-6">
+          <Button variant="shadow" iconImage={leftArrow} className="w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-[#3CBDE6] transition-all-ease" onClick={handlePrev} />
           <hr className="w-[100px] border border-black" />
-          <Button variant="shadow" iconImage="/right-arrow.svg" className="w-10 h-10 flex items-center justify-center cursor-pointer pl-4" onClick={handleNext} />
+          <Button variant="shadow" iconImage={rightArrow} className="w-10 h-10 flex items-center justify-center cursor-pointer pl-4 hover:bg-[#3CBDE6] transition-all-ease" onClick={handleNext} />
         </div>
 
         {/* Cards Container */}
-        <div className="relative w-full flex h-[420px] overflow-hidden">
+        <div className="relative w-full flex h-[350px] overflow-hidden">
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 40}%)` }}
@@ -92,6 +95,10 @@ const ServicesSection: React.FC = () => {
               );
             })}
           </div>
+          <div
+            className="pointer-events-none absolute top-0 right-0 h-full w-24 
+              bg-gradient-to-l from-[#ECEDF1] via-[#ECEDF1]/10 to-transparent"
+          ></div>
         </div>
       </div>
     </section>
