@@ -3,7 +3,7 @@ export default function WhyChooseUs() {
     
 
     return(
-        <div>
+        <div className="py-10">
             <div data-aos="fade-down"
                  className="flex items-center justify-center md:items-start  flex-col gap-4">
                 

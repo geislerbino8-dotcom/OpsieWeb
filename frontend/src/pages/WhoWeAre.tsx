@@ -15,7 +15,6 @@ export default function WhoWeAre() {
          <div className="overflow-hidden "
       >
 
-  {/* HE qqqqqqqqq sssRO SECTION */}
   <div className="w-full px-2">
     <div className="relative w-full  ">
     <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
@@ -32,14 +31,15 @@ export default function WhoWeAre() {
                     <h1 data-aos="fade-right" className="w-full max-w-[605px] font-poppins text-[40px] leading-[40px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
                         A Team of Builders, Thinkers, and Problem-Solvers
                     </h1>
-                    <p data-aos="fade-right" className="font-poppins mt-4 text-[14px] leading-[14px] md:text-xl font-light text-center md:text-left  max-w-2xl">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolfore magna aliqua. 
+                    <p data-aos="fade-right" className="font-poppins mt-4 text-[14px] md:text-xl font-light text-center md:text-left max-w-2xl">
+                    Driven by innovation and collaboration, we turn complex challenges into simple, effective digital solutions that help businesses move faster and smarter.
                     </p>
                     <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
                         <button 
                             onClick={()=> navigate("/what-we-do")}
-                            className="mt-5 bg-red-400 flex flex-row items-center justify-center align-center bg-white text-black p-3">
-                            Learn more<span><img src="/ICONS/contact-us.svg" className="w-3 h-3 ml-3" /></span>
+                            className="mt-5 bg-red-400 flex flex-row items-center justify-center align-center bg-white text-black p-3
+                            hover:text-white hover:bg-[#3CBDE6] transition-all duration-1000">
+                            Learn more
                         </button>
                     
                 </div>
@@ -87,7 +87,7 @@ export default function WhoWeAre() {
                 Driven by <br />
                 <span className="font-playfair italic text-[#3CBDE6] font-semibold">Smart Technology</span>
             </h1>
-            <p data-aos="fade-right" data-aos-delay="200" className="w-full md:w-[320px] lg:w-[450px] font-poppins text-center md:text-left text-[16px] sm:text-[14px] md:text-[18px] leading-[18px] font-light">
+            <p data-aos="fade-right" data-aos-delay="200" className="w-full md:w-[320px] lg:w-[450px] font-poppins text-center md:text-left text-[16px] sm:text-[14px] md:text-[18px] font-light">
                 At <span className="text-[#3CBDE6]  font-semibold">Opsie</span>, we believe that real business growth is rooted in strategy, insight, and execution.
             </p>
 
@@ -228,7 +228,7 @@ export default function WhoWeAre() {
                     </div>
                             <div className="flex flex-col items-center lg:items-start gap-6 md:gap-4  mt-10">
                                 <h1 data-aos="fade-left" data-aos-offset="50" data-aos-delay="300" className="w-full  font-poppins text-center lg:text-left leading-[34px] text-[36px] md:text-[40px] lg:text-[44px] md:leading-[50px]">Every Line of  <span className="text-[#3CBDE6] font-semibold">Code</span> Tells <span className="font-playfair italic text-[#3CBDE6] font-semibold">Our Story.</span></h1>
-                                <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full  font-poppins text-center lg:text-left text-[14px] sm:text-[16px]  leading-[16px] sm:leading-[18px] font-light">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
+                                <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full  font-poppins text-center lg:text-left text-[14px] sm:text-[16px] font-light">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
                             </div>
                                 </div>
             </div>
@@ -240,7 +240,7 @@ export default function WhoWeAre() {
                             >
                             </div>
                             <h1 className="font-poppins text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#3CBDE6] font-semibold">Vision</span></h1>
-                            <p className="font-poppins text-center text-[16px] leading-[15px] font-light w-full text-start lg:w-[600px] lg:mt-6">Our vision is to become a trusted leader in digital innovation, empowering businesses through modern technology, scalable solutions, and transformative software that shapes the future of the digital world.
+                            <p className="font-poppins text-center text-[16px] font-light w-full text-start lg:w-[600px] lg:mt-6">Our vision is to become a trusted leader in digital innovation, empowering businesses through modern technology, scalable solutions, and transformative software that shapes the future of the digital world.
                              </p>
                         </div>
                 </div>
@@ -325,7 +325,7 @@ export default function WhoWeAre() {
                             >
                             </div>
                             <h1 className="font-poppins text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#3CBDE6] font-semibold">Mission</span></h1>
-                            <p className="font-poppins text-center text-[16px] leading-[15px] font-light w-full text-start lg:w-[600px] lg:mt-6">Our mission is to develop reliable, secure, and innovative software solutions that help businesses improve efficiency, enhance digital experiences, and grow in the modern technological landscape.
+                            <p className="font-poppins text-center text-[16px] font-light w-full text-start lg:w-[600px] lg:mt-6">Our mission is to develop reliable, secure, and innovative software solutions that help businesses improve efficiency, enhance digital experiences, and grow in the modern technological landscape.
                              </p>
                         </div>
                 </div>
@@ -335,8 +335,11 @@ export default function WhoWeAre() {
                  <div className="grid grid-cols-[180px_180px] gap-4 lg:gap-y-4 place-items-center">
                     {/* Left Tall Card */}
                     <div  data-aos="fade-right" data-aos-delay="800" className="row-span-2 lg:mr-12">
-                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[190px] h-[380px] lg:w-[210px] lg:h-[440px] xl:w-[250px] xl:h-[500px]  rounded-3xl lg:ml-6 xl:ml-0">
-                            <img src="/empowerment.jpg"  alt="" className="w-full h-full object-cover hover:scale-110 transtion-all dutation-700 p-2 rounded-3xl " />
+                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                        w-[190px] h-[380px] lg:w-[210px] lg:h-[440px] xl:w-[250px] xl:h-[500px]  rounded-3xl lg:ml-6 xl:ml-0 overflow-hidden
+                        ">
+                            <img src="/empowerment.jpg"  alt="" className="w-full h-full object-cover p-2 rounded-3xl 
+                            transition-all hover:scale-120 duration-1000" />
                         </div>
                     </div>
 
@@ -360,12 +363,13 @@ export default function WhoWeAre() {
                     <div className="md:col-start-4 md:row-start-1">
                         <div data-aos="fade-left" data-aos-delay="800" className="flex items-center justify-center 
                             shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
-                            w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:mr-8  rounded-3xl overflow-hidden">
+                            w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:mr-8 rounded-3xl overflow-hidden
+                            ">
 
                             <img 
                                 src="/sol-building.jpg" 
                                 alt="" 
-                                className="w-full h-full object-cover p-2 rounded-3xl" 
+                                className="hover:scale-120 w-full h-full object-cover p-2 rounded-3xl transition-all duration-1000" 
                             />
                         </div>
                     </div>
@@ -373,10 +377,12 @@ export default function WhoWeAre() {
                     {/* in lg move to behind of tall card */}
                     
                     <div className="col-span-2 md:col-start-2 md:row-start-1 ">
-                    <div data-aos="fade-right" className="flex flex-col items-center justify-center p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2">
+                    <div data-aos="fade-right" className="flex flex-col items-center justify-center p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2
+                    hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-100
+                    hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-1000 ease-in-out">
                         <div className="flex flex-row gap-4 ">
                             <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
-                                <img src="/ICONS/digital-leader-icon.svg" alt="" className="w-7 h-7"/>
+                                <img src="/ICONS/digital-leader-icon.svg" alt="" className="w-7 h-7 "/>
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="font-poppins text-[20px]">Empowerment</h1>
@@ -397,8 +403,8 @@ export default function WhoWeAre() {
                     </div>
 
                     <div className="col-span-2 md:col-start-3 md:row-start-2  lg:col-span-2 lg:col-start-3 lg:row-start-2">
-                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px]  xl:ml-10  ">
-                        <img src="laptop.png" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
+                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px]  xl:ml-10  overflow-hidden">
+                        <img src="laptop.png" alt="" className="w-full h-full object-cover p-2 rounded-3xl transition-all duration-1000 hover:scale-120" />
                         </div>
                     </div>
 

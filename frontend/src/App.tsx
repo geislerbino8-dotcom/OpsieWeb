@@ -7,8 +7,20 @@ import "aos/dist/aos.css";
 import './App.css';
 import ChatHelp from './components/ChatHelp';
 import AOS from "aos";
+import { useLocation } from 'react-router-dom';
 
 const App = () => {
+
+  const currentLocation = useLocation()
+
+  useEffect(()=> {
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+
+  }, [currentLocation] )
 
   
   useEffect(() => {

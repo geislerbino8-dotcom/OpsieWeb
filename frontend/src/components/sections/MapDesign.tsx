@@ -161,12 +161,10 @@ export default function Maps() {
             <span className="text-[#3CBDE6] font-semibold"><br />Innovation</span>
           </h1>
 
-          <div className="flex lg:w-[500px]">
-            <p className="font-poppins text-center md:text-start w-full text-[16px] leading-[15px] font-light">
+            <p className="font-poppins text-center md:text-start font-light">
               Our doors are open for clients and partners who are ready to innovate.
               Drop by our location and start the conversation that turns ideas into real solutions.
             </p>
-          </div>
 
           <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
             <Button

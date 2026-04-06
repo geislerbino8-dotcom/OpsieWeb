@@ -3,25 +3,27 @@ import { useNavigate } from "react-router-dom"
 type ProductCardProps = {
   itemName: string
   image: string
+  desc: string
   bgColor?: string
 }
 
-function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
+function ProductCard({ itemName, image, desc, bgColor }: ProductCardProps) {
   const navigate = useNavigate()
 
   return (
     <div
       className="
         cursor-pointer
-        group relative w-[18rem] flex-shrink-0
+        h-[370px] w-[18rem] flex-shrink-0
+        group relative
         rounded-2xl overflow-hidden
-        transition-all duration-1000 ease-out
+        transition-all duration-500 ease-out
         hover:mx-3
         shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]
         hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
       "
     >
-      {/* Glow Effect */}
+      {/* Glow */}
       <div
         className="
           absolute inset-0 rounded-2xl
@@ -32,17 +34,16 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
         "
       />
 
-      {/* Card Content */}
+      {/* Content */}
       <div
         className="
           relative z-10
-          flex flex-col items-center
-          p-5
+          h-full flex flex-col
+          items-center p-5
           rounded-2xl
           backdrop-blur-xl
           border border-white/20
           transition-all duration-500 ease-out
-
           group-hover:border-cyan-300/40
           group-hover:bg-white/10
         "
@@ -51,12 +52,12 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
         }}
       >
         {/* Image */}
-        <div className="w-full flex justify-center items-center mb-4">
+        <div className="w-full flex justify-center items-center mb-3">
           <img
             src={image}
             alt={itemName}
             className="
-              w-[10rem] h-[10rem] object-contain
+              w-full h-[9rem] object-contain
               transition-transform duration-500 ease-out
               group-hover:scale-105
             "
@@ -66,30 +67,32 @@ function ProductCard({ itemName, image, bgColor }: ProductCardProps) {
         {/* Title */}
         <h3
           className="
-            text-lg font-semibold text-[#242424] tracking-wide
-            transition duration-300
+            text-lg font-semibold text-[#242424] tracking-wide text-center
             group-hover:text-cyan-600
           "
         >
           {itemName}
         </h3>
 
-        {/* Description */}
+        {/* Description (CLAMPED) */}
         <p
           className="
             text-sm text-[#242424] mt-2 text-center leading-relaxed
-            transition duration-300
-            group-hover:text-[#111]
+            group-hover:line-clamp-3
+            min-h-[4.5rem]
           "
         >
-          Powerful solution designed to streamline your workflow and boost productivity.
+          {desc}
         </p>
+
+        {/* Spacer pushes button down */}
+        <div className="flex-grow" />
 
         {/* CTA */}
         <button
           onClick={() => navigate(`/products/${itemName}`)}
           className="
-            mt-6 px-5 py-2
+            mt-4 px-5 py-2
             rounded-lg font-semibold text-cyan-600
             border border-cyan-400/40
 

@@ -3,6 +3,7 @@ import MapBox from '../MapBox';
 
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useState } from 'react';
+import { OFFICE_LOCATIONS } from '@/data/siteLocationsData';
 
 
 function MapCard() {
@@ -19,9 +20,7 @@ function MapCard() {
         <p className="text-gray-700">Monday to Friday, 9 AM - 6 PM (PHT)</p>
       </div>
 
-           
-
-            <MapBox getDirection={dirAction} />
+           <MapBox location={OFFICE_LOCATIONS.main} getDirection={dirAction} setDirAction={setDirAction} />
 
       {/* Address */}
       <p className="text-gray-600 text-">

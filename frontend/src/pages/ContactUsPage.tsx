@@ -5,12 +5,15 @@ import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
 import MapBox from '@/components/MapBox'
 import ContactBg from '../assets/background-images/ContactUsBg.png'
 import { useNavigate } from 'react-router-dom';
-
+import { OFFICE_LOCATIONS } from '@/data/siteLocationsData';
+import { useState } from 'react';
 
 function ContactUsPage() {
 
-  const  dirAction = false
   const navigate = useNavigate()
+  const [ dirAction, setDirAction ] = useState(false)
+
+  const [ selectedLoc, setSelectedLoc ] = useState(OFFICE_LOCATIONS.main)
 
   return (
     <div className="max-w-[1280px] mt-21 mx-auto overflow-hidden">
@@ -192,13 +195,13 @@ function ContactUsPage() {
           </div>
         </div>
 
-       <div className="w-full grid lg:grid-cols-2 gap-10 md:m-5 md:mt-20 items-start">
+       <div className="w-full grid lg:grid-cols-2 gap-10 md:mt-20 items-start">
 
   {/* LEFT: MAP */}
   <div className="bg-white p-4 rounded-2xl">
     
-    <div className='relative md:left-9'>
-      <MapBox data-aos="fade-right" getDirection={dirAction} />
+    <div className=''>
+      <MapBox data-aos="fade-right" location={selectedLoc} getDirection={dirAction} setDirAction={setDirAction} />
     </div>
     <div className='my-10'>
       <div className='my-3'>
@@ -208,7 +211,10 @@ function ContactUsPage() {
     </div>
     <button 
           data-aos="fade-right"
-          onClick={() => dirAction}
+          onClick={() =>  {
+            setSelectedLoc(OFFICE_LOCATIONS.main)
+            dirAction ? setDirAction(false): setDirAction(true)
+          }}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"
         >
           Get Directions →
@@ -236,7 +242,12 @@ function ContactUsPage() {
         <h2 data-aos="fade-right" className="font-semibold">Quezon City (HQ)</h2>
         <p data-aos="fade-right" className="text-gray-500 text-sm">Diliman, Quezon City</p>
         <button 
-          onClick={() => dirAction}
+          onClick={() => {
+
+            setSelectedLoc(OFFICE_LOCATIONS.qc)
+            dirAction ? setDirAction(false): setDirAction(true)
+            
+          }}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"
         >
           Get Directions →
@@ -248,7 +259,14 @@ function ContactUsPage() {
         <h2 data-aos="fade-right" className="font-semibold">Makati Office</h2>
         <p data-aos="fade-right" className="text-gray-500 text-sm">Ayala Avenue, Makati</p>
         <button 
-          onClick={() => dirAction}
+          onClick={() => {
+            setSelectedLoc(OFFICE_LOCATIONS.makati)
+            dirAction ? setDirAction(false): setDirAction(true)
+            setTimeout(()=> {
+              setDirAction(false)
+            }, 1000)
+            
+          }}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"
         >
           Get Directions →
@@ -260,7 +278,10 @@ function ContactUsPage() {
         <h2 data-aos="fade-right" className="font-semibold">Cebu Branch</h2>
         <p data-aos="fade-right" className="text-gray-500 text-sm">IT Park, Cebu City</p>
         <button 
-          onClick={() => dirAction}
+          onClick={() => {
+            dirAction ? setDirAction(false): setDirAction(true)
+            setSelectedLoc(OFFICE_LOCATIONS.cebu)
+          }}
           className="text-[#3CBDE6] text-sm mt-2 hover:underline"
         >
           Get Directions →

@@ -1,22 +1,12 @@
 import ProductCard from "../../components/cards/ProductCard";
 import LogoOnly from "../../assets/icons/opsie_logo_only.png";
 import '../../styles/ProductSection.css'
-import hris from '../../assets/Products/HRIS.png';
-import opsync from '../../assets/Products/Opsync.png';
-import web from '../../assets/Products/WebOpsie.png';
 import { useNavigate } from "react-router-dom";
+import { products } from "@/data/productsData";
 
 import "aos/dist/aos.css";
 
-const products = {
-  hris: { name: 'Opsie HRIS', image: hris },
-  opsync: { name: 'Opsync', image: opsync },
-  opsync2: { name: 'Opsync', image: opsync },
-  opsync3: { name: 'Opsync', image: opsync },
-  opsync4: { name: 'Opsync', image: opsync },
-  opsync5: { name: 'Opsync', image: opsync },
-  web: { name: 'OpsieWeb', image: web }
-};
+
 
 function ProductSection() {
 
@@ -56,6 +46,7 @@ function ProductSection() {
                   
                   itemName={item.name}
                   image={item.image}
+                  desc={item.description}
                 />
                 
               </div>

@@ -52,9 +52,8 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
           data-aos-once="true"
         
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus
-          ipsa dolore laboriosam ea harum iure quo consequuntur dolorem rem nobis
-          sint magni esse quam, hic laudantium dolorum aliquam suscipit?
+          We turn your vision into powerful digital solutions. From concept to deployment, our team delivers 
+          scalable, secure, and user-focused software tailored to your business goals.
         </p>
 
 

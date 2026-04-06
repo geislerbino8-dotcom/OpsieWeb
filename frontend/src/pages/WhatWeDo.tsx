@@ -81,14 +81,15 @@ export default function WhatWeDo() {
                 Code with Purpose. Solutions with Impact.
               </h1>
               <p data-aos="fade-right" data-aos-offset="50"  data-aos-delay="300" className="font-poppins mt-4 text-[14px] leading-[14px] md:text-xl md:leading-[24px] font-light text-center md:text-left  max-w-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                See how we transform ideas into powerful digital experiences. Watch our process, innovation, and expertise come together to build impactful solutions.
               </p>
               <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
              
               <button 
                 onClick={()=> Navigate("/contact-us")}
-                className="mt-5 bg-red-400 flex flex-row items-center justify-center align-center bg-white text-black p-3">
-                Contact Us <span><img src="/ICONS/contact-us.svg" className="w-3 h-3 ml-3" /></span>
+                className="mt-5 bg-red-400 flex flex-row items-center justify-center align-center bg-white text-black p-3
+                hover:text-white hover:bg-[#3CBDE6] transition-all duration-1000">
+                Contact Us 
               </button>
               </div>
               
@@ -146,18 +147,18 @@ export default function WhatWeDo() {
       <div className="mt-2 md:px-[6%]">
         <ServicesSection />
         </div>
-        <div className="w-full my-10">
+        <div className="w-full flex justify-center items-center my-10 ">
           <iframe
-            className="w-full h-[500px] md:h-[500px] rounded-2xl shadow-xl"
+            className="w-[80%] h-[500px] md:h-[500px] rounded-2xl shadow-xl"
             src="https://www.youtube.com/embed/aAvDI1qae-U"
             title="YouTube video"
             allowFullScreen
           ></iframe>
         </div>
-        <div className="mt-7 md:px-[6%]">
+        <div className="md:px-[6%] ">
         <WhyChooseUs/>
       </div>
-      <div data-aos="fade-right" className="mt-20 md:mt-20">
+      <div data-aos="fade-right" className="">
       <ClientCard/>
       </div>
       <div style={{ height: '200px', position: 'relative', overflow: 'hidden', marginTop: '40px' }}>
