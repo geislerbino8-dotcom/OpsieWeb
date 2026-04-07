@@ -5,183 +5,142 @@ import FAQAccordion from "../components/FaqSection/Faq"
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import { useNavigate } from "react-router-dom";
 
-
 const imageLogos = [
-  { src: "/logo/Frame.svg", alt: "Company 1",  },
-  { src: "/logo/Frame-1.svg", alt: "Company 2",  },
-  { src: "/logo/Frame-2.svg", alt: "Company 3",  },
-  { src: "/logo/Frame-4.svg", alt: "Company 4",  },
-  { src: "/logo/Frame-3.svg", alt: "Company 5",  },
+  { src: "/logo/Frame.svg", alt: "Company 1" },
+  { src: "/logo/Frame-1.svg", alt: "Company 2" },
+  { src: "/logo/Frame-2.svg", alt: "Company 3" },
+  { src: "/logo/Frame-4.svg", alt: "Company 4" },
+  { src: "/logo/Frame-3.svg", alt: "Company 5" },
 ];
 
 export default function WhatWeDo() {
+  const Navigate = useNavigate();
 
-  const Navigate = useNavigate()
-
-
-    return (
-      <div className="max-w-[1280px] mt-21 mx-auto overflow-hidden">
-
-  {/* HERO SECTION */}
-  <div className="w-full px-2">
-    <div className="relative w-full  ">
-    <div  className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
-  
-    {/* Background Image */}
-    <img
-      src="/WhoWeAre-Hero.svg"
-      alt="Hero Image"
-      className="absolute inset-0 w-full h-full object-cover"
-    />
-    <div className="lg:w-[820px] md:via-black/70 absolute inset-0 bg-gradient-to-t from-black/100 via-black/20 sm:bg-gradient-to-t md:bg-gradient-to-r sm:from-black/100 sm:via-black/20 md:from-black/100  to-transparent"></div>
-    {/* Overlay Content */}
-    <div>
+  return (
+    // Removed max-w-1280 from here to allow full width
+    <div className="w-full overflow-hidden">
       
-    </div>
-    <div  className="hidden md:block absolute md:right-2 md:bottom-4 lg:bottom-4 lg:right-0 mx-auto z-50 ">
-      <div data-aos="fade-down"  className="flex flex-col items-start md:flex-row-reverse lg:justify-center leading-4  gap-2 ml-2 ">
-          <div className="flex flex-col justify-start items-start md:items-start md:justify-center lg:leading-5">
-          
-          {/* MD VERSION */}
-          <div className="flex flex-col items-center justify-center lg:hidden mt-2 gap-2">
-            <div className="text-[#3CBDE6] text-[20px] xl:text-[30px] lg:hidden mt-2  flex items-center justify-center gap-1">
-              <span className="text-3xl leading-0 ml-2">★</span> 5/5
-            </div>
-          </div>
-
-          {/* LG VERSION */}
-          <h1 className="hidden lg:block font-poppins font-semibold text-[14px] xl:text-[20px]">
-            10+ Satisfied Clients
-          </h1>
-          <div className="hidden lg:flex flex flex-row gap-2 items-center justify-center ">
-            <div className=" text-[#3CBDE6] text-[22px] xl:text-[30px]">
-              ★★★★★ 
-            </div>
-            <h1 className="font-poppins mt-2 xl:text-[20px]">
-                5/5
-            </h1>
-          </div>
-        </div>
-
-        <div className="flex flex-row -space-x-3 lg:-space-x-2 xl:-space-x-4 mt-2 lg:mt-0 ">
-          <img src="/profiles/Rectangle 780.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14  object-cover  " />
-          <img src="/profiles/Rectangle 816.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full object-cover " />
-          <img src="/profiles/Rectangle 818.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full object-cover " />
-          <img src="/profiles/Rectangle 818-1.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full md:hidden lg:flex " />
-        </div>
-      </div>
-    </div>
+      {/* HERO SECTION - Now truly Full Width */}
+      <section className="bg-[#242424] relative w-full h-[90vh] h-screen min-h-[600px] overflow-hidden">
+        {/* Background Image */}
+        <img
+          src="/WhoWeAre-Hero.svg"
+          alt="Hero Image"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         
+        {/* Responsive Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent md:bg-gradient-to-r md:from-black/100 md:via-black/20 md:to-transparent"></div>
 
-      {/* Header overlays the image */}
-          {/* Content on top of image */}
-          <div className="relative z-10 flex flex-col items-center justify-end md:justify-end  mt-20 md:mt-10 h-full px-4 text-white">
-            <div className="mb-24 flex flex-col items-center justify-center md:items-start w-full">
-              <h1 data-aos="fade-right" data-aos-once="false" data-aos-mirror="true" data-aos-offset="0"  className="w-full max-w-[605px] font-poppins text-[40px] leading-[38px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
-                Code with Purpose. Solutions with Impact.
+        {/* Hero Content Container - Keeps text aligned with the rest of your site */}
+        <div className="relative z-10 h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-end pb-20">
+          
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-between w-full gap-10">
+            
+            {/* Left Content */}
+            <div className="w-full md:w-2/3">
+              <h1 data-aos="fade-right" className="text-[40px] leading-[44px] md:text-[60px] md:leading-[65px] lg:text-[75px] lg:leading-[80px] text-center md:text-left font-light text-white">
+                Code with Purpose.<br/> 
+                <span className="font-semibold text-[#3CBDE6]">Solutions with Impact.</span>
               </h1>
-              <p data-aos="fade-right" data-aos-offset="50"  data-aos-delay="300" className="font-poppins mt-4 text-[14px] leading-[14px] md:text-xl md:leading-[24px] font-light text-center md:text-left  max-w-xl">
+              <p data-aos="fade-right" data-aos-delay="300" className="mt-6 text-sm md:text-xl text-gray-200 text-center md:text-left max-w-xl font-light">
                 See how we transform ideas into powerful digital experiences. Watch our process, innovation, and expertise come together to build impactful solutions.
               </p>
-              <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
-             
-              <button 
-                onClick={()=> Navigate("/contact-us")}
-                className="mt-5 bg-red-400 flex flex-row items-center justify-center align-center bg-white text-black p-3
-                hover:text-white hover:bg-[#3CBDE6] transition-all duration-1000">
-                Contact Us 
-              </button>
-              </div>
-              
-            </div>
-          </div>
-          
-      </div>
-      <div className="flex flex-row justify-center items-center md:items-start md:justify-center md:hidden gap-4 mb-6 sm:mb-10">
-
-          <div className="flex flex-row -space-x-2 mt-2 lg:mt-0">
-              <img src="/profiles/Rectangle 780.svg" className="w-12 h-12   object-cover  " />
-              <img src="/profiles/Rectangle 816.svg" className="w-12 h-12  rounded-full " />
-              <img src="/profiles/Rectangle 818.svg" className="w-12 h-12  rounded-full " />
-              <img src="/profiles/Rectangle 818-1.svg" className="w-12 h-12  rounded-full md:hidden lg:flex " />
-            </div>
-
-            <div className="flex flex-col leading-4 items-start mt-2">
-                <h1 className="flex font-poppins font-semibold text-[16px] xl:text-[20px]">
-                10+ Satisfied Clients
-                </h1>
-              <div className="flex flex-row items-center justify-center gap-2 ">
-                  <div className=" text-[#3CBDE6] text-[24px]">
-                    ★★★★★ 
-                  </div>
-                  <h1 className="font-poppins mt-2 text-[18px]">
-                      5/5
-                  </h1>
+              <div className="flex justify-center md:justify-start" data-aos="fade-right" data-aos-delay="400">
+                <button 
+                  onClick={() => Navigate("/contact-us")}
+                  className="mt-8 bg-white text-black px-12 py-3 font-medium hover:bg-[#3CBDE6] hover:text-white transition-all duration-500 uppercase tracking-wider"
+                >
+                  Contact Us 
+                </button>
               </div>
             </div>
 
-            
+            {/* Right Content: Stats (Desktop Only) */}
+           {/* Right Content: Stats (Fully Responsive) */}
+<div className="
+  /* Position: Relative/Static on mobile to stack, Absolute on desktop */
+  relative mt-10 w-full 
+  md:absolute md:right-0 md:bottom-4 md:mt-0 md:w-auto
+  flex flex-col sm:flex-row items-center justify-center md:justify-end 
+  text-white pb-4 px-4
+">
+  {/* Avatar Group */}
+  <div className="flex flex-col items-center md:items-end">
+    <div className="flex -space-x-3 mb-3 md:mb-0">
+      <img src="/profiles/Rectangle 780.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
+      <img src="/profiles/Rectangle 816.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
+      <img src="/profiles/Rectangle 818.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
+    </div>
+  </div>
+
+  {/* Text Content */}
+  <div className="sm:ml-5 flex flex-col items-center md:items-start text-center md:text-left">
+    <h3 className="font-semibold text-base lg:text-lg">10+ Satisfied Clients</h3>
+    <div className="flex items-center">
+      <span className="text-[#3CBDE6] text-xl lg:text-2xl">★★★★★</span>
+      <span className="text-lg ml-2 font-light">5/5</span>
+    </div>
+  </div>
+</div>
           </div>
-      <div className="flex flex-col items-center md:items-start gap-6 md:px-[6%]">
-
-        {/* Badge */}
-       
-        <div  className="flex flex-col md:flex-row lg:justify-between lg:items-start w-full gap-6">
-
-          {/* LEFT SIDE */}
-          <h1 data-aos="fade-up" className="lg:w-[48%] text-center md:text-start font-poppins leading-[38px] md:leading-[43px] lg:leading-[60px] text-[32px] md:text-[40px] lg:text-[50px]">
-            Building <span className="text-[#3CBDE6] font-semibold"> Technology</span> That
-            <span className="text-[#3CBDE6] font-semibold"> Works</span> for You
-          </h1>
-
-          {/* RIGHT SIDE */}
-          <p data-aos="fade-left" className="lg:w-[45%] text-center md:text-start text-[16px] md:text-[18px] lg::text-[20px] leading-[24px] md:leading-[30px] font-light">
-            We build end-to-end solutions — custom systems, smart integrations,
-            and scalable automation — engineered to transform how businesses operate.
-          </p>
-
         </div>
-       
-      
-      </div>
-      <div className="mt-2 md:px-[6%]">
+      </section>
+
+      {/* BODY CONTENT - Wrapped in container to keep alignment */}
+      <main className="md:w-[75%] mx-auto py-20">
+        
+        {/* Intro Heading */}
+     <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+  {/* Left: Heading - items-start ensures it sits at the top */}
+  <h2 
+    data-aos="fade-up" 
+    className="md:w-1/2 text-4xl md:text-5xl leading-tight text-center md:text-left"
+  >
+    Building <span className="text-[#3CBDE6] font-semibold">Technology</span> That <span className="text-[#3CBDE6] font-semibold">Works</span> for You
+  </h2>
+
+  {/* Right: Paragraph - md:mt-2 helps "visually" align the smaller text with the large header text */}
+  <p 
+    data-aos="fade-left" 
+    className="md:w-1/3 text-lg text-gray-600 font-light text-center md:text-right leading-relaxed md:mt-2"
+  >
+    We build end-to-end solutions — custom systems, smart integrations, and scalable automation — engineered to transform how businesses operate.
+  </p>
+</div>
+
         <ServicesSection />
-        </div>
-        <div className="w-full flex justify-center items-center my-10 ">
+
+        {/* Video Section - Full Width inside container */}
+        <div className="w-full">
           <iframe
-            className="w-[80%] h-[500px] md:h-[500px] rounded-2xl shadow-xl"
+            className="w-full aspect-video rounded-3xl shadow-2xl"
             src="https://www.youtube.com/embed/aAvDI1qae-U"
             title="YouTube video"
             allowFullScreen
           ></iframe>
         </div>
-        <div className="md:px-[6%] ">
-        <WhyChooseUs/>
-      </div>
-      <div data-aos="fade-right" className="">
-      <ClientCard/>
-      </div>
-      <div style={{ height: '200px', position: 'relative', overflow: 'hidden', marginTop: '40px' }}>
-        {/* Basic horizontal loop */}
-        <LogoLoop
-          logos={imageLogos}
-          speed={100}
-          direction="left"
-          logoHeight={60}
-          gap={60}
-          hoverSpeed={0}
-          scaleOnHover
-          fadeOut
-          fadeOutColor="#ffffff"
-          ariaLabel="Technology partners"
-        />
-      </div>
-      <div className="">
+
+        <WhyChooseUs />
+
+          <ClientCard />
+
+        {/* Logos Section */}
+        <div className="py-10 my-10">
+          <LogoLoop
+            logos={imageLogos}
+            speed={100}
+            direction="left"
+            logoHeight={60}
+            gap={60}
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#ffffff"
+          />
+        </div>
+
         <FAQAccordion />
-      </div>
-      </div>
+      </main>
     </div>
-</div>
-      
-    );
-  }
+  );
+}

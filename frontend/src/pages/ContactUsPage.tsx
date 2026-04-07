@@ -1,310 +1,161 @@
-import ProductItemCTA from '@/components/cards/ProductItemCTA'
-import ContactForm from '@/components/cards/ContactForm'
-import ContactsCard from '@/components/cards/ContactsCard'
-import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
-import MapBox from '@/components/MapBox'
-import ContactBg from '../assets/background-images/ContactUsBg.png'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
 import { OFFICE_LOCATIONS } from '@/data/siteLocationsData';
-import { useState } from 'react';
+
+// Components
+import ProductItemCTA from '@/components/cards/ProductItemCTA';
+import ContactForm from '@/components/cards/ContactForm';
+import ContactsCard from '@/components/cards/ContactsCard';
+import MapBox from '@/components/MapBox';
+import ContactBg from '../assets/background-images/ContactUsBg.png';
 
 function ContactUsPage() {
-
-  const navigate = useNavigate()
-  const [ dirAction, setDirAction ] = useState(false)
-
-  const [ selectedLoc, setSelectedLoc ] = useState(OFFICE_LOCATIONS.main)
+  const navigate = useNavigate();
+  const [dirAction, setDirAction] = useState(false);
+  const [selectedLoc, setSelectedLoc] = useState(OFFICE_LOCATIONS.main);
 
   return (
-    <div className="max-w-[1280px] mt-21 mx-auto overflow-hidden">
+    <div className="w-full overflow-x-hidden">
+      {/* --- 1. FULL PAGE HERO SECTION --- */}
+      <div className="relative w-screen h-[100vh] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
+        <img
+          src={ContactBg}
+          alt="Contact Hero"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 md:bg-gradient-to-r md:from-black/90 md:via-black/20 to-transparent"></div>
 
-  {/* HERO SECTION */}
-  <div className="w-full px-2">
-    <div className="relative w-full  ">
-    <div data-aos="fade-right" className="relative h-[90vh] lg:h-[85vh] md:min-h-[600px] rounded-4xl overflow-hidden mb-10">
-  
-    {/* Background Image */}
-    <img
-      src={ContactBg}
-      alt="Hero Image"
-      className="absolute inset-0 w-full h-full object-cover"
-    />
-    <div className="lg:w-[820px] md:via-black/70 absolute inset-0 bg-gradient-to-t from-black/100 via-black/20 sm:bg-gradient-to-t md:bg-gradient-to-r sm:from-black/100 sm:via-black/20 md:from-black/100  to-transparent"></div>
-    {/* Overlay Content */}
-    <div>
-      
-    </div>
-    <div  className="bg-white p-4 hidden md:block absolute md:right-2 md:bottom-4 lg:bottom-4 lg:right-0 mx-auto z-50 ">
-      <div data-aos="fade-down"  className="flex flex-col items-start md:flex-row-reverse lg:justify-center leading-4  gap-2 ml-2 ">
-          <div className="flex flex-col justify-start items-start md:items-start md:justify-center lg:leading-5">
-          
-          {/* MD VERSION */}
-          <div className="flex flex-col items-center justify-center lg:hidden mt-2 gap-2">
-            <div className="text-[#3CBDE6] text-[20px] xl:text-[30px] lg:hidden mt-2  flex items-center justify-center gap-1">
-              <span className="text-3xl leading-0 ml-2">★</span> 5/5
-            </div>
-          </div>
-
-          {/* LG VERSION */}
-          <h1 className="hidden lg:block font-poppins font-semibold text-[14px] xl:text-[20px]">
-            10+ Satisfied Clients
-          </h1>
-          <div className="hidden lg:flex flex flex-row gap-2 items-center justify-center ">
-            <div className=" text-[#3CBDE6] text-[22px] xl:text-[30px]">
-              ★★★★★ 
-            </div>
-            <h1 className="font-poppins mt-2 xl:text-[20px]">
-                5/5
+        {/* Hero Content Container */}
+        <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-24 px-6 md:px-12 text-white">
+          <div className="flex flex-col items-center md:items-start w-full">
+            <h1 data-aos="fade-right" className="max-w-[700px] font-poppins text-[42px] leading-[46px] md:text-[72px] md:leading-[78px] text-center md:text-left font-light">
+              Let’s Talk About <br />
+              <span className="font-semibold text-[#3CBDE6]">What’s on your Mind.</span>
             </h1>
+            <p data-aos="fade-right" data-aos-delay="200" className="mt-6 text-lg md:text-xl font-light text-center md:text-left max-w-xl text-gray-300">
+              Whether you have a question about features, pricing, or anything else, our team is ready to answer all your questions.
+            </p>
+          </div>
+
+          {/* Elegant Floating Stats Card (Desktop Only) */}
+          <div data-aos="fade-up" className="hidden md:flex absolute right-12 bottom-12 bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 items-center gap-4">
+            <div className="flex -space-x-3">
+              {["780", "816", "818"].map((id) => (
+                <img key={id} src={`/profiles/Rectangle ${id}.svg`} className="w-12 h-12 rounded-full border-2 border-[#3CBDE6]" alt="user" />
+              ))}
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">10+ Satisfied Clients</p>
+              <p className="text-[#3CBDE6] text-xl">★★★★★ <span className="text-white text-sm ml-1">5/5</span></p>
+            </div>
           </div>
         </div>
-
-        <div className="flex flex-row -space-x-3 lg:-space-x-2 xl:-space-x-4 mt-2 lg:mt-0 ">
-          <img src="/profiles/Rectangle 780.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14  object-cover  " />
-          <img src="/profiles/Rectangle 816.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full object-cover " />
-          <img src="/profiles/Rectangle 818.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full object-cover " />
-          <img src="/profiles/Rectangle 818-1.svg" className="w-8 h-8 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-14 xl:h-14 rounded-full md:hidden lg:flex " />
-        </div>
       </div>
-    </div>
+
+      {/* --- 2. MAIN CONTENT AREA --- */}
+      <div className="max-w-[1280px] mx-auto px-6 py-15">
         
-
-      {/* Header overlays the image */}
-          {/* Content on top of image */}
-          <div className="relative z-10 flex flex-col items-center justify-end md:justify-end  mt-20 md:mt-10 h-full px-4 text-white">
-            <div className="mb-24 flex flex-col items-center justify-center md:items-start w-full">
-              <h1 data-aos="fade-right" data-aos-once="false" data-aos-mirror="true" data-aos-offset="0"  className="w-full max-w-[605px] font-poppins text-[40px] leading-[38px] md:text-[60px] md:leading-[60px] text-center md:text-left font-light">
-                Let's Talk About What's on your Mind.
-              </h1>
-              <p data-aos="fade-right" data-aos-offset="50"  data-aos-delay="300" className="font-poppins mt-4 text-[14px] leading-[14px] md:text-xl md:leading-[24px] font-light text-center md:text-left  max-w-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-              </p>
-              <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="400">
-            
-              </div>
-              
-            </div>
-          </div>
-          
-      </div>
-      <div data-aos="fade-left" className="flex flex-row justify-center items-center md:items-start md:justify-center md:hidden gap-4 mb-6 sm:mb-10">
-
-          <div className="flex flex-row -space-x-2 mt-2 lg:mt-0">
-              <img src="/profiles/Rectangle 780.svg" className="w-12 h-12   object-cover  " />
-              <img src="/profiles/Rectangle 816.svg" className="w-12 h-12  rounded-full " />
-              <img src="/profiles/Rectangle 818.svg" className="w-12 h-12  rounded-full " />
-              <img src="/profiles/Rectangle 818-1.svg" className="w-12 h-12  rounded-full md:hidden lg:flex " />
-            </div>
-
-            <div className="flex flex-col leading-4 items-start mt-2">
-                <h1 className="flex font-poppins font-semibold text-[16px] xl:text-[20px]">
-                10+ Satisfied Clients
-                </h1>
-              <div className="flex flex-row items-center justify-center gap-2 ">
-                  <div className=" text-[#3CBDE6] text-[24px]">
-                    ★★★★★ 
-                  </div>
-                  <h1 className="font-poppins mt-2 text-[18px]">
-                      5/5
-                  </h1>
-              </div>
-            </div>
-
-            
-          </div>
-        <div className="flex flex-col md:flex-row justify-center">
-          <div className='flex justify-center'>
+        {/* Contact Form & Info Grid */}
+        <div className="grid lg:grid-cols-2 gap-16 items-start mb-0">
+          {/* Left: The Form */}
             <ContactForm />
-          </div>
-          <div className="flex flex-col mt-5">
-            <ContactsCard title='Give us a Call.' 
-              children={
-                <>
-                <p data-aos="fade-left" className="text-gray-600">
-            For contact details, kindly reach:
-          </p>
 
-            <p data-aos="fade-left">Mobile No. 12345678911</p>
-            <p data-aos="fade-left">Mobile No. 21314456272</p>
-            <p data-aos="fade-left">HR Department email: asdas@gmail.com</p>
-                  <p>1-800-664-9073</p>
-                </>
-              }
-            />
-            <ContactsCard data-aos="fade-left" title='Chat with us.' 
-              children={
-                <>
-                 <div className="flex flex-row items-center">
-                    <SiFacebook data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
-                    
-                    <div className="flex items-center">
-                      <a data-aos="fade-left" href="" className='ml-3'>
-                        www.facebook.com
-                      </a>
-                    </div>
-                  </div>
-                 <div className="flex flex-row items-center">
-                    <SiInstagram data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
-                    
-                    <div className="flex items-center">
-                      <a data-aos="fade-left" href="" className='ml-3'>
-                        @opsiesoftware
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex flex-row items-center">
-                    <SiGmail data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
-                    
-                    <div className="flex items-center">
-                      <a data-aos="fade-left" href="" className='ml-3'>
-                        opsiesoftwaresolutions@gmail.com
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex flex-row items-center">
-                    <SiIndeed data-aos="fade-left" className="my-2 text-gray-400 text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8 group-hover:text-white" />
-                    
-                    <div className="flex items-center">
-                      <a data-aos="fade-left" href="" className='ml-3'>
-                        www.facebook.com
-                      </a>
-                    </div>
-                  </div>
-                </>
-              }
-            />
-            <ContactsCard 
-              title="Meet us Virtually"
-              children={
-                <div className="flex flex-col gap-3 text-center">
-                  <p data-aos="fade-left" className="text-gray-600">
-                    Schedule a virtual meeting with our team 
-                    <span><br /></span>and let’s discuss how we can help you.
-                  </p>
+          {/* Right: Contact Cards */}
+          <div className="flex flex-col gap-6">
+            <ContactsCard title="Give us a Call">
+              <div className="space-y-2 text-gray-600">
+                <p className="flex justify-between font-medium"><span>General Inquiries:</span> <span className="text-black">1-800-664-9073</span></p>
+                <p className="flex justify-between font-medium"><span>Support:</span> <span className="text-black">1234 567 8911</span></p>
+                <p className="flex justify-between font-medium"><span>HR:</span> <span className="text-black">hr@opsie.com</span></p>
+              </div>
+            </ContactsCard>
 
-                  <button data-aos="fade-left" className="bg-[#3CBDE6] text-white px-4 py-2 rounded-md hover:bg-[#34a9cc] transition"
-                    onClick={()=> {
-                      navigate("/book-a-schedule")
-                    }}
-                  >
-                    Book a Meeting
-                  </button>
-                </div>
-              }
-            />
+            <ContactsCard title="Chat with Us">
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { Icon: SiFacebook, label: "Facebook", link: "#" },
+                  { Icon: SiInstagram, label: "@opsiesoftware", link: "#" },
+                  { Icon: SiGmail, label: "Email Us", link: "#" },
+                  { Icon: SiIndeed, label: "Indeed", link: "#" }
+                ].map((item, i) => (
+                  <a key={i} href={item.link} className="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:border-[#3CBDE6] hover:bg-[#3CBDE6]/5 transition-all group">
+                    <item.Icon className="text-gray-400 group-hover:text-[#3CBDE6] transition-colors" size={20} />
+                    <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                  </a>
+                ))}
+              </div>
+            </ContactsCard>
+
+            <div className="bg-[#3CBDE6] p-8 rounded-3xl text-white">
+              <h3 className="text-2xl font-semibold mb-4">Meet us Virtually</h3>
+              <p className="mb-6 opacity-90 font-light">Schedule a virtual meeting with our team and let’s discuss how we can help you.</p>
+              <button 
+                onClick={() => navigate("/book-a-schedule")}
+                className="w-full bg-white text-[#3CBDE6] py-4 rounded-xl font-bold hover:bg-black hover:text-white transition-all duration-300"
+              >
+                Book a Meeting
+              </button>
+            </div>
           </div>
         </div>
 
-       <div className="w-full grid lg:grid-cols-2 gap-10 md:mt-20 items-start">
+        {/* --- 3. LOCATION & MAP SECTION --- */}
+        <div className="w-full pt-20 border-t border-gray-100">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            {/* Map Interaction */}
+            <div className="space-y-8">
+              <div className="overflow-hidden rounded-[2.5rem] shadow-xl border-4 border-white">
+                <MapBox location={selectedLoc} getDirection={dirAction} setDirAction={setDirAction} />
+              </div>
+              <div className="p-6">
+                <h3 className="text-3xl font-bold font-poppins">{selectedLoc.name}</h3>
+                <p className="text-gray-500 mt-2 text-lg">{selectedLoc.address
+                 || "Select a location to see details"}</p>
+              </div>
+            </div>
 
-  {/* LEFT: MAP */}
-  <div className="bg-white p-4 rounded-2xl">
-    
-    <div className=''>
-      <MapBox data-aos="fade-right" location={selectedLoc} getDirection={dirAction} setDirAction={setDirAction} />
-    </div>
-    <div className='my-10'>
-      <div className='my-3'>
-      <h1 data-aos="fade-right" className='text-3xl font-bold'>Main Office</h1>
-      <p data-aos="fade-right">Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
-</p>
-    </div>
-    <button 
-          data-aos="fade-right"
-          onClick={() =>  {
-            setSelectedLoc(OFFICE_LOCATIONS.main)
-            dirAction ? setDirAction(false): setDirAction(true)
-          }}
-          className="text-[#3CBDE6] text-sm mt-2 hover:underline"
-        >
-          Get Directions →
-        </button>
-    </div>
-  </div>
+            {/* Locations List */}
+            <div className="space-y-6">
+              <div className="mb-10">
+                <h2 className="text-4xl font-poppins">Our <span className="text-[#3CBDE6] font-semibold">Offices</span></h2>
+                <p className="text-gray-500 mt-2">Explore our branches across the Philippines.</p>
+              </div>
 
-  {/* RIGHT: OTHER LOCATIONS */}
-  <div className="w-full md:w-[90%] flex flex-col gap-6">
-
-    <div>
-      <h1 data-aos="fade-right" className="text-3xl">
-        Other Locations
-      </h1>
-      <p data-aos="fade-right" className="text-gray-500 text-sm mt-1">
-        Explore our branches across the Philippines.
-      </p>
-    </div>
-
-    {/* Locations List */}
-    <div className="flex flex-col gap-4 ">
-
-      {/* ITEM */}
-      <div className="p-4 rounded-xl  hover:shadow-md transition bg-white">
-        <h2 data-aos="fade-right" className="font-semibold">Quezon City (HQ)</h2>
-        <p data-aos="fade-right" className="text-gray-500 text-sm">Diliman, Quezon City</p>
-        <button 
-          onClick={() => {
-
-            setSelectedLoc(OFFICE_LOCATIONS.qc)
-            dirAction ? setDirAction(false): setDirAction(true)
-            
-          }}
-          className="text-[#3CBDE6] text-sm mt-2 hover:underline"
-        >
-          Get Directions →
-        </button>
+              {[
+                { name: "Main Office", area: "Mandaluyong City", key: OFFICE_LOCATIONS.main },
+                { name: "Quezon City (HQ)", area: "Diliman, QC", key: OFFICE_LOCATIONS.qc },
+                { name: "Makati Office", area: "Ayala Avenue", key: OFFICE_LOCATIONS.makati },
+                { name: "Cebu Branch", area: "IT Park, Cebu", key: OFFICE_LOCATIONS.cebu }
+              ].map((loc, i) => (
+                <div 
+                  key={i}
+                  onClick={() => {
+                    setSelectedLoc(loc.key);
+                    setDirAction(!dirAction);
+                  }}
+                  className={`p-6 rounded-2xl cursor-pointer transition-all border ${
+                    selectedLoc === loc.key ? "bg-white border-[#3CBDE6] shadow-lg scale-[1.02]" : "bg-gray-50 border-transparent hover:bg-white hover:border-gray-200"
+                  }`}
+                >
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-bold text-xl">{loc.name}</h4>
+                      <p className="text-gray-500 text-sm">{loc.area}</p>
+                    </div>
+                    <span className="text-[#3CBDE6] font-semibold">Get Directions →</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* ITEM */}
-      <div className="p-4 rounded-xl  hover:shadow-md transition bg-white">
-        <h2 data-aos="fade-right" className="font-semibold">Makati Office</h2>
-        <p data-aos="fade-right" className="text-gray-500 text-sm">Ayala Avenue, Makati</p>
-        <button 
-          onClick={() => {
-            setSelectedLoc(OFFICE_LOCATIONS.makati)
-            dirAction ? setDirAction(false): setDirAction(true)
-            setTimeout(()=> {
-              setDirAction(false)
-            }, 1000)
-            
-          }}
-          className="text-[#3CBDE6] text-sm mt-2 hover:underline"
-        >
-          Get Directions →
-        </button>
-      </div>
-
-      {/* ITEM */}
-      <div className="p-4 rounded-xl  hover:shadow-md transition bg-white">
-        <h2 data-aos="fade-right" className="font-semibold">Cebu Branch</h2>
-        <p data-aos="fade-right" className="text-gray-500 text-sm">IT Park, Cebu City</p>
-        <button 
-          onClick={() => {
-            dirAction ? setDirAction(false): setDirAction(true)
-            setSelectedLoc(OFFICE_LOCATIONS.cebu)
-          }}
-          className="text-[#3CBDE6] text-sm mt-2 hover:underline"
-        >
-          Get Directions →
-        </button>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-    
-    
-    
-      </div>
-    </div>
-
-    
       <ProductItemCTA />
-    
-</div>
-  )
+    </div>
+  );
 }
 
-export default ContactUsPage
+export default ContactUsPage;

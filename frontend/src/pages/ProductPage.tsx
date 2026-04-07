@@ -43,9 +43,13 @@ function ProductPage() {
         <section className="min-h-[90vh] flex items-center py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="flex flex-col gap-8">
-              <div className="inline-flex items-center w-fit px-4 py-1.5 rounded-full bg-[#3CBDE6]/10 border border-[#3CBDE6]/20 text-[#3CBDE6] text-sm font-bold tracking-wide uppercase">
+              {
+                /**
+                 * <div className="inline-flex items-center w-fit px-4 py-1.5 rounded-full bg-[#3CBDE6]/10 border border-[#3CBDE6]/20 text-[#3CBDE6] text-sm font-bold tracking-wide uppercase">
                 🚀 Innovation in every bit
               </div>
+                 */
+              }
               <h1 className="text-5xl md:text-7xl leading-[1.1] font-bold" data-aos="fade-up">
                 Build <span className='font-playfair italic font-normal text-[#3CBDE6]'>Smarter</span> Products with
                 <span className="text-[#3CBDE6]"> Opsie</span>

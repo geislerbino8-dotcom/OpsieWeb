@@ -105,9 +105,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     {/* Trigger */}
                     <Link
                       to={item.link}
-                      className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
+                      className={`block px-4 py-2 rounded-3xl transition-colors duration-200
                          hover:text-[#3CDBE6] 
-                        ${location.pathname === item.link ? "bg-[#3CBDE6] text-white" : ""}
+                        ${location.pathname === item.link ? "font-bold text-[#3CDBE6]" : ""}
                       `}
                     >
                       {item.name}
@@ -142,11 +142,11 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                 <li key={index}>
                   <Link
                     to={item.link}
-                    className={`block px-4 py-2 rounded-3xl font-medium transition-colors duration-200
+                    className={`block px-4 py-2 rounded-3xl transition-colors duration-200
                     hover:text-[#3CBDE6]
                     ${
                       location.pathname === item.link
-                        ? "bg-[#3CBDE6] text-white hover:text-black"
+                        ? "font-bold text-[#3CBDE6]"
                         : ""
                     }`}
                   >
