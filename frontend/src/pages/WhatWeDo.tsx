@@ -21,7 +21,7 @@ export default function WhatWeDo() {
     <div className="w-full overflow-hidden">
       
       {/* HERO SECTION - Now truly Full Width */}
-      <section className="bg-[#242424] relative w-full h-[90vh] h-screen min-h-[600px] overflow-hidden">
+      <section className="bg-[#0F4C5C] relative w-full h-[90vh] h-screen min-h-[600px] overflow-hidden">
         {/* Background Image */}
         <img
           src="/WhoWeAre-Hero.svg"

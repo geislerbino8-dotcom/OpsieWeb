@@ -10,8 +10,8 @@ const FAQAccordion = () => {
   };
 
   return (
-    <div className="max-w-[1280px] mx-auto flex items-center justify-center md:items-start flex-col gap-4 md:px-10">
-      <h1 className="font-poppins font-medium text-center md:text-start leading-[34px] tracking-[2px] text-[32px] md:text-[50px] md:leading-[50px] lg:text-[50px] lg:leading-[60px]">
+    <div className="py-20 max-w-[1280px] mx-auto flex items-center justify-center md:items-start flex-col gap-4 md:px-10 ">
+      <h1 className="font-medium text-center md:text-start leading-[34px] tracking-[2px] text-[32px] md:text-[50px] md:leading-[50px] lg:text-[50px] lg:leading-[60px]">
         Got Questions? <br />
         <span className="text-[#3CBDE6] font-semibold">We've Got Answers</span>
       </h1>

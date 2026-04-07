@@ -36,7 +36,7 @@ function ProductPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#ECEDF1] text-gray-800 overflow-hidden">
+    <div className="w-full bg-[#ECEDF1] text-gray-800 overflow-hidden text-center md:text-left">
       <div className="max-w-[1280px] mx-auto px-6">
         
         {/* --- HERO SECTION --- */}
@@ -58,7 +58,7 @@ function ProductPage() {
                 We design powerful digital tools that help businesses
                 automate operations, scale faster, and work smarter.
               </p>
-              <div className="flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="200">
+              <div className="flex md:justify-start justify-center flex-wrap gap-4" data-aos="fade-up" data-aos-delay="200">
                 <button 
                   className="bg-[#3CBDE6] text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-cyan-500/30 hover:bg-[#2ca7cc] hover:-translate-y-1 transition-all"
                   onClick={() => navigate("/book-a-schedule")}
@@ -106,19 +106,40 @@ function ProductPage() {
             </div>
 
             {/* Category Filter */}
-            <div className="flex bg-white p-1.5 rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setFilter(cat)}
-                  className={`px-5 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${
-                    filter === cat ? 'bg-[#3CBDE6] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+           {/* Category Filter */}
+<div className="w-full md:w-auto">
+  {/* Mobile Dropdown - Visible only on small screens */}
+  <div className="md:hidden w-full">
+    <select 
+      value={filter}
+      onChange={(e) => setFilter(e.target.value)}
+      className="w-full p-4 bg-white border border-gray-200 rounded-xl font-bold text-gray-700 shadow-sm outline-none focus:ring-2 focus:ring-[#3CBDE6]"
+    >
+      {categories.map((cat) => (
+        <option key={cat} value={cat}>
+          {cat}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  {/* Desktop Tabs - Hidden on mobile, visible on md and up */}
+  <div className="hidden md:flex bg-white p-1.5 rounded-xl shadow-sm border border-gray-100">
+    {categories.map((cat) => (
+      <button
+        key={cat}
+        onClick={() => setFilter(cat)}
+        className={`px-5 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${
+          filter === cat 
+            ? 'bg-[#3CBDE6] text-white shadow-md' 
+            : 'text-gray-400 hover:text-gray-600'
+        }`}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+</div>
           </div>
 
           <div className="p-cards-container flex justify-center md:flex-row md:overflow-x-auto overflow-hidden gap-8 flex-wrap p-10 items-start

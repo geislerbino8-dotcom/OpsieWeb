@@ -17,7 +17,7 @@ export default function WhoWeAre() {
       {/* breakout classes: w-screen and negative margins ensure it hits the browser edges */}
       <div 
         data-aos="fade-right" 
-        className="bg-[#242424] relative w-screen h-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden"
+        className="bg-[#0F4C5C] relative w-screen h-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden"
       >
         {/* Background Image */}
         <img
