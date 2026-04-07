@@ -26,7 +26,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         <img 
           src={LogoOnly} 
           alt="Logo" 
-          className="animate-[spin_20s_linear_infinite] w-72 md:w-[500px] opacity-[10%] select-none" 
+          className="animate-[spin_20s_linear_infinite] w-72 md:w-[500px] opacity-[30%] select-none" 
         />
       </div>
 

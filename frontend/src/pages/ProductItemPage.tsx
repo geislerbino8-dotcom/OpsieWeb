@@ -60,14 +60,14 @@ function ProductItemPage() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center bg-gray-950 text-white overflow-hidden selection:bg-cyan-500/30 font-sans">
+    <div className="w-full flex flex-col items-center bg-gray-950 text-white overflow-x-hidden selection:bg-cyan-500/30 font-sans">
       
       {/* Background Ambient Glows */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full -z-10" />
-      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-cyan-600/10 blur-[100px] rounded-full -z-10" />
+      <div className="hidden md:flex absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full -z-10" />
+      <div className="hidden md:flex absolute top-1/2 right-1/4 w-80 h-80 bg-cyan-600/10 blur-[100px] rounded-full -z-10" />
 
       {/* --- HERO SECTION --- */}
-      <section className="w-full min-h-screen flex items-center justify-center px-6 py-20 relative border-b border-white/5"
+      <section className="w-full min-h-screen flex items-center justify-center px-6 py-20 relative border-b border-white/5 overflow-hidden"
         style={{
           backgroundImage: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("/PBG.png")',
           backgroundSize: 'cover',
