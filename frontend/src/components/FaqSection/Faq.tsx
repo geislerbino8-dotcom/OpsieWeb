@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import { faqs } from "@/data/faqData";
 
