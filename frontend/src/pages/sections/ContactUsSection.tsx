@@ -1,74 +1,100 @@
-
+import React from "react";
 import MapCard from "@/components/cards/MapCard";
 import ContactForm from "../../components/cards/ContactForm";
+import contactbg from '../../assets/background-images/contactusbg.jpg'
+import { Mail, MapPin, Phone } from "lucide-react";
 
-
-
-
-function ContactUsSection() {
+const ContactUsSection: React.FC = () => {
   return (
-    
-    <section className="w-full flex flex-col items-center pt-16 pb-5  px-4"
-      data-aos="fade-up"
-    >
-
-      {/* Header */}
-      <div className="text-center mb-12 max-w-3xl">
-        <h1
-          className="text-3xl md:text-4xl font-semibold mb-4"
-        >
-          Get in <span className="font-playfair italic text-[#3CBDE6] font-semibold"> Touch</span> with Our 
-          <span className="text-[#3CBDE6] font-semibold"> Team</span> 
-        </h1>
-
-        <p
-          className="text-gray-600 text-base md:text-lg"
-          
-        >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio officia quaerat a eligendi ratione amet tempora repellendus quasi quod, aspernatur nobis dolor aperiam? Quaerat eveniet quisquam, rerum deleniti nesciunt dolores.
-        </p>
-      </div>
-
-      {/* Contact Form & Map */}
-      <div className="w-full max-w-6xl flex flex-col justify-center md:flex-row gap-8">
-
-        <div
-          className="flex justify-center flex-1"
-        >
-          <ContactForm />
-        </div>
-
-        <div
-          className="flex justify-center flex-1"
-        
-        >
-          <MapCard />
+    <section className="relative w-full flex flex-col items-center pt-24 pb-20 px-2 md:px-6 overflow-hidden">
       
+      {/* 1. Base Mesh Gradient Overlay */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,_#5CE1FF_0%,_transparent_50%),_radial-gradient(circle_at_bottom_left,_#29A6CC_0%,_transparent_50%)]" />
+
+      {/* 2. The Background Image Overlay */}
+      <div 
+        className="fixed inset-0 z-0 mix-blend-overlay pointer-events-none bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `url(${contactbg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
+
+      {/* 3. Decorative Background Blobs */}
+      <div className="absolute -top-[10%] -right-[5%] w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
+      <div className="absolute -bottom-[10%] -left-[5%] w-[500px] h-[500px] bg-black/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div className="relative z-10 flex flex-col items-center w-full">
+        {/* Header Area */}
+        <div className="text-center mb-16 max-w-3xl" data-aos="fade-up">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+            Get in <span className="italic text-white">Touch</span> with Our 
+            <span className="text-white"> Team</span> 
+          </h1>
+          <p className="text-blue-50/90 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
+            Ready to build something amazing? We’re here to help you scale your digital 
+            ecosystem with speed and precision.
+          </p>
         </div>
 
+        {/* Form & Map Section */}
+        <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-5 md:gap-2 items-stretch">
+          <div className="flex-1" data-aos="fade-right">
+            <ContactForm />
+          </div>
+          
+
+          <div className="flex-1 min-h-[450px]" data-aos="fade-left">
+              <MapCard />
+          </div>
+        </div>
+
+        {/* Quick Connect Grid */}
+        <div 
+          className="mt-15 w-full max-w-6xl grid grid-cols-1 sm:grid-cols-3 gap-8"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <ContactDetail 
+            icon={<Mail className="w-6 h-6" />}
+            title="Email Us"
+            detail="hello@opsie.solutions"
+            href="mailto:hello@opsie.solutions"
+          />
+          <ContactDetail 
+            icon={<MapPin className="w-6 h-6" />}
+            title="Visit Us"
+            detail="Main Tech Hub, Innovation Drive"
+            href="#" 
+          />
+          <ContactDetail 
+            icon={<Phone className="w-6 h-6" />}
+            title="Call Us"
+            detail="+1 (555) 000-OPSI"
+            href="tel:+15550006774"
+          />
+        </div>
       </div>
-
-       <div 
-        className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-100 pt-12"
-        data-aos="fade-up"
-        data-aos-delay="500"
-      >
-        <div className="text-center">
-          <h4 className="font-bold text-gray-900 mb-1">Email Us</h4>
-          <p className="text-[#3CBDE6] font-medium">hello@opsie.solutions</p>
-        </div>
-        <div className="text-center">
-          <h4 className="font-bold text-gray-900 mb-1">Visit Us</h4>
-          <p className="text-gray-500 font-light text-sm">Main Tech Hub, Innovation Drive</p>
-        </div>
-        <div className="text-center">
-          <h4 className="font-bold text-gray-900 mb-1">Call Us</h4>
-          <p className="text-gray-500 font-light text-sm">+1 (555) 000-OPSI</p>
-        </div>
-      </div>
-
     </section>
   );
-}
+};
+
+const ContactDetail = ({ icon, title, detail, href }: { icon: React.ReactNode, title: string, detail: string, href: string }) => (
+  <a 
+    href={href}
+    className="group bg-white/10 backdrop-blur-md border border-white/20 p-10 rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:bg-black hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] hover:-translate-y-3"
+  >
+    <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-[#3CBDE6] mb-6 shadow-xl group-hover:bg-[#3CBDE6] group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]">
+      {icon}
+    </div>
+    <h4 className="text-white font-bold tracking-[0.2em] uppercase text-[10px] mb-3 transition-colors">
+      {title}
+    </h4>
+    <p className="text-white/90 group-hover:text-[#3CBDE6] font-semibold text-lg transition-colors">
+      {detail}
+    </p>
+  </a>
+);
 
 export default ContactUsSection;

@@ -10,13 +10,13 @@ function ProductSection() {
 
   return (
     <section
-      className="w-full bg-[#FAFBFF] font-poppins min-h-screen flex flex-col items-center px-6 py-24 overflow-hidden"
+      className="w-full bg-[#F5F5F5] font-poppins min-h-screen flex flex-col items-center px-6 py-24 overflow-hidden"
     >
       <div className="w-full max-w-7xl flex flex-col gap-16">
 
         {/* --- HEADER --- */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-b border-gray-100 ">
-          <div className="flex items-center gap-5" data-aos="zoom-in">
+        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 border-b border-gray-100 ">
+          <div className="flex justify-center items-center gap-5" data-aos="zoom-in">
             <div className="relative">
                <div className="absolute inset-0 bg-[#3CBDE6]/20 blur-xl rounded-full"></div>
                <img src={LogoOnly} alt="Opsie Logo" className="spin-slow w-16 h-16 relative z-10" />
@@ -26,14 +26,12 @@ function ProductSection() {
             </h1>
           </div>
           
-          <p className="max-w-md text-gray-500 text-center md:text-right font-light leading-relaxed" data-aos="fade-left">
-            Explore our ecosystem of digital tools designed to streamline your workflow and accelerate business growth.
-          </p>
+          
         </div>
 
         {/* --- PRODUCT GRID --- */}
         <div className="w-full">
-          <div className="flex flex-wrap justify-center gap-10 lg:gap-12 py-10">
+          <div className="flex flex-wrap justify-center gap-10 lg:gap-12 pb-10">
             {Object.values(products).slice(0, 6).map((item, index) => (
               <div
                 key={index}
@@ -60,25 +58,26 @@ function ProductSection() {
               </p>
             </div>
 
+          <div data-aos="zoom-in">
             <button
               onClick={() => navigate(`/products`)}
-              data-aos="zoom-in"
               className="
                 px-10 py-4
                 rounded-2xl font-bold uppercase tracking-widest text-xs
                 text-[#3CBDE6]
-                border-2 border-[#3CBDE6]/30
                 bg-white
-                transition-all duration-500 ease-out
+                border-2 border-[#3CBDE6] border-opacity-30
+                transition-all duration-700 ease-out
                 hover:text-white
                 hover:bg-[#3CBDE6]
-                hover:border-[#3CBDE6]
+                hover:border-opacity-100
                 hover:shadow-[0_20px_40px_rgba(60,189,230,0.2)]
                 hover:-translate-y-1
               "
             >
               View Full Catalog
             </button>
+          </div>
           </div>
         </div>
       </div>

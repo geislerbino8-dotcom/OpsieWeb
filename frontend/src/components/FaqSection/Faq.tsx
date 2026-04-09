@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { Plus, X } from "lucide-react";
+import { useState } from "react";
+import { Plus } from "lucide-react";
 import { faqs } from "@/data/faqData";
 
 const FAQAccordion = () => {
@@ -10,67 +10,78 @@ const FAQAccordion = () => {
   };
 
   return (
-    <div className="py-20 max-w-[1280px] mx-auto flex items-center justify-center md:items-start flex-col gap-4 md:px-10 ">
-      <h1 className="font-medium text-center md:text-start leading-[34px] tracking-[2px] text-[32px] md:text-[50px] md:leading-[50px] lg:text-[50px] lg:leading-[60px]">
-        Got Questions? <br />
-        <span className="text-[#3CBDE6] font-semibold">We've Got Answers</span>
-      </h1>
-      <p className="text-center text-[18px] md:text-[24px] leading-[20px] font-light">
-        Quick, clear answers to help you get started with Opsie.
-      </p>
+    <section className="py-24 px-6 md:px-10">
+      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+        
+        {/* Left Side: Header Content */}
+        <div className="lg:w-1/3 sticky top-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+            Got Questions? <br />
+            <span className="text-[#3CBDE6]">We've Got Answers</span>
+          </h2>
+          <p className="mt-6 text-lg text-gray-500 font-light max-w-sm">
+            Everything you need to know about Opsie. Can't find what you're looking for? 
+            <span className="text-[#3CBDE6] font-medium cursor-pointer hover:underline ml-1">Reach out to us.</span>
+          </p>
+        </div>
 
-      <div className="w-full max-w-[900px] md:mt-6 mx-auto p-6 grid gap-8 grid-cols-1">
-        {faqs.map((faq, index) => {
-          const isOpen = openIndex === index;
-          const contentRef = useRef<HTMLDivElement>(null);
-          const [height, setHeight] = useState(0);
-
-          useEffect(() => {
-            if (contentRef.current) {
-              setHeight(isOpen ? contentRef.current.scrollHeight : 0);
-            }
-          }, [isOpen]);
-
-          return (
-            <div
-              key={index}
-              className="rounded-xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] overflow-hidden bg-[#ECEDF1]
-                transition-all duration-1000 ease-out hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-100
-                hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:scale-[1.02]"
-            >
-              <button
-                onClick={() => toggle(index)}
-                className="flex justify-between items-center w-full py-6 px-5 text-left text-black font-semibold text-base font-[Poppins]"
-              >
-                {faq.question}
-                {isOpen ? (
-                  <X className="h-6 w-6 flex-shrink-0" />
-                ) : (
-                  <Plus className="h-6 w-6 flex-shrink-0 text-[#3CBDE6]" />
-                )}
-              </button>
-
+        {/* Right Side: Accordion List */}
+        <div className="w-full lg:w-2/3 flex flex-col gap-4">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            
+            return (
               <div
-                style={{ maxHeight: height }}
-                className="overflow-hidden transition-all duration-300 ease-in-out"
+                key={index}
+                className={`group rounded-2xl transition-all duration-500 ease-in-out border
+                  ${isOpen 
+                    ? "bg-white border-[#3CBDE6]/30 shadow-[0_20px_40px_rgba(60,189,230,0.1)] scale-[1.01]" 
+                    : "bg-[#ECEDF1]/50 border-transparent hover:border-gray-300 shadow-sm"
+                  }`}
               >
-                <div ref={contentRef} className="px-5 py-4 text-left text-black font-poppins text-sm">
-                  {Array.isArray(faq.answer) ? (
-                    <ul className="list-disc ml-6 space-y-1">
-                      {faq.answer.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>{faq.answer}</p>
-                  )}
+                <button
+                  onClick={() => toggle(index)}
+                  className="flex justify-between items-center w-full py-7 px-8 text-left group"
+                >
+                  <span className={`text-lg font-semibold transition-colors duration-300 
+                    ${isOpen ? "text-[#3CBDE6]" : "text-gray-800"}`}>
+                    {faq.question}
+                  </span>
+                  
+                  {/* Animated Icon Container */}
+                  <div className={`relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-500
+                    ${isOpen ? "bg-[#3CBDE6] rotate-45" : "bg-gray-200"}`}>
+                    <Plus className={`h-5 w-5 transition-colors ${isOpen ? "text-white" : "text-gray-600"}`} />
+                  </div>
+                </button>
+
+                {/* Smooth Height Transition */}
+                <div 
+                  className="grid transition-all duration-500 ease-in-out"
+                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-8 pb-8 text-gray-600 leading-relaxed text-[16px]">
+                      <div className="pt-2 border-t border-gray-100">
+                        {Array.isArray(faq.answer) ? (
+                          <ul className="list-disc ml-5 space-y-2 mt-4">
+                            {faq.answer.map((item, i) => (
+                              <li key={i} className="pl-2">{item}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="mt-4">{faq.answer}</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

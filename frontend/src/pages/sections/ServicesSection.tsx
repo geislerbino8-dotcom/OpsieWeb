@@ -2,7 +2,7 @@ import ServicesCards from "../../components/cards/ServicesCards";
 import '../../styles/ServicesSection.css'
 import img1 from '../../assets/card-bg/webdev.png'
 import img2 from '../../assets/card-bg/mobiledev.png'
-import img3 from '../../assets/card-bg/aidev.png'
+import img3 from '../../assets/card-bg/aidev.jpg'
 
 const services = [
   {
@@ -14,7 +14,7 @@ const services = [
     serviceName: "Mobile Development",
     desc: "Native and cross-platform mobile solutions designed for intuitive user experiences and speed.",
     image: img2
-  },
+  },  
   {
     serviceName: "AI Modeling",
     desc: "Implementing intelligent automation and predictive analytics to drive data-driven decision making.",
@@ -30,12 +30,7 @@ function ServicesSection() {
     >
       {/* Header Section */}
       <div className="text-center max-w-4xl mb-16 space-y-4">
-        <span 
-          className="text-[#3CBDE6] font-bold tracking-[0.2em] uppercase text-xs"
-          data-aos="fade-down"
-        >
-          What We Do
-        </span>
+        
         <h1 
           className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
           data-aos="fade-down"
@@ -55,13 +50,12 @@ function ServicesSection() {
 
       {/* Cards Container */}
       <div 
-        className="w-full max-w-7xl overflow-x-auto no-scrollbar pb-8"
-        data-aos="fade-up"
-        data-aos-delay="300"
+        className="w-full md:w-[70%] max-w-7xl overflow-x-auto no-scrollbar pb-8"
       >
         <div className="
   flex 
-  justify-center 
+  justify-start
+  md:justify-center 
   items-center 
   md:grid 
   md:grid-cols-3 

@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
 import { OFFICE_LOCATIONS } from '@/data/siteLocationsData';
 
+// Components
 import ProductItemCTA from '@/components/cards/ProductItemCTA';
 import ContactForm from '@/components/cards/ContactForm';
 import ContactsCard from '@/components/cards/ContactsCard';
 import MapBox from '@/components/MapBox';
-import ContactBg from '../assets/background-images/ContactUsBg.png';
+import ContactBg from '../assets/visuals/Contact-bg.png';
 
 function ContactUsPage() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function ContactUsPage() {
           alt="Contact Hero"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 md:bg-gradient-to-r md:from-black/95 md:via-black/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 md:bg-gradient-to-r md:from-black/95 md:via-black/60 to-transparent"></div>
 
         <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-24 px-6 md:px-12 text-white text-left">
           <div data-aos="fade-right">
@@ -52,7 +53,7 @@ function ContactUsPage() {
       </div>
 
       {/* --- 2. CONTACT FORM & CARDS --- */}
-      <div className="max-w-[1280px] mx-auto px-6 py-24">
+      <div className="bg-white max-w-[1280px] mx-auto px-6 py-24">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: Contact Form */}
           <div data-aos="fade-right">
@@ -109,7 +110,7 @@ function ContactUsPage() {
         </div>
 
         {/* --- 3. OFFICES & MAP --- */}
-        <div className="w-full pt-20 mt-5 border-t border-gray-100">
+        <div className="bg-white w-full pt-20 border-t border-gray-100">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-[40px] md:text-[56px] font-bold">Our <span className="text-[#3CBDE6]">Offices</span></h2>
             <p className="text-gray-500 text-lg mt-4">Visit us at any of our branches across the Philippines.</p>
@@ -141,7 +142,7 @@ function ContactUsPage() {
                     setSelectedLoc(loc.key);
                     setDirAction(true); // Always trigger direction view on selection
                   }}
-                  className={`p-8 rounded-xl cursor-pointer transition-all border ${
+                  className={`p-8 rounded-[2rem] cursor-pointer transition-all border ${
                     selectedLoc === loc.key 
                       ? "bg-white border-[#3CBDE6] shadow-xl translate-x-4" 
                       : "bg-transparent border-transparent hover:bg-white hover:border-gray-200"

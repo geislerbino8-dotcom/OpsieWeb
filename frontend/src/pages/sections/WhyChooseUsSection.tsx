@@ -1,8 +1,8 @@
 import TextType from '@/components/TextType'
-import b1 from '../../assets/visuals/Products1.jpg'
-import b2 from '../../assets/visuals/Products2.jpg'
-import b3 from '../../assets/visuals/Products3.jpg'
-import b4 from '../../assets/visuals/Products4.jpg'
+import b1 from '../../assets/visuals/Products1.png'
+import b2 from '../../assets/visuals/Products2.png'
+import b3 from '../../assets/visuals/Products3.png'
+import b4 from '../../assets/visuals/Products4.png'
 
 const content = [
   {

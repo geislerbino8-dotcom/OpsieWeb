@@ -7,7 +7,7 @@ type AnalyticsCardsProps = {
 
 function AnalyticsCards({ numbers, desc }: AnalyticsCardsProps) {
   return (
-    <div className="group relative bg-white rounded-2xl p-6 w-full h-44 flex flex-col items-center justify-center 
+    <div className="group relative bg-white rounded-md p-6 w-full h-44 flex flex-col items-center justify-center 
                     transition-all duration-500 ease-out
                     border border-slate-100 shadow-sm
                     hover:shadow-2xl hover:shadow-indigo-100 hover:-translate-y-2 hover:border-indigo-100">

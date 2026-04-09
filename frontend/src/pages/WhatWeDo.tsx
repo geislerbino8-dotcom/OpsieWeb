@@ -6,7 +6,7 @@ import WhyChooseUs from "../components/sections/WhyChooseUs";
 import { useNavigate } from "react-router-dom";
 
 const imageLogos = [
-  { src: "/logo/Frame.svg", alt: "Company 1" },
+  { src: "/staff/p5.jpg", alt: "Company 1" },
   { src: "/logo/Frame-1.svg", alt: "Company 2" },
   { src: "/logo/Frame-2.svg", alt: "Company 3" },
   { src: "/logo/Frame-4.svg", alt: "Company 4" },
@@ -30,7 +30,7 @@ export default function WhatWeDo() {
         />
         
         {/* Responsive Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent md:bg-gradient-to-r md:from-black/100 md:via-black/20 md:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent md:bg-gradient-to-r md:from-black/100 md:via-black/60 md:to-transparent"></div>
 
         {/* Hero Content Container - Keeps text aligned with the rest of your site */}
         <div className="relative z-10 h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-end pb-20">
@@ -68,7 +68,7 @@ export default function WhatWeDo() {
   {/* Avatar Group */}
   <div className="flex flex-col items-center md:items-end">
     <div className="flex -space-x-3 mb-3 md:mb-0">
-      <img src="/profiles/Rectangle 780.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
+      <img src="/staffs/p5.jpg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
       <img src="/profiles/Rectangle 816.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
       <img src="/profiles/Rectangle 818.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
     </div>
@@ -87,8 +87,23 @@ export default function WhatWeDo() {
         </div>
       </section>
 
+       <div className="w-full flex justify-center items-center py-10 my-5">
+          <div className="w-[80%]">
+            <LogoLoop
+            logos={imageLogos}
+            speed={100}
+            direction="left"
+            logoHeight={40}
+            gap={60}
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#ECEDF1"
+          />
+          </div>
+        </div>
+
       {/* BODY CONTENT - Wrapped in container to keep alignment */}
-      <main className="md:w-[75%] mx-auto py-20">
+      <main className="md:w-[75%] mx-auto pt-10 py-20">
         
         {/* Intro Heading */}
      <div className="flex flex-col md:flex-row justify-between items-start gap-8">
@@ -126,18 +141,7 @@ export default function WhatWeDo() {
           <ClientCard />
 
         {/* Logos Section */}
-        <div className="py-10 my-10">
-          <LogoLoop
-            logos={imageLogos}
-            speed={100}
-            direction="left"
-            logoHeight={60}
-            gap={60}
-            scaleOnHover
-            fadeOut
-            fadeOutColor="#ffffff"
-          />
-        </div>
+       
 
         <FAQAccordion />
       </main>

@@ -1,12 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { SiFacebook, SiInstagram, SiGmail, SiGithub } from "react-icons/si";
-
+import LogoLoop from "@/components/LogoLoop";
 // Internal Components
 import { Button } from "../components/Button/Button";
 import FAQAccordion from "../components/FaqSection/Faq";
 import CountUp from "../components/CountUp";
 import MapDesign from "@/components/sections/MapDesign";
 import Team from "@/components/Team";
+
+const myLogos = [
+  { node: <span className="font-bold overflow-hidden">INNOVATION</span> },
+  { node: <span className="font-bold overflow-hidden">SCALABILITY</span> },
+  { node: <span className="font-bold overflow-hidden">PRECISION</span> },
+];
+
 
 export default function WhoWeAre() {
   const navigate = useNavigate();
@@ -17,7 +24,7 @@ export default function WhoWeAre() {
       {/* breakout classes: w-screen and negative margins ensure it hits the browser edges */}
       <div 
         data-aos="fade-right" 
-        className="bg-[#0F4C5C] relative w-screen h-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden"
+        className="relative w-screen h-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden"
       >
         {/* Background Image */}
         <img
@@ -26,19 +33,19 @@ export default function WhoWeAre() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         
-        {/* Overlay Gradient - Darker at bottom/left for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 md:bg-gradient-to-r md:from-black/90 md:via-black/20 to-transparent"></div>
+        {/* Overlay Gradient    - Darker at bottom/left for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 md:bg-gradient-to-r md:from-black/90 md:via-black/50 to-transparent"></div>
         
         {/* Content Wrapper - Centered to match your site's max-width */}
         <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-20 md:pb-32 px-6 md:px-12 text-white">
           
           <div className="flex flex-col items-center md:items-start w-full">
-            <h1 className="max-w-[850px] text-[42px] leading-[46px] md:text-[72px] md:leading-[82px] text-center md:text-left ">
+            <h1 data-aos="fade-right" className="max-w-[850px] text-[42px] leading-[46px] md:text-[72px] md:leading-[82px] text-center md:text-left ">
               A Team of Builders, <br className="hidden md:block" />
               <span className="font-semibold text-[#3CBDE6]">Thinkers, and Problem-Solvers</span>
             </h1>
             
-            <p className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
+            <p data-aos="fade-up" className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
               Driven by innovation and collaboration, we turn complex challenges into simple, effective digital solutions.
             </p>
 
@@ -55,8 +62,8 @@ export default function WhoWeAre() {
           {/* Desktop Socials - Pinned to bottom right */}
           <div className="hidden absolute bottom-[30px] md:flex absolute right-12 bottom-12 gap-5">
             {[SiFacebook, SiInstagram, SiGithub, SiGmail].map((Icon, idx) => (
-              <div key={idx} className="w-14 h-14 border-2 border-[#3CBDE6]/40 rounded-full flex items-center justify-center hover:border-[#3CBDE6] hover:bg-[#3CBDE6] group transition-all cursor-pointer">
-                <Icon className="text-[#3CBDE6] text-2xl group-hover:text-white transition-colors" />
+              <div key={idx} className="w-14 h-14 border-2 border-[#3CBDE6]/40 rounded-full flex items-center justify-center hover:border-[#3CBDE6] bg-[#3CBDE6] group transition-all cursor-pointer">
+                <Icon className="text-white text-2xl group-hover:text-white transition-colors" />
               </div>
             ))}
           </div>
@@ -75,9 +82,10 @@ export default function WhoWeAre() {
           ))}
         </div>
 
+
          <div className="flex flex-col items-center justify-center md:flex-row gap-2 md:gap-16  sm:px-[4%] md:px-[6%]">
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-0 md:gap-0  lg:mt-10">
-            <div className="flex flex-col items-center md:items-start justify-center md:w-1/2 gap-6 md:gap-10 px-2 md:mt-14">
+            <div className="flex flex-col items-center md:items-start justify-center md:w-1/2 gap-6 md:gap-10 px-2 md:mt-0">
             <h1 data-aos="fade-right" className="w-full md:w-[410px] lg:w-[600px]  text-center md:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[50px] md:leading-[42px] lg:leading-[65px]">
                 We Believe in <span className="text-[#3CBDE6] font-semibold">Result </span>
                 Driven by <br />
@@ -95,6 +103,7 @@ export default function WhoWeAre() {
                 />
             </div>
         </div>
+        
         <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="600" className="flex justify-center md:justify-end md:w-1/2 mt-4 md:mt-0 ">
             <div className="relative max-w-[500px] sm:max-w-[550px] md:max-w-[300px] lg:min-w-[350px] xl:max-w-[950px]  lg:ml-50">
                     <img
@@ -123,7 +132,24 @@ export default function WhoWeAre() {
                     </div>
                  </div>
             </div>
+
+            
          </div>
+       <div className="p-cards-container no-scrollbar  text-gray-600 w-full flex justify-center items-center overflow-hidden ">
+            <div className="w-[90%] mt-20">
+                         <LogoLoop
+                        logos={myLogos}
+                        speed={60}
+                        direction="left"
+                        logoHeight={40}
+                        gap={60}
+                        scaleOnHover
+                        fadeOut
+                        fadeOutColor="#ECEDF1"
+                   />
+            </div>
+            </div>
+
          <div className="flex items-center justify-center flex-col justify-between mt-4 lg:mt-20">
             <div className="w-full px-2 h-[1px] bg-[#B3B3B3]">
             </div>
