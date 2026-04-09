@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../assets/icons/opsie_logo_only.png';
 
 type TeamMember = {
   name: string;
@@ -51,15 +52,17 @@ const teamMembers: TeamMember[] = [
 ];
 
 const MemberCard = ({ member, isFeatured = false }: { member: TeamMember; isFeatured?: boolean }) => (
-  <div className={`group relative bg-white rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 ${
-    isFeatured ? "border-2 border-blue-50 shadow-xl shadow-blue-100/50" : "border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-gray-200/50"
+  <div className={`w-full max-w-[320px] group relative bg-white rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 flex flex-col items-center ${
+    isFeatured 
+      ? "border-2 border-[#3CBDE6]/20 shadow-xl shadow-[#3CBDE6]/10" 
+      : "border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-gray-200/50"
   }`}>
-    {/* Subtle Background Accent */}
-    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-    
-    <div className="relative">
+    {/* Subtle Top Accent */}
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#3CBDE6] to-blue-600 rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+
+    <div className="relative z-10 w-full">
       <div className="relative w-32 h-32 mx-auto">
-        <div className="absolute inset-0 bg-blue-100 rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-transform duration-500" />
+        <div className="absolute inset-0 bg-[#3CBDE6]/10 rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500" />
         <img
           src={member.image}
           alt={member.name}
@@ -69,10 +72,10 @@ const MemberCard = ({ member, isFeatured = false }: { member: TeamMember; isFeat
 
       <div className="mt-6 text-center">
         <h3 className="text-xl font-bold text-gray-900 tracking-tight">{member.name}</h3>
-        <span className="inline-block px-3 py-1 mt-1 text-xs font-semibold tracking-wider text-blue-600 uppercase bg-blue-50 rounded-full">
+        <span className="inline-block px-3 py-1 mt-1 text-[10px] font-bold tracking-widest text-[#3CBDE6] uppercase bg-[#3CBDE6]/10 rounded-full">
           {member.role}
         </span>
-        <p className="mt-4 text-gray-600 text-sm leading-relaxed line-clamp-3">
+        <p className="mt-4 text-gray-500 text-sm leading-relaxed line-clamp-3">
           {member.bio}
         </p>
       </div>
@@ -84,18 +87,23 @@ const MemberCard = ({ member, isFeatured = false }: { member: TeamMember; isFeat
           </a>
         )}
         {member.linkedin && (
-          <a href={member.linkedin} className="text-gray-400 hover:text-blue-600 transition-colors" aria-label="LinkedIn">
+          <a href={member.linkedin} className="text-gray-400 hover:text-[#3CBDE6] transition-colors" aria-label="LinkedIn">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           </a>
         )}
       </div>
+    </div>
+
+    {/* Background Watermark */}
+    <div className="absolute inset-0 z-0 opacity-[5%] pointer-events-none overflow-hidden rounded-3xl">
+      <img className="w-32 absolute -right-8 -bottom-8 grayscale" src={logo} alt="" />
     </div>
   </div>
 );
 
 const Team: React.FC = () => {
   return (
-    <section className="bg-white py-24 px-6 overflow-hidden">
+    <section className="mt-20 px-6 overflow-hidden pb-20">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section */}
@@ -105,26 +113,41 @@ const Team: React.FC = () => {
             Meet Our Creative Minds
           </h2>
           <div className="w-20 h-1 bg-[#3CBDE6] mx-auto rounded-full" />
-          <p className="max-w-2xl mx-auto text-gray-500">
+          <p className="max-w-2xl mx-auto text-gray-500 font-light">
             We are a group of passionate technologists and designers dedicated to building software that empowers humans.
           </p>
         </div>
 
-        {/* Featured Executives */}
+        {/* Featured Executives - Centered */}
         <div className="flex flex-wrap justify-center gap-10 mb-20">
           {executive.map((item, index) => (
-            <div key={`exec-${index}`} className="w-full md:w-[420px]">
+            <div 
+              key={`exec-${index}`} 
+              className="w-full sm:w-[calc(50%-2rem)] md:max-w-[320px] flex justify-center"
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+            >
               <MemberCard member={item} isFeatured />
             </div>
           ))}
         </div>
 
-        <hr className="border-gray-100 mb-20" />
+        {/* Divider */}
+        <div className="max-w-4xl mx-auto">
+          <hr className="border-gray-100" />
+        </div>
 
-        {/* Core Team Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Core Team Grid - Centered */}
+        <div className="flex flex-wrap gap-5 justify-center max-w-[1200px] mx-auto">
           {teamMembers.map((member, index) => (
-            <MemberCard key={`member-${index}`} member={member} />
+            <div 
+              key={`member-${index}`} 
+              className="w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.333%-3rem)] flex justify-center"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <MemberCard member={member} />
+            </div>
           ))}
         </div>
         

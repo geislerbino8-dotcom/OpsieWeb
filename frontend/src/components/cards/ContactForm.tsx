@@ -1,13 +1,11 @@
-import { useState, } from "react";
+import { useState } from "react";
 import { createTicket } from "@/api/createTicket";
+
 function ContactForm() {
+  const [transSucc, setTransSucc] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-
-
-  const [ transSucc, setTransSucc ] = useState(Boolean)
-
-
-   const userInfo = {
+  const initialUserInfo = {
     name: "",
     email: "",
     description: "",
@@ -16,155 +14,175 @@ function ContactForm() {
     phone: "",
     address: "",
     version: "",
-    
-  
-  }
+  };
 
-  const [ userData, setUserData ] = useState(userInfo)
+  const [userData, setUserData] = useState(initialUserInfo);
 
-  const handleCreateInquiry = async (e: any, userData : any)=> {
+  const handleCreateInquiry = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
 
-      e.preventDefault()
+    try {
+      const response = await createTicket(userData);
+      console.log("Inquiry Sent:", response);
+      setTransSucc(true);
+      setUserData(initialUserInfo);
+    } catch (error) {
+      console.error("Error creating ticket:", error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      
-      try {
-        
-          const send = await createTicket(userData)
-
-          console.log(send)
-
-          setTransSucc(true)
-          setUserData(userInfo)
-
-      } catch (error) {
-        console.log(error)
-      }
-
-
-  }
-
-  const handleUserDataChange = (e: any)=> {
-
-    const { name, value } = e.target
-
-    
-
-     setUserData(prev => ({
-    ...prev,
-    [name]: value  
-  }));
-
-  }
-
+  const handleUserDataChange = (e: any) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
-    <div className="flex" data-aos="fade-up">
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-lg md:p-8 p-5 flex flex-col items-center space-y-4">
-        {
-          !transSucc ?
-          <form onSubmit={(e)=> handleCreateInquiry(e, userData)}>
-              <h3 className="text-2xl font-bold my-1 text-gray-800 text-center">
+    <div className="flex justify-center" data-aos="fade-up">
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-2xl md:p-10 p-6 flex flex-col items-center border border-gray-100">
+        {!transSucc ? (
+          <form onSubmit={handleCreateInquiry} className="w-full space-y-4">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-gray-900 tracking-tight">
                 Let's Talk About Your Project
               </h3>
+              <p className="text-gray-500 text-sm mt-2">
+                Drop us a message and we'll get back to you shortly.
+              </p>
+            </div>
 
-        <input
-          onChange={handleUserDataChange}
-          type="text"
-          name="name"
-          placeholder="Full Name*"
-          required
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+            {/* Row 1: Name & Email */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                onChange={handleUserDataChange}
+                type="text"
+                name="name"
+                value={userData.name}
+                placeholder="Full Name*"
+                required
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all"
+              />
+              <input
+                onChange={handleUserDataChange}
+                type="email"
+                name="email"
+                value={userData.email}
+                placeholder="Your Email*"
+                required
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all"
+              />
+            </div>
 
-        <input
-          onChange={handleUserDataChange}
-          type="email"
-          name="email"
-          placeholder="Your Email*"
-          required
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+            {/* Row 2: Phone & Address */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                onChange={handleUserDataChange}
+                type="text"
+                name="phone"
+                value={userData.phone}
+                placeholder="Phone (Optional)"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all"
+              />
+              <input
+                onChange={handleUserDataChange}
+                type="text"
+                name="address"
+                value={userData.address}
+                placeholder="Address (Optional)"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all"
+              />
+            </div>
 
-        <input
-          onChange={handleUserDataChange}
-          type="text"
-          name="phone"
-          placeholder="Your Mobile Number (Optional)"
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+            {/* Row 3: Message (Full Width) */}
+            <textarea
+              onChange={handleUserDataChange}
+              name="description"
+              value={userData.description}
+              placeholder="Tell us about your project or inquiry*"
+              required
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all resize-none h-32"
+            ></textarea>
 
-        <input
-          onChange={handleUserDataChange}
-          type="text"
-          name="address"
-          placeholder="Address (Optional)"
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+            {/* Row 4: Platform & Version */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <select
+                onChange={handleUserDataChange}
+                name="platform"
+                value={userData.platform}
+                required
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all text-gray-500"
+              >
+                <option value="" disabled>- Platform -</option>
+                <option value="Windows">Windows</option>
+                <option value="macOS">macOS</option>
+                <option value="Linux">Linux</option>
+                <option value="Android">Android</option>
+                <option value="IOS">IOS</option>
+                <option value="Web">Web Application</option>
+              </select>
 
-        <textarea
-          onChange={handleUserDataChange}
-          name="description"
-          placeholder="Message*"
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none h-32"
-        ></textarea>
+              <input
+                onChange={handleUserDataChange}
+                type="text"
+                name="version"
+                value={userData.version}
+                placeholder="Version OS (optional)"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all"
+              />
+            </div>
 
-        <select
-          onChange={handleUserDataChange}
-          name="platform"
-          required
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          <option value="Platform">- Platform -</option>
-          <option value="Windows">Windows</option>
-          <option value="macOS">macOS</option>
-          <option value="Linux">Linux</option>
-          <option value="Android">Android</option>
-          <option value="IOS">IOS</option>
-        </select>
+            {/* Row 5: Category (Full Width) */}
+            <select
+              onChange={handleUserDataChange}
+              name="category"
+              value={userData.category}
+              required
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all text-gray-500"
+            >
+              <option value="" disabled>- Category -</option>
+              <option value="Inquire">General Inquiry</option>
+              <option value="Question">Technical Question</option>
+              <option value="Complaint">Complaint</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="Feature Request">Feature Request</option>
+            </select>
 
-         <input
-          onChange={handleUserDataChange}
-          type="text"
-          name="version"
-          placeholder="Version OS (optional)"
-          
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        
-
-        <select
-          onChange={handleUserDataChange}
-          name="category"
-          required
-          className="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          <option value="select">- Category -</option>
-          <option value="Inquire">Inquire</option>
-          <option value="Question">Question</option>
-          <option value="Complaint">Complaint</option>
-          <option value="Bug Report">Bug Report</option>
-          <option value="Feature Request">Feature Request</option>
-        </select>
-        <button type="submit" className="transition duration-1000 w-full py-2 bg-[#2da9cf] text-white font-bold my-2 rounded-md hover:bg-[#0F4C5C] transition-colors"
-         
-          style={{
-            backgroundColor: transSucc ? 'green' : ''
-          }}
-          disabled={transSucc}
-        >
-          {
-            !transSucc ? 'Send Message' : 'Message Sent. Thank you!'
-          }
-        </button>
-          </form> : 
-          <>
-            <h1 className="text-2xl text-center">Thanks for your feedback. We will contact you later.</h1>
-          </>
-        }
-
-        
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-500 shadow-lg ${
+                loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#3CBDE6] hover:bg-[#242424] hover:-translate-y-1"
+              }`}
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+        ) : (
+          <div className="py-12 text-center space-y-6" data-aos="zoom-in">
+            <div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white shadow-xl">
+              ✓
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">Thank You!</h2>
+              <p className="text-gray-500 mt-4 leading-relaxed max-w-xs mx-auto">
+                Your message has been sent successfully. We'll get back to you within 24 hours.
+              </p>
+            </div>
+            <button 
+              onClick={() => setTransSucc(false)}
+              className="text-[#3CBDE6] font-bold uppercase tracking-widest text-xs hover:text-black transition-colors"
+            >
+              Send Another Inquiry
+            </button>
+          </div>
+        )}
       </div>
-  
     </div>
   );
 }

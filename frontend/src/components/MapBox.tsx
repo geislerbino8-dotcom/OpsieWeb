@@ -1,49 +1,56 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const MAPBOX_TOKEN =
-  "pk.eyJ1IjoiY2hhaWlpIiwiYSI6ImNtZjBnZzM4ZDE3aGoya3B6YTJmeDZ4N2oifQ.7rvg2UpEHaOEDSDo5FgZBA";
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOXTOKEN
 
-const OFFICE_LOCATION = {
-  lng: 121.04916024252319, 
-  lat: 14.58523914984939, 
-};
 
 type Location = {
+  name: string;
   lng: number;
   lat: number;
 };
 
 type MapBoxProps = {
-  getDirection: boolean
-}
+  getDirection: boolean;
+  location: { lat: number; lng: number };
+  setDirAction: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-export default function MapBox({getDirection} : MapBoxProps) {
+export default function MapBox({
+  getDirection,
+  location,
+  setDirAction,
+}: MapBoxProps) {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
 
+  const destinationMarkerRef = useRef<mapboxgl.Marker | null>(null);
+  const userMarkerRef = useRef<mapboxgl.Marker | null>(null);
+
   const [userLocation, setUserLocation] = useState<Location | null>(null);
 
-  useEffect(()=> {
-    
-     getDirection == true ? handleDirections() : null
-  }, [getDirection])
+  // 🧭 Trigger directions
+  useEffect(() => {
+    if (getDirection) {
+      handleDirections();
+      setDirAction(false);
+    }
+  }, [getDirection]);
 
+  // 🗺️ Initialize map
   useEffect(() => {
     mapboxgl.accessToken = MAPBOX_TOKEN;
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainer.current!,
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [OFFICE_LOCATION.lng, OFFICE_LOCATION.lat],
+      center: [location.lng, location.lat],
       zoom: 15,
     });
 
     mapRef.current.on("load", () => {
-      new mapboxgl.Marker()
-        .setLngLat([OFFICE_LOCATION.lng, OFFICE_LOCATION.lat])
-        .addTo(mapRef.current!);
+      addOrUpdateDestinationMarker(location);
     });
 
     return () => {
@@ -51,7 +58,18 @@ export default function MapBox({getDirection} : MapBoxProps) {
     };
   }, []);
 
-  // 🚀 Animate map when user location is detected
+  // 📍 Update map when destination changes
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    mapRef.current.flyTo({
+      center: [location.lng, location.lat],
+    });
+
+    addOrUpdateDestinationMarker(location);
+  }, [location]);
+
+  // 🚀 Fly to user when detected
   useEffect(() => {
     if (userLocation && mapRef.current) {
       mapRef.current.flyTo({
@@ -64,14 +82,38 @@ export default function MapBox({getDirection} : MapBoxProps) {
     }
   }, [userLocation]);
 
-  
+  // 📍 Destination marker handler
+  const addOrUpdateDestinationMarker = (loc: { lng: number; lat: number }) => {
+    if (!mapRef.current) return;
+
+    if (destinationMarkerRef.current) {
+      destinationMarkerRef.current.remove();
+    }
+
+    destinationMarkerRef.current = new mapboxgl.Marker()
+      .setLngLat([loc.lng, loc.lat])
+      .addTo(mapRef.current);
+  };
+
+  // 👤 User marker handler
+  const addOrUpdateUserMarker = (loc: Location) => {
+    if (!mapRef.current) return;
+
+    if (userMarkerRef.current) {
+      userMarkerRef.current.remove();
+    }
+
+    userMarkerRef.current = new mapboxgl.Marker({ color: "blue" })
+      .setLngLat([loc.lng, loc.lat])
+      .addTo(mapRef.current);
+  };
 
   // 🚗 Draw route
   const drawRoute = async (origin: Location) => {
     if (!mapRef.current) return;
 
     const res = await fetch(
-      `https://api.mapbox.com/directions/v5/mapbox/driving/${origin.lng},${origin.lat};${OFFICE_LOCATION.lng},${OFFICE_LOCATION.lat}?geometries=geojson&access_token=${MAPBOX_TOKEN}`
+      `https://api.mapbox.com/directions/v5/mapbox/driving/${origin.lng},${origin.lat};${location.lng},${location.lat}?geometries=geojson&access_token=${MAPBOX_TOKEN}`
     );
 
     const data = await res.json();
@@ -88,33 +130,39 @@ export default function MapBox({getDirection} : MapBoxProps) {
       geometry: route,
     };
 
+    // 🧹 Remove old route
+    if (mapRef.current.getLayer("route")) {
+      mapRef.current.removeLayer("route");
+    }
     if (mapRef.current.getSource("route")) {
-      (mapRef.current.getSource("route") as mapboxgl.GeoJSONSource).setData(
-        routeData as any
-      );
-    } else {
-      mapRef.current.addLayer({
-        id: "route",
-        type: "line",
-        source: {
-          type: "geojson",
-          data: routeData as any,
-        },
-        paint: {
-          "line-color": "#3CBDE6",
-          "line-width": 5,
-        },
-      });
+      mapRef.current.removeSource("route");
     }
 
-    // 🎬 Animate camera to fit the route
+    // ➕ Add new route
+    mapRef.current.addLayer({
+      id: "route",
+      type: "line",
+      source: {
+        type: "geojson",
+        data: routeData as any,
+      },
+      paint: {
+        "line-color": "#3CBDE6",
+        "line-width": 5,
+      },
+    });
+
+    // 🎯 Fit bounds to route
     const coordinates = route.coordinates;
 
     const bounds = coordinates.reduce(
-        (bounds: mapboxgl.LngLatBounds, coord: [number, number]) =>
-          bounds.extend(coord),
-        new mapboxgl.LngLatBounds(coordinates[0] as [number, number], coordinates[0] as [number, number])
-      );
+      (bounds: mapboxgl.LngLatBounds, coord: [number, number]) =>
+        bounds.extend(coord),
+      new mapboxgl.LngLatBounds(
+        coordinates[0] as [number, number],
+        coordinates[0] as [number, number]
+      )
+    );
 
     mapRef.current.fitBounds(bounds, {
       padding: 80,
@@ -122,29 +170,24 @@ export default function MapBox({getDirection} : MapBoxProps) {
     });
   };
 
+  // 📍 Handle directions
   const handleDirections = () => {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser.");
       return;
     }
-  
+
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const location = {
+        const loc: Location = {
+          name: "",
           lng: position.coords.longitude,
           lat: position.coords.latitude,
         };
-  
-        setUserLocation(location);
-  
-        // show user marker
-        if (mapRef.current) {
-          new mapboxgl.Marker({ color: "blue" })
-            .setLngLat([location.lng, location.lat])
-            .addTo(mapRef.current);
-        }
-  
-        drawRoute(location);
+
+        setUserLocation(loc);
+        addOrUpdateUserMarker(loc);
+        drawRoute(loc);
       },
       (error) => {
         console.error("Error getting location:", error);
@@ -159,11 +202,9 @@ export default function MapBox({getDirection} : MapBoxProps) {
   };
 
   return (
-    
-          <div
-            ref={mapContainer}
-            className=" md:w-[300px] lg:min-w-[510px] h-[400px] rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] "
-          />
-    
+    <div
+      ref={mapContainer}
+      className="w-full h-[400px] rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]"
+    />
   );
 }

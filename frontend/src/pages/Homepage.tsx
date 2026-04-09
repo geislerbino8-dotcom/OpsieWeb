@@ -42,7 +42,7 @@ function Homepage() {
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={500}>
-        <ClientReview />
+          <ClientReview />
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={600}>

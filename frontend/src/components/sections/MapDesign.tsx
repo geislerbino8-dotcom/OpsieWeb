@@ -154,19 +154,17 @@ export default function Maps() {
     <div className="flex items-center justify-center lg:items-start gap-14">
       <div className="w-full flex flex-col md:flex-row lg:items-start gap-4">
 
-        <div className="w-full flex flex-col items-center md:items-start gap-6">
+        <div className="w-full flex flex-col items-center md:items-start gap-6 mb-10">
 
           <h1 className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px]">
             Visit <span className="text-[#3CBDE6] font-semibold">Us</span> Let’s Talk
             <span className="text-[#3CBDE6] font-semibold"><br />Innovation</span>
           </h1>
 
-          <div className="flex lg:w-[500px]">
-            <p className="font-poppins text-center md:text-start w-full text-[16px] leading-[15px] font-light">
+            <p className="font-poppins text-center md:text-start font-light">
               Our doors are open for clients and partners who are ready to innovate.
               Drop by our location and start the conversation that turns ideas into real solutions.
             </p>
-          </div>
 
           <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
             <Button

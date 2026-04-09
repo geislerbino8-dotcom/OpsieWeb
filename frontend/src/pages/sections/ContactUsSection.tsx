@@ -48,6 +48,25 @@ function ContactUsSection() {
 
       </div>
 
+       <div 
+        className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-100 pt-12"
+        data-aos="fade-up"
+        data-aos-delay="500"
+      >
+        <div className="text-center">
+          <h4 className="font-bold text-gray-900 mb-1">Email Us</h4>
+          <p className="text-[#3CBDE6] font-medium">hello@opsie.solutions</p>
+        </div>
+        <div className="text-center">
+          <h4 className="font-bold text-gray-900 mb-1">Visit Us</h4>
+          <p className="text-gray-500 font-light text-sm">Main Tech Hub, Innovation Drive</p>
+        </div>
+        <div className="text-center">
+          <h4 className="font-bold text-gray-900 mb-1">Call Us</h4>
+          <p className="text-gray-500 font-light text-sm">+1 (555) 000-OPSI</p>
+        </div>
+      </div>
+
     </section>
   );
 }

@@ -1,7 +1,6 @@
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
-import SplitText from './SplitText'
+import SplitText from './SplitText';
 import { useNavigate } from 'react-router-dom';
-import PrimaryButton from './buttons/PrimaryButton';
 
 type HeroPageProps = {
   heroText?: string;
@@ -9,65 +8,74 @@ type HeroPageProps = {
 };
 
 function HeroPage({ heroText, bgImage }: HeroPageProps) {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div
-      className="w-full h-screen relative flex flex-col justify-end"
+      className="w-full h-screen relative flex flex-col justify-end overflow-hidden"
       style={{
-        backgroundColor: '#000000aa',
-        backgroundImage: bgImage ? `url(${bgImage})` : undefined,
+        backgroundColor: '#000000',
+        backgroundImage: bgImage ? `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${bgImage})` : undefined,
         backgroundAttachment: 'fixed',
-        backgroundClip: 'content-box',
+        backgroundPosition: 'center',
         backgroundSize: 'cover',
-        backgroundBlendMode: 'darken'
       }}
     >
+      {/* Central Spinning Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img src={LogoOnly} alt="Logo" className="spin-slow w-72 md:w-96 opacity-70" />
+        <img 
+          src={LogoOnly} 
+          alt="Logo" 
+          className="animate-[spin_20s_linear_infinite] w-72 md:w-[500px] opacity-[30%] select-none" 
+        />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center text-center px-4 md:px-8 mb-16 space-y-6">
-
-        <h1 className="text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
-          <SplitText
-            text={ heroText ? heroText : "Bring your Ideas into Reality"}
-            className="text-10xl text-center font-bold"
-            delay={50}
-            duration={1.25}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-        </h1>
-
-        <p
-          className="text-white text-base md:text-lg max-w-2xl"
-          data-aos="fade-down"
-          data-aos-once="true"
+      {/* Content Area */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 mb-24 space-y-8">
         
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus
-          ipsa dolore laboriosam ea harum iure quo consequuntur dolorem rem nobis
-          sint magni esse quam, hic laudantium dolorum aliquam suscipit?
-        </p>
-
-
-
-        <div className='text-2xl'>
-          <PrimaryButton text="Book now" variant="primary" onClick={()=> {
-            navigate("/book-a-schedule")
-          }}/>
+        <div className="max-w-5xl">
+          <h1 className="text-white">
+            <SplitText
+              text={heroText ? heroText : "Bring your Ideas into Reality"}
+              className="text-[48px] md:text-[80px] lg:text-[90px] font-bold leading-[1.1] tracking-tight"
+              delay={50}
+              duration={1}
+              ease="back.out(1.7)"
+              splitType="chars"
+              from={{ opacity: 0, y: 80 }}
+              to={{ opacity: 1, y: 0 }}
+            />
+          </h1>
         </div>
 
+        <p
+          className="text-gray-300 text-lg md:text-xl max-w-2xl font-light leading-relaxed"
+          data-aos="fade-up"
+          data-aos-delay="800"
+          data-aos-duration="1000"
+        >
+          We turn your vision into <span className="text-[#3CBDE6] font-medium">powerful digital solutions</span>. 
+          From concept to deployment, our team delivers scalable, secure, and user-focused 
+          software tailored to your business goals.
+        </p>
+
+        <div 
+          className="pt-4"
+          data-aos="zoom-in"
+          data-aos-delay="1200"
+        >
+          <button 
+            onClick={() => navigate("/book-a-schedule")}
+            className="group relative bg-[#3CBDE6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
+          >
+            <span className="relative z-10">Book a Consultation</span>
+            {/* Subtle hover slide effect */}
+          </button>
+        </div>
       </div>
 
-      
+      {/* Bottom Gradient for smoother section transitions */}
+      <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
     </div>
   );
 }

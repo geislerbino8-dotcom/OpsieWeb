@@ -21,7 +21,7 @@ const ServicesSection: React.FC = () => {
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="w-full flex flex-col"
+    <section className="w-full flex flex-col my-5"
     
   >
     {/* ================= MOBILE VIEW ================= */}
@@ -32,7 +32,7 @@ const ServicesSection: React.FC = () => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {cards.map((card, idx) => (
-          <div key={idx} className="flex-shrink-0 w-full px-4"> {/* 90% width + horizontal margin */}
+          <div key={idx} className="flex-shrink-0 w-full px-4 bg"> {/* 90% width + horizontal margin */}
             <Card
               title={card.title}
               image={card.image}
