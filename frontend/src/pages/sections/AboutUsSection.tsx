@@ -53,7 +53,7 @@ function AboutUsSection() {
           <div data-aos="fade-up" data-aos-delay="400" className="pt-6">
             <button 
               onClick={() => navigate('/who-we-are')}
-              className="group relative flex items-center gap-3 px-8 py-4 bg-white border-2 border-gray-100 rounded-2xl font-bold text-gray-900 transition-all duration-300 hover:border-[#3CBDE6] hover:bg-gray-50 hover:shadow-lg hover:shadow-[#3CBDE6]/10"
+              className="group  relative flex items-center gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
             >
               <span>Discover Our Story</span>
              

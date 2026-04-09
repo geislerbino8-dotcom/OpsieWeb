@@ -11,6 +11,7 @@ import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
 import ClientReview from '../components/sections/ClientReviewsSection'
 import Navigation from '../components/Navigation'
 import WhyChooseUsSection from './sections/WhyChooseUsSection'
+import ProductItemCTA from '@/components/cards/ProductItemCTA'
 
 function Homepage() {
   return (
@@ -49,15 +50,19 @@ function Homepage() {
         <PartnerSection />
       </ScrollAnimatedSection>
 
+      <ScrollAnimatedSection delay={700}>
+        <ContactUsSection />
+      </ScrollAnimatedSection>
+
       <ScrollAnimatedSection delay={650}>
         <Faq />
       </ScrollAnimatedSection>
 
+      <ProductItemCTA />
 
 
-      <ScrollAnimatedSection delay={700}>
-        <ContactUsSection />
-      </ScrollAnimatedSection>
+
+      
 
   
 

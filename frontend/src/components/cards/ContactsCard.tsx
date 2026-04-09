@@ -11,7 +11,7 @@ function ContactsCard({ title, children, className = "" }: ContactsCardType) {
     <div 
       className={`
         flex-1 w-full p-8 rounded-xl bg-white 
-        border border-gray-100 shadow-sm hover:shadow-md 
+        border border-gray-100 shadow-xl hover:shadow-md 
         transition-shadow duration-300 text-left flex flex-col
         ${className}
       `}

@@ -7,7 +7,7 @@ import LineImg from "../../assets/background-images/LineBG.png";
 function Analytics() {
 
   return (
-    <section className="transtion duration-1000 relative w-full flex flex-col items-center py-16 px-4 overflow-hidden"
+    <section className="transtion duration-1000 relative w-full flex flex-col items-center py-20 px-4 overflow-hidden"
       style={{
         backgroundColor: '#015c7dc8',
         backgroundImage: `url(${LineImg})`,
