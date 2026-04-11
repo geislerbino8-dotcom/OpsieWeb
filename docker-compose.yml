@@ -6,8 +6,13 @@ services:
     image: certbot/certbot
     container_name: opsie-staging-certbot
     volumes:
-      - certbot_data:/etc/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done;'"
+      - opsiewebsite_certbot_data:/etc/letsencrypt
+    entrypoint: >
+      /bin/sh -c 'trap exit TERM;
+      while :;
+      do sleep 12h & wait $${!};
+      certbot renew;
+      done;'
 
   backend:
     container_name: opsie-staging-backend
@@ -15,10 +20,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     restart: always
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     env_file:
       - .env
+    networks:
+      - opsie-network
 
   frontend:
     container_name: opsie-staging-frontend
@@ -26,9 +33,15 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     restart: always
-    ports:
-      - "8080:80"
+    expose:
+      - "80"
+    networks:
+      - opsie-network
 
 volumes:
-  mongodb_data:
-  certbot_data:
+  opsiewebsite_certbot_data:
+    external: true
+
+networks:
+  opsie-network:
+    external: true
