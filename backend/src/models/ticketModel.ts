@@ -8,7 +8,7 @@ const TicketSchema = new Schema(
     address: String,
     description: { type: String, required: true},
     platform: { type: String, required: true},
-    platformVersion: { type: String, },
+    product: { type: String, },
     category: {
       type: String,
       enum: [

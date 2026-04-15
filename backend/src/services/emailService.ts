@@ -9,46 +9,65 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  secure: process.env.EMAIL_SECURE,
+  service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
+  },
+   tls: {
+    rejectUnauthorized: false // ✅ allow self-signed cert (DEV only)
   }
 } as nodemailer.SendMailOptions);
 
 export const sendTicketCreatedEmail = async (ticket: any) => {
   const htmlEmail = ticketCreatedEmail(ticket);
 
-  await transporter.sendMail({
+  try {
+    
+    await transporter.sendMail({
     from: `'Opsie Software Solutions Inc. Support System' <${process.env.EMAIL_USER}>`,
     to: ticket.email,
     subject: `Ticket Created - (#${ticket._id.toString().slice(-8)})`,
     html: htmlEmail
   });
+
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export const sendTicketUpdatedEmail = async (ticket: any, changes: string[]) => {
   const htmlEmail = ticketUpdatedEmail(ticket, changes);
   
-  await transporter.sendMail({
-    from: `'Opsie Software Solutions Inc. Support System' <${process.env.EMAIL_USER}>`,
-    to: ticket.email,
-    subject: `Ticket Updated - (#${ticket._id.toString().slice(-8)})`,
-    html: htmlEmail
-  });
+  try {
+    
+    await transporter.sendMail({
+      from: `'Opsie Software Solutions Inc. Support System' <${process.env.EMAIL_USER}>`,
+      to: ticket.email,
+      subject: `Ticket Updated - (#${ticket._id.toString().slice(-8)})`,
+      html: htmlEmail
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export const sendTicketClosedEmail = async (ticket: any) => {
   const htmlEmail = ticketClosedEmail(ticket);
 
-  await transporter.sendMail({
-    from: `'Opsie Software Solutions Inc. Support System' <${process.env.EMAIL_USER}>`,
-    to: ticket.email,
-    subject: `Ticket Closed - (#${ticket._id.toString().slice(-8)})`,
-    html: htmlEmail
-  });
+  try {
+    
+     await transporter.sendMail({
+      from: `'Opsie Software Solutions Inc. Support System' <${process.env.EMAIL_USER}>`,
+      to: ticket.email,
+      subject: `Ticket Closed - (#${ticket._id.toString().slice(-8)})`,
+      html: htmlEmail
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 /*

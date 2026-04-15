@@ -11,6 +11,7 @@ interface TimelineItem {
   event: string;
   time: string;
   changes: Change[];
+  resolution: string
 }
 
 interface Props {
@@ -43,6 +44,8 @@ export default function TicketTimeline({ ticketId }: Props) {
     );
   }
 
+  console.log(timeline)
+
   return (
     <div className='py-6 px-4 mt-6 border-t pt-4 max-h-72 overflow-y-auto'>
       <h3 className='text-sm font-semibold mb-4'>
@@ -62,7 +65,15 @@ export default function TicketTimeline({ ticketId }: Props) {
               </div>
               {item.changes.length > 0 && (
                 <ul className='mt-2 ml-4 space-y-1 text-gray-600 list-disc'>
-                  {item.changes.map((change, i) => (
+                  {item.changes.map((change, i) => {
+                    if(change.field === 'resolution')
+                      return(
+                        <>
+                        Resolution
+                        <p>{change.newValue}</p>
+                        </>
+                      )
+                    return(
                     <li key={i}>
                       <span className='font-medium'>
                         {change.field}
@@ -78,9 +89,11 @@ export default function TicketTimeline({ ticketId }: Props) {
                         {change.newValue}
                       </span>
                     </li>
-                  ))}
+                  )
+                  })}
                 </ul>
               )}
+
 
               <div className='text-xs text-gray-400 mt-1'>
                 {new Date(item.time).toLocaleString()}

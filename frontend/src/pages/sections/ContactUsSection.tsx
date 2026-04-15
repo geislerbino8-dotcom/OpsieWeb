@@ -1,7 +1,7 @@
 import React from "react";
 import MapCard from "@/components/cards/MapCard";
 import ContactForm from "../../components/cards/ContactForm";
-import contactbg from '../../assets/background-images/contactusbg.jpg'
+import contactbg from '../../assets/background-images/contactusbg.jpg';
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const ContactUsSection: React.FC = () => {
@@ -16,8 +16,6 @@ const ContactUsSection: React.FC = () => {
         className="fixed inset-0 z-0 mix-blend-overlay pointer-events-none bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url(${contactbg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
         }}
       />
 
@@ -29,8 +27,8 @@ const ContactUsSection: React.FC = () => {
         {/* Header Area */}
         <div className="text-center mb-16 max-w-3xl" data-aos="fade-up">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
-            Get in <span className="italic text-white">Touch</span> with Our 
-            <span className="text-white"> Team</span> 
+            Get in <span className="italic">Touch</span> with Our 
+            <span> Team</span> 
           </h1>
           <p className="text-blue-50/90 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
             Ready to build something amazing? We’re here to help you scale your digital 
@@ -44,7 +42,6 @@ const ContactUsSection: React.FC = () => {
             <ContactForm />
           </div>
           
-
           <div className="flex-1 min-h-[450px]" data-aos="fade-left">
               <MapCard />
           </div>
@@ -52,15 +49,16 @@ const ContactUsSection: React.FC = () => {
 
         {/* Quick Connect Grid */}
         <div 
-          className="mt-15 w-full max-w-6xl grid grid-cols-1 sm:grid-cols-3 gap-8"
+          className="mt-16 w-full max-w-6xl grid grid-cols-1 sm:grid-cols-3 gap-8"
           data-aos="fade-up"
           data-aos-delay="300"
         >
           <ContactDetail 
             icon={<Mail className="w-6 h-6" />}
             title="Email Us"
-            detail="hello@opsie.solutions"
-            href="mailto:hello@opsie.solutions"
+            detail="inquiry@opsiesoftwaresolutions.com"
+            href="mailto:inquiry@opsiesoftwaresolutions.com"
+            paddingClass="px-4" // Explicitly passing the padding class
           />
           <ContactDetail 
             icon={<MapPin className="w-6 h-6" />}
@@ -71,8 +69,8 @@ const ContactUsSection: React.FC = () => {
           <ContactDetail 
             icon={<Phone className="w-6 h-6" />}
             title="Call Us"
-            detail="+1 (555) 000-OPSI"
-            href="tel:+15550006774"
+            detail="+632 84634039"
+            href="tel:+632 84634039 "
           />
         </div>
       </div>
@@ -80,7 +78,15 @@ const ContactUsSection: React.FC = () => {
   );
 };
 
-const ContactDetail = ({ icon, title, detail, href }: { icon: React.ReactNode, title: string, detail: string, href: string }) => (
+interface ContactDetailProps {
+  icon: React.ReactNode;
+  title: string;
+  detail: string;
+  href: string;
+  paddingClass?: string;
+}
+
+const ContactDetail = ({ icon, title, detail, href, paddingClass = "px-0" }: ContactDetailProps) => (
   <a 
     href={href}
     className="group bg-white/10 backdrop-blur-md border border-white/20 p-10 rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:bg-black hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] hover:-translate-y-3"
@@ -91,7 +97,8 @@ const ContactDetail = ({ icon, title, detail, href }: { icon: React.ReactNode, t
     <h4 className="text-white font-bold tracking-[0.2em] uppercase text-[10px] mb-3 transition-colors">
       {title}
     </h4>
-    <p className="text-white/90 group-hover:text-[#3CBDE6] font-semibold text-lg transition-colors">
+    {/* break-all ensures long emails don't overflow the card on small screens */}
+    <p className={`${paddingClass} text-white/90 group-hover:text-[#3CBDE6] font-semibold text-lg transition-colors break-all md:break-normal`}>
       {detail}
     </p>
   </a>

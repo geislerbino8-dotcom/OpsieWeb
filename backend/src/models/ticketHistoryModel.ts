@@ -11,6 +11,12 @@ const TicketHistorySchema = new Schema(
       type: String,
       required: true
     },
+    resolution: {
+      type: String
+    },
+    approval: {
+      type: Boolean
+    },
     field: { type: String },
     oldValue: { type: String },
     newValue: { type: String },

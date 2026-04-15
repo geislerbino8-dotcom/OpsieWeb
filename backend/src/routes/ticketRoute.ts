@@ -29,6 +29,18 @@ export default class TicketRoute {
     );
 
     this.router.get(
+      '/category-stats',
+     
+      this.controller.getCategoryStats
+    );
+
+    this.router.get(
+      '/product-stats',
+     
+      this.controller.getProductStats
+    );
+
+    this.router.get(
       '/timeline/:id',
       authMiddleware,
       requirePermission(PERMISSIONS.TICKET_VIEW_TIMELINE) || adminMiddleware,

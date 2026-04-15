@@ -24,7 +24,7 @@ function MapCard() {
 
       {/* Address */}
       <p className="text-gray-600 text-">
-        Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
+        Sunplaza Bldg. Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila
       </p>
 
       {/* Visit Office Section */}

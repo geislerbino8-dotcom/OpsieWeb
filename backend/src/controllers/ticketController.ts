@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import mongoose from 'mongoose';
 import { Request, Response } from 'express';
 import { TicketModel } from '../models/ticketModel';
 import { TicketHistoryModel } from '../models/ticketHistoryModel';
@@ -41,7 +42,7 @@ export class TicketController {
         address: ticket.address,
         description: ticket.description,
         platform: ticket.platform,
-        platformVersion: ticket.platformVersion,
+        product: ticket.product,
         category: ticket.category,
         status: ticket.status,
         taskReferenceUrl: ticket.taskReferenceUrl,
@@ -138,7 +139,7 @@ export class TicketController {
     try {
       const { id } = req.params;
 
-      const { status, category, taskReferenceUrl, assignee } = req.body;
+      const { status, category, taskReferenceUrl, assignee, resolution, approval } = req.body;
 
       const ticket = await TicketModel
         .findById(id)
@@ -174,11 +175,18 @@ export class TicketController {
         const newAssignee =
           assignee === '' || assignee === null ? null : assignee;
 
+        
         const currentAssignee = ticket.assignee
           ? ticket.assignee
           : null;
 
-        if (newAssignee !== currentAssignee?._id.toString()) {
+        const currentAssigneeId = currentAssignee?._id?.toString() || null;
+
+        if (newAssignee !== currentAssigneeId) {
+
+            if (newAssignee && !mongoose.Types.ObjectId.isValid(newAssignee)) {
+              return res.status(400).json({ message: 'Invalid assignee ID' });
+            }
           const user = await UserModel.findById(newAssignee);
 
           if (user?.role === 'admin') {
@@ -203,6 +211,7 @@ export class TicketController {
 
       const updates: any = {
         ...(status !== undefined && { status }),
+        ...(resolution !== undefined && {resolution}),
         ...(category !== undefined && { category }),
         ...(taskReferenceUrl !== undefined && { taskReferenceUrl }),
         ...(assignee !== undefined && { assignee: assignee || null })
@@ -234,6 +243,7 @@ export class TicketController {
             ticket: new mongoose.Types.ObjectId(id),
             action: 'updated',
             field,
+            resolution,
             oldValue: oldValue || 'none',
             newValue: newValue || 'none',
             user: (req as any).user?.id
@@ -267,7 +277,7 @@ export class TicketController {
 
       res.status(200).json({ message: 'Ticket updated successfully'});
     } catch (error) {
-      res.status(400).json({ message: 'Failed to update ticket' });
+      res.status(400).json({ message: 'Failed to update ticket', error });
     }
   }
 
@@ -284,4 +294,53 @@ export class TicketController {
       res.status(400).json({ message: 'Failed to delete ticket' });
     }
   };
+
+  public async getCategoryStats(req: Request, res: Response) {
+      try {
+        const stats = await TicketModel.aggregate([
+          {
+            $group: {
+              _id: "$category",
+              count: { $sum: 1 }
+            }
+          },
+          {
+            $project: {
+              _id: 0,
+              name: "$_id",
+              value: "$count"
+            }
+          }
+        ]);
+
+        res.status(200).json(stats);
+      } catch (error) {
+        res.status(500).json({ message: "Failed to fetch category stats" });
+      }
+    }
+
+
+    public async getProductStats(req: Request, res: Response) {
+      try {
+        const stats = await TicketModel.aggregate([
+          {
+            $group: {
+              _id: "$product",
+              count: { $sum: 1 }
+            }
+          },
+          {
+            $project: {
+              _id: 0,
+              name: "$_id",
+              value: "$count"
+            }
+          }
+        ]);
+
+        res.status(200).json(stats);
+      } catch (error) {
+        res.status(500).json({ message: "Failed to fetch category stats" });
+      }
+    }
 }
