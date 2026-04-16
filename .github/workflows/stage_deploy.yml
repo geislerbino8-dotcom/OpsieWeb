@@ -3,7 +3,7 @@ name: CI / Deploy Staging
 on:
   push:
     branches:
-      - 1.0.2
+      - none
   pull_request:
     branches:
       - 1.0.2
