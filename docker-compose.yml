@@ -14,7 +14,7 @@ services:
       - .env
     networks:
       - internal
-      - opsie-proxy
+      - opsie_proxy
 
   frontend:
     container_name: opsie-staging-frontend
@@ -26,7 +26,7 @@ services:
       - "80"
     networks:
       - internal
-      - opsie-proxy
+      - opsie_proxy
 
 volumes:
   opsiewebsite_certbot_data:
@@ -34,5 +34,5 @@ volumes:
 
 networks:
   internal:
-  opsie-proxy:
+  opsie_proxy:
     external: true
