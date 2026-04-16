@@ -30,14 +30,23 @@ export default class TicketRoute {
 
     this.router.get(
       '/category-stats',
-     
+      authMiddleware,
+      requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
       this.controller.getCategoryStats
     );
 
     this.router.get(
       '/product-stats',
-     
+      authMiddleware,
+      requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
       this.controller.getProductStats
+    );
+
+    this.router.get(
+      '/ticket-stats',
+      authMiddleware,
+      requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
+      this.controller.getTicketVelocity
     );
 
     this.router.get(

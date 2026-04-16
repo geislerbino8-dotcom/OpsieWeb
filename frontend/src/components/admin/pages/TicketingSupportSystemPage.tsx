@@ -4,8 +4,8 @@ import {
   Filter, 
   CheckCircle2, 
   Box, 
-  RotateCcw 
-} from 'lucide-react'; // Suggested icons for better UX
+  RotateCcw,
+} from 'lucide-react';
 
 import { getTickets } from '../../../api/getTickets';
 import { deleteTicket } from '../../../api/deleteTicket';
@@ -34,10 +34,9 @@ type Ticket = {
   status: 'open' | 'in progress' | 'resolved' | "won't fix" | 'closed';
   taskReferenceUrl: string;
   assignee: {
-    _id: string,
-    name: string
-    
-    role: string
+    _id: string;
+    name: string;
+    role: string;
   } | null;
   createdAt: string;
   updatedAt: string;
@@ -50,11 +49,11 @@ type User = {
 };
 
 const statusColors = {
-  open: 'bg-blue-50 text-blue-700',
-  'in progress': 'bg-yellow-50 text-yellow-700',
-  resolved: 'bg-green-50 text-green-700',
-  "won't fix": 'bg-red-50 text-red-700',
-  closed: 'bg-gray-100 text-gray-600',
+  open: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  'in progress': 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
+  resolved: 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+  "won't fix": 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300',
+  closed: 'bg-gray-100 text-gray-600 dark:bg-slate-700 dark:text-slate-300',
 };
 
 const categoryColors = {
@@ -80,13 +79,11 @@ const TicketingSupportSystemPage = () => {
   const [editTaskUrl, setEditTaskUrl] = useState('');
   const [editAssignee, setEditAssignee] = useState<string | null>(null);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
-
-  const [ editResolution, setEditResolution ] = useState<string>()
+  const [editResolution, setEditResolution] = useState<string>();
 
   const apiState = useApiState();
   const { toasts, addToast } = useToast();
   const confirm = useConfirm();
-
 
   useEffect(() => {
     fetchTickets();
@@ -98,7 +95,7 @@ const TicketingSupportSystemPage = () => {
       setEditStatus(selectedTicket.status);
       setEditCategory(selectedTicket.category);
       setEditTaskUrl(selectedTicket.taskReferenceUrl || '');
-      setEditAssignee(selectedTicket.assignee?._id || null)
+      setEditAssignee(selectedTicket.assignee?._id || null);
     }
   }, [selectedTicket]);
 
@@ -145,15 +142,6 @@ const TicketingSupportSystemPage = () => {
         resolution: editResolution 
       });
       addToast(data.message, 'success');
-      const user = activeUsers.find(user => user._id === editAssignee);
-      setTickets(prev =>
-        prev.map(ticket =>
-          ticket._id === selectedTicket._id
-            ? { ...ticket, status: editStatus, category: editCategory, taskReferenceUrl: editTaskUrl, assignee: user ? { _id: user._id, name: user.name, role: user.role } : null }
-            : ticket
-        )
-      );
-
       fetchTickets();
     } catch (error: any) {
       addToast(error.response?.data?.message || 'Failed to update ticket', 'error');
@@ -181,7 +169,6 @@ const TicketingSupportSystemPage = () => {
     } finally {
       apiState.reset();
     }
-    setTickets(prev => prev.filter(t => t._id !== selectedTicket._id));
     setSelectedTicket(null);
   };
 
@@ -192,7 +179,6 @@ const TicketingSupportSystemPage = () => {
     setProductFilter('all');
   };
 
-  // Sorting and Filtering Logic
   const handleSort = (field: typeof sortField) => {
     if (sortField === field) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
@@ -205,7 +191,7 @@ const TicketingSupportSystemPage = () => {
   const renderHeader = (label: string, field: typeof sortField) => (
     <th
       onClick={() => handleSort(field)}
-      className='px-4 py-3 cursor-pointer select-none hover:bg-gray-50 font-semibold text-slate-700 transition-colors'
+      className='px-4 py-3 cursor-pointer select-none hover:bg-gray-50 dark:hover:bg-slate-700 font-semibold text-slate-700 dark:text-slate-200 transition-colors'
     >
       <div className='flex items-center gap-2'>
         <span>{label}</span>
@@ -241,42 +227,42 @@ const TicketingSupportSystemPage = () => {
   });
 
   const stats = [
-    { label: 'Total', value: tickets.length, color: 'bg-slate-500', text: 'text-slate-600' },
-    { label: 'Open', value: tickets.filter(i => i.status === 'open').length, color: 'bg-blue-500', text: 'text-blue-600' },
-    { label: 'In Progress', value: tickets.filter(i => i.status === 'in progress').length, color: 'bg-amber-500', text: 'text-amber-600' },
-    { label: 'Resolved', value: tickets.filter(i => i.status === 'resolved').length, color: 'bg-emerald-500', text: 'text-emerald-600' },
+    { label: 'Total', value: tickets.length, color: 'bg-slate-500', text: 'text-slate-600 dark:text-slate-300' },
+    { label: 'Open', value: tickets.filter(i => i.status === 'open').length, color: 'bg-blue-500', text: 'text-blue-600 dark:text-blue-400' },
+    { label: 'In Progress', value: tickets.filter(i => i.status === 'in progress').length, color: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400' },
+    { label: 'Resolved', value: tickets.filter(i => i.status === 'resolved').length, color: 'bg-emerald-500', text: 'text-emerald-600 dark:text-emerald-400' },
   ];
 
-  console.log(filteredTickets)
-
   return (
-    <div className='min-h-screen bg-[#f8fafc] p-4 md:p-8'>
+    <div className='min-h-screen bg-[#f8fafc] dark:bg-slate-950 p-4 md:p-8 transition-colors'>
       <div className='max-w-[1600px] mx-auto'>
-        <header className='mb-8'>
-          <h1 className='text-2xl font-bold text-slate-800'>Support Dashboard</h1>
-          <p className='text-slate-500 text-sm'>Manage and track incoming support requests</p>
+        <header className='mb-8 flex justify-between items-center'>
+          <div>
+            <h1 className='text-2xl font-bold text-slate-800 dark:text-white'>Support Dashboard</h1>
+            <p className='text-slate-500 dark:text-slate-400 text-sm'>Manage and track incoming support requests</p>
+          </div>
         </header>
 
+        {/* Stats Section */}
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8'>
           {stats.map((stat) => (
-            <div key={stat.label} className='bg-white border border-slate-200 rounded-xl p-5 shadow-sm'>
+            <div key={stat.label} className='bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 shadow-sm transition-colors'>
               <div className={`w-2 h-2 rounded-full mb-3 ${stat.color}`} />
-              <p className='text-xs font-bold uppercase tracking-widest text-slate-400'>{stat.label}</p>
+              <p className='text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500'>{stat.label}</p>
               <p className={`text-3xl font-black ${stat.text}`}>{stat.value}</p>
             </div>
           ))}
         </div>
 
-
-        <div className='bg-white border border-slate-200 rounded-xl p-4 mb-6 shadow-sm'>
+        {/* Filters Section */}
+        <div className='bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 mb-6 shadow-sm transition-colors'>
           <div className='flex flex-col lg:flex-row gap-4 items-end lg:items-center'>
-            
             <div className='relative w-full lg:flex-1'>
               <Search className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4' />
               <input
                 type='text'
                 placeholder='Search by ID, name, email or product...'
-                className='w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'
+                className='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all'
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
               />
@@ -286,7 +272,7 @@ const TicketingSupportSystemPage = () => {
               <div className='relative'>
                 <Filter className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5 pointer-events-none' />
                 <select
-                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
+                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
                   value={categoryFilter}
                   onChange={e => setCategoryFilter(e.target.value)}
                 >
@@ -298,7 +284,7 @@ const TicketingSupportSystemPage = () => {
               <div className='relative'>
                 <CheckCircle2 className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5 pointer-events-none' />
                 <select
-                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
+                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
                   value={statusFilter}
                   onChange={e => setStatusFilter(e.target.value)}
                 >
@@ -310,7 +296,7 @@ const TicketingSupportSystemPage = () => {
               <div className='relative'>
                 <Box className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5 pointer-events-none' />
                 <select
-                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
+                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
                   value={productFilter}
                   onChange={e => setProductFilter(e.target.value)}
                 >
@@ -320,10 +306,9 @@ const TicketingSupportSystemPage = () => {
               </div>
             </div>
 
-            {/* Action Buttons */}
             <button 
               onClick={resetFilters}
-              className='flex items-center gap-2 px-4 py-2 text-slate-500 hover:text-slate-800 text-sm font-medium transition-colors'
+              className='flex items-center gap-2 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 text-sm font-medium transition-colors'
             >
               <RotateCcw className='w-4 h-4' />
               Reset
@@ -331,10 +316,11 @@ const TicketingSupportSystemPage = () => {
           </div>
         </div>
 
-        <div className='bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden'>
+        {/* Table Section */}
+        <div className='bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden transition-colors'>
           <div className='overflow-x-auto'>
             <table className='w-full text-left border-collapse'>
-              <thead className='bg-slate-50 border-b border-slate-200 text-[11px] uppercase tracking-wider text-slate-500'>
+              <thead className='bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700 text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400'>
                 <tr>
                   <th className='px-4 py-4 w-24 text-center'>ID</th>
                   {renderHeader('Customer', 'name')}
@@ -347,26 +333,26 @@ const TicketingSupportSystemPage = () => {
                   {renderHeader('Assignee', 'assignee')}
                 </tr>
               </thead>
-              <tbody className='divide-y divide-slate-100'>
+              <tbody className='divide-y divide-slate-100 dark:divide-slate-700'>
                 {filteredTickets.map(ticket => (
                   <tr
                     key={ticket._id}
-                    className='group hover:bg-blue-50/30 transition-colors cursor-pointer'
+                    className='group hover:bg-blue-50/30 dark:hover:bg-slate-700/50 transition-colors cursor-pointer'
                     onClick={() => setSelectedTicket(ticket)}
                   >
-                    <td className='px-4 py-4 text-slate-400 font-mono text-[10px] text-center'>
+                    <td className='px-4 py-4 text-slate-400 dark:text-slate-500 font-mono text-[10px] text-center'>
                       #{ticket._id.slice(-6).toUpperCase()}
                     </td>
-                    <td className='px-4 py-4 font-semibold text-slate-700'>{ticket.name}</td>
-                    <td className='px-4 py-4 text-slate-500 text-[11px]'>{ticket.email}</td>
-                    <td className='px-4 py-4 text-slate-600'>{ticket.platform || '—'}</td>
+                    <td className='px-4 py-4 font-semibold text-slate-700 dark:text-slate-200'>{ticket.name}</td>
+                    <td className='px-4 py-4 text-slate-500 dark:text-slate-400 text-[11px]'>{ticket.email}</td>
+                    <td className='px-4 py-4 text-slate-600 dark:text-slate-300'>{ticket.platform || '—'}</td>
                     <td className='px-4 py-4'>
                       <span className={`block text-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter ${categoryColors[ticket.category]}`}>
                         {ticket.category}
                       </span>
                     </td>
                     <td className='px-4 py-4'>
-                      <span className={`block text-center px-2 py-1 rounded-lg text-[10px] font-bold border capitalize ${statusColors[ticket.status]}`}>
+                      <span className={`block text-center px-2 py-1 rounded-lg text-[10px] font-bold border dark:border-transparent capitalize ${statusColors[ticket.status]}`}>
                         {ticket.status}
                       </span>
                     </td>
@@ -377,25 +363,25 @@ const TicketingSupportSystemPage = () => {
                           target='_blank'
                           rel='noopener noreferrer'
                           onClick={e => e.stopPropagation()}
-                          className='text-blue-500 hover:text-blue-700 font-bold underline text-[10px]'
+                          className='text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-bold underline text-[10px]'
                         >
                           OPEN
                         </a>
-                      ) : '—'}
+                      ) : <span className="text-slate-300 dark:text-slate-600">—</span>}
                     </td>
-                    <td className='px-4 py-4 text-slate-500 text-[11px]'>
+                    <td className='px-4 py-4 text-slate-500 dark:text-slate-400 text-[11px]'>
                       {new Date(ticket.createdAt).toLocaleDateString()}
                     </td>
                     <td className='px-4 py-4'>
                       {ticket.assignee ? (
                         <div className='flex items-center gap-2'>
-                          <div className='w-6 h-6 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-[10px] font-bold ring-2 ring-white'>
+                          <div className='w-6 h-6 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full flex items-center justify-center text-[10px] font-bold ring-2 ring-white dark:ring-slate-800'>
                             {ticket.assignee.name?.charAt(0)}
                           </div>
-                          <span className='text-slate-700 text-[11px] font-medium'>{}</span>
+                          <span className='text-slate-700 dark:text-slate-300 text-[11px] font-medium'>{ticket.assignee.name}</span>
                         </div>
                       ) : (
-                        <span className='text-slate-300 italic text-[11px]'>Unassigned</span>
+                        <span className='text-slate-300 dark:text-slate-600 italic text-[11px]'>Unassigned</span>
                       )}
                     </td>
                   </tr>
@@ -404,7 +390,7 @@ const TicketingSupportSystemPage = () => {
             </table>
           </div>
           {filteredTickets.length === 0 && (
-            <div className='p-12 text-center text-slate-400'>
+            <div className='p-12 text-center text-slate-400 dark:text-slate-600'>
               <div className='mb-2 text-3xl'>🔍</div>
               <p>No tickets match your current filters.</p>
             </div>

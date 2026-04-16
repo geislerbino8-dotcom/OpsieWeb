@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import TicketTimeline from './TicketTimeline';
 
-// --- Types (Kept consistent with your logic) ---
+// --- Types ---
 type Ticket = {
   _id: string;
   name: string;
@@ -28,7 +28,7 @@ type Props = {
   editCategory: Ticket['category'];
   editTaskUrl: string;
   editAssignee: string | null;
-  editResolution?: string 
+  editResolution?: string;
   setEditStatus: (v: Ticket['status']) => void;
   setEditCategory: (v: Ticket['category']) => void;
   setEditTaskUrl: (v: string) => void;
@@ -60,9 +60,7 @@ const TicketModal = ({
   statusColors,
   categoryColors
 }: Props) => {
-
-  const [ showResolution, setShowResolution ] = useState(false)
-  const  currentStatus  = editStatus
+  const [showResolution, setShowResolution] = useState(false);
 
   // Close on ESC key
   useEffect(() => {
@@ -77,86 +75,82 @@ const TicketModal = ({
     };
   }, [onClose]);
 
-
-  useEffect(()=> {
-    console.log(currentStatus, editStatus)
-
-    if(currentStatus != editStatus ){
-      setShowResolution(true)
+  // Handle resolution field visibility
+  useEffect(() => {
+    if (ticket.status !== editStatus) {
+      setShowResolution(true);
     } else {
-      setShowResolution(false)
+      setShowResolution(false);
     }
-
-  }, [editStatus])
-
+  }, [editStatus, ticket.status]);
 
   return (
-    <div className='fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-50 p-4'>
+    <div className='fixed inset-0 bg-slate-900/70 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all'>
       <div 
         role="dialog"
         aria-modal="true"
-        className='bg-white rounded-xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl ring-1 ring-black/5'
+        className='bg-white dark:bg-slate-900 rounded-xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl ring-1 ring-black/5 dark:ring-white/10 overflow-hidden transition-colors'
       >
         {/* HEADER */}
-        <div className='px-8 py-5 border-b flex justify-between items-start bg-slate-50 rounded-t-xl'>
+        <div className='px-8 py-5 border-b border-slate-200 dark:border-slate-800 flex justify-between items-start bg-slate-50 dark:bg-slate-900/50 rounded-t-xl'>
           <div className="space-y-1">
             <div className="flex items-center gap-3">
-              <h2 className='text-xl font-bold text-slate-900 leading-tight'>
+              <h2 className='text-xl font-bold text-slate-900 dark:text-white leading-tight'>
                 {ticket.name}
               </h2>
-              <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider ${statusColors[editStatus] || 'bg-gray-100 text-gray-600'}`}>
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider border dark:border-transparent ${statusColors[editStatus] || 'bg-gray-100 text-gray-600'}`}>
                 {editStatus}
               </span>
             </div>
-            <p className='text-sm text-slate-500 font-mono'>
+            <p className='text-sm text-slate-500 dark:text-slate-400 font-mono'>
               ID: {ticket._id}
             </p>
           </div>
 
           <button
             onClick={onClose}
-            className='p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400 hover:text-slate-900'
+            className='p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors text-slate-400 hover:text-slate-900 dark:hover:text-white'
             aria-label="Close modal"
           >
             <span className="text-2xl leading-none">×</span>
           </button>
         </div>
 
-        {/* MAIN CONTENT AREA (Scrollable) */}
+        {/* MAIN CONTENT AREA */}
         <div className='flex-1 overflow-y-auto'>
           <div className='grid lg:grid-cols-3 gap-0'>
             
             {/* LEFT COLUMN: Main Details & Timeline */}
-            <div className='lg:col-span-2 p-8 border-r border-slate-100 space-y-8'>
+            <div className='lg:col-span-2 p-8 border-r border-slate-100 dark:border-slate-800 space-y-8'>
               <section>
-                <h3 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-200 mb-3 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                   Issue Description
                 </h3>
-                <div className='bg-slate-50 border border-slate-200 rounded-lg p-5 text-slate-700 text-sm leading-relaxed whitespace-pre-wrap shadow-sm'>
+                <div className='bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-5 text-slate-700 dark:text-slate-300 text-sm leading-relaxed whitespace-pre-wrap shadow-sm'>
                   {ticket.description || "No description provided."}
                 </div>
               </section>
 
               <section className="pt-4">
-                <h3 className="text-sm font-semibold text-slate-900 mb-6">Activity Timeline</h3>
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-200 mb-6">Activity Timeline</h3>
                 <TicketTimeline ticketId={ticket._id} />
               </section>
             </div>
 
             {/* RIGHT COLUMN: Sidebar Metadata */}
-            <div className='bg-slate-50/50 p-8 space-y-6'>
+            <div className='bg-slate-50/50 dark:bg-slate-900/30 p-8 space-y-6'>
               
-              {/* Status & Categorization */}
+              {/* Management Inputs */}
               <div className="space-y-4">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Management</h3>
+                <h3 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Management</h3>
                 
                 <div>
-                  <label className='block text-xs font-medium text-slate-600 mb-1.5'>Assignee</label>
+                  <label className='block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5'>Assignee</label>
                   <select
                     value={editAssignee || ''}
                     onChange={(e) => setEditAssignee(e.target.value || null)}
-                    className='w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all'
+                    className='w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-2 text-sm text-slate-900 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none'
                   >
                     <option value=''>Unassigned</option>
                     {activeUsers.map((user) => (
@@ -167,11 +161,11 @@ const TicketModal = ({
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className='block text-xs font-medium text-slate-600 mb-1.5'>Category</label>
+                    <label className='block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5'>Category</label>
                     <select
                       value={editCategory}
                       onChange={(e) => setEditCategory(e.target.value as Ticket['category'])}
-                      className='w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500'
+                      className='w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-2 text-sm text-slate-900 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 outline-none'
                     >
                       {Object.keys(categoryColors).map((cat) => (
                         <option key={cat} value={cat}>{cat}</option>
@@ -179,11 +173,11 @@ const TicketModal = ({
                     </select>
                   </div>
                   <div>
-                    <label className='block text-xs font-medium text-slate-600 mb-1.5'>Status</label>
+                    <label className='block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5'>Status</label>
                     <select
                       value={editStatus}
                       onChange={(e) => setEditStatus(e.target.value as Ticket['status'])}
-                      className='w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500'
+                      className='w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-2 text-sm text-slate-900 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 outline-none'
                     >
                       {Object.keys(statusColors).map((stat) => (
                         <option key={stat} value={stat}>{stat}</option>
@@ -193,34 +187,34 @@ const TicketModal = ({
                 </div>
 
                 <div>
-                  <label className='block text-xs font-medium text-slate-600 mb-1.5'>External Task URL</label>
+                  <label className='block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5'>External Task URL</label>
                   <input
                     value={editTaskUrl}
                     onChange={(e) => setEditTaskUrl(e.target.value)}
-                    className='w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-sm placeholder:text-slate-400'
+                    className='w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-2 text-sm text-slate-900 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none'
                     placeholder='Link to Jira/GitHub...'
                   />
                 </div>
-                {
-                  showResolution && 
-                  <div>
-                      <label className='block text-xs font-medium text-slate-600 mb-1.5'>Resolution</label>
+
+                {showResolution && (
+                  <div className="animate-in fade-in slide-in-from-top-2 duration-200">
+                    <label className='block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5'>Resolution Details</label>
                     <textarea
                       required
                       value={editResolution}
                       onChange={(e) => setEditResolution(e.target.value)}
-                      className='w-full h-32 bg-white border border-slate-300 rounded-md px-3 py-2 text-sm placeholder:text-slate-400'
-                      placeholder='Actions made to be done...'
+                      className='w-full h-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-2 text-sm text-slate-900 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-600 outline-none resize-none'
+                      placeholder='Describe the steps taken to resolve this ticket...'
                     />
                   </div>
-                }
+                )}
               </div>
 
-              <hr className="border-slate-200" />
+              <hr className="border-slate-200 dark:border-slate-800" />
 
               {/* Contact Info */}
               <div className="space-y-4">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Customer Details</h3>
+                <h3 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Customer Details</h3>
                 <div className="space-y-3">
                   <DetailItem label="Email" value={ticket.email} />
                   <DetailItem label="Phone" value={ticket.phone} />
@@ -235,30 +229,30 @@ const TicketModal = ({
         </div>
 
         {/* FOOTER ACTIONS */}
-        <div className='px-8 py-5 border-t bg-white flex flex-col sm:flex-row justify-between items-center gap-4 rounded-b-xl'>
+        <div className='px-8 py-5 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 flex flex-col sm:flex-row justify-between items-center gap-4 rounded-b-xl'>
           <button
             onClick={onDelete}
-            className='text-sm font-semibold text-red-500 hover:text-red-700 hover:bg-red-50 px-4 py-2 rounded-md transition-colors'
+            className='text-sm font-semibold text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20 px-4 py-2 rounded-md transition-colors'
           >
             Archive Ticket
           </button>
 
           <div className='flex gap-3 w-full sm:w-auto'>
             <button
-              onClick={()=> {
-                setShowResolution(false)
-                onClose()
+              onClick={() => {
+                setShowResolution(false);
+                onClose();
               }}
-              className='flex-1 sm:flex-none px-6 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors'
+              className='flex-1 sm:flex-none px-6 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors'
             >
               Cancel
             </button>
             <button
-              onClick={()=> {
-                setShowResolution(false)
-                onSave()
+              onClick={() => {
+                setShowResolution(false);
+                onSave();
               }}
-              className='flex-1 sm:flex-none px-8 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 shadow-md shadow-blue-200 transition-all active:scale-95'
+              className='flex-1 sm:flex-none px-8 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 shadow-md shadow-blue-200 dark:shadow-none transition-all active:scale-95'
             >
               Save Changes
             </button>
@@ -269,11 +263,11 @@ const TicketModal = ({
   );
 };
 
-// Small helper component for sidebar details
+// Helper component updated for dark mode
 const DetailItem = ({ label, value }: { label: string; value: string }) => (
   <div className="group">
-    <p className='text-[10px] font-bold text-slate-400 uppercase'>{label}</p>
-    <p className='text-sm text-slate-800 break-words'>{value || '—'}</p>
+    <p className='text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase'>{label}</p>
+    <p className='text-sm text-slate-800 dark:text-slate-200 break-words'>{value || '—'}</p>
   </div>
 );
 

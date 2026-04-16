@@ -343,4 +343,68 @@ export class TicketController {
         res.status(500).json({ message: "Failed to fetch category stats" });
       }
     }
+
+
+   public async getTicketVelocity(req: Request, res: Response) {
+    try {
+      const velocityData = await TicketModel.aggregate([
+        {
+          $facet: {
+            // Grouping by creation date
+            createdStats: [
+              {
+                $group: {
+                  _id: { $dateToString: { format: "%b %d", date: "$createdAt" } },
+                  count: { $sum: 1 },
+                  fullDate: { $first: "$createdAt" }
+                }
+              }
+            ],
+            // Grouping by resolution (updatedAt) for resolved tickets
+            resolvedStats: [
+              { $match: { status: "resolved" } },
+              {
+                $group: {
+                  _id: { $dateToString: { format: "%b %d", date: "$updatedAt" } },
+                  count: { $sum: 1 }
+                }
+              }
+            ]
+          }
+        },
+        {
+          $project: {
+            combined: { $concatArrays: ["$createdStats", "$resolvedStats"] }
+          }
+        },
+        { $unwind: "$combined" },
+        {
+          $group: {
+            _id: "$combined._id",
+            created: {
+              $sum: { $cond: [{ $ifNull: ["$combined.fullDate", false] }, "$combined.count", 0] }
+            },
+            resolved: {
+              $sum: { $cond: [{ $ifNull: ["$combined.fullDate", false] }, 0, "$combined.count"] }
+            },
+            // Keep a date object for sorting
+            sortDate: { $first: "$combined.fullDate" } 
+          }
+        },
+        { $sort: { sortDate: 1 } },
+        {
+          $project: {
+            _id: 0,
+            date: "$_id",
+            created: 1,
+            resolved: 1
+          }
+        }
+      ]);
+
+      res.status(200).json(velocityData);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch ticket velocity", error });
+    }
+  }
 }
