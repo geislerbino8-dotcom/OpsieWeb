@@ -61,7 +61,7 @@ export default class Server {
   public startServer = async () => {
     try {
        await mongoose.connect(
-       `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`,
+       `mongodb+srv://testing:testing123@cluster0.lkxwrqv.mongodb.net/?appName=Cluster0`,
       );
 
       //const mongoUri =

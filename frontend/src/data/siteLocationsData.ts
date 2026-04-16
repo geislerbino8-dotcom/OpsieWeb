@@ -6,7 +6,8 @@ export const OFFICE_LOCATIONS = {
     lat: 14.58523914984939,
   },
 
-  makati: {
+  /**
+   * makati: {
     name: "Makati Office",
     address: "Ayala Avenue, Makati City, Metro Manila",
     lat: 14.585239,
@@ -26,4 +27,5 @@ export const OFFICE_LOCATIONS = {
     lat: 10.3290,
     lng: 123.9050,
   },
+   */
 };

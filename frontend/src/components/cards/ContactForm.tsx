@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createTicket } from "@/api/createTicket";
+import { products } from "@/data/productsData";
 
 function ContactForm() {
   const [transSucc, setTransSucc] = useState(false);
@@ -13,7 +14,7 @@ function ContactForm() {
     category: "",
     phone: "",
     address: "",
-    version: "",
+    product: "",
   };
 
   const [userData, setUserData] = useState(initialUserInfo);
@@ -127,15 +128,25 @@ function ContactForm() {
                 <option value="Web">Web Application</option>
               </select>
 
-              <input
-                onChange={handleUserDataChange}
-                type="text"
-                name="version"
-                value={userData.version}
-                placeholder="Version OS (optional)"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all"
-              />
+              <select
+              onChange={handleUserDataChange}
+              name="product"
+              value={userData.product}
+              required
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all text-gray-500"
+            >
+              <option value="" disabled>- Product -</option>
+              {
+                products.map((item, index)=> (
+                  <option key={index} value={item.name}>{item.name}</option>
+
+                ))
+              }
+          
+            </select>
             </div>
+
+            
 
             {/* Row 5: Category (Full Width) */}
             <select
@@ -146,8 +157,8 @@ function ContactForm() {
               className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all text-gray-500"
             >
               <option value="" disabled>- Category -</option>
-              <option value="Inquire">General Inquiry</option>
-              <option value="Question">Technical Question</option>
+              <option value="Inquire">Inquiry</option>
+              <option value="Question">Question</option>
               <option value="Complaint">Complaint</option>
               <option value="Bug Report">Bug Report</option>
               <option value="Feature Request">Feature Request</option>

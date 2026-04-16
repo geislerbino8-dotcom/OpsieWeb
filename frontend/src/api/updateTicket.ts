@@ -5,14 +5,18 @@ export interface UpdateTicketData {
   category?: 'Inquiry' | 'Bug Report' | 'Question' | 'Complaint' | 'Feature Request';
   taskReferenceUrl?: string;
   assignee?: string | null;
+  resolution?: string
 }
 
 export const updateTicket = async (id: string, data: UpdateTicketData) => {
+  console.log(data)
   try {
     const response = await axiosClient.patch(
       `/ticket/update/${id}`,
       data
     );
+
+    console.log(response)
 
     return response.data;
   } catch (error: any) {

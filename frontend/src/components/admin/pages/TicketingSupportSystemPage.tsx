@@ -1,4 +1,12 @@
 import { useEffect, useState } from 'react';
+import { 
+  Search, 
+  Filter, 
+  CheckCircle2, 
+  Box, 
+  RotateCcw,
+} from 'lucide-react';
+
 import { getTickets } from '../../../api/getTickets';
 import { deleteTicket } from '../../../api/deleteTicket';
 import { updateTicket } from '../../../api/updateTicket';
@@ -11,6 +19,8 @@ import TicketModal from '../ticketing/TicketModal';
 import LoadingOverlay from '../common/LoadingOverlay';
 import ToastContainer from '../common/ToastComponent';
 
+import { products } from '@/data/productsData';
+
 type Ticket = {
   _id: string;
   name: string;
@@ -19,14 +29,14 @@ type Ticket = {
   address: string;
   description: string;
   platform: string;
-  platformVersion?: string;
+  product: string;
   category: 'Inquiry' | 'Bug Report' | 'Question' | 'Complaint' | 'Feature Request';
   status: 'open' | 'in progress' | 'resolved' | "won't fix" | 'closed';
   taskReferenceUrl: string;
   assignee: {
-    _id: string,
-    name: string
-    role: string
+    _id: string;
+    name: string;
+    role: string;
   } | null;
   createdAt: string;
   updatedAt: string;
@@ -39,11 +49,11 @@ type User = {
 };
 
 const statusColors = {
-  open: 'bg-blue-50 text-blue-700',
-  'in progress': 'bg-yellow-50 text-yellow-700',
-  resolved: 'bg-green-50 text-green-700',
-  "won't fix": 'bg-red-50 text-red-700',
-  closed: 'bg-gray-100 text-gray-600',
+  open: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  'in progress': 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
+  resolved: 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+  "won't fix": 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300',
+  closed: 'bg-gray-100 text-gray-600 dark:bg-slate-700 dark:text-slate-300',
 };
 
 const categoryColors = {
@@ -60,13 +70,20 @@ const TicketingSupportSystemPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [productFilter, setProductFilter] = useState('all');
   const [sortField, setSortField] = useState<'name' | 'email' | 'platform' | 'assignee' | 'createdAt' | 'updatedAt'>('updatedAt');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  
   const [editStatus, setEditStatus] = useState<Ticket['status']>('open');
   const [editCategory, setEditCategory] = useState<Ticket['category']>('Inquiry');
   const [editTaskUrl, setEditTaskUrl] = useState('');
   const [editAssignee, setEditAssignee] = useState<string | null>(null);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
+  const [editResolution, setEditResolution] = useState<string>();
+
+  const apiState = useApiState();
+  const { toasts, addToast } = useToast();
+  const confirm = useConfirm();
 
   useEffect(() => {
     fetchTickets();
@@ -78,123 +95,88 @@ const TicketingSupportSystemPage = () => {
       setEditStatus(selectedTicket.status);
       setEditCategory(selectedTicket.category);
       setEditTaskUrl(selectedTicket.taskReferenceUrl || '');
-      setEditAssignee(selectedTicket.assignee?._id || null)
+      setEditAssignee(selectedTicket.assignee?._id || null);
     }
   }, [selectedTicket]);
 
   const fetchTickets = async () => {
     try {
       apiState.startLoading();
-
       const data = await getTickets();
-
-      if (!Array.isArray(data)) {
-        throw new Error('Invalid data format');
-      }
-
+      if (!Array.isArray(data)) throw new Error('Invalid data format');
       setTickets(data);
     } catch (error: any) {
       addToast(error.response?.data?.message || 'Failed to load tickets', 'error');
     } finally {
       apiState.reset();
     }
-  }
+  };
 
   const fetchActiveUsers = async () => {
     try {
       apiState.startLoading();
-
       const data = await getActiveUsers();
-
       setActiveUsers(data);
     } catch (error: any) {
       addToast(error.response?.data?.message || 'Failed to fetch users', 'error');
     } finally {
       apiState.reset();
     }
-  }
+  };
 
   const handleUpdate = async () => {
     if (!selectedTicket) return;
-
     try {
       const ok = await confirm({
         title: 'Update Ticket',
         message: 'Are you sure you want to update this ticket?',
         confirmText: 'UPDATE'
-      })
-
-      if(!ok) return
-
+      });
+      if(!ok) return;
       apiState.startLoading();
-
       const data = await updateTicket(selectedTicket._id, {
         status: editStatus,
         category: editCategory,
         taskReferenceUrl: editTaskUrl,
-        assignee: editAssignee
+        assignee: editAssignee,
+        resolution: editResolution 
       });
-
       addToast(data.message, 'success');
-
-      const user = activeUsers.find(user => user._id === editAssignee)
-
-      setTickets(prev =>
-        prev.map(ticket =>
-          ticket._id === selectedTicket._id
-            ? {
-                ...ticket,
-                status: editStatus,
-                category: editCategory,
-                taskReferenceUrl: editTaskUrl,
-                assignee: user ? { _id: user._id, name: user.name, role: user.role } : null,
-              }
-            : ticket
-        )
-      );
-
       fetchTickets();
-      fetchActiveUsers();
     } catch (error: any) {
       addToast(error.response?.data?.message || 'Failed to update ticket', 'error');
     } finally {
       apiState.reset();
     }
-
     setSelectedTicket(null);
   };
 
   const handleDelete = async () => {
     if (!selectedTicket) return;
-
     try {
       const ok = await confirm({
         title: 'Delete Ticket',
         message: 'Are you sure you want to delete this ticket?',
         confirmText: 'DELETE'
-      })
-
-      if(!ok) return
-
+      });
+      if(!ok) return;
       apiState.startLoading();
-
       await deleteTicket(selectedTicket._id);
-
       addToast('Ticket deleted', 'success');
-
       fetchTickets();
-      fetchActiveUsers();
     } catch (error: any) {
-      addToast(
-        error.response?.data?.message || 'Delete failed',
-        'error'
-      );
+      addToast(error.response?.data?.message || 'Delete failed', 'error');
     } finally {
       apiState.reset();
     }
-
-    setTickets(prev => prev.filter(t => t._id !== selectedTicket._id));
     setSelectedTicket(null);
+  };
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setCategoryFilter('all');
+    setStatusFilter('all');
+    setProductFilter('all');
   };
 
   const handleSort = (field: typeof sortField) => {
@@ -209,215 +191,211 @@ const TicketingSupportSystemPage = () => {
   const renderHeader = (label: string, field: typeof sortField) => (
     <th
       onClick={() => handleSort(field)}
-      className='px-4 py-3 cursor-pointer select-none hover:text-black font-medium whitespace-nowrap'
+      className='px-4 py-3 cursor-pointer select-none hover:bg-gray-50 dark:hover:bg-slate-700 font-semibold text-slate-700 dark:text-slate-200 transition-colors'
     >
-      <div className='flex items-center gap-1'>
+      <div className='flex items-center gap-2'>
         <span>{label}</span>
-        <span className='w-0.5 text-gray-400'>
-          {sortField === field
-            ? sortDirection === 'asc'
-              ? '▲'
-              : '▼'
-            : '▲'}
+        <span className='text-[10px] text-gray-400'>
+          {sortField === field ? (sortDirection === 'asc' ? '▲' : '▼') : '↕'}
         </span>
       </div>
     </th>
   );
 
   let filteredTickets = [...tickets];
-
-  if (categoryFilter !== 'all') {
-    filteredTickets = filteredTickets.filter(i => i.category === categoryFilter);
-  }
-
-  if (statusFilter !== 'all') {
-    filteredTickets = filteredTickets.filter(i => i.status === statusFilter);
-  }
-
+  if (categoryFilter !== 'all') filteredTickets = filteredTickets.filter(i => i.category === categoryFilter);
+  if (statusFilter !== 'all') filteredTickets = filteredTickets.filter(i => i.status === statusFilter);
+  if (productFilter !== 'all') filteredTickets = filteredTickets.filter(i => i.product === productFilter);
   if (searchTerm.trim()) {
     const lower = searchTerm.toLowerCase();
     filteredTickets = filteredTickets.filter(t =>
       t._id.toLowerCase().includes(lower) ||
       t.name.toLowerCase().includes(lower) ||
       t.email.toLowerCase().includes(lower) ||
-      t.phone.toLowerCase().includes(lower) ||
-      (t.address && t.address.toLowerCase().includes(lower))
+      t.product?.toLowerCase().includes(lower)
     );
   }
 
   filteredTickets.sort((a, b) => {
-    let aVal: any;
-    let bVal: any;
-
-    if (sortField === 'assignee') {
-      aVal = a.assignee || '';
-      bVal = b.assignee || '';
-    } else {
-      aVal = (a as any)[sortField] || '';
-      bVal = (b as any)[sortField] || '';
-    }
-
+    let aVal = sortField === 'assignee' ? (a.assignee?.name || '') : (a as any)[sortField] || '';
+    let bVal = sortField === 'assignee' ? (b.assignee?.name || '') : (b as any)[sortField] || '';
     if (sortField === 'createdAt' || sortField === 'updatedAt') {
-      const diff =
-        new Date(aVal).getTime() - new Date(bVal).getTime();
+      const diff = new Date(aVal).getTime() - new Date(bVal).getTime();
       return sortDirection === 'asc' ? diff : -diff;
     }
-
-    return sortDirection === 'asc'
-      ? aVal.toString().localeCompare(bVal.toString())
-      : bVal.toString().localeCompare(aVal.toString());
+    return sortDirection === 'asc' ? aVal.toString().localeCompare(bVal.toString()) : bVal.toString().localeCompare(aVal.toString());
   });
 
-  const apiState = useApiState();
-  const { toasts, addToast } = useToast();
-
-  const confirm = useConfirm();
-
-  const total = tickets.length;
-  const openCount = tickets.filter(i => i.status === 'open').length;
-  const progressCount = tickets.filter(i => i.status === 'in progress').length;
-  const resolvedCount = tickets.filter(i => i.status === 'resolved').length;
+  const stats = [
+    { label: 'Total', value: tickets.length, color: 'bg-slate-500', text: 'text-slate-600 dark:text-slate-300' },
+    { label: 'Open', value: tickets.filter(i => i.status === 'open').length, color: 'bg-blue-500', text: 'text-blue-600 dark:text-blue-400' },
+    { label: 'In Progress', value: tickets.filter(i => i.status === 'in progress').length, color: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400' },
+    { label: 'Resolved', value: tickets.filter(i => i.status === 'resolved').length, color: 'bg-emerald-500', text: 'text-emerald-600 dark:text-emerald-400' },
+  ];
 
   return (
-    <div className='min-h-full min-w-full bg-gray-50 p-6'>
-      <h1 className='text-xl font-semibold mb-6 text-gray-800 text-center'>
-        Opsie SSI Ticketing Support System Dashboard
-      </h1>
+    <div className='min-h-screen bg-[#f8fafc] dark:bg-slate-950 p-4 md:p-8 transition-colors'>
+      <div className='max-w-[1600px] mx-auto'>
+        <header className='mb-8 flex justify-between items-center'>
+          <div>
+            <h1 className='text-2xl font-bold text-slate-800 dark:text-white'>Support Dashboard</h1>
+            <p className='text-slate-500 dark:text-slate-400 text-sm'>Manage and track incoming support requests</p>
+          </div>
+        </header>
 
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-sm'>
-        <div className='bg-white border rounded-md p-4'>
-          <p className='text-gray-500'>Total</p>
-          <p className='text-lg font-semibold'>{total}</p>
-        </div>
-        <div className='bg-white border rounded-md p-4'>
-          <p className='text-gray-500'>Open</p>
-          <p className='text-lg font-semibold text-blue-600'>{openCount}</p>
-        </div>
-        <div className='bg-white border rounded-md p-4'>
-          <p className='text-gray-500'>In Progress</p>
-          <p className='text-lg font-semibold text-yellow-600'>{progressCount}</p>
-        </div>
-        <div className='bg-white border rounded-md p-4'>
-          <p className='text-gray-500'>Resolved</p>
-          <p className='text-lg font-semibold text-green-600'>{resolvedCount}</p>
-        </div>
-      </div>
-
-      <div className='flex flex-col justify-center md:flex-row gap-3 mb-4 text-sm'>
-        <input
-          type='text'
-          placeholder='Search...'
-          className='border rounded-md px-3 py-2 w-full md:w-1/3'
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-        />
-
-        <select
-          className='border rounded-md px-3 py-2 w-full md:w-1/5'
-          value={categoryFilter}
-          onChange={e => setCategoryFilter(e.target.value)}
-        >
-          <option value='all'>All Categories</option>
-          {Object.keys(categoryColors).map(category => (
-            <option key={category}>{category}</option>
+        {/* Stats Section */}
+        <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8'>
+          {stats.map((stat) => (
+            <div key={stat.label} className='bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 shadow-sm transition-colors'>
+              <div className={`w-2 h-2 rounded-full mb-3 ${stat.color}`} />
+              <p className='text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500'>{stat.label}</p>
+              <p className={`text-3xl font-black ${stat.text}`}>{stat.value}</p>
+            </div>
           ))}
-        </select>
+        </div>
 
-        <select
-          className='border rounded-md px-3 py-2 w-full md:w-1/5'
-          value={statusFilter}
-          onChange={e => setStatusFilter(e.target.value)}
-        >
-          <option value='all'>All Status</option>
-          {Object.keys(statusColors).map(status => (
-            <option key={status}>{status}</option>
-          ))}
-        </select>
-      </div>
+        {/* Filters Section */}
+        <div className='bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 mb-6 shadow-sm transition-colors'>
+          <div className='flex flex-col lg:flex-row gap-4 items-end lg:items-center'>
+            <div className='relative w-full lg:flex-1'>
+              <Search className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4' />
+              <input
+                type='text'
+                placeholder='Search by ID, name, email or product...'
+                className='w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all'
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+              />
+            </div>
 
-      <div className='max-w-313 mx-auto bg-white border rounded-md overflow-x-auto'>
-        <table className='min-w-312.5 text-xs table-fixed'>
-          <thead className='bg-gray-100 border-b text-gray-600 uppercase tracking-wide'>
-            <tr>
-              <th className='px-4 py-2 w-18.75'>ID</th>
-              {renderHeader('Name', 'name')}
-              {renderHeader('Email', 'email')}
-              {renderHeader('Platform', 'platform')}
-              <th className='px-4 py-2 text-center w-42.5'>Category</th>
-              <th className='px-4 py-2 text-center w-31.25'>Status</th>
-              <th className='px-4 py-2 w-25'>Task</th>
-              {renderHeader('Created', 'createdAt')}
-              {renderHeader('Updated', 'updatedAt')}
-              {renderHeader('Assignee', 'assignee')}
-            </tr>
-          </thead>
+            <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 w-full lg:w-auto'>
+              <div className='relative'>
+                <Filter className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5 pointer-events-none' />
+                <select
+                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
+                  value={categoryFilter}
+                  onChange={e => setCategoryFilter(e.target.value)}
+                >
+                  <option value='all'>All Categories</option>
+                  {Object.keys(categoryColors).map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                </select>
+              </div>
 
-          <tbody className='divide-y'>
-            {filteredTickets.map(ticket => (
-              <tr
-                key={ticket._id}
-                className='h-12.5 hover:bg-gray-200 cursor-pointer'
-                onClick={() => setSelectedTicket(ticket)}
-              >
-                <td className='px-4 py-3 text-gray-400 text-center w-22'>
-                  {ticket._id.slice(-8)}
-                </td>
+              <div className='relative'>
+                <CheckCircle2 className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5 pointer-events-none' />
+                <select
+                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
+                  value={statusFilter}
+                  onChange={e => setStatusFilter(e.target.value)}
+                >
+                  <option value='all'>All Status</option>
+                  {Object.keys(statusColors).map(status => <option key={status} value={status}>{status}</option>)}
+                </select>
+              </div>
 
-                <td className='px-4 py-3 font-medium w-32.5'>{ticket.name}</td>
-                <td className='px-4 py-3 text-gray-600 w-42.5'>{ticket.email}</td>
-                <td className='px-4 py-3 text-gray-600 w-23.75'>{ticket.platform || '—'}</td>
+              <div className='relative'>
+                <Box className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5 pointer-events-none' />
+                <select
+                  className='appearance-none w-full pl-9 pr-8 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer'
+                  value={productFilter}
+                  onChange={e => setProductFilter(e.target.value)}
+                >
+                  <option value='all'>All Products</option>
+                  {products.map((p, i) => <option key={i} value={p.name}>{p.name}</option>)}
+                </select>
+              </div>
+            </div>
 
-                <td className='px-4 py-3 text-center w-42.5'>
-                  <div className={`text-center px-2 py-1 rounded text-xs font-medium ${categoryColors[ticket.category]}`}>
-                    {ticket.category}
-                  </div>
-                </td>
+            <button 
+              onClick={resetFilters}
+              className='flex items-center gap-2 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 text-sm font-medium transition-colors'
+            >
+              <RotateCcw className='w-4 h-4' />
+              Reset
+            </button>
+          </div>
+        </div>
 
-                <td className='px-4 py-3 text-center w-31.25'>
-                  <div className={`px-2 py-1 rounded text-xs font-medium ${statusColors[ticket.status]}`}>
-                    {ticket.status}
-                  </div>
-                </td>
-              
-                <td className='px-4 py-3 text-center w-25'>
-                  {ticket.taskReferenceUrl ? (
-                    <a
-                      href={ticket.taskReferenceUrl}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      onClick={e => e.stopPropagation()}
-                      className='text-blue-600 hover:underline'
-                    >
-                      Link
-                    </a>
-                  ) : '—'}
-                </td>
-
-                <td className='px-4 py-3 text-gray-500 w-25'>
-                  {new Date(ticket.createdAt).toLocaleDateString()}
-                </td>
-
-                <td className='px-4 py-3 text-gray-500 w-25'>
-                  {new Date(ticket.updatedAt).toLocaleDateString()}
-                </td>
-
-                <td className='px-4 py-3 text-gray-600'>
-                  {ticket.assignee ? ( 
-                    <div className='flex items-center gap-2'>
-                      <div className='min-w-7 min-h-7 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold'> 
-                        {ticket.assignee.name?.charAt(0)}
-                      </div>
-
-                      <span className='text-center'>{ticket.assignee.name}</span>
-                    </div>
-                  ) : ( 
-                    <span className='text-gray-400'>Unassigned</span> 
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {/* Table Section */}
+        <div className='bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden transition-colors'>
+          <div className='overflow-x-auto'>
+            <table className='w-full text-left border-collapse'>
+              <thead className='bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700 text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400'>
+                <tr>
+                  <th className='px-4 py-4 w-24 text-center'>ID</th>
+                  {renderHeader('Customer', 'name')}
+                  {renderHeader('Contact', 'email')}
+                  {renderHeader('Platform', 'platform')}
+                  <th className='px-4 py-4 text-center'>Category</th>
+                  <th className='px-4 py-4 text-center'>Status</th>
+                  <th className='px-4 py-4 text-center'>Task</th>
+                  {renderHeader('Created', 'createdAt')}
+                  {renderHeader('Assignee', 'assignee')}
+                </tr>
+              </thead>
+              <tbody className='divide-y divide-slate-100 dark:divide-slate-700'>
+                {filteredTickets.map(ticket => (
+                  <tr
+                    key={ticket._id}
+                    className='group hover:bg-blue-50/30 dark:hover:bg-slate-700/50 transition-colors cursor-pointer'
+                    onClick={() => setSelectedTicket(ticket)}
+                  >
+                    <td className='px-4 py-4 text-slate-400 dark:text-slate-500 font-mono text-[10px] text-center'>
+                      #{ticket._id.slice(-6).toUpperCase()}
+                    </td>
+                    <td className='px-4 py-4 font-semibold text-slate-700 dark:text-slate-200'>{ticket.name}</td>
+                    <td className='px-4 py-4 text-slate-500 dark:text-slate-400 text-[11px]'>{ticket.email}</td>
+                    <td className='px-4 py-4 text-slate-600 dark:text-slate-300'>{ticket.platform || '—'}</td>
+                    <td className='px-4 py-4'>
+                      <span className={`block text-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter ${categoryColors[ticket.category]}`}>
+                        {ticket.category}
+                      </span>
+                    </td>
+                    <td className='px-4 py-4'>
+                      <span className={`block text-center px-2 py-1 rounded-lg text-[10px] font-bold border dark:border-transparent capitalize ${statusColors[ticket.status]}`}>
+                        {ticket.status}
+                      </span>
+                    </td>
+                    <td className='px-4 py-4 text-center'>
+                      {ticket.taskReferenceUrl ? (
+                        <a
+                          href={ticket.taskReferenceUrl}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          onClick={e => e.stopPropagation()}
+                          className='text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-bold underline text-[10px]'
+                        >
+                          OPEN
+                        </a>
+                      ) : <span className="text-slate-300 dark:text-slate-600">—</span>}
+                    </td>
+                    <td className='px-4 py-4 text-slate-500 dark:text-slate-400 text-[11px]'>
+                      {new Date(ticket.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className='px-4 py-4'>
+                      {ticket.assignee ? (
+                        <div className='flex items-center gap-2'>
+                          <div className='w-6 h-6 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full flex items-center justify-center text-[10px] font-bold ring-2 ring-white dark:ring-slate-800'>
+                            {ticket.assignee.name?.charAt(0)}
+                          </div>
+                          <span className='text-slate-700 dark:text-slate-300 text-[11px] font-medium'>{ticket.assignee.name}</span>
+                        </div>
+                      ) : (
+                        <span className='text-slate-300 dark:text-slate-600 italic text-[11px]'>Unassigned</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {filteredTickets.length === 0 && (
+            <div className='p-12 text-center text-slate-400 dark:text-slate-600'>
+              <div className='mb-2 text-3xl'>🔍</div>
+              <p>No tickets match your current filters.</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {selectedTicket && (
@@ -432,6 +410,7 @@ const TicketingSupportSystemPage = () => {
           setEditCategory={setEditCategory}
           setEditTaskUrl={setEditTaskUrl}
           setEditAssignee={setEditAssignee}
+          setEditResolution={setEditResolution}
           onClose={() => setSelectedTicket(null)}
           onDelete={handleDelete}
           onSave={handleUpdate}
@@ -439,9 +418,7 @@ const TicketingSupportSystemPage = () => {
           categoryColors={categoryColors}
         />
       )}
-
       {apiState.status === 'loading' && <LoadingOverlay />}
-
       <ToastContainer toasts={toasts} />
     </div>
   );
