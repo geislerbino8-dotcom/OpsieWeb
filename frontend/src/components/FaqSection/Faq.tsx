@@ -21,7 +21,7 @@ const FAQAccordion = () => {
           </h2>
           <p className="mt-6 text-lg text-gray-500 font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for? 
-            <span className="text-[#3CBDE6] font-medium cursor-pointer hover:underline ml-1">Reach out to us.</span>
+            <span className="text-[#3CBDE6] font-medium cursor-pointer hover:underline ml-1"><a href="/contact-us">Reach out to us.</a></span>
           </p>
         </div>
 

@@ -2,6 +2,8 @@ import { Button } from "../Button";
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { PlayCircle } from "lucide-react"; 
+import { useNavigate } from "react-router-dom";
 
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiY2hhaWlpIiwiYSI6ImNtZjBnZzM4ZDE3aGoya3B6YTJmeDZ4N2oifQ.7rvg2UpEHaOEDSDo5FgZBA";
@@ -19,6 +21,7 @@ type Location = {
 export default function Maps() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const navigate = useNavigate()
 
   const [userLocation, setUserLocation] = useState<Location | null>(null);
 
@@ -43,7 +46,6 @@ export default function Maps() {
     };
   }, []);
 
-  // 🚀 Animate map when user location is detected
   useEffect(() => {
     if (userLocation && mapRef.current) {
       mapRef.current.flyTo({
@@ -56,9 +58,6 @@ export default function Maps() {
     }
   }, [userLocation]);
 
-  
-
-  // 🚗 Draw route
   const drawRoute = async (origin: Location) => {
     if (!mapRef.current) return;
 
@@ -99,7 +98,6 @@ export default function Maps() {
       });
     }
 
-    // 🎬 Animate camera to fit the route
     const coordinates = route.coordinates;
 
     const bounds = coordinates.reduce(
@@ -129,7 +127,6 @@ export default function Maps() {
   
         setUserLocation(location);
   
-        // show user marker
         if (mapRef.current) {
           new mapboxgl.Marker({ color: "blue" })
             .setLngLat([location.lng, location.lat])
@@ -157,23 +154,40 @@ export default function Maps() {
         <div className="w-full flex flex-col items-center md:items-start gap-6 mb-10">
 
           <h1 className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px]">
-            Visit <span className="text-[#3CBDE6] font-semibold">Us</span> Let’s Talk
-            <span className="text-[#3CBDE6] font-semibold"><br />Innovation</span>
+            Let's start our
+            <span className="text-[#3CBDE6] font-semibold"><br />Conversation</span>
           </h1>
 
             <p className="font-poppins text-center md:text-start font-light">
-              Our doors are open for clients and partners who are ready to innovate.
-              Drop by our location and start the conversation that turns ideas into real solutions.
+              Whether you’re exploring options or ready to improve your systems, we’re here to help. 
             </p>
 
-          <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
-            <Button
-              label="Get Direction"
-              icon={<img src="/ICONS/get-started-arrow.svg" className="w-6 h-6" />}
-              iconPosition="right"
-              className="cursor-pointer"
-              onClick={handleDirections}
-            />
+            <div className="space-y-2 text-center md:text-start font-poppins text-sm md:text-base">
+                <p>📍 Princeton Street, Corner Shaw Blvd, Mandaluyong City</p>
+                <p>📧 hello@opsie.solutions</p>
+                <p>📞 +1 (555) 000-OPSI</p>
+            </div>
+
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 lg:mt-4">
+            
+            <div className="transition-all duration-500 hover:bg-[#242424] bg-[#3CBDE6] text-white rounded-lg overflow-hidden">
+              <Button
+                label="Get Direction"
+                icon={<img src="/ICONS/get-started-arrow.svg" className="w-5 h-5" />}
+                iconPosition="right"
+                className="cursor-pointer px-6 py-3"
+                onClick={handleDirections}
+              />
+            </div>
+
+            <button 
+              onClick={() => { navigate('/contact-us')}}
+              className="flex items-center gap-2 border-2 border-[#3CBDE6] text-[#3CBDE6] font-semibold px-6 py-[10px] rounded-lg transition-all duration-300 hover:bg-[#242424] hover:text-white group"
+            >
+              <PlayCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              Request Demo
+            </button>
+            
           </div>
 
         </div>

@@ -1,33 +1,23 @@
 import TextType from '@/components/TextType'
-import b1 from '../../assets/visuals/Products1.png'
-import b2 from '../../assets/visuals/Products2.png'
-import b3 from '../../assets/visuals/Products3.png'
-import b4 from '../../assets/visuals/Products4.png'
 
-const content = [
-  {
-    head: "100% Web Based",
-    desc: "Use freely on any device, anywhere with internet access.",
-    bgImage: b1
-  },
-  {
-    head: "Unlimited Users",
-    desc: "No additional cost for the number of Opsie users.",
-    bgImage: b2
-  },
-  {
-    head: "Free Additional Services",
-    desc: "Mobile app and corporate messenger included.",
-    bgImage: b3
-  },
-  {
-    head: "Continuous Upgrades",
-    desc: "Regular improvements and new functionality included.",
-    bgImage: b4
-  }
-]
+
+import { usePageContent } from '@/data/usePageContent'
+import { useState } from 'react'
+
+
+type PageContent = {
+  bigHeader: string
+  subHeader: string
+}
 
 function WhyChooseUsSection() {
+
+  const [ contents ] = useState<PageContent>(usePageContent.data[0].advantageSection)
+
+  const [ cardContent ] = useState(usePageContent.data[0].advantageSection.benefits)
+
+  console.log(contents)
+
   return (
     <section
       className="w-full py-24 flex justify-center relative overflow-hidden"
@@ -41,7 +31,7 @@ function WhyChooseUsSection() {
 
         {/* LEFT - CARDS GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 flex-[1.2]">
-          {content.map((item, index) => (
+          {cardContent.map((item: any, index: number) => (
             <div
               key={index}
               data-aos="fade-up"
@@ -100,7 +90,7 @@ function WhyChooseUsSection() {
           <div className="min-h-[120px] md:min-h-[180px]">
             <TextType
               className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white"
-              text={["Why do so many companies choose Opsie Software Solutions?"]}
+              text={[contents.bigHeader]}
               typingSpeed={50}
               pauseDuration={10000}
               showCursor
@@ -111,7 +101,7 @@ function WhyChooseUsSection() {
           </div>
           
           <p className="text-blue-100/70 text-lg font-light max-w-lg mx-auto lg:mx-0" data-aos="fade-left" data-aos-delay="500">
-            Empowering businesses with seamless, scalable, and cost-effective digital infrastructure.
+            {contents.subHeader}
           </p>
         </div>
 

@@ -11,7 +11,7 @@ export default function WhyChooseUs() {
           data-aos-delay="200" 
           className="font-poppins text-center md:text-left leading-[1.2] tracking-tight text-[32px] md:text-[50px] text-gray-900"
         >
-          What Makes Us <span className="text-[#3CBDE6] font-semibold">Different</span>
+          Why do businesses<span className="text-[#3CBDE6] font-semibold"> choose Opsie? </span>
         </h1>
         <p  
           data-aos="fade-right" 
@@ -38,11 +38,11 @@ export default function WhyChooseUs() {
             className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="p-8">
-            <h2 className="text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">Cutting-Edge Technology</h2>
+            <h2 className="text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">Simple and practical solutions</h2>
             <p className="text-gray-500 font-poppins text-[16px] font-light leading-relaxed max-w-xl">
-              From Cloud Architecture to modern AI integration, we utilize the latest tech stacks 
-              to ensure your business remains ahead of the curve in a digital-first world.
-            </p>
+              Built around real business needs
+
+                </p>
           </div>
         </div>
 
@@ -59,9 +59,9 @@ export default function WhyChooseUs() {
             className="w-full h-32 md:h-48 object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="p-6">
-            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">Expert Team</h2>
+            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">A team you can rely on</h2>
             <p className="text-gray-500 font-poppins font-light leading-snug text-[13px]">
-              Our engineers and designers are veteran problem-solvers dedicated to your success.
+              People who understand both tech and business
             </p>
           </div>
         </div>
@@ -79,9 +79,9 @@ export default function WhyChooseUs() {
             className="w-full h-32 md:h-48 object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="p-6">
-            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">Strategic Insight</h2>
+            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">Connected systems</h2>
             <p className="text-gray-500 font-poppins font-light leading-snug text-[13px]">
-              We don't just write code; we build roadmaps that align with your long-term KPIs.
+              Everything works together, so nothing gets missed
             </p>
           </div>
         </div>
@@ -99,10 +99,9 @@ export default function WhyChooseUs() {
             className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="p-8">
-            <h2 className="font-poppins text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">Reliable Support</h2>
+            <h2 className="font-poppins text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">Ongoing support</h2>
             <p className="text-gray-500 font-poppins text-[16px] font-light leading-relaxed max-w-xl">
-              Post-launch is just the beginning. We provide continuous monitoring and 24/7 dedicated 
-              technical assistance to ensure your platform remains stable and secure.
+               We stay with you as your business grows
             </p>
           </div>
         </div>

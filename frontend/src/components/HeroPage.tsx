@@ -1,6 +1,8 @@
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
 import SplitText from './SplitText';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { usePageContent } from '@/data/usePageContent';
 
 type HeroPageProps = {
   heroText?: string;
@@ -9,6 +11,8 @@ type HeroPageProps = {
 
 function HeroPage({ heroText, bgImage }: HeroPageProps) {
   const navigate = useNavigate();
+  const [ content ] = useState({})
+  console.log(content)
 
   return (
     <div
@@ -54,9 +58,9 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
           data-aos-delay="800"
           data-aos-duration="1000"
         >
-          We turn your vision into <span className="text-[#3CBDE6] font-medium">powerful digital solutions</span>. 
-          From concept to deployment, our team delivers scalable, secure, and user-focused 
-          software tailored to your business goals.
+          {
+            usePageContent.data[0].heroSection.subHeader
+          }
         </p>
 
         <div 
@@ -68,7 +72,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
             onClick={() => navigate("/book-a-schedule")}
             className="group relative bg-[#3CBDE6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
           >
-            <span className="relative z-10">Book a Consultation</span>
+            <span className="relative z-10">{usePageContent.data[0].heroSection.button}</span>
             {/* Subtle hover slide effect */}
           </button>
         </div>

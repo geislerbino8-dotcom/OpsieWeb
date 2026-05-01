@@ -22,6 +22,13 @@ const cards = [
     icon: ticketImg,
     route: 'tickets',
   },
+
+  {
+    title: 'Content Management System',
+    description: 'View, update, and resolve support tickets efficiently.',
+    icon: ticketImg,
+    route: '/content',
+  },
 ];
 
 const DashboardPage = () => {

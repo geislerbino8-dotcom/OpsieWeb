@@ -1,28 +1,21 @@
 import ServicesCards from "../../components/cards/ServicesCards";
 import '../../styles/ServicesSection.css'
-import img1 from '../../assets/card-bg/webdev.png'
-import img2 from '../../assets/card-bg/mobiledev.png'
-import img3 from '../../assets/card-bg/aidev.jpg'
+import { usePageContent } from "@/data/usePageContent";
+import { useState } from "react";
 
-const services = [
-  {
-    serviceName: "Web Development",
-    desc: "Custom, high-performance web applications built with modern frameworks for seamless scalability.",
-    image: img1
-  },
-  {
-    serviceName: "Mobile Development",
-    desc: "Native and cross-platform mobile solutions designed for intuitive user experiences and speed.",
-    image: img2
-  },  
-  {
-    serviceName: "AI Modeling",
-    desc: "Implementing intelligent automation and predictive analytics to drive data-driven decision making.",
-    image: img3
-  },
-]
+type Services = {
+  item: any,
+  index: number
+  map: any
+}
+
 
 function ServicesSection() {
+
+  const [ contents  ] = useState(usePageContent.data[0].servicesSection)
+  const [ services  ] = useState<Services>(usePageContent.data[0].servicesSection.services)
+
+
   return (
     <section 
       id="service-section" 
@@ -44,7 +37,9 @@ function ServicesSection() {
           data-aos="fade-down"
           data-aos-delay="200"
         >
-          We provide end-to-end digital transformation through expert engineering and human-centric design.
+          {
+            contents.subHeader  
+          }
         </p>
       </div>
 
@@ -65,7 +60,7 @@ function ServicesSection() {
   md:min-w-0 
   px-4
 ">
-  {services.map((item, index) => (
+  {services.map((item: any, index: number) => (
     <div 
       key={index} 
       className="w-[300px] md:w-full max-w-[350px] flex justify-center"

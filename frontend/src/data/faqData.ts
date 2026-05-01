@@ -5,31 +5,30 @@ interface FAQ {
 
 export const faqs: FAQ[] =[
   {
-    question: "What services does your software solutions company offer?",
+    question: "What services do you offer",
     answer:
-      "We provide end-to-end software development services including web and mobile app development, cloud solutions, system integration, UI/UX design, and ongoing maintenance and support.",
+      "We provide end-to-end solutions including web and mobile development, cloud systems, integrations, UI/UX design, and ongoing support to keep everything running smoothly.",
   },
   {
-    question: "How do you ensure the quality of your software products?",
+    question: "How do you ensure quality?",
     answer: [
-      "We follow industry best practices and agile development methodologies.",
-      "Our team conducts thorough testing, including unit, integration, and QA testing.",
-      "We implement continuous integration and deployment (CI/CD) pipelines.",
+      "We follow proven processes, thorough testing, and continuous improvements to make sure everything works reliably and performs as expected. ",
+      
     ],
   },
   {
-    question: "Can you customize software based on our business needs?",
+    question: "Can you customize solutions for my business? ",
     answer:
-      "Yes, we specialize in building fully customized solutions tailored to your business requirements, ensuring scalability, flexibility, and seamless integration with your existing systems.",
+      "Yes, everything we build is tailored to how your business operates, so it fits naturally into your workflow and scales as you grow. ",
   },
   {
-    question: "What industries do you work with?",
+    question: "Who do you work with? ",
     answer:
-      "We work with a wide range of industries including healthcare, finance, e-commerce, education, logistics, and more, delivering solutions that meet specific industry challenges.",
+      "We work with a range of industries including healthcare, finance, e-commerce, education, logistics, and more, adapting our solutions to fit each business.",
   },
   {
-    question: "Do you provide post-launch support and maintenance?",
+    question: "Do you provide ongoing support? ",
     answer:
-      "Absolutely. We offer ongoing support, updates, performance monitoring, and maintenance services to ensure your software remains secure, up-to-date, and efficient.",
+      "Yes, we continue to support, monitor, and improve your systems after launch so everything stays secure, up to date, and running smoothly.",
   },
 ];

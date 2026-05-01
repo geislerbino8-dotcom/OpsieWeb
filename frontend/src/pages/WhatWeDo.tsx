@@ -4,6 +4,8 @@ import LogoLoop from "../components/PartnersLogo/PartnersLogoLoop";
 import FAQAccordion from "../components/FaqSection/Faq"
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import { useNavigate } from "react-router-dom";
+import { usePageContent } from "@/data/usePageContent";
+import { useState } from "react";
 
 const imageLogos = [
   { src: "/staff/p5.jpg", alt: "Company 1" },
@@ -15,6 +17,9 @@ const imageLogos = [
 
 export default function WhatWeDo() {
   const Navigate = useNavigate();
+  const [ content ] = useState(usePageContent.data[0].whatWeDoPage)
+
+  console.log(content)
 
   return (
     // Removed max-w-1280 from here to allow full width
@@ -38,20 +43,26 @@ export default function WhatWeDo() {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between w-full gap-10">
             
             {/* Left Content */}
-            <div className="w-full md:w-2/3">
+            <div className="w-full md:w-[80%]">
               <h1 data-aos="fade-right" className="text-[40px] leading-[44px] md:text-[60px] md:leading-[65px] lg:text-[75px] lg:leading-[80px] text-center md:text-left font-light text-white">
-                Code with Purpose.<br/> 
-                <span className="font-semibold text-[#3CBDE6]">Solutions with Impact.</span>
+                {
+                  content.hero.header.firstLine
+              }<br/> 
+                <span className="font-semibold text-[#3CBDE6]">{content.hero.header.secondLine}</span>
               </h1>
               <p data-aos="fade-right" data-aos-delay="300" className="mt-6 text-sm md:text-xl text-gray-200 text-center md:text-left max-w-xl font-light">
-                See how we transform ideas into powerful digital experiences. Watch our process, innovation, and expertise come together to build impactful solutions.
+                {
+                  content.hero.subHeader
+                }
               </p>
               <div className="flex justify-center md:justify-start" data-aos="fade-right" data-aos-delay="400">
                 <button 
                   onClick={() => Navigate("/contact-us")}
                   className="mt-8 bg-white text-black px-12 py-3 font-medium hover:bg-[#3CBDE6] hover:text-white transition-all duration-500 uppercase tracking-wider"
                 >
-                  Contact Us 
+                 {
+                  content.hero.button.text
+                 } 
                 </button>
               </div>
             </div>
@@ -111,20 +122,29 @@ export default function WhatWeDo() {
   <h2 
     data-aos="fade-up" 
     className="md:w-1/2 text-4xl md:text-5xl leading-tight text-center md:text-left"
-  >
-    Building <span className="text-[#3CBDE6] font-semibold">Technology</span> That <span className="text-[#3CBDE6] font-semibold">Works</span> for You
+  >{
+    content.secondSection.header
+  }
   </h2>
 
   {/* Right: Paragraph - md:mt-2 helps "visually" align the smaller text with the large header text */}
   <p 
     data-aos="fade-left" 
     className="md:w-1/3 text-lg text-gray-600 font-light text-center md:text-right leading-relaxed md:mt-2"
-  >
-    We build end-to-end solutions — custom systems, smart integrations, and scalable automation — engineered to transform how businesses operate.
+  >{
+    content.secondSection.subHeader
+  }
   </p>
 </div>
 
         <ServicesSection />
+
+        <div className="flex flex-col items-center justify-center  text-lg text-gray-600 font-light text-center leading-relaxed md:m-5 md:mb-15">
+          <h1 className="text-2xl font-semibold text-[#3CBDE6]">We focus on simplifying your systems, improving connectivity, 
+          and making day-to-day operations easier to manage.</h1>
+
+          <button className="m-5 border-1 hover:bg-[#3CBDE6] hover:text-white transition-all duration-600 px-5 py-3 font-semibold">Book a Consultation</button>
+        </div>
 
         {/* Video Section - Full Width inside container */}
         <div className="w-full">

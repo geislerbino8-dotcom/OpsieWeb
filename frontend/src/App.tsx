@@ -8,10 +8,32 @@ import './App.css';
 import ChatHelp from './components/ChatHelp';
 import AOS from "aos";
 import { useLocation } from 'react-router-dom';
+import { supabase } from './utils/supabase';
+import { useBotpress } from './hooks/useBotpress';
+
 
 const App = () => {
 
+  useBotpress()
+
+  
   const currentLocation = useLocation()
+
+  
+   useEffect(() => {
+    async function getTodos() {
+      const { data } = supabase
+        .storage
+        .from('Opsie Tickets')
+        .getPublicUrl('sample.pdf')
+
+      console.log(data.publicUrl)
+      }
+
+    getTodos()
+  }, [])
+
+
 
   useEffect(()=> {
 
@@ -32,26 +54,10 @@ const App = () => {
 
   }, []);
 
-  useEffect(() => {
-    if (document.getElementById("botpress-script")) return;
-  
-    const script1 = document.createElement("script");
-    script1.src = "https://cdn.botpress.cloud/webchat/v3.6/inject.js";
-    script1.id = "botpress-script";
-    script1.async = true;
-  
-    const script2 = document.createElement("script");
-    script2.src = "https://files.bpcontent.cloud/2026/03/08/17/20260308173901-3FOO88VO.js";
-    script2.defer = true;
-  
-    document.body.appendChild(script1);
-    document.body.appendChild(script2);
-  }, []);
-
  
 
   return (
-    <>
+   
       <div className='select-none'>
           <ChatHelp />
           <Navigation />
@@ -59,7 +65,6 @@ const App = () => {
           <Footer/>
       </div>
 
-    </>
   );
 }
 

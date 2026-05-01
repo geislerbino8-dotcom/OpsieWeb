@@ -12,8 +12,49 @@ import TicketingSupportSystemPage from "./components/admin/pages/TicketingSuppor
 import UserManagementPage from "./components/admin/pages/UserManagementPage"
 import LoginPage from "./components/admin/pages/LoginPage"
 import ErrorPage from "./components/ErrorPage"
+import WebContentFrom from "./components/webcontent/WebContentFrom"
+import HomepageContent from "./components/webcontent/HomepageContent"
+import WhoWeAreContent from "./components/webcontent/WhoWeAreContent"
+import WhatWeDoContent from "./components/webcontent/WhatWeDoContent"
+import ContactUsContent from "./components/webcontent/ContactUsContent"
+import ProductsContent from "./components/webcontent/ProductsContent"
 
 const token = localStorage.getItem('token')
+
+
+const pageContent = [
+    {
+        pageName: "Homepage",
+        path: 'homepage',
+        element: <HomepageContent />
+    },
+
+    {
+        pageName: "Who We Are",
+        path: 'whoweare',
+        element: <WhoWeAreContent />
+    },
+
+    {
+        pageName: "What We Do",
+        path: 'whatwedo',
+        element: <WhatWeDoContent />
+    },
+
+    {
+        pageName: "Contact Us",
+        path: 'contacts',
+        element: <ContactUsContent />
+    },
+
+    {
+        pageName: "Products",
+        path: 'products',
+        element: <ProductsContent />
+    },
+
+
+]
 
 const router = createBrowserRouter([
     {
@@ -94,6 +135,16 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <LoginPage />
+    },
+
+    {
+        path: '/content',
+        element: <WebContentFrom />,
+
+        children: pageContent.map((page) => ({
+            path: page.path,
+            element: page.element
+        }))
     }
 
 ])

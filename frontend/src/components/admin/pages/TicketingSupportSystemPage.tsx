@@ -5,6 +5,8 @@ import {
   CheckCircle2, 
   Box, 
   RotateCcw,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 import { getTickets } from '../../../api/getTickets';
@@ -64,6 +66,8 @@ const categoryColors = {
   'Feature Request': 'bg-emerald-600 text-white'
 };
 
+const ITEMS_PER_PAGE = 10;
+
 const TicketingSupportSystemPage = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [activeUsers, setActiveUsers] = useState<User[]>([]);
@@ -74,6 +78,9 @@ const TicketingSupportSystemPage = () => {
   const [sortField, setSortField] = useState<'name' | 'email' | 'platform' | 'assignee' | 'createdAt' | 'updatedAt'>('updatedAt');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+
   const [editStatus, setEditStatus] = useState<Ticket['status']>('open');
   const [editCategory, setEditCategory] = useState<Ticket['category']>('Inquiry');
   const [editTaskUrl, setEditTaskUrl] = useState('');
@@ -89,6 +96,11 @@ const TicketingSupportSystemPage = () => {
     fetchTickets();
     fetchActiveUsers();
   }, []);
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, categoryFilter, statusFilter, productFilter]);
 
   useEffect(() => {
     if (selectedTicket) {
@@ -177,6 +189,7 @@ const TicketingSupportSystemPage = () => {
     setCategoryFilter('all');
     setStatusFilter('all');
     setProductFilter('all');
+    setCurrentPage(1);
   };
 
   const handleSort = (field: typeof sortField) => {
@@ -202,6 +215,7 @@ const TicketingSupportSystemPage = () => {
     </th>
   );
 
+  // --- Filtering Logic ---
   let filteredTickets = [...tickets];
   if (categoryFilter !== 'all') filteredTickets = filteredTickets.filter(i => i.category === categoryFilter);
   if (statusFilter !== 'all') filteredTickets = filteredTickets.filter(i => i.status === statusFilter);
@@ -216,6 +230,7 @@ const TicketingSupportSystemPage = () => {
     );
   }
 
+  // --- Sorting Logic ---
   filteredTickets.sort((a, b) => {
     let aVal = sortField === 'assignee' ? (a.assignee?.name || '') : (a as any)[sortField] || '';
     let bVal = sortField === 'assignee' ? (b.assignee?.name || '') : (b as any)[sortField] || '';
@@ -225,6 +240,11 @@ const TicketingSupportSystemPage = () => {
     }
     return sortDirection === 'asc' ? aVal.toString().localeCompare(bVal.toString()) : bVal.toString().localeCompare(aVal.toString());
   });
+
+  // --- Pagination Logic ---
+  const totalPages = Math.ceil(filteredTickets.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedTickets = filteredTickets.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const stats = [
     { label: 'Total', value: tickets.length, color: 'bg-slate-500', text: 'text-slate-600 dark:text-slate-300' },
@@ -334,7 +354,7 @@ const TicketingSupportSystemPage = () => {
                 </tr>
               </thead>
               <tbody className='divide-y divide-slate-100 dark:divide-slate-700'>
-                {filteredTickets.map(ticket => (
+                {paginatedTickets.map(ticket => (
                   <tr
                     key={ticket._id}
                     className='group hover:bg-blue-50/30 dark:hover:bg-slate-700/50 transition-colors cursor-pointer'
@@ -389,6 +409,64 @@ const TicketingSupportSystemPage = () => {
               </tbody>
             </table>
           </div>
+
+          {/* Pagination Controls */}
+          <div className='px-6 py-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/30 flex flex-col sm:flex-row items-center justify-between gap-4'>
+            <p className='text-xs text-slate-500 dark:text-slate-400'>
+              Showing <span className='font-medium text-slate-700 dark:text-slate-200'>{filteredTickets.length > 0 ? startIndex + 1 : 0}</span> to{' '}
+              <span className='font-medium text-slate-700 dark:text-slate-200'>
+                {Math.min(startIndex + ITEMS_PER_PAGE, filteredTickets.length)}
+              </span> of{' '}
+              <span className='font-medium text-slate-700 dark:text-slate-200'>{filteredTickets.length}</span> results
+            </p>
+            
+            <div className='flex items-center gap-2'>
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className='p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-all'
+              >
+                <ChevronLeft className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+              </button>
+              
+              <div className='flex items-center gap-1'>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+                  // Basic logic to show current, first, last, and neighboring pages
+                  if (
+                    pageNum === 1 || 
+                    pageNum === totalPages || 
+                    (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+                  ) {
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${
+                          currentPage === pageNum
+                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
+                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  } else if (pageNum === currentPage - 2 || pageNum === currentPage + 2) {
+                    return <span key={pageNum} className="text-slate-400 text-[10px]">...</span>;
+                  }
+                  return null;
+                })}
+              </div>
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages || totalPages === 0}
+                className='p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-all'
+              >
+                <ChevronRight className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+              </button>
+            </div>
+          </div>
+
           {filteredTickets.length === 0 && (
             <div className='p-12 text-center text-slate-400 dark:text-slate-600'>
               <div className='mb-2 text-3xl'>🔍</div>

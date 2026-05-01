@@ -19,7 +19,7 @@ const executive: TeamMember[] = [
     name: "Marcus Aurelius",
     role: "Project Manager",
     image: "/staffs/p1.png",
-    bio: "dsadsad"
+    bio: "Visionary strategist dedicated to turning complex problems into elegant, scalable solutions."
   },
   {
     name: "Jane Doe",
@@ -97,10 +97,12 @@ const Team: React.FC = () => {
         <div className="text-center mb-20 space-y-6">
           
           <h2 className="text-5xl md:text-6xl tracking-tight text-[#0A261F] leading-tight">
-            We are the <span className="text-[#3CBDE6] font-semibold">people</span> who<br className="hidden md:block" /> make up <span className="text-[#3CBDE6] font-semibold">Opsie</span>
+            Great works <span className="text-[#3CBDE6] font-semibold">starts</span> with <br className="hidden md:block" /> great<span className="text-[#3CBDE6] font-semibold"> People</span>
           </h2>
           <p className="max-w-3xl mx-auto text-xl text-[#4A5E57] leading-relaxed">
-            Our philosophy is simple; hire great people and give them the resources and support to do their best work.
+            We’re a team of builders, thinkers, and problem-solvers who
+ focus on making systems work better.
+
           </p>
         </div>
 

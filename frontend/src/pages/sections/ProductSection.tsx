@@ -4,9 +4,14 @@ import '../../styles/ProductSection.css';
 import { useNavigate } from "react-router-dom";
 import { products } from "@/data/productsData";
 import "aos/dist/aos.css";
+import { usePageContent } from "@/data/usePageContent";
+import { useState } from "react";
 
 function ProductSection() {
+
   const navigate = useNavigate();
+  const [ contents ] = useState(usePageContent.data[0].productsSection)
+
 
   return (
     <section
@@ -52,15 +57,15 @@ function ProductSection() {
           <div className="mt-16 flex flex-col items-center text-center space-y-8">
             <div className="max-w-3xl">
                <p data-aos="fade-up" className="text-gray-500 text-lg leading-relaxed">
-                Our product suite is built on a foundation of security, speed, and 
-                user-centric design. Can't find exactly what you're looking for? 
-                Check out our full catalog of specialized business solutions.
+                {
+                  contents.subHeader
+                }
               </p>
             </div>
 
           <div data-aos="zoom-in">
             <button
-              onClick={() => navigate(`/products`)}
+              onClick={() => navigate(contents.link)}
               className="
                 px-10 py-4
                 rounded-2xl font-bold uppercase tracking-widest text-xs
@@ -75,7 +80,9 @@ function ProductSection() {
                 hover:-translate-y-1
               "
             >
-              View Full Catalog
+              {
+                contents.buttonText
+              }
             </button>
           </div>
           </div>
