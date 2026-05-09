@@ -8,8 +8,13 @@ import ContactForm from '@/components/cards/ContactForm';
 import ContactsCard from '@/components/cards/ContactsCard';
 import ContactBg from '../assets/visuals/Contact-bg.png';
 import MapCard from '@/components/cards/MapCard';
+import { useContext } from 'react';
+import { ContentContext } from '@/App';
+import SuperHeader from '@/types/components/SuperHeader';
 
 function ContactUsPage() {
+
+  const content = useContext(ContentContext)
   const navigate = useNavigate();
 
   return (
@@ -25,12 +30,10 @@ function ContactUsPage() {
 
         <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-24 px-6 md:px-12 text-white text-left">
           <div data-aos="fade-right">
-            <h1 className="max-w-[750px] font-poppins text-[42px] leading-[46px] md:text-[72px] md:leading-[82px] font-bold">
-              Let’s Talk About <br />
-              <span className="text-[#3CBDE6]">What’s on your Mind.</span>
-            </h1>
+            <SuperHeader text={content?.contactUsPage.header} type='hero' />
+        
             <p className="mt-8 text-lg md:text-2xl font-light max-w-xl text-gray-200">
-              Whether you have a question about features, pricing, or a custom solution, our team is ready to help.
+              {content?.contactUsPage.subHeader} 
             </p>
           </div>
 
@@ -73,7 +76,7 @@ function ContactUsPage() {
               </div>
             </ContactsCard>
 
-            <ContactsCard title="Digital Socials">
+            <ContactsCard title="Follow us on Social Media">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { Icon: SiFacebook, label: "Facebook", link: "#" },
@@ -91,8 +94,8 @@ function ContactUsPage() {
 
             <div className="bg-[#242424] p-8 md:p-10 rounded-3xl text-white relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3CBDE6] opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
-              <h3 className="text-3xl font-bold mb-4">Meet us Virtually</h3>
-              <p className="mb-8 text-gray-400 font-light leading-relaxed">Prefer a face-to-face chat? Let’s hop on a call to dive deeper into your project goals.</p>
+              <h3 className="text-3xl font-bold mb-4">Meet With Us Online</h3>
+              <p className="mb-8 text-gray-400 font-light leading-relaxed">Rather meet online than in person? We’re just a call away.</p>
               <button 
                 onClick={() => navigate("/book-a-schedule")}
                 className="w-full bg-[#3CBDE6] text-white py-4 rounded-xl font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg relative z-10"

@@ -6,10 +6,13 @@ import leftArrow from '../../assets/icons/left-arrow1.svg'
 import rightArrow from '../../assets/icons/right-arrow.svg'
 
 import { reviews } from "@/data/clientReviewsData";
+import { usePageContent } from "@/data/usePageContent";
+import SuperHeader from "@/types/components/SuperHeader";
 
 
 const ClientReview: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [ content ] = useState(usePageContent.data[0].clientSection)
 
   
 
@@ -27,9 +30,10 @@ const ClientReview: React.FC = () => {
 
 <div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
       
+        <SuperHeader text={content.header} />
 
-        <h1 className="items-center md:text-start  leading-[35px] md:leading-[52px] tracking-[2px] font-poppins text-center leading-[35px] tracking-[2px] text-[32px] md:text-[50px]">
-          Simple,<span className="text-[#3CBDE6] font-semibold"><br/>Connected,</span> and Built around you </h1>
+        <p>We take the time to get it right, so everything works better for your business.</p>
+       
           
         <div className="hidden md:flex items-center gap-x-4 mb:8 md:mb-20">
           <Button

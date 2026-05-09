@@ -1,12 +1,13 @@
 import logoOnly from '../assets/opsie/opsie_logo.png'
 import EncourageCard from './cards/EncourageCard';
 import { SiFacebook, SiInstagram, SiGmail } from 'react-icons/si';
-import { useNavigate } from 'react-router-dom';
+import { usePageContent } from '@/data/usePageContent';
+import { useState } from 'react';
 
 
 const Footer = () => {
 
-  const navigate = useNavigate()
+  const [ content ] = useState(usePageContent.data[0].footerSection)
 
   return (
     <div className="relative w-full  flex justify-center py-6 md:px-4 px-2 overflow-hidden">
@@ -36,14 +37,10 @@ const Footer = () => {
              */
           }
 
-          <h1 className="text-4xl font-semibold">
-            <span className="text-[#3CBDE6] font-bold">Opsie’s</span> Partner Network
-          </h1>
-
           <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
-            Opsie bridges the gap between fragmented workflows and seamless automation.
-            Our partner network is designed for developers, enterprise architects,
-            and IT leaders who need high-performance tools that talk to each other out of the box.
+            {
+              content.subHeader
+            }
           </p>
         </div>
 
@@ -85,39 +82,41 @@ const Footer = () => {
           <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center w-full">
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Home</h3>
+              <h3 className="font-bold text-lg mb-3">Quick Links</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="/who-we-are">About</a>
+                  <a href="/who-we-are">About Us</a>
                 </li>
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="/#what-we-do">Service Offers</a>
+                  <a href="/products">Our Products</a>
                 </li>
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="/products">Products</a>
+                  <a href="/contact-us">Contact Us</a>
                 </li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">Contact Us</li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-3">What We do</h3>
+              <h3 className="font-bold text-lg mb-3">Company</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className=" hover:text-[#3CBDE6] cursor-pointer">Services</li>
-                <li className=" hover:text-[#3CBDE6] cursor-pointer">Why Choose Us</li>
-                <li className=" hover:text-[#3CBDE6] cursor-pointer">Clients</li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">FAQ’s</li>
+                <li className=" hover:text-[#3CBDE6] cursor-pointer">
+                  <a href="/what-we-do">Why Opsie</a>
+                </li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                  <a href="">Our Team</a>
+                </li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                  <a href="">FAQ's</a>
+                </li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold text-lg mb-3">Who We Are</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:text-[#3CBDE6] cursor-pointer">Vision</li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">Partnership</li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">Location</li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">FAQ’s</li>
-                <li onClick={()=> navigate("/admin") } className="hover:text-[#3CBDE6] cursor-pointer">Admin</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">Our Story</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">Our Mission</li>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">Our Vision</li>
               </ul>
             </div>
 

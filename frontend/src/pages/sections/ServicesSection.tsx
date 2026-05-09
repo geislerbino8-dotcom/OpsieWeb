@@ -1,3 +1,4 @@
+import HighlightedText from "@/types/components/SuperHeader";
 import ServicesCards from "../../components/cards/ServicesCards";
 import '../../styles/ServicesSection.css'
 import { usePageContent } from "@/data/usePageContent";
@@ -23,15 +24,8 @@ function ServicesSection() {
     >
       {/* Header Section */}
       <div className="text-center max-w-4xl mb-16 space-y-4">
-        
-        <h1 
-          className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
-          data-aos="fade-down"
-          data-aos-delay="100"
-        >
-          Opsie's <span className="text-[#3CBDE6]">Services</span> with 
-          <span className="font-playfair italic text-[#3CBDE6]"> Excellence</span>
-        </h1>
+        <HighlightedText text={contents.header} />
+      
         <p 
           className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-light"
           data-aos="fade-down"

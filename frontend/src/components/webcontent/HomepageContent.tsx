@@ -1,13 +1,16 @@
-import HeroPageCMS from './sections/HeroPageCMS'
+
 import AboutPageCMS from './sections/AboutPageCMS'
-import ServicesPageCMS from './sections/ServicesPageCMS'
-import ProductSectionCMS from './sections/ProductSectionCMS'
 import ClientSectionCMS from './sections/ClientSectionCMS'
-import PartnerSectionCMS from './sections/PartnerSectionCMS'
 import ContactUsSectionCMS from './sections/ContactUsSectionCMS'
-import ProductItemCTACMS from './sections/ProductItemCTACMs'
 import FaqSectionCMS from './sections/FaqSectionCMS'
 import FooterCMS from './sections/FooterCMS'
+import HeroPageCMS from './sections/HeroPageCMS'
+import PartnerSectionCMS from './sections/PartnerSectionCMS'
+import ProductItemCTACMS from './sections/ProductItemCTACMs'
+import ProductSectionCMS from './sections/ProductSectionCMS'
+import ServicesPageCMS from './sections/ServicesPageCMS'
+
+
 
 function HomepageContent() {
   return (
@@ -20,10 +23,9 @@ function HomepageContent() {
       <PartnerSectionCMS />
       <ContactUsSectionCMS />
       <FaqSectionCMS />
-      <ProductItemCTACMS/>
+      <ProductItemCTACMS />
       <FooterCMS />
       
-
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { updateContent } from "@/api/updateContent";
-import { usePageContent } from "@/data/usePageContent";
-import React, { useState, } from "react";
+import React, { useContext, useEffect, useState, } from "react";
+import { WebContentContext } from "../WebContentFrom";
 
 interface HeroSection {
   header: string;
@@ -9,15 +9,28 @@ interface HeroSection {
 }
 
 const ClientSectionCMS: React.FC = () => {
-  const [formData] = useState<HeroSection>(usePageContent.data[0].clientSection);
+
+  const content = useContext(WebContentContext)
+  const [formData, setFormData ] = useState<HeroSection | null >(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  useEffect(()=> {
+    if(content?.clientSection){
+      setFormData(content.clientSection)
+    }
+  }, [content])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => (prev ? { ...prev, [name]: value } : null));
+    };
 
   const saveChanges = async ()=> {
     
     try {
         const update = await updateContent({
           id: "69ed83215f12c5a147e02160",
-          path: "heroSection",
+          path: "clientSection",
           value: formData
         })
 
@@ -30,16 +43,23 @@ const ClientSectionCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">Edit Hero Section</h2>
+            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">Edit Client Section</h2>
             
+            <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold text-gray-600">Header</label>
+                <input
+                  name="header"
+                  className="p-2 border rounded-lg outline-none focus:ring-2 focus:ring-purple-500"
+                  value={formData?.header || ""}
+                  onChange={handleChange}
+                />
+            </div>
          
-
-    
 
             <button 
               onClick={() => {
@@ -60,21 +80,19 @@ const ClientSectionCMS: React.FC = () => {
           </div>
         ) : (
           /* --- LIVE PREVIEW VIEW --- */
-          <div className="text-center">
+          <div className="text-center cursor-pointer group relative"
+          
+            onClick={()=> setIsEditing(true)}
+          >
 
-            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData.header}</h2>
+             <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
+              <span className="text-blue-600 font-semibold">Click to Edit</span>
+            </div>
+
+            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData?.header}</h2>
 
 
             
-
-            <div className="mt-10 pt-6 border-t border-gray-100">
-              <button 
-                onClick={() => setIsEditing(true)}
-                className="text-gray-400 hover:text-blue-500 text-sm flex items-center justify-center gap-2 w-full transition-colors"
-              >
-                <span>⚙️</span> Edit Content
-              </button>
-            </div>
           </div>
         )}
 

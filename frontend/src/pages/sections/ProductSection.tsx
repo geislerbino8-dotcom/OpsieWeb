@@ -6,6 +6,7 @@ import { products } from "@/data/productsData";
 import "aos/dist/aos.css";
 import { usePageContent } from "@/data/usePageContent";
 import { useState } from "react";
+import SuperHeader from "@/types/components/SuperHeader";
 
 function ProductSection() {
 
@@ -26,9 +27,10 @@ function ProductSection() {
                <div className="absolute inset-0 bg-[#3CBDE6]/20 blur-xl rounded-full"></div>
                <img src={LogoOnly} alt="Opsie Logo" className="spin-slow w-16 h-16 relative z-10" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#242424] tracking-tight">
-              <span className="text-[#3CBDE6]">Opsie's</span> Products
-            </h1>
+            <div className="w-1/2">
+              <SuperHeader text={contents.header} />
+            </div>
+       
           </div>
           
           

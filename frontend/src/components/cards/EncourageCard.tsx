@@ -1,4 +1,5 @@
 import { usePageContent } from "@/data/usePageContent";
+import SuperHeader from "@/types/components/SuperHeader";
 import { useState } from "react";
 
 function EncourageCard() {
@@ -9,17 +10,7 @@ function EncourageCard() {
     <div className="flex flex-col items-center justify-center bg-[#3CBDE6] rounded-2xl p-8 md:p-12 text-center">
 
       {/* Heading */}
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold leading-snug mb-4">
-        <span className="text-black font-bold">Your</span>{" "}
-        <span className="text-white">Vision.</span>{" "}
-        <span className="text-black font-bold">Our</span>{" "}
-        <span className="text-white">Expertise.</span>{" "}
-        <span className="text-black font-bold">One</span>
-        <br />
-        <span className="text-white font-semibold">
-          Powerful Collaboration.
-        </span>
-      </h1>
+      <SuperHeader text="Smarter systems, built around your business" />
 
       {/* Description */}
       <p className="text-white/90 text-sm md:text-base max-w-2xl mb-6 leading-relaxed">

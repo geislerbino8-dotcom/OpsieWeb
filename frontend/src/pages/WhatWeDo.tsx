@@ -6,6 +6,7 @@ import WhyChooseUs from "../components/sections/WhyChooseUs";
 import { useNavigate } from "react-router-dom";
 import { usePageContent } from "@/data/usePageContent";
 import { useState } from "react";
+import SuperHeader from "@/types/components/SuperHeader";
 
 const imageLogos = [
   { src: "/staff/p5.jpg", alt: "Company 1" },
@@ -119,13 +120,11 @@ export default function WhatWeDo() {
         {/* Intro Heading */}
      <div className="flex flex-col md:flex-row justify-between items-start gap-8">
   {/* Left: Heading - items-start ensures it sits at the top */}
-  <h2 
-    data-aos="fade-up" 
-    className="md:w-1/2 text-4xl md:text-5xl leading-tight text-center md:text-left"
-  >{
+
+  <SuperHeader text={
     content.secondSection.header
-  }
-  </h2>
+  } />
+ 
 
   {/* Right: Paragraph - md:mt-2 helps "visually" align the smaller text with the large header text */}
   <p 

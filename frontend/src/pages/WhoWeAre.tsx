@@ -5,6 +5,9 @@ import FAQAccordion from "../components/FaqSection/Faq";
 import CountUp from "../components/CountUp";
 import MapDesign from "@/components/sections/MapDesign";
 import Team from "@/components/Team";
+import SuperHeader from "@/types/components/SuperHeader";
+import { useContext } from "react";
+import { ContentContext } from "@/App";
 
 const myLogos = [
   { node: <span className="font-bold overflow-hidden">INNOVATION</span> },
@@ -14,7 +17,11 @@ const myLogos = [
 
 
 export default function WhoWeAre() {
+
+
+  const content = useContext(ContentContext)
   const navigate = useNavigate();
+
 
   return (
     <div className="w-full overflow-x-hidden text-center">
@@ -37,14 +44,17 @@ export default function WhoWeAre() {
         {/* Content Wrapper - Centered to match your site's max-width */}
         <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-20 md:pb-32 px-6 md:px-12 text-white">
           
+
+            
+
           <div className="flex flex-col items-center md:items-start w-full">
-            <h1 data-aos="fade-right" className="max-w-[850px] text-[42px] leading-[46px] md:text-[72px] md:leading-[82px] text-center md:text-left ">
-              We are<br className="hidden md:block" />
-              <span className="font-semibold text-[#3CBDE6]">Opsie Software Solutions</span>
-            </h1>
+            <SuperHeader text={content?.whoWeArePage.header} type="hero" />
+
+            <p className="text-3xl bg-black"> empowering businesses through smarter technology.</p>
+            
             
             <p data-aos="fade-up" className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
-                Your all-in-one partner for simple, connected systems
+                { content?.whoWeArePage.subHeader}
             </p>
 
             <div data-aos="fade-up" data-aos-delay="400" className="mt-10">
@@ -84,20 +94,15 @@ export default function WhoWeAre() {
          <div className="flex flex-col items-center justify-center md:flex-row gap-2 md:gap-16  sm:px-[4%] md:px-[6%]">
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-0 md:gap-0  lg:mt-10">
             <div className="flex flex-col items-center md:items-start justify-center md:w-1/2 gap-6 md:gap-10 px-2 md:mt-0">
-            <h1 data-aos="fade-right" className="w-full md:w-[410px] lg:w-[600px]  text-center md:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[50px] md:leading-[42px] lg:leading-[65px]">
-                Built for <span className="text-[#3CBDE6] font-semibold">real </span>
-                business needs<br />
-                {/**                <span className="font-playfair italic text-[#3CBDE6] font-semibold">Smart Technology</span>
- */}
-            </h1>
+            
+           <div className="text-left">
+             <SuperHeader text={content?.whoWeArePage.section2.header} />
+           </div>
+
+          
             <p data-aos="fade-right" data-aos-delay="200" className="w-full md:w-[320px] lg:w-[450px] text-center md:text-left text-[16px] sm:text-[14px] md:text-[18px] font-light">
-                We built Opsie for businesses that need their systems to just work.
-
-                As operations grow, things get more complex, tools stop connecting, 
-                and processes become harder to manage. 
-
-                We help simplify that, bringing everything together so your systems 
-                are easier to run, easier to maintain, and built to support your growth.            </p>
+                {content?.whoWeArePage.section2.subHeader}        
+            </p>
 
             {/**
              * <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
@@ -255,12 +260,11 @@ export default function WhoWeAre() {
                         </div>
                     </div>
                             <div className="flex flex-col items-center lg:items-start gap-6 md:gap-4  mt-10">
-                                <h1 data-aos="fade-left" data-aos-offset="50" data-aos-delay="300" className="w-full text-center lg:text-left leading-[34px] text-[36px] md:text-[40px] lg:text-[44px] md:leading-[50px]">From a simple <span className="text-[#3CBDE6] font-semibold">idea</span> to <span className="font-playfair italic text-[#3CBDE6] font-semibold">Practical Solutions</span></h1>
+                                <div className="text-left">
+                                    <SuperHeader text={content?.whoWeArePage.section3.header} />
+                                </div>
                                 <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full text-center lg:text-left text-[16px] sm:text-[16px]">
-                                            Opsie Software Solutions started with a simple idea, to make systems easier for businesses to manage and actually use.
-
-<br/><span className="">What began as a small step has grown into a team focused on helping businesses solve real problems and improve how they operate.</span>
-
+                                    {content?.whoWeArePage.section3.subHeader}
                                 </p>
                                 </div>
                                 </div>
@@ -273,8 +277,9 @@ export default function WhoWeAre() {
                             >
                             </div>
                             <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#3CBDE6] font-semibold">Vision</span></h1>
-                            <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">Our vision is to become a trusted leader in digital innovation, empowering businesses through modern technology, scalable solutions, and transformative software that shapes the future of the digital world.
-                             </p>
+                            <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
+                             {content?.whoWeArePage.section4.vision}
+                            </p>
                         </div>
                 </div>
                 <div className="flex items-center justify-center lg:ml-20 ">
@@ -284,7 +289,7 @@ export default function WhoWeAre() {
                         <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[190px] h-[380px] lg:w-[210px] lg:h-[440px] xl:w-[250px] xl:h-[500px]  rounded-3xl lg:ml-6 xl:ml-0">
                             <img src="/vision1st-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
                         </div>
-                    </div>
+                    </div>  
 
                     {/* Right Top Small */}
                     <div className="md:col-span-1">
@@ -358,7 +363,8 @@ export default function WhoWeAre() {
                             >
                             </div>
                             <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#3CBDE6] font-semibold">Mission</span></h1>
-                            <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">Our mission is to develop reliable, secure, and innovative software solutions that help businesses improve efficiency, enhance digital experiences, and grow in the modern technological landscape.
+                            <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
+                                {content?.whoWeArePage.section5.mission}
                              </p>
                         </div>
                 </div>

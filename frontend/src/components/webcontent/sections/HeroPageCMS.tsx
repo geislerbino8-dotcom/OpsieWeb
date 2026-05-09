@@ -1,61 +1,74 @@
 import { updateContent } from "@/api/updateContent";
-import { usePageContent } from "@/data/usePageContent";
-import React, { useState, } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { WebContentContext } from "../WebContentFrom";
 
 interface HeroSection {
   header: string;
   subHeader: string;
-  button: string
-  link: string
+  button: string;
+  link: string;
 }
 
 const HeroPageCMS: React.FC = () => {
-  const [formData, setFormData] = useState<HeroSection>(usePageContent.data[0].heroSection);
+  const content = useContext(WebContentContext);
+  const [formData, setFormData] = useState<HeroSection | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
+  // Sync state with context when content loads
+  useEffect(() => {
+    if (content?.heroSection) {
+      setFormData(content.heroSection);
+    }
+  }, [content]); // Added dependency array
 
-  const handleChange =async (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-
-    console.log(name)
-
-
-    setFormData((prev) => ({ ...prev, [name]: value }));
-
-  
+    setFormData((prev) => (prev ? { ...prev, [name]: value } : null));
   };
 
-  const saveChanges = async ()=> {
-    
+  const saveChanges = async () => {
+    if (!formData) return;
+
     try {
-        const update = await updateContent({
-          id: "69ed83215f12c5a147e02160",
-          path: "heroSection",
-          value: formData
-        })
+      const update = await updateContent({
+        id: "69ed83215f12c5a147e02160",
+        path: "heroSection",
+        value: formData,
+      });
 
-        console.log(update)
+      console.log("Update success:", update);
+      setIsEditing(false);
     } catch (error) {
-        console.log(error)
+      console.error("Error updating content:", error);
     }
-  }
+  };
 
+  const handleCancel = () => {
+    // Reset form data to the original context values
+    setFormData(content?.heroSection || null);
+    setIsEditing(false);
+  };
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
-        
+      <div
+        className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${
+          isEditing ? "border-blue-500" : "border-transparent"
+        }`}
+      >
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">Edit Hero Section</h2>
-            
+            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">
+              Edit Hero Section
+            </h2>
+
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold text-gray-600">Header</label>
               <input
                 name="header"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.header}
+                value={formData?.header || ""}
                 onChange={handleChange}
               />
             </div>
@@ -65,7 +78,7 @@ const HeroPageCMS: React.FC = () => {
               <textarea
                 name="subHeader"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none min-h-[100px]"
-                value={formData.subHeader}
+                value={formData?.subHeader || ""}
                 onChange={handleChange}
               />
             </div>
@@ -75,52 +88,48 @@ const HeroPageCMS: React.FC = () => {
               <input
                 name="button"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.button}
+                value={formData?.button || ""}
                 onChange={handleChange}
               />
             </div>
 
-            <button 
-              onClick={() => {
-                saveChanges()
-                setIsEditing(false)
-              }}
-              className="w-full py-3 mt-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors"
-            >
-              Save Changes
-            </button>
-
-            <button
-                onClick={()=> setIsEditing(false)}
-                className="w-full py-3 mt-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors"
-            >
-                Cancel
-            </button>
-          </div>
-        ) : (
-          /* --- LIVE PREVIEW VIEW --- */
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
-              {formData.header}
-            </h1>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              {formData.subHeader}
-            </p>
-            <button className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-all">
-              {formData.button}
-            </button>
-
-            <div className="mt-10 pt-6 border-t border-gray-100">
-              <button 
-                onClick={() => setIsEditing(true)}
-                className="text-gray-400 hover:text-blue-500 text-sm flex items-center justify-center gap-2 w-full transition-colors"
+            <div className="flex flex-col gap-2 pt-2">
+              <button
+                onClick={saveChanges}
+                className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors"
               >
-                <span>⚙️</span> Edit Content
+                Save Changes
+              </button>
+
+              <button
+                onClick={handleCancel}
+                className="w-full py-3 bg-gray-400 hover:bg-gray-500 text-white font-bold rounded-lg transition-colors"
+              >
+                Cancel
               </button>
             </div>
           </div>
-        )}
+        ) : (
+          /* --- LIVE PREVIEW VIEW --- */
+          <div
+            className="text-center cursor-pointer group relative"
+            onClick={() => setIsEditing(true)}
+          >
+            <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
+              <span className="text-blue-600 font-semibold">Click to Edit</span>
+            </div>
 
+            <h2 className="font-bold text-3xl text-gray-900">
+              {formData?.header}
+            </h2>
+            <p className="p-4 text-gray-600 leading-relaxed">
+              {formData?.subHeader}
+            </p>
+            <button className="bg-[#3CBDE6] hover:bg-[#2faacc] text-white px-8 py-3 rounded-full font-medium transition-colors">
+              {formData?.button}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

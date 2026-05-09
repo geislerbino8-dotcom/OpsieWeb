@@ -57,8 +57,7 @@ export default class TicketRoute {
     );
 
     this.router.patch(
-      '/update/:id',
-      authMiddleware,
+      '/update/:id',      authMiddleware,
       requirePermission(PERMISSIONS.TICKET_UPDATE) || adminMiddleware,
       this.controller.updateTicket
     );

@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Plus } from "lucide-react";
 import { faqs } from "@/data/faqData";
+import { ContentContext } from "@/App";
+import SuperHeader from "@/types/components/SuperHeader";
+
 
 const FAQAccordion = () => {
+
+  const content = useContext(ContentContext)
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (index: number) => {
@@ -15,10 +20,8 @@ const FAQAccordion = () => {
         
         {/* Left Side: Header Content */}
         <div className="lg:w-1/3 sticky top-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Got Questions? <br />
-            <span className="text-[#3CBDE6]">We've Got Answers</span>
-          </h2>
+          <SuperHeader text={content?.faqSection.header} />
+        
           <p className="mt-6 text-lg text-gray-500 font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for? 
             <span className="text-[#3CBDE6] font-medium cursor-pointer hover:underline ml-1"><a href="/contact-us">Reach out to us.</a></span>

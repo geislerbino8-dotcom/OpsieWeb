@@ -14,7 +14,6 @@ const EncourageCTACMS: React.FC = () => {
   const [formData, setFormData] = useState<HeroSection>(usePageContent.data[0].encouragecard);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  console.log(formData)
 
   const handleChange =async (e: any) => {
     const { name, value } = e.target;
@@ -44,7 +43,8 @@ const EncourageCTACMS: React.FC = () => {
 
 
   return (
-    <div className="w-full flex items-center justify-center bg-gray-50 p-6">
+    <div className="w-full flex items-center justify-center bg-gray-50 p-6"
+    >
       <div className={`w-full p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
         
         {isEditing ? (
@@ -82,10 +82,6 @@ const EncourageCTACMS: React.FC = () => {
               />
             </div>
             
-         
-
-    
-
             <button 
               onClick={() => {
                 saveChanges()
@@ -105,22 +101,14 @@ const EncourageCTACMS: React.FC = () => {
           </div>
         ) : (
           /* --- LIVE PREVIEW VIEW --- */
-          <div className="text-center">
+          <div className="text-center bg-[#3CBDE6] p-2"
+            onClick={()=> {setIsEditing(true)}}
+          >
 
             <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData.header}</h2>
-            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData.subHeader}</h2>
-            <button >{formData.button.text}</button>
+            <p className="text-white text-center mb-2">{formData.subHeader}</p>
+            <button className="bg-white p-2 my-3" >{formData.button.text}</button>
 
-            
-
-            <div className="mt-10 pt-6 border-t border-gray-100">
-              <button 
-                onClick={() => setIsEditing(true)}
-                className="text-gray-400 hover:text-blue-500 text-sm flex items-center justify-center gap-2 w-full transition-colors"
-              >
-                <span>⚙️</span> Edit Content
-              </button>
-            </div>
           </div>
         )}
 
