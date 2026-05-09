@@ -1,11 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import MapCard from "@/components/cards/MapCard";
 import ContactForm from "../../components/cards/ContactForm";
 import contactbg from '../../assets/background-images/contactusbg.jpg';
 import { Mail, MapPin, Phone } from "lucide-react";
+import { usePageContent } from "@/data/usePageContent";
+import { PlayCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ContactUsSection: React.FC = () => {
+
+  const [ content ] = useState(usePageContent.data[0].contactUsSection)
+  const navigate = useNavigate()
+
   return (
+
+
     <section className="relative w-full flex flex-col items-center pt-24 pb-20 px-2 md:px-6 overflow-hidden">
       
       {/* 1. Base Mesh Gradient Overlay */}
@@ -27,13 +36,24 @@ const ContactUsSection: React.FC = () => {
         {/* Header Area */}
         <div className="text-center mb-16 max-w-3xl" data-aos="fade-up">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
-            Get in <span className="italic">Touch</span> with Our 
-            <span> Team</span> 
+            {
+              content.header
+            }
           </h1>
           <p className="text-blue-50/90 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-            Ready to build something amazing? We’re here to help you scale your digital 
-            ecosystem with speed and precision.
+            {
+              content.subHeader
+            }
           </p>
+
+           <div className="flex justify-center">
+            <button 
+              onClick={()=> navigate('/contact-us')}
+              className="group relative my-10 flex items-center gap-3 bg-white text-[#29A6CC] px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:bg-[#29A6CC] hover:text-white hover:-translate-y-1 active:scale-95">
+              <PlayCircle className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+              Request a Demo
+            </button>
+          </div>
         </div>
 
         {/* Form & Map Section */}
@@ -58,12 +78,12 @@ const ContactUsSection: React.FC = () => {
             title="Email Us"
             detail="inquiry@opsiesoftwaresolutions.com"
             href="mailto:inquiry@opsiesoftwaresolutions.com"
-            paddingClass="px-4" // Explicitly passing the padding class
+            paddingClass="px-4" 
           />
           <ContactDetail 
             icon={<MapPin className="w-6 h-6" />}
             title="Visit Us"
-            detail="Main Tech Hub, Innovation Drive"
+            detail="Sunplaza Bldg. Princeton St. Shaw Blvd., Mandaluyong City"
             href="#" 
           />
           <ContactDetail 

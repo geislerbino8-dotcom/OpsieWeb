@@ -70,14 +70,38 @@ export default function TicketTimeline({ ticketId }: Props) {
                   {item.changes.map((change, i) => {
                     // Specialized rendering for Resolution field
                     if (change.field === 'resolution' && change.newValue) {
+                      const isUrl = change.newValue.startsWith('http');
+                      const isImage = /\.(jpg|jpeg|png|webp|avif|gif)$/i.test(change.newValue);
+
                       return (
                         <div key={i} className='bg-blue-50/50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 rounded-lg p-3 my-2'>
                           <span className='text-[10px] font-bold uppercase text-blue-600 dark:text-blue-400 block mb-1'>
-                            Resolution Note
+                            Resolution
                           </span>
-                          <p className='text-slate-700 dark:text-slate-300 text-xs italic'>
-                            {change.newValue}
-                          </p>
+                          
+                          {isUrl ? (
+                            <div className="space-y-2">
+                              <a 
+                                href={change.newValue} 
+                                target='_blank' 
+                                rel="noreferrer"
+                                className='text-blue-600 dark:text-blue-400 text-xs italic hover:underline break-all block'
+                              >
+                                {change.newValue}
+                              </a>
+                              {isImage && (
+                                <img 
+                                  src={change.newValue} 
+                                  alt="Resolution attachment" 
+                                  className="max-w-full h-32 object-cover rounded-md border border-slate-200 dark:border-slate-700"
+                                />
+                              )}
+                            </div>
+                          ) : (
+                            <p className='text-slate-700 dark:text-slate-300 text-xs leading-relaxed'>
+                              {change.newValue}
+                            </p>
+                          )}
                         </div>
                       );
                     }

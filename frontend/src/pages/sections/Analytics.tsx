@@ -3,6 +3,7 @@
 import AnalyticsCards from "../../components/cards/AnalyticsCards";
 import OpsieLogo from "../../assets/icons/opsie_logo_only.png";
 import LineImg from "../../assets/background-images/LineBG.png";
+import { usePageContent } from "@/data/usePageContent";
 
 function Analytics() {
 
@@ -41,8 +42,9 @@ function Analytics() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Quibusdam accusamus fugit quod alias consequatur non quisquam.
+            {
+              usePageContent.data[0].analytics.subHeader
+            }
           </p>
 
         </div>

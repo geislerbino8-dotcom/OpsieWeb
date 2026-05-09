@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { SiFacebook, SiInstagram, SiGmail, SiGithub } from "react-icons/si";
 import LogoLoop from "@/components/LogoLoop";
-// Internal Components
-import { Button } from "../components/Button/Button";
 import FAQAccordion from "../components/FaqSection/Faq";
 import CountUp from "../components/CountUp";
 import MapDesign from "@/components/sections/MapDesign";
@@ -41,12 +39,12 @@ export default function WhoWeAre() {
           
           <div className="flex flex-col items-center md:items-start w-full">
             <h1 data-aos="fade-right" className="max-w-[850px] text-[42px] leading-[46px] md:text-[72px] md:leading-[82px] text-center md:text-left ">
-              A Team of Builders, <br className="hidden md:block" />
-              <span className="font-semibold text-[#3CBDE6]">Thinkers, and Problem-Solvers</span>
+              We are<br className="hidden md:block" />
+              <span className="font-semibold text-[#3CBDE6]">Opsie Software Solutions</span>
             </h1>
             
             <p data-aos="fade-up" className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
-              Driven by innovation and collaboration, we turn complex challenges into simple, effective digital solutions.
+                Your all-in-one partner for simple, connected systems
             </p>
 
             <div data-aos="fade-up" data-aos-delay="400" className="mt-10">
@@ -54,7 +52,7 @@ export default function WhoWeAre() {
                 onClick={() => navigate("/what-we-do")}
                 className="bg-white text-black px-12 py-3 font-semibold hover:bg-[#3CBDE6] hover:text-white transition-all duration-500 uppercase tracking-widest shadow-lg"
               >
-                Learn More
+                Get to Know
               </button>
             </div>
           </div>
@@ -87,21 +85,29 @@ export default function WhoWeAre() {
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-0 md:gap-0  lg:mt-10">
             <div className="flex flex-col items-center md:items-start justify-center md:w-1/2 gap-6 md:gap-10 px-2 md:mt-0">
             <h1 data-aos="fade-right" className="w-full md:w-[410px] lg:w-[600px]  text-center md:text-left leading-[34px] text-[36px] md:text-[42px] lg:text-[50px] md:leading-[42px] lg:leading-[65px]">
-                We Believe in <span className="text-[#3CBDE6] font-semibold">Result </span>
-                Driven by <br />
-                <span className="font-playfair italic text-[#3CBDE6] font-semibold">Smart Technology</span>
+                Built for <span className="text-[#3CBDE6] font-semibold">real </span>
+                business needs<br />
+                {/**                <span className="font-playfair italic text-[#3CBDE6] font-semibold">Smart Technology</span>
+ */}
             </h1>
             <p data-aos="fade-right" data-aos-delay="200" className="w-full md:w-[320px] lg:w-[450px] text-center md:text-left text-[16px] sm:text-[14px] md:text-[18px] font-light">
-                At <span className="text-[#3CBDE6]  font-semibold">Opsie</span>, we believe that real business growth is rooted in strategy, insight, and execution.
-            </p>
+                We built Opsie for businesses that need their systems to just work.
 
-            <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
+                As operations grow, things get more complex, tools stop connecting, 
+                and processes become harder to manage. 
+
+                We help simplify that, bringing everything together so your systems 
+                are easier to run, easier to maintain, and built to support your growth.            </p>
+
+            {/**
+             * <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
                 <Button
                 label="Get Started"
                 iconPosition="right"
                 className="cursor-pointer"
                 />
             </div>
+             */}
         </div>
         
         <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="600" className="flex justify-center md:justify-end md:w-1/2 mt-4 md:mt-0 ">
@@ -249,9 +255,14 @@ export default function WhoWeAre() {
                         </div>
                     </div>
                             <div className="flex flex-col items-center lg:items-start gap-6 md:gap-4  mt-10">
-                                <h1 data-aos="fade-left" data-aos-offset="50" data-aos-delay="300" className="w-full text-center lg:text-left leading-[34px] text-[36px] md:text-[40px] lg:text-[44px] md:leading-[50px]">Every Line of  <span className="text-[#3CBDE6] font-semibold">Code</span> Tells <span className="font-playfair italic text-[#3CBDE6] font-semibold">Our Story.</span></h1>
-                                <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full text-center lg:text-left text-[16px] sm:text-[16px]">Founded with a vision to make technology meaningful, our journey began with a single idea. Today, every project we create reflects our commitment to innovation, collaboration, and creating solutions that truly make a difference. This is our story—and it’s just getting started.</p>
-                            </div>
+                                <h1 data-aos="fade-left" data-aos-offset="50" data-aos-delay="300" className="w-full text-center lg:text-left leading-[34px] text-[36px] md:text-[40px] lg:text-[44px] md:leading-[50px]">From a simple <span className="text-[#3CBDE6] font-semibold">idea</span> to <span className="font-playfair italic text-[#3CBDE6] font-semibold">Practical Solutions</span></h1>
+                                <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full text-center lg:text-left text-[16px] sm:text-[16px]">
+                                            Opsie Software Solutions started with a simple idea, to make systems easier for businesses to manage and actually use.
+
+<br/><span className="">What began as a small step has grown into a team focused on helping businesses solve real problems and improve how they operate.</span>
+
+                                </p>
+                                </div>
                                 </div>
             </div>
        <div className="flex flex-col gap-8 mt-2 ">

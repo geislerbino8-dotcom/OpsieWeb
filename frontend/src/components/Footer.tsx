@@ -1,16 +1,8 @@
 import logoOnly from '../assets/opsie/opsie_logo.png'
 import EncourageCard from './cards/EncourageCard';
 import { SiFacebook, SiInstagram, SiGmail } from 'react-icons/si';
-import LogoLoop from './PartnersLogo/PartnersLogoLoop';
 import { useNavigate } from 'react-router-dom';
 
-const imageLogos = [
-  { src: "/logo/Frame.svg", alt: "Company 1",  },
-  { src: "/logo/Frame-1.svg", alt: "Company 2",  },
-  { src: "/logo/Frame-2.svg", alt: "Company 3",  },
-  { src: "/logo/Frame-4.svg", alt: "Company 4",  },
-  { src: "/logo/Frame-3.svg", alt: "Company 5",  },
-];
 
 const Footer = () => {
 
@@ -56,7 +48,9 @@ const Footer = () => {
         </div>
 
         {/* LOGOS ROW */}
-        <div className="flex justify-center items-center gap-10 opacity-60 mb-10 flex-wrap">
+        {
+          /**
+           * <div className="flex justify-center items-center gap-10 opacity-60 mb-10 flex-wrap">
           <LogoLoop
                             logos={imageLogos}
                             speed={100}
@@ -70,6 +64,8 @@ const Footer = () => {
                             ariaLabel="Technology partners"
                           />
         </div>
+           */
+        }
 
         {/* CTA CARD */}
         <div className="mb-10">
@@ -135,7 +131,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
 
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Opsie Software Solutions.
+            © {new Date().getFullYear()} <span><a href="/">Opsie Software Solutions. </a></span>All Rights Reserved
           </p>
 
           {/* SOCIALS */}

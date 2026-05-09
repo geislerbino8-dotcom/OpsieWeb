@@ -18,7 +18,7 @@ const ServicesSection: React.FC = () => {
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   return (
-    <section className="w-full py-16 overflow-hidden">
+    <section className="w-full pt-16 pb-5 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         
         {/* Carousel Wrapper */}

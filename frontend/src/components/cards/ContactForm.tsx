@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { createTicket } from "@/api/createTicket";
 import { products } from "@/data/productsData";
+import { useToast } from "@/hooks/useToast";
+import ToastContainer from "../admin/common/ToastComponent";
+
 
 function ContactForm() {
   const [transSucc, setTransSucc] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [ disabled, setDisabled ] = useState(false)
+  const { toasts, addToast } = useToast()
 
   const initialUserInfo = {
     name: "",
@@ -28,9 +33,16 @@ function ContactForm() {
       console.log("Inquiry Sent:", response);
       setTransSucc(true);
       setUserData(initialUserInfo);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error creating ticket:", error);
-      alert("Something went wrong. Please try again later.");
+
+      const message = error instanceof Error ? "Too many requests. Try again later." : ""
+
+
+
+      addToast(message, "error")
+      setDisabled(true)
+      
     } finally {
       setLoading(false);
     }
@@ -166,12 +178,14 @@ function ContactForm() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={disabled}
               className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-500 shadow-lg ${
                 loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#3CBDE6] hover:bg-[#242424] hover:-translate-y-1"
               }`}
             >
-              {loading ? "Sending..." : "Send Message"}
+              {disabled ? "Sorry, please try again later" : ""}
+              {loading && !disabled && "Sending..."}
+              {!disabled && !loading && "Send Message"}
             </button>
           </form>
         ) : (
@@ -193,6 +207,10 @@ function ContactForm() {
             </button>
           </div>
         )}
+      </div>
+
+      <div className="absolute top-0 ">
+        <ToastContainer toasts={toasts} />
       </div>
     </div>
   );

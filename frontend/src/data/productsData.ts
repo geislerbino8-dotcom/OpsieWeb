@@ -7,7 +7,7 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    name: "Opsie HRIS",
+    name: "OpsCore",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800",
     description: "A complete human resource information system for managing employees, attendance, payroll, and performance.",
     category: "Management"

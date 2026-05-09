@@ -1,5 +1,6 @@
 import OpsieImage from "../../assets/opsie/logo-png.png";
 import { useNavigate } from "react-router-dom";
+import { usePageContent } from "@/data/usePageContent";
 
 function AboutUsSection() {
   const navigate = useNavigate();
@@ -33,15 +34,18 @@ function AboutUsSection() {
               data-aos="fade-up" 
               data-aos-delay="100"
             >
-              Turn Your <span className="text-[#3CBDE6]">Business Vision</span> into Digital Reality
+              {
+                usePageContent.data[0].aboutUsSection.header
+              }
             </h2>
           </div>
 
           <div className="space-y-6 text-gray-600 text-lg font-light leading-relaxed">
             <p data-aos="fade-up" data-aos-delay="200">
-              At <span className="font-semibold text-gray-900">Opsie</span>, we don't just build apps; we architect solutions. 
-              We bridge the gap between complex business challenges and high-performance digital ecosystems.
-            </p>
+              {
+                usePageContent.data[0].aboutUsSection.description
+              }
+             </p>
 
             <p data-aos="fade-up" data-aos-delay="300">
               Our team specializes in creating scalable, secure, and user-centric software that 
@@ -55,7 +59,7 @@ function AboutUsSection() {
               onClick={() => navigate('/who-we-are')}
               className="group  relative flex items-center gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
             >
-              <span>Discover Our Story</span>
+              <span>{usePageContent.data[0].aboutUsSection.buttonText}</span>
              
             </button>
           </div>
