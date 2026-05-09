@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 
@@ -6,7 +6,6 @@ import AOS from 'aos';
 import ServicesSection from './sections/ServicesSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import ClientReview from '../components/sections/ClientReviewsSection';
-import OpsieHRIS from '../components/PlanPricing/OpsieHRIS';
 
 // Components
 import ProductCard from '@/components/cards/ProductCard';
@@ -19,8 +18,12 @@ import Product1 from '../assets/Products/Product1.png';
 import hris from '../assets/Products/HRIS.png';
 import opsync from '../assets/Products/Opsync.png';
 import web from '../assets/Products/WebOpsie.png';
+import { ContentContext } from '@/App';
+import SuperHeader from '@/types/components/SuperHeader';
 
 function ProductPage() {
+
+  const content = useContext(ContentContext)
   const navigate = useNavigate();
   const [filter, setFilter] = useState('All');
 
@@ -50,24 +53,25 @@ function ProductPage() {
               </div>
                  */
               }
-              <h1 className="text-5xl md:text-7xl leading-[1.1] font-bold" data-aos="fade-up">
-                Build <span className='font-playfair italic font-normal text-[#3CBDE6]'>Smarter</span> Products with
-                <span className="text-[#3CBDE6]"> Opsie</span>
-              </h1>
+
+              <SuperHeader text={content?.productsPage.header} type='hero' />
+
+            
               <p className="text-gray-500 text-xl leading-relaxed max-w-lg" data-aos="fade-up" data-aos-delay="100">
-                We design powerful digital tools that help businesses
-                automate operations, scale faster, and work smarter.
+                {
+                  content?.productsPage.subHeader
+                }
               </p>
               <div className="flex md:justify-start justify-center flex-wrap gap-4" data-aos="fade-up" data-aos-delay="200">
                 <button 
                   className="bg-[#3CBDE6] text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-cyan-500/30 hover:bg-[#2ca7cc] hover:-translate-y-1 transition-all"
                   onClick={() => navigate("/book-a-schedule")}
                 >
-                  Start Building
+                  {content?.productsPage.button1.text}
                 </button>
                 <a href="#all-products">
                   <button className="bg-white border border-gray-200 px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-all">
-                    Explore Solutions
+                    {content?.productsPage.button2.text}
                   </button>
                 </a>
               </div>
@@ -97,11 +101,10 @@ function ProductPage() {
         <section id="all-products" className="py-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div className="max-w-xl">
-              <h2 className="text-4xl font-bold" data-aos="fade-right">
-                Our <span className="text-[#3CBDE6]">Digital Ecosystem</span>
-              </h2>
+              <SuperHeader text={content?.productsPage.section2.header} />
+              
               <p className="text-gray-500 mt-4">
-                Tailored solutions for modern teams. Filter by category to find the perfect fit for your workflow.
+                {content?.productsPage.section2.subHeader}
               </p>
             </div>
 
@@ -162,24 +165,12 @@ function ProductPage() {
           </div>
         </section>
 
-        {/* --- INTEGRATION CLOUD (New Section) --- */}
-        <section className="py-20 text-center border-t border-gray-200">
-           <h3 className="text-gray-400 uppercase tracking-[0.2em] text-sm font-black mb-10">Works with your favorite tools</h3>
-           <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all">
-              {/* Replace with your integration logos */}
-              <span className="text-2xl font-bold">SLACK</span>
-              <span className="text-2xl font-bold">NOTION</span>
-              <span className="text-2xl font-bold">ZAPIER</span>
-              <span className="text-2xl font-bold">GITHUB</span>
-              <span className="text-2xl font-bold">TRELLO</span>
-           </div>
-        </section>
+        
 
       </div>
 
       {/* Full Width Sections */}
       <div className="mt-10">
-        <OpsieHRIS />
         <WhyChooseUsSection /> 
         <div className='bg-[#ECEDF1] py-10 border-y border-gray-200'>
           <ClientReview />

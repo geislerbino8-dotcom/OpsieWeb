@@ -127,7 +127,7 @@ const TextType = ({
           }, deletingSpeed);
         }
       } else {
-        if (currentCharIndex < processedText.length) {
+        if (currentCharIndex < processedText?.length) {
           timeout = setTimeout(
             () => {
               setDisplayedText(prev => prev + processedText[currentCharIndex]);

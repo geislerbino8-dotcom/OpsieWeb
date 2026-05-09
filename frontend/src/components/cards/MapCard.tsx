@@ -16,8 +16,7 @@ function MapCard() {
       {/* Contact Info */}
       <div className="space-y-1">
         <h3 className="text-xl font-bold text-gray-800">Prefer a Direct Approach?</h3>
-        <p className="text-gray-700">HR Department email: asdas@gmail.com</p>
-        <p className="text-gray-700">Monday to Friday, 9 AM - 6 PM (PHT)</p>
+        <p className="text-gray-700">Come to us from Monday to Friday, 9 AM - 6 PM (PHT)</p>
       </div>
 
            <MapBox location={OFFICE_LOCATIONS.main} getDirection={dirAction} setDirAction={setDirAction} />

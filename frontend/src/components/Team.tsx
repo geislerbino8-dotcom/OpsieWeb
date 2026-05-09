@@ -1,4 +1,6 @@
+import SuperHeader from "@/types/components/SuperHeader";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 type TeamMember = {
   name: string;
@@ -12,25 +14,20 @@ const executive: TeamMember[] = [
   {
     name: "Jane Doe",
     role: "Founder & CEO",
-    image: "/staffs/p1.png",
-    bio: "Visionary strategist dedicated to turning complex problems into elegant, scalable solutions.",
-  },
-  {
-    name: "Marcus Aurelius",
-    role: "Project Manager",
-    image: "/staffs/p1.png",
-    bio: "Visionary strategist dedicated to turning complex problems into elegant, scalable solutions."
-  },
-  {
-    name: "Jane Doe",
-    role: "Founder & CEO",
-    image: "/staffs/p1.png",
+    image: "/staffs/p1.jpg",
     bio: "Visionary strategist dedicated to turning complex problems into elegant, scalable solutions.",
   },
   {
     name: "Marcus Aurelius",
     role: "Project Manager",
     image: "/staffs/p2.jpg",
+    bio: "Visionary strategist dedicated to turning complex problems into elegant, scalable solutions."
+  },
+ 
+  {
+    name: "Marcus Aurelius",
+    role: "Project Manager",
+    image: "/staffs/p4.jpg",
     bio: "Expert in agile methodologies and bridging the gap between client needs and technical execution.",
   }
 ];
@@ -48,12 +45,7 @@ const teamMembers: TeamMember[] = [
     image: "/staffs/p4.jpg",
     bio: "Specialist in distributed systems and secure, scalable API design.",
   },
-  {
-    name: "Alex Cruz",
-    role: "UI/UX Designer",
-    image: "/staffs/p5.jpg",
-    bio: "User-centric designer focused on accessibility and modern aesthetics.",
-  },
+
   {
     name: "Owen Garcia",
     role: "Frontend Developer",
@@ -64,7 +56,6 @@ const teamMembers: TeamMember[] = [
 
 const MemberCard = ({ member }: { member: TeamMember }) => (
   <div className="flex flex-col text-left group">
-    {/* Image Container: Square with large rounding and subtle background */}
     <div className="aspect-square w-full overflow-hidden rounded-[2rem] bg-[#F4F5F4] mb-6 shadow-sm">
       <img
         src={member.image}
@@ -89,19 +80,21 @@ const MemberCard = ({ member }: { member: TeamMember }) => (
 );
 
 const Team: React.FC = () => {
+
+  const navigate = useNavigate()
+
   return (
-    <section className="pt-20 pb-30 px-6 md:px-12 lg:px-24">
+    <section className="pt-20 pb-20 px-6 md:px-12 lg:px-24">
       <div className="max-w-[1280px] mx-auto">
         
         {/* Header Section */}
         <div className="text-center mb-20 space-y-6">
-          
-          <h2 className="text-5xl md:text-6xl tracking-tight text-[#0A261F] leading-tight">
-            Great works <span className="text-[#3CBDE6] font-semibold">starts</span> with <br className="hidden md:block" /> great<span className="text-[#3CBDE6] font-semibold"> People</span>
-          </h2>
+
+          <SuperHeader text="A team that *understands* your business" />
+      
           <p className="max-w-3xl mx-auto text-xl text-[#4A5E57] leading-relaxed">
-            We’re a team of builders, thinkers, and problem-solvers who
- focus on making systems work better.
+            We work closely with our clients to understand how their business runs  and where systems can be improved. 
+
 
           </p>
         </div>
@@ -121,6 +114,30 @@ const Team: React.FC = () => {
         </div>
         
       </div>
+          <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 rounded-[2.5rem] bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm">
+            
+            <div className="max-w-xl text-center md:text-left">
+              <h4 className="text-2xl font-bold text-[#0A261F] mb-3">
+                Built for Collaboration
+              </h4>
+              <p className="text-lg text-[#4A5E57] leading-relaxed">
+                We don't just build tools; we integrate with your workflow. 
+                We work closely with our clients to understand how their business runs 
+                and where systems can be improved.
+              </p>
+            </div>
+
+            <button 
+              onClick={() => navigate('/who-we-are')}
+              className="group relative flex items-center gap-4 px-10 py-5 bg-[#0A261F] overflow-hidden rounded-2xl font-bold text-white transition-all duration-500 hover:shadow-2xl hover:shadow-[#3CBDE6]/20 active:scale-95"
+            >
+              {/* Animated Background Highlight */}
+              <div className="absolute inset-0 bg-[#3CBDE6] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              
+              <span className="relative z-10">Meet the Team</span>
+            </button>
+            
+          </div>
     </section>
   );
 };

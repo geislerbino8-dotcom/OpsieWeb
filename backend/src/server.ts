@@ -79,10 +79,10 @@ import WebContentRoute from './routes/webContentRoute';
         `mongodb+srv://testing:testing123@cluster0.lkxwrqv.mongodb.net/?appName=Cluster0`,
         );
 
-        //const mongoUri =
-          //process.env.MONGO_URI || 'mongodb://localhost:27017/opsie_db';
+        const mongoUri =
+          process.env.MONGO_URI || 'mongodb://localhost:27017/opsie_db';
 
-        //await mongoose.connect(mongoUri);
+        await mongoose.connect(mongoUri);
 
         console.log('MongoDB connected');
 

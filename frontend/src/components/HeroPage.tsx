@@ -1,18 +1,18 @@
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
 import SplitText from './SplitText';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { usePageContent } from '@/data/usePageContent';
+import { useContext } from "react";
+import { ContentContext } from "@/App";
 
 type HeroPageProps = {
   heroText?: string;
   bgImage?: string;
 };
 
-function HeroPage({ heroText, bgImage }: HeroPageProps) {
+function HeroPage({ bgImage }: HeroPageProps) {
   const navigate = useNavigate();
-  const [ content ] = useState({})
-  console.log(content)
+  const content = useContext(ContentContext)
+
 
   return (
     <div
@@ -40,7 +40,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
         <div className="max-w-5xl">
           <h1 className="text-white">
             <SplitText
-              text={heroText ? heroText : "Bring your Ideas into Reality"}
+              text={content?.heroSection?.header}
               className="text-[48px] md:text-[80px] lg:text-[90px] font-bold leading-[1.1] tracking-tight"
               delay={50}
               duration={1}
@@ -59,7 +59,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
           data-aos-duration="1000"
         >
           {
-            usePageContent.data[0].heroSection.subHeader
+            content?.heroSection?.subHeader ?? "dsadsad"
           }
         </p>
 
@@ -72,7 +72,7 @@ function HeroPage({ heroText, bgImage }: HeroPageProps) {
             onClick={() => navigate("/book-a-schedule")}
             className="group relative bg-[#3CBDE6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
           >
-            <span className="relative z-10">{usePageContent.data[0].heroSection.button}</span>
+            <span className="relative z-10">{content?.heroSection?.button}</span>
             {/* Subtle hover slide effect */}
           </button>
         </div>

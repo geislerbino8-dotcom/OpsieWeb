@@ -1,12 +1,39 @@
 import OpsieImage from "../../assets/opsie/logo-png.png";
 import { useNavigate } from "react-router-dom";
-import { usePageContent } from "@/data/usePageContent";
+import HighlightedText from '../../types/components/SuperHeader'
+import { useContext, useEffect, useState } from "react";
+import { ContentContext } from "@/App";
+
+const features = [
+  { title: "Cloud Solutions", desc: "Flexible systems that support remote work and scalability.", icon: "☁️" },
+  { title: "Cybersecurity", desc: "Protection that keeps your systems and data secure.", icon: "🔐" },
+  { title: "Systems Integration", desc: "Connected tools that improve efficiency and reduce manual work.", icon: "🔗" }
+];
 
 function AboutUsSection() {
+
+
   const navigate = useNavigate();
+  const [ currentFeature, setCurrentFeature ] = useState(0)
+  const content = useContext(ContentContext)
+
+  useEffect(()=> {
+
+    const interval = setInterval(()=> {
+      setCurrentFeature((prev)=> 
+        prev === features.length - 1 ? 0 : prev + 1
+      )
+    }, 1500)
+
+    return ()=>  clearInterval(interval)
+
+  }, [])
+
+  
+
 
   return (
-    <section className="w-full py-24 md:py-32 px-6 overflow-hidden bg-white select-none">
+    <section id="about-section" className="w-full py-24 md:py-32 px-6 overflow-hidden bg-white select-none">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 lg:gap-24">
         
         {/* Left Side: Visual/Logo */}
@@ -25,27 +52,37 @@ function AboutUsSection() {
         </div>
 
         {/* Right Side: Content */}
-        <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-justify">
           
-          <div className="space-y-4 mb-8">
+          <div className="space-y-4 mb-8 text-center">
+            <HighlightedText text={content?.aboutUsSection?.header} />
             
-            <h2 
-              className="text-4xl md:text-5xl font-poppins font-bold leading-[1.1] text-gray-900"
-              data-aos="fade-up" 
-              data-aos-delay="100"
-            >
-              {
-                usePageContent.data[0].aboutUsSection.header
-              }
-            </h2>
+            
           </div>
 
           <div className="space-y-6 text-gray-600 text-lg font-light leading-relaxed">
             <p data-aos="fade-up" data-aos-delay="200">
               {
-                usePageContent.data[0].aboutUsSection.description
+                content?.aboutUsSection?.description
               }
              </p>
+
+             <div className="flex flex-row w-full bg-[#242424] p-1 text-white text-left">
+                <div className="flex items-center justify-center p-2 mr-2 bg-blue-50">
+                  <h1 className="text-3xl">{features[currentFeature].icon}</h1>
+                </div>
+                <div>
+                  <h1 className="font-bold">{features[currentFeature].title}</h1>
+                <p> {features[currentFeature].desc}</p>
+                </div>
+             </div>
+
+              
+              
+             
+
+              
+             
 
             <p data-aos="fade-up" data-aos-delay="300">
               Our team specializes in creating scalable, secure, and user-centric software that 
@@ -59,7 +96,7 @@ function AboutUsSection() {
               onClick={() => navigate('/who-we-are')}
               className="group  relative flex items-center gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
             >
-              <span>{usePageContent.data[0].aboutUsSection.buttonText}</span>
+              <span>{content?.aboutUsSection?.buttonText}</span>
              
             </button>
           </div>

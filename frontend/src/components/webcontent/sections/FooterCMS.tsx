@@ -13,7 +13,6 @@ const FooterCMS: React.FC = () => {
   const [formData] = useState<HeroSection>(usePageContent.data[0].footerSection);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  console.log(formData)
 
   const saveChanges = async ()=> {
     
@@ -33,7 +32,7 @@ const FooterCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -63,24 +62,25 @@ const FooterCMS: React.FC = () => {
           </div>
         ) : (
           /* --- LIVE PREVIEW VIEW --- */
-          <div className="text-center">
+          <div className="text-center cursor-pointer group relative"
+            onClick={()=> setIsEditing(true)}
+          >
+
+             <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
+              <span className="text-blue-600 font-semibold">Click to Edit</span>
+            </div>
+
+            
 
             <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData.header}</h2>
-            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData.subHeader}</h2>
+            <p className="text-gray-800 text-center">{formData.subHeader}</p>
 
             <EncourageCTACMS />
 
 
             
 
-            <div className="mt-10 pt-6 border-t border-gray-100">
-              <button 
-                onClick={() => setIsEditing(true)}
-                className="text-gray-400 hover:text-blue-500 text-sm flex items-center justify-center gap-2 w-full transition-colors"
-              >
-                <span>⚙️</span> Edit Content
-              </button>
-            </div>
+       
           </div>
         )}
 

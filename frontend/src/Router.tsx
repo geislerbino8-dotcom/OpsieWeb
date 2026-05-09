@@ -19,6 +19,8 @@ import WhatWeDoContent from "./components/webcontent/WhatWeDoContent"
 import ContactUsContent from "./components/webcontent/ContactUsContent"
 import ProductsContent from "./components/webcontent/ProductsContent"
 
+//const content = useContext(ContentContext)
+
 const token = localStorage.getItem('token')
 
 
@@ -139,12 +141,11 @@ const router = createBrowserRouter([
 
     {
         path: '/content',
-        element: <WebContentFrom />,
+        element: (
+                <WebContentFrom />
+        ),
 
-        children: pageContent.map((page) => ({
-            path: page.path,
-            element: page.element
-        }))
+        children: pageContent
     }
 
 ])

@@ -1,4 +1,10 @@
+import { ContentContext } from "@/App";
+import SuperHeader from "@/types/components/SuperHeader";
+import { useContext } from "react";
+
 export default function WhyChooseUs() {
+  const content = useContext(ContentContext)
+
   return (
     <div className="py-10 my-10 px-6">
       {/* --- HEADER --- */}
@@ -6,20 +12,15 @@ export default function WhyChooseUs() {
         data-aos="fade-down"
         className="flex items-center justify-center md:items-start flex-col gap-4 max-w-[1280px] mx-auto"
       >
-        <h1 
-          data-aos="fade-right" 
-          data-aos-delay="200" 
-          className="font-poppins text-center md:text-left leading-[1.2] tracking-tight text-[32px] md:text-[50px] text-gray-900"
-        >
-          Why do businesses<span className="text-[#3CBDE6] font-semibold"> choose Opsie? </span>
-        </h1>
+
+        <SuperHeader text={content?.whatWeDoPage.thirdSection.header} />
+       
         <p  
           data-aos="fade-right" 
           data-aos-delay="500" 
           className="text-center md:text-start text-[16px] md:text-[18px] font-light w-full md:w-[600px] text-gray-600 leading-relaxed"
         >
-          We combine technical precision with a deep understanding of business goals to deliver 
-          software that doesn't just work—it competes and wins.
+         {content?.whatWeDoPage.thirdSection.subHeader} 
         </p>
       </div>
 
@@ -38,9 +39,9 @@ export default function WhyChooseUs() {
             className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="p-8">
-            <h2 className="text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">Simple and practical solutions</h2>
+            <h2 className="text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">{content?.whatWeDoPage.thirdSection.cards[0].header}</h2>
             <p className="text-gray-500 font-poppins text-[16px] font-light leading-relaxed max-w-xl">
-              Built around real business needs
+              {content?.whatWeDoPage.thirdSection.cards[0].subHeader}
 
                 </p>
           </div>
@@ -59,9 +60,9 @@ export default function WhyChooseUs() {
             className="w-full h-32 md:h-48 object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="p-6">
-            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">A team you can rely on</h2>
+            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">{content?.whatWeDoPage.thirdSection.cards[1].header}</h2>
             <p className="text-gray-500 font-poppins font-light leading-snug text-[13px]">
-              People who understand both tech and business
+              {content?.whatWeDoPage.thirdSection.cards[1].subHeader}
             </p>
           </div>
         </div>
@@ -79,9 +80,9 @@ export default function WhyChooseUs() {
             className="w-full h-32 md:h-48 object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="p-6">
-            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">Connected systems</h2>
+            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">{content?.whatWeDoPage.thirdSection.cards[2].header}</h2>
             <p className="text-gray-500 font-poppins font-light leading-snug text-[13px]">
-              Everything works together, so nothing gets missed
+              {content?.whatWeDoPage.thirdSection.cards[2].subHeader}
             </p>
           </div>
         </div>
@@ -99,9 +100,9 @@ export default function WhyChooseUs() {
             className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="p-8">
-            <h2 className="font-poppins text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">Ongoing support</h2>
+            <h2 className="font-poppins text-[24px] md:text-[28px] font-bold text-gray-900 mb-2">{content?.whatWeDoPage.thirdSection.cards[3].header}</h2>
             <p className="text-gray-500 font-poppins text-[16px] font-light leading-relaxed max-w-xl">
-               We stay with you as your business grows
+              {content?.whatWeDoPage.thirdSection.cards[3].subHeader}
             </p>
           </div>
         </div>

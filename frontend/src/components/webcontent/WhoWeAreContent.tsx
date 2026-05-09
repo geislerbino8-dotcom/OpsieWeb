@@ -1,8 +1,9 @@
+import WhoWeAreCMS from "./sections/WhoWeAreCMS"
 
 function WhoWeAreContent() {
   return (
-    <div>
-      
+    <div className='w-full flex flex-col'>
+      <WhoWeAreCMS />
     </div>
   )
 }

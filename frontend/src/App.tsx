@@ -1,18 +1,35 @@
-import { useEffect } from 'react';
-import { Outlet } from "react-router-dom";
+import { useEffect, createContext, useState } from 'react';
 import './App.css';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
 import "aos/dist/aos.css";
 import './App.css';
-import ChatHelp from './components/ChatHelp';
 import AOS from "aos";
 import { useLocation } from 'react-router-dom';
-import { supabase } from './utils/supabase';
 import { useBotpress } from './hooks/useBotpress';
+import Layout from './Layout';
+import { getContent } from './api/getContent';
+
+type ContentType = Record<string, any>
+
+
+export const ContentContext = createContext<ContentType | null>(null)
 
 
 const App = () => {
+
+  const [ content, setContent ] = useState<ContentType | null>(null)
+
+  
+
+  useEffect(()=> {
+    const fetchContent = async()=> {
+      let res = await getContent()
+      setContent(res.data[0])
+    }
+
+    fetchContent()
+  }, [])
+
+  
 
   useBotpress()
 
@@ -20,18 +37,7 @@ const App = () => {
   const currentLocation = useLocation()
 
   
-   useEffect(() => {
-    async function getTodos() {
-      const { data } = supabase
-        .storage
-        .from('Opsie Tickets')
-        .getPublicUrl('sample.pdf')
-
-      console.log(data.publicUrl)
-      }
-
-    getTodos()
-  }, [])
+   
 
 
 
@@ -55,16 +61,10 @@ const App = () => {
   }, []);
 
  
-
   return (
-   
-      <div className='select-none'>
-          <ChatHelp />
-          <Navigation />
-          <Outlet />
-          <Footer/>
-      </div>
-
+   <ContentContext.Provider value={content}>
+      <Layout />
+   </ContentContext.Provider>
   );
 }
 
