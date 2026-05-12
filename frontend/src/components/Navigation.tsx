@@ -4,6 +4,8 @@ import logo from "../assets/opsie/opsie_logo.png";
 import PrimaryButton from "./buttons/PrimaryButton";
 import MobileMenu from "./MobileMenu";
 import burgermenu from "../assets/icons/burger-bar.png";
+import { products } from "@/data/productsData";
+
 
 const menuLists = [
   { name: "Why Opsie", link: "/what-we-do" },
@@ -12,14 +14,6 @@ const menuLists = [
   { name: "Products", link: "/products" },
 ];
 
-const products = [
-  { name: "Opsie HRIS", link: "opsie-hris" },
-  { name: "Opsync", link: "opsync" },
-  { name: "Opsync Pro", link: "opsync-pro" },
-  { name: "Opsync Cloud", link: "opsync-cloud" },
-  { name: "Opsync Lite", link: "opsync-lite" },
-  { name: "Opsie Web", link: "opsie-web" },
-];
 
 function Navigation() {
   const location = useLocation();
@@ -122,9 +116,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                           transition-all duration-100 ease-out
                         "
                       >
-                        {products.map((prod, i) => (
+                        {products.map((prod: any, i: number) => (
                           <a
-                            onClick={()=> navigate(`/products/${prod.name}`)}
+                            onClick={()=> window.location.href = `/products/${prod.name}`}
                             key={i}
                             className="text-black cursor-pointer block px-2 py-2 text-sm
                             hover:bg-blue-50 hover:text-[#3CBDE6] transition"

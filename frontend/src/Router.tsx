@@ -18,6 +18,8 @@ import WhoWeAreContent from "./components/webcontent/WhoWeAreContent"
 import WhatWeDoContent from "./components/webcontent/WhatWeDoContent"
 import ContactUsContent from "./components/webcontent/ContactUsContent"
 import ProductsContent from "./components/webcontent/ProductsContent"
+import AddProductCMS from "./components/webcontent/sections/AddProductCMS"
+import ProductCMS from "./components/webcontent/sections/ProductCMS"
 
 //const content = useContext(ContentContext)
 
@@ -54,6 +56,18 @@ const pageContent = [
         path: 'products',
         element: <ProductsContent />
     },
+
+    {
+        pageName: "Product",
+        path: 'add-product',
+        element: <AddProductCMS/>
+    }, 
+    
+    {
+        pageName: "Product",
+        path: 'view-products',
+        element: <ProductCMS/>
+    }
 
 
 ]

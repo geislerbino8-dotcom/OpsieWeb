@@ -13,9 +13,11 @@ type Services = {
 
 function ServicesSection() {
 
+
   const [ contents  ] = useState(usePageContent.data[0].servicesSection)
   const [ services  ] = useState<Services>(usePageContent.data[0].servicesSection.services)
 
+  
 
   return (
     <section 
@@ -32,7 +34,7 @@ function ServicesSection() {
           data-aos-delay="200"
         >
           {
-            contents.subHeader  
+            contents.subHeader 
           }
         </p>
       </div>
