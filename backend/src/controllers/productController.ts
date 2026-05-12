@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { ProductModel } from "../models/productModel";
 import { Request, Response } from "express";
 
@@ -7,7 +6,7 @@ export class ProductController {
     public create = async (req: Request, res: Response) => {
         try {
 
-            const Product = await ProductModel.create(req.body)
+            await ProductModel.create(req.body)
 
             res.status(201).json({ message: 'Product created succesfully' });
 
@@ -34,11 +33,15 @@ export class ProductController {
 
     public getProduct = async ( req: Request, res: Response) => {
 
-        const  {name}  = req.query
+        const { name } = req.query
+
+        if (typeof name !== "string") {
+            return res.status(400).json({ message: "Product name is required" });
+        }
 
         try {
 
-            const product = await ProductModel.findOne({name: name})
+            const product = await ProductModel.findOne({ name })
 
             res.status(200).json(product)
             
@@ -47,4 +50,3 @@ export class ProductController {
         }
     }
 }
-
