@@ -300,22 +300,22 @@ export class TicketController {
         const stats = await TicketModel.aggregate([
           {
             $group: {
-              _id: "$category",
+              _id: '$category',
               count: { $sum: 1 }
             }
           },
           {
             $project: {
               _id: 0,
-              name: "$_id",
-              value: "$count"
+              name: '$_id',
+              value: '$count'
             }
           }
         ]);
 
         res.status(200).json(stats);
       } catch (error) {
-        res.status(500).json({ message: "Failed to fetch category stats" });
+        res.status(500).json({ message: 'Failed to fetch category stats' });
       }
     }
 
@@ -325,22 +325,22 @@ export class TicketController {
         const stats = await TicketModel.aggregate([
           {
             $group: {
-              _id: "$product",
+              _id: '$product',
               count: { $sum: 1 }
             }
           },
           {
             $project: {
               _id: 0,
-              name: "$_id",
-              value: "$count"
+              name: '$_id',
+              value: '$count'
             }
           }
         ]);
 
         res.status(200).json(stats);
       } catch (error) {
-        res.status(500).json({ message: "Failed to fetch category stats" });
+        res.status(500).json({ message: 'Failed to fetch category stats' });
       }
     }
 
@@ -354,18 +354,18 @@ export class TicketController {
             createdStats: [
               {
                 $group: {
-                  _id: { $dateToString: { format: "%b %d", date: "$createdAt" } },
+                  _id: { $dateToString: { format: '%b %d', date: '$createdAt' } },
                   count: { $sum: 1 },
-                  fullDate: { $first: "$createdAt" }
+                  fullDate: { $first: '$createdAt' }
                 }
               }
             ],
             // Grouping by resolution (updatedAt) for resolved tickets
             resolvedStats: [
-              { $match: { status: "resolved" } },
+              { $match: { status: 'resolved' } },
               {
                 $group: {
-                  _id: { $dateToString: { format: "%b %d", date: "$updatedAt" } },
+                  _id: { $dateToString: { format: '%b %d', date: '$updatedAt' } },
                   count: { $sum: 1 }
                 }
               }
@@ -374,28 +374,28 @@ export class TicketController {
         },
         {
           $project: {
-            combined: { $concatArrays: ["$createdStats", "$resolvedStats"] }
+            combined: { $concatArrays: ['$createdStats', '$resolvedStats'] }
           }
         },
-        { $unwind: "$combined" },
+        { $unwind: '$combined' },
         {
           $group: {
-            _id: "$combined._id",
+            _id: '$combined._id',
             created: {
-              $sum: { $cond: [{ $ifNull: ["$combined.fullDate", false] }, "$combined.count", 0] }
+              $sum: { $cond: [{ $ifNull: ['$combined.fullDate', false] }, '$combined.count', 0] }
             },
             resolved: {
-              $sum: { $cond: [{ $ifNull: ["$combined.fullDate", false] }, 0, "$combined.count"] }
+              $sum: { $cond: [{ $ifNull: ['$combined.fullDate', false] }, 0, '$combined.count'] }
             },
             // Keep a date object for sorting
-            sortDate: { $first: "$combined.fullDate" } 
+            sortDate: { $first: '$combined.fullDate' } 
           }
         },
         { $sort: { sortDate: 1 } },
         {
           $project: {
             _id: 0,
-            date: "$_id",
+            date: '$_id',
             created: 1,
             resolved: 1
           }
@@ -404,7 +404,7 @@ export class TicketController {
 
       res.status(200).json(velocityData);
     } catch (error) {
-      res.status(500).json({ message: "Failed to fetch ticket velocity", error });
+      res.status(500).json({ message: 'Failed to fetch ticket velocity', error });
     }
   }
 }
