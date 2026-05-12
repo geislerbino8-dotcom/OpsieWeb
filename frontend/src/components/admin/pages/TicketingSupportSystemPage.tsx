@@ -321,7 +321,7 @@ const TicketingSupportSystemPage = () => {
                   onChange={e => setProductFilter(e.target.value)}
                 >
                   <option value='all'>All Products</option>
-                  {products.map((p, i) => <option key={i} value={p.name}>{p.name}</option>)}
+                  {products.map((p: any, i: number) => <option key={i} value={p.name}>{p.name}</option>)}
                 </select>
               </div>
             </div>

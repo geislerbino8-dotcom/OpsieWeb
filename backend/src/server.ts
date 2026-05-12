@@ -5,6 +5,7 @@
   import TicketRoute from './routes/ticketRoute';
   import UserRoute from './routes/userRoute';
   import AuthRoute from './routes/authRoute';
+  import ProductRoute from './routes/productRoute';
   import dns from 'dns';
   import { rateLimit } from 'express-rate-limit'
 import WebContentRoute from './routes/webContentRoute';
@@ -46,12 +47,14 @@ import WebContentRoute from './routes/webContentRoute';
       const userRoute = new UserRoute();
       const authRoute = new AuthRoute();
       const webContentRoute = new WebContentRoute()
+      const productRoute = new ProductRoute()
       const API_PREFIX = process.env.API_PREFIX || '/api';
       this.app.use(`${API_PREFIX}/ticket/create`, ticketRoute.router, limiter);
       this.app.use(`${API_PREFIX}/ticket`, ticketRoute.router);
       this.app.use(`${API_PREFIX}/user`, userRoute.router);
       this.app.use(`${API_PREFIX}/auth`, authRoute.router);
       this.app.use(`${API_PREFIX}/webcontent`, webContentRoute.router)
+      this.app.use(`${API_PREFIX}/products`, productRoute.router)
     };
 
     private initializeNotFoundHandler = (): void => {
@@ -75,14 +78,14 @@ import WebContentRoute from './routes/webContentRoute';
     public startServer = async () => {
       try {
         await mongoose.connect(
-          //`mongodb://localhost:27017/`
-        `mongodb+srv://testing:testing123@cluster0.lkxwrqv.mongodb.net/?appName=Cluster0`,
+          `mongodb://localhost:27017/`
+        //`mongodb+srv://testing:testing123@cluster0.lkxwrqv.mongodb.net/?appName=Cluster0`,
         );
 
-        const mongoUri =
-          process.env.MONGO_URI || 'mongodb://localhost:27017/opsie_db';
+        //const mongoUri =
+          //process.env.MONGO_URI || 'mongodb://localhost:27017/opsie_db';
 
-        await mongoose.connect(mongoUri);
+        //await mongoose.connect(mongoUri);
 
         console.log('MongoDB connected');
 

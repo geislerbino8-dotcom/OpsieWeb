@@ -10,6 +10,7 @@ import SuperHeader from "@/types/components/SuperHeader";
 
 function ProductSection() {
 
+  console.log(products)
   const navigate = useNavigate();
   const [ contents ] = useState(usePageContent.data[0].productsSection)
 
@@ -39,12 +40,12 @@ function ProductSection() {
         {/* --- PRODUCT GRID --- */}
         <div className="w-full">
           <div className="flex flex-wrap justify-center gap-10 lg:gap-12 pb-10">
-            {Object.values(products).slice(0, 6).map((item, index) => (
+            {Object.values(products).slice(0, 6).map((item: any, index) => (
               <div
                 key={index}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="flex justify-center"
+                className="flex justify-center\"
               >
                 <ProductCard
                   itemName={item.name}

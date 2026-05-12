@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createTicket } from "@/api/createTicket";
-import { products } from "@/data/productsData";
 import { useToast } from "@/hooks/useToast";
 import ToastContainer from "../admin/common/ToastComponent";
 
@@ -149,12 +148,16 @@ function ContactForm() {
               className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all text-gray-500"
             >
               <option value="" disabled>- Product -</option>
-              {
+             {
+              /**
+               *  {
                 products.map((item, index)=> (
                   <option key={index} value={item.name}>{item.name}</option>
 
                 ))
               }
+               */
+             }
           
             </select>
             </div>
