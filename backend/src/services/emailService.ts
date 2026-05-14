@@ -32,7 +32,7 @@ export const sendTicketCreatedEmail = async (ticket: any) => {
   });
 
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -49,7 +49,7 @@ export const sendTicketUpdatedEmail = async (ticket: any, changes: string[]) => 
     });
 
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -66,7 +66,7 @@ export const sendTicketClosedEmail = async (ticket: any) => {
     });
 
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 

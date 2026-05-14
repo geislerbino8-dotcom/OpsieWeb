@@ -7,12 +7,12 @@ import { authMiddleware } from '../middleware/authMiddleware';
 
 export default class WebContentRoute {
     public readonly router: Router;
-    public readonly controller: WebContentController
+    public readonly controller: WebContentController;
 
     constructor(){
-        this.router = Router()
-        this.controller = new WebContentController()
-        this.initializeRoutes()
+        this.router = Router();
+        this.controller = new WebContentController();
+        this.initializeRoutes();
     }
 
     private initializeRoutes = (): void => {
@@ -21,18 +21,18 @@ export default class WebContentRoute {
             authMiddleware,
             requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
             this.controller.create
-        )
+        );
 
         this.router.get(
             '/get-content',
             this.controller.getContent
-        )
+        );
 
         this.router.patch(
             '/update-content',
              authMiddleware,
             requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
             this.controller.updateContent
-        )
-    }
+        );
+    };
 }

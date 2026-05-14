@@ -64,3 +64,5 @@ jobs:
 
             docker compose pull
             docker compose -p staging up -d --build
+
+            docker restart opsie-nginx
