@@ -30,9 +30,9 @@ function ContactUsPage() {
 
         <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-24 px-6 md:px-12 text-white text-left">
           <div data-aos="fade-right">
-            <SuperHeader text={content?.contactUsPage.header} type='hero' />
+            <SuperHeader text={content?.contactUsPage.header} type='hero' position='left'/>
         
-            <p className="mt-8 text-lg md:text-2xl font-light max-w-xl text-gray-200">
+            <p className="text-center md:text-left mt-8 text-lg md:text-2xl font-light max-w-xl text-gray-200">
               {content?.contactUsPage.subHeader} 
             </p>
           </div>
@@ -53,7 +53,7 @@ function ContactUsPage() {
       </div>
 
       {/* --- 2. CONTACT FORM & CARDS --- */}
-      <div className="bg-white max-w-[1280px] mx-auto px-2 md:px-6 py-24">
+      <div className="bg-white max-w-[1280px] mx-auto px-2 md:px-6 py-24 ">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: Contact Form */}
           <div data-aos="fade-right">

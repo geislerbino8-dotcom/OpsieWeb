@@ -15,9 +15,7 @@ export default function WhyChooseUs() {
         data-aos="fade-down"
         className="flex items-center justify-center md:items-start flex-col gap-4 max-w-[1280px] mx-auto"
       >
-        <div className="text-center">
-          <SuperHeader text={content?.whatWeDoPage.thirdSection.header} />
-        </div>
+          <SuperHeader text={content?.whatWeDoPage.thirdSection.header} position="left" />
         
         <p  
           data-aos="fade-right" 

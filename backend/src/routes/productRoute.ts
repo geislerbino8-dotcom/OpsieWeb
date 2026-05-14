@@ -26,5 +26,10 @@ export default class ProductRoute {
             '/get-product',
             this.controller.getProduct
         );
+
+        this.router.put(
+            '/update',
+            this.controller.updateProduct
+        )
     }
 }

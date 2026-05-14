@@ -34,14 +34,18 @@ function ProductPage() {
   const content = useContext(ContentContext);
   const navigate = useNavigate();
 
-  const [filter, setFilter] = useState<string>('All');
+  const [filter] = useState<string>('All');
 
-  const categories: string[] = [
+  {
+    /**
+     * const categories: string[] = [
     'All',
     'Management',
     'Automation',
     'Analytics',
   ];
+     */
+  }
 
   // Type the imported products
   const typedProducts: Product[] = products;
@@ -144,6 +148,7 @@ function ProductPage() {
             <div className="max-w-xl">
               <SuperHeader
                 text={content?.productsPage.section2.header}
+                position='left'
               />
 
               <p className="text-gray-500 mt-4">

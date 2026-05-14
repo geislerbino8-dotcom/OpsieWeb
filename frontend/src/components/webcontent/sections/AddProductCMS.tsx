@@ -110,8 +110,8 @@ function AddProductCMS() {
                 <input placeholder="Main Hero Image URL" className="bg-slate-50 rounded-xl p-4" onChange={e => updateField('image', e.target.value)} />
                 <input placeholder="Category" className="bg-slate-50 rounded-xl p-4" onChange={e => updateField('category', e.target.value)} />
                 <input placeholder="Video Ad URL (YouTube/Vimeo)" className="col-span-2 bg-slate-50 rounded-xl p-4" onChange={e => updateField('videoAd', e.target.value)} />
-                <textarea placeholder="Tagline (The Hook)" className="col-span-2 bg-slate-50 rounded-xl p-4 font-medium" rows={2} onChange={e => updateField('tagline', e.target.value)} />
-                <textarea placeholder="Primary Description" maxLength={70} className="col-span-2 bg-slate-50 rounded-xl p-4" rows={3} onChange={e => updateField('description', e.target.value)} />
+                <textarea placeholder="Tagline (The Hook) *50 characters" maxLength={50} className="col-span-2 bg-slate-50 rounded-xl p-4 font-medium" rows={2} onChange={e => updateField('tagline', e.target.value)} />
+                <textarea placeholder="Primary Description" className="col-span-2 bg-slate-50 rounded-xl p-4" rows={3} onChange={e => updateField('description', e.target.value)} />
              </div>
           </section>
 

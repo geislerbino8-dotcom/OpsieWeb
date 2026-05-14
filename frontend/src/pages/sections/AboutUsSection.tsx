@@ -67,7 +67,7 @@ function AboutUsSection() {
               }
              </p>
 
-             <div data-aos="fade-left" className="flex flex-row w-full bg-blue-100 p-3 text-white text-left rounded-sm">
+             <div data-aos="fade-left" className="flex flex-col md:flex-row w-full bg-blue-100 p-3 text-white text-left rounded-sm">
                 <div className="flex items-center justify-center p-2 mr-2 bg-blue-50">
                   <h1 className="text-3xl">{features[currentFeature].icon}</h1>
                 </div>

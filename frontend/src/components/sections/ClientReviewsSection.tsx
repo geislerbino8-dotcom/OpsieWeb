@@ -28,10 +28,10 @@ const ClientReview: React.FC = () => {
     >
       
 
-<div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
+<div className="flex items-center h-full md:items-start md:justify-start flex-col gap-4">
       
         <div className="text-left">
-          <SuperHeader text={content.header} />
+          <SuperHeader text={content.header} position="left" />
         </div>
 
         <p className="text-center md:text-left">We take the time to get it right, so everything works better for your business.</p>

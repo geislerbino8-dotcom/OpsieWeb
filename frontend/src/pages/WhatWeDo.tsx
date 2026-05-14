@@ -9,11 +9,9 @@ import { useState } from "react";
 import SuperHeader from "@/types/components/SuperHeader";
 
 const imageLogos = [
-  { src: "/staff/p5.jpg", alt: "Company 1" },
-  { src: "/logo/Frame-1.svg", alt: "Company 2" },
-  { src: "/logo/Frame-2.svg", alt: "Company 3" },
-  { src: "/logo/Frame-4.svg", alt: "Company 4" },
-  { src: "/logo/Frame-3.svg", alt: "Company 5" },
+  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opscore_logo.png", alt: "Company 1" },
+  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opsie_logo_only.png", alt: "Company 2" },
+
 ];
 
 export default function WhatWeDo() {
@@ -33,7 +31,7 @@ export default function WhatWeDo() {
         />
         
         {/* Responsive Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent md:bg-gradient-to-r md:from-black/100 md:via-black/60 md:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/80 to-transparent md:bg-gradient-to-r md:from-black/100 md:via-black/80 md:to-transparent"></div>
 
         {/* Hero Content Container - Keeps text aligned with the rest of your site */}
         <div className="relative z-10 h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-end pb-20">

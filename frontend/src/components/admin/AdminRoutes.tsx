@@ -6,7 +6,6 @@ import DashboardPage from '../admin/pages/DashboardPage';
 import Header from '../admin/header/Header';
 import UserManagementPage from '../admin/pages/UserManagementPage';
 import TicketingSupportSystemPage from '../admin/pages/TicketingSupportSystemPage';
-import WebContentLayout from '../webcontent/WebContentLayout';
 
 const Admin = () => {
   const { token } = useAuth();
@@ -21,7 +20,6 @@ const Admin = () => {
           <Route path='/' element={<DashboardPage />} />
           <Route path='/users' element={<UserManagementPage />} />
           <Route path='/tickets' element={<TicketingSupportSystemPage />} />
-          <Route path='/content' element={<WebContentLayout />} />
           <Route path='*' element={<DashboardPage />} />
         </Routes>
       </>
