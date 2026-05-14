@@ -52,7 +52,7 @@ function ProductCard({ itemName, image, desc, bgColor }: ProductCardProps) {
         }}
       >
         {/* Image */}
-        <div className="w-full flex justify-center items-center mb-3">
+        <div className="w-full flex justify-center items-center mb-3 bg-black/50">
           <img
             src={image}
             alt={itemName}
@@ -69,6 +69,7 @@ function ProductCard({ itemName, image, desc, bgColor }: ProductCardProps) {
           className="
             text-lg font-semibold text-[#242424] tracking-wide text-center
             group-hover:text-cyan-600
+            truncate w-full
           "
         >
           {itemName}

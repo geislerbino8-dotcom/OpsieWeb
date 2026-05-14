@@ -11,8 +11,6 @@ export const getProduct = async (name: string) => {
             }
         );
 
-        console.log(response.data);
-
         return response.data;
     } catch (error) {
         console.log(error);

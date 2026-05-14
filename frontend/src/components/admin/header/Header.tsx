@@ -27,8 +27,6 @@ const Header = () => {
     }
   }, [isDarkMode]);
 
-  console.log(isDark)
-
   const showBackButton = location.pathname === '/admin/users' || location.pathname === '/admin/tickets';
 
   return (

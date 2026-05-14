@@ -84,7 +84,7 @@ const Team: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <section className="pt-20 pb-20 px-6 md:px-12 lg:px-24">
+    <section className="pt-20 pb-20 md:px-6 md:px-12 lg:px-24">
       <div className="max-w-[1280px] mx-auto">
         
         {/* Header Section */}
@@ -114,7 +114,7 @@ const Team: React.FC = () => {
         </div>
         
       </div>
-          <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 rounded-[2.5rem] bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm">
+          <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 rounded-md bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-sm">
             
             <div className="max-w-xl text-center md:text-left">
               <h4 className="text-2xl font-bold text-[#0A261F] mb-3">

@@ -10,7 +10,9 @@ function EncourageCard() {
     <div className="flex flex-col items-center justify-center bg-[#3CBDE6] rounded-2xl p-8 md:p-12 text-center">
 
       {/* Heading */}
-      <SuperHeader text="Smarter systems, built around your business" />
+      <div className="text-white mb-4">
+        <SuperHeader text="Smarter systems, built around your business" defColor="white" />
+      </div>
 
       {/* Description */}
       <p className="text-white/90 text-sm md:text-base max-w-2xl mb-6 leading-relaxed">

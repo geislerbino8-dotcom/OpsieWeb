@@ -129,7 +129,7 @@ const Footer = () => {
         {/* BOTTOM */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
 
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 text-center md:text-left`">
             © {new Date().getFullYear()} <span><a href="/">Opsie Software Solutions. </a></span>All Rights Reserved
           </p>
 

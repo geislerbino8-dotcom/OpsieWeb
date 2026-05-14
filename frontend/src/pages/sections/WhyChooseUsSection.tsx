@@ -92,7 +92,11 @@ function WhyChooseUsSection() {
             {contents?.advantageSection?.subHeader}
           </p>
 
-          <button className='bg-white w-[50%] p-3 border-2 font-bold text-[#3CBDE6] border-[#3CBDE6] hover:bg-black transition duration-600'>See how we work</button>
+          <div className='flex justify-center md:justify-start'>
+            <button className=' bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#3CBDE6] border-[#3CBDE6] hover:bg-black transition duration-600'>See how we work</button>
+
+          </div>
+
         </div>
 
       </div>

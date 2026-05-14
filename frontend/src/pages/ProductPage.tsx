@@ -155,7 +155,9 @@ function ProductPage() {
             <div className="w-full md:w-auto">
 
               {/* Mobile Dropdown */}
-              <div className="md:hidden w-full">
+            {
+              /**
+               *   <div className="md:hidden w-full">
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
@@ -168,9 +170,12 @@ function ProductPage() {
                   ))}
                 </select>
               </div>
+               */
+            }
 
               {/* Desktop Tabs */}
-              <div className="hidden md:flex bg-white p-1.5 rounded-xl shadow-sm border border-gray-100">
+             {/**
+              *  <div className="hidden md:flex bg-white p-1.5 rounded-xl shadow-sm border border-gray-100">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -185,6 +190,7 @@ function ProductPage() {
                   </button>
                 ))}
               </div>
+              */}
             </div>
           </div>
 

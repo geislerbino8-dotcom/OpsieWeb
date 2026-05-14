@@ -23,16 +23,18 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
 
   return (
-    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center md:px-10 py-20"
+    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center md:px-10 md:py-20 py-10"
       data-aos="slide-up" data-aos-delay="500"
     >
       
 
 <div className="flex items-center justify-center md:items-start md:justify-start flex-col gap-4">
       
-        <SuperHeader text={content.header} />
+        <div className="text-left">
+          <SuperHeader text={content.header} />
+        </div>
 
-        <p>We take the time to get it right, so everything works better for your business.</p>
+        <p className="text-center md:text-left">We take the time to get it right, so everything works better for your business.</p>
        
           
         <div className="hidden md:flex items-center gap-x-4 mb:8 md:mb-20">

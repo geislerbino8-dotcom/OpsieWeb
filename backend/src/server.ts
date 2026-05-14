@@ -8,6 +8,7 @@ import AuthRoute from "./routes/authRoute";
 import dns from "dns";
 import { rateLimit } from "express-rate-limit";
 import WebContentRoute from "./routes/webContentRoute";
+import ProductRoute from "./routes/productRoute";
 // Force Google DNS
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
@@ -42,12 +43,14 @@ export default class Server {
     const userRoute = new UserRoute();
     const authRoute = new AuthRoute();
     const webContentRoute = new WebContentRoute();
+    const productRoute = new ProductRoute()
     const API_PREFIX = process.env.API_PREFIX || "/api";
     this.app.use(`${API_PREFIX}/ticket/create`, ticketRoute.router, limiter);
     this.app.use(`${API_PREFIX}/ticket`, ticketRoute.router);
     this.app.use(`${API_PREFIX}/user`, userRoute.router);
     this.app.use(`${API_PREFIX}/auth`, authRoute.router);
     this.app.use(`${API_PREFIX}/webcontent`, webContentRoute.router);
+    this.app.use(`${API_PREFIX}/products`, productRoute.router)
   };
 
   private initializeNotFoundHandler = (): void => {
@@ -71,8 +74,8 @@ export default class Server {
   public startServer = async () => {
     try {
       await mongoose.connect(
-        //`mongodb://localhost:27017/`
-        `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`,
+        `mongodb://localhost:27017/`
+        //`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`,
       );
 
       /* const mongoUri =

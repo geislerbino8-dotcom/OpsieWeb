@@ -190,7 +190,7 @@ function ProductItemPage() {
 
       {/* --- PHOTO GALLERY --- */}
       <section className="w-full max-w-7xl px-6 pb-32">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="flex justify-center items-center grid grid-cols-2 md:grid-cols-4 gap-4">
           {content.photos.map((url, index) => (
             <div key={index} data-aos="zoom-in" data-aos-delay={index * 100} className="group relative overflow-hidden rounded-2xl border border-white/10 aspect-video">
               <img 
