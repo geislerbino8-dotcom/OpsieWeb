@@ -23,7 +23,7 @@ function AboutUsSection() {
       setCurrentFeature((prev)=> 
         prev === features.length - 1 ? 0 : prev + 1
       )
-    }, 1500)
+    }, 2000)
 
     return ()=>  clearInterval(interval)
 
@@ -67,34 +67,29 @@ function AboutUsSection() {
               }
              </p>
 
-             <div className="flex flex-row w-full bg-[#242424] p-1 text-white text-left">
+             <div data-aos="fade-left" className="flex flex-col md:flex-row w-full bg-blue-100 p-3 text-white text-left rounded-sm">
                 <div className="flex items-center justify-center p-2 mr-2 bg-blue-50">
                   <h1 className="text-3xl">{features[currentFeature].icon}</h1>
                 </div>
                 <div>
-                  <h1 className="font-bold">{features[currentFeature].title}</h1>
-                <p> {features[currentFeature].desc}</p>
+                  <h1 className="font-bold text-gray-600">{features[currentFeature].title}</h1>
+                <p className="text-gray-600"> {features[currentFeature].desc}</p>
                 </div>
              </div>
 
               
-              
-             
-
-              
-             
-
             <p data-aos="fade-up" data-aos-delay="300">
               Our team specializes in creating scalable, secure, and user-centric software that 
               drives measurable growth. Whether you're a startup or an established enterprise, 
               we bring the technical edge you need to stay ahead.
             </p>
+
           </div>
 
-          <div data-aos="fade-up" data-aos-delay="400" className="pt-6">
+          <div data-aos="fade-up" data-aos-delay="400" className="pt-6 w-full flex justify-center items-center">
             <button 
               onClick={() => navigate('/who-we-are')}
-              className="group  relative flex items-center gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
+              className="group w-[50%] relative flex items-center justify-center  gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
             >
               <span>{content?.aboutUsSection?.buttonText}</span>
              

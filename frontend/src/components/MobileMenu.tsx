@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 
 const menuLists = [
-  { name: "What We Do", link: "/what-we-do" },
-  { name: "Who We Are", link: "/who-we-are" },
+  { name: "Why Opsie", link: "/what-we-do" },
+  { name: "About Us", link: "/who-we-are" },
   { name: "Contact Us", link: "/contact-us" },
   { name: "Products", link: "/products" },
 ];

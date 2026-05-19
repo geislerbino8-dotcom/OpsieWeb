@@ -34,14 +34,18 @@ function ProductPage() {
   const content = useContext(ContentContext);
   const navigate = useNavigate();
 
-  const [filter, setFilter] = useState<string>('All');
+  const [filter] = useState<string>('All');
 
-  const categories: string[] = [
+  {
+    /**
+     * const categories: string[] = [
     'All',
     'Management',
     'Automation',
     'Analytics',
   ];
+     */
+  }
 
   // Type the imported products
   const typedProducts: Product[] = products;
@@ -144,6 +148,7 @@ function ProductPage() {
             <div className="max-w-xl">
               <SuperHeader
                 text={content?.productsPage.section2.header}
+                position='left'
               />
 
               <p className="text-gray-500 mt-4">
@@ -155,7 +160,9 @@ function ProductPage() {
             <div className="w-full md:w-auto">
 
               {/* Mobile Dropdown */}
-              <div className="md:hidden w-full">
+            {
+              /**
+               *   <div className="md:hidden w-full">
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
@@ -168,9 +175,12 @@ function ProductPage() {
                   ))}
                 </select>
               </div>
+               */
+            }
 
               {/* Desktop Tabs */}
-              <div className="hidden md:flex bg-white p-1.5 rounded-xl shadow-sm border border-gray-100">
+             {/**
+              *  <div className="hidden md:flex bg-white p-1.5 rounded-xl shadow-sm border border-gray-100">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -185,6 +195,7 @@ function ProductPage() {
                   </button>
                 ))}
               </div>
+              */}
             </div>
           </div>
 

@@ -27,8 +27,8 @@ function MapCard() {
       </p>
 
       {/* Visit Office Section */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-gray-800">Visit Our Office</h1>
+      <div className="flex flex-col md:flex-row items-center justify-between">
+        <h1 className="text-lg font-bold text-gray-800 mb-5 md:mb-0">Visit Our Office</h1>
         <BlackButton
           onPress={()=> dirAction ? setDirAction(false): setDirAction(true)}
           text="Get Direction"

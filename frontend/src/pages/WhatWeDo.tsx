@@ -9,21 +9,16 @@ import { useState } from "react";
 import SuperHeader from "@/types/components/SuperHeader";
 
 const imageLogos = [
-  { src: "/staff/p5.jpg", alt: "Company 1" },
-  { src: "/logo/Frame-1.svg", alt: "Company 2" },
-  { src: "/logo/Frame-2.svg", alt: "Company 3" },
-  { src: "/logo/Frame-4.svg", alt: "Company 4" },
-  { src: "/logo/Frame-3.svg", alt: "Company 5" },
+  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opscore_logo.png", alt: "Company 1" },
+  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opsie_logo_only.png", alt: "Company 2" },
+
 ];
 
 export default function WhatWeDo() {
   const Navigate = useNavigate();
   const [ content ] = useState(usePageContent.data[0].whatWeDoPage)
 
-  console.log(content)
-
   return (
-    // Removed max-w-1280 from here to allow full width
     <div className="w-full overflow-hidden">
       
       {/* HERO SECTION - Now truly Full Width */}
@@ -36,7 +31,7 @@ export default function WhatWeDo() {
         />
         
         {/* Responsive Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent md:bg-gradient-to-r md:from-black/100 md:via-black/60 md:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/80 to-transparent md:bg-gradient-to-r md:from-black/100 md:via-black/80 md:to-transparent"></div>
 
         {/* Hero Content Container - Keeps text aligned with the rest of your site */}
         <div className="relative z-10 h-full max-w-[1280px] mx-auto px-6 flex flex-col justify-end pb-20">
@@ -115,7 +110,7 @@ export default function WhatWeDo() {
         </div>
 
       {/* BODY CONTENT - Wrapped in container to keep alignment */}
-      <main className="md:w-[75%] mx-auto pt-10 py-20">
+      <main className="md:w-[75%] mx-auto pt-10 py-10">
         
         {/* Intro Heading */}
      <div className="flex flex-col md:flex-row justify-between items-start gap-8">
@@ -138,12 +133,35 @@ export default function WhatWeDo() {
 
         <ServicesSection />
 
-        <div className="flex flex-col items-center justify-center  text-lg text-gray-600 font-light text-center leading-relaxed md:m-5 md:mb-15">
-          <h1 className="text-2xl font-semibold text-[#3CBDE6]">We focus on simplifying your systems, improving connectivity, 
-          and making day-to-day operations easier to manage.</h1>
+       <div className="relative bg-[#3CBDE6] mb-10 flex flex-col items-center justify-center py-20 px-6 overflow-hidden">
+  
+  {/* Decorative background glow for depth */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#3CBDE6]/10 blur-[100px] -z-10" />
 
-          <button className="m-5 border-1 hover:bg-[#3CBDE6] hover:text-white transition-all duration-600 px-5 py-3 font-semibold">Book a Consultation</button>
-        </div>
+  <div className="max-w-3xl flex flex-col items-center space-y-8">
+    
+    {/* Heading with better hierarchy and color balance */}
+    <h1 className="text-3xl md:text-5xl font-bold text-gray-900 text-center leading-[1.15] tracking-tight">
+      We focus on <span className="text-white">simplifying your systems</span>, 
+      improving connectivity, and making operations effortless.
+    </h1>
+
+    {/* Modernized Button with animation and shadow */}
+    <button className="group relative flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_10px_25px_-5px_rgba(60,189,230,0.4)] hover:-translate-y-1 active:scale-95">
+      Book a Consultation
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
+    </button>
+    
+  </div>
+</div>
 
         {/* Video Section - Full Width inside container */}
         <div className="w-full">

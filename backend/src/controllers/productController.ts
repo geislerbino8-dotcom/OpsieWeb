@@ -49,4 +49,26 @@ export class ProductController {
             res.status(400).json({message: 'Failed to find product'});
         }
     };
+
+    public updateProduct = async ( req: Request, res: Response) => {
+
+        const { name, data } = req.body
+
+        try {
+
+            const product = await ProductModel.findOneAndUpdate({name: name}, 
+                data,
+                {
+                    new: true,
+                }
+            )
+
+            if(!product) res.status(404).json({message: "Product not found"})
+
+            res.status(200).json({message: "Product updated successfully"})
+            
+        } catch (error) {
+            res.status(400).json({message: 'Failed to pudate product'})
+        }
+    }
 }

@@ -2,10 +2,11 @@ import CountUp from "../CountUp";
 
 type AnalyticsCardsProps = {
   numbers: string;
+  unit?: string
   desc: string;
 };
 
-function AnalyticsCards({ numbers, desc }: AnalyticsCardsProps) {
+function AnalyticsCards({ numbers, unit, desc }: AnalyticsCardsProps) {
   return (
     <div className="group relative bg-white rounded-md p-6 w-full h-44 flex flex-col items-center justify-center 
                     transition-all duration-500 ease-out
@@ -16,7 +17,8 @@ function AnalyticsCards({ numbers, desc }: AnalyticsCardsProps) {
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/0 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
 
       <div className="relative z-10 flex flex-col items-center">
-        <CountUp
+        <div className="flex flex-row">
+          <CountUp
           from={0}
           to={Number(numbers)}
           separator=","
@@ -25,6 +27,8 @@ function AnalyticsCards({ numbers, desc }: AnalyticsCardsProps) {
           className="count-up-text text-5xl text-[#242424] font-extrabold tracking-tight 
                      transition-transform duration-500 group-hover:scale-110 group-hover:text-[#3CDBE6]"
         />
+        <h1 className="text-black">{unit}</h1>
+        </div>
         
         <h4 className="text-sm font-bold uppercase tracking-widest text-slate-400   
                        mt-3 transition-colors duration-500 group-hover:text-[#010f4d]">

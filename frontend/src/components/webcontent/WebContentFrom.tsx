@@ -20,7 +20,6 @@ function WebContentFrom() {
       fetchContent()
     }, [])
 
-    console.log(content)
 
   return (
       <WebContentContext.Provider value={content}>

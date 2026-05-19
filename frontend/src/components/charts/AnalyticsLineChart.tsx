@@ -27,7 +27,6 @@ const AnalyticsLineChart = () => {
 
             const data = await getTicketVelocity()
 
-            console.log(data)
             setTicketVelocity(data)
             
         } catch (error) {

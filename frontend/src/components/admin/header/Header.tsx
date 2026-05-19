@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HiMoon, HiSun } from 'react-icons/hi'; // Recommended: npm install react-icons
 import UserMenu from './UserMenu';
-import useTheme from '../common/useTheme';
 
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isDark = useTheme()
   
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark' || 
@@ -26,8 +24,6 @@ const Header = () => {
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
-
-  console.log(isDark)
 
   const showBackButton = location.pathname === '/admin/users' || location.pathname === '/admin/tickets';
 

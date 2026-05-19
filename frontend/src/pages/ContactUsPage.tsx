@@ -30,9 +30,9 @@ function ContactUsPage() {
 
         <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-24 px-6 md:px-12 text-white text-left">
           <div data-aos="fade-right">
-            <SuperHeader text={content?.contactUsPage.header} type='hero' />
+            <SuperHeader text={content?.contactUsPage.header} type='hero' position='left'/>
         
-            <p className="mt-8 text-lg md:text-2xl font-light max-w-xl text-gray-200">
+            <p className="text-center md:text-left mt-8 text-lg md:text-2xl font-light max-w-xl text-gray-200">
               {content?.contactUsPage.subHeader} 
             </p>
           </div>
@@ -53,7 +53,7 @@ function ContactUsPage() {
       </div>
 
       {/* --- 2. CONTACT FORM & CARDS --- */}
-      <div className="bg-white max-w-[1280px] mx-auto px-6 py-24">
+      <div className="bg-white max-w-[1280px] mx-auto px-2 md:px-6 py-24 ">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: Contact Form */}
           <div data-aos="fade-right">
@@ -70,7 +70,7 @@ function ContactUsPage() {
                 </div>
                
                 <div className="flex flex-col sm:flex-row justify-between gap-1">
-                  <span className="font-medium text-sm">Careers:</span> 
+                  <span className="font-medium text-sm">Official Email</span> 
                   <span className="text-[#3CBDE6] font-bold break-all text-right">inquiry@opsiesoftwaresolutions.com</span>
                 </div>
               </div>
@@ -118,13 +118,13 @@ function ContactUsPage() {
             }}
           >
             {/* Text Side */}
-            <div className="w-full md:w-1/2 text-white" data-aos="fade-up">
+            <div className="w-full md:w-1/2 text-white p-5" data-aos="fade-up">
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Visit our office <br /> 
-                <span className="text-gray-400">at Sun Plaza.</span>
+              <h2 className="text-4xl text-center md:text-left md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Visit our office <br /> at
+                <span className="text-[#3CBDE6]"> Sun Plaza.</span>
               </h2>
-              <p className="text-gray-300 text-lg max-w-md font-light leading-relaxed">
+              <p className="text-gray-300 text-lg max-w-md font-light leading-relaxed text-center md:text-left">
                 Experience our workspace and meet the brilliant minds behind our software solutions. 
               </p>
             </div>

@@ -65,7 +65,9 @@ function Homepage() {
     </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={500}>
-          <ClientReview />
+          <div className='py-10'>
+            <ClientReview />
+          </div>
       </ScrollAnimatedSection>
 
       <ScrollAnimatedSection delay={600}>

@@ -20,7 +20,6 @@ type Props = {
 const COLORS = ["#4F46E5", "#22C55E", "#F59E0B"];
 
 const AnalyticsPieChart: React.FC<Props> = ({ chartData }) => {
-    console.log(chartData)
   return (
     <ResponsiveContainer width="100%" height={300}>
       <PieChart>

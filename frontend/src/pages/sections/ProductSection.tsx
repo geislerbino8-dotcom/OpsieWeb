@@ -10,7 +10,6 @@ import SuperHeader from "@/types/components/SuperHeader";
 
 function ProductSection() {
 
-  console.log(products)
   const navigate = useNavigate();
   const [ contents ] = useState(usePageContent.data[0].productsSection)
 
@@ -23,12 +22,12 @@ function ProductSection() {
 
         {/* --- HEADER --- */}
         <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 border-b border-gray-100 ">
-          <div className="flex justify-center items-center gap-5" data-aos="zoom-in">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-5" data-aos="zoom-in">
             <div className="relative">
                <div className="absolute inset-0 bg-[#3CBDE6]/20 blur-xl rounded-full"></div>
                <img src={LogoOnly} alt="Opsie Logo" className="spin-slow w-16 h-16 relative z-10" />
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <SuperHeader text={contents.header} />
             </div>
        

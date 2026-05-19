@@ -170,7 +170,7 @@ export default function Maps() {
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 lg:mt-4">
             
-            <div className="transition-all duration-500 hover:bg-[#242424] bg-[#3CBDE6] text-white rounded-lg overflow-hidden">
+            <div className="transition-all duration-500 hover:bg-[#242424] bg-[#3CBDE6] text-white overflow-hidden">
               <Button
                 label="Get Direction"
                 icon={<img src="/ICONS/get-started-arrow.svg" className="w-5 h-5" />}

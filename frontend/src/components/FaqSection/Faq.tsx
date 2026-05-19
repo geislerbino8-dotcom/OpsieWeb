@@ -15,7 +15,7 @@ const FAQAccordion = () => {
   };
 
   return (
-    <section className="py-24 px-6 md:px-10">
+    <section className="py-10 md:py-24 px-6 md:px-10">
       <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
         
         {/* Left Side: Header Content */}

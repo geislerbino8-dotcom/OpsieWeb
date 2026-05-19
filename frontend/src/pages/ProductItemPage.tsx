@@ -29,6 +29,7 @@ interface Analytics {
   title: string;
   value: string;
   description: string;
+  unit?: string
 }
 
 interface ProductContentType {
@@ -151,7 +152,7 @@ function ProductItemPage() {
       <section className="w-full max-w-6xl py-24 px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {content.analytics.map((item, index) => (
-            <AnalyticsCards key={index} numbers={item.value} desc={item.title} />
+            <AnalyticsCards key={index} numbers={item.value} desc={item.title} unit={item.unit} />
           ))}
         </div>
       </section>
@@ -190,7 +191,7 @@ function ProductItemPage() {
 
       {/* --- PHOTO GALLERY --- */}
       <section className="w-full max-w-7xl px-6 pb-32">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="flex justify-center items-center grid grid-cols-2 md:grid-cols-4 gap-4">
           {content.photos.map((url, index) => (
             <div key={index} data-aos="zoom-in" data-aos-delay={index * 100} className="group relative overflow-hidden rounded-2xl border border-white/10 aspect-video">
               <img 

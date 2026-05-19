@@ -8,6 +8,7 @@ import Team from "@/components/Team";
 import SuperHeader from "@/types/components/SuperHeader";
 import { useContext } from "react";
 import { ContentContext } from "@/App";
+import CoreValuesSection from "./sections/CoreValuesSection";
 
 const myLogos = [
   { node: <span className="font-bold overflow-hidden">INNOVATION</span> },
@@ -48,9 +49,9 @@ export default function WhoWeAre() {
             
 
           <div className="flex flex-col items-center md:items-start w-full">
-            <SuperHeader text={content?.whoWeArePage.header} type="hero" />
+            <SuperHeader text={content?.whoWeArePage.header} type="hero" position="left" />
 
-            <p className="text-3xl bg-black"> empowering businesses through smarter technology.</p>
+            <p className="text-3xl bg-black/60"> empowering businesses through smarter technology.</p>
             
             
             <p data-aos="fade-up" className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
@@ -95,12 +96,12 @@ export default function WhoWeAre() {
         <div className="flex flex-col md:flex-row items-center justify-center w-full gap-0 md:gap-0  lg:mt-10">
             <div className="flex flex-col items-center md:items-start justify-center md:w-1/2 gap-6 md:gap-10 px-2 md:mt-0">
             
-           <div className="text-left">
-             <SuperHeader text={content?.whoWeArePage.section2.header} />
+           <div className="text-center md:text-left">
+             <SuperHeader text={content?.whoWeArePage.section2.header} position="left" />
            </div>
 
           
-            <p data-aos="fade-right" data-aos-delay="200" className="w-full md:w-[320px] lg:w-[450px] text-center md:text-left text-[16px] sm:text-[14px] md:text-[18px] font-light">
+            <p data-aos="fade-right" data-aos-delay="200" className="w-full text-center md:text-left text-[16px] sm:text-[14px] md:text-[18px] font-light">
                 {content?.whoWeArePage.section2.subHeader}        
             </p>
 
@@ -303,7 +304,7 @@ export default function WhoWeAre() {
                                 </div>
                             <div className="flex flex-col items-center justify-center gap-2 px-2">
                                 <h1 className="text-[18px]">Modernization</h1>
-                                <p className=" text-center text-[12px]">Digital Infrastructure for Small and Medium Enterprises(SME). </p>
+                                <p className=" text-center text-[12px]">To help business move towards more connected, scalable, and efficient system. </p>
                             </div>
                         </div>
                         </div>
@@ -331,7 +332,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className=" text-[20px]">Digital Leadership</h1>
-                                <p className=" text-left font-light text-[10px]">To become a trusted software company that shapes the future through technology. </p>
+                                <p className=" text-left font-light text-[10px]">To build a trusted technology partner that supports businesses with practical and reliable solutions. </p>
                             </div>
                         </div>
 
@@ -341,7 +342,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Innovation</h1>
-                                <p className=" text-left font-light text-[10px]">To lead the future of technology by creating innovative and impactful software solutions. </p>
+                                <p className=" text-left font-light text-[10px]">To continously improve how systems work by developing solutions that are simple, effective, and build for real use. </p>
                             </div>
                         </div>
                     </div>
@@ -392,9 +393,9 @@ export default function WhoWeAre() {
                                 <div className="flex items-center justify-center shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
                                     <img src="/ICONS/modernization-icon.svg" alt="" className="w-7 h-7"/>
                                 </div>
-                            <div className="flex flex-col items-center justify-center">
+                            <div className="flex fslex-col items-center justify-center">
                                 <h1 className="text-[18px]">Excellence</h1>
-                                <p className=" text-center font-light text-[12px]">Digital Infrastructure for Small and Medium Enterprises(SME). </p>
+                                <p className=" text-center font-light text-[12px]">To deliver consistent quality through systems that are stable, secure, and easy to manage. </p>
                             </div>
                         </div>
                         </div>
@@ -425,7 +426,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Empowerment</h1>
-                                <p className=" text-left font-light text-[10px]">To become a trusted software company that shapes the future through technology. </p>
+                                <p className=" text-left font-light text-[10px]">To give business more clarity and control through better systems. </p>
                             </div>
                         </div>
 
@@ -435,7 +436,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Solution Building</h1>
-                                <p className=" text-left font-light text-[10px]">To lead the future of technology by creating innovative and impactful software solutions. </p>
+                                <p className=" text-left font-light text-[10px]">To design solutions that solve real problems and improve how teams work. </p>
                             </div>
                         </div>
                     </div>
@@ -451,13 +452,16 @@ export default function WhoWeAre() {
                 </div>
                 </div>
 
-        {/* Results Section */}
+            <CoreValuesSection />
+
      
 
         {/* Vision & Mission Sections */}
         <div className="my-20">
           
-          <Team />
+          <div className="p-2">
+            <Team />
+          </div>
           <div className="">
             <MapDesign />
           </div>

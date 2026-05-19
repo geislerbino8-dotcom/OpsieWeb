@@ -13,7 +13,6 @@ function HeroPage({ bgImage }: HeroPageProps) {
   const navigate = useNavigate();
   const content = useContext(ContentContext)
 
-
   return (
     <div
       className="w-full h-screen relative flex flex-col justify-end overflow-hidden"
