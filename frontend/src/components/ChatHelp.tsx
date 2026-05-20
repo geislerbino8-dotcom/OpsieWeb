@@ -5,7 +5,7 @@ function ChatHelp() {
     <div className='fixed z-20 px-7 py-3 rounded-3xl right-10 bottom-6 bg-white'>
       <TextType 
         className='mr-7'
-        text={["How may i help you"]}
+        text={["How may I help you"]}
         typingSpeed={75}
         pauseDuration={10000}
         showCursor

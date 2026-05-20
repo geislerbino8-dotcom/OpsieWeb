@@ -16,10 +16,11 @@ const HeroPageCMS: React.FC = () => {
 
   // Sync state with context when content loads
   useEffect(() => {
-    if (content?.heroSection) {
-      setFormData(content.heroSection);
+    if (content?.draftContent) {
+      setFormData(content.draftContent.heroSection);
     }
   }, [content]); // Added dependency array
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -27,12 +28,12 @@ const HeroPageCMS: React.FC = () => {
   };
 
   const saveChanges = async () => {
+
     if (!formData) return;
 
     try {
       const update = await updateContent({
-        id: "69ed83215f12c5a147e02160",
-        path: "heroSection",
+        path: "draftContent.heroSection",
         value: formData,
       });
 
@@ -45,9 +46,12 @@ const HeroPageCMS: React.FC = () => {
 
   const handleCancel = () => {
     // Reset form data to the original context values
-    setFormData(content?.heroSection || null);
+    setFormData(content?.draftContent.heroSection || null);
     setIsEditing(false);
   };
+
+  console.log(formData)
+
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">

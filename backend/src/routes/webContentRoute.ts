@@ -28,11 +28,14 @@ export default class WebContentRoute {
             this.controller.getContent
         );
 
-        this.router.patch(
+        this.router.patch(  
             '/update-content',
-             authMiddleware,
-            requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
             this.controller.updateContent
         );
+
+        this.router.patch(
+            '/publish-content',
+            this.controller.publishContent
+        )
     };
 }

@@ -18,8 +18,8 @@ const PartnerSectionCMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(()=> {
-    if(content?.partnersSection){
-      setFormData(content.partnersSection)
+    if(content?.draftContent.partnersSection){
+      setFormData(content.draftContent.partnersSection)
     }
   }, [content])
 
@@ -33,7 +33,7 @@ const PartnerSectionCMS: React.FC = () => {
     try {
         const update = await updateContent({
           id: "69ed83215f12c5a147e02160",
-          path: "partnersSection",
+          path: "draftContent.partnersSection",
           value: formData
         })
 
@@ -42,6 +42,11 @@ const PartnerSectionCMS: React.FC = () => {
         console.log(error)
     }
   }
+
+  const handleCancel = () => {
+    setFormData(content?.draftContent.partnersSection || null);
+    setIsEditing(false);
+  };
 
 
   return (
@@ -105,7 +110,7 @@ const PartnerSectionCMS: React.FC = () => {
             </button>
 
             <button
-                onClick={()=> setIsEditing(false)}
+                onClick={handleCancel}
                 className="w-full py-3 mt-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors"
             >
                 Cancel

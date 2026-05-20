@@ -2,6 +2,7 @@ import { model, Schema } from "mongoose";
 
 const ProductSchema = new Schema({
     name: { type: String, required: true },
+    logo: { type: String, required: true},
     image: { type: String, required: true },
     tagline: { type: String, required: true},
     description: { type: String, required: true },
@@ -13,6 +14,7 @@ const ProductSchema = new Schema({
     photos: { type: Array, required: false },
     analytics: { type: Array, required: false},
     industries: { type: Array, required: false},
+    themeColor: { type: String, required: false}
 
 
 });

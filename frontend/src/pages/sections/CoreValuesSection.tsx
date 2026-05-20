@@ -7,7 +7,7 @@ const CoreValuesSection = () => {
       description: 'Making work simpler, smoother, and smarter.',
     },
     {
-      title: 'Connectivity', // Corrected from Celiability
+      title: 'Celiability', 
       description: 'Bringing people, processes, and systems together.',
     },
     {

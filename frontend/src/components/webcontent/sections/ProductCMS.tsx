@@ -1,11 +1,17 @@
 import { getProducts } from "@/api/getProducts";
 import { useEffect, useState } from "react";
-import UpdateProductModal from "./UpdateProductModal"; // Adjust path as needed
+import UpdateProductModal from "./UpdateProductModal";
+import ViewProductModal from "./ViewProductModal";
+import { useApiState } from "@/hooks/useApiState";
+import LoadingOverlay from "@/components/admin/common/LoadingOverlay";
+import ToastContainer from "@/components/admin/common/ToastComponent";
+import { deleteProduct } from "@/api/deleteProduct";
+import { useToast } from "@/hooks/useToast";
 
-// Updated interface to match the full structure required by the Modal
 interface Product {
   _id: string;
   name: string;
+  logo: string;
   image: string;
   tagline: string;
   description: string;
@@ -23,14 +29,20 @@ interface Product {
   photos: string[];
   analytics: { title: string; value: string; description: string }[];
   industries: string[];
+  themeColor: string;
 }
 
 const ProductCMS = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  
-  // State to track which product is currently being edited
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [ viewProduct, setViewProduct ] = useState<Product | null>(null)
+  const [ productToDelete, setProductToDelete ] = useState<Product | null>(null)
+
+  const [ message, setMessage ] = useState("")
+  const { toasts, addToast } = useToast()
+  const apiState = useApiState()
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -43,93 +55,149 @@ const ProductCMS = () => {
         setLoading(false);
       }
     };
-
     fetchProducts();
   }, []);
 
-  // Handle the update after modal submission
   const handleUpdateProduct = async (updatedData: any) => {
     try {
-      // 1. Optional: Call your API here to persist changes to MongoDB
-      // await api.updateProduct(selectedProduct?._id, updatedData);
-
-      // 2. Update local state so UI reflects changes immediately
       setProducts((prev) =>
         prev.map((p) => (p._id === selectedProduct?._id ? { ...p, ...updatedData } : p))
       );
-      
-      console.log("Product updated successfully");
     } catch (error) {
       console.error("Failed to update product:", error);
     }
   };
 
-  console.log(selectedProduct)
+  const handleDelete = async () => {
+    try {
+      if (!productToDelete?._id) return;
+
+      apiState.startLoading();
+
+      const id = productToDelete._id;
+
+      await deleteProduct(id);
+
+      setProducts((prev) => prev.filter((p) => p._id !== id));
+
+      addToast("Product deleted successfully", "success");
+
+      setMessage("");
+      setProductToDelete(null);
+      setViewProduct(null);
+    } catch (error) {
+      console.log(error);
+      addToast("Failed to delete product", "error");
+    } finally {
+      apiState.reset();
+    }
+  };
+
 
   return (
-    <div className="w-full p-8 bg-gray-50 min-h-screen">
+    <div className="w-full p-4 md:p-8 bg-gray-50 min-h-screen">
       <div className="max-w-6xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-gray-800">Product Inventory</h2>
-          <span className="text-sm text-gray-500">{products.length} Items Total</span>
+        {/* Header */}
+        <div className="px-4 py-4 md:px-6 border-b border-gray-200 flex flex-col sm:row justify-between items-start sm:items-center gap-2">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 tracking-tight">
+            Product Inventory
+          </h2>
+          <span className="text-xs md:text-sm font-medium px-3 py-1 bg-gray-100 rounded-full text-gray-500">
+            {products.length} Items Total
+          </span>
         </div>
 
-        <table className="w-full text-left border-collapse">
-          <thead className="bg-gray-100 uppercase text-xs font-semibold text-gray-600">
-            <tr>
-              <th className="px-6 py-3 border-b">Product</th>
-              <th className="px-6 py-3 border-b">Category</th>
-              <th className="px-6 py-3 border-b">Industries</th>
-              <th className="px-6 py-3 border-b text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {loading ? (
+        {/* Table Wrapper for Horizontal Scroll on tiny devices */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            {/* Desktop Header - Hidden on mobile */}
+            <thead className="bg-gray-100 uppercase text-[10px] md:text-xs font-semibold text-gray-600 hidden md:table-header-group">
               <tr>
-                <td colSpan={4} className="px-6 py-10 text-center text-gray-500">
-                  Loading products...
-                </td>
+                <th className="px-6 py-3 border-b">Product</th>
+                <th className="px-6 py-3 border-b">Category</th>
+                <th className="px-4 py-3 border-b hidden lg:table-cell">Industries</th>
+                <th className="px-6 py-3 border-b text-right">Actions</th>
               </tr>
-            ) : (
-              products.map((product) => (
-                <tr key={product._id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="font-medium text-gray-900">{product.name}</div>
-                    <div className="text-sm text-gray-500 truncate max-w-xs">{product.tagline}</div>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">
-                      {product.category}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
-                    {product.industries?.join(", ") || "N/A"}
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <button 
-                      className="text-[#3CBDE6] hover:text-blue-800 font-bold text-sm uppercase tracking-wider"
-                      onClick={() => setSelectedProduct(product)}
-                    >
-                      Edit
-                    </button>
+            </thead>
+
+            <tbody className="divide-y divide-gray-200 block md:table-row-group">
+              {loading ? (
+                <tr>
+                  <td colSpan={4} className="px-6 py-10 text-center text-gray-500">
+                    Loading products...
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                products.map((product) => (
+                  <tr 
+                    key={product._id} 
+                    onClick={()=> setViewProduct(product)}
+                    className="hover:bg-gray-50 transition-colors flex flex-col md:table-row p-4 md:p-0"
+                  >
+                    {/* Product Name & Tagline */}
+                    <td className="md:px-6 md:py-4">
+                      <div className="font-bold md:font-medium text-gray-900">{product.name}</div>
+                      <div className="text-xs md:text-sm text-gray-500 line-clamp-1 md:max-w-xs">
+                        {product.tagline}
+                      </div>
+                    </td>
+
+                    {/* Category */}
+                    <td className="mt-2 md:mt-0 md:px-6 md:py-4">
+                      <span className="inline-block px-2 py-1 text-blue-700 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">
+                        {product.category}
+                      </span>
+                    </td>
+
+                    {/* Industries - Hidden on Mobile/Tablet, visible on Large screens */}
+                    <td className="hidden lg:table-cell px-4 py-4 text-sm text-gray-600 italic">
+                      {product.industries?.slice(0, 2).join(", ")}
+                      {product.industries?.length > 2 && "..."}
+                    </td>
+
+                    {/* Actions */}
+                    <td className="mt-4 md:mt-0 md:px-6 md:py-4 md:text-right border-t md:border-t-0 pt-3 md:pt-0">
+                      <div>
+                        <button
+                        className="w-full mr-4 md:w-auto text-green-300 hover:text-green-500 font-black text-xs md:text-sm uppercase tracking-widest py-2 md:py-0 border md:border-0 border-[#3CBDE6]/20 rounded md:rounded-none"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setSelectedProduct(product)
+                        }}
+                      >
+                        Edit 
+                      </button>
+                      <button
+                        className="w-full md:w-auto text-red-300 hover:text-red-500 font-black text-xs md:text-sm uppercase tracking-widest py-2 md:py-0 border md:border-0 border-[#3CBDE6]/20 rounded md:rounded-none"
+                        onClick={(e)=> {
+                          e.stopPropagation()
+                          setProductToDelete(product)
+                          setMessage('Are you sure you want to delete this product?')
+                        }}
+                      >
+                        Delete 
+                      </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-5">
-        <button 
-          onClick={() => window.location.href = 'add-product'} 
-          className="px-6 py-2 bg-black text-white font-bold rounded hover:bg-gray-800 transition-all uppercase text-sm tracking-widest"
+      {/* Footer / Floating Button Area */}
+      <div className="max-w-6xl mx-auto mt-6 flex justify-center md:justify-start">
+        <button
+          onClick={() => (window.location.href = "add-product")}
+          className="w-full sm:w-auto px-10 py-4 bg-black text-white font-black rounded-xl hover:bg-gray-800 transition-all uppercase text-xs tracking-[0.2em] shadow-xl active:scale-95"
         >
-          Add Product
+          Add New Product
         </button>
       </div>
 
-      {/* Conditional Rendering of the Modal */}
+      {/* Modal */}
       {selectedProduct && (
         <UpdateProductModal
           product={selectedProduct}
@@ -137,8 +205,72 @@ const ProductCMS = () => {
           onUpdate={handleUpdateProduct}
         />
       )}
+
+      {
+        viewProduct && (
+          <ViewProductModal 
+            product={viewProduct}
+            onClose={()=> setViewProduct(null)}
+          />
+        )
+      }
+
+      {
+        message && (
+          <ConfirmPopup 
+            message={message}
+            onCancel={()=> setMessage("")}
+            onConfirm={handleDelete}
+          />
+        )
+      }
+
+      {apiState.status === 'loading' && <LoadingOverlay />}
+            <ToastContainer toasts={toasts} />
     </div>
   );
 };
 
 export default ProductCMS;
+
+type ConfirmPopupProps = {
+  message: string;
+  onCancel: () => void;
+  onConfirm: () => void;
+};
+
+export const ConfirmPopup = ({
+  message,
+  onCancel,
+  onConfirm,
+}: ConfirmPopupProps) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+      <div className="bg-white w-[320px] rounded-xl shadow-lg p-5">
+        <h2 className="text-lg font-semibold mb-3">
+          Confirm Action
+        </h2>
+
+        <p className="text-gray-600 mb-5">
+          {message}
+        </p>
+
+        <div className="flex justify-end gap-3">
+          <button
+            onClick={onCancel}
+            className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+
+          <button
+            onClick={onConfirm}
+            className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

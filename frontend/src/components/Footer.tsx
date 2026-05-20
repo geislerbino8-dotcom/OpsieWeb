@@ -1,13 +1,10 @@
 import logoOnly from '../assets/opsie/opsie_logo.png'
 import EncourageCard from './cards/EncourageCard';
 import { SiFacebook, SiInstagram, SiGmail } from 'react-icons/si';
-import { usePageContent } from '@/data/usePageContent';
-import { useState } from 'react';
 
 
 const Footer = () => {
 
-  const [ content ] = useState(usePageContent.data[0].footerSection)
 
   return (
     <div className="relative w-full  flex justify-center py-6 md:px-4 px-2 overflow-hidden">
@@ -28,7 +25,7 @@ const Footer = () => {
       <div className="relative w-full max-w-6xl rounded-3xl bg-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] md:p-10 py-10 px-3 md:mb-30 z-10">
 
         {/* HEADER */}
-        <div className="text-center mb-8">
+        <div className="text-center">
           {
             /**
              * <div className="inline-flex items-center gap-2 bg-[#E6F7FC] text-[#3CBDE6] px-4 py-1 rounded-full text-sm mb-4">
@@ -39,7 +36,9 @@ const Footer = () => {
 
           <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
             {
-              content.subHeader
+              /**
+               * content?.footerSection.subHeader
+               */
             }
           </p>
         </div>

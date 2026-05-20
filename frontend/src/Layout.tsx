@@ -9,7 +9,7 @@ function Layout() {
 
   return (
     <div>
-      <div className=''>
+      <div className='select-none'>
           <ChatHelp />
           <Navigation />
           <Outlet />

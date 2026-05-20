@@ -20,8 +20,8 @@ const ProductItemCTACMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(()=> {
-    if(content?.ctaSection){
-      setFormData(content.ctaSection)
+    if(content?.draftContent.ctaSection){
+      setFormData(content.draftContent.ctaSection)
     }
   }, [content])
 
@@ -44,7 +44,7 @@ const ProductItemCTACMS: React.FC = () => {
     try {
         const update = await updateContent({
           id: "69ed83215f12c5a147e02160",
-          path: "ctaSection",
+          path: "draftContent.ctaSection",
           value: formData
         })
 
@@ -53,6 +53,13 @@ const ProductItemCTACMS: React.FC = () => {
         console.log(error)
     }
   }
+
+  const handleCancel = () => {
+    setFormData(content?.draftContent.ctaSection || null);
+    setIsEditing(false);
+  };
+
+  
 
 
   return (
@@ -115,7 +122,7 @@ const ProductItemCTACMS: React.FC = () => {
             </button>
 
             <button
-                onClick={()=> setIsEditing(false)}
+                onClick={handleCancel}
                 className="w-full py-3 mt-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors"
             >
                 Cancel

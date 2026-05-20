@@ -11,6 +11,7 @@ export const WebContentContext = createContext<ContentType | null>(null)
 function WebContentFrom() {
   const [ content, setContent ] = useState<ContentType | null>(null)
 
+
   useEffect(()=> {
       const fetchContent = async()=> {
         let res = await getContent()
@@ -19,6 +20,7 @@ function WebContentFrom() {
   
       fetchContent()
     }, [])
+
 
 
   return (

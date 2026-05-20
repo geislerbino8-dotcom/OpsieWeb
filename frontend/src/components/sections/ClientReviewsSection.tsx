@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TestimonialCard } from "../Card/ClientCard/Card";
 import { Button } from "../Button";
 
@@ -6,13 +6,13 @@ import leftArrow from '../../assets/icons/left-arrow1.svg'
 import rightArrow from '../../assets/icons/right-arrow.svg'
 
 import { reviews } from "@/data/clientReviewsData";
-import { usePageContent } from "@/data/usePageContent";
 import SuperHeader from "@/types/components/SuperHeader";
+import { ContentContext } from "@/App";
 
 
 const ClientReview: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [ content ] = useState(usePageContent.data[0].clientSection)
+  const content = useContext(ContentContext)
 
   
 
@@ -31,7 +31,7 @@ const ClientReview: React.FC = () => {
 <div className="flex items-center h-full md:items-start md:justify-start flex-col gap-4">
       
         <div className="text-left">
-          <SuperHeader text={content.header} position="left" />
+          <SuperHeader text={content?.clientSection.header} position="left" />
         </div>
 
         <p className="text-center md:text-left">We take the time to get it right, so everything works better for your business.</p>

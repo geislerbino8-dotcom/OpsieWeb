@@ -1,7 +1,8 @@
 import { updateContent } from "@/api/updateContent";
-import { usePageContent } from "@/data/usePageContent";
-import React, { useState, } from "react";
+import React, { useContext, useState, } from "react";
 import EncourageCTACMS from "./EncourageCTACMS";
+import { useEffect } from "react";
+import { WebContentContext } from "../WebContentFrom";
 
 interface HeroSection {
   header: string;
@@ -10,8 +11,16 @@ interface HeroSection {
 }
 
 const FooterCMS: React.FC = () => {
-  const [formData] = useState<HeroSection>(usePageContent.data[0].footerSection);
+
+  const content = useContext(WebContentContext)
+  const [formData, setFormData ] = useState<HeroSection | null >(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  useEffect(() => {
+      if (content?.draftContent.faqSection) {
+        setFormData(content.draftContent.faqSection);
+      }
+    }, [content]);
 
 
   const saveChanges = async ()=> {
@@ -72,8 +81,8 @@ const FooterCMS: React.FC = () => {
 
             
 
-            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData.header}</h2>
-            <p className="text-gray-800 text-center">{formData.subHeader}</p>
+            <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData?.header}</h2>
+            <p className="text-gray-800 text-center">{formData?.subHeader}</p>
 
             <EncourageCTACMS />
 

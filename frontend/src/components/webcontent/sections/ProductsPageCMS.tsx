@@ -24,8 +24,8 @@ const ProductsPageCMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(() => {
-    if (content?.productsPage) {
-      setFormData(content.productsPage);
+    if (content?.draftContent.productsPage) {
+      setFormData(content.draftContent.productsPage);
     }
   }, [content]);
 
@@ -58,7 +58,7 @@ const ProductsPageCMS: React.FC = () => {
     try {
       await updateContent({
         id: "69ed83215f12c5a147e02160", // Your document ID
-        path: "productsPage",
+        path: "draftContent.productsPage",
         value: formData,
       });
       setIsEditing(false);
@@ -68,7 +68,7 @@ const ProductsPageCMS: React.FC = () => {
   };
 
   const handleCancel = () => {
-    setFormData(content?.productsPage || null);
+    setFormData(content?.draftContent.productsPage || null);
     setIsEditing(false);
   };
 

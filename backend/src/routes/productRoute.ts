@@ -30,6 +30,11 @@ export default class ProductRoute {
         this.router.put(
             '/update',
             this.controller.updateProduct
+        );
+
+        this.router.get(
+            '/delete/:id',
+            this.controller.deleteProduct
         )
     }
 }

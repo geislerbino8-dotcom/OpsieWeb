@@ -15,8 +15,8 @@ const ClientSectionCMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(()=> {
-    if(content?.clientSection){
-      setFormData(content.clientSection)
+    if(content?.draftContent.clientSection){
+      setFormData(content.draftContent.clientSection)
     }
   }, [content])
 
@@ -30,7 +30,7 @@ const ClientSectionCMS: React.FC = () => {
     try {
         const update = await updateContent({
           id: "69ed83215f12c5a147e02160",
-          path: "clientSection",
+          path: "draftContent.clientSection",
           value: formData
         })
 
@@ -39,6 +39,12 @@ const ClientSectionCMS: React.FC = () => {
         console.log(error)
     }
   }
+
+  const handleCancel = () => {
+    // Revert form data to original context values
+    setFormData(content?.draftContent.clientSection || null);
+    setIsEditing(false);
+  };
 
 
   return (
@@ -82,7 +88,7 @@ const ClientSectionCMS: React.FC = () => {
           /* --- LIVE PREVIEW VIEW --- */
           <div className="text-center cursor-pointer group relative"
           
-            onClick={()=> setIsEditing(true)}
+            onClick={()=> handleCancel}
           >
 
              <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">

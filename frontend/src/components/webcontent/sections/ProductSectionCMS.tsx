@@ -18,8 +18,8 @@ const ProductSectionCMS: React.FC = () => {
 
   // Sync state when context data loads
   useEffect(() => {
-    if (content?.productsSection) {
-      setFormData(content.productsSection);
+    if (content?.draftContent.productsSection) {
+      setFormData(content.draftContent.productsSection);
     }
   }, [content]);
 
@@ -34,7 +34,7 @@ const ProductSectionCMS: React.FC = () => {
     try {
       const update = await updateContent({
         id: "69ed83215f12c5a147e02160",
-        path: "productsSection",
+        path: "draftContent.productsSection",
         value: formData
       });
 
@@ -47,7 +47,7 @@ const ProductSectionCMS: React.FC = () => {
 
   const handleCancel = () => {
     // Revert form data to original context values
-    setFormData(content?.productsSection || null);
+    setFormData(content?.draftContent.productsSection || null);
     setIsEditing(false);
   };
 
