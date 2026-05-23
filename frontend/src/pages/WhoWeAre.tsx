@@ -4,16 +4,16 @@ import LogoLoop from "@/components/LogoLoop";
 import FAQAccordion from "../components/FaqSection/Faq";
 import CountUp from "../components/CountUp";
 import MapDesign from "@/components/sections/MapDesign";
-import Team from "@/components/Team";
 import SuperHeader from "@/types/components/SuperHeader";
 import { useContext } from "react";
 import { ContentContext } from "@/App";
 import CoreValuesSection from "./sections/CoreValuesSection";
+import OperationalStructure from "@/components/sections/OperationalStructure";
 
 const myLogos = [
-  { node: <span className="font-bold overflow-hidden">INNOVATION</span> },
-  { node: <span className="font-bold overflow-hidden">SCALABILITY</span> },
-  { node: <span className="font-bold overflow-hidden">PRECISION</span> },
+  { node: <span className="font-bold overflow-hidden">Simple</span> },
+  { node: <span className="font-bold overflow-hidden">Connected</span> },
+  { node: <span className="font-bold overflow-hidden">Reliable</span> },
 ];
 
 
@@ -226,19 +226,19 @@ export default function WhoWeAre() {
                      <div className="flex flex-col gap-6 flex items-center justify-center lg:items-start">
                          <div className="flex flex-col lg:flex-row  lg:gap-6">
                          <div  data-aos-offset="50" data-aos-delay="600" className="flex justify-center  mt-4 md:mt-0 mr-30 sm:mr-40">
-                                 <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="800" className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:mr-20   ">
+                            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="800" className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:mr-20   ">
                                     <img
                                         src="/Results-bg.png"
                                         alt=""
                                         className="w-full h-[350px] sm:h-[400px] md:h-[400px] lg:object-contain"
                                     />
                                 {/* Floating Card */}
-                                <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="1000" className="absolute top-1/2 -translate-y-1/2 -right-[140px] sm:-right-[180px] md:-right-[180px] z-50 ">
+                                <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="1000" className="absolute top-1/2 -translate-y-1/2 sm:-right-[180px] md:-right-[180px] z-50 ">
                                     <div  className="flex flex-col gap-1 ml-16 sm:ml-24 md:ml-24">
-                                            {["Humble Beginnings", "Proven Progress", "Dreamed It. Built It."].map((item) => (
-                                            <div key={item} className="flex items-center gap-1">
-                                                <img src="/ICONS/check.svg" className="w-4 h-4 shrink-0" />
-                                                <span className="text-[12px] sm:text-[16px]  font-light">{item}</span>
+                                            {["Simple Systems", "Reliable Operations", "Connected Workflows"].map((item) => (
+                                            <div key={item} className="flex items-center gap-1 bg-green-600">
+                                                <img src="/ICONS/check.svg" className="ml-5 w-4 h-4 shrink-0" />
+                                                <span className="text-white text-[12px] sm:text-[16px]  font-light">{item}</span>
                                             </div>
                                             ))}
                                         </div>
@@ -249,20 +249,20 @@ export default function WhoWeAre() {
                                         </div>
 
                                         {/* Bottom Checkmarks */}
-                                        <div className="flex flex-col gap-1 ml-16    sm:ml-24">
-                                            {["Proven Progress", "Driven by Code", "Powered by Vision"].map((item) => (
-                                            <div key={item} className="flex items-center gap-1">
+                                        <div className="flex flex-col gap-1 ml-16  sm:ml-24">
+                                            {["Partner-First Support", "Future-Ready Solutions", "Built-Around Your Business"].map((item) => (
+                                            <div key={item} className="flex items-center gap-1 bg-green-600">
                                                 <img src="/ICONS/check.svg" className="w-4 h-4 shrink-0" />
-                                                <span className="text-[12px] sm:text-[16px]">{item}</span>
+                                                <span className="text-white text-[12px] sm:text-[16px]">{item}</span>
                                             </div>
                                             ))}
-                                    </div>
+                                        </div>
                                 </div>
                         </div>
                     </div>
                             <div className="flex flex-col items-center lg:items-start gap-6 md:gap-4  mt-10">
                                 <div className="text-left">
-                                    <SuperHeader text={content?.whoWeArePage.section3.header} />
+                                    <SuperHeader text={content?.whoWeArePage.section3.header} position="left" />
                                 </div>
                                 <p data-aos="fade-right" data-aos-offset="50" data-aos-delay="500" className="w-full text-center lg:text-left text-[16px] sm:text-[16px]">
                                     {content?.whoWeArePage.section3.subHeader}
@@ -294,7 +294,7 @@ export default function WhoWeAre() {
 
                     {/* Right Top Small */}
                     <div className="md:col-span-1">
-                        <div data-aos="fade-right"  className="flex items-center justify-center 
+                        <div data-aos="fade-right"  className="flex items-center justify-center bg-white 
                             shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
                             w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:ml-8 xl:ml-20 rounded-3xl overflow-hidden">
 
@@ -325,14 +325,14 @@ export default function WhoWeAre() {
                     {/* in lg move to behind of tall card */}
                     
                     <div className="col-span-2 md:col-start-2 md:row-start-1 ">
-                    <div data-aos="fade-right" className="flex flex-col items-center justify-center p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2">
+                    <div data-aos="fade-right" className="bg-white flex flex-col items-center justify-center p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2">
                         <div className="flex flex-row gap-4 ">
                             <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
                                 <img src="/ICONS/digital-leader-icon.svg" alt="" className="w-7 h-7"/>
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className=" text-[20px]">Digital Leadership</h1>
-                                <p className=" text-left font-light text-[10px]">To build a trusted technology partner that supports businesses with practical and reliable solutions. </p>
+                                <p className=" text-left font-light text-[12px]">To build a trusted technology partner that supports businesses with practical and reliable solutions. </p>
                             </div>
                         </div>
 
@@ -342,7 +342,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Innovation</h1>
-                                <p className=" text-left font-light text-[10px]">To continously improve how systems work by developing solutions that are simple, effective, and build for real use. </p>
+                                <p className=" text-left font-light text-[12px]">To continously improve how systems work by developing solutions that are simple, effective, and build for real use. </p>
                             </div>
                         </div>
                     </div>
@@ -350,7 +350,7 @@ export default function WhoWeAre() {
 
                     <div className="col-span-2 md:col-start-3 md:row-start-2  lg:col-span-2 lg:col-start-3 lg:row-start-2">
                     <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px]  xl:ml-10  ">
-                        <img src="vision3rd-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
+                        <img src="vision3rd-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl  " />
                         </div>
                     </div>
 
@@ -386,6 +386,7 @@ export default function WhoWeAre() {
                     {/* Right Top Small */}
                     <div className="md:col-span-1">
                         <div data-aos="fade-right"  className="flex items-center justify-center 
+                            bg-white
                             shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
                             w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:ml-8 xl:ml-20 rounded-3xl overflow-hidden">
 
@@ -393,7 +394,7 @@ export default function WhoWeAre() {
                                 <div className="flex items-center justify-center shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
                                     <img src="/ICONS/modernization-icon.svg" alt="" className="w-7 h-7"/>
                                 </div>
-                            <div className="flex fslex-col items-center justify-center">
+                            <div className="flex flex-col items-center justify-center">
                                 <h1 className="text-[18px]">Excellence</h1>
                                 <p className=" text-center font-light text-[12px]">To deliver consistent quality through systems that are stable, secure, and easy to manage. </p>
                             </div>
@@ -418,7 +419,7 @@ export default function WhoWeAre() {
                     
                     <div className="col-span-2 md:col-start-2 md:row-start-1 ">
                     <div data-aos="fade-right" className="flex flex-col items-center justify-center p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2
-                    hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-100
+                    bg-white
                     hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-1000 ease-in-out">
                         <div className="flex flex-row gap-4 ">
                             <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
@@ -426,7 +427,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Empowerment</h1>
-                                <p className=" text-left font-light text-[10px]">To give business more clarity and control through better systems. </p>
+                                <p className=" text-left font-light text-[12px]">To give business more clarity and control through better systems. </p>
                             </div>
                         </div>
 
@@ -436,7 +437,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Solution Building</h1>
-                                <p className=" text-left font-light text-[10px]">To design solutions that solve real problems and improve how teams work. </p>
+                                <p className=" text-left font-light text-[12px]">To design solutions that solve real problems and improve how teams work. </p>
                             </div>
                         </div>
                     </div>
@@ -454,15 +455,14 @@ export default function WhoWeAre() {
 
             <CoreValuesSection />
 
-     
+            <div className="text-center md:text-left">
+                <OperationalStructure />
 
-        {/* Vision & Mission Sections */}
-        <div className="my-20">
+            </div>
+                          
+             <div className="my-20">
           
-          <div className="p-2">
-            <Team />
-          </div>
-          <div className="">
+          <div className="bg-[#0F4C5C] md:p-10 p-3 text-white rounded-xl">
             <MapDesign />
           </div>
         </div>

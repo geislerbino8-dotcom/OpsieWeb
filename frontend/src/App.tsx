@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { useBotpress } from './hooks/useBotpress';
 import Layout from './Layout';
 import { getContent } from './api/getContent';
+import { supabase } from './utils/supabase';
 
 type ContentType = Record<string, any>
 
@@ -23,7 +24,7 @@ const App = () => {
   useEffect(()=> {
     const fetchContent = async()=> {
       let res = await getContent()
-      setContent(res.data[0])
+      setContent(res.data[0].publishedContent)
     }
 
     fetchContent()
@@ -35,8 +36,6 @@ const App = () => {
   
   const currentLocation = useLocation()
 
-  
-   
 
 
 
@@ -58,6 +57,20 @@ const App = () => {
     });
 
   }, []);
+
+  useEffect(() => {
+    async function getTodos() {
+      const { data } = supabase
+        .storage
+        .from('Opsie Tickets')
+        .getPublicUrl('sample.pdf')
+
+      console.log(data.publicUrl)
+      }
+
+    getTodos()
+  }, [])
+
 
  
   return (

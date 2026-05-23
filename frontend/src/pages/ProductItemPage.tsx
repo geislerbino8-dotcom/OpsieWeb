@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -29,12 +29,13 @@ interface Analytics {
   title: string;
   value: string;
   description: string;
-  unit?: string
+  unit?: string;
 }
 
 interface ProductContentType {
   name: string;
   image: string;
+  logo: string;
   tagline: string;
   description: string;
   category: string;
@@ -50,15 +51,19 @@ interface ProductContentType {
   photos: string[];
   analytics: Analytics[];
   industries: string[];
+  themeColor: string;
 }
 
 function ProductItemPage() {
   const { id } = useParams<{ id: string }>();
   const [content, setContent] = useState<ProductContentType | null>(null);
   const [loading, setLoading] = useState(true);
+  
+  // Carousel State
+  const [activeSlide, setActiveSlide] = useState(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Initialize Animations
     AOS.init({ duration: 1000, once: true });
 
     const searchProduct = async (name: string) => {
@@ -76,160 +81,297 @@ function ProductItemPage() {
     if (id) searchProduct(id);
   }, [id]);
 
-  // Loading State UI
+  // Carousel Auto-Play System
+  useEffect(() => {
+    if (!content?.photos || content.photos.length <= 1) return;
+
+    timeoutRef.current = setTimeout(() => {
+      setActiveSlide((prev) => (prev === content.photos.length - 1 ? 0 : prev + 1));
+    }, 4000);
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [activeSlide, content?.photos]);
+
+  const nextSlide = () => {
+    if (!content?.photos) return;
+    setActiveSlide((prev) => (prev === content.photos.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    if (!content?.photos) return;
+    setActiveSlide((prev) => (prev === 0 ? content.photos.length - 1 : prev - 1));
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-950 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-white font-black tracking-widest uppercase animate-pulse">Syncing {id}...</p>
+          <p className="text-white text-xs font-bold tracking-widest uppercase animate-pulse">Syncing {id}...</p>
         </div>
       </div>
     );
   }
 
-  // Error/404 State UI
   if (!content) {
     return (
       <div className="min-h-screen bg-gray-950 flex items-center justify-center text-white">
-        <h1 className="text-2xl font-bold">Product not found.</h1>
+        <h1 className="text-xl font-bold tracking-tight opacity-60">Product parameters not found.</h1>
       </div>
     );
   }
 
   return (
-    <div className="w-full flex flex-col items-center bg-gray-950 text-white overflow-x-hidden selection:bg-cyan-500/30 font-sans">
-      {/* Background Ambient Glows */}
-      <div className="hidden md:flex absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full -z-10" />
-      <div className="hidden md:flex absolute top-1/2 right-1/4 w-80 h-80 bg-cyan-600/10 blur-[100px] rounded-full -z-10" />
+    <div className="w-full flex flex-col items-center bg-gray-950 text-white overflow-x-hidden selection:bg-cyan-500/30 font-sans antialiased">
+      {/* Ambient Radial Lights */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full -z-10 pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-cyan-600/5 blur-[130px] rounded-full -z-10 pointer-events-none" />
 
       {/* --- HERO SECTION --- */}
       <section 
-        className="w-full min-h-screen flex items-center justify-center px-6 py-20 relative border-b border-white/5 overflow-hidden"
+        className="w-full min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative border-b border-white/5 bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url(${content.image})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(3, 7, 18, 0.8), rgba(3, 7, 18, 0.95)), url(${content.image})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div data-aos="zoom-in" className="flex justify-center relative order-2 lg:order-1">
-             <div className="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-full scale-75 animate-pulse" />
-             <img
-              src={content.image}
+        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Hero Left Image */}
+          <div data-aos="zoom-in" className="lg:col-span-5 flex justify-center relative order-2 lg:order-1">
+            <div className="absolute inset-0 bg-cyan-500/10 blur-3xl rounded-full scale-75" />
+            <img
+              src={content.logo}
               alt={content.name}
-              className="relative z-10 w-full max-w-lg rounded-3xl shadow-2xl border border-white/10 hover:scale-[1.02] transition-transform duration-700"
+              className="relative z-10 max-w-md rounded-2xl shadow-2xl hover:scale-[1.01] transition-transform duration-500 object-cover"
             />
           </div>
 
-          <div className="flex flex-col gap-8 text-center lg:text-left order-1 lg:order-2">
-            <div className="space-y-2">
-                <span className="text-cyan-500 font-bold uppercase tracking-[0.3em] text-sm">{content.category}</span>
-                <h1 data-aos="fade-up" className="text-5xl md:text-7xl font-black tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-500 uppercase">
-                  {content.name}
-                </h1>
+          {/* Hero Right Content */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left order-1 lg:order-2">
+            <div className="space-y-3">
+              <span className="inline-block px-3 py-1 text-xs font-bold tracking-widest uppercase bg-white/5 border border-white/10 rounded-full text-cyan-400">
+                {content.category}
+              </span>
+              <h1 
+                style={{ color: content?.themeColor || '#ffffff' }}
+                data-aos="fade-up" 
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none uppercase drop-shadow-sm"
+              >
+                {content.name}
+              </h1>
             </div>
 
-            <p data-aos="fade-up" data-aos-delay="100" className="text-gray-400 leading-relaxed text-xl max-w-xl mx-auto lg:mx-0 font-light italic">
+            <p data-aos="fade-up" data-aos-delay="100" className="text-gray-400 leading-relaxed text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-light italic">
               "{content.tagline}"
             </p>
 
-            <div data-aos="fade-up" data-aos-delay="200" className="flex flex-wrap justify-center lg:justify-start gap-4">
+            <div data-aos="fade-up" data-aos-delay="200" className="pt-2 flex flex-wrap justify-center lg:justify-start gap-4">
               <button 
                 onClick={() => window.location.href = "mailto:sales@example.com"}
-                className="px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl font-bold text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-1 transition-all duration-300"
+                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-bold text-sm tracking-wide text-white shadow-lg shadow-cyan-500/15 hover:shadow-cyan-500/30 hover:-translate-y-0.5 transition-all duration-200"
               >
                 Request Live Demo
               </button>
-            
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- REFINED OVERVIEW SECTION --- */}
+      <section className="w-full max-w-5xl px-6 py-20">
+        <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center backdrop-blur-md">
+          <div className="w-full md:w-1/3 flex-shrink-0">
+            <img className="w-full rounded-2xl border border-white/10 object-cover shadow-lg" src={content?.logo} alt="Product breakdown" />
+          </div>
+          <div className="space-y-4">
+            <h2 className="text-xs font-bold tracking-widest text-cyan-500 uppercase">Product Summary</h2>
+            <p className="text-gray-300 leading-relaxed text-base font-normal">{content?.description}</p>
           </div>
         </div>
       </section>
 
       {/* --- STATS SECTION --- */}
-      <section className="w-full max-w-6xl py-24 px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="w-full max-w-6xl pb-16 px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {content.analytics.map((item, index) => (
-            <AnalyticsCards key={index} numbers={item.value} desc={item.title} unit={item.unit} />
-          ))}
-        </div>
-      </section>
-
-      {/* --- PROBLEM & OVERVIEW --- */}
-      <section className="w-full max-w-5xl py-20 px-6 grid grid-cols-1 md:grid-cols-2 gap-16 border-y border-white/5">
-          <div data-aos="fade-right">
-            <h3 className="text-cyan-500 font-bold uppercase text-xs tracking-widest mb-4">The Challenge</h3>
-            <p className="text-2xl font-medium text-gray-300">{content.contents.problemSolved}</p>
-          </div>
-          <div data-aos="fade-left">
-            <h3 className="text-cyan-500 font-bold uppercase text-xs tracking-widest mb-4">Our Solution</h3>
-            <p className="text-gray-400 leading-relaxed">{content.contents.overview}</p>
-          </div>
-      </section>
-
-      {/* --- FEATURES GRID (Object Mapping Fix) --- */}
-      <section className="w-full max-w-6xl py-32 px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 italic uppercase tracking-tighter">🚀 Enterprise Capabilities</h2>
-          <div className="h-1 w-24 bg-cyan-500 mx-auto rounded-full" />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-4 md:px-10">
-          {Object.entries(content.features).map(([key, feature], index) => (
-            <div key={key} data-aos="fade-up" data-aos-delay={index * 50} className="flex gap-6 items-start p-6 hover:bg-white/5 rounded-3xl transition-all group border border-transparent hover:border-white/10">
-              <span className="text-2xl text-cyan-500 mt-1 group-hover:scale-125 transition-transform duration-300">✦</span>
-              <div>
-                <h3 className="text-2xl font-bold mb-2 group-hover:text-cyan-400 transition-colors">{feature.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+            <div key={index} className="bg-gradient-to-b from-white/[0.04] to-transparent p-[1px] rounded-2xl">
+              <div className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-2xl h-full border border-white/5">
+                <AnalyticsCards numbers={item.value} desc={item.title} unit={item.unit} />
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* --- PHOTO GALLERY --- */}
-      <section className="w-full max-w-7xl px-6 pb-32">
-        <div className="flex justify-center items-center grid grid-cols-2 md:grid-cols-4 gap-4">
-          {content.photos.map((url, index) => (
-            <div key={index} data-aos="zoom-in" data-aos-delay={index * 100} className="group relative overflow-hidden rounded-2xl border border-white/10 aspect-video">
-              <img 
-                src={url} 
-                alt={`Gallery ${index}`} 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
-              />
-              <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      {/* --- PROBLEM & SOLUTION GRID --- */}
+      <section className="w-full max-w-5xl py-20 px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 border-y border-white/5 py-16">
+          <div data-aos="fade-right" className="space-y-3">
+            <div className="flex items-center gap-2 text-red-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+              <h3 className="font-bold uppercase text-xs tracking-widest">The Operational Challenge</h3>
+            </div>
+            <p className="text-xl font-medium text-slate-200 leading-relaxed">{content.contents.problemSolved}</p>
+          </div>
+          <div data-aos="fade-left" className="space-y-3">
+            <div className="flex items-center gap-2 text-cyan-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <h3 className="font-bold uppercase text-xs tracking-widest">Architectural Solution</h3>
+            </div>
+            <p className="text-gray-400 leading-relaxed text-base">{content.contents.overview}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FEATURES GRID --- */}
+      <section className="w-full max-w-6xl py-20 px-6">
+        <div className="text-center mb-16 space-y-2">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight uppercase">Enterprise Capabilities</h2>
+          <div className="h-0.5 w-16 bg-cyan-500 mx-auto rounded-full" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 px-2 md:px-6">
+          {Object.entries(content.features).map(([key, feature], index) => (
+            <div key={key} data-aos="fade-up" data-aos-delay={index * 50} className="flex gap-5 items-start p-6 bg-white/[0.01] hover:bg-white/[0.04] rounded-2xl transition-all duration-300 group border border-white/5 hover:border-white/10">
+              <span className="text-xl text-cyan-500 mt-0.5 group-hover:rotate-45 transition-transform duration-300">✦</span>
+              <div className="space-y-1">
+                <h3 className="text-xl font-bold group-hover:text-cyan-400 transition-colors">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{feature.description}</p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* --- IMPLEMENTATION & SUPPORT --- */}
-      <section className="w-full max-w-6xl py-24 px-8 bg-white/5 rounded-[3rem] border border-white/10 mb-32 grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold flex items-center gap-3">
-                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-ping" />
-                Implementation
-            </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{content.contents.implementation}</p>
+      {/* --- STRATEGIC BENEFITS SECTION --- */}
+      {content.benefits && content.benefits.length > 0 && (
+        <section className="w-full max-w-6xl py-20 px-6 border-t border-white/5">
+          <div className="text-center mb-16 space-y-2">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight uppercase">Strategic Benefits</h2>
+            <div className="h-0.5 w-16 bg-blue-500 mx-auto rounded-full" />
           </div>
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold flex items-center gap-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                Support
-            </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{content.contents.support}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2 md:px-6">
+            {content.benefits.map((benefit, index) => (
+              <div 
+                key={index} 
+                data-aos="fade-up" 
+                data-aos-delay={index * 100}
+                className="relative p-8 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 rounded-2xl flex flex-col gap-4 overflow-hidden group hover:border-blue-500/30 transition-all duration-300"
+              >
+                {/* Visual Top Highlight Accent */}
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 text-sm font-bold">
+                  0{index + 1}
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-bold text-slate-100 group-hover:text-blue-400 transition-colors duration-200">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed text-sm">
+                    {benefit.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* --- INTERACTIVE CAROUSEL GALLERY --- */}
+      {content.photos && content.photos.length > 0 && (
+        <section className="w-full max-w-5xl px-6 pb-24">
+          <div className="text-center mb-10 space-y-2">
+            <h2 className="text-xs font-bold tracking-widest text-gray-500 uppercase">Visual Interface</h2>
           </div>
           
+          <div className="relative group max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 aspect-video bg-gray-900 shadow-2xl">
+            {/* Sliding Track */}
+            <div 
+              className="w-full h-full flex transition-transform duration-700 ease-out"
+              style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+            >
+              {content.photos.map((url, index) => (
+                <div key={index} className="w-full h-full flex-shrink-0 relative">
+                  <img 
+                    src={url} 
+                    alt={`Interface Preview ${index + 1}`} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Carousel Arrow Controls */}
+            {content.photos.length > 1 && (
+              <>
+                <button 
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button 
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+
+                {/* Bottom Navigation Dots */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                  {content.photos.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveSlide(index)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${activeSlide === index ? 'w-6 bg-cyan-400' : 'w-1.5 bg-white/40'}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* --- IMPLEMENTATION & SUPPORT --- */}
+      <section className="w-full max-w-5xl py-16 px-6 sm:px-10 bg-white/[0.01] rounded-3xl border border-white/5 backdrop-blur-md mb-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+        <div className="space-y-3">
+          <h4 className="text-lg font-bold flex items-center gap-2.5 text-slate-100">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+            </span>
+            Implementation Architecture
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed">{content.contents.implementation}</p>
+        </div>
+        <div className="space-y-3">
+          <h4 className="text-lg font-bold flex items-center gap-2.5 text-slate-100">
+            <span className="h-2 w-2 rounded-full bg-blue-500" />
+            SLA & Support Engineering
+          </h4>
+          <p className="text-gray-400 text-sm leading-relaxed">{content.contents.support}</p>
+        </div>
       </section>
 
-        <div className="flex gap-2 items-center px-6 py-4 bg-white/5 border border-white/10 rounded-2xl font-bold text-white">
-                Industries: {content.industries.join(", ")}
-              </div>
+      {/* --- INDUSTRIES BADGE TRACK --- */}
+      <div className="flex flex-col sm:flex-row gap-3 items-center px-6 py-3 bg-white/[0.02] border border-white/5 rounded-full text-sm font-medium text-gray-400 mb-16">
+        <span className="text-xs uppercase tracking-wider font-bold text-cyan-500">Target Industries:</span>
+        <span>{content.industries.join(" • ")}</span>
+      </div>
 
       <ProductItemCTA />
-      <div className="h-20" />
+      <div className="h-12" />
     </div>
   );
 }

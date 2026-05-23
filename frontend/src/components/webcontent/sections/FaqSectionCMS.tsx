@@ -15,8 +15,8 @@ const FaqSectionCMS: React.FC = () => {
 
   // Sync internal state when context data loads
   useEffect(() => {
-    if (content?.faqSection) {
-      setFormData(content.faqSection);
+    if (content?.draftContent.faqSection) {
+      setFormData(content.draftContent.faqSection);
     }
   }, [content]);
 
@@ -31,8 +31,7 @@ const FaqSectionCMS: React.FC = () => {
   const saveChanges = async () => {
     try {
       const update = await updateContent({
-        id: "69ed83215f12c5a147e02160",
-        path: "faqSection",
+        path: "draftContent.faqSection",
         value: formData
       });
       console.log("Update successful:", update);
@@ -40,6 +39,11 @@ const FaqSectionCMS: React.FC = () => {
     } catch (error) {
       console.error("Update failed:", error);
     }
+  };
+
+  const handleCancel = () => {
+    setFormData(content?.draftContent.faqSection || null);
+    setIsEditing(false);
   };
 
   return (
@@ -91,7 +95,7 @@ const FaqSectionCMS: React.FC = () => {
 
               <button
                 onClick={() => {
-                  setFormData(content?.faqSection || null); // Revert changes
+                  handleCancel; // Revert changes
                   setIsEditing(false);
                 }}
                 className="flex-1 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-lg transition-colors"
@@ -112,14 +116,14 @@ const FaqSectionCMS: React.FC = () => {
 
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
 
-              {content?.faqSection?.header || "No Header Set"}
+              {formData?.header}
             </h2>
             <p className="text-gray-600 mb-4">
-              {content?.faqSection?.subHeader || "No Subheader Set"}
+              {formData?.subHeader}
             </p>
             {content?.faqSection?.buttonText && (
                <button className="px-6 py-2 bg-blue-600 text-white rounded-full">
-                 {content?.faqSection.buttonText}
+                 {formData?.buttonText}
                </button>
             )}
 

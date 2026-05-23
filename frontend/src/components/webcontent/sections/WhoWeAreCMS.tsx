@@ -22,8 +22,8 @@ function WhoWeAreCMS() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(() => {
-    if (content?.whoWeArePage) {
-      setFormData(content.whoWeArePage);
+    if (content?.draftContent.whoWeArePage) {
+      setFormData(content.draftContent.whoWeArePage);
     }
   }, [content]);
 
@@ -53,7 +53,7 @@ function WhoWeAreCMS() {
     try {
       await updateContent({
         id: "69ed83215f12c5a147e02160",
-        path: "whoWeArePage",
+        path: "draftContent.whoWeArePage",
         value: formData,
       });
       setIsEditing(false);
@@ -63,7 +63,7 @@ function WhoWeAreCMS() {
   };
 
   const handleCancel = () => {
-    setFormData(content?.whoWeArePage || null);
+    setFormData(content?.draftContent.whoWeArePage || null);
     setIsEditing(false);
   };
 

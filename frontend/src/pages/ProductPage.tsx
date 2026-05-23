@@ -62,11 +62,24 @@ function ProductPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#ECEDF1] text-gray-800 overflow-hidden text-center md:text-left">
-      <div className="max-w-[1280px] mx-auto px-6">
+    /* Main wrapper with gradient and relative position to anchor background circles */
+    <div className="relative w-full bg-gradient-to-tr from-slate-100 via-white to-zinc-50 text-gray-800 overflow-hidden text-center md:text-left">
+      
+      {/* ================= BACKGROUND BLURRED CIRCLES ================= */}
+      {/* Top Left - Large Soft Dark Blur */}
+      <div className="absolute top-[-10%] left-[-20%] w-[600px] h-[600px] rounded-full bg-slate-900/5 blur-[140px] pointer-events-none -z-10" />
+      
+      {/* Mid Right - Medium Soft Accent Blur */}
+      <div className="absolute top-[35%] right-[-10%] w-[500px] h-[500px] rounded-full bg-zinc-800/5 blur-[120px] pointer-events-none -z-10" />
+      
+      {/* Bottom Left - Subtle Deep Accent Blur */}
+      <div className="absolute bottom-[15%] left-[-15%] w-[550px] h-[550px] rounded-full bg-slate-900/5 blur-[130px] pointer-events-none -z-10" />
+      {/* ============================================================= */}
+
+      <div className="max-w-[1280px] mx-auto px-6 relative z-10">
 
         {/* --- HERO SECTION --- */}
-        <section className="min-h-[90vh] flex items-center py-20">
+        <section className="min-h-[90vh] cflex items-center py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             <div className="flex flex-col gap-8">
@@ -74,6 +87,7 @@ function ProductPage() {
               <SuperHeader
                 text={content?.productsPage.header}
                 type="hero"
+                position='left'
               />
 
               <p
@@ -97,7 +111,7 @@ function ProductPage() {
                 </button>
 
                 <a href="#all-products">
-                  <button className="bg-white border border-gray-200 px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-all">
+                  <button className="bg-white/80 backdrop-blur-md border border-gray-200 px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 hover:-translate-y-1 transition-all shadow-sm">
                     {content?.productsPage.button2.text}
                   </button>
                 </a>
@@ -109,12 +123,13 @@ function ProductPage() {
               className="relative grid grid-cols-2 gap-4"
               data-aos="zoom-in-left"
             >
+              {/* Cyan branding pulse behind images */}
               <div className="absolute -inset-4 bg-[#3CBDE6]/10 blur-3xl rounded-full -z-10" />
 
               {[Product1, hris, opsync, web].map((img, idx) => (
                 <div
                   key={idx}
-                  className={`overflow-hidden rounded-2xl shadow-xl transition-all duration-500 hover:z-20 hover:scale-105 ${
+                  className={`overflow-hidden rounded-2xl shadow-xl border border-white bg-white/50 backdrop-blur-sm transition-all duration-500 hover:z-20 hover:scale-105 ${
                     idx % 2 !== 0 ? 'mt-8' : ''
                   }`}
                 >
@@ -131,7 +146,7 @@ function ProductPage() {
 
         {/* --- STATS BAR --- */}
         <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20 relative z-10"
           data-aos="fade-up"
         >
           <AnalyticsCards numbers="50" desc="Active Tools" />
@@ -141,7 +156,7 @@ function ProductPage() {
         </div>
 
         {/* --- ALL PRODUCTS SECTION --- */}
-        <section id="all-products" className="py-20">
+        <section id="all-products" className="py-20 relative z-10">
 
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
 
@@ -158,44 +173,7 @@ function ProductPage() {
 
             {/* Category Filter */}
             <div className="w-full md:w-auto">
-
-              {/* Mobile Dropdown */}
-            {
-              /**
-               *   <div className="md:hidden w-full">
-                <select
-                  value={filter}
-                  onChange={(e) => setFilter(e.target.value)}
-                  className="w-full p-4 bg-white border border-gray-200 rounded-xl font-bold text-gray-700 shadow-sm outline-none focus:ring-2 focus:ring-[#3CBDE6]"
-                >
-                  {categories.map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat}
-                    </option>
-                  ))}
-                </select>
-              </div>
-               */
-            }
-
-              {/* Desktop Tabs */}
-             {/**
-              *  <div className="hidden md:flex bg-white p-1.5 rounded-xl shadow-sm border border-gray-100">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setFilter(cat)}
-                    className={`px-5 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${
-                      filter === cat
-                        ? 'bg-[#3CBDE6] text-white shadow-md'
-                        : 'text-gray-400 hover:text-gray-600'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-              */}
+              {/* Filter components can sit here */}
             </div>
           </div>
 
@@ -233,10 +211,10 @@ function ProductPage() {
       </div>
 
       {/* Full Width Sections */}
-      <div className="mt-10">
+      <div className="mt-10 relative z-10">
         <WhyChooseUsSection />
 
-        <div className="bg-[#ECEDF1] py-10 border-y border-gray-200">
+        <div className="bg-white/60 backdrop-blur-md py-10 border-y border-gray-200/80">
           <ClientReview />
         </div>
 

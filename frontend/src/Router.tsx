@@ -53,7 +53,7 @@ const pageContent = [
 
     {
         pageName: "Products",
-        path: 'products',
+        path: 'prod',
         element: <ProductsContent />
     },
 

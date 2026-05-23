@@ -1,30 +1,51 @@
 import { model, Schema } from 'mongoose';
 
+const ContentSchema = new Schema(
+  {
+    heroSection: { type: Object, default: {} },
+    aboutUsSection: { type: Object, default: {} },
+    advantageSection: { type: Object, default: {} },
+    servicesSection: { type: Object, default: {} },
+    productsSection: { type: Object, default: {} },
+    analytics: { type: Object, default: {} },
+    clientSection: { type: Object, default: {} },
+    partnersSection: { type: Object, default: {} },
+    contactUsSection: { type: Object, default: {} },
+    faqSection: { type: Object, default: {} },
+    ctaSection: { type: Object, default: {} },
+    footerSection: { type: Object, default: {} },
+
+    whatWeDoPage: { type: Object, default: {} },
+    whoWeArePage: { type: Object, default: {} },
+    contactUsPage: { type: Object, default: {} },
+    productsPage: { type: Object, default: {} },
+    productItemPage: { type: Object, default: {} },
+
+    encouragecard: { type: Object, default: {} },
+    mapDesignCard: { type: Object, default: {} },
+    team: { type: Object, default: {} },
+  },
+  { _id: false }
+);
+
 const WebContentSchema = new Schema({
-    heroSection: {type: Object},
-     aboutUsSection: { type: Object },
-    advantagesSection: { type: Object },
-    servicesSection: { type: Object },
-    productsSection: { type: Object },
-    analytics: { type: Object },
-    clientSection: { type: Object },
-    partnersSection: { type: Object },
-    contactUsSection: { type: Object },
-    faqSection: { type: Object },
-    ctaSection: { type: Object },
-    footerSection: { type: Object },
+       publishedContent: {
+      type: ContentSchema,
+      default: () => ({})
+    },
 
-    // Page Specific Content
-    whatWeDoPage: { type: Object },
-    whoWeArePage: { type: Object },
-    contactUsPage: { type: Object },
-    productsPage: { type: Object },
-    productItemPage: { type: Object },
+    draftContent: {
+      type: ContentSchema,
+      default: () => ({})
+    },
 
-    // The 'contents' object from your image
-    contents: { type: Object }
-}, { 
-    timestamps: true // Useful for tracking when content was last updated
-});
+    lastPublishedAt: {
+      type: Date
+    }
+  },
+  {
+    timestamps: true
+  }
+);
 
 export default model('WebContent', WebContentSchema);

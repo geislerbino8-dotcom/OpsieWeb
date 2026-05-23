@@ -20,10 +20,11 @@ const ServicesPageCMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(() => {
-    if (content?.servicesSection) {
-      setFormData(content.servicesSection);
+    if (content?.draftContent.servicesSection) {
+      setFormData(content.draftContent.servicesSection);
     }
   }, [content]);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -44,7 +45,7 @@ const ServicesPageCMS: React.FC = () => {
     try {
       await updateContent({
         id: "69ed83215f12c5a147e02160",
-        path: "servicesSection",
+        path: "draftContent.servicesSection",
         value: formData
       });
       setIsEditing(false);
@@ -54,7 +55,7 @@ const ServicesPageCMS: React.FC = () => {
   };
 
   const handleCancel = () => {
-    setFormData(content?.servicesSection || null);
+    setFormData(content?.draftContent.servicesSection || null);
     setIsEditing(false);
   };
 

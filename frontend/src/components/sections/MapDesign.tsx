@@ -148,7 +148,7 @@ export default function Maps() {
   };
 
   return (
-    <div className="flex items-center justify-center lg:items-start gap-14">
+    <div className="w-full flex items-center justify-center lg:items-start gap-14">
       <div className="w-full flex flex-col md:flex-row lg:items-start gap-4">
 
         <div className="w-full flex flex-col items-center md:items-start gap-6 mb-10">
@@ -195,7 +195,7 @@ export default function Maps() {
         <div className="flex items-center justify-center mx-2 ">
           <div
             ref={mapContainer}
-            className="w-[500px] md:w-[400px] lg:min-w-[600px] h-[400px] rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] "
+            className="w-[500px] md:w-[400px] lg:min-w-[600px] h-[400px] rounded-3xl"
           />
         </div>
 

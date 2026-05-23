@@ -25,8 +25,8 @@ function ContactUsSectionCMS() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(() => {
-    if (content?.contactUsPage) {
-      setFormData(content.contactUsPage);
+    if (content?.draftContent.contactUsPage) {
+      setFormData(content.draftContent.contactUsPage);
     }
   }, [content]);
 
@@ -60,8 +60,7 @@ function ContactUsSectionCMS() {
   const saveChanges = async () => {
     try {
       await updateContent({
-        id: "69ed83215f12c5a147e02160", // Reusing ID from reference
-        path: "contactUsPage",
+        path: "draftContent.contactUsPage",
         value: formData,
       });
       setIsEditing(false);
@@ -71,7 +70,7 @@ function ContactUsSectionCMS() {
   };
 
   const handleCancel = () => {
-    setFormData(content?.contactUsPage || null);
+    setFormData(content?.draftContent.contactUsPage || null);
     setIsEditing(false);
   };
 

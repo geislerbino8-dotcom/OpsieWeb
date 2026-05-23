@@ -42,8 +42,8 @@ const WhatWeDoCMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(() => {
-    if (content?.whatWeDoPage) {
-      setFormData(content.whatWeDoPage);
+    if (content?.draftContent.whatWeDoPage) {
+      setFormData(content.draftContent.whatWeDoPage);
     }
   }, [content]);
 
@@ -79,14 +79,18 @@ const WhatWeDoCMS: React.FC = () => {
     if (!formData) return;
     try {
       await updateContent({
-        id: "69ed83215f12c5a147e02160",
-        path: "whatWeDoPage",
+        path: "draftContent.whatWeDoPage",
         value: formData,
       });
       setIsEditing(false);
     } catch (error) {
       console.error("Update failed:", error);
     }
+  };
+
+  const handleCancel = () => {
+    setFormData(content?.draftContent.whatWeDoPage || null);
+    setIsEditing(false);
   };
 
   if (!formData) return <div className="p-10 text-center">Loading Content...</div>;
@@ -135,7 +139,7 @@ const WhatWeDoCMS: React.FC = () => {
 
             <div className="flex gap-2 pt-4">
               <button onClick={saveChanges} className="flex-1 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">Save Section</button>
-              <button onClick={() => setIsEditing(false)} className="px-6 py-3 bg-gray-200 text-gray-600 font-bold rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+              <button onClick={handleCancel} className="px-6 py-3 bg-gray-200 text-gray-600 font-bold rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
             </div>
           </div>
         ) : (

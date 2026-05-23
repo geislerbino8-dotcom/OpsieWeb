@@ -9,21 +9,17 @@ import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
 import ClientReview from '../components/sections/ClientReviewsSection'
 import WhyChooseUsSection from './sections/WhyChooseUsSection'
 import ProductItemCTA from '@/components/cards/ProductItemCTA'
-import Team from '@/components/Team'
-import { useContext } from 'react'
-import { ContentContext } from '@/App'
 import ContactProcessSection from './sections/ContactProcessSection'
+import OperationalStructure from '@/components/sections/OperationalStructure'
 
 function Homepage() {
-
-  const content = useContext(ContentContext)
 
 
   return (
     <div className="overflow-hidden">
 
 
-        <HeroPage heroText={content?.heroSection?.header}  bgImage={HomeHeroImage} />
+        <HeroPage bgImage={HomeHeroImage} />
 
       <ScrollAnimatedSection delay={100}>
         <AboutUsSection />
@@ -56,7 +52,8 @@ function Homepage() {
       <ScrollAnimatedSection delay={150}>
       <section className="w-full bg-[#FCFDFF] py-0">
         <div className="max-w-7xl mx-auto px-6">
-            <Team />
+            {/**<Team /> */}
+            <OperationalStructure />
 
           {/* Footer Context & CTA */}
           
@@ -79,11 +76,12 @@ function Homepage() {
         <ContactUsSection />
       </ScrollAnimatedSection>
 
+            <ProductItemCTA />
+
+
       <ScrollAnimatedSection delay={650}>
         <Faq />
       </ScrollAnimatedSection>
-
-      <ProductItemCTA />
 
 
 

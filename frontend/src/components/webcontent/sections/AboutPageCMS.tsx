@@ -17,8 +17,8 @@ const AboutPageCMS: React.FC = () => {
 
   // Sync state when context content loads or changes
   useEffect(() => {
-    if (content?.aboutUsSection) {
-      setFormData(content.aboutUsSection);
+    if (content?.draftContent.aboutUsSection) {
+      setFormData(content.draftContent.aboutUsSection);
     }
   }, [content]);
 
@@ -33,7 +33,7 @@ const AboutPageCMS: React.FC = () => {
     try {
       const update = await updateContent({
         id: "69ed83215f12c5a147e02160",
-        path: "aboutUsSection",
+        path: "draftContent.aboutUsSection",
         value: formData
       });
       console.log("Update Success:", update);
@@ -44,7 +44,7 @@ const AboutPageCMS: React.FC = () => {
   };
 
   const handleCancel = () => {
-    setFormData(content?.aboutUsSection || null);
+    setFormData(content?.draftSection.aboutUsSection || null);
     setIsEditing(false);
   };
 

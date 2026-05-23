@@ -5,10 +5,13 @@ import leftArrow from '../../assets/icons/left-arrow1.svg';
 import rightArrow from '../../assets/icons/right-arrow.svg';
 
 const cards = [
-  { title: "Custom Web Development", image: "/WebDevServices.png", description: "Crafting high-performance, scalable web applications tailored to your business needs." },
-  { title: "UI / UX Design", image: "/UI&UX.png", description: "Creating intuitive and beautiful digital experiences that users love." },
-  { title: "AI Integration", image: "/WebDevServices.png", description: "Automating workflows and enhancing products with cutting-edge AI solutions." },
-  { title: "Mobile Design", image: "/UI&UX.png", description: "Seamless mobile experiences built for performance and engagement." },
+  { title: "Cloud Solutions", image: "/services/cloud.jpg", description: "Cloud hosting, remote access systems, centralized database management, securebackup solutions, and scalable SaaS deployment." },
+  { title: "Systems Integration", image: "/services/software_integration.jpg", description: "API integrations, ERP integrations, HRIS integrations, centralized workflows, and connected business systems." },
+  { title: "Cybersecurity", image: "/services/cybersecurity.jpg", description: "Data encryption, access control, firewall protection, backup security, user authentication, and secure cloud infrastructure.." },
+  { title: "Automation & AI", image: "/services/ai_automation.jpg", description: "Workflow automation, AI analytics, AI chatbot solutions, predictive reporting, smart process automation, and intelligent business insights." },
+  { title: "Web and Mobile Development", image: "/services/web_mobile_dev.jpg", description: "Android and iOS mobile applications, web-based systems, custom portals, ERP platforms, and responsive business applications.." },
+  { title: "UI / UX Design", image: "/services/ui_design.jpg", description: "User-focused and responsive designs that enhance usability, engagement, and overall digital experience.." },
+
 ];
 
 const ServicesSection: React.FC = () => {

@@ -23,7 +23,7 @@ const ContentNav: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="w-full bg-white border-b border-slate-200 sticky top-0 z-50">
+    <nav className="w-full bg-white border-b border-slate-200 sticky top-0">
       <div className="w-full flex items-center justify-between px-4 md:px-6 h-16">
         
         {/* Branding Area */}
@@ -40,33 +40,7 @@ const ContentNav: React.FC = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex flex-row items-center h-full">
-          {pages.map((page) => {
-            const isActive = location.pathname === page.path;
-            const Icon = page.icon;
-
-            return (
-              <li key={page.path} className="h-full">
-                <Link
-                  to={page.path}
-                  className={`
-                    flex items-center gap-2 px-5 h-full text-sm font-medium transition-all duration-200 border-b-2
-                    ${isActive 
-                      ? "text-blue-600 border-blue-600 bg-blue-50/30" 
-                      : "text-slate-500 border-transparent hover:text-slate-800 hover:bg-slate-50/80"
-                    }
-                  `}
-                >
-                  <Icon 
-                    size={18} 
-                    className={`transition-colors ${isActive ? "text-blue-600" : "text-slate-400"}`} 
-                  />
-                  {page.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+     
 
         {/* Desktop Actions */}
         <div className="hidden md:block">

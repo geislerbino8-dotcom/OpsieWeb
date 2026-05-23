@@ -20,7 +20,7 @@ const FAQAccordion = () => {
         
         {/* Left Side: Header Content */}
         <div className="lg:w-1/3 sticky top-10">
-          <SuperHeader text={content?.faqSection.header} />
+          <SuperHeader text={content?.faqSection.header} position="left"/>
         
           <p className="mt-6 text-lg text-gray-500 font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for? 
@@ -39,7 +39,7 @@ const FAQAccordion = () => {
                 className={`group rounded-2xl transition-all duration-500 ease-in-out border
                   ${isOpen 
                     ? "bg-white border-[#3CBDE6]/30 shadow-[0_20px_40px_rgba(60,189,230,0.1)] scale-[1.01]" 
-                    : "bg-[#ECEDF1]/50 border-transparent hover:border-gray-300 shadow-sm"
+                    : "bg-[#ECEDF1]/50 border-transparent hover:border-gray-300 shadow-sm hover:bg-[#0F4C5C]/60"
                   }`}
               >
                 <button

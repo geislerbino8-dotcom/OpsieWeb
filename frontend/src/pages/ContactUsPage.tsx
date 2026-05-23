@@ -2,8 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
 import Sunplazaimg from '../assets/background-images/Sunplaza.jpg';
 
-// Components
-import ProductItemCTA from '@/components/cards/ProductItemCTA';
 import ContactForm from '@/components/cards/ContactForm';
 import ContactsCard from '@/components/cards/ContactsCard';
 import ContactBg from '../assets/visuals/Contact-bg.png';
@@ -18,7 +16,7 @@ function ContactUsPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full overflow-x-hidden bg-[#FAFBFF]">
+    <div className="w-full overflow-x-hidden bg-[#FAFBFF] bg-[#ECEDF1] ">
       {/* --- 1. HERO SECTION --- */}
       <div className="relative w-screen h-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
         <img
@@ -53,10 +51,12 @@ function ContactUsPage() {
       </div>
 
       {/* --- 2. CONTACT FORM & CARDS --- */}
-      <div className="bg-white max-w-[1280px] mx-auto px-2 md:px-6 py-24 ">
+      <div className="max-w-[1280px] mx-auto px-2 md:px-6 py-24 ">
+
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: Contact Form */}
           <div data-aos="fade-right">
+
             <ContactForm />
           </div>
 
@@ -137,7 +137,6 @@ function ContactUsPage() {
         </div>
       </div>
 
-      <ProductItemCTA />
     </div>
   );
 }

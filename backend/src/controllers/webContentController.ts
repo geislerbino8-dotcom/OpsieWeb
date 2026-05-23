@@ -31,26 +31,65 @@ export class WebContentController {
     };
 
     public updateContent = async (req: Request, res: Response) => {
-    const { id, path, value } = req.body;
 
-    console.log(id, path, value);
+        const {  path, value } = req.body;
 
-    try {
-        const updated = await WebContentModel.findByIdAndUpdate(
-        id,
-        { $set: { [path]: value } },
-        { returnDocument: 'after' }
-        );
+        try {
+            const updated = await WebContentModel.findOneAndUpdate(
+                {},
+                { $set: { [path]: value } },
 
-        if(!updated) return res.status(401).json({message: 'dsdasd'});
+                { 
+                    returnDocument: 'after',
+                    upsert: true
+                }
+            );
 
-        res.status(200).json({
-        message: 'Content updated successfully',
-        data: updated
-        });
 
-    } catch (error) {
-        res.status(400).json({ message: 'Update failed' });
-    }
+            if(!updated) return res.status(401).json({message: 'Could not update contnent'});
+
+            console.log(updated)
+
+            res.status(200).json({
+                message: 'Content updated successfully',
+                data: updated
+            });
+
+        } catch (error) {
+            res.status(400).json({ message: 'Update failed' });
+        }
+    };
+
+    public publishContent = async (req: Request, res: Response) => {
+        try {
+            // Get current content
+            const existingContent = await WebContentModel.findOne({});
+
+            if (!existingContent) {
+            return res.status(404).json({
+                message: "Content not found",
+            });
+            }
+
+            // Copy draftContent into publishedContent
+            existingContent.publishedContent =
+            existingContent.draftContent;
+
+            existingContent.lastPublishedAt = new Date();
+
+            // Save changes
+            await existingContent.save();
+
+            res.status(200).json({
+            message: "Content published successfully",
+            data: existingContent,
+            });
+        } catch (error) {
+            console.error(error);
+
+            res.status(400).json({
+            message: "Publish failed",
+            });
+        }
     };
 }

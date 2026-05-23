@@ -1,26 +1,27 @@
 
 import { useNavigate } from "react-router-dom";
-import { usePageContent } from "@/data/usePageContent";
-import { useState } from "react";
+import { useContext } from "react";
+import { ContentContext } from "@/App";
 
 function ProductItemCTA() {
 
   const navigate = useNavigate()
-  const [ content ] = useState(usePageContent.data[0].ctaSection)
+  const content = useContext(ContentContext)
 
   return (
-    <section className="w-full flex justify-center mt-5 md:py-10">
-      <div className="w-full md:w-[75%] smx-auto bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-10 md:p-14 text-white text-center shadow-xl">
+    <section className="w-full flex justify-center md:py-10">
+      <div className="w-full md:w-[65%] smx-auto bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-10 md:p-14 text-white text-center shadow-xl
+      hover:bg-red-600">
         
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           {
-            content.header
+            content?.ctaSection.header
           }
         </h2>
 
         <p className="text-lg md:text-xl text-indigo-100 max-w-2xl mx-auto mb-8">
           {
-            content.subHeader
+            content?.ctaSection.subHeader
           }
         </p>
 

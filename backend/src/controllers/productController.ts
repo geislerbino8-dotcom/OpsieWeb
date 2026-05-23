@@ -52,11 +52,13 @@ export class ProductController {
 
     public updateProduct = async ( req: Request, res: Response) => {
 
-        const { name, data } = req.body
+        const { id, data } = req.body
 
-        try {
+        console.log(id, data)
 
-            const product = await ProductModel.findOneAndUpdate({name: name}, 
+        try {   
+
+            const product = await ProductModel.findByIdAndUpdate(id, 
                 data,
                 {
                     new: true,
@@ -71,4 +73,30 @@ export class ProductController {
             res.status(400).json({message: 'Failed to pudate product'})
         }
     }
+
+    public deleteProduct = async (req: Request, res: Response) => {
+
+        const { id } = req.params;
+
+        try {
+            const product = await ProductModel.findById(id);
+
+            if (!product) {
+            return res.status(404).json({
+                message: "Product not found",
+            });
+            }
+
+            await ProductModel.findByIdAndDelete(id);
+
+            return res.status(200).json({
+            message: "Product deleted successfully",
+            });
+        } catch (error) {
+            return res.status(500).json({
+            message: "Server error",
+            error,
+            });
+        }
+    };
 }
