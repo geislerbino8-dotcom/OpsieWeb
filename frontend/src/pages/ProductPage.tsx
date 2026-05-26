@@ -25,9 +25,11 @@ import SuperHeader from '@/types/components/SuperHeader';
 // ================= TYPES =================
 type Product = {
   name: string;
+  logo: string
   category: string;
   image: string;
   description: string;
+  themeColor: string
 };
 
 function ProductPage() {
@@ -199,10 +201,11 @@ function ProductPage() {
                 data-aos-delay={index * 150}
               >
                 <ProductCard
-                  bgColor="white"
+                  logo={item.image}
                   itemName={item.name}
-                  image={item.image}
+                  image={item.logo}
                   desc={item.description}
+                  bgColor={item.themeColor}
                 />
               </div>
             ))}

@@ -80,8 +80,8 @@ export default class Server {
   public startServer = async () => {
     try {
       await mongoose.connect(
-        //`mongodb://localhost:27017/`
-        `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`,
+        `mongodb://localhost:27017/`
+        //`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@opsiewebsite.8uu1hmi.mongodb.net/${process.env.MONGODB_NAME}?appName=OpsieWebsite`,
       );
 
       /* const mongoUri =

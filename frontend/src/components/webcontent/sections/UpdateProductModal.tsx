@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai'; // Added AiOutlineTrash
+import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai'; 
 import { updateProduct } from '@/api/updateProduct';
 import { useApiState } from '@/hooks/useApiState';
 import { useToast } from '@/hooks/useToast';
@@ -44,7 +44,9 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
   const [formData, setFormData] = useState<ProductForm>({
     ...product,
     themeColor: product.themeColor || "#3CBDE6",
-    photos: product.photos || [] // Fallback boundary assurance
+    photos: product.photos || [],
+    benefits: product.benefits || [],
+    analytics: product.analytics || []
   });
   const apiState = useApiState();
   const { toasts, addToast } = useToast();
@@ -54,7 +56,9 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
       setFormData({
         ...product,
         themeColor: product.themeColor || "#3CBDE6",
-        photos: product.photos || []
+        photos: product.photos || [],
+        benefits: product.benefits || [],
+        analytics: product.analytics || []
       });
     }
   }, [product]);
@@ -86,7 +90,6 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
     });
   };
 
-  // Specific handler for string arrays like photos
   const handlePhotoUrlChange = (index: number, value: string) => {
     setFormData((prev) => {
       const updatedPhotos = [...prev.photos];
@@ -359,7 +362,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
             </div>
           </div>
 
-          {/* Section 4: Array Parameters */}
+          {/* Section 4: Features Breakdown */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <h3 style={{ color: formData.themeColor }} className="text-xs font-bold uppercase tracking-wider transition-colors">4. Features Breakdown</h3>
@@ -403,10 +406,54 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
             </div>
           </div>
 
-          {/* New Section 5: Photo Album Assets */}
+          {/* Section 5: Benefits Breakdown (NEW INPUT FIELD) */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <h3 style={{ color: formData.themeColor }} className="text-xs font-bold uppercase tracking-wider transition-colors">5. Photo Album Showcase</h3>
+              <h3 style={{ color: formData.themeColor }} className="text-xs font-bold uppercase tracking-wider transition-colors">5. Key Benefits</h3>
+              <button
+                type="button"
+                onClick={() => addArrayItem('benefits', { title: '', description: '' })}
+                style={{ color: formData.themeColor }}
+                className="text-xs font-bold flex items-center gap-1 opacity-90 hover:opacity-100 transition-opacity"
+              >
+                <AiOutlinePlus /> Add Benefit
+              </button>
+            </div>
+            
+            <div className="space-y-3">
+              {formData.benefits?.map((benefit, index) => (
+                <div key={index} className="flex gap-3 items-center bg-slate-50 p-3 rounded-xl border border-slate-200">
+                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input
+                      type="text"
+                      placeholder="Benefit Title"
+                      value={benefit.title}
+                      onChange={(e) => handleArrayChange(index, 'benefits', 'title', e.target.value)}
+                      className="sm:col-span-1 bg-white border border-slate-200 rounded-lg p-2 text-sm text-slate-900 focus:outline-none focus:border-slate-300"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Benefit description..."
+                      value={benefit.description}
+                      onChange={(e) => handleArrayChange(index, 'benefits', 'description', e.target.value)}
+                      className="sm:col-span-2 bg-white border border-slate-200 rounded-lg p-2 text-sm text-slate-900 focus:outline-none focus:border-slate-300"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeArrayItem(index, 'benefits')}
+                    className="p-2 text-red-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+\                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 6: Photo Album Assets */}
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h3 style={{ color: formData.themeColor }} className="text-xs font-bold uppercase tracking-wider transition-colors">6. Photo Album Showcase</h3>
               <button
                 type="button"
                 onClick={addPhotoItem}
@@ -438,11 +485,62 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                       onClick={() => removePhotoItem(index)}
                       className="p-2 text-red-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                     >
-                    </button>
+\                    </button>
                   </div>
                 ))}
               </div>
             )}
+          </div>
+
+          {/* Section 7: Analytics Parameters (NEW INPUT FIELD) */}
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h3 style={{ color: formData.themeColor }} className="text-xs font-bold uppercase tracking-wider transition-colors">7. Product Analytics Metrics</h3>
+              <button
+                type="button"
+                onClick={() => addArrayItem('analytics', { title: '', value: '', description: '' })}
+                style={{ color: formData.themeColor }}
+                className="text-xs font-bold flex items-center gap-1 opacity-90 hover:opacity-100 transition-opacity"
+              >
+                <AiOutlinePlus /> Add Metric
+              </button>
+            </div>
+            
+            <div className="space-y-3">
+              {formData.analytics?.map((metric, index) => (
+                <div key={index} className="flex gap-3 items-center bg-slate-50 p-3 rounded-xl border border-slate-200">
+                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-4 gap-3">
+                    <input
+                      type="text"
+                      placeholder="Metric Title (e.g., Users)"
+                      value={metric.title}
+                      onChange={(e) => handleArrayChange(index, 'analytics', 'title', e.target.value)}
+                      className="sm:col-span-1 bg-white border border-slate-200 rounded-lg p-2 text-sm text-slate-900 focus:outline-none focus:border-slate-300"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Value (e.g., 1200+)"
+                      value={metric.value}
+                      onChange={(e) => handleArrayChange(index, 'analytics', 'value', e.target.value)}
+                      className="sm:col-span-1 bg-white border border-slate-200 rounded-lg p-2 text-sm text-slate-900 focus:outline-none focus:border-slate-300"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Short descriptor statement..."
+                      value={metric.description}
+                      onChange={(e) => handleArrayChange(index, 'analytics', 'description', e.target.value)}
+                      className="sm:col-span-2 bg-white border border-slate-200 rounded-lg p-2 text-sm text-slate-900 focus:outline-none focus:border-slate-300"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeArrayItem(index, 'analytics')}
+                    className="p-2 text-red-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
 
         </form>

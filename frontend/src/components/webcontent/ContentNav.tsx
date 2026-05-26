@@ -9,11 +9,11 @@ interface NavPage {
 }
 
 const pages: NavPage[] = [
-  { name: "Homepage", path: '/content/homepage', icon: Layout },
-  { name: "Who We Are", path: '/content/whoweare', icon: Users },
-  { name: "What We Do", path: '/content/whatwedo', icon: Hammer },
-  { name: "Contact Us", path: '/content/contacts', icon: Mail },
-  { name: "Products", path: '/content/products', icon: Package },
+  { name: "Homepage", path: '/admin/content/homepage', icon: Layout },
+  { name: "Who We Are", path: '/admin/content/whoweare', icon: Users },
+  { name: "What We Do", path: '/admin/content/whatwedo', icon: Hammer },
+  { name: "Contact Us", path: '/admin/content/contacts', icon: Mail },
+  { name: "Products", path: '/admin/content/products', icon: Package },
 ];
 
 const ContentNav: React.FC = () => {
@@ -23,13 +23,12 @@ const ContentNav: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="w-full bg-white border-b border-slate-200 sticky top-0">
+    <nav className="w-full absolute z-10 bg-white border-b border-slate-200 sticky top-0">
       <div className="w-full flex items-center justify-between px-4 md:px-6 h-16">
         
-        {/* Branding Area */}
         <div 
           className="cursor-pointer flex items-center gap-2 z-50"
-          onClick={() => window.location.href = '/content'}
+          onClick={() => window.location.href = '/admin/content'}
         >
           <div className="bg-blue-600 p-1.5 rounded-lg">
             <ShieldCheck size={20} className="text-white" />

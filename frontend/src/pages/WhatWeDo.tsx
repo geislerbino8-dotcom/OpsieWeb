@@ -12,6 +12,7 @@ import { ContentContext } from "@/App";
 const imageLogos = [
   { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opscore_logo.png", alt: "Company 1" },
   { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opsie_logo_only.png", alt: "Company 2" },
+  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/assets/703645550_3011148922414479_9053266492007165022_n.png", alt: "Company 3" }
 
 ];
 
@@ -126,12 +127,12 @@ export default function WhatWeDo() {
       </section>
 
        <div className="w-full flex justify-center items-center py-10 my-5">
-          <div className="w-[80%]">
+          <div className="w-[80%] bg-[#242424]/20">
             <LogoLoop
             logos={imageLogos}
             speed={100}
             direction="left"
-            logoHeight={40}
+            logoHeight={50}
             gap={60}
             scaleOnHover
             fadeOut
