@@ -55,9 +55,9 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
           script: |
-            cd /apps/websites/staging/OpsieWebsite
+            cd /apps/websites/opsie/staging/OpsieWebsite
 
-            git config --global --add safe.directory /apps/websites/staging/OpsieWebsite
+            git config --global --add safe.directory /apps/websites/opsie/staging/OpsieWebsite
 
             git fetch origin
             git reset --hard origin/1.0.2
