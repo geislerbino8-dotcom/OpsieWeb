@@ -40,7 +40,7 @@ export default function WhoWeAre() {
         />
         
         {/* Overlay Gradient    - Darker at bottom/left for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 md:bg-gradient-to-r md:from-black/90 md:via-black/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 md:bg-gradient-to-r md:from-black/90 md:via-black/50 to-transparent"></div>
         
         {/* Content Wrapper - Centered to match your site's max-width */}
         <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-20 md:pb-32 px-6 md:px-12 text-white">
@@ -69,13 +69,31 @@ export default function WhoWeAre() {
           </div>
 
           {/* Desktop Socials - Pinned to bottom right */}
-          <div className="hidden absolute bottom-[30px] md:flex absolute right-12 bottom-12 gap-5">
-            {[SiFacebook, SiInstagram, SiGithub, SiGmail].map((Icon, idx) => (
-              <div key={idx} className="w-14 h-14 border-2 border-[#3CBDE6]/40 rounded-full flex items-center justify-center hover:border-[#3CBDE6] bg-[#3CBDE6] group transition-all cursor-pointer">
-                <Icon className="text-white text-2xl group-hover:text-white transition-colors" />
-              </div>
-            ))}
-          </div>
+          <div className="
+  /* Position: Relative/Static on mobile to stack, Absolute on desktop */
+  relative mt-10 w-full 
+  md:absolute md:right-0 md:bottom-4 md:mt-0 md:w-auto
+  flex flex-col sm:flex-row items-center justify-center md:justify-end 
+  text-white pb-4 px-4
+">
+  {/* Avatar Group */}
+  <div className="flex flex-col items-center md:items-end">
+    <div className="flex -space-x-3 mb-3 md:mb-0">
+      <img src="/staffs/p5.jpg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
+      <img src="/profiles/Rectangle 816.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
+      <img src="/profiles/Rectangle 818.svg" className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-2 border-black object-cover" alt="client"/>
+    </div>
+  </div>
+
+  {/* Text Content */}
+  <div className="sm:ml-5 flex flex-col items-center md:items-start text-center md:text-left">
+    <h3 className="font-semibold text-base lg:text-lg">10+ Satisfied Clients</h3>
+    <div className="flex items-center">
+      <span className="text-[#3CBDE6] text-xl lg:text-2xl">★★★★★</span>
+      <span className="text-lg ml-2 font-light">5/5</span>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 

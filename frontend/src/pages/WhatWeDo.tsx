@@ -12,6 +12,7 @@ import { ContentContext } from "@/App";
 const imageLogos = [
   { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opscore_logo.png", alt: "Company 1" },
   { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opsie_logo_only.png", alt: "Company 2" },
+  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/assets/703645550_3011148922414479_9053266492007165022_n.png", alt: "Company 3" }
 
 ];
 
@@ -29,7 +30,7 @@ export default function WhatWeDo() {
       <section className="bg-[#0F4C5C] relative w-full h-[90vh] h-screen min-h-[600px] overflow-hidden">
         {/* Background Image */}
         <img
-          src="/WhoWeAre-Hero.svg"
+          src="/WhoWeAre-Hero (1).svg"
           alt="Hero Image"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -125,23 +126,25 @@ export default function WhatWeDo() {
         </div>
       </section>
 
-       <div className="w-full flex justify-center items-center py-10 my-5">
-          <div className="w-[80%]">
+      {
+        /** <div className="w-full flex justify-center items-center py-10 my-5">
+          <div className="w-[80%] bg-[#242424]/20">
             <LogoLoop
             logos={imageLogos}
             speed={100}
             direction="left"
-            logoHeight={40}
+            logoHeight={50}
             gap={60}
             scaleOnHover
             fadeOut
             fadeOutColor="#ECEDF1"
           />
           </div>
-        </div>
+        </div> */
+      }
 
       {/* BODY CONTENT - Wrapped in container to keep alignment */}
-      <main className="md:w-[75%] mx-auto pt-10 py-10">
+      <main className="md:w-[75%] mx-auto pt-10 py-10 mt-10">
         
         {/* Intro Heading */}
      <div className="flex flex-col md:flex-row justify-between items-start gap-8">

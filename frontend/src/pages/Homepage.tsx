@@ -5,7 +5,6 @@ import ProductSection from './sections/ProductSection'
 import ContactUsSection from './sections/ContactUsSection'
 import ScrollAnimatedSection from '../ScrollAnimationSection'
 import Faq from '../components/FaqSection/Faq'
-import HomeHeroImage from '../assets/background-images/landing-hero.jpg'
 import ClientReview from '../components/sections/ClientReviewsSection'
 import WhyChooseUsSection from './sections/WhyChooseUsSection'
 import ProductItemCTA from '@/components/cards/ProductItemCTA'
@@ -19,7 +18,7 @@ function Homepage() {
     <div className="overflow-hidden">
 
 
-        <HeroPage bgImage={HomeHeroImage} />
+        <HeroPage bgImage={'/background/landing-hero1.jpg'} />
 
       <ScrollAnimatedSection delay={100}>
         <AboutUsSection />

@@ -4,15 +4,17 @@ type ProductCardProps = {
   itemName: string
   image: string
   desc: string
-  bgColor?: string // Expecting a clean hex code like #FFFFFF
+  logo: string
+  bgColor?: string 
 }
 
-function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF" }: ProductCardProps) {
+function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: ProductCardProps) {
   const navigate = useNavigate()
 
-  // Safely strips a leading '#' if present, then applies a clean 25% alpha opacity hex (40)
   const cleanHex = bgColor.startsWith("#") ? bgColor.slice(1) : bgColor
   const overlayBackground = `#${cleanHex}40`
+  
+  const glowShadowColor = `#${cleanHex}4d` 
 
   return (
     <div
@@ -24,14 +26,41 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF" }: ProductCard
         bg-white/[0.03] border border-white/10
         transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
         
-        /* Premium Soft Shadows */
+        /* Base Premium Soft Shadow */
         shadow-[0_8px_32px_0_rgba(0,0,0,0.08)]
-        hover:shadow-[0_20px_40px_0_rgba(0,0,0,0.18)]
         
         /* Subtle elevation shift instead of layout-breaking margins */
         hover:-translate-y-2
       "
+      style={{
+        // Dynamically applies a sharp drop shadow AND an inner border highlight using your bgColor
+        '--hover-shadow': `0 20px 40px ${glowShadowColor}, inset 0 0 0 1px #${cleanHex}66`,
+      } as React.CSSProperties}
     >
+      {/* 
+        This wrapper applies the shadow highlight natively on hover via a custom CSS variable 
+        to ensure smooth performance and fallback support.
+      */}
+      <div className="absolute inset-0 rounded-2xl transition-all duration-500 [box-shadow:var(--hover-shadow)] opacity-0 group-hover:opacity-100 pointer-events-none z-30" />
+
+      <div className="group-hover:bg-transparent group-hover:absolute group-hover:inset-0 transition-all duration-700 w-full h-full flex justify-center items-center relative overflow-hidden"
+        style={{backgroundColor: `hexToRgba(${bgColor}, 0.1)`}}
+      >
+        {/* Full-screen Background Image Layer */}
+        <div className="absolute inset-0 w-full h-full z-0 flex justify-center items-center">
+          <img 
+            src={logo} 
+            alt="" 
+            className="w-full transition-transform duration-700 group-hover:scale-105" 
+          />
+        </div>
+
+        {/* Overlay Content (Title) */}
+        <div className="relative z-10 flex flex-col justify-end h-full w-full p-10 text-center bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+          <h1 className="font-bold text-white text-3xl">{itemName}</h1>
+        </div>
+      </div>
+
       {/* Premium ambient backing glow */}
       <div
         className="
@@ -89,6 +118,7 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF" }: ProductCard
             className="
               text-xs text-neutral-500 mt-2 leading-relaxed
               group-hover:text-neutral-800
+              group-hover:font-medium
               transition-colors duration-300
               line-clamp-3 w-full px-2
             "

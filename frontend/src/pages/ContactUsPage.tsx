@@ -76,7 +76,9 @@ function ContactUsPage() {
               </div>
             </ContactsCard>
 
-            <ContactsCard title="Follow us on Social Media">
+            {
+              /**
+               * <ContactsCard title="Follow us on Social Media">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { Icon: SiFacebook, label: "Facebook", link: "#" },
@@ -91,6 +93,8 @@ function ContactUsPage() {
                 ))}
               </div>
             </ContactsCard>
+               */
+            }
 
             <div className="bg-[#242424] p-8 md:p-10 rounded-3xl text-white relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3CBDE6] opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
