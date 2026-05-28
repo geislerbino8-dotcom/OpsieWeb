@@ -13,8 +13,7 @@ function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const { toasts, addToast } = useToast();
-  const [, setProductList] = useState<string[]>([]); // Cleaned up unused type warning
-
+  const [, setProductList] = useState<string[]>([]); 
   const initialUserInfo = {
     name: "",
     email: "",
@@ -175,7 +174,7 @@ function ContactForm() {
               className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
             >
               <option value="" disabled>- Category -</option>
-              <option value="Inquire">Inquiry</option>
+              <option value="Inquiry">Inquiry</option>
               <option value="Question">Question</option>
               <option value="Complaint">Complaint</option>
               <option value="Bug Report">Bug Report</option>
