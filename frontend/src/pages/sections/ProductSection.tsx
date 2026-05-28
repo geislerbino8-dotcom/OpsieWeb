@@ -64,6 +64,7 @@ function ProductSection() {
                 className="flex justify-center"
               >
                 <ProductCard
+                  logo={item.image}
                   itemName={item.name}
                   image={item.logo}
                   desc={item.description}

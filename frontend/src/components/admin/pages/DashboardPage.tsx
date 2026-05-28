@@ -27,7 +27,7 @@ const cards = [
     title: 'Content Management System',
     description: 'View, update, and resolve support tickets efficiently.',
     icon: ticketImg,
-    route: '/content',
+    route: 'content',
   },
 ];
 

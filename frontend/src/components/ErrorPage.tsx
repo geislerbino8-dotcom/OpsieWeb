@@ -11,7 +11,6 @@ export default function ErrorPage() {
   let status: number | undefined;
 
   if (isRouteErrorResponse(error)) {
-    // React Router error (like 404, 500)
     status = error.status;
     title = error.statusText || title;
     message = error.data || message;
