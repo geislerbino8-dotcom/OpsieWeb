@@ -66,12 +66,12 @@ function ContactUsPage() {
               <div className="space-y-4 text-gray-600">
                 <div className="flex flex-col sm:flex-row justify-between border-b border-gray-50 pb-2 gap-1">
                   <span className="font-medium text-sm">General Inquiries:</span> 
-                  <span className="text-black font-bold">+632 84634039</span>
+                  <span className="text-black font-bold"><a href="tel:+63284634039">+632 84634039</a></span>
                 </div>
                
                 <div className="flex flex-col sm:flex-row justify-between gap-1">
                   <span className="font-medium text-sm">Official Email</span> 
-                  <span className="text-[#3CBDE6] font-bold break-all text-right">inquiry@opsiesoftwaresolutions.com</span>
+                  <span className="text-[#3CBDE6] font-bold break-all text-right"><a href="mailto:inquiry@opsiesoftwaresolutions.com">inquiry@opsiesoftwaresolutions.com</a></span>
                 </div>
               </div>
             </ContactsCard>
