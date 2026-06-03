@@ -1,6 +1,5 @@
 import ServicesSection from "../components/sections/ServicesSections";
 import ClientCard from "../components/sections/ClientReviewsSection";
-import LogoLoop from "../components/PartnersLogo/PartnersLogoLoop";
 import FAQAccordion from "../components/FaqSection/Faq"
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import { useNavigate } from "react-router-dom";
@@ -9,12 +8,6 @@ import { useContext,  } from "react";
 import SuperHeader from "@/types/components/SuperHeader";
 import { ContentContext } from "@/App";
 
-const imageLogos = [
-  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opscore_logo.png", alt: "Company 1" },
-  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/opsie_logo_only.png", alt: "Company 2" },
-  { src: "https://zfhwbbfabcxiumhqbmei.supabase.co/storage/v1/object/public/Opsie%20Tickets/assets/703645550_3011148922414479_9053266492007165022_n.png", alt: "Company 3" }
-
-];
 
 export default function WhatWeDo() {
   const Navigate = useNavigate();

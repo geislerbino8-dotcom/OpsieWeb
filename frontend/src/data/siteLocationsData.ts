@@ -1,7 +1,7 @@
 export const OFFICE_LOCATIONS = {
   main: {
     name: "Main Office (Mandaluyong)",
-    address: "Princeton Street, Corner Shaw Blvd, Mandaluyong City, 1554 Metro Manila",
+    address: "8F Sun Plaza Bldg., 1507 Shaw Blvd. Cor. Princeton St., Wack-Wack, Mandaluyong City 1555, Philippines",
     lng: 121.04916024252319,
     lat: 14.58523914984939,
   },

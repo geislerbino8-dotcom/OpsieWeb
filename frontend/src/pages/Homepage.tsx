@@ -18,7 +18,7 @@ function Homepage() {
     <div className="overflow-hidden">
 
 
-        <HeroPage bgImage={'/background/landing-hero1.jpg'} />
+        <HeroPage bgImage={'/background/landing-hero.jpg'} />
 
       <ScrollAnimatedSection delay={100}>
         <AboutUsSection />

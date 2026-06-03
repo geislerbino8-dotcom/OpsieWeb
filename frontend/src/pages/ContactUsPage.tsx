@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
 import Sunplazaimg from '../assets/background-images/Sunplaza.jpg';
 
 import ContactForm from '@/components/cards/ContactForm';
