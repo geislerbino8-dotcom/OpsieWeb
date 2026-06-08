@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { SiFacebook, SiInstagram, SiGmail, SiIndeed } from 'react-icons/si';
 import Sunplazaimg from '../assets/background-images/Sunplaza.jpg';
 
 import ContactForm from '@/components/cards/ContactForm';
@@ -66,17 +65,19 @@ function ContactUsPage() {
               <div className="space-y-4 text-gray-600">
                 <div className="flex flex-col sm:flex-row justify-between border-b border-gray-50 pb-2 gap-1">
                   <span className="font-medium text-sm">General Inquiries:</span> 
-                  <span className="text-black font-bold">+632 84634039</span>
+                  <span className="text-black font-bold"><a href="tel:+63284634039">+632 84634039</a></span>
                 </div>
                
                 <div className="flex flex-col sm:flex-row justify-between gap-1">
                   <span className="font-medium text-sm">Official Email</span> 
-                  <span className="text-[#3CBDE6] font-bold break-all text-right">inquiry@opsiesoftwaresolutions.com</span>
+                  <span className="text-[#3CBDE6] font-bold break-all text-right"><a href="mailto:inquiry@opsiesoftwaresolutions.com">inquiry@opsiesoftwaresolutions.com</a></span>
                 </div>
               </div>
             </ContactsCard>
 
-            <ContactsCard title="Follow us on Social Media">
+            {
+              /**
+               * <ContactsCard title="Follow us on Social Media">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { Icon: SiFacebook, label: "Facebook", link: "#" },
@@ -91,6 +92,8 @@ function ContactUsPage() {
                 ))}
               </div>
             </ContactsCard>
+               */
+            }
 
             <div className="bg-[#242424] p-8 md:p-10 rounded-3xl text-white relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3CBDE6] opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>

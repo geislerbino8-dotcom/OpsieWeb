@@ -14,7 +14,6 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
   const cleanHex = bgColor.startsWith("#") ? bgColor.slice(1) : bgColor
   const overlayBackground = `#${cleanHex}40`
   
-  // Create a custom 30% opacity hex color for the premium glow shadow on hover
   const glowShadowColor = `#${cleanHex}4d` 
 
   return (
@@ -44,13 +43,15 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
       */}
       <div className="absolute inset-0 rounded-2xl transition-all duration-500 [box-shadow:var(--hover-shadow)] opacity-0 group-hover:opacity-100 pointer-events-none z-30" />
 
-      <div className="bg-black/70 group-hover:bg-transparent group-hover:absolute group-hover:inset-0 transition-all duration-700 w-full h-full flex justify-center items-center relative overflow-hidden">
+      <div className="group-hover:bg-transparent group-hover:absolute group-hover:inset-0 transition-all duration-700 w-full h-full flex justify-center items-center relative overflow-hidden"
+        style={{backgroundColor: `hexToRgba(${bgColor}, 0.1)`}}
+      >
         {/* Full-screen Background Image Layer */}
-        <div className="absolute inset-0 w-full h-full z-0">
+        <div className="absolute inset-0 w-full h-full z-0 flex justify-center items-center">
           <img 
             src={logo} 
             alt="" 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            className="w-full transition-transform duration-700 group-hover:scale-105" 
           />
         </div>
 

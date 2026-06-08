@@ -163,9 +163,10 @@ export default function Maps() {
             </p>
 
             <div className="space-y-2 text-center md:text-start font-poppins text-sm md:text-base">
-                <p>📍 Princeton Street, Corner Shaw Blvd, Mandaluyong City</p>
-                <p>📧 hello@opsie.solutions</p>
-                <p>📞 +1 (555) 000-OPSI</p>
+                <p>📍 8F Sun Plaza Bldg., 1507 Shaw Blvd. Cor. Princeton St., Wack-Wack, Mandaluyong City 1555, Philippines</p>
+                <p>📧 <a href="mailto:inquiry@opsiesoftwaresolutions.com" type="email">inquiry@opsiesoftwaresolutions.com</a></p>
+                <p><a href="tel:(02) 84634039">☎️ (02) 84634039</a></p>
+                <p><a href="tel:+63 915 059 6410">📞 +63 915 059 6410</a></p>
             </div>
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 lg:mt-4">

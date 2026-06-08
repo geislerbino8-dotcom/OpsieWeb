@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// Components
 import ProductItemCTA from '@/components/cards/ProductItemCTA';
 import AnalyticsCards from '@/components/cards/AnalyticsCards';
 
-// API
 import { getProduct } from '@/api/getProduct';
+
 
 // --- TYPES & INTERFACES ---
 interface FeatureItem {
@@ -140,29 +139,25 @@ function ProductItemPage() {
         }}
       >
         <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Hero Left Image */}
-          <div data-aos="zoom-in" className="lg:col-span-5 flex justify-center relative order-2 lg:order-1">
-            <div className="absolute inset-0 bg-cyan-500/10 blur-3xl rounded-full scale-75" />
-            <img
-              src={content.logo}
-              alt={content.name}
-              className="relative z-10 max-w-md rounded-2xl shadow-2xl hover:scale-[1.01] transition-transform duration-500 object-cover"
-            />
-          </div>
-
           {/* Hero Right Content */}
           <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left order-1 lg:order-2">
             <div className="space-y-3">
               <span className="inline-block px-3 py-1 text-xs font-bold tracking-widest uppercase bg-white/5 border border-white/10 rounded-full text-cyan-400">
                 {content.category}
               </span>
-              <h1 
-                style={{ color: content?.themeColor || '#ffffff' }}
-                data-aos="fade-up" 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none uppercase drop-shadow-sm"
-              >
-                {content.name}
-              </h1>
+
+          <div data-aos="zoom-in" className="">
+            {
+              content.logo ? 
+              <img
+              src={content.logo}
+              alt={content.name}
+              className=""
+            /> : <h1 className='font-bold text-[5rem]'>{content.name}</h1>
+            }
+          </div>    
+          
+              
             </div>
 
             <p data-aos="fade-up" data-aos-delay="100" className="text-gray-400 leading-relaxed text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-light italic">
@@ -185,7 +180,7 @@ function ProductItemPage() {
       <section className="w-full max-w-5xl px-6 py-20">
         <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center backdrop-blur-md">
           <div className="w-full md:w-1/3 flex-shrink-0">
-            <img className="w-full rounded-2xl border border-white/10 object-cover shadow-lg" src={content?.logo} alt="Product breakdown" />
+            <img className="w-full rounded-2xl border border-white/10 object-cover shadow-lg" src={content?.image} alt="Product breakdown" />
           </div>
           <div className="space-y-4">
             <h2 className="text-xs font-bold tracking-widest text-cyan-500 uppercase">Product Summary</h2>
@@ -195,13 +190,11 @@ function ProductItemPage() {
       </section>
 
       {/* --- STATS SECTION --- */}
-      <section className="w-full max-w-6xl pb-16 px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="w-full flex justify-center item-center max-w-6xl pb-16 px-6">
+        <div className="flex justify-center items-center">
           {content.analytics.map((item, index) => (
-            <div key={index} className="bg-gradient-to-b from-white/[0.04] to-transparent p-[1px] rounded-2xl">
-              <div className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-2xl h-full border border-white/5">
-                <AnalyticsCards numbers={item.value} desc={item.title} unit={item.unit} />
-              </div>
+            <div key={index}>
+              <AnalyticsCards numbers={item.value} desc={item.title} unit={item.unit} />
             </div>
           ))}
         </div>
@@ -263,7 +256,6 @@ function ProductItemPage() {
                 data-aos-delay={index * 100}
                 className="relative p-8 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 rounded-2xl flex flex-col gap-4 overflow-hidden group hover:border-blue-500/30 transition-all duration-300"
               >
-                {/* Visual Top Highlight Accent */}
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                 
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 text-sm font-bold">
@@ -290,18 +282,19 @@ function ProductItemPage() {
             <h2 className="text-xs font-bold tracking-widest text-gray-500 uppercase">Visual Interface</h2>
           </div>
           
-          <div className="relative group max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 aspect-video bg-gray-900 shadow-2xl">
+          {/* Removed max-w-4xl, aspect-video, border and background box declarations */}
+          <div className="relative group mx-auto overflow-hidden w-full flex justify-center items-center">
             {/* Sliding Track */}
             <div 
-              className="w-full h-full flex transition-transform duration-700 ease-out"
+              className="w-full flex transition-transform duration-700 ease-out items-center"
               style={{ transform: `translateX(-${activeSlide * 100}%)` }}
             >
               {content.photos.map((url, index) => (
-                <div key={index} className="w-full h-full flex-shrink-0 relative">
+                <div key={index} className="w-full flex-shrink-0 flex justify-center items-center relative">
                   <img 
                     src={url} 
                     alt={`Interface Preview ${index + 1}`} 
-                    className="w-full h-full object-cover"
+                    className="w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/10"
                   />
                 </div>
               ))}
@@ -312,7 +305,7 @@ function ProductItemPage() {
               <>
                 <button 
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80 z-30"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -320,7 +313,7 @@ function ProductItemPage() {
                 </button>
                 <button 
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80 z-30"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -328,7 +321,7 @@ function ProductItemPage() {
                 </button>
 
                 {/* Bottom Navigation Dots */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
                   {content.photos.map((_, index) => (
                     <button
                       key={index}
@@ -363,12 +356,6 @@ function ProductItemPage() {
           <p className="text-gray-400 text-sm leading-relaxed">{content.contents.support}</p>
         </div>
       </section>
-
-      {/* --- INDUSTRIES BADGE TRACK --- */}
-      <div className="flex flex-col sm:flex-row gap-3 items-center px-6 py-3 bg-white/[0.02] border border-white/5 rounded-full text-sm font-medium text-gray-400 mb-16">
-        <span className="text-xs uppercase tracking-wider font-bold text-cyan-500">Target Industries:</span>
-        <span>{content.industries.join(" • ")}</span>
-      </div>
 
       <ProductItemCTA />
       <div className="h-12" />

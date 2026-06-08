@@ -12,7 +12,7 @@ function MapCard() {
     <div className="group relative w-full max-w-xl flex flex-col p-6 bg-white rounded-xl shadow-md space-y-4 overflow-hidden border border-gray-100 transition-all duration-500">
       
       {/* Smooth Gradient Layer Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black to-[#3CBDE6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
+      <div className="absolute inset-0 h-full bg-gradient-to-t from-black to-[#3CBDE6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
 
       {/* Contact Info */}
       <div className="space-y-1 relative z-10">

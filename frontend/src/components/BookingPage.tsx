@@ -38,7 +38,7 @@ function BookingPage() {
           </p>
         </div>
              <InlineWidget
-              url="https://calendly.com/tecsonprojects/30min"
+              url="https://calendly.com/inquiry-opsiesoftwaresolutions/30min"
               styles={{ height: "700px", width: '100%', margin: 0, padding: 0}}
               pageSettings={{
                 backgroundColor: 'ffffff',

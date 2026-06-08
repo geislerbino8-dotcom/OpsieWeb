@@ -84,7 +84,8 @@ const ContactUsSection: React.FC = () => {
             icon={<MapPin className="w-6 h-6" />}
             title="Visit Us"
             detail="Sunplaza Bldg. Princeton St. Shaw Blvd., Mandaluyong City"
-            href="#" 
+            href="https://maps.app.goo.gl/8R6dXVvQutf6x1Pm9"
+             
           />
           <ContactDetail 
             icon={<Phone className="w-6 h-6" />}
@@ -109,6 +110,7 @@ interface ContactDetailProps {
 const ContactDetail = ({ icon, title, detail, href, paddingClass = "px-0" }: ContactDetailProps) => (
   <a 
     href={href}
+    target="_blank"
     className="group bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:bg-slate-900/50 hover:border-white/20 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3"
   >
     {/* Cleaned up the inner icon wrapper to blend with a dark design style */}

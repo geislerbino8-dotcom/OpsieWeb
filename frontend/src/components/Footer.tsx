@@ -22,7 +22,7 @@ const Footer = () => {
       </h1>
 
       {/* MAIN CARD */}
-      <div className="relative w-full max-w-6xl rounded-3xl bg-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] md:p-10 py-10 px-3 md:mb-30 z-10">
+      <div className="relative w-full max-w-6xl rounded-3xl bg-white md:p-10 py-10 px-3 md:mb-30 z-10">
 
         {/* HEADER */}
         <div className="text-center">
