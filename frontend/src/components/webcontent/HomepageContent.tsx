@@ -1,7 +1,6 @@
 
 import AboutPageCMS from './sections/AboutPageCMS'
 import ClientSectionCMS from './sections/ClientSectionCMS'
-import ContactUsSectionCMS from './sections/ContactUsSectionCMS'
 import FaqSectionCMS from './sections/FaqSectionCMS'
 import FooterCMS from './sections/FooterCMS'
 import HeroPageCMS from './sections/HeroPageCMS'
@@ -21,7 +20,6 @@ function HomepageContent() {
       <ProductSectionCMS />
       <ClientSectionCMS />
       <PartnerSectionCMS />
-      <ContactUsSectionCMS />
       <FaqSectionCMS />
       <ProductItemCTACMS />
       <FooterCMS />

@@ -92,4 +92,28 @@ export class WebContentController {
             });
         }
     };
+
+    public getPublishedDate = async (req: Request, res: Response) => {
+        try {
+            const content = await WebContentModel.findOne({});
+
+            const phDate = content?.lastPublishedAt
+                ? new Date(content.lastPublishedAt).toLocaleString("en-PH", {
+                    timeZone: "Asia/Manila",
+                })
+                : null;
+
+            res.status(200).json({
+                message: "Date published success",
+                data: phDate,
+            });
+
+        } catch (error) {
+            console.error(error);
+
+            res.status(400).json({
+                message: "Publish failed",
+            });
+        }
+    };
 }

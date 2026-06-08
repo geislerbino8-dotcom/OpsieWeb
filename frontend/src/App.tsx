@@ -20,7 +20,6 @@ const App = () => {
   const [ content, setContent ] = useState<ContentType | null>(null)
 
   
-
   useEffect(()=> {
     const fetchContent = async()=> {
       let res = await getContent()
@@ -35,8 +34,6 @@ const App = () => {
 
   
   const currentLocation = useLocation()
-
-
 
 
   useEffect(()=> {
@@ -58,7 +55,23 @@ const App = () => {
 
   }, []);
 
+<<<<<<< HEAD
 
+=======
+  useEffect(() => {
+    async function getTodos() {
+      const { data } = supabase
+        .storage
+        .from('Opsie Tickets')
+        .getPublicUrl('sample.pdf')
+        console.log(data)
+      }
+
+      
+
+    getTodos()
+  }, [])  
+>>>>>>> 4a29e711e8ea58277a180f2ead085f2a0a7d6670
 
 
  

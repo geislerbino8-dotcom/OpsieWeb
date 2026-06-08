@@ -50,8 +50,6 @@ const HeroPageCMS: React.FC = () => {
     setIsEditing(false);
   };
 
-  console.log(formData)
-
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
@@ -116,10 +114,10 @@ const HeroPageCMS: React.FC = () => {
         ) : (
           /* --- LIVE PREVIEW VIEW --- */
           <div
-            className="text-center cursor-pointer group relative"
+            className="text-center cursor-pointer group overflow-hidden relative"
             onClick={() => setIsEditing(true)}
           >
-            <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
+            <div className="bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
               <span className="text-blue-600 font-semibold">Click to Edit</span>
             </div>
 

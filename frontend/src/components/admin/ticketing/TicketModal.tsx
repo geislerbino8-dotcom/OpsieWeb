@@ -88,14 +88,17 @@ const TicketModal = ({
 
     try {
       const { error } = await supabase.storage
-        .from('Opsie Tickets')
+        .from('Opsie Tickets/ticketHistory')
         .upload(fileName, fileToUpload);
+
+      console.log(error)
 
       if (error) throw error;
 
-      const { data: urlData } = supabase.storage
-        .from('Opsie Tickets')
+      const { data: urlData } = await supabase.storage
+        .from('Opsie Tickets/ticketHistory')
         .getPublicUrl(fileName);
+
 
       setEditResolution(urlData.publicUrl);
       return urlData.publicUrl;
@@ -127,10 +130,9 @@ const TicketModal = ({
       if (!uploadedUrl) return; 
     }
     
-    setTimeout(() => {
       onSave();
       setShowResolution(false);
-    }, 100);
+   
   };
 
   const clearFile = () => {

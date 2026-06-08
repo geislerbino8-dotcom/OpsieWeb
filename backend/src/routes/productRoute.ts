@@ -1,5 +1,9 @@
 import { Router } from 'express';
 import { ProductController } from "../controllers/productController";
+import { authMiddleware } from '../middleware/authMiddleware';
+import { requirePermission } from '../middleware/permissionMiddleware';
+import { PERMISSIONS } from '../constants/permissions';
+import { adminMiddleware } from '../middleware/adminMiddleware';
 
 export default class ProductRoute {
     public readonly router: Router;
@@ -29,11 +33,15 @@ export default class ProductRoute {
 
         this.router.put(
             '/update',
+            authMiddleware,
+            requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
             this.controller.updateProduct
         );
 
         this.router.get(
             '/delete/:id',
+            authMiddleware,
+            requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
             this.controller.deleteProduct
         )
     }
