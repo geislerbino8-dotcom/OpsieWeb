@@ -93,7 +93,9 @@ function WhyChooseUsSection() {
           </p>
 
           <div className='flex justify-center md:justify-start'>
-            <button className=' bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#3CBDE6] border-[#3CBDE6] hover:bg-white transition duration-600'>See how we work</button>
+            <button
+              onClick={()=> window.location.href = " /what-we-do"}
+              className=' bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#3CBDE6] border-[#3CBDE6] hover:bg-white transition duration-600'>See how we work</button>
 
           </div>
 

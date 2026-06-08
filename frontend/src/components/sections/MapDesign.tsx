@@ -148,7 +148,7 @@ export default function Maps() {
   };
 
   return (
-    <div className="w-full flex items-center justify-center lg:items-start gap-14">
+    <div className="w-full flex items-center justify-center lg:items-start gap-14 py-10 md:py-0">
       <div className="w-full flex flex-col md:flex-row lg:items-start gap-4">
 
         <div className="w-full flex flex-col items-center md:items-start gap-6 mb-10">

@@ -58,18 +58,7 @@ const App = () => {
 
   }, []);
 
-  useEffect(() => {
-    async function getTodos() {
-      const { data } = supabase
-        .storage
-        .from('Opsie Tickets')
-        .getPublicUrl('sample.pdf')
 
-      console.log(data.publicUrl)
-      }
-
-    getTodos()
-  }, [])
 
 
  
