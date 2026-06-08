@@ -28,7 +28,7 @@ const ServicesSection: React.FC = () => {
         <div className="relative px-6">
           
           {/* DESKTOP Navigation (Hover triggered) */}
-          <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 left-10 right-10 justify-between z-20 pointer-events-none group-hover:opacity-100">
+          <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 left-10 right-10 justify-between z-6 pointer-events-none group-hover:opacity-100">
             <Button 
               variant="shadow" 
               iconImage={leftArrow} 

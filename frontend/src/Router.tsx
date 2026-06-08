@@ -12,6 +12,7 @@ import TicketingSupportSystemPage from "./components/admin/pages/TicketingSuppor
 import UserManagementPage from "./components/admin/pages/UserManagementPage"
 import LoginPage from "./components/admin/pages/LoginPage"
 import ErrorPage from "./components/ErrorPage"
+import DashboardPage from "./components/admin/pages/DashboardPage"
 import WebContentFrom from "./components/webcontent/WebContentFrom"
 import HomepageContent from "./components/webcontent/HomepageContent"
 import WhoWeAreContent from "./components/webcontent/WhoWeAreContent"
@@ -21,10 +22,7 @@ import ProductsContent from "./components/webcontent/ProductsContent"
 import AddProductCMS from "./components/webcontent/sections/AddProductCMS"
 import ProductCMS from "./components/webcontent/sections/ProductCMS"
 
-//const content = useContext(ContentContext)
-
 const token = localStorage.getItem('token')
-
 
 const pageContent = [
     {
@@ -68,8 +66,6 @@ const pageContent = [
         path: 'view-products',
         element: <ProductCMS/>
     }
-
-
 ]
 
 const router = createBrowserRouter([
@@ -135,6 +131,10 @@ const router = createBrowserRouter([
         element: token ? <Admin />  : <LoginPage /> ,
 
         children: [
+            {
+                index: true,
+                element: <DashboardPage />
+            },
 
             {
                 path: 'tickets',
@@ -144,6 +144,12 @@ const router = createBrowserRouter([
             {
                 path: 'users',
                 element: <UserManagementPage />
+            },
+
+             {
+                path: 'content',
+                element: <WebContentFrom />,
+                children: pageContent
             }
         ]
     },
@@ -152,15 +158,6 @@ const router = createBrowserRouter([
         path: '/login',
         element: <LoginPage />
     },
-
-    {
-        path: '/content',
-        element: (
-                <WebContentFrom />
-        ),
-
-        children: pageContent
-    }
 
 ])
 

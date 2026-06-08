@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { ContentContext } from "@/App";
 import CoreValuesSection from "./sections/CoreValuesSection";
 import OperationalStructure from "@/components/sections/OperationalStructure";
+import SoftAurora from "@/components/SoftAurora";
 
 const myLogos = [
   { node: <span className="font-bold overflow-hidden">Simple</span> },
@@ -38,6 +39,33 @@ export default function WhoWeAre() {
           alt="Hero Background"
           className="absolute inset-0 w-full h-full object-cover"
         />
+
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                        <div 
+                          className="relative w-[600px] h-[600px] md:w-[900px] md:h-[900px] aspect-square opacity-40 mix-blend-screen flex items-center justify-center"
+                          style={{
+                            WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)',
+                            maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)'
+                          }}
+                        >
+                          <SoftAurora
+                            speed={0.8}
+                            scale={1.0}
+                            brightness={5}
+                            color1="#0ab3f1"
+                            color2="#3CBDE6"
+                            noiseFrequency={2.5}
+                            noiseAmplitude={1}
+                            bandHeight={0.4}
+                            bandSpread={0.8}
+                            octaveDecay={0.1}
+                            layerOffset={0}
+                            colorSpeed={1}
+                            enableMouseInteraction
+                            mouseInfluence={0.25}
+                          />
+                        </div>
+                      </div>
         
         {/* Overlay Gradient    - Darker at bottom/left for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 md:bg-gradient-to-r md:from-black/90 md:via-black/50 to-transparent"></div>
@@ -51,7 +79,7 @@ export default function WhoWeAre() {
           <div className="flex flex-col items-center md:items-start w-full">
             <SuperHeader text={content?.whoWeArePage.header} type="hero" position="left" />
 
-            <p className="text-3xl bg-black/60"> empowering businesses through smarter technology.</p>
+            <p data-aos="fade-up" className="text-3xl bg-black/60"> empowering businesses through smarter technology.</p>
             
             
             <p data-aos="fade-up" className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
@@ -137,9 +165,9 @@ export default function WhoWeAre() {
         <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="600" className="flex justify-center md:justify-end md:w-1/2 mt-4 md:mt-0 ">
             <div className="relative max-w-[500px] sm:max-w-[550px] md:max-w-[300px] lg:min-w-[350px] xl:max-w-[950px]  lg:ml-50">
                     <img
-                    src="/Results-bg.png"
+                    src="https://images.pexels.com/photos/7988089/pexels-photo-7988089.jpeg"
                     alt="Results Background"
-                    className="w-full h-[350px] sm:h-[500px] md:h-[400px] lg:object-contain"
+                    className="w-full h-[350px] sm:h-[500px] md:h-[400px] lg:object-contain rounded-2xl"
                     />
                     {/* Floating Card */}
                     <div className="absolute top-1/2 -translate-y-1/2 -left-10 sm:-left-20 md:-left-18 lg:-left-28 z-50">
@@ -248,7 +276,7 @@ export default function WhoWeAre() {
                                     <img
                                         src="/Results-bg.png"
                                         alt=""
-                                        className="w-full h-[350px] sm:h-[400px] md:h-[400px] lg:object-contain"
+                                        className="w-full h-[350px] sm:h-[400px] md:h-[400px] lg:object-contain -scale-x-100 skew-x-6"
                                     />
                                 {/* Floating Card */}
                                 <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="1000" className="absolute top-1/2 -translate-y-1/2 sm:-right-[180px] md:-right-[180px] z-50 ">
@@ -263,7 +291,7 @@ export default function WhoWeAre() {
 
                                         {/* Overlapping image */}
                                         <div className="my-2 bg-[#ECEDF1] w-[200px] sm:w-[270px] h-[140px] sm:h-[160px] shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] flex items-center justify-center rounded-2xl">
-                                            <img src="/Results-bg.png" alt="" className="w-[180px] sm:w-[250px] h-[120px] sm:h-[140px] object-cover rounded-2xl" />
+                                            <img src="https://images.pexels.com/photos/7644064/pexels-photo-7644064.jpeg" alt="" className="w-[180px] sm:w-[250px] h-[120px] sm:h-[140px] object-cover rounded-2xl" />
                                         </div>
 
                                         {/* Bottom Checkmarks */}

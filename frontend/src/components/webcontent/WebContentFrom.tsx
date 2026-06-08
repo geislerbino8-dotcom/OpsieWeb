@@ -21,6 +21,7 @@ function WebContentFrom() {
       fetchContent()
     }, [])
 
+    console.log(content)
 
 
   return (

@@ -59,6 +59,8 @@ const CoreValuesSection = () => {
             {values.map((v, i) => (
               <div 
                 key={i}
+                data-aos="fade-down"
+                data-aos-delay={i*400}
                 className="group flex flex-col p-6 rounded-2xl border border-transparent hover:border-[#3CBDE6]/20 hover:bg-slate-50 transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 <div className="flex items-center gap-4">

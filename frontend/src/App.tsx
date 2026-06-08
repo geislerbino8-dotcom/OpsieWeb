@@ -20,7 +20,6 @@ const App = () => {
   const [ content, setContent ] = useState<ContentType | null>(null)
 
   
-
   useEffect(()=> {
     const fetchContent = async()=> {
       let res = await getContent()
@@ -35,8 +34,6 @@ const App = () => {
 
   
   const currentLocation = useLocation()
-
-
 
 
   useEffect(()=> {
@@ -64,12 +61,13 @@ const App = () => {
         .storage
         .from('Opsie Tickets')
         .getPublicUrl('sample.pdf')
-
-      console.log(data.publicUrl)
+        console.log(data)
       }
 
+      
+
     getTodos()
-  }, [])
+  }, [])  
 
 
  

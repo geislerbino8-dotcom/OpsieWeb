@@ -17,18 +17,19 @@ import { useApiState } from "@/hooks/useApiState";
 
 import ToastContainer from "../admin/common/ToastComponent";
 import LoadingOverlay from "../admin/common/LoadingOverlay";
+import { useEffect, useState } from "react";
+import { getPublishedDate } from "@/api/getPublishDate";
 
 function WebContentLayout() {
   const location = useLocation();
 
-  // Routes where sidebar should be hidden
   const hideSidebarRoutes = [
-    "/content/view-products",
-    "/content/add-product",
+    "/admin/content/view-products",
+    "/admin/content/add-product",
   ];
 
   const shouldShowSidebar =
-    location.pathname !== "/content" &&
+    location.pathname !== "/admin/content" &&
     !hideSidebarRoutes.includes(location.pathname);
 
   return (
@@ -72,7 +73,7 @@ export const NavigationCards = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  if (location.pathname !== "/content") return null;
+  if (location.pathname !== "/admin/content") return null;
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
@@ -94,7 +95,7 @@ export const NavigationCards = () => {
 
         {/* Web Content Card */}
         <div
-          onClick={() => navigate("/content/homepage")}
+          onClick={() => window.location.href = "/admin/content/homepage"}
           className="
             group relative flex flex-col justify-between
             p-6 bg-white border border-slate-200/80 rounded-2xl
@@ -146,7 +147,7 @@ export const NavigationCards = () => {
 
         {/* Product Card */}
         <div
-          onClick={() => navigate("/content/view-products")}
+          onClick={() => navigate("/admin/content/view-products")}
           className="
             group relative flex flex-col justify-between
             p-6 bg-white border border-slate-200/80 rounded-2xl
@@ -213,33 +214,40 @@ interface NavPage {
 }
 
 const pages: NavPage[] = [
-  { name: "Homepage", path: "/content/homepage", icon: Layout },
-  { name: "Who We Are", path: "/content/whoweare", icon: Users },
-  { name: "What We Do", path: "/content/whatwedo", icon: Hammer },
-  { name: "Contact Us", path: "/content/contacts", icon: Mail },
-  { name: "Products", path: "/content/prod", icon: Package },
+  { name: "Homepage", path: "homepage", icon: Layout },
+  { name: "Who We Are", path: "whoweare", icon: Users },
+  { name: "What We Do", path: "whatwedo", icon: Hammer },
+  { name: "Contact Us", path: "contacts", icon: Mail },
+  { name: "Products", path: "prod", icon: Package },
 ];
 
-export const PageSideNav = () => {
+export const PageSideNav = () => {  
   const location = useLocation();
-
+  const [ lastUpdate, setLastUpdate ] = useState<string | null>(null)
   const { toasts, addToast } = useToast();
   const apiState = useApiState();
+
+  useEffect(()=> {
+    const res = async () => {
+      const getDate = await getPublishedDate()
+      setLastUpdate(getDate.data)
+    }
+
+    res()
+  }, [])
 
   const handlePublish = async () => {
     try {
       apiState.startLoading();
-
       const response = await publishContent();
-
+      console.log(response)
+      const date = new Date(response.data.lastPublishedAt)
+      setLastUpdate(date.toLocaleString("en-PH", { timeZone: "Asia/Manila"}))
       if (!response) return;
-
       addToast("Published Successfully", "success");
-
     } catch (error) {
       console.error(error);
       addToast("Failed to publish", "error");
-
     } finally {
       apiState.reset();
     }
@@ -252,73 +260,73 @@ export const PageSideNav = () => {
         bg-white rounded-xl
         border border-slate-200/80
         p-3 md:p-4
-        h-fit sticky top-20
+        md:h-fit md:sticky md:top-20
       "
     >
-
       {/* Label */}
       <p className="hidden md:block px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">
-        Core Channels
+        WEB PAGES
       </p>
 
-      {/* Navigation */}
-      <ul className="flex md:flex-col gap-2 w-max md:w-full m-0 p-0 list-none">
+      {/* Navigation - Made scrollable on small screens */}
+      <div className="w-full overflow-x-auto no-scrollbar -mx-3 px-3 md:mx-0 md:px-0">
+        <ul className="flex md:flex-col gap-2 w-max md:w-full m-0 pb-2 md:pb-0 p-0 list-none">
+          {pages.map((page) => {
+            const isActive = location.pathname === `/admin/content/${page.path}`;
+            const Icon = page.icon;
 
-        {pages.map((page) => {
-          const isActive = location.pathname === page.path;
-          const Icon = page.icon;
+            return (
+              <li key={page.path} className="w-auto md:w-full shrink-0">
+                <Link
+                  to={page.path}
+                  className={`
+                    group relative flex items-center gap-3
+                    px-4 py-3 rounded-xl
+                    text-sm font-semibold
+                    whitespace-nowrap transition-all duration-200
+                    ${
+                      isActive
+                        ? "text-[#3CBDE6] bg-[#3CBDE6]/5"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                    }
+                  `}
+                >
+                  {/* Active Indicator */}
+                  {isActive && (
+                    <span className="hidden md:block absolute left-0 top-3 bottom-3 w-1 bg-[#3CBDE6] rounded-r-md" />
+                  )}
 
-          return (
-            <li key={page.path} className="w-auto md:w-full shrink-0">
+                  <Icon
+                    size={18}
+                    className={
+                      isActive
+                        ? "text-[#3CBDE6]"
+                        : "text-slate-400 group-hover:text-slate-600"
+                    }
+                  />
 
-              <Link
-                to={page.path}
-                className={`
-                  group relative flex items-center gap-3
-                  px-4 py-3 rounded-xl
-                  text-sm font-semibold
-                  whitespace-nowrap transition-all duration-200
-                  ${
-                    isActive
-                      ? "text-[#3CBDE6] bg-[#3CBDE6]/5"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                  }
-                `}
-              >
-
-                {/* Active Indicator */}
-                {isActive && (
-                  <span className="hidden md:block absolute left-0 top-3 bottom-3 w-1 bg-[#3CBDE6] rounded-r-md" />
-                )}
-
-                <Icon
-                  size={18}
-                  className={
-                    isActive
-                      ? "text-[#3CBDE6]"
-                      : "text-slate-400 group-hover:text-slate-600"
-                  }
-                />
-
-                <span>{page.name}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+                  <span>{page.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
       {/* Publish Button */}
-      <div className="w-full mt-8">
+      <div className="w-full mt-4 md:mt-8">
         <button
           onClick={handlePublish}
           className="
             w-full bg-green-600 hover:bg-green-500
             transition-all duration-300
             font-bold text-white p-3 rounded-xl
+            text-sm md:text-base
           "
         >
           Publish
         </button>
+        <p>Last update: {lastUpdate}</p>
       </div>
 
       {/* Loading */}

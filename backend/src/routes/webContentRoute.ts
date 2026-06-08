@@ -37,5 +37,10 @@ export default class WebContentRoute {
             '/publish-content',
             this.controller.publishContent
         )
+
+        this.router.get(
+            '/get-latest-published-date',
+            this.controller.getPublishedDate
+        )
     };
 }
