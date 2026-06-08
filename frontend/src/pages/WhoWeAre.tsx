@@ -79,7 +79,7 @@ export default function WhoWeAre() {
           <div className="flex flex-col items-center md:items-start w-full">
             <SuperHeader text={content?.whoWeArePage.header} type="hero" position="left" />
 
-            <p data-aos="fade-up" className="text-3xl bg-black/60"> empowering businesses through smarter technology.</p>
+            <p className="text-3xl md:bg-black/60"> empowering businesses through smarter technology.</p>
             
             
             <p data-aos="fade-up" className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
@@ -270,9 +270,9 @@ export default function WhoWeAre() {
                     </div>
                 <div className="flex flex-col gap-8 px-[4%] max-w-[1400px] mx-auto mt-4 md:mt-10  sm:px-[4%] md:px-[6%]">
                      <div className="flex flex-col gap-6 flex items-center justify-center lg:items-start">
-                         <div className="flex flex-col lg:flex-row  lg:gap-6">
-                         <div  data-aos-offset="50" data-aos-delay="600" className="flex justify-center  mt-4 md:mt-0 mr-30 sm:mr-40">
-                            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="800" className="relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:mr-20   ">
+                         <div className="flex flex-col  lg:flex-row  lg:gap-6">
+                         <div  data-aos-offset="50" data-aos-delay="600" className="flex justify-center  mt-4 md:mt-0 md:mr-30 sm:mr-40">
+                            <div data-aos="fade-right" data-aos-offset="50" data-aos-delay="800" className="flex justify-center items-center relative w-full max-w-[230px] sm:max-w-[330px] md:w-[330px] lg:w-[500px] overflow-visible lg:mr-20   ">
                                     <img
                                         src="/Results-bg.png"
                                         alt=""

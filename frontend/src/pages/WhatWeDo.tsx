@@ -12,9 +12,8 @@ import { ContentContext } from "@/App";
 export default function WhatWeDo() {
   const Navigate = useNavigate();
   const content = useContext(ContentContext)
-  console.log(content)
 
-  if(!content) return <div><h1>dsadsad</h1></div>
+  if(!content) return <div><h1>No content</h1></div>
 
   return (
     <div className="w-full overflow-hidden">
