@@ -64,7 +64,7 @@ jobs:
             git reset --hard origin/1.0.2
 
             docker compose pull
-            docker compose up -d --build
+            docker compose -p staging up -d --build
 
             docker restart opsie-nginx
 
@@ -89,6 +89,6 @@ jobs:
             git reset --hard origin/1.1.0
 
             docker compose pull
-            docker compose up -d --build
+            docker compose -p live up -d --build
 
             docker restart opsie-nginx
