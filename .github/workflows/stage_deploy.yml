@@ -45,7 +45,7 @@ jobs:
 
   deploy:
     name: Deploy Staging
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.base_ref == '1.0.2'
     runs-on: ubuntu-latest
 
     steps:
