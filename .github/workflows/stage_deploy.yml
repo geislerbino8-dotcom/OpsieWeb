@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 1.0.2
+      - 1.1.0
   pull_request:
     branches:
       - 1.0.2
@@ -64,5 +65,30 @@ jobs:
 
             docker compose pull
             docker compose -p staging up -d --build
+
+            docker restart opsie-nginx
+
+  deploy-live:
+    name: Deploy Live
+    if: github.event_name == 'push' && github.base_ref == '1.1.0'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            cd /apps/websites/opsie/live/OpsieWebsite
+
+            git config --global --add safe.directory /apps/websites/opsie/live/OpsieWebsite
+
+            git fetch origin
+            git reset --hard origin/1.1.0
+
+            docker compose pull
+            docker compose -p live up -d --build
 
             docker restart opsie-nginx
