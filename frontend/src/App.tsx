@@ -4,7 +4,6 @@ import "aos/dist/aos.css";
 import './App.css';
 import AOS from "aos";
 import { useLocation } from 'react-router-dom';
-import { useBotpress } from './hooks/useBotpress';
 import Layout from './Layout';
 import { getContent } from './api/getContent';
 import { supabase } from './utils/supabase';
@@ -28,10 +27,6 @@ const App = () => {
 
     fetchContent()
   }, [])
-  
-
-  useBotpress()
-
   
   const currentLocation = useLocation()
 
