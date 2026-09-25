@@ -7,10 +7,10 @@ const Footer = () => {
 
 
   return (
-    <div className="relative w-full  flex justify-center py-6 md:px-4 px-2 overflow-hidden">
+    <footer className="relative w-full  flex justify-center py-6 md:px-4 px-2 overflow-hidden">
 
     {/* 🔵 BIG BACKGROUND TEXT */}
-      <h1 className="
+      <span aria-hidden="true" className="
         absolute w-full left-1/2 -translate-x-1/2 text-center
         font-bold text-gray-300 opacity-40 whitespace-nowrap
         pointer-events-none select-none
@@ -19,7 +19,7 @@ const Footer = () => {
         bottom-[-40px] sm:bottom-[-80px] md:bottom-[-120px] lg:bottom-[-270px]
       ">
         Opsie
-      </h1>
+      </span>
 
       {/* MAIN CARD */}
       <div className="relative w-full max-w-6xl rounded-3xl bg-white md:p-10 py-10 px-3 md:mb-30 z-10">
@@ -73,12 +73,12 @@ const Footer = () => {
 
           {/* LEFT SIDE */}
           <div className="w-full flex justify-center align-center md:w-1/3 text-center md:text-left">
-            <img src={logoOnly} className="w-70 mx-auto md:mx-0" />
+            <img src={logoOnly} alt="Opsie Software Solutions" className="w-70 mx-auto md:mx-0" />
         
           </div>
 
           {/* RIGHT LINKS */}
-          <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center w-full">
+          <nav aria-label="Footer navigation" className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center w-full">
 
             <div>
               <h3 className="font-bold text-lg mb-3">Quick Links</h3>
@@ -119,7 +119,7 @@ const Footer = () => {
               </ul>
             </div>
 
-          </div>
+          </nav>
         </div>
 
         {/* DIVIDER */}
@@ -135,25 +135,35 @@ const Footer = () => {
           {/* SOCIALS */}
           <div className="flex gap-3">
             
-            <div
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition cursor-pointer shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
-                <SiFacebook className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
-            </div>
-            <div
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition cursor-pointer shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
-                <SiInstagram className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
-            </div>
-            <div
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition cursor-pointer shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
-                <SiGmail className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
-            </div>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Facebook"
+              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+                <SiFacebook aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Instagram"
+              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+                <SiInstagram aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
+            </a>
+            <a
+              href="mailto:hello@opsie.com"
+              aria-label="Email us at hello@opsie.com"
+              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+                <SiGmail aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
+            </a>
 
           </div>
 
         </div>
 
       </div>
-    </div>
+    </footer>
   )
 }
 
