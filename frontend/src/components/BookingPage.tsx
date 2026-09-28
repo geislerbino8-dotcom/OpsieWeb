@@ -57,8 +57,8 @@ function BookingPage() {
 
         {/* --- ALTERNATIVE CTA --- */}
         <div className="text-center space-y-6" data-aos="fade-up" data-aos-delay="400">
-          <div className="h-[1px] w-20 bg-gray-300 mx-auto"></div>
-          <p className="text-gray-500 font-light">
+          <div className="h-[1px] w-20 bg-green-300 mx-auto"></div>
+          <p className="text-green-500 font-light">
             Prefer a different way to connect? 
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
