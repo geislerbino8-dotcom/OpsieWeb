@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 
 const menuLists = [
   { name: "Why Opsie", link: "/what-we-do" },
@@ -8,11 +7,15 @@ const menuLists = [
   { name: "Products", link: "/products" },
 ];
 
-function MobileMenu({ closeMenu }: any) {
+type MobileMenuProps = {
+  closeMenu: () => void;
+};
+
+function MobileMenu({ closeMenu }: MobileMenuProps) {
+  const location = useLocation();
+
   return (
-    <div className="w-full fixed top-0 inset-0 z-50 flex justify-center items-end"
-      
-    >
+    <div className="w-full fixed top-0 inset-0 z-50 flex justify-center items-end">
       <div
         className="absolute inset-0 bg-black/50 bg-opacity-20"
         onClick={closeMenu}
@@ -33,35 +36,33 @@ function MobileMenu({ closeMenu }: any) {
         <button
           onClick={closeMenu}
           className="self-end text-white text-2xl font-bold focus:outline-none"
+          aria-label="Close menu"
         >
           ×
         </button>
 
         <nav className="flex-1 flex flex-col justify-center">
           <ul className="flex flex-col justify-center space-y-6 text-lg font-semibold text-center">
-             {menuLists.map((item, index) => (
-            <li
-              onClick={()=> closeMenu(true)}
-              key={index}
-              className="rounded-3xl transition-colors duration-200 hover:bg-[#3CBDE6] hover:text-white"
-            >
-              <Link
-                to={item.link}
-                className={`block px-4 py-2 text-2xl ${
-                  location.pathname === item.link
-                    ? "rounded-3xl bg-[#3CBDE6] text-white"
-                    : ""
-                }`}
+            {menuLists.map((item) => (
+              <li
+                key={item.link}
+                onClick={closeMenu}
+                className="rounded-3xl transition-colors duration-200 hover:bg-[#3CBDE6] hover:text-white"
               >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-           
+                <Link
+                  to={item.link}
+                  className={`block px-4 py-2 text-2xl ${
+                    location.pathname === item.link
+                      ? "rounded-3xl bg-[#3CBDE6] text-white"
+                      : ""
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
-
-        
       </div>
     </div>
   );

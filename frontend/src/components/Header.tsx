@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "../components/Button/Button";
 
 export default function Header() {
-  
-  
+  const navigate = useNavigate();
+
   const baseStyle =
     "px-2 py-3 text-[12px] lg:text-[16px] rounded-full transition font-medium text-black shadow-[rgba(0,0,0,0.25)_0px_4px_4px_0px]";
 
@@ -53,7 +53,6 @@ export default function Header() {
               >
                 {item.name}
               </NavLink>
-              <a href=""></a>
             </li>
           ))}
         </ul>
@@ -63,9 +62,9 @@ export default function Header() {
 
         <Button
               label="Get Started"
-              icon={<img src="/ICONS/get-started-arrow.svg" className="w-4 h-4" />}
+              icon={<img src="/ICONS/get-started-arrow.svg" className="w-4 h-4" alt="" />}
               iconPosition="right"
-              onClick={() => alert("Button clicked!")}
+              onClick={() => navigate("/book-a-schedule")}
             />
        
         </div>

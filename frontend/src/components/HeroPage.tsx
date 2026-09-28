@@ -96,11 +96,16 @@ function HeroPage({ bgImage }: HeroPageProps) {
           </p>
         )}
 
-        <div 
-          className="pt-4"
-          data-aos="zoom-in"
-          data-aos-delay="1200"
-        >
+        <div className="flex items-center justify-between bg-cyan-600 text-white rounded-lg p-4 shadow-md max-w-md w-full">
+          <div className="flex items-center space-x-3">
+            <div className="bg-cyan-700 rounded-full w-10 h-10 flex items-center justify-center">
+              <span className="font-bold text-lg">O</span>
+            </div>
+            <div className="text-left">
+              <h1 className="text-xl font-bold">Opsie</h1>
+              <p className="text-sm">Operate The Opsie Way --- </p>
+            </div>
+          </div>
           <button 
             onClick={() => navigate("/book-a-schedule")}
             className="group relative bg-[#3CBDE6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
@@ -108,6 +113,8 @@ function HeroPage({ bgImage }: HeroPageProps) {
             <span className="relative z-10">{buttonText}</span>
           </button>
         </div>
+
+
       </div>
 
       {/* Bottom Gradient for smoother section transitions */}

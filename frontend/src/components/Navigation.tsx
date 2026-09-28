@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/opsie/opsie_logo.png";
 import PrimaryButton from "./buttons/PrimaryButton";
@@ -40,16 +40,16 @@ const [isProductsHover, setIsProductsHover] = useState(false);
 
   const [showNav, setShowNav] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
+  const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
 
-      if (currentScroll > lastScroll) {
+      if (currentScroll > lastScroll && currentScroll > 80) {
         setShowNav(false);
-        setTimeout(()=> {
-          setShowNav(true)
-        }, 1000)
+        if (hideTimeout.current) clearTimeout(hideTimeout.current);
+        hideTimeout.current = setTimeout(() => setShowNav(true), 1000);
       } else {
         setShowNav(true);
       }
@@ -57,10 +57,12 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       setLastScroll(currentScroll);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    
-    return () => window.removeEventListener("scroll", handleScroll);
-    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (hideTimeout.current) clearTimeout(hideTimeout.current);
+    };
   }, [lastScroll]);
 
   return (
@@ -85,13 +87,13 @@ const [isProductsHover, setIsProductsHover] = useState(false);
 
           {/* Menu */}
           <ul className="flex px-6 py-2 text-white relative">
-            {menuLists.map((item, index) => {
+            {menuLists.map((item) => {
               const isProducts = item.name === "Products";
 
               if (isProducts) {
                 return (
                   <li
-                    key={index}
+                    key={item.link}
                     className="relative"
                     onMouseEnter={() => setIsProductsHover(true)}
                     onMouseLeave={() => setIsProductsHover(false)}
@@ -116,15 +118,15 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                           transition-all duration-100 ease-out
                         "
                       >
-                        {products.map((prod: any, i: number) => (
-                          <a
-                            onClick={()=> window.location.href = `/products/${prod.name}`}
-                            key={i}
+                        {products.map((prod) => (
+                          <Link
+                            key={prod.name}
+                            to={`/products/${prod.name}`}
                             className="text-black cursor-pointer block px-2 py-2 text-sm
                             hover:bg-blue-50 hover:text-[#3CBDE6] transition"
                           >
                             {prod.name}
-                          </a>
+                          </Link>
                         ))}
                       </aside>
                     )}
@@ -133,7 +135,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
               }
 
               return (
-                <li key={index}>
+                <li key={item.link}>
                   <Link
                     to={item.link}
                     className={`block px-4 py-2 rounded-3xl transition-colors duration-200
@@ -164,7 +166,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
           <img src={logo} alt="Opsie Logo" className="w-24" />
         </div>
 
-        <button onClick={toggleMobileNav}>
+        <button onClick={toggleMobileNav} aria-label="Toggle menu">
           <img src={burgermenu} alt="Menu" className="w-8" />
         </button>
       </div>

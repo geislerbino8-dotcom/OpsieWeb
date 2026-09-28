@@ -1,6 +1,7 @@
-import logoOnly from '../assets/opsie/opsie_logo.png'
-import EncourageCard from './cards/EncourageCard';
-import { SiFacebook, SiInstagram, SiGmail } from 'react-icons/si';
+import { Link } from "react-router-dom";
+import logoOnly from "../assets/opsie/opsie_logo.png";
+import EncourageCard from "./cards/EncourageCard";
+import { SiFacebook, SiInstagram, SiGmail } from "react-icons/si";
 
 
 const Footer = () => {
@@ -84,13 +85,13 @@ const Footer = () => {
               <h3 className="font-bold text-lg mb-3">Quick Links</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="/who-we-are">About Us</a>
+                  <Link to="/who-we-are">About Us</Link>
                 </li>
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="/products">Our Products</a>
+                  <Link to="/products">Our Products</Link>
                 </li>
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="/contact-us">Contact Us</a>
+                  <Link to="/contact-us">Contact Us</Link>
                 </li>
               </ul>
             </div>
@@ -98,14 +99,14 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-3">Company</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className=" hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="/what-we-do">Why Opsie</a>
+                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                  <Link to="/what-we-do">Why Opsie</Link>
                 </li>
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="">Our Team</a>
+                  <Link to="/who-we-are">Our Team</Link>
                 </li>
                 <li className="hover:text-[#3CBDE6] cursor-pointer">
-                  <a href="">FAQ's</a>
+                  <Link to="/who-we-are">FAQ's</Link>
                 </li>
               </ul>
             </div>
@@ -128,8 +129,8 @@ const Footer = () => {
         {/* BOTTOM */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
 
-          <p className="text-sm text-gray-500 text-center md:text-left`">
-            © {new Date().getFullYear()} <span><a href="/">Opsie Software Solutions. </a></span>All Rights Reserved
+          <p className="text-sm text-gray-500 text-center md:text-left">
+            &copy; {new Date().getFullYear()} <Link to="/">Opsie Software Solutions.</Link> All Rights Reserved
           </p>
 
           {/* SOCIALS */}
