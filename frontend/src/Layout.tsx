@@ -1,5 +1,6 @@
 import ChatHelp from "./components/ChatHelp"
 import Navigation from "./components/Navigation"
+import DateTimeBar from "./components/DateTimeBar"
 import { Outlet } from "react-router-dom"
 import Footer from "./components/Footer"
 
@@ -11,6 +12,7 @@ function Layout() {
     <div>
       <div className='select-none'>
           <ChatHelp />
+          <DateTimeBar />
           <Navigation />
           <Outlet />
           <Footer/>
