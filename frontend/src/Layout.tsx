@@ -12,8 +12,8 @@ function Layout() {
     <div>
       <div className='select-none'>
           <ChatHelp />
-          <DateTimeBar />
           <Navigation />
+          <DateTimeBar />
           <Outlet />
           <Footer/>
       </div>

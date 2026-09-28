@@ -26,12 +26,12 @@ function DateTimeBar() {
     <div className="w-full font-bold">
       <div className="flex items-stretch">
         {/* Left: Date (dark) */}
-        <div className="bg-[#1a1a1a] text-white px-8 py-6 md:px-16 md:py-10 text-2xl md:text-5xl uppercase tracking-wider">
+        <div className="bg-[#1a1a1a] text-white px-3 py-1.5 md:px-5 md:py-2 text-xs md:text-sm uppercase tracking-wider">
           📅 {date}
         </div>
 
         {/* Right: Time (yellow) */}
-        <div className="bg-[#FFD700] text-[#1a1a1a] px-8 py-6 md:px-16 md:py-10 text-2xl md:text-5xl uppercase tracking-wider">
+        <div className="bg-[#FFD700] text-[#1a1a1a] px-3 py-1.5 md:px-5 md:py-2 text-xs md:text-sm uppercase tracking-wider">
           🕐 {time}
         </div>
       </div>
