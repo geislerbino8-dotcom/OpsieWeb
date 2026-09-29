@@ -11,7 +11,7 @@ const SuperHeader = ({ text, type, defColor, position }: { text: string, type?: 
       }}
       className={
       
-      type === 'hero' ? ` text-center md:text-${position} max-w-[850px] text-[42px] leading-[46px] md:text-[72px] md:leading-[82px]` : `text-4xl  text-center md:text-${position} font-montserrat md:text-5xl font-semibold leading-[1.1] text-gray-900`}>
+      type === 'hero' ? ` text-center md:text-${position} max-w-[850px] text-[42px] leading-[46px] md:text-[72px] md:leading-[82px] text-white` : `text-4xl text-center md:text-${position} font-montserrat md:text-5xl font-semibold leading-[1.1] text-white`}>
       {parts?.map((part, i) =>
         part.startsWith("*") && part.endsWith("*") ? (
           <span key={i} className="text-[#8B5CF6] font-bold">

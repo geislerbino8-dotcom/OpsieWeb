@@ -91,7 +91,7 @@ function AboutUsSection() {
           <div data-aos="fade-up" data-aos-delay="400" className="pt-6 w-full flex justify-center items-center">
             <button 
               onClick={() => navigate('/contact-us')}
-              className="group w-[50%] relative flex items-center justify-center  gap-3 px-8 py-4 bg-[#0a0a0a] border-1 border-gray-300  rounded-2xl font-bold text-white transition-all duration-700 hover:border-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white hover:shadow-lg hover:shadow-[#8B5CF6]/10"
+              className="group w-[50%] relative flex items-center justify-center gap-3 px-8 py-4 bg-[#0a0a0a] border border-gray-600 rounded-2xl font-bold text-white transition-all duration-700 hover:border-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white hover:shadow-lg hover:shadow-[#8B5CF6]/10"
             >
               <span>{content?.aboutUsSection?.buttonText}</span>
              

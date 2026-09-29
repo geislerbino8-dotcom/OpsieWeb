@@ -9,8 +9,7 @@ function WhyChooseUsSection() {
 
   return (
     <section
-      className="w-full py-24 flex justify-center relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #001a2c 0%, #004e7a 100%)' }}
+      className="w-full py-24 flex justify-center relative overflow-hidden bg-[#0a0a0a]"
     >
       {/* Subtle Background Glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8B5CF6]/10 rounded-full blur-[120px] -z-0" />
@@ -88,7 +87,7 @@ function WhyChooseUsSection() {
             />
           </div>
           
-          <p className="text-blue-100/70 text-lg font-light max-w-lg mx-auto lg:mx-0" data-aos="fade-left" data-aos-delay="500">
+          <p className="text-gray-300 text-lg font-light max-w-lg mx-auto lg:mx-0" data-aos="fade-left" data-aos-delay="500">
             {contents?.advantageSection?.subHeader}
           </p>
 

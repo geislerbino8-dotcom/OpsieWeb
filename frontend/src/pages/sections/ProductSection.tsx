@@ -95,7 +95,7 @@ function ProductSection() {
                   hover:text-white
                   hover:bg-[#8B5CF6]
                   hover:border-opacity-100
-                  hover:shadow-[0_20px_40px_rgba(60,189,230,0.2)]
+                  hover:shadow-[0_20px_40px_rgba(139,92,246,0.2)]
                   hover:-translate-y-1
                 "
               >

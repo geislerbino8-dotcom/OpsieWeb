@@ -25,7 +25,7 @@ const CoreValuesSection = () => {
   ];
 
   return (
-    <section className="relative w-full py-10 md:py-20 px-6 overflow-hidden">
+    <section className="relative w-full py-10 md:py-20 px-6 overflow-hidden bg-[#0a0a0a]">
       <div className="max-w-6xl mx-auto">
         
         {/* Section Header */}
@@ -61,16 +61,16 @@ const CoreValuesSection = () => {
                 key={i}
                 data-aos="fade-down"
                 data-aos-delay={i*400}
-                className="group flex flex-col p-6 rounded-2xl border border-transparent hover:border-[#8B5CF6]/20 hover:bg-slate-50 transition-all duration-300 shadow-sm hover:shadow-md"
+                className="group flex flex-col p-6 rounded-2xl border border-transparent hover:border-[#8B5CF6]/20 hover:bg-white/5 transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 <div className="flex items-center gap-4">
                   {/* Numbering or Bullet */}
                   <span className="text-[#8B5CF6] font-bold text-lg">0{i + 1}</span>
-                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-[#8B5CF6] transition-colors">
+                  <h3 className="text-xl font-bold text-gray-100 group-hover:text-[#8B5CF6] transition-colors">
                     {v.title}
                   </h3>
                 </div>
-                <p className="mt-2 text-left text-slate-600 pl-9 leading-relaxed">
+                <p className="mt-2 text-left text-gray-300 pl-9 leading-relaxed">
                   {v.description}
                 </p>
               </div>
