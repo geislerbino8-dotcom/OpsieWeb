@@ -13,14 +13,14 @@ function ServicesSection() {
   return (
     <section 
       id="service-section" 
-      className="w-full py-24 px-6 bg-white flex flex-col items-center overflow-hidden"
+      className="w-full py-24 px-6 bg-[#0a0a0a] flex flex-col items-center overflow-hidden"
     >
       {/* Header Section */}
       <div className="text-center max-w-4xl mb-16 space-y-4">
         <HighlightedText text={content?.servicesSection.header} />
       
         <p 
-          className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-light"
+          className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light"
           data-aos="fade-down"
           data-aos-delay="200"
         >
@@ -41,7 +41,7 @@ function ServicesSection() {
         data-aos-delay={index * 100}
       >
         {/* Card Component Wrapper */}
-        <div className="w-full h-full bg-white rounded-2xl p-1 shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300">
+        <div className="w-full h-full bg-[#0a0a0a] rounded-2xl p-1 shadow-sm shadow-[0_0_30px_rgba(6,182,212,0.15)] border border-cyan-500/20 hover:shadow-md transition-shadow duration-300">
           <ServicesCards 
             serviceName={item.serviceName} 
             desc={item.desc} 

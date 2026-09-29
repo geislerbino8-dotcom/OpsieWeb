@@ -9,17 +9,17 @@ function MapCard() {
   const [dirAction, setDirAction] = useState(false);
 
   return (
-    <div className="group relative w-full max-w-xl flex flex-col p-6 bg-white rounded-xl shadow-md space-y-4 overflow-hidden border border-gray-100 transition-all duration-500">
+    <div className="group relative w-full max-w-xl flex flex-col p-6 bg-[#0a0a0a] rounded-xl shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] space-y-4 overflow-hidden border border-cyan-500/20 transition-all duration-500">
       
       {/* Smooth Gradient Layer Overlay */}
       <div className="absolute inset-0 h-full bg-gradient-to-t from-black to-[#8B5CF6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
 
       {/* Contact Info */}
       <div className="space-y-1 relative z-10">
-        <h3 className="text-xl font-bold text-gray-800 transition-colors duration-500 group-hover:text-white">
+        <h3 className="text-xl font-bold text-gray-100 transition-colors duration-500 group-hover:text-white">
           Prefer a Direct Approach?
         </h3>
-        <p className="text-gray-700 transition-colors duration-500 group-hover:text-neutral-200">
+        <p className="text-gray-200 transition-colors duration-500 group-hover:text-neutral-200">
           Come to us from Monday to Friday, 9 AM - 6 PM (PHT)
         </p>
       </div>
@@ -34,13 +34,13 @@ function MapCard() {
       </div>
 
       {/* Address */}
-      <p className="text-gray-600 text-sm relative z-10 transition-colors duration-500 group-hover:text-neutral-300">
+      <p className="text-gray-300 text-sm relative z-10 transition-colors duration-500 group-hover:text-neutral-300">
         8F Sun Plaza Bldg., 1507 Shaw Blvd. Cor. Princeton St., Wack-Wack, Mandaluyong City 1555, Philippines
       </p>
 
       {/* Visit Office Section */}
       <div className="flex flex-col md:flex-row items-center justify-between relative z-10 pt-2">
-        <h1 className="text-lg font-bold text-gray-800 mb-5 md:mb-0 transition-colors duration-500 group-hover:text-white">
+        <h1 className="text-lg font-bold text-gray-100 mb-5 md:mb-0 transition-colors duration-500 group-hover:text-white">
           Visit Our Office
         </h1>
         

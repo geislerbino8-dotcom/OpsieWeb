@@ -14,7 +14,7 @@ function ProductSection() {
 
   return (
     <section
-      className="relative w-full bg-gradient-to-tr from-[#F4F7F9] via-[#FCFCFC] to-[#E6F7FC] font-poppins min-h-screen flex flex-col items-center px-6 py-24 overflow-hidden"
+      className="relative w-full bg-[#0a0a0a] font-poppins min-h-screen flex flex-col items-center px-6 py-24 overflow-hidden"
     >
 
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40">
@@ -77,7 +77,7 @@ function ProductSection() {
           {/* --- FOOTER CTA --- */}
           <div className="mt-16 flex flex-col items-center text-center space-y-8">
             <div className="max-w-3xl">
-               <p data-aos="fade-up" className="text-gray-500 text-lg leading-relaxed">
+               <p data-aos="fade-up" className="text-gray-400 text-lg leading-relaxed">
                 {content?.productsSection.subHeader}
               </p>
             </div>
@@ -89,7 +89,7 @@ function ProductSection() {
                   px-10 py-4
                   rounded-2xl font-bold uppercase tracking-widest text-xs
                   text-[#8B5CF6]
-                  bg-white
+                  bg-[#0a0a0a]
                   border-2 border-[#8B5CF6] border-opacity-30
                   transition-all duration-700 ease-out
                   hover:text-white

@@ -22,7 +22,7 @@ const FAQAccordion = () => {
         <div className="lg:w-1/3 sticky top-10">
           <SuperHeader text={content?.faqSection.header} position="left"/>
         
-          <p className="mt-6 text-lg text-gray-500  tect-center md:text-left font-light max-w-sm">
+          <p className="mt-6 text-lg text-gray-400  tect-center md:text-left font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for? 
             <span className="text-[#8B5CF6] font-medium cursor-pointer hover:underline ml-1"><a href="/contact-us">Reach out to us.</a></span>
           </p>
@@ -38,7 +38,7 @@ const FAQAccordion = () => {
                 key={index}
                 className={`group rounded-2xl transition-all duration-500 ease-in-out border
                   ${isOpen 
-                    ? "bg-white border-[#8B5CF6]/30 shadow-[0_20px_40px_rgba(60,189,230,0.1)] scale-[1.01]" 
+                    ? "bg-[#0a0a0a] border-cyan-500/20 shadow-[0_20px_40px_rgba(60,189,230,0.1),0_0_30px_rgba(6,182,212,0.15)] scale-[1.01]" 
                     : "bg-[#ECEDF1]/50 border-transparent hover:border-gray-300 shadow-sm hover:bg-[#4C1D95]/60"
                   }`}
               >
@@ -47,7 +47,7 @@ const FAQAccordion = () => {
                   className="flex justify-between items-center w-full py-7 px-8 text-left group"
                 >
                   <span className={`text-lg font-semibold transition-colors duration-300 
-                    ${isOpen ? "text-[#8B5CF6]" : "text-gray-800"}`}>
+                    ${isOpen ? "text-[#8B5CF6]" : "text-gray-100"}`}>
                     {faq.question}
                   </span>
                   
@@ -64,7 +64,7 @@ const FAQAccordion = () => {
                   style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-8 pb-8 text-gray-600 leading-relaxed text-[16px]">
+                    <div className="px-8 pb-8 text-gray-300 leading-relaxed text-[16px]">
                       <div className="pt-2 border-t border-gray-100">
                         {Array.isArray(faq.answer) ? (
                           <ul className="list-disc ml-5 space-y-2 mt-4">

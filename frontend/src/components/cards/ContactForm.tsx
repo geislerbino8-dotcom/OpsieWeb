@@ -65,7 +65,7 @@ function ContactForm() {
         Main Card: Kept physically uniform. 
         Uses group-hover properties to turn child elements white/light gray when open.
       */}
-      <div className="group relative w-full max-w-lg bg-white rounded-xl shadow-2xl md:p-10 p-6 flex flex-col items-center border border-gray-100 overflow-hidden transition-all duration-500">
+      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl shadow-2xl shadow-[0_0_30px_rgba(6,182,212,0.15)] md:p-10 p-6 flex flex-col items-center border border-cyan-500/20 overflow-hidden transition-all duration-500">
         
         {/* Smooth Gradient Layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black to-[#8B5CF6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
@@ -73,10 +73,10 @@ function ContactForm() {
         {!transSucc ? (
           <form onSubmit={handleCreateInquiry} className="w-full space-y-4 relative z-10">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-gray-900 tracking-tight transition-colors duration-500 group-hover:text-white">
+              <h3 className="text-3xl font-bold text-white tracking-tight transition-colors duration-500 group-hover:text-white">
                 Not sure where to start?
               </h3>
-              <p className="text-gray-500 text-sm mt-2 transition-colors duration-500 group-hover:text-neutral-200">
+              <p className="text-gray-400 text-sm mt-2 transition-colors duration-500 group-hover:text-neutral-200">
                 Fill out the contact form and we’ll get back to you shortly.
               </p>
             </div>
@@ -199,8 +199,8 @@ function ContactForm() {
               ✓
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 transition-colors duration-500 group-hover:text-white">Thank You!</h2>
-              <p className="text-gray-500 mt-4 leading-relaxed max-w-xs mx-auto transition-colors duration-500 group-hover:text-neutral-200">
+              <h2 className="text-3xl font-bold text-white transition-colors duration-500 group-hover:text-white">Thank You!</h2>
+              <p className="text-gray-400 mt-4 leading-relaxed max-w-xs mx-auto transition-colors duration-500 group-hover:text-neutral-200">
                 Your message has been sent successfully. We'll get back to you within 24 hours.
               </p>
             </div>

@@ -18,7 +18,7 @@ function PartnerSection() {
   const content = useContext(ContentContext)
 
   return (
-    <section className="w-full flex flex-col items-center py-24 px-6 bg-white overflow-hidden">
+    <section className="w-full flex flex-col items-center py-24 px-6 bg-[#0a0a0a] overflow-hidden">
       
       {/* Header */}
       <div className="text-center mb-16 max-w-3xl space-y-4">
@@ -30,14 +30,14 @@ function PartnerSection() {
         </span>
         <SuperHeader text={content?.partnersSection.header} />
 
-        <p className="text-gray-500 text-lg font-light leading-relaxed" data-aos="fade-down" data-aos-delay="200">
+        <p className="text-gray-400 text-lg font-light leading-relaxed" data-aos="fade-down" data-aos-delay="200">
           {content?.partnersSection.subHeader}
         </p>
       </div>
 
       {/* Partners Loop Container */}
       <div className="w-full max-w-7xl mb-16" data-aos="fade-up" data-aos-delay="300">
-        <div className="bg-gray-50/50 py-12 rounded-[2rem] border border-gray-100/50">
+        <div className="bg-[#1a1a1a]/50 py-12 rounded-[2rem] border border-cyan-500/20 shadow-[0_0_30px_rgba(6,182,212,0.15)]">
           <LogoLoop
             logos={imageLogos}
             speed={40} // Slower speed is often more elegant for logo loops
@@ -54,7 +54,7 @@ function PartnerSection() {
       </div>
 
       {/* Description / Content Section */}
-      <div className="w-full max-w-4xl grid md:grid-cols-2 gap-10 md:gap-16 text-gray-600 leading-relaxed text-lg font-light">
+      <div className="w-full max-w-4xl grid md:grid-cols-2 gap-10 md:gap-16 text-gray-300 leading-relaxed text-lg font-light">
         <div data-aos="fade-right" data-aos-delay="400">
           <p>
             {

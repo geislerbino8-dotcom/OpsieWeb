@@ -23,11 +23,11 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
         group relative
         h-[400px] w-[18rem] flex-shrink-0
         cursor-pointer rounded-2xl overflow-hidden
-        bg-white/[0.03] border border-white/10
+        bg-white/[0.05] border border-cyan-500/20
         transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
         
         /* Base Premium Soft Shadow */
-        shadow-[0_8px_32px_0_rgba(0,0,0,0.08)]
+        shadow-[0_8px_32px_0_rgba(0,0,0,0.08),0_0_30px_rgba(6,182,212,0.15)]
         
         /* Subtle elevation shift instead of layout-breaking margins */
         hover:-translate-y-2

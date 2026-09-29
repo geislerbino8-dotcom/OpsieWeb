@@ -20,7 +20,7 @@ export default function WhyChooseUs() {
         <p  
           data-aos="fade-right" 
           data-aos-delay="500" 
-          className="text-center md:text-start text-[16px] md:text-[18px] font-light w-full md:w-[600px] text-gray-600 leading-relaxed"
+          className="text-center md:text-start text-[16px] md:text-[18px] font-light w-full md:w-[600px] text-gray-300 leading-relaxed"
         >
           {content?.whatWeDoPage.thirdSection.subHeader} 
         </p>
@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
         <div 
           data-aos="fade-up" 
           data-aos-duration="1000" 
-          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md bg-white border border-gray-50 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs1stCard3.svg"
@@ -41,8 +41,8 @@ export default function WhyChooseUs() {
             className="w-full h-56 md:h-72 object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="p-6 md:p-8">
-            <h2 className="text-[22px] md:text-[28px] font-bold text-gray-900 mb-2">{cards[0]?.header}</h2>
-            <p className="text-gray-500 font-poppins text-[15px] md:text-[16px] font-light leading-relaxed max-w-xl">
+            <h2 className="text-[22px] md:text-[28px] font-bold text-white mb-2">{cards[0]?.header}</h2>
+            <p className="text-gray-400 font-poppins text-[15px] md:text-[16px] font-light leading-relaxed max-w-xl">
               {cards[0]?.subHeader}
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
           data-aos="fade-up" 
           data-aos-duration="1000" 
           data-aos-delay="100"
-          className="col-span-1 rounded-[2rem] shadow-md bg-white border border-gray-50 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="col-span-1 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs2ndCard3.svg"
@@ -61,8 +61,8 @@ export default function WhyChooseUs() {
             className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="p-6">
-            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">{cards[1]?.header}</h2>
-            <p className="text-gray-500 font-poppins font-light leading-snug text-[14px]">
+            <h2 className="font-poppins text-[20px] font-bold text-white mb-1">{cards[1]?.header}</h2>
+            <p className="text-gray-400 font-poppins font-light leading-snug text-[14px]">
               {cards[1]?.subHeader}
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
           data-aos="fade-up" 
           data-aos-duration="1000" 
           data-aos-delay="200"
-          className="col-span-1 rounded-[2rem] shadow-md bg-white border border-gray-50 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="col-span-1 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs3rdCard2.svg"
@@ -81,8 +81,8 @@ export default function WhyChooseUs() {
             className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="p-6">
-            <h2 className="font-poppins text-[20px] font-bold text-gray-900 mb-1">{cards[2]?.header}</h2>
-            <p className="text-gray-500 font-poppins font-light leading-snug text-[14px]">
+            <h2 className="font-poppins text-[20px] font-bold text-white mb-1">{cards[2]?.header}</h2>
+            <p className="text-gray-400 font-poppins font-light leading-snug text-[14px]">
               {cards[2]?.subHeader}
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function WhyChooseUs() {
           data-aos="fade-up" 
           data-aos-duration="1000" 
           data-aos-delay="300"
-          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md bg-white border border-gray-50 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs4thCard4.svg"
@@ -101,8 +101,8 @@ export default function WhyChooseUs() {
             className="w-full h-56 md:h-72 object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="p-6 md:p-8">
-            <h2 className="font-poppins text-[22px] md:text-[28px] font-bold text-gray-900 mb-2">{cards[3]?.header}</h2>
-            <p className="text-gray-500 font-poppins text-[15px] md:text-[16px] font-light leading-relaxed max-w-xl">
+            <h2 className="font-poppins text-[22px] md:text-[28px] font-bold text-white mb-2">{cards[3]?.header}</h2>
+            <p className="text-gray-400 font-poppins text-[15px] md:text-[16px] font-light leading-relaxed max-w-xl">
               {cards[3]?.subHeader}
             </p>
           </div>
