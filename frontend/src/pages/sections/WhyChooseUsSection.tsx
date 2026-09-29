@@ -1,11 +1,11 @@
 import TextType from '@/components/TextType'
-import { useContext, } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ContentContext } from "@/App";
 
 function WhyChooseUsSection() {
-
-
-  const contents  = useContext(ContentContext)
+  const navigate = useNavigate();
+  const contents = useContext(ContentContext);
 
   return (
     <section
@@ -94,7 +94,7 @@ function WhyChooseUsSection() {
 
           <div className='flex justify-center md:justify-start'>
             <button
-              onClick={()=> window.location.href = " /what-we-do"}
+              onClick={() => navigate("/what-we-do")}
               className=' bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#3CBDE6] border-[#3CBDE6] hover:bg-white transition duration-600'>See how we work</button>
 
           </div>

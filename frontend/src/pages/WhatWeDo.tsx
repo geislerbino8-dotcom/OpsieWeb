@@ -178,7 +178,7 @@ export default function WhatWeDo() {
     </h1>
 
     <button 
-      onClick={() => window.location.href = "/book-a-schedule"}
+      onClick={() => navigate("/book-a-schedule")}
       className="group relative flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#3CBDE6] hover:text-white hover:shadow-[0_10px_25px_-5px_rgba(60,189,230,0.4)] hover:-translate-y-1 active:scale-95"
     >
       Book a Consultation

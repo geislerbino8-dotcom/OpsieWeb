@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AOS from 'aos';
 
 // Sections
 import ServicesSection from './sections/ServicesSection';
@@ -58,10 +57,6 @@ function ProductPage() {
       : typedProducts.filter(
           (prev: Product) => prev.category === filter
         );
-
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
 
   return (
     /* Main wrapper with gradient and relative position to anchor background circles */

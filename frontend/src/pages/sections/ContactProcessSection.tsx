@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MessageCircle, LayoutGrid, Activity, ArrowRight } from 'lucide-react';
 
 const ContactProcessSection: React.FC = () => {
+  const navigate = useNavigate();
+
   const steps = [
     {
       id: "01",
@@ -81,7 +84,7 @@ const ContactProcessSection: React.FC = () => {
         {/* Action Button */}
         <div className="mt-20 text-center">
           <button
-            onClick={()=> window.location.href = "/contact-us"}
+            onClick={() => navigate("/contact-us")}
             className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-950 font-bold rounded-full overflow-hidden transition-all hover:pr-10 active:scale-95">
             <span>Start Your Journey</span>
             <ArrowRight className="w-5 h-5 absolute right-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />

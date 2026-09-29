@@ -79,7 +79,7 @@ export default function WhoWeAre() {
           <div className="flex flex-col items-center md:items-start w-full">
             <SuperHeader text={content?.whoWeArePage.header} type="hero" position="left" />
 
-            <p className="text-3xl md:bg-black/60"> empowering businesses through smarter technology.</p>
+            <p className="text-3xl "> empowering businesses through smarter technology.</p>
             
             
             <p data-aos="fade-up" className="mt-8 text-lg md:text-2xl text-center md:text-left max-w-2xl text-gray-200">
@@ -163,7 +163,7 @@ export default function WhoWeAre() {
         </div>
         
         <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="600" className="flex justify-center md:justify-end md:w-1/2 mt-4 md:mt-0 ">
-            <div className="relative max-w-[500px] sm:max-w-[550px] md:max-w-[300px] lg:min-w-[350px] xl:max-w-[950px]  lg:ml-50">
+            <div className="relative max-w-[500px] sm:max-w-[550px] md:max-w-[300px] lg:min-w-[350px] xl:max-w-[950px]  lg:ml-12">
                     <img
                     src="https://images.pexels.com/photos/7988089/pexels-photo-7988089.jpeg"
                     alt="Results Background"
@@ -214,7 +214,7 @@ export default function WhoWeAre() {
                     <div className="flex flex-row  gap-2 mt-4 lg:mt-10  m-2">
                         <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="200" className="flex flex-row  items-center ">
                             <div className="flex flex-col  mx-4 sm:mx-6 md:mx-8 lg:mx-10 ">
-                            <h1  className="text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-16" ><CountUp
+                            <h1  className="text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-[4rem]" ><CountUp
                                     from={0}
                                     to={20}
                                     direction="up"
@@ -231,7 +231,7 @@ export default function WhoWeAre() {
                         <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="500" className="flex flex-row items-center justify-center">
                             <div className="h-[85px] bg-[#B3B3B3] w-[2px]"></div>
                             <div className="flex flex-col  mx-4 sm:mx-6 md:mx-8 lg:mx-10 ">
-                            <h1 className="text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px] lg:leading-16">
+                            <h1 className="text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px] lg:leading-[4rem]">
                                 <CountUp
                                     from={0}
                                     to={100}
@@ -252,7 +252,7 @@ export default function WhoWeAre() {
                         <div data-aos="fade-left" data-aos-offset="50" data-aos-delay="800" className="flex flex-row  items-center justify-center">
                             <div className="h-[85px] bg-[#B3B3B3] w-[2px] "></div>
                                 <div className="flex flex-col mx-4 sm:mx-6  md:mx-8 lg:mx-10 ">
-                                    <h1  className="text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-16" ><CountUp
+                                    <h1  className="text-[45px] sm:text-[70px] md:text-[80px] font-bold lg:text-[90px]  lg:leading-[4rem]" ><CountUp
                                     from={0}
                                     to={10}
                                     direction="up"
