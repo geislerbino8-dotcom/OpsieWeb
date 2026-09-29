@@ -69,7 +69,7 @@ function WhoWeAreCMS() {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           <div className="flex flex-col gap-4 p-6 max-h-[80vh] overflow-y-auto">
@@ -125,7 +125,7 @@ function WhoWeAreCMS() {
           /* --- LIVE PREVIEW VIEW --- */
           <div className="p-8 text-center cursor-pointer group relative" onClick={() => setIsEditing(true)}>
             <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-              <span className="text-blue-600 font-semibold">Click to Edit Page Content</span>
+              <span className="text-violet-600 font-semibold">Click to Edit Page Content</span>
             </div>
             
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{formData?.header}</h1>
@@ -140,7 +140,7 @@ function WhoWeAreCMS() {
             
             <div className="grid grid-cols-2 gap-4 text-left border-t pt-6">
               <div>
-                <h4 className="font-bold text-sm text-blue-500 uppercase">Our Vision</h4>
+                <h4 className="font-bold text-sm text-violet-500 uppercase">Our Vision</h4>
                 <p className="text-sm text-gray-700 line-clamp-2">{formData?.section4?.vision}</p>
               </div>
               <div>

@@ -19,7 +19,7 @@ export default function WhatWeDo() {
     <div className="w-full overflow-hidden">
       
       {/* HERO SECTION - Now truly Full Width */}
-      <section className="bg-[#0F4C5C] relative w-full h-[90vh] h-screen min-h-[600px] overflow-hidden">
+      <section className="bg-[#4C1D95] relative w-full h-[90vh] h-screen min-h-[600px] overflow-hidden">
         {/* Background Image */}
         <img
           src="/WhoWeAre-Hero (1).svg"
@@ -39,8 +39,8 @@ export default function WhatWeDo() {
                     speed={1}
                     scale={1.0}
                     brightness={100}
-                    color1="#0ab3f1"
-                    color2="#3CBDE6"
+                    color1="#A78BFA"
+                    color2="#8B5CF6"
                     noiseFrequency={2.5}
                     noiseAmplitude={1}
                     bandHeight={0.4}
@@ -68,7 +68,7 @@ export default function WhatWeDo() {
                 {
                   content?.whatWeDoPage.hero.header.firstLine
               }<br/> 
-                <span className="font-semibold text-[#3CBDE6]">{content?.whatWeDoPage.hero.header.secondLine}</span>
+                <span className="font-semibold text-[#8B5CF6]">{content?.whatWeDoPage.hero.header.secondLine}</span>
               </h1>
               <p data-aos="fade-right" data-aos-delay="300" className="mt-6 text-sm md:text-xl text-gray-200 text-center md:text-left max-w-xl font-light">
                 {
@@ -78,7 +78,7 @@ export default function WhatWeDo() {
               <div className="flex justify-center md:justify-start" data-aos="fade-right" data-aos-delay="400">
                 <button 
                   onClick={() => Navigate("/contact-us")}
-                  className="mt-8 bg-white text-black px-12 py-3 font-medium hover:bg-[#3CBDE6] hover:text-white transition-all duration-500 uppercase tracking-wider"
+                  className="mt-8 bg-white text-black px-12 py-3 font-medium hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-wider"
                 >
                  {
                   content?.whatWeDoPage.hero.button.text
@@ -109,7 +109,7 @@ export default function WhatWeDo() {
   <div className="sm:ml-5 flex flex-col items-center md:items-start text-center md:text-left">
     <h3 className="font-semibold text-base lg:text-lg">10+ Satisfied Clients</h3>
     <div className="flex items-center">
-      <span className="text-[#3CBDE6] text-xl lg:text-2xl">★★★★★</span>
+      <span className="text-[#8B5CF6] text-xl lg:text-2xl">★★★★★</span>
       <span className="text-lg ml-2 font-light">5/5</span>
     </div>
   </div>
@@ -162,24 +162,24 @@ export default function WhatWeDo() {
        <div className="relative mb-10 flex flex-col items-center justify-center py-20 px-6 overflow-hidden">
   
   {/* Decorative background glow for depth */}
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#3CBDE6]/10 blur-[100px] -z-10" />
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#8B5CF6]/10 blur-[100px] -z-10" />
 
   <div className="relative max-w-4xl w-full p-12 md:p-16 flex flex-col items-center space-y-8 bg-neutral-900 overflow-hidden"
      style={{ clipPath: 'polygon(0% 0%, 93% 0%, 100% 15%, 100% 100%, 7% 100%, 0% 85%)' }}>
   
   {/* Subtly back-lighting the cut edges */}
-  <div className="absolute top-0 right-0 w-32 h-32 bg-[#3CBDE6]/20 blur-3xl rounded-full" />
-  <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#3CBDE6]/10 blur-3xl rounded-full" />
+  <div className="absolute top-0 right-0 w-32 h-32 bg-[#8B5CF6]/20 blur-3xl rounded-full" />
+  <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#8B5CF6]/10 blur-3xl rounded-full" />
 
   <div className="max-w-2xl flex flex-col items-center space-y-8 relative z-10">
     <h1 className="text-3xl md:text-5xl font-bold text-gray-300 text-center leading-[1.2] tracking-tight">
-      We focus on <span className="text-[#3CBDE6]">simplifying your systems</span>, 
+      We focus on <span className="text-[#8B5CF6]">simplifying your systems</span>, 
       improving connectivity, and making operations effortless.
     </h1>
 
     <button 
       onClick={() => navigate("/book-a-schedule")}
-      className="group relative flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#3CBDE6] hover:text-white hover:shadow-[0_10px_25px_-5px_rgba(60,189,230,0.4)] hover:-translate-y-1 active:scale-95"
+      className="group relative flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-[#8B5CF6] hover:text-white hover:shadow-[0_10px_25px_-5px_rgba(60,189,230,0.4)] hover:-translate-y-1 active:scale-95"
     >
       Book a Consultation
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

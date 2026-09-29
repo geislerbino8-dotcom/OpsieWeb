@@ -78,7 +78,7 @@ function ContactUsSectionCMS() {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -87,7 +87,7 @@ function ContactUsSectionCMS() {
 
             {/* MAIN HEADER */}
             <div className="space-y-2 border-b pb-4">
-               <label className="text-xs font-bold text-blue-600 uppercase">Main Title</label>
+               <label className="text-xs font-bold text-violet-600 uppercase">Main Title</label>
                <input name="header" className="w-full p-2 border rounded-lg" value={formData.header} onChange={handleChange} />
                <textarea name="subHeader" className="w-full p-2 border rounded-lg text-sm" value={formData.subHeader} onChange={handleChange} />
             </div>
@@ -105,7 +105,7 @@ function ContactUsSectionCMS() {
 
             {/* MAP BOX SECTION */}
             <div className="p-4 bg-blue-50 rounded-xl space-y-3">
-              <label className="text-xs font-bold text-blue-400 uppercase">Map Box (Office Location)</label>
+              <label className="text-xs font-bold text-violet-400 uppercase">Map Box (Office Location)</label>
               <input name="mapBox.header" className="w-full p-2 border border-blue-200 rounded-lg" value={formData.mapBox.header} onChange={handleChange} />
               <textarea name="mapBox.subHeader" className="w-full p-2 border border-blue-200 rounded-lg text-sm" value={formData.mapBox.subHeader} onChange={handleChange} />
             </div>
@@ -123,7 +123,7 @@ function ContactUsSectionCMS() {
           /* --- LIVE PREVIEW VIEW --- */
           <div className="p-8 cursor-pointer group relative" onClick={() => setIsEditing(true)}>
             <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl z-10">
-              <span className="bg-white px-4 py-2 rounded-full shadow-md text-blue-600 font-semibold">Click to Edit Content</span>
+              <span className="bg-white px-4 py-2 rounded-full shadow-md text-violet-600 font-semibold">Click to Edit Content</span>
             </div>
             
             <div className="text-center mb-8">
@@ -135,7 +135,7 @@ function ContactUsSectionCMS() {
                 <div className="bg-gray-900 text-white p-6 rounded-2xl">
                     <h3 className="font-bold text-lg mb-2">{formData.blackBox.header}</h3>
                     <p className="text-gray-400 text-xs mb-4">{formData.blackBox.subHeader}</p>
-                    <span className="inline-block bg-[#3CBDE6] text-white px-4 py-2 rounded-lg text-xs font-bold uppercase">
+                    <span className="inline-block bg-[#8B5CF6] text-white px-4 py-2 rounded-lg text-xs font-bold uppercase">
                         {formData.blackBox.button.text}
                     </span>
                 </div>

@@ -23,7 +23,7 @@ function MobileMenu({ closeMenu }: MobileMenuProps) {
 
       <div
         className="
-          bg-[#3CBDE6]
+          bg-[#8B5CF6]
           relative w-full max-w-full h-[75vh]
           text-white
           rounded-t-3xl
@@ -47,13 +47,13 @@ function MobileMenu({ closeMenu }: MobileMenuProps) {
               <li
                 key={item.link}
                 onClick={closeMenu}
-                className="rounded-3xl transition-colors duration-200 hover:bg-[#3CBDE6] hover:text-white"
+                className="rounded-3xl transition-colors duration-200 hover:bg-[#8B5CF6] hover:text-white"
               >
                 <Link
                   to={item.link}
                   className={`block px-4 py-2 text-2xl ${
                     location.pathname === item.link
-                      ? "rounded-3xl bg-[#3CBDE6] text-white"
+                      ? "rounded-3xl bg-[#8B5CF6] text-white"
                       : ""
                   }`}
                 >

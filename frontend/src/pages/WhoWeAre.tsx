@@ -52,8 +52,8 @@ export default function WhoWeAre() {
                             speed={0.8}
                             scale={1.0}
                             brightness={5}
-                            color1="#0ab3f1"
-                            color2="#3CBDE6"
+                            color1="#A78BFA"
+                            color2="#8B5CF6"
                             noiseFrequency={2.5}
                             noiseAmplitude={1}
                             bandHeight={0.4}
@@ -89,7 +89,7 @@ export default function WhoWeAre() {
             <div data-aos="fade-up" data-aos-delay="400" className="mt-10">
               <button 
                 onClick={() => navigate("/what-we-do")}
-                className="bg-white text-black px-12 py-3 font-semibold hover:bg-[#3CBDE6] hover:text-white transition-all duration-500 uppercase tracking-widest shadow-lg"
+                className="bg-white text-black px-12 py-3 font-semibold hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-widest shadow-lg"
               >
                 Get to Know
               </button>
@@ -117,7 +117,7 @@ export default function WhoWeAre() {
   <div className="sm:ml-5 flex flex-col items-center md:items-start text-center md:text-left">
     <h3 className="font-semibold text-base lg:text-lg">10+ Satisfied Clients</h3>
     <div className="flex items-center">
-      <span className="text-[#3CBDE6] text-xl lg:text-2xl">★★★★★</span>
+      <span className="text-[#8B5CF6] text-xl lg:text-2xl">★★★★★</span>
       <span className="text-lg ml-2 font-light">5/5</span>
     </div>
   </div>
@@ -131,8 +131,8 @@ export default function WhoWeAre() {
         {/* Mobile Social Bar (Only visible if not on Desktop) */}
         <div className="flex items-center justify-center md:hidden gap-6 mb-16">
           {[SiFacebook, SiInstagram, SiGithub, SiGmail].map((Icon, idx) => (
-            <div key={idx} className="  w-14 h-14 border border-[#3CBDE6] rounded-full flex items-center justify-center">
-              <Icon className="text-[#3CBDE6] text-3xl" />
+            <div key={idx} className="  w-14 h-14 border border-[#8B5CF6] rounded-full flex items-center justify-center">
+              <Icon className="text-[#8B5CF6] text-3xl" />
             </div>
           ))}
         </div>
@@ -152,7 +152,7 @@ export default function WhoWeAre() {
             </p>
 
             {/**
-             * <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#3CBDE6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
+             * <div className="flex transition-all duration-1000 items-center hover:bg-[#242424] justify-center bg-[#8B5CF6] py-1 md:text-[12px] lg:text-[16px] lg:px-4 text-white lg:mt-4">
                 <Button
                 label="Get Started"
                 iconPosition="right"
@@ -173,7 +173,7 @@ export default function WhoWeAre() {
                     <div className="absolute top-1/2 -translate-y-1/2 -left-10 sm:-left-20 md:-left-18 lg:-left-28 z-50">
                         <div className="skew-x-[-16deg] w-[180px] sm:w-[180px] md:w-[200px] lg:w-[250px] bg-white h-[130px] sm:h-[150px] md:h-[130px] lg:h-[150px] shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl">
                             <div className="flex flex-col items-center justify-center pt-2 sm:pt-4 md:pt-1 lg:pt-4">
-                                <div className="text-[#3CBDE6] text-3xl">★★★★★</div>
+                                <div className="text-[#8B5CF6] text-3xl">★★★★★</div>
                                     <div className="flex flex-row -space-x-2 ml-4">
                                         <img src="/profiles/prof1.svg" className="w-8 h-8 sm:w-10 sm:h-10" />
                                         <img src="/profiles/prof4.svg" className="w-8 h-8 sm:w-10 sm:h-10" />
@@ -323,7 +323,7 @@ export default function WhoWeAre() {
                         className="mt-6 flex items-center justify-center lg:items-start"
                             >
                             </div>
-                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#3CBDE6] font-semibold">Vision</span></h1>
+                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#8B5CF6] font-semibold">Vision</span></h1>
                             <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
                              {content?.whoWeArePage.section4.vision}
                             </p>
@@ -409,7 +409,7 @@ export default function WhoWeAre() {
                         className="mt-2 lg:mt-6 flex items-center justify-center lg:items-start"
                             >
                             </div>
-                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#3CBDE6] font-semibold">Mission</span></h1>
+                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#8B5CF6] font-semibold">Mission</span></h1>
                             <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
                                 {content?.whoWeArePage.section5.mission}
                              </p>
@@ -508,7 +508,7 @@ export default function WhoWeAre() {
                           
              <div className="my-20">
           
-          <div className="bg-[#0F4C5C] md:p-10 p-3 text-white rounded-xl">
+          <div className="bg-[#4C1D95] md:p-10 p-3 text-white rounded-xl">
             <MapDesign />
           </div>
         </div>

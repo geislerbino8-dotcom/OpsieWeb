@@ -100,7 +100,7 @@ const Team: React.FC = () => {
               key={`${member.name}-${index}`}
               data-aos="fade-up"
               data-aos-delay={index * 50}
-              className="p-2 hover:bg-[#3CBDE6]/10 transition-all duration-500 rounded-2xl"
+              className="p-2 hover:bg-[#8B5CF6]/10 transition-all duration-500 rounded-2xl"
             >
               <MemberCard member={member} />
             </div>
@@ -119,7 +119,7 @@ const Team: React.FC = () => {
           {/* LiquidEther Canvas Layer container sandbox */}
           <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40">
             <LiquidEther
-              colors={[ '#5227FF', '#3CBDE6', '#768bd7' ]}
+              colors={[ '#5227FF', '#8B5CF6', '#768bd7' ]}
               mouseForce={20}
               cursorSize={100}
               isViscous
@@ -152,7 +152,7 @@ const Team: React.FC = () => {
           {/* Button Interactive Layer */}
           <button 
             onClick={() => navigate('/who-we-are')}
-            className="group hover:bg-[#3CBDE6] relative flex items-center gap-4 px-10 py-5 bg-[#0A261F] overflow-hidden rounded-2xl font-bold text-white transition-all duration-500 hover:shadow-2xl hover:shadow-[#3CBDE6]/20 active:scale-95 z-10 shrink-0"
+            className="group hover:bg-[#8B5CF6] relative flex items-center gap-4 px-10 py-5 bg-[#0A261F] overflow-hidden rounded-2xl font-bold text-white transition-all duration-500 hover:shadow-2xl hover:shadow-[#8B5CF6]/20 active:scale-95 z-10 shrink-0"
           >
             {/* Animated Background Highlight inside button */}
             <div className="absolute -inset-10 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(60,189,230,0.4)_0%,transparent_65%)] transition-all duration-700 ease-out pointer-events-none scale-50 group-hover:scale-100 z-0" />

@@ -18,20 +18,20 @@ const CreateUserModal = ({ handleCreate, onClose}: any) => {
               placeholder='Name'
               value={name}
               onChange={(e)=>setName(e.target.value)}
-              className='border w-full px-3 py-2 rounded focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+              className='border w-full px-3 py-2 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
             />
 
             <input
               placeholder='Username'
               value={username}
               onChange={(e)=>setUsername(e.target.value)}
-              className='border w-full px-3 py-2 rounded focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+              className='border w-full px-3 py-2 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
             />
 
             <select
               value={role}
               onChange={(e)=>setRole(e.target.value)}
-              className='border w-full px-3 py-2 rounded focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+              className='border w-full px-3 py-2 rounded focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
             >
               <option value='manager'>Manager</option>
               <option value='developer'>Developer</option>
@@ -47,7 +47,7 @@ const CreateUserModal = ({ handleCreate, onClose}: any) => {
 
             <button
               onClick={() => { handleCreate(name, username, role) }}
-              className='bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded cursor-pointer'
+              className='bg-violet-500 hover:bg-violet-700 text-white px-4 py-2 rounded cursor-pointer'
             >
               Create
             </button>

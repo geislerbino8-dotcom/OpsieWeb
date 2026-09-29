@@ -39,7 +39,7 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
           <h3 className="
             text-[20px] font-poppins font-semibold text-gray-800
             transition-colors duration-300
-            group-hover:text-cyan-600
+            group-hover:text-violet-600
           ">
             {props.name}
           </h3>
@@ -68,7 +68,7 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
           <span
             key={i}
             className="
-              text-[#3CBDE6] text-2xl
+              text-[#8B5CF6] text-2xl
               transition-all duration-300
               group-hover:drop-shadow-[0_0_6px_rgba(60,189,230,0.8)]
             "

@@ -54,7 +54,7 @@ export default function TicketTimeline({ ticketId }: Props) {
           <div key={index} className='flex gap-3'>
             {/* Timeline Connector */}
             <div className='flex flex-col items-center'>
-              <div className='w-3 h-3 bg-blue-500 rounded-full mt-1 ring-4 ring-white dark:ring-slate-900'></div>
+              <div className='w-3 h-3 bg-violet-500 rounded-full mt-1 ring-4 ring-white dark:ring-slate-900'></div>
               {index !== timeline.length - 1 && (
                 <div className='flex-1 w-px bg-slate-200 dark:bg-slate-700 mt-1'></div>
               )}
@@ -75,7 +75,7 @@ export default function TicketTimeline({ ticketId }: Props) {
 
                       return (
                         <div key={i} className='bg-blue-50/50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 rounded-lg p-3 my-2'>
-                          <span className='text-[10px] font-bold uppercase text-blue-600 dark:text-blue-400 block mb-1'>
+                          <span className='text-[10px] font-bold uppercase text-violet-600 dark:text-violet-400 block mb-1'>
                             Resolution
                           </span>
                           
@@ -85,7 +85,7 @@ export default function TicketTimeline({ ticketId }: Props) {
                                 href={change.newValue} 
                                 target='_blank' 
                                 rel="noreferrer"
-                                className='text-blue-600 dark:text-blue-400 text-xs italic hover:underline break-all block'
+                                className='text-violet-600 dark:text-violet-400 text-xs italic hover:underline break-all block'
                               >
                                 {change.newValue}
                               </a>

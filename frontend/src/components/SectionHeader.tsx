@@ -34,7 +34,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
   }}
 >
-    <div className="w-7 h-7 rounded-full bg-[#3CBDE6] flex items-center justify-center">
+    <div className="w-7 h-7 rounded-full bg-[#8B5CF6] flex items-center justify-center">
     {icon && (
         <img
         src={icon}
@@ -44,7 +44,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     )}
     </div>
 
-  <p className="font-poppins text-[#3CBDE6] font-medium text-[16px] leading-none">
+  <p className="font-poppins text-[#8B5CF6] font-medium text-[16px] leading-none">
     {badgeText}
   </p>
 </div>  

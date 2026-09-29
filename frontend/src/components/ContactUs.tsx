@@ -31,7 +31,7 @@ function ContactUs() {
             onClick={() => {
               window.location.href = "/book-a-schedule"
             }}
-            className="bg-[#3CBDE6] text-white px-6 py-3 rounded-full w-fit mx-auto lg:mx-0 hover:bg-[#2ca7cc] transition"
+            className="bg-[#8B5CF6] text-white px-6 py-3 rounded-full w-fit mx-auto lg:mx-0 hover:bg-[#7C3AED] transition"
           >
             BOOK A MEETING SCHEDULE
           </button>

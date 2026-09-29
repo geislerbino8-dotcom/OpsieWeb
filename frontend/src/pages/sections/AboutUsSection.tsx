@@ -44,7 +44,7 @@ function AboutUsSection() {
           data-aos="fade-right"
         >
           {/* Decorative background element */}
-          <div className="absolute inset-0 bg-[#3CBDE6]/5 rounded-full blur-3xl scale-150 -z-10" />
+          <div className="absolute inset-0 bg-[#8B5CF6]/5 rounded-full blur-3xl scale-150 -z-10" />
           
           <img 
             src={OpsieImage} 
@@ -91,7 +91,7 @@ function AboutUsSection() {
           <div data-aos="fade-up" data-aos-delay="400" className="pt-6 w-full flex justify-center items-center">
             <button 
               onClick={() => navigate('/contact-us')}
-              className="group w-[50%] relative flex items-center justify-center  gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
+              className="group w-[50%] relative flex items-center justify-center  gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white hover:shadow-lg hover:shadow-[#8B5CF6]/10"
             >
               <span>{content?.aboutUsSection?.buttonText}</span>
              

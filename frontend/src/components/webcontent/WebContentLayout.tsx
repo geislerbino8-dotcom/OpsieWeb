@@ -99,7 +99,7 @@ export const NavigationCards = () => {
           className="
             group relative flex flex-col justify-between
             p-6 bg-white border border-slate-200/80 rounded-2xl
-            shadow-sm hover:border-[#3CBDE6]
+            shadow-sm hover:border-[#8B5CF6]
             hover:shadow-md transition-all duration-200
             cursor-pointer active:scale-[0.99]
           "
@@ -110,9 +110,9 @@ export const NavigationCards = () => {
               <div
                 className="
                   p-3 w-12 h-12 bg-slate-50
-                  group-hover:bg-[#3CBDE6]/10
+                  group-hover:bg-[#8B5CF6]/10
                   rounded-xl text-slate-500
-                  group-hover:text-[#3CBDE6]
+                  group-hover:text-[#8B5CF6]
                   transition-colors flex items-center justify-center
                 "
               >
@@ -120,7 +120,7 @@ export const NavigationCards = () => {
               </div>
 
               <div>
-                <h3 className="text-base font-bold text-slate-800 group-hover:text-[#3CBDE6]">
+                <h3 className="text-base font-bold text-slate-800 group-hover:text-[#8B5CF6]">
                   Web Pages & Layouts
                 </h3>
 
@@ -131,7 +131,7 @@ export const NavigationCards = () => {
               </div>
             </div>
 
-            <div className="text-slate-300 group-hover:text-[#3CBDE6] group-hover:translate-x-1 transition-all">
+            <div className="text-slate-300 group-hover:text-[#8B5CF6] group-hover:translate-x-1 transition-all">
               <ArrowRight size={18} />
             </div>
           </div>
@@ -151,7 +151,7 @@ export const NavigationCards = () => {
           className="
             group relative flex flex-col justify-between
             p-6 bg-white border border-slate-200/80 rounded-2xl
-            shadow-sm hover:border-[#3CBDE6]
+            shadow-sm hover:border-[#8B5CF6]
             hover:shadow-md transition-all duration-200
             cursor-pointer active:scale-[0.99]
           "
@@ -162,9 +162,9 @@ export const NavigationCards = () => {
               <div
                 className="
                   p-3 w-12 h-12 bg-slate-50
-                  group-hover:bg-[#3CBDE6]/10
+                  group-hover:bg-[#8B5CF6]/10
                   rounded-xl text-slate-500
-                  group-hover:text-[#3CBDE6]
+                  group-hover:text-[#8B5CF6]
                   transition-colors flex items-center justify-center
                 "
               >
@@ -172,7 +172,7 @@ export const NavigationCards = () => {
               </div>
 
               <div>
-                <h3 className="text-base font-bold text-slate-800 group-hover:text-[#3CBDE6]">
+                <h3 className="text-base font-bold text-slate-800 group-hover:text-[#8B5CF6]">
                   Product Inventory
                 </h3>
 
@@ -183,13 +183,13 @@ export const NavigationCards = () => {
               </div>
             </div>
 
-            <div className="text-slate-300 group-hover:text-[#3CBDE6] group-hover:translate-x-1 transition-all">
+            <div className="text-slate-300 group-hover:text-[#8B5CF6] group-hover:translate-x-1 transition-all">
               <ArrowRight size={18} />
             </div>
           </div>
 
           <div className="mt-6 pt-4 border-t border-slate-50 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#3CBDE6]"></span>
+            <span className="w-2 h-2 rounded-full bg-[#8B5CF6]"></span>
 
             <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
               Catalog Database
@@ -286,21 +286,21 @@ export const PageSideNav = () => {
                     whitespace-nowrap transition-all duration-200
                     ${
                       isActive
-                        ? "text-[#3CBDE6] bg-[#3CBDE6]/5"
+                        ? "text-[#8B5CF6] bg-[#8B5CF6]/5"
                         : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                     }
                   `}
                 >
                   {/* Active Indicator */}
                   {isActive && (
-                    <span className="hidden md:block absolute left-0 top-3 bottom-3 w-1 bg-[#3CBDE6] rounded-r-md" />
+                    <span className="hidden md:block absolute left-0 top-3 bottom-3 w-1 bg-[#8B5CF6] rounded-r-md" />
                   )}
 
                   <Icon
                     size={18}
                     className={
                       isActive
-                        ? "text-[#3CBDE6]"
+                        ? "text-[#8B5CF6]"
                         : "text-slate-400 group-hover:text-slate-600"
                     }
                   />

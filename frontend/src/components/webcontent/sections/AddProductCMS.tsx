@@ -50,7 +50,7 @@ function AddProductCMS() {
     industries: [],
     photos: [],
     contents: { overview: "", problemSolved: "", implementation: "", support: "" },
-    themeColor: "#3CBDE6" // Defaulted to your brand blue
+    themeColor: "#8B5CF6" // Defaulted to your brand blue
   });
 
   const [industryInput, setIndustryInput] = useState("");
@@ -90,7 +90,7 @@ function AddProductCMS() {
           <button onClick={() => window.location.href = "view-products"} className="mr-5 text-gray-500 px-8 py-2 rounded-full font-bold hover:bg-slate-100 transition-colors">
             Cancel
           </button>
-          <button onClick={save} className="bg-[#3CBDE6] text-white px-8 py-2 rounded-full font-bold shadow-lg shadow-[#3CBDE6]/20 hover:scale-105 transition-transform">
+          <button onClick={save} className="bg-[#8B5CF6] text-white px-8 py-2 rounded-full font-bold shadow-lg shadow-[#8B5CF6]/20 hover:scale-105 transition-transform">
             Publish to Database
           </button>
         </div>
@@ -104,7 +104,7 @@ function AddProductCMS() {
           {/* 1. Core Identity, Media & Theme Configuration */}
           <section className="bg-white rounded-xl p-8 border border-slate-200 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
-              <Package className="text-[#3CBDE6]"/>
+              <Package className="text-[#8B5CF6]"/>
               <h2 className="font-bold text-lg">Identity & Media</h2>
             </div>
             
@@ -128,7 +128,7 @@ function AddProductCMS() {
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-slate-200 shadow-inner shrink-0 transition-transform hover:scale-105">
                     <input 
                       type="color" 
-                      value={form.themeColor || "#3CBDE6"} 
+                      value={form.themeColor || "#8B5CF6"} 
                       className="absolute inset-[-10px] w-[200%] h-[200%] cursor-pointer p-0 border-none"
                       onChange={e => updateField('themeColor', e.target.value)} 
                     />
@@ -136,7 +136,7 @@ function AddProductCMS() {
                   <input 
                     type="text"
                     value={form.themeColor}
-                    placeholder="#3CBDE6"
+                    placeholder="#8B5CF6"
                     maxLength={7}
                     className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 font-mono text-sm uppercase text-slate-700 outline-none focus:border-slate-300"
                     onChange={e => updateField('themeColor', e.target.value)} 
@@ -151,7 +151,7 @@ function AddProductCMS() {
 
           {/* 2. Deep Dive Content */}
           <section className="bg-white rounded-xl p-8 border border-slate-200 shadow-sm space-y-4">
-             <div className="flex items-center gap-3"><FileText className="text-[#3CBDE6]"/><h2 className="font-bold text-lg">Detailed Documentation</h2></div>
+             <div className="flex items-center gap-3"><FileText className="text-[#8B5CF6]"/><h2 className="font-bold text-lg">Detailed Documentation</h2></div>
              <div className="grid grid-cols-1 gap-4">
                <textarea placeholder="Overview" className="w-full bg-slate-50 rounded-xl p-4 outline-none border border-transparent focus:border-slate-200" onChange={e => handleContentChange('overview', e.target.value)} />
                <textarea placeholder="Problem Solved" className="w-full bg-slate-50 rounded-xl p-4 outline-none border border-transparent focus:border-slate-200" onChange={e => handleContentChange('problemSolved', e.target.value)} />
@@ -163,8 +163,8 @@ function AddProductCMS() {
           {/* 3. Features Section */}
           <section>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="font-bold text-lg flex items-center gap-2"><ListChecks className="text-[#3CBDE6]" size={20}/> Product Features</h2>
-              <button onClick={() => updateField('features', [...form.features, {title: "", description: ""}])} className="text-[#3CBDE6] text-xs font-bold hover:underline">+ ADD FEATURE</button>
+              <h2 className="font-bold text-lg flex items-center gap-2"><ListChecks className="text-[#8B5CF6]" size={20}/> Product Features</h2>
+              <button onClick={() => updateField('features', [...form.features, {title: "", description: ""}])} className="text-[#8B5CF6] text-xs font-bold hover:underline">+ ADD FEATURE</button>
             </div>
             <div className="space-y-4">
               {form.features.map((f, i) => (
@@ -182,7 +182,7 @@ function AddProductCMS() {
             <section>
               <div className="flex justify-between items-center mb-4">
                 <h2 className="font-bold text-md flex items-center gap-2"><Heart className="text-pink-500" size={18}/> Benefits</h2>
-                <button onClick={() => updateField('benefits', [...form.benefits, {title: "", description: ""}])} className="text-[#3CBDE6] text-[10px] font-bold hover:underline">ADD</button>
+                <button onClick={() => updateField('benefits', [...form.benefits, {title: "", description: ""}])} className="text-[#8B5CF6] text-[10px] font-bold hover:underline">ADD</button>
               </div>
               <div className="space-y-3">
                 {form.benefits.map((b, i) => (
@@ -198,13 +198,13 @@ function AddProductCMS() {
             <section>
               <div className="flex justify-between items-center mb-4">
                 <h2 className="font-bold text-md flex items-center gap-2"><BarChart3 className="text-purple-500" size={18}/> Stats</h2>
-                <button onClick={() => updateField('analytics', [...form.analytics, {title: "", value: "", description: ""}])} className="text-[#3CBDE6] text-[10px] font-bold hover:underline">ADD</button>
+                <button onClick={() => updateField('analytics', [...form.analytics, {title: "", value: "", description: ""}])} className="text-[#8B5CF6] text-[10px] font-bold hover:underline">ADD</button>
               </div>
               <div className="space-y-3">
                 {form.analytics.map((a, i) => (
                   <div key={i} className="bg-white rounded-xl p-3 border border-slate-200 relative group shadow-sm">
                     <button onClick={() => removeItem(i, 'analytics')} className="absolute top-2 right-2 text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><Trash2 size={12}/></button>
-                    <input value={a.value} style={{ color: form.themeColor || '#3CBDE6' }} placeholder="99.9%" className="text-xl font-black w-full outline-none transition-colors" onChange={e => handleNestedChange(i, 'analytics', 'value', e.target.value)} />
+                    <input value={a.value} style={{ color: form.themeColor || '#8B5CF6' }} placeholder="99.9%" className="text-xl font-black w-full outline-none transition-colors" onChange={e => handleNestedChange(i, 'analytics', 'value', e.target.value)} />
                     <input value={a.title} placeholder="Metric" className="text-[10px] font-bold uppercase w-full outline-none" onChange={e => handleNestedChange(i, 'analytics', 'title', e.target.value)} />
                   </div>
                 ))}
@@ -240,7 +240,7 @@ function AddProductCMS() {
                  <div className="h-60 bg-slate-100 relative">
                     {form.image ? <img src={form.image} alt="Hero preview" className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-slate-300"><ImageIcon size={40}/></div>}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-8 flex flex-col justify-end text-white">
-                       <span style={{ color: form.themeColor || '#3CBDE6' }} className="text-[10px] font-black uppercase tracking-[0.2em] transition-colors">
+                       <span style={{ color: form.themeColor || '#8B5CF6' }} className="text-[10px] font-black uppercase tracking-[0.2em] transition-colors">
                          {form.category || "CATEGORY"}
                        </span>
                        
@@ -268,7 +268,7 @@ function AddProductCMS() {
                        {form.features.map((f, i) => f.title && (
                          <div key={i} className="flex gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 items-start animate-fade-in">
                             <div 
-                              style={{ backgroundColor: form.themeColor || '#3CBDE6' }} 
+                              style={{ backgroundColor: form.themeColor || '#8B5CF6' }} 
                               className="w-7 h-7 rounded-full text-white flex items-center justify-center font-bold text-xs shrink-0 transition-colors shadow-sm"
                             >
                               {i+1}
@@ -285,7 +285,7 @@ function AddProductCMS() {
                     <div className="grid grid-cols-2 gap-4">
                        {form.analytics.map((a, i) => a.value && (
                          <div key={i} className="p-4 rounded-2xl border border-slate-100 text-center bg-slate-50/50">
-                            <div style={{ color: form.themeColor || '#3CBDE6' }} className="text-2xl font-black leading-none transition-colors">
+                            <div style={{ color: form.themeColor || '#8B5CF6' }} className="text-2xl font-black leading-none transition-colors">
                               {a.value}
                             </div>
                             <div className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-wider">{a.title || "Metric"}</div>

@@ -68,7 +68,7 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
           opacity-0 group-hover:opacity-100
           transition-opacity duration-700 ease-out
           blur-3xl
-          bg-gradient-to-tr from-cyan-500/10 via-indigo-500/10 to-transparent
+          bg-gradient-to-tr from-violet-500/10 via-indigo-500/10 to-transparent
         "
       />
 

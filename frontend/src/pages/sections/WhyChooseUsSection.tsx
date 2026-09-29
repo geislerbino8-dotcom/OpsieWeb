@@ -13,7 +13,7 @@ function WhyChooseUsSection() {
       style={{ background: 'linear-gradient(135deg, #001a2c 0%, #004e7a 100%)' }}
     >
       {/* Subtle Background Glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3CBDE6]/10 rounded-full blur-[120px] -z-0" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8B5CF6]/10 rounded-full blur-[120px] -z-0" />
 
       <div className="relative z-10 w-full max-w-7xl flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 px-6 md:px-12">
 
@@ -32,8 +32,8 @@ function WhyChooseUsSection() {
                 min-h-[220px] md:min-h-[260px]
                 border border-white/10
                 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-                hover:-translate-y-2 hover:shadow-[#3CBDE6]/20
-                hover:border-[#3CBDE6]/40
+                hover:-translate-y-2 hover:shadow-[#8B5CF6]/20
+                hover:border-[#8B5CF6]/40
               "
             >
               {/* Background image with Zoom effect */}
@@ -51,11 +51,11 @@ function WhyChooseUsSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
 
               {/* Blue Tint Hover Effect */}
-              <div className="absolute inset-0 bg-[#3CBDE6]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-[#8B5CF6]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Content */}
               <div className="relative z-10 space-y-2">
-                <h3 className="text-xl md:text-2xl font-bold text-[#3CBDE6] transition-colors duration-300 group-hover:text-white">
+                <h3 className="text-xl md:text-2xl font-bold text-[#8B5CF6] transition-colors duration-300 group-hover:text-white">
                   {item.head}
                 </h3>
                 <p className="text-sm md:text-base text-gray-200 leading-relaxed font-light">
@@ -69,10 +69,10 @@ function WhyChooseUsSection() {
         {/* RIGHT - HEADER TEXT */}
         <div className="flex-1 flex flex-col justify-center text-center lg:text-left space-y-6">
           <div className="space-y-2">
-            <span className="text-[#3CBDE6] font-bold tracking-[0.2em] uppercase text-xs">
+            <span className="text-[#8B5CF6] font-bold tracking-[0.2em] uppercase text-xs">
               The Opsie Advantage
             </span>
-            <div className="h-1 w-12 bg-[#3CBDE6] mx-auto lg:mx-0 rounded-full" />
+            <div className="h-1 w-12 bg-[#8B5CF6] mx-auto lg:mx-0 rounded-full" />
           </div>
 
           <div className="min-h-[120px] md:min-h-[180px]">
@@ -95,7 +95,7 @@ function WhyChooseUsSection() {
           <div className='flex justify-center md:justify-start'>
             <button
               onClick={() => navigate("/what-we-do")}
-              className=' bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#3CBDE6] border-[#3CBDE6] hover:bg-white transition duration-600'>See how we work</button>
+              className=' bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#8B5CF6] border-[#8B5CF6] hover:bg-white transition duration-600'>See how we work</button>
 
           </div>
 

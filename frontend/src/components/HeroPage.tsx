@@ -41,8 +41,8 @@ function HeroPage({ bgImage }: HeroPageProps) {
             speed={0.5}
             scale={1.0}
             brightness={3}
-            color1="#025a7a"
-            color2="#3CBDE6"
+            color1="#5B21B6"
+            color2="#8B5CF6"
             noiseFrequency={2.5}
             noiseAmplitude={1}
             bandHeight={0.4}
@@ -96,9 +96,9 @@ function HeroPage({ bgImage }: HeroPageProps) {
           </p>
         )}
 
-        <div className="flex items-center justify-between bg-blue-600 text-white rounded-lg p-4 shadow-md max-w-md w-full">
+        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 shadow-md max-w-md w-full">
           <div className="flex items-center space-x-3">
-            <div className="bg-cyan-700 rounded-full w-10 h-10 flex items-center justify-center">
+            <div className="bg-violet-700 rounded-full w-10 h-10 flex items-center justify-center">
               <span className="font-bold text-lg">O</span>
             </div>
             <div className="text-left">
@@ -108,7 +108,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
           </div>
           <button 
             onClick={() => navigate("/book-a-schedule")}
-            className="group relative bg-[#3CBDE6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
+            className="group relative bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
           >
           <span className="relative z-10">{buttonText}</span>
           </button>

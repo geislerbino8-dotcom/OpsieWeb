@@ -92,7 +92,7 @@ export default function Maps() {
           data: routeData as any,
         },
         paint: {
-          "line-color": "#3CBDE6",
+          "line-color": "#8B5CF6",
           "line-width": 5,
         },
       });
@@ -155,7 +155,7 @@ export default function Maps() {
 
           <h1 className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px]">
             Let's start our
-            <span className="text-[#3CBDE6] font-semibold"><br />Conversation</span>
+            <span className="text-[#8B5CF6] font-semibold"><br />Conversation</span>
           </h1>
 
             <p className="font-poppins text-center md:text-start font-light">
@@ -171,7 +171,7 @@ export default function Maps() {
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 lg:mt-4">
             
-            <div className="transition-all duration-500 hover:bg-[#242424] bg-[#3CBDE6] text-white overflow-hidden">
+            <div className="transition-all duration-500 hover:bg-[#242424] bg-[#8B5CF6] text-white overflow-hidden">
               <Button
                 label="Get Direction"
                 icon={<img src="/ICONS/get-started-arrow.svg" className="w-5 h-5" />}
@@ -183,7 +183,7 @@ export default function Maps() {
 
             <button 
               onClick={() => { navigate('/contact-us')}}
-              className="flex items-center gap-2 border-2 border-[#3CBDE6] text-[#3CBDE6] font-semibold px-6 py-[10px] rounded-lg transition-all duration-300 hover:bg-[#242424] hover:text-white group"
+              className="flex items-center gap-2 border-2 border-[#8B5CF6] text-[#8B5CF6] font-semibold px-6 py-[10px] rounded-lg transition-all duration-300 hover:bg-[#242424] hover:text-white group"
             >
               <PlayCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
               Request Demo

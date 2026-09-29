@@ -24,7 +24,7 @@ const FAQAccordion = () => {
         
           <p className="mt-6 text-lg text-gray-500  tect-center md:text-left font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for? 
-            <span className="text-[#3CBDE6] font-medium cursor-pointer hover:underline ml-1"><a href="/contact-us">Reach out to us.</a></span>
+            <span className="text-[#8B5CF6] font-medium cursor-pointer hover:underline ml-1"><a href="/contact-us">Reach out to us.</a></span>
           </p>
         </div>
 
@@ -38,8 +38,8 @@ const FAQAccordion = () => {
                 key={index}
                 className={`group rounded-2xl transition-all duration-500 ease-in-out border
                   ${isOpen 
-                    ? "bg-white border-[#3CBDE6]/30 shadow-[0_20px_40px_rgba(60,189,230,0.1)] scale-[1.01]" 
-                    : "bg-[#ECEDF1]/50 border-transparent hover:border-gray-300 shadow-sm hover:bg-[#0F4C5C]/60"
+                    ? "bg-white border-[#8B5CF6]/30 shadow-[0_20px_40px_rgba(60,189,230,0.1)] scale-[1.01]" 
+                    : "bg-[#ECEDF1]/50 border-transparent hover:border-gray-300 shadow-sm hover:bg-[#4C1D95]/60"
                   }`}
               >
                 <button
@@ -47,13 +47,13 @@ const FAQAccordion = () => {
                   className="flex justify-between items-center w-full py-7 px-8 text-left group"
                 >
                   <span className={`text-lg font-semibold transition-colors duration-300 
-                    ${isOpen ? "text-[#3CBDE6]" : "text-gray-800"}`}>
+                    ${isOpen ? "text-[#8B5CF6]" : "text-gray-800"}`}>
                     {faq.question}
                   </span>
                   
                   {/* Animated Icon Container */}
                   <div className={`relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-500
-                    ${isOpen ? "bg-[#3CBDE6] rotate-45" : "bg-gray-200"}`}>
+                    ${isOpen ? "bg-[#8B5CF6] rotate-45" : "bg-gray-200"}`}>
                     <Plus className={`h-5 w-5 transition-colors ${isOpen ? "text-white" : "text-gray-600"}`} />
                   </div>
                 </button>

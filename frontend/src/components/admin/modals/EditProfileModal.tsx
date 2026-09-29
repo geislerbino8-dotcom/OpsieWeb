@@ -35,7 +35,7 @@ const EditProfileModal = ({ user, handleSave, onClose}: EditProfileModalProps) =
               <input
                 value={name}
                 onChange={e => setName(e.target.value)}
-                className='border border-gray-500 rounded-md w-full px-3 py-2 text-sm focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+                className='border border-gray-500 rounded-md w-full px-3 py-2 text-sm focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
               />
             </div>
 
@@ -45,7 +45,7 @@ const EditProfileModal = ({ user, handleSave, onClose}: EditProfileModalProps) =
                 type='password'
                 value={currentPassword}
                 onChange={e => setCurrentPassword(e.target.value)}
-                className='border border-gray-500 rounded-md w-full px-3 py-2 text-sm focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+                className='border border-gray-500 rounded-md w-full px-3 py-2 text-sm focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
               />
             </div>
 
@@ -55,14 +55,14 @@ const EditProfileModal = ({ user, handleSave, onClose}: EditProfileModalProps) =
                 type='password'
                 value={newPassword}
                 onChange={e => setNewPassword(e.target.value)}
-                className='border border-gray-500 rounded-md w-full px-3 py-2 text-sm focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+                className='border border-gray-500 rounded-md w-full px-3 py-2 text-sm focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
               />
             </div>
           </div>
 
           <button
             onClick={() => { handleSave(name, currentPassword, newPassword) }}
-            className='w-full px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-500 hover:bg-blue-700 cursor-pointer'
+            className='w-full px-4 py-2 rounded-md text-sm font-medium text-white bg-violet-500 hover:bg-violet-700 cursor-pointer'
           >
             Save Changes
           </button>

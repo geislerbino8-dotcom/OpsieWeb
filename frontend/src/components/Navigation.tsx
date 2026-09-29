@@ -74,7 +74,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       style={{
         top: showNav ? 0 : "-80px",
         transition: "top 0.3s",
-        backgroundColor: '#0F4C5C'
+        backgroundColor: '#4C1D95'
       }}
     >
       {/* Desktop */}
@@ -102,8 +102,8 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     <Link
                       to={item.link}
                       className={`block px-4 py-2 rounded-3xl transition-colors duration-200
-                         hover:text-[#3CDBE6] 
-                        ${location.pathname === item.link ? "font-bold text-[#3CDBE6]" : ""}
+                         hover:text-[#8B5CF6] 
+                        ${location.pathname === item.link ? "font-bold text-[#8B5CF6]" : ""}
                       `}
                     >
                       {item.name}
@@ -123,7 +123,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                             key={prod.name}
                             to={`/products/${prod.name}`}
                             className="text-black cursor-pointer block px-2 py-2 text-sm
-                            hover:bg-blue-50 hover:text-[#3CBDE6] transition"
+                            hover:bg-blue-50 hover:text-[#8B5CF6] transition"
                           >
                             {prod.name}
                           </Link>
@@ -139,10 +139,10 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                   <Link
                     to={item.link}
                     className={`block px-4 py-2 rounded-3xl transition-colors duration-200
-                    hover:text-[#3CBDE6]
+                    hover:text-[#8B5CF6]
                     ${
                       location.pathname === item.link
-                        ? "font-bold text-[#3CBDE6]"
+                        ? "font-bold text-[#8B5CF6]"
                         : ""
                     }`}
                   >

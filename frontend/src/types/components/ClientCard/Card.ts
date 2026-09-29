@@ -16,7 +16,7 @@ export class CardLogic {
   private options: CardOptions;
 
   private static variantClasses: Record<string, string> = {
-    primary: "bg-blue-500 text-white hover:bg-blue-600",
+    primary: "bg-violet-500 text-white hover:bg-violet-600",
     secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
     danger: "bg-red-500 text-white hover:bg-red-600",
   };

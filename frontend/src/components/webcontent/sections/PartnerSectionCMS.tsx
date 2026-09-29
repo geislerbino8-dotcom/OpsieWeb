@@ -51,7 +51,7 @@ const PartnerSectionCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -62,7 +62,7 @@ const PartnerSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Header</label>
               <input
                 name="header"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.header}
                 onChange={handleChange}
               />
@@ -72,7 +72,7 @@ const PartnerSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Sub Header</label>
               <input
                 name="subHeader"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.subHeader}
                 onChange={handleChange}
               />
@@ -82,7 +82,7 @@ const PartnerSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Paragraph 1</label>
               <input
                 name="paragraph1"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.paragraph1}
                 onChange={handleChange}
               />
@@ -92,7 +92,7 @@ const PartnerSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Paragraph 2</label>
               <input
                 name="paragraph2"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.paragraph2}
                 onChange={handleChange}
               />
@@ -124,7 +124,7 @@ const PartnerSectionCMS: React.FC = () => {
           >
 
              <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-              <span className="text-blue-600 font-semibold">Click to Edit</span>
+              <span className="text-violet-600 font-semibold">Click to Edit</span>
             </div>
 
             <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{formData?.header}</h2>

@@ -66,11 +66,11 @@ const DashboardPage = () => {
       <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 mb-8 transition-colors">
         <header className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-600 rounded-lg shadow-lg shadow-blue-500/20">
+            <div className="p-2 bg-violet-600 rounded-lg shadow-lg shadow-violet-500/20">
               <LayoutDashboard className="w-5 h-5 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              Opsie SSI <span className="text-blue-600 dark:text-blue-500">Portal</span>
+              Opsie SSI <span className="text-violet-600 dark:text-violet-500">Portal</span>
             </h1>
           </div>
           <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base">
@@ -118,14 +118,14 @@ const DashboardPage = () => {
                 key={card.title}
                 onClick={() => navigate(card.route)}
                 className="group cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 
-                           transition-all duration-300 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/5 active:scale-[0.98]"
+                           transition-all duration-300 hover:border-violet-400 dark:hover:border-violet-500 hover:shadow-xl hover:shadow-violet-500/5 active:scale-[0.98]"
               >
                 <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 bg-slate-50 dark:bg-slate-800">
                   <img src={card.icon} alt="" className="w-10 h-10 object-contain" />
                 </div>
 
                 <div className="mb-8">
-                  <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
                     {card.title}
                   </h2>
                   <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
@@ -133,7 +133,7 @@ const DashboardPage = () => {
                   </p>
                 </div>
 
-                <div className="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
+                <div className="flex items-center text-sm font-semibold text-violet-600 dark:text-violet-400">
                   <span>Open Module</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>

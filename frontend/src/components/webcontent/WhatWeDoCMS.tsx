@@ -97,7 +97,7 @@ const WhatWeDoCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-4xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? "border-blue-500" : "border-transparent"}`}>
+      <div className={`w-full max-w-4xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? "border-violet-500" : "border-transparent"}`}>
         
         {isEditing ? (
           <div className="flex flex-col gap-6 p-8 max-h-[85vh] overflow-y-auto">
@@ -105,17 +105,17 @@ const WhatWeDoCMS: React.FC = () => {
 
             {/* HERO SETTINGS */}
             <div className="p-4 bg-slate-900 text-white rounded-xl space-y-4">
-              <label className="text-xs font-bold text-blue-400 uppercase">Hero Section</label>
+              <label className="text-xs font-bold text-violet-400 uppercase">Hero Section</label>
               <div className="grid grid-cols-2 gap-4">
                 <input name="hero.header.firstLine" className="p-2 bg-slate-800 border-slate-700 rounded border text-sm" value={formData.hero.header.firstLine} onChange={handleChange} placeholder="First Line" />
-                <input name="hero.header.secondLine" className="p-2 bg-slate-800 border-slate-700 rounded border text-sm text-[#3CBDE6]" value={formData.hero.header.secondLine} onChange={handleChange} placeholder="Second Line (Blue)" />
+                <input name="hero.header.secondLine" className="p-2 bg-slate-800 border-slate-700 rounded border text-sm text-[#8B5CF6]" value={formData.hero.header.secondLine} onChange={handleChange} placeholder="Second Line (Blue)" />
               </div>
               <textarea name="hero.subHeader" className="w-full p-2 bg-slate-800 border-slate-700 rounded border text-xs" value={formData.hero.subHeader} onChange={handleChange} />
             </div>
 
             {/* INTRO SECTION */}
             <div className="p-4 bg-blue-50 rounded-xl space-y-3">
-               <label className="text-xs font-bold text-blue-600 uppercase">Second Section (Intro)</label>
+               <label className="text-xs font-bold text-violet-600 uppercase">Second Section (Intro)</label>
                <input name="secondSection.header" className="w-full p-2 border rounded border-blue-200" value={formData.secondSection.header} onChange={handleChange} />
                <textarea name="secondSection.subHeader" className="w-full p-2 border rounded border-blue-200 text-sm" value={formData.secondSection.subHeader} onChange={handleChange} />
             </div>
@@ -138,7 +138,7 @@ const WhatWeDoCMS: React.FC = () => {
             </div>
 
             <div className="flex gap-2 pt-4">
-              <button onClick={saveChanges} className="flex-1 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">Save Section</button>
+              <button onClick={saveChanges} className="flex-1 py-3 bg-violet-600 text-white font-bold rounded-lg hover:bg-violet-700 transition-colors">Save Section</button>
               <button onClick={handleCancel} className="px-6 py-3 bg-gray-200 text-gray-600 font-bold rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
             </div>
           </div>
@@ -146,12 +146,12 @@ const WhatWeDoCMS: React.FC = () => {
           /* --- PREVIEW VIEW --- */
           <div className="p-10 cursor-pointer group relative" onClick={() => setIsEditing(true)}>
              <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-2xl z-10">
-                <span className="bg-white px-6 py-2 rounded-full shadow-lg text-blue-600 font-bold">Edit What We Do Content</span>
+                <span className="bg-white px-6 py-2 rounded-full shadow-lg text-violet-600 font-bold">Edit What We Do Content</span>
              </div>
 
              <div className="space-y-8">
-                <div className="bg-[#0F4C5C] p-8 rounded-xl text-white">
-                    <h1 className="text-2xl font-light">{formData.hero.header.firstLine} <span className="text-[#3CBDE6] font-bold">{formData.hero.header.secondLine}</span></h1>
+                <div className="bg-[#4C1D95] p-8 rounded-xl text-white">
+                    <h1 className="text-2xl font-light">{formData.hero.header.firstLine} <span className="text-[#8B5CF6] font-bold">{formData.hero.header.secondLine}</span></h1>
                     <p className="text-xs text-gray-300 mt-2">{formData.hero.subHeader}</p>
                 </div>
 

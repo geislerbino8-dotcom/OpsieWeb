@@ -43,7 +43,7 @@ type ProductModalType = {
 function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
   const [formData, setFormData] = useState<ProductForm>({
     ...product,
-    themeColor: product.themeColor || "#3CBDE6",
+    themeColor: product.themeColor || "#8B5CF6",
     photos: product.photos || [],
     benefits: product.benefits || [],
     analytics: product.analytics || []
@@ -55,7 +55,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
     if (product) {
       setFormData({
         ...product,
-        themeColor: product.themeColor || "#3CBDE6",
+        themeColor: product.themeColor || "#8B5CF6",
         photos: product.photos || [],
         benefits: product.benefits || [],
         analytics: product.analytics || []
@@ -184,7 +184,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
                   required
                 />
               </div>
@@ -195,7 +195,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
                   required
                 />
               </div>
@@ -209,7 +209,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   name="tagline"
                   value={formData.tagline}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
                 />
               </div>
               <div className="space-y-1.5">
@@ -220,7 +220,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   value={formData.price ?? ''}
                   onChange={handleChange}
                   placeholder="0.00"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
                 />
               </div>
             </div>
@@ -232,7 +232,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                 rows={3}
                 value={formData.description}
                 onChange={handleChange}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all resize-none"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all resize-none"
               ></textarea>
             </div>
           </div>
@@ -250,7 +250,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   value={formData.logo}
                   onChange={handleChange}
                   placeholder="https://example.com/logo.png"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
                 />
               </div>
               <div className="space-y-1.5">
@@ -260,7 +260,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   name="image"
                   value={formData.image}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
                 />
               </div>
               <div className="col-span-1 md:col-span-2 space-y-1.5">
@@ -270,7 +270,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   name="videoAd"
                   value={formData.videoAd}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
                 />
               </div>
 
@@ -294,7 +294,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                     type="text"
                     name="themeColor"
                     value={formData.themeColor}
-                    placeholder="#3CBDE6"
+                    placeholder="#8B5CF6"
                     maxLength={7}
                     onChange={handleChange}
                     className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 font-mono text-xs uppercase text-slate-700 outline-none focus:border-slate-300"
@@ -310,7 +310,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                 value={formData.industries?.join(', ')}
                 onChange={handleIndustriesChange}
                 placeholder="SaaS, FinTech, E-commerce"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all"
               />
             </div>
           </div>
@@ -326,7 +326,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   rows={3}
                   value={formData.contents?.overview}
                   onChange={handleNestedChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all resize-none"
                 ></textarea>
               </div>
               <div className="space-y-1.5">
@@ -336,7 +336,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   rows={3}
                   value={formData.contents?.problemSolved}
                   onChange={handleNestedChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all resize-none"
                 ></textarea>
               </div>
               <div className="space-y-1.5">
@@ -346,7 +346,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   rows={3}
                   value={formData.contents?.implementation}
                   onChange={handleNestedChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all resize-none"
                 ></textarea>
               </div>
               <div className="space-y-1.5">
@@ -356,7 +356,7 @@ function UpdateProductModal({ product, onClose, onUpdate }: ProductModalType) {
                   rows={3}
                   value={formData.contents?.support}
                   onChange={handleNestedChange}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#3CBDE6] focus:ring-2 focus:ring-[#3CBDE6]/10 transition-all resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-900 focus:outline-none focus:bg-white focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/10 transition-all resize-none"
                 ></textarea>
               </div>
             </div>

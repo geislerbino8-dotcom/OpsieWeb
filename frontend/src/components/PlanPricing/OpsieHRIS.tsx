@@ -50,7 +50,7 @@ export default function PricingPlans() {
 
         {/* Product Title */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-semibold text-cyan-400">
+          <h2 className="text-2xl md:text-3xl font-semibold text-violet-400">
             Opsie HRIS
           </h2>
           <p className="text-gray-300 mt-2">
@@ -67,13 +67,13 @@ export default function PricingPlans() {
               data-aos-delay={index * 150}
               className={`relative rounded-2xl p-8 backdrop-blur-lg border border-white/10 shadow-xl transition transform hover:scale-105 ${
                 plan.popular
-                  ? "bg-white/10 border-cyan-400"
+                  ? "bg-white/10 border-violet-400"
                   : "bg-white/5"
               }`}
             >
               {/* Popular Badge */}
               {plan.popular && (
-                <span className="absolute top-4 right-4 bg-cyan-400 text-black text-xs px-3 py-1 rounded-full font-semibold">
+                <span className="absolute top-4 right-4 bg-violet-400 text-black text-xs px-3 py-1 rounded-full font-semibold">
                   Most Popular
                 </span>
               )}
@@ -103,7 +103,7 @@ export default function PricingPlans() {
               {/* Button */}
               <button
                 onClick={() => navigate("/buy-now")}
-                className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold py-3 rounded-lg transition"
+                className="w-full bg-violet-500 hover:bg-violet-400 text-black font-semibold py-3 rounded-lg transition"
               >
                 Get Started
               </button>

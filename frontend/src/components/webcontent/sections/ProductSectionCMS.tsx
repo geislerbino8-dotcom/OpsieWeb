@@ -56,7 +56,7 @@ const ProductSectionCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -67,7 +67,7 @@ const ProductSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Header</label>
               <input
                 name="header"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData.header || ""}
                 onChange={handleChange}
               />
@@ -77,7 +77,7 @@ const ProductSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Subheader</label>
               <textarea
                 name="subHeader"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none min-h-[100px]"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none min-h-[100px]"
                 value={formData.subHeader || ""}
                 onChange={handleChange}
               />
@@ -87,7 +87,7 @@ const ProductSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Button Text</label>
               <input
                 name="buttonText"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData.buttonText || ""}
                 onChange={handleChange}
               />
@@ -118,12 +118,12 @@ const ProductSectionCMS: React.FC = () => {
 
 
              <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-              <span className="text-blue-600 font-semibold">Click to Edit</span>
+              <span className="text-violet-600 font-semibold">Click to Edit</span>
             </div>
 
             <h2 className="text-xl font-bold text-gray-800 mb-2">{formData.header}</h2>
             <p className="text-gray-600 mb-4">{formData.subHeader}</p>
-            <button className="bg-[#3CBDE6] hover:bg-[#34a8cd] text-white px-8 py-2 rounded-lg font-medium transition-colors">
+            <button className="bg-[#8B5CF6] hover:bg-[#34a8cd] text-white px-8 py-2 rounded-lg font-medium transition-colors">
               {formData.buttonText}
             </button>
 

@@ -109,7 +109,7 @@ const UserMenu = () => {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className='flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none cursor-pointer transition-colors duration-200'
       >
-        <div className='w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold shadow-sm'>
+        <div className='w-8 h-8 bg-violet-600 rounded-full flex items-center justify-center text-white font-bold shadow-sm'>
           {user.name?.charAt(0).toUpperCase()}
         </div>
         <div className='hidden md:flex flex-col items-start'>

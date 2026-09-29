@@ -23,7 +23,7 @@ function PartnerSection() {
       {/* Header */}
       <div className="text-center mb-16 max-w-3xl space-y-4">
         <span 
-          className="text-[#3CBDE6] font-bold tracking-[0.2em] uppercase text-xs"
+          className="text-[#8B5CF6] font-bold tracking-[0.2em] uppercase text-xs"
           data-aos="fade-down"
         >
           Trusted Worldwide

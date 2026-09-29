@@ -41,7 +41,7 @@ const FooterCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -76,7 +76,7 @@ const FooterCMS: React.FC = () => {
           >
 
              <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-              <span className="text-blue-600 font-semibold">Click to Edit</span>
+              <span className="text-violet-600 font-semibold">Click to Edit</span>
             </div>
 
             

@@ -31,7 +31,7 @@ const CoreValuesSection = () => {
         {/* Section Header */}
         <div className="text-center mb-5 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Our <span className="text-[#3CBDE6]">Core Values</span>
+            Our <span className="text-[#8B5CF6]">Core Values</span>
           </h2>
         </div>
 
@@ -61,12 +61,12 @@ const CoreValuesSection = () => {
                 key={i}
                 data-aos="fade-down"
                 data-aos-delay={i*400}
-                className="group flex flex-col p-6 rounded-2xl border border-transparent hover:border-[#3CBDE6]/20 hover:bg-slate-50 transition-all duration-300 shadow-sm hover:shadow-md"
+                className="group flex flex-col p-6 rounded-2xl border border-transparent hover:border-[#8B5CF6]/20 hover:bg-slate-50 transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 <div className="flex items-center gap-4">
                   {/* Numbering or Bullet */}
-                  <span className="text-[#3CBDE6] font-bold text-lg">0{i + 1}</span>
-                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-[#3CBDE6] transition-colors">
+                  <span className="text-[#8B5CF6] font-bold text-lg">0{i + 1}</span>
+                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-[#8B5CF6] transition-colors">
                     {v.title}
                   </h3>
                 </div>

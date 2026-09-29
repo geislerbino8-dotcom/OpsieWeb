@@ -30,7 +30,7 @@ const ContentNav: React.FC = () => {
           className="cursor-pointer flex items-center gap-2 z-50"
           onClick={() => window.location.href = '/admin/content'}
         >
-          <div className="bg-blue-600 p-1.5 rounded-lg">
+          <div className="bg-violet-600 p-1.5 rounded-lg">
             <ShieldCheck size={20} className="text-white" />
           </div>
           <h1 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">
@@ -79,7 +79,7 @@ const ContentNav: React.FC = () => {
                 className={`
                   flex items-center gap-4 p-4 rounded-xl text-base font-medium transition-all
                   ${isActive 
-                    ? "bg-blue-50 text-blue-600" 
+                    ? "bg-blue-50 text-violet-600" 
                     : "text-slate-600 hover:bg-slate-50"
                   }
                 `}
@@ -93,7 +93,7 @@ const ContentNav: React.FC = () => {
           <hr className="my-4 border-slate-100" />
           
           <button 
-            className='w-full bg-blue-600 text-white p-4 rounded-xl font-semibold shadow-lg shadow-blue-100' 
+            className='w-full bg-violet-600 text-white p-4 rounded-xl font-semibold shadow-lg shadow-blue-100' 
             onClick={() => window.location.href = "/admin"}
           >
             Back to Dashboard

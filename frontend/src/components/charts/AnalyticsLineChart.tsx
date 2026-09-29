@@ -77,7 +77,7 @@ const AnalyticsLineChart = () => {
             name="Created"
             type="monotone"
             dataKey="created"
-            stroke="#3b82f6" // Blue-500
+            stroke="#3b82f6" // violet-500
             strokeWidth={3}
             dot={{ r: 4, fill: '#3b82f6', strokeWidth: 2, stroke: '#fff' }}
             activeDot={{ r: 6, strokeWidth: 0 }}

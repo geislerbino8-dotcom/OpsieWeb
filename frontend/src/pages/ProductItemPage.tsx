@@ -107,7 +107,7 @@ function ProductItemPage() {
     return (
       <div className="min-h-screen bg-gray-950 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" />
           <p className="text-white text-xs font-bold tracking-widest uppercase animate-pulse">Syncing {id}...</p>
         </div>
       </div>
@@ -123,10 +123,10 @@ function ProductItemPage() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center bg-gray-950 text-white overflow-x-hidden selection:bg-cyan-500/30 font-sans antialiased">
+    <div className="w-full flex flex-col items-center bg-gray-950 text-white overflow-x-hidden selection:bg-violet-500/30 font-sans antialiased">
       {/* Ambient Radial Lights */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full -z-10 pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-cyan-600/5 blur-[130px] rounded-full -z-10 pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-violet-600/10 blur-[150px] rounded-full -z-10 pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-violet-600/5 blur-[130px] rounded-full -z-10 pointer-events-none" />
 
       {/* --- HERO SECTION --- */}
       <section 
@@ -142,7 +142,7 @@ function ProductItemPage() {
           {/* Hero Right Content */}
           <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left order-1 lg:order-2">
             <div className="space-y-3">
-              <span className="inline-block px-3 py-1 text-xs font-bold tracking-widest uppercase bg-white/5 border border-white/10 rounded-full text-cyan-400">
+              <span className="inline-block px-3 py-1 text-xs font-bold tracking-widest uppercase bg-white/5 border border-white/10 rounded-full text-violet-400">
                 {content.category}
               </span>
 
@@ -167,7 +167,7 @@ function ProductItemPage() {
             <div data-aos="fade-up" data-aos-delay="200" className="pt-2 flex flex-wrap justify-center lg:justify-start gap-4">
               <button 
                 onClick={() => window.location.href = "mailto:sales@example.com"}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-bold text-sm tracking-wide text-white shadow-lg shadow-cyan-500/15 hover:shadow-cyan-500/30 hover:-translate-y-0.5 transition-all duration-200"
+                className="px-8 py-4 bg-gradient-to-r from-violet-500 to-violet-600 rounded-xl font-bold text-sm tracking-wide text-white shadow-lg shadow-violet-500/15 hover:shadow-violet-500/30 hover:-translate-y-0.5 transition-all duration-200"
               >
                 Request Live Demo
               </button>
@@ -183,7 +183,7 @@ function ProductItemPage() {
             <img className="w-full rounded-2xl border border-white/10 object-cover shadow-lg" src={content?.image} alt="Product breakdown" />
           </div>
           <div className="space-y-4">
-            <h2 className="text-xs font-bold tracking-widest text-cyan-500 uppercase">Product Summary</h2>
+            <h2 className="text-xs font-bold tracking-widest text-violet-500 uppercase">Product Summary</h2>
             <p className="text-gray-300 leading-relaxed text-base font-normal">{content?.description}</p>
           </div>
         </div>
@@ -211,8 +211,8 @@ function ProductItemPage() {
             <p className="text-xl font-medium text-slate-200 leading-relaxed">{content.contents.problemSolved}</p>
           </div>
           <div data-aos="fade-left" className="space-y-3">
-            <div className="flex items-center gap-2 text-cyan-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <div className="flex items-center gap-2 text-violet-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-violet-400" />
               <h3 className="font-bold uppercase text-xs tracking-widest">Architectural Solution</h3>
             </div>
             <p className="text-gray-400 leading-relaxed text-base">{content.contents.overview}</p>
@@ -224,15 +224,15 @@ function ProductItemPage() {
       <section className="w-full max-w-6xl py-20 px-6">
         <div className="text-center mb-16 space-y-2">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight uppercase">Enterprise Capabilities</h2>
-          <div className="h-0.5 w-16 bg-cyan-500 mx-auto rounded-full" />
+          <div className="h-0.5 w-16 bg-violet-500 mx-auto rounded-full" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 px-2 md:px-6">
           {Object.entries(content.features).map(([key, feature], index) => (
             <div key={key} data-aos="fade-up" data-aos-delay={index * 50} className="flex gap-5 items-start p-6 bg-white/[0.01] hover:bg-white/[0.04] rounded-2xl transition-all duration-300 group border border-white/5 hover:border-white/10">
-              <span className="text-xl text-cyan-500 mt-0.5 group-hover:rotate-45 transition-transform duration-300">✦</span>
+              <span className="text-xl text-violet-500 mt-0.5 group-hover:rotate-45 transition-transform duration-300">✦</span>
               <div className="space-y-1">
-                <h3 className="text-xl font-bold group-hover:text-cyan-400 transition-colors">{feature.title}</h3>
+                <h3 className="text-xl font-bold group-hover:text-violet-400 transition-colors">{feature.title}</h3>
                 <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{feature.description}</p>
               </div>
             </div>
@@ -245,7 +245,7 @@ function ProductItemPage() {
         <section className="w-full max-w-6xl py-20 px-6 border-t border-white/5">
           <div className="text-center mb-16 space-y-2">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight uppercase">Strategic Benefits</h2>
-            <div className="h-0.5 w-16 bg-blue-500 mx-auto rounded-full" />
+            <div className="h-0.5 w-16 bg-violet-500 mx-auto rounded-full" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2 md:px-6">
@@ -254,15 +254,15 @@ function ProductItemPage() {
                 key={index} 
                 data-aos="fade-up" 
                 data-aos-delay={index * 100}
-                className="relative p-8 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 rounded-2xl flex flex-col gap-4 overflow-hidden group hover:border-blue-500/30 transition-all duration-300"
+                className="relative p-8 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 rounded-2xl flex flex-col gap-4 overflow-hidden group hover:border-violet-500/30 transition-all duration-300"
               >
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-violet-500/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                 
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 text-sm font-bold">
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-violet-500/10 text-violet-400 text-sm font-bold">
                   0{index + 1}
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-slate-100 group-hover:text-blue-400 transition-colors duration-200">
+                  <h3 className="text-lg font-bold text-slate-100 group-hover:text-violet-400 transition-colors duration-200">
                     {benefit.title}
                   </h3>
                   <p className="text-gray-400 leading-relaxed text-sm">
@@ -326,7 +326,7 @@ function ProductItemPage() {
                     <button
                       key={index}
                       onClick={() => setActiveSlide(index)}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${activeSlide === index ? 'w-6 bg-cyan-400' : 'w-1.5 bg-white/40'}`}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${activeSlide === index ? 'w-6 bg-violet-400' : 'w-1.5 bg-white/40'}`}
                     />
                   ))}
                 </div>
@@ -341,8 +341,8 @@ function ProductItemPage() {
         <div className="space-y-3">
           <h4 className="text-lg font-bold flex items-center gap-2.5 text-slate-100">
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
             </span>
             Implementation Architecture
           </h4>
@@ -350,7 +350,7 @@ function ProductItemPage() {
         </div>
         <div className="space-y-3">
           <h4 className="text-lg font-bold flex items-center gap-2.5 text-slate-100">
-            <span className="h-2 w-2 rounded-full bg-blue-500" />
+            <span className="h-2 w-2 rounded-full bg-violet-500" />
             SLA & Support Engineering
           </h4>
           <p className="text-gray-400 text-sm leading-relaxed">{content.contents.support}</p>

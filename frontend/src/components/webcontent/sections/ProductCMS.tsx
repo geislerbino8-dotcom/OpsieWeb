@@ -144,7 +144,7 @@ const ProductCMS = () => {
 
                     {/* Category */}
                     <td className="mt-2 md:mt-0 md:px-6 md:py-4">
-                      <span className="inline-block px-2 py-1 text-blue-700 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">
+                      <span className="inline-block px-2 py-1 text-violet-700 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">
                         {product.category}
                       </span>
                     </td>
@@ -159,7 +159,7 @@ const ProductCMS = () => {
                     <td className="mt-4 md:mt-0 md:px-6 md:py-4 md:text-right border-t md:border-t-0 pt-3 md:pt-0">
                       <div>
                         <button
-                        className="w-full mr-4 md:w-auto text-green-300 hover:text-green-500 font-black text-xs md:text-sm uppercase tracking-widest py-2 md:py-0 border md:border-0 border-[#3CBDE6]/20 rounded md:rounded-none"
+                        className="w-full mr-4 md:w-auto text-green-300 hover:text-green-500 font-black text-xs md:text-sm uppercase tracking-widest py-2 md:py-0 border md:border-0 border-[#8B5CF6]/20 rounded md:rounded-none"
                         onClick={(e) => {
                           e.stopPropagation()
                           setSelectedProduct(product)
@@ -168,7 +168,7 @@ const ProductCMS = () => {
                         Edit 
                       </button>
                       <button
-                        className="w-full md:w-auto text-red-300 hover:text-red-500 font-black text-xs md:text-sm uppercase tracking-widest py-2 md:py-0 border md:border-0 border-[#3CBDE6]/20 rounded md:rounded-none"
+                        className="w-full md:w-auto text-red-300 hover:text-red-500 font-black text-xs md:text-sm uppercase tracking-widest py-2 md:py-0 border md:border-0 border-[#8B5CF6]/20 rounded md:rounded-none"
                         onClick={(e)=> {
                           e.stopPropagation()
                           setProductToDelete(product)

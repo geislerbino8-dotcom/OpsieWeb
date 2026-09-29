@@ -62,7 +62,7 @@ const EncourageCTACMS: React.FC = () => {
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
       <div
         className={`w-full p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${
-          isEditing ? "border-blue-500" : "border-transparent"
+          isEditing ? "border-violet-500" : "border-transparent"
         }`}
       >
         {isEditing ? (
@@ -77,7 +77,7 @@ const EncourageCTACMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Header</label>
               <input
                 name="header"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.header || ""}
                 onChange={handleChange}
               />
@@ -88,7 +88,7 @@ const EncourageCTACMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Sub Header</label>
               <input
                 name="subHeader"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.subHeader || ""}
                 onChange={handleChange}
               />
@@ -99,7 +99,7 @@ const EncourageCTACMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Button Text</label>
               <input
                 name="buttonText"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.button?.text || ""}
                 onChange={handleChange}
               />
@@ -125,7 +125,7 @@ const EncourageCTACMS: React.FC = () => {
         ) : (
           /* --- LIVE PREVIEW VIEW --- */
           <div
-            className="text-center bg-[#3CBDE6] p-6 rounded-xl cursor-pointer hover:opacity-95 transition-opacity"
+            className="text-center bg-[#8B5CF6] p-6 rounded-xl cursor-pointer hover:opacity-95 transition-opacity"
             onClick={() => setIsEditing(true)}
           >
             <h2 className="text-2xl font-bold text-white mb-2">
@@ -134,7 +134,7 @@ const EncourageCTACMS: React.FC = () => {
             <p className="text-white/90 mb-4">
               {formData?.subHeader || "Click to add a subheader"}
             </p>
-            <button className="bg-white text-[#3CBDE6] font-semibold px-6 py-2 rounded-lg shadow-sm">
+            <button className="bg-white text-[#8B5CF6] font-semibold px-6 py-2 rounded-lg shadow-sm">
               {formData?.button?.text || "Action"}
             </button>
           </div>

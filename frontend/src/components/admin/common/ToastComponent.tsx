@@ -13,7 +13,7 @@ const ToastContainer = ({ toasts }: Props) => {
             ? 'bg-green-600'
             : toast.type === 'error'
             ? 'bg-red-600'
-            : 'bg-[#3cbde6]';
+            : 'bg-[#8B5CF6]';
 
         return (
           <div

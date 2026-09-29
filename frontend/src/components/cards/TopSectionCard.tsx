@@ -18,7 +18,7 @@ function TopSectionCard({image, secName} : TopSectionCardProps) {
       >
         <img width={10} src={image} alt="" />
         <h5 style={{
-            color: '#3CBDE6',
+            color: '#8B5CF6',
             
 
         }}>{secName}</h5>

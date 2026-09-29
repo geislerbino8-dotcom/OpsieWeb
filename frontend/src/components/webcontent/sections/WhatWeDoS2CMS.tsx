@@ -44,7 +44,7 @@ const WhatWeDoS2CMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl border-2 transition-all ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl border-2 transition-all ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           <div className="flex flex-col gap-4">
@@ -74,7 +74,7 @@ const WhatWeDoS2CMS: React.FC = () => {
             </div>
 
             <div className="flex gap-2 mt-4"> 
-              <button onClick={saveChanges} className="flex-1 py-2 bg-blue-600 text-white rounded-lg font-semibold">Save</button>
+              <button onClick={saveChanges} className="flex-1 py-2 bg-violet-600 text-white rounded-lg font-semibold">Save</button>
               <button onClick={() => setIsEditing(false)} className="flex-1 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold">Cancel</button>
             </div>
           </div>
@@ -94,7 +94,7 @@ const WhatWeDoS2CMS: React.FC = () => {
                * <div className="mt-8">
               <a
                 href={formData.button.link}
-                className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-full shadow-lg"
+                className="inline-block px-8 py-3 bg-violet-600 text-white font-bold rounded-full shadow-lg"
               >
                 {formData.button.text}
               </a>
@@ -104,7 +104,7 @@ const WhatWeDoS2CMS: React.FC = () => {
 
             <button 
               onClick={() => setIsEditing(true)}
-              className="mt-10 text-gray-400 hover:text-blue-500 text-sm flex items-center justify-center gap-2 w-full transition-colors"
+              className="mt-10 text-gray-400 hover:text-violet-500 text-sm flex items-center justify-center gap-2 w-full transition-colors"
             >
               <span>⚙️</span> Edit Hero Section
             </button>

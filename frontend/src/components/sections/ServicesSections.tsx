@@ -32,13 +32,13 @@ const ServicesSection: React.FC = () => {
             <Button 
               variant="shadow" 
               iconImage={leftArrow} 
-              className="w-14 h-14 rounded-full bg-white shadow-xl pointer-events-auto hover:scale-110 transition-transform hover:bg-[#3CBDE6]"
+              className="w-14 h-14 rounded-full bg-white shadow-xl pointer-events-auto hover:scale-110 transition-transform hover:bg-[#8B5CF6]"
               onClick={handlePrev} 
             />
             <Button 
               variant="shadow" 
               iconImage={rightArrow} 
-              className="w-14 h-14 rounded-full bg-white shadow-xl pointer-events-auto hover:scale-110 transition-transform hover:bg-[#3CBDE6]"
+              className="w-14 h-14 rounded-full bg-white shadow-xl pointer-events-auto hover:scale-110 transition-transform hover:bg-[#8B5CF6]"
               onClick={handleNext} 
             />
           </div>

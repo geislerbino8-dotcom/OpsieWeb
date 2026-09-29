@@ -64,7 +64,7 @@ const ProductItemCTACMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -75,7 +75,7 @@ const ProductItemCTACMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Header</label>
               <input
                 name="header"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.header}
                 onChange={handleChange}
               />
@@ -85,7 +85,7 @@ const ProductItemCTACMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Sub Header</label>
               <input
                 name="subHeader"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.subHeader}
                 onChange={handleChange}
               />
@@ -95,7 +95,7 @@ const ProductItemCTACMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Button 1</label>
               <input
                 name="buttons[0].buttonText"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.buttons[0].buttonText}
                 onChange={handleChange}
               />
@@ -105,7 +105,7 @@ const ProductItemCTACMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Button 2</label>
               <input
                 name="buttons[1].buttonText"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.buttons[1].buttonText}
                 onChange={handleChange}
               />
@@ -133,7 +133,7 @@ const ProductItemCTACMS: React.FC = () => {
           <div className="text-center cursor-pointer group relative" onClick={()=> setIsEditing(true)}>
             
               <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-              <span className="text-blue-600 font-semibold">Click to Edit</span>
+              <span className="text-violet-600 font-semibold">Click to Edit</span>
             </div>
             
             <h2 className="text-xl font-bold text-gray-800 text-center mb-2">{content?.ctaSection?.header}</h2>

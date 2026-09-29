@@ -38,12 +38,12 @@ function ContactUsPage() {
           <div data-aos="fade-up" className="hidden md:flex absolute right-12 bottom-12 bg-white/10 backdrop-blur-xl p-8 rounded-[2rem] border border-white/20 items-center gap-6 shadow-2xl">
             <div className="flex -space-x-3">
               {[780, 816, 818].map((id) => (
-                <img key={id} src={`/profiles/Rectangle ${id}.svg`} className="w-14 h-14 rounded-full border-2 border-[#3CBDE6] object-cover" alt="client" />
+                <img key={id} src={`/profiles/Rectangle ${id}.svg`} className="w-14 h-14 rounded-full border-2 border-[#8B5CF6] object-cover" alt="client" />
               ))}
             </div>
             <div>
               <p className="text-sm font-bold tracking-widest uppercase opacity-80">Trusted by Teams</p>
-              <p className="text-[#3CBDE6] text-2xl font-bold">★★★★★ <span className="text-white text-base ml-2">5/5</span></p>
+              <p className="text-[#8B5CF6] text-2xl font-bold">★★★★★ <span className="text-white text-base ml-2">5/5</span></p>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ function ContactUsPage() {
                
                 <div className="flex flex-col sm:flex-row justify-between gap-1">
                   <span className="font-medium text-sm">Official Email</span> 
-                  <span className="text-[#3CBDE6] font-bold break-all text-right"><a href="mailto:inquiry@opsiesoftwaresolutions.com">inquiry@opsiesoftwaresolutions.com</a></span>
+                  <span className="text-[#8B5CF6] font-bold break-all text-right"><a href="mailto:inquiry@opsiesoftwaresolutions.com">inquiry@opsiesoftwaresolutions.com</a></span>
                 </div>
               </div>
             </ContactsCard>
@@ -85,8 +85,8 @@ function ContactUsPage() {
                   { Icon: SiGmail, label: "Email Us", link: "mailto:inquiry@opsiesoftwaresolutions.com" },
                   { Icon: SiIndeed, label: "Indeed", link: "#" }
                 ].map((item, i) => (
-                  <a key={i} href={item.link} className="flex items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-[#3CBDE6] hover:shadow-md transition-all group bg-white">
-                    <item.Icon className="text-gray-400 group-hover:text-[#3CBDE6] group-hover:scale-110 transition-all" size={20} />
+                  <a key={i} href={item.link} className="flex items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-[#8B5CF6] hover:shadow-md transition-all group bg-white">
+                    <item.Icon className="text-gray-400 group-hover:text-[#8B5CF6] group-hover:scale-110 transition-all" size={20} />
                     <span className="text-sm font-semibold text-gray-700">{item.label}</span>
                   </a>
                 ))}
@@ -96,12 +96,12 @@ function ContactUsPage() {
             }
 
             <div className="bg-[#242424] p-8 md:p-10 rounded-3xl text-white relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#3CBDE6] opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#8B5CF6] opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
               <h3 className="text-3xl font-bold mb-4">Meet With Us Online</h3>
               <p className="mb-8 text-gray-400 font-light leading-relaxed">Rather meet online than in person? We’re just a call away.</p>
               <button 
                 onClick={() => navigate("/book-a-schedule")}
-                className="w-full bg-[#3CBDE6] text-white py-4 rounded-xl font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg relative z-10"
+                className="w-full bg-[#8B5CF6] text-white py-4 rounded-xl font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg relative z-10"
               >
                 Book a Discovery Call
               </button>
@@ -125,7 +125,7 @@ function ContactUsPage() {
               
               <h2 className="text-4xl text-center md:text-left md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Visit our office <br /> at
-                <span className="text-[#3CBDE6]"> Sun Plaza.</span>
+                <span className="text-[#8B5CF6]"> Sun Plaza.</span>
               </h2>
               <p className="text-gray-300 text-lg max-w-md font-light leading-relaxed text-center md:text-left">
                 Experience our workspace and meet the brilliant minds behind our software solutions. 

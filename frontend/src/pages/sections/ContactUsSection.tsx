@@ -32,7 +32,7 @@ const ContactUsSection: React.FC = () => {
       </div>
 
       {/* 3. Decorative Dark Background Blobs */}
-      <div className="absolute -top-[10%] -right-[5%] w-[500px] h-[500px] bg-[#29A6CC]/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+      <div className="absolute -top-[10%] -right-[5%] w-[500px] h-[500px] bg-[#7C3AED]/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
       <div className="absolute -bottom-[10%] -left-[5%] w-[500px] h-[500px] bg-black/40 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="relative z-10 flex flex-col items-center w-full">
@@ -48,7 +48,7 @@ const ContactUsSection: React.FC = () => {
           <div className="flex justify-center">
             <button 
               onClick={() => navigate('/contact-us')}
-              className="group relative my-10 flex items-center gap-3 bg-white text-[#29A6CC] px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:bg-[#29A6CC] hover:text-white hover:-translate-y-1 active:scale-95"
+              className="group relative my-10 flex items-center gap-3 bg-white text-[#7C3AED] px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:bg-[#7C3AED] hover:text-white hover:-translate-y-1 active:scale-95"
             >
               <PlayCircle className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
               Request a Demo
@@ -114,13 +114,13 @@ const ContactDetail = ({ icon, title, detail, href, paddingClass = "px-0" }: Con
     className="group bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:bg-slate-900/50 hover:border-white/20 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3"
   >
     {/* Cleaned up the inner icon wrapper to blend with a dark design style */}
-    <div className="w-16 h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 shadow-xl group-hover:bg-[#3CBDE6] group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]">
+    <div className="w-16 h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 shadow-xl group-hover:bg-[#8B5CF6] group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]">
       {icon}
     </div>
     <h4 className="text-slate-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-3 transition-colors group-hover:text-white">
       {title}
     </h4>
-    <p className={`${paddingClass} text-slate-200 group-hover:text-[#3CBDE6] font-semibold text-lg transition-colors break-all md:break-normal`}>
+    <p className={`${paddingClass} text-slate-200 group-hover:text-[#8B5CF6] font-semibold text-lg transition-colors break-all md:break-normal`}>
       {detail}
     </p>
   </a>

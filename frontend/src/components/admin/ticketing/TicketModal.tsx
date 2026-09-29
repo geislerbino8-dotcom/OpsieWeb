@@ -166,7 +166,7 @@ const TicketModal = ({
             <div className='lg:col-span-2 p-8 border-r border-slate-100 dark:border-slate-800 space-y-8'>
               <section>
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 dark:text-slate-200">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Issue Description
+                  <span className="w-1.5 h-1.5 rounded-full bg-violet-500"></span>Issue Description
                 </h3>
                 <div className='bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-5 text-sm whitespace-pre-wrap dark:text-slate-300'>
                   {ticket.description || "No description provided."}
@@ -208,12 +208,12 @@ const TicketModal = ({
 
                 {showResolution && (
                   <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 space-y-3">
-                    <label className='block text-xs font-bold text-blue-700 dark:text-blue-400 uppercase tracking-tighter'>Resolution Content</label>
+                    <label className='block text-xs font-bold text-violet-700 dark:text-violet-400 uppercase tracking-tighter'>Resolution Content</label>
 
                     <div className="flex bg-slate-200 dark:bg-slate-800 p-1 rounded-md">
                       {(['text', 'image', 'file'] as ResolutionType[]).map((t) => (
                         <button key={t} type="button" onClick={() => { setResoType(t); setFile(null); setResoPreview(null); }}
-                          className={`flex-1 py-1 text-[10px] font-bold uppercase rounded ${resoType === t ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-white shadow-sm' : 'text-slate-500'}`}>
+                          className={`flex-1 py-1 text-[10px] font-bold uppercase rounded ${resoType === t ? 'bg-white dark:bg-slate-700 text-violet-600 dark:text-white shadow-sm' : 'text-slate-500'}`}>
                           {t}
                         </button>
                       ))}
@@ -229,7 +229,7 @@ const TicketModal = ({
                         
                         {!file ? (
                           <button type="button" onClick={() => fileInputRef.current?.click()}
-                            className="w-full py-6 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg flex flex-col items-center justify-center bg-white dark:bg-slate-800 hover:border-blue-500 transition-all">
+                            className="w-full py-6 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg flex flex-col items-center justify-center bg-white dark:bg-slate-800 hover:border-violet-500 transition-all">
                             <span className="text-xs text-slate-500 font-medium">Click to select {resoType}</span>
                           </button>
                         ) : (
@@ -274,7 +274,7 @@ const TicketModal = ({
           <div className='flex gap-3'>
             <button onClick={onClose} className='px-6 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm font-semibold dark:text-slate-300'>Cancel</button>
             <button onClick={handleSave} disabled={isUploading}
-              className={`px-8 py-2.5 rounded-lg text-white text-sm font-semibold shadow-md transition-all ${isUploading ? 'bg-slate-400' : 'bg-blue-600 hover:bg-blue-700'}`}>
+              className={`px-8 py-2.5 rounded-lg text-white text-sm font-semibold shadow-md transition-all ${isUploading ? 'bg-slate-400' : 'bg-violet-600 hover:bg-violet-700'}`}>
               {isUploading ? 'Uploading...' : 'Save Changes'}
             </button>
           </div>

@@ -121,7 +121,7 @@ const AboutPageCMS: React.FC = () => {
               dangerouslySetInnerHTML={{ __html: formData.description || "" }}
             />
             
-            <button className="mt-4 bg-[#3CBDE6] hover:bg-[#34a8cd] text-white px-6 py-2 rounded-lg font-medium transition-colors">
+            <button className="mt-4 bg-[#8B5CF6] hover:bg-[#34a8cd] text-white px-6 py-2 rounded-lg font-medium transition-colors">
               {formData.buttonText}
             </button>
             

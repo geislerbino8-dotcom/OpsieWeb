@@ -76,7 +76,7 @@ const ProductsPageCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? "border-blue-500" : "border-transparent"}`}>
+      <div className={`w-full max-w-2xl bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? "border-violet-500" : "border-transparent"}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -87,18 +87,18 @@ const ProductsPageCMS: React.FC = () => {
             <div className="space-y-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
               <div className="space-y-1">
                 <label className="text-[10px] font-bold text-gray-400 uppercase">Main Title</label>
-                <input name="header" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500" value={formData.header} onChange={handleChange} />
+                <input name="header" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-violet-500" value={formData.header} onChange={handleChange} />
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-bold text-gray-400 uppercase">Hero Description</label>
-                <textarea name="subHeader" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 min-h-[80px]" value={formData.subHeader} onChange={handleChange} />
+                <textarea name="subHeader" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-violet-500 min-h-[80px]" value={formData.subHeader} onChange={handleChange} />
               </div>
             </div>
 
             {/* Buttons Configuration */}
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 border rounded-xl space-y-3">
-                <label className="text-[10px] font-bold text-blue-500 uppercase">Primary Button</label>
+                <label className="text-[10px] font-bold text-violet-500 uppercase">Primary Button</label>
                 <input name="button1.text" placeholder="Label" className="w-full p-2 border rounded bg-white text-sm" value={formData.button1.text} onChange={handleChange} />
                 <input name="button1.link" placeholder="Link URL" className="w-full p-2 border rounded bg-white text-[10px] text-gray-400" value={formData.button1.link} onChange={handleChange} />
               </div>
@@ -117,7 +117,7 @@ const ProductsPageCMS: React.FC = () => {
             </div>
 
             <div className="flex flex-col gap-2 pt-4">
-              <button onClick={saveChanges} className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-lg active:scale-[0.98]">
+              <button onClick={saveChanges} className="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-lg transition-all shadow-lg active:scale-[0.98]">
                 Update Products Content
               </button>
               <button onClick={handleCancel} className="w-full py-3 text-gray-500 font-medium hover:text-gray-700 transition-colors">
@@ -128,18 +128,18 @@ const ProductsPageCMS: React.FC = () => {
         ) : (
           /* --- PREVIEW VIEW --- */
           <div className="p-12 cursor-pointer group relative text-center" onClick={() => setIsEditing(true)}>
-            <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded-2xl">
-              <span className="text-blue-600 font-bold bg-white px-6 py-2 rounded-full shadow-xl border border-blue-100">Click to Edit Section</span>
+            <div className="absolute inset-0 bg-violet-600/5 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded-2xl">
+              <span className="text-violet-600 font-bold bg-white px-6 py-2 rounded-full shadow-xl border border-blue-100">Click to Edit Section</span>
             </div>
 
             <h1 className="text-4xl font-black text-gray-900 mb-4 leading-tight">
               {/* This replaces asterisks with bold spans if you use that formatting convention */}
-              {formData.header.split('*').map((part, i) => i % 2 === 1 ? <span key={i} className="text-blue-600">{part}</span> : part)}
+              {formData.header.split('*').map((part, i) => i % 2 === 1 ? <span key={i} className="text-violet-600">{part}</span> : part)}
             </h1>
             <p className="text-gray-500 mb-10 max-w-md mx-auto leading-relaxed">{formData.subHeader}</p>
 
             <div className="flex justify-center gap-4 mb-16">
-              <button className="bg-blue-600 text-white px-8 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-200">
+              <button className="bg-violet-600 text-white px-8 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-200">
                 {formData.button1.text}
               </button>
               <button className="border border-gray-200 px-8 py-2.5 rounded-full text-sm font-bold text-gray-700 hover:bg-gray-50">

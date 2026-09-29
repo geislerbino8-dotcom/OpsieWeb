@@ -43,7 +43,7 @@ const LoginPage = () => {
   return (
     <div className='relative min-h-screen flex items-center justify-center overflow-hidden'>
       <div className='absolute inset-0 flex'>
-        <div className='w-1/2 bg-[#3cbde6]'></div>
+        <div className='w-1/2 bg-[#8B5CF6]'></div>
         <div className='w-1/2 bg-[#f0f7fa]'></div>
       </div>
 
@@ -63,7 +63,7 @@ const LoginPage = () => {
               placeholder='Username'
               value={username}
               onChange={(e)=>setUsername(e.target.value)}
-              className='w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+              className='w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
             />
 
             <input
@@ -71,12 +71,12 @@ const LoginPage = () => {
               placeholder='Password'
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
-              className='w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#3cbde6] focus:outline-none'
+              className='w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#8B5CF6] focus:outline-none'
             />
 
             <button
               type='submit'
-              className='w-full bg-[#3cbde6] hover:bg-blue-500 text-white py-2 rounded-md text-sm font-medium transition cursor-pointer'
+              className='w-full bg-[#8B5CF6] hover:bg-violet-500 text-white py-2 rounded-md text-sm font-medium transition cursor-pointer'
             >
               Login
             </button>

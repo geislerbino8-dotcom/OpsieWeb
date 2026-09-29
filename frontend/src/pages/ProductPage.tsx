@@ -101,7 +101,7 @@ function ProductPage() {
                 data-aos-delay="200"
               >
                 <button
-                  className="bg-[#3CBDE6] text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-cyan-500/30 hover:bg-[#2ca7cc] hover:-translate-y-1 transition-all"
+                  className="bg-[#8B5CF6] text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-violet-500/30 hover:bg-[#7C3AED] hover:-translate-y-1 transition-all"
                   onClick={() => navigate('/book-a-schedule')}
                 >
                   {content?.productsPage.button1.text}
@@ -121,7 +121,7 @@ function ProductPage() {
               data-aos="zoom-in-left"
             >
               {/* Cyan branding pulse behind images */}
-              <div className="absolute -inset-4 bg-[#3CBDE6]/10 blur-3xl rounded-full -z-10" />
+              <div className="absolute -inset-4 bg-[#8B5CF6]/10 blur-3xl rounded-full -z-10" />
 
               {[Product1, hris, opsync, web].map((img, idx) => (
                 <div

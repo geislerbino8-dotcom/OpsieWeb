@@ -41,7 +41,7 @@ function ProductSection() {
         <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 ">
           <div className="flex flex-col md:flex-row justify-center items-center gap-5" data-aos="zoom-in">
             <div className="relative">
-               <div className="absolute inset-0 bg-[#3CBDE6]/20 blur-xl rounded-full"></div>
+               <div className="absolute inset-0 bg-[#8B5CF6]/20 blur-xl rounded-full"></div>
                <img src={LogoOnly} alt="Opsie Logo" className="spin-slow w-16 h-16 relative z-10" />
             </div>
             <div className="md:w-1/2">
@@ -88,12 +88,12 @@ function ProductSection() {
                 className="
                   px-10 py-4
                   rounded-2xl font-bold uppercase tracking-widest text-xs
-                  text-[#3CBDE6]
+                  text-[#8B5CF6]
                   bg-white
-                  border-2 border-[#3CBDE6] border-opacity-30
+                  border-2 border-[#8B5CF6] border-opacity-30
                   transition-all duration-700 ease-out
                   hover:text-white
-                  hover:bg-[#3CBDE6]
+                  hover:bg-[#8B5CF6]
                   hover:border-opacity-100
                   hover:shadow-[0_20px_40px_rgba(60,189,230,0.2)]
                   hover:-translate-y-1

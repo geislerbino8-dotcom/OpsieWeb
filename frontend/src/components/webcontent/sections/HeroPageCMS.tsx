@@ -55,7 +55,7 @@ const HeroPageCMS: React.FC = () => {
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
       <div
         className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${
-          isEditing ? "border-blue-500" : "border-transparent"
+          isEditing ? "border-violet-500" : "border-transparent"
         }`}
       >
         {isEditing ? (
@@ -69,7 +69,7 @@ const HeroPageCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Header</label>
               <input
                 name="header"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.header || ""}
                 onChange={handleChange}
               />
@@ -79,7 +79,7 @@ const HeroPageCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Subheader</label>
               <textarea
                 name="subHeader"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none min-h-[100px]"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none min-h-[100px]"
                 value={formData?.subHeader || ""}
                 onChange={handleChange}
               />
@@ -89,7 +89,7 @@ const HeroPageCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Button Text</label>
               <input
                 name="button"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.button || ""}
                 onChange={handleChange}
               />
@@ -118,7 +118,7 @@ const HeroPageCMS: React.FC = () => {
             onClick={() => setIsEditing(true)}
           >
             <div className="bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-              <span className="text-blue-600 font-semibold">Click to Edit</span>
+              <span className="text-violet-600 font-semibold">Click to Edit</span>
             </div>
 
             <h2 className="font-bold text-3xl text-gray-900">
@@ -127,7 +127,7 @@ const HeroPageCMS: React.FC = () => {
             <p className="p-4 text-gray-600 leading-relaxed">
               {formData?.subHeader}
             </p>
-            <button className="bg-[#3CBDE6] hover:bg-[#2faacc] text-white px-8 py-3 rounded-full font-medium transition-colors">
+            <button className="bg-[#8B5CF6] hover:bg-[#2faacc] text-white px-8 py-3 rounded-full font-medium transition-colors">
               {formData?.button}
             </button>
           </div>

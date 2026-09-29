@@ -25,7 +25,7 @@ function AnalyticsCards({ numbers, unit, desc }: AnalyticsCardsProps) {
           direction="up"
           duration={3}
           className="count-up-text text-5xl text-[#242424] font-extrabold tracking-tight 
-                     transition-transform duration-500 group-hover:scale-110 group-hover:text-[#3CDBE6]"
+                     transition-transform duration-500 group-hover:scale-110 group-hover:text-[#8B5CF6]"
         />
         <h1 className="text-black">{unit}</h1>
         </div>
@@ -37,7 +37,7 @@ function AnalyticsCards({ numbers, unit, desc }: AnalyticsCardsProps) {
       </div>
 
       {/* Modern Bottom Border Shine */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#3CDBE6] transition-all duration-500 group-hover:w-1/3 rounded-full" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#8B5CF6] transition-all duration-500 group-hover:w-1/3 rounded-full" />
     </div>
   );
 }

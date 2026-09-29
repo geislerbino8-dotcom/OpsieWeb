@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="text-center">
           {
             /**
-             * <div className="inline-flex items-center gap-2 bg-[#E6F7FC] text-[#3CBDE6] px-4 py-1 rounded-full text-sm mb-4">
+             * <div className="inline-flex items-center gap-2 bg-[#E6F7FC] text-[#8B5CF6] px-4 py-1 rounded-full text-sm mb-4">
             ⚙️ Our Partnership
           </div>
              */
@@ -84,13 +84,13 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-3">Quick Links</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/who-we-are">About Us</Link>
                 </li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/products">Our Products</Link>
                 </li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/contact-us">Contact Us</Link>
                 </li>
               </ul>
@@ -99,13 +99,13 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-3">Company</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/what-we-do">Why Opsie</Link>
                 </li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/who-we-are">Our Team</Link>
                 </li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">
+                <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/who-we-are">FAQ's</Link>
                 </li>
               </ul>
@@ -114,9 +114,9 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-3">Who We Are</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:text-[#3CBDE6] cursor-pointer">Our Story</li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">Our Mission</li>
-                <li className="hover:text-[#3CBDE6] cursor-pointer">Our Vision</li>
+                <li className="hover:text-[#8B5CF6] cursor-pointer">Our Story</li>
+                <li className="hover:text-[#8B5CF6] cursor-pointer">Our Mission</li>
+                <li className="hover:text-[#8B5CF6] cursor-pointer">Our Vision</li>
               </ul>
             </div>
 
@@ -141,7 +141,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Follow us on Facebook"
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
                 <SiFacebook aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
             </a>
             <a
@@ -149,13 +149,13 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Follow us on Instagram"
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
                 <SiInstagram aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
             </a>
             <a
               href="mailto:hello@opsie.com"
               aria-label="Email us at hello@opsie.com"
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#3CBDE6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-white hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
                 <SiGmail aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
             </a>
 

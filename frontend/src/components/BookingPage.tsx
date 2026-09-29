@@ -14,8 +14,8 @@ function BookingPage() {
       />
       
       {/* Subtle Gradient Blobs for depth */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#3CBDE6]/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-[#3CBDE6]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#8B5CF6]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-[#8B5CF6]/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* --- CONTENT CONTAINER --- */}
       <div className="relative z-10 w-full max-w-[1280px] px-6 py-20 flex flex-col items-center">
@@ -30,7 +30,7 @@ function BookingPage() {
             <div className="text-center" data-aos="fade-down">
           
           <h1 className="text-4xl md:text-6xl font-poppins leading-tight">
-            Let's Discuss <span className="text-[#3CBDE6] font-semibold">Your Vision.</span>
+            Let's Discuss <span className="text-[#8B5CF6] font-semibold">Your Vision.</span>
           </h1>
           <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-light">
             Select a time that works best for you. Our experts are ready to help you 
@@ -64,12 +64,12 @@ function BookingPage() {
           <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
             <a 
               href="mailto:support@example.com" 
-              className="text-[#242424] font-semibold hover:text-[#3CBDE6] transition-colors flex items-center gap-2"
+              className="text-[#242424] font-semibold hover:text-[#8B5CF6] transition-colors flex items-center gap-2"
             >
               Email us directly →
             </a>
             <span className="hidden md:block text-gray-300">|</span>
-            <button className="text-[#242424] font-semibold hover:text-[#3CBDE6] transition-colors">
+            <button className="text-[#242424] font-semibold hover:text-[#8B5CF6] transition-colors">
               Chat on Messenger
             </button>
           </div>

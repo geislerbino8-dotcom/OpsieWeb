@@ -147,7 +147,7 @@ export default function MapBox({
         data: routeData as any,
       },
       paint: {
-        "line-color": "#3CBDE6",
+        "line-color": "#8B5CF6",
         "line-width": 5,
       },
     });

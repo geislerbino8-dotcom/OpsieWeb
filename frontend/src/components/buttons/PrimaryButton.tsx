@@ -24,9 +24,9 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
     primary:
       "text-white bg-[#2da9cf] hover:bg-[#242424]",
     outline:
-      "border border-[#3CBDE6] text-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white",
+      "border border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white",
     ghost:
-      "text-[#3CBDE6] hover:bg-[#3CBDE6]/10",
+      "text-[#8B5CF6] hover:bg-[#8B5CF6]/10",
   };
 
   // 📏 Sizes

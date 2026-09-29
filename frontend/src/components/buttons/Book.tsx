@@ -10,7 +10,7 @@ type BookProps = {
 
 function Book({
   text,
-  color = '#3CBDE6',
+  color = '#8B5CF6',
   fontSize = '1',      // in em
   borderRadius = '0.25', // in em
   margin = '0.5',       // in em

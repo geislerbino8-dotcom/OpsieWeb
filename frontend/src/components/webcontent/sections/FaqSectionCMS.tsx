@@ -48,7 +48,7 @@ const FaqSectionCMS: React.FC = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-gray-50 p-6">
-      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-blue-500' : 'border-transparent'}`}>
+      <div className={`w-full max-w-2xl p-8 bg-white rounded-2xl shadow-xl transition-all border-2 ${isEditing ? 'border-violet-500' : 'border-transparent'}`}>
         
         {isEditing ? (
           /* --- CMS EDITOR VIEW --- */
@@ -59,7 +59,7 @@ const FaqSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Header</label>
               <input
                 name="header" // Match the HeroSection key
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.header || ""}
                 onChange={handleChange}
               />
@@ -69,7 +69,7 @@ const FaqSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Sub Header</label>
               <input
                 name="subHeader" // Match the HeroSection key
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.subHeader || ""}
                 onChange={handleChange}
               />
@@ -79,7 +79,7 @@ const FaqSectionCMS: React.FC = () => {
               <label className="text-sm font-semibold text-gray-600">Button Text</label>
               <input
                 name="buttonText" // Match the HeroSection key
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 outline-none"
                 value={formData?.buttonText || ""}
                 onChange={handleChange}
               />
@@ -111,7 +111,7 @@ const FaqSectionCMS: React.FC = () => {
           >
 
              <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-              <span className="text-blue-600 font-semibold">Click to Edit</span>
+              <span className="text-violet-600 font-semibold">Click to Edit</span>
             </div>
 
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
@@ -122,7 +122,7 @@ const FaqSectionCMS: React.FC = () => {
               {formData?.subHeader}
             </p>
             {content?.faqSection?.buttonText && (
-               <button className="px-6 py-2 bg-blue-600 text-white rounded-full">
+               <button className="px-6 py-2 bg-violet-600 text-white rounded-full">
                  {formData?.buttonText}
                </button>
             )}

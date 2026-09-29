@@ -46,8 +46,8 @@ export default function Header() {
                     className={({ isActive }) =>
                       `${baseStyle} ${
                         isActive
-                          ? "bg-[#3CBDE6]  text-white font-bold"
-                          : "hover:bg-[#3CBDE6] hover:text-white"
+                          ? "bg-[#8B5CF6]  text-white font-bold"
+                          : "hover:bg-[#8B5CF6] hover:text-white"
                       }`
                 }
               >
@@ -58,7 +58,7 @@ export default function Header() {
         </ul>
 
         {/* Button */}
-        <div className="hidden md:flex flex-row bg-[#3CBDE6] py-1  md:text-[12px] lg:text-[16px] lg:px-4  rounded-3xl text-white  transition">
+        <div className="hidden md:flex flex-row bg-[#8B5CF6] py-1  md:text-[12px] lg:text-[16px] lg:px-4  rounded-3xl text-white  transition">
 
         <Button
               label="Get Started"
