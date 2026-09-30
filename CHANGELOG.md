@@ -2,7 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2026-09-29
+## [Unreleased] - 2026-09-30
+
+### Added
+
+- **Skip navigation link** — `C:\OJT\OpsieWebsite\frontend\src\Layout.tsx` — "Skip to main content" link for keyboard users
+- **Semantic `<main>` element** — `C:\OJT\OpsieWebsite\frontend\src\Layout.tsx` — wraps page content with `id="main-content"` and `tabIndex={-1}`
+- **Focus-visible styles** — `C:\OJT\OpsieWebsite\frontend\src\index.css` — purple outline on keyboard focus
+- **Reduced motion support** — `C:\OJT\OpsieWebsite\frontend\src\index.css` — `@media (prefers-reduced-motion: reduce)` disables animations
+
+### Fixed
+
+- **Navigation logo accessibility** — `C:\OJT\OpsieWebsite\frontend\src\components\Navigation.tsx` — `<div onClick>` → `<Link>` for keyboard navigation
+- **Navigation ARIA attributes** — `C:\OJT\OpsieWebsite\frontend\src\components\Navigation.tsx` — added `aria-current="page"`, `aria-expanded`, `aria-haspopup`, `aria-label` on dropdown
+- **Mobile menu accessibility** — `C:\OJT\OpsieWebsite\frontend\src\components\Navigation.tsx` — added `aria-expanded` to toggle button
+- **Footer link accessibility** — `C:\OJT\OpsieWebsite\frontend\src\components\Footer.tsx` — added `<Link>` to "Our Story", "Our Mission", "Our Vision"
+- **Social icon sizing** — `C:\OJT\OpsieWebsite\frontend\src\components\Footer.tsx` — fixed inconsistent `text-3xl md:w-4 md:h-4 lg:w-8 lg:h-8` → `w-5 h-5`
+- **MobileMenu nav label** — `C:\OJT\OpsieWebsite\frontend\src\components\MobileMenu.tsx` — added `aria-label="Mobile navigation"`
+
+---
+
+## [2026-09-29]
 
 ### Fixed
 
