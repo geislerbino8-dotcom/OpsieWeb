@@ -41,7 +41,7 @@ function MobileMenu({ closeMenu }: MobileMenuProps) {
           ×
         </button>
 
-        <nav className="flex-1 flex flex-col justify-center">
+        <nav className="flex-1 flex flex-col justify-center" aria-label="Mobile navigation">
           <ul className="flex flex-col justify-center space-y-6 text-lg font-semibold text-center">
             {menuLists.map((item) => (
               <li

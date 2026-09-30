@@ -81,9 +81,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       <div className="md:flex flex-col max-w-7xl max-[865px]:hidden mx-auto py-1 px-6">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
-          <div className="cursor-pointer" onClick={directToHome}>
+          <Link to="/" className="cursor-pointer" aria-label="Opsie Home">
             <img src={logo} alt="Opsie Logo" className="w-32" />
-          </div>
+          </Link>
 
           {/* Menu */}
           <ul className="flex px-6 py-2 text-white relative">
@@ -101,9 +101,11 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     {/* Trigger */}
                     <Link
                       to={item.link}
+                      aria-haspopup="true"
+                      aria-expanded={isProductsHover}
                       className={`block px-4 py-2 rounded-3xl transition-colors duration-200
                          hover:text-[#8B5CF6] 
-                        ${location.pathname === item.link ? "font-bold text-[#8B5CF6]" : ""}
+                        ${location.pathname === item.link ? "font-bold text-[#8B5CF6] aria-current-page" : ""}
                       `}
                     >
                       {item.name}
@@ -112,6 +114,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     {/* Dropdown */}
                     {isProductsHover && (
                       <aside
+                        aria-label="Product submenu"
                         className="
 
                           absolute top-full left-0 w-56 shadow-xl p-2 bg-white
@@ -142,7 +145,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                     hover:text-[#8B5CF6]
                     ${
                       location.pathname === item.link
-                        ? "font-bold text-[#8B5CF6]"
+                        ? "font-bold text-[#8B5CF6] aria-current-page"
                         : ""
                     }`}
                   >
@@ -162,11 +165,11 @@ const [isProductsHover, setIsProductsHover] = useState(false);
 
       {/* Mobile */}
       <div className="flex items-center justify-between px-6 py-4 md:hidden">
-        <div className="cursor-pointer" onClick={directToHome}>
+        <Link to="/" className="cursor-pointer" aria-label="Opsie Home">
           <img src={logo} alt="Opsie Logo" className="w-24" />
-        </div>
+        </Link>
 
-        <button onClick={toggleMobileNav} aria-label="Toggle menu">
+        <button onClick={toggleMobileNav} aria-label="Toggle menu" aria-expanded={navIsOpen}>
           <img src={burgermenu} alt="Menu" className="w-8" />
         </button>
       </div>

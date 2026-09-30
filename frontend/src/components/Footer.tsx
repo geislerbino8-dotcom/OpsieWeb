@@ -114,9 +114,9 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-3">Who We Are</h3>
               <ul className="space-y-2 text-gray-300 text-sm">
-                <li className="hover:text-[#8B5CF6] cursor-pointer">Our Story</li>
-                <li className="hover:text-[#8B5CF6] cursor-pointer">Our Mission</li>
-                <li className="hover:text-[#8B5CF6] cursor-pointer">Our Vision</li>
+                <li className="hover:text-[#8B5CF6] cursor-pointer"><Link to="/who-we-are">Our Story</Link></li>
+                <li className="hover:text-[#8B5CF6] cursor-pointer"><Link to="/who-we-are">Our Mission</Link></li>
+                <li className="hover:text-[#8B5CF6] cursor-pointer"><Link to="/who-we-are">Our Vision</Link></li>
               </ul>
             </div>
 
@@ -142,7 +142,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               aria-label="Follow us on Facebook"
               className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-[#1a1a1a] hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
-                <SiFacebook aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
+                <SiFacebook aria-hidden="true" className="group-hover:text-white text-gray-400 w-5 h-5"/>
             </a>
             <a
               href="https://instagram.com"
@@ -150,13 +150,13 @@ const Footer = () => {
               rel="noopener noreferrer"
               aria-label="Follow us on Instagram"
               className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-[#1a1a1a] hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
-                <SiInstagram aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
+                <SiInstagram aria-hidden="true" className="group-hover:text-white text-gray-400 w-5 h-5"/>
             </a>
             <a
               href="mailto:hello@opsie.com"
               aria-label="Email us at hello@opsie.com"
               className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-[#1a1a1a] hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
-                <SiGmail aria-hidden="true" className="group-hover:text-white text-gray-400 text-3xl object-cover  md:w-4 md:h-4 lg:w-8 lg:h-8 "/>
+                <SiGmail aria-hidden="true" className="group-hover:text-white text-gray-400 w-5 h-5"/>
             </a>
 
           </div>
