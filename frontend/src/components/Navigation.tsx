@@ -37,9 +37,10 @@ function DateTimeDisplay() {
   return (
     <div className="hidden lg:flex items-center gap-2 text-white/80 text-xs font-medium px-3 py-1.5 rounded-full border border-white/10 bg-white/5">
       <Clock className="w-3.5 h-3.5 text-[#8B5CF6]" />
-      <span>{date}</span>
-      <span className="text-white/30">|</span>
-      <span className="font-mono">{time}</span>
+      <div className="flex flex-col leading-tight">
+        <span className="font-mono">{time}</span>
+        <span className="text-white/50 text-[10px]">{date}</span>
+      </div>
     </div>
   );
 }
@@ -134,7 +135,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                       aria-haspopup="true"
                       aria-expanded={isProductsHover}
                       className={`block px-4 py-2 rounded-3xl transition-colors duration-200
-                         hover:text-[#8B5CF6] 
+                         hover:text-[#8B5CF6]
                         ${location.pathname === item.link ? "font-bold text-[#8B5CF6] aria-current-page" : ""}
                       `}
                     >
