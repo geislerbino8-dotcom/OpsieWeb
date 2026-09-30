@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Clock } from "lucide-react";
 import logo from "../assets/opsie/opsie_logo.png";
 import PrimaryButton from "./buttons/PrimaryButton";
 import MobileMenu from "./MobileMenu";
@@ -13,6 +14,35 @@ const menuLists = [
   { name: "Contact Us", link: "/contact-us" },
   { name: "Products", link: "/products" },
 ];
+
+function DateTimeDisplay() {
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const time = now.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  const date = now.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+
+  return (
+    <div className="hidden lg:flex items-center gap-2 text-white/80 text-xs font-medium px-3 py-1.5 rounded-full border border-white/10 bg-white/5">
+      <Clock className="w-3.5 h-3.5 text-[#8B5CF6]" />
+      <span>{date}</span>
+      <span className="text-white/30">|</span>
+      <span className="font-mono">{time}</span>
+    </div>
+  );
+}
 
 
 function Navigation() {
@@ -155,6 +185,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
               );
             })}
           </ul>
+
+          {/* Date/Time Display */}
+          <DateTimeDisplay />
 
           {/* Button */}
           <PrimaryButton text="Get Started" variant="primary" onClick={()=> {
