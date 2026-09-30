@@ -1,7 +1,71 @@
-import { InlineWidget } from "react-calendly";
+import { useEffect, useRef } from "react";
 import logo from '../assets/icons/opsie_logo_only.png';
 
+const TIMEKIT_CSS = "https://cdn.timekit.io/booking-js/v3/booking.min.css";
+const TIMEKIT_JS = "https://cdn.timekit.io/booking-js/v3/booking.min.js";
+const TIMEKIT_PROJECT_SLUG = "opsie-schedule-a-meeting";
+
+declare global {
+  interface Window {
+    TimekitBooking?: new () => { init: (config: Record<string, unknown>) => void };
+  }
+}
+
+function loadTimekitScript(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (window.TimekitBooking) return resolve();
+
+    const existing = document.querySelector<HTMLScriptElement>(
+      `script[src="${TIMEKIT_JS}"]`
+    );
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", reject);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = TIMEKIT_JS;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = reject;
+    document.body.appendChild(script);
+  });
+}
+
 function BookingPage() {
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!document.getElementById("timekit-booking-css")) {
+      const link = document.createElement("link");
+      link.id = "timekit-booking-css";
+      link.rel = "stylesheet";
+      link.href = TIMEKIT_CSS;
+      document.head.appendChild(link);
+    }
+
+    loadTimekitScript()
+      .then(() => {
+        if (cancelled || !widgetRef.current || !window.TimekitBooking) return;
+        widgetRef.current.innerHTML = "";
+        new window.TimekitBooking().init({
+          el: "#timekit-booking",
+          project_slug: TIMEKIT_PROJECT_SLUG,
+        });
+      })
+      .catch((error) => {
+        console.error("Failed to load Timekit booking widget:", error);
+      });
+
+    return () => {
+      cancelled = true;
+      if (widgetRef.current) widgetRef.current.innerHTML = "";
+    };
+  }, []);
+
   return (
     <div className="min-h-screen w-full bg-[#FAFBFF] relative overflow-hidden flex flex-col items-center">
       
@@ -20,7 +84,7 @@ function BookingPage() {
       {/* --- CONTENT CONTAINER --- */}
       <div className="relative z-10 w-full max-w-[1280px] px-6 py-20 flex flex-col items-center">
 
-        {/* --- CALENDLY WRAPPER --- */}
+        {/* --- TIMEKIT WRAPPER --- */}
         <div 
           className="w-full max-w-5xl overflow-hidden"
           data-aos="zoom-in"
@@ -37,21 +101,8 @@ function BookingPage() {
             turn complex challenges into simple digital solutions.
           </p>
         </div>
-             <InlineWidget
-              url="https://calendly.com/inquiry-opsiesoftwaresolutions/30min"
-              styles={{ height: "700px", width: '100%', margin: 0, padding: 0}}
-              pageSettings={{
-                backgroundColor: 'ffffff',
-                hideEventTypeDetails: false,
-                hideLandingPageDetails: false,
-                primaryColor: '3cbde6',
-                textColor: '242424',
-              }}
-              prefill={{
-                name: "Juan Dela Cruz",
-                email: "juanD@example.com",
-              }}
-            />
+             {/* Timekit booking widget mounts here */}
+             <div id="timekit-booking" ref={widgetRef} className="w-full min-h-[700px]" />
           </div>
         </div>
 
