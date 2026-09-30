@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-09-30
 
+### Changed
+
+- **Calendly → Timekit** — `C:\OJT\OpsieWebsite\frontend\src\components\BookingPage.tsx` — replaced `react-calendly` `InlineWidget` with Timekit booking-js v3 loaded from CDN, mounting the `opsie-schedule-a-meeting` project into `#timekit-booking`
+- **Removed `react-calendly`** — `C:\OJT\OpsieWebsite\frontend\package.json` — dependency uninstalled, no longer used
+- **Navigation DateTimeDisplay** — `C:\OJT\OpsieWebsite\frontend\src\components\Navigation.tsx` — resized into a smaller tab beside Products / Get Started
+
 ### Added
 
 - **Skip navigation link** — `C:\OJT\OpsieWebsite\frontend\src\Layout.tsx` — "Skip to main content" link for keyboard users
