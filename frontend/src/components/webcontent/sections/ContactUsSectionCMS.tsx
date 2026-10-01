@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { WebContentContext } from "../WebContentFrom";
 import { updateContent } from "@/api/updateContent";
 
@@ -24,11 +24,16 @@ function ContactUsSectionCMS() {
   const [formData, setFormData] = useState<ContactUsPage | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (content?.draftContent.contactUsPage) {
-      setFormData(content.draftContent.contactUsPage);
-    }
-  }, [content]);
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if (content?.draftContent.contactUsPage) {
+  setFormData(content.draftContent.contactUsPage);
+  }
+}
 
   // Dynamic handler for nested objects (e.g., name="blackBox.header")
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

@@ -30,58 +30,6 @@ export default function MapBox({
 
   const [userLocation, setUserLocation] = useState<Location | null>(null);
 
-  // 🧭 Trigger directions
-  useEffect(() => {
-    if (getDirection) {
-      handleDirections();
-      setDirAction(false);
-    }
-  }, [getDirection]);
-
-  // 🗺️ Initialize map
-  useEffect(() => {
-    mapboxgl.accessToken = MAPBOX_TOKEN;
-
-    mapRef.current = new mapboxgl.Map({
-      container: mapContainer.current!,
-      style: "mapbox://styles/mapbox/streets-v12",
-      center: [location.lng, location.lat],
-      zoom: 15,
-    });
-
-    mapRef.current.on("load", () => {
-      addOrUpdateDestinationMarker(location);
-    });
-
-    return () => {
-      mapRef.current?.remove();
-    };
-  }, []);
-
-  // 📍 Update map when destination changes
-  useEffect(() => {
-    if (!mapRef.current) return;
-
-    mapRef.current.flyTo({
-      center: [location.lng, location.lat],
-    });
-
-    addOrUpdateDestinationMarker(location);
-  }, [location]);
-
-  // 🚀 Fly to user when detected
-  useEffect(() => {
-    if (userLocation && mapRef.current) {
-      mapRef.current.flyTo({
-        center: [userLocation.lng, userLocation.lat],
-        zoom: 15,
-        speed: 1.2,
-        curve: 1.4,
-        essential: true,
-      });
-    }
-  }, [userLocation]);
-
   // 📍 Destination marker handler
   const addOrUpdateDestinationMarker = (loc: { lng: number; lat: number }) => {
     if (!mapRef.current) return;
@@ -200,6 +148,58 @@ export default function MapBox({
       }
     );
   };
+
+  // 🧭 Trigger directions
+  useEffect(() => {
+    if (getDirection) {
+      handleDirections();
+      setDirAction(false);
+    }
+  }, [getDirection]);
+
+  // 🗺️ Initialize map
+  useEffect(() => {
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+
+    mapRef.current = new mapboxgl.Map({
+      container: mapContainer.current!,
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [location.lng, location.lat],
+      zoom: 15,
+    });
+
+    mapRef.current.on("load", () => {
+      addOrUpdateDestinationMarker(location);
+    });
+
+    return () => {
+      mapRef.current?.remove();
+    };
+  }, []);
+
+  // 📍 Update map when destination changes
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    mapRef.current.flyTo({
+      center: [location.lng, location.lat],
+    });
+
+    addOrUpdateDestinationMarker(location);
+  }, [location]);
+
+  // 🚀 Fly to user when detected
+  useEffect(() => {
+    if (userLocation && mapRef.current) {
+      mapRef.current.flyTo({
+        center: [userLocation.lng, userLocation.lat],
+        zoom: 15,
+        speed: 1.2,
+        curve: 1.4,
+        essential: true,
+      });
+    }
+  }, [userLocation]);
 
   return (
     <div

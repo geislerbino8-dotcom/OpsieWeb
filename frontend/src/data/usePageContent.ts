@@ -1,3 +1,3 @@
 import { getContent } from "@/api/getContent";
 
-export let usePageContent = await getContent()
+export const usePageContent = await getContent()

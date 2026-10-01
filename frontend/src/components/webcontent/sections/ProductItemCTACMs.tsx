@@ -1,5 +1,5 @@
 import { updateContent } from "@/api/updateContent";
-import React, { useContext, useEffect, useState, } from "react";
+import React, { useContext, useState } from "react";
 import { WebContentContext } from "../WebContentFrom";
 
 interface T {
@@ -19,11 +19,16 @@ const ProductItemCTACMS: React.FC = () => {
   const [formData, setFormData ] = useState<CTAType | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(()=> {
-    if(content?.draftContent.ctaSection){
-      setFormData(content.draftContent.ctaSection)
-    }
-  }, [content])
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if(content?.draftContent.ctaSection){
+  setFormData(content.draftContent.ctaSection)
+  }
+}
 
   const handleChange =async (e: any) => {
     const { name, value } = e.target;

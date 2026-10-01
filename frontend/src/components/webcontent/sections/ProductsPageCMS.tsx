@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { WebContentContext } from "../WebContentFrom";
 import { updateContent } from "@/api/updateContent";
 
@@ -23,11 +23,16 @@ const ProductsPageCMS: React.FC = () => {
   const [formData, setFormData] = useState<ProductsPage | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (content?.draftContent.productsPage) {
-      setFormData(content.draftContent.productsPage);
-    }
-  }, [content]);
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if (content?.draftContent.productsPage) {
+  setFormData(content.draftContent.productsPage);
+  }
+}
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;

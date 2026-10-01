@@ -1,5 +1,5 @@
 import { updateContent } from "@/api/updateContent";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { WebContentContext } from "../WebContentFrom";
 
 interface AboutSection {
@@ -15,12 +15,16 @@ const AboutPageCMS: React.FC = () => {
   const [formData, setFormData] = useState<AboutSection | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  // Sync state when context content loads or changes
-  useEffect(() => {
+  // Sync state when context content loads or changes.
+  // Adjusting state during render (React's documented alternative to an
+  // effect that only copies props/context into state).
+  const [prevContent, setPrevContent] = useState(content);
+  if (content !== prevContent) {
+    setPrevContent(content);
     if (content?.draftContent.aboutUsSection) {
       setFormData(content.draftContent.aboutUsSection);
     }
-  }, [content]);
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -44,7 +48,7 @@ const AboutPageCMS: React.FC = () => {
   };
 
   const handleCancel = () => {
-    setFormData(content?.draftSection.aboutUsSection || null);
+    setFormData(content?.draftContent.aboutUsSection || null);
     setIsEditing(false);
   };
 

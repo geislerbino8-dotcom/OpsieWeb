@@ -232,8 +232,8 @@ const TicketingSupportSystemPage = () => {
 
   // --- Sorting Logic ---
   filteredTickets.sort((a, b) => {
-    let aVal = sortField === 'assignee' ? (a.assignee?.name || '') : (a as any)[sortField] || '';
-    let bVal = sortField === 'assignee' ? (b.assignee?.name || '') : (b as any)[sortField] || '';
+    const aVal = sortField === 'assignee' ? (a.assignee?.name || '') : (a as any)[sortField] || '';
+    const bVal = sortField === 'assignee' ? (b.assignee?.name || '') : (b as any)[sortField] || '';
     if (sortField === 'createdAt' || sortField === 'updatedAt') {
       const diff = new Date(aVal).getTime() - new Date(bVal).getTime();
       return sortDirection === 'asc' ? diff : -diff;

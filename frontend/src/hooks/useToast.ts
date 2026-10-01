@@ -8,11 +8,16 @@ export type Toast = {
   type: ToastType;
 };
 
+// Module-level monotonic counter so IDs stay unique without calling
+// `Date.now()` (which React's purity rule disallows in render scope).
+// `addToast` only ever runs from event handlers, never during render.
+let nextToastId = 0;
+
 export const useToast = () => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const addToast = (message: string, type: ToastType = 'info') => {
-    const id = Date.now();
+    const id = ++nextToastId;
 
     const newToast: Toast = { id, message, type };
 

@@ -1,5 +1,5 @@
 import { updateContent } from "@/api/updateContent";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { WebContentContext } from "../WebContentFrom";
 
 interface HeroSection {
@@ -14,11 +14,16 @@ const FaqSectionCMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   // Sync internal state when context data loads
-  useEffect(() => {
-    if (content?.draftContent.faqSection) {
-      setFormData(content.draftContent.faqSection);
-    }
-  }, [content]);
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if (content?.draftContent.faqSection) {
+  setFormData(content.draftContent.faqSection);
+  }
+}
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -95,7 +100,7 @@ const FaqSectionCMS: React.FC = () => {
 
               <button
                 onClick={() => {
-                  handleCancel; // Revert changes
+                  handleCancel(); // Revert changes
                   setIsEditing(false);
                 }}
                 className="flex-1 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-lg transition-colors"

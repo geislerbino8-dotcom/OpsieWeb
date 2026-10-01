@@ -1,5 +1,5 @@
 import { updateContent } from "@/api/updateContent";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { WebContentContext } from "../WebContentFrom";
 
 interface HeroSection {
@@ -15,11 +15,16 @@ const HeroPageCMS: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   // Sync state with context when content loads
-  useEffect(() => {
-    if (content?.draftContent) {
-      setFormData(content.draftContent.heroSection);
-    }
-  }, [content]); // Added dependency array
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if (content?.draftContent) {
+  setFormData(content.draftContent.heroSection);
+  }
+} // Added dependency array
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

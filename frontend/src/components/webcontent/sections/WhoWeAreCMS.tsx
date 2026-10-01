@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { WebContentContext } from "../WebContentFrom";
 import { updateContent } from "@/api/updateContent";
 
@@ -21,11 +21,16 @@ function WhoWeAreCMS() {
   const [formData, setFormData] = useState<WhoWeAre | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (content?.draftContent.whoWeArePage) {
-      setFormData(content.draftContent.whoWeArePage);
-    }
-  }, [content]);
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if (content?.draftContent.whoWeArePage) {
+  setFormData(content.draftContent.whoWeArePage);
+  }
+}
 
   // Handle both top-level and nested object updates
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

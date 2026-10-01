@@ -1,5 +1,5 @@
 import { updateContent } from "@/api/updateContent";
-import React, { useContext, useEffect, useState, } from "react";
+import React, { useContext, useState } from "react";
 import { WebContentContext } from "../WebContentFrom";
 
 interface HeroSection {
@@ -14,11 +14,16 @@ const ClientSectionCMS: React.FC = () => {
   const [formData, setFormData ] = useState<HeroSection | null >(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(()=> {
-    if(content?.draftContent.clientSection){
-      setFormData(content.draftContent.clientSection)
-    }
-  }, [content])
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if(content?.draftContent.clientSection){
+  setFormData(content.draftContent.clientSection)
+  }
+}
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;
@@ -78,7 +83,7 @@ const ClientSectionCMS: React.FC = () => {
             </button>
 
             <button
-                onClick={()=> setIsEditing(false)}
+                onClick={handleCancel}
                 className="w-full py-3 mt-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors"
             >
                 Cancel
@@ -88,7 +93,7 @@ const ClientSectionCMS: React.FC = () => {
           /* --- LIVE PREVIEW VIEW --- */
           <div className="text-center cursor-pointer group relative"
           
-            onClick={()=> handleCancel}
+            onClick={()=> setIsEditing(true)}
           >
 
              <div className="absolute inset-0 bg-blue-50/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">

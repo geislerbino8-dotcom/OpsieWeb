@@ -10,7 +10,7 @@ import { ContentContext } from "@/App";
 
 
 export default function WhatWeDo() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const content = useContext(ContentContext)
 
   if(!content) return <div><h1>No content</h1></div>
@@ -77,7 +77,7 @@ export default function WhatWeDo() {
               </p>
               <div className="flex justify-center md:justify-start" data-aos="fade-right" data-aos-delay="400">
                 <button 
-                  onClick={() => Navigate("/contact-us")}
+                  onClick={() => navigate("/contact-us")}
                   className="mt-8 bg-white text-black px-12 py-3 font-medium hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-wider"
                 >
                  {

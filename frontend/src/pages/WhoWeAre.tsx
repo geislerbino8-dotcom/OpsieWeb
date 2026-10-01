@@ -350,7 +350,7 @@ export default function WhoWeAre() {
                                 </div>
                             <div className="flex flex-col items-center justify-center gap-2 px-2">
                                 <h1 className="text-[18px]">Modernization</h1>
-                                <p className=" text-center text-[12px]">To help business move towards more connected, scalable, and efficient system. </p>
+                                <p className=" text-center text-[12px]">To help business move towards more connected, scalable, and efficient system. </p>
                             </div>
                         </div>
                         </div>
@@ -378,7 +378,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className=" text-[20px]">Digital Leadership</h1>
-                                <p className=" text-left font-light text-[12px]">To build a trusted technology partner that supports businesses with practical and reliable solutions. </p>
+                                <p className=" text-left font-light text-[12px]">To build a trusted technology partner that supports businesses with practical and reliable solutions. </p>
                             </div>
                         </div>
 
@@ -388,7 +388,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Innovation</h1>
-                                <p className=" text-left font-light text-[12px]">To continously improve how systems work by developing solutions that are simple, effective, and build for real use. </p>
+                                <p className=" text-left font-light text-[12px]">To continously improve how systems work by developing solutions that are simple, effective, and build for real use. </p>
                             </div>
                         </div>
                     </div>
@@ -412,7 +412,7 @@ export default function WhoWeAre() {
                             <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#8B5CF6] font-semibold">Mission</span></h1>
                             <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
                                 {content?.whoWeArePage.section5.mission}
-                             </p>
+                             </p>
                         </div>
                 </div>
                 
@@ -442,7 +442,7 @@ export default function WhoWeAre() {
                                 </div>
                             <div className="flex flex-col items-center justify-center">
                                 <h1 className="text-[18px]">Excellence</h1>
-                                <p className=" text-center font-light text-[12px]">To deliver consistent quality through systems that are stable, secure, and easy to manage. </p>
+                                <p className=" text-center font-light text-[12px]">To deliver consistent quality through systems that are stable, secure, and easy to manage. </p>
                             </div>
                         </div>
                         </div>
@@ -473,7 +473,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Empowerment</h1>
-                                <p className=" text-left font-light text-[12px]">To give business more clarity and control through better systems. </p>
+                                <p className=" text-left font-light text-[12px]">To give business more clarity and control through better systems. </p>
                             </div>
                         </div>
 
@@ -483,7 +483,7 @@ export default function WhoWeAre() {
                             </div>
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="text-[20px]">Solution Building</h1>
-                                <p className=" text-left font-light text-[12px]">To design solutions that solve real problems and improve how teams work. </p>
+                                <p className=" text-left font-light text-[12px]">To design solutions that solve real problems and improve how teams work. </p>
                             </div>
                         </div>
                     </div>

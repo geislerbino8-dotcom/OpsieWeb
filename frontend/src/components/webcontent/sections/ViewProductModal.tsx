@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from "react";
 import { AiOutlineClose, AiOutlineDollar, AiOutlineTag, AiOutlineVideoCamera, AiOutlineFundProjectionScreen } from 'react-icons/ai';
 
 interface Feature { title: string; description: string; }
@@ -36,11 +36,13 @@ type ProductModalType = {
 function ViewProductModal({ product, onClose }: ProductModalType) {
   const [data, setData] = useState<ProductForm>(product);
 
-  useEffect(() => {
-    if (product) {
-      setData(product);
-    }
-  }, [product]);
+  // Adjusting state when the `product` prop changes (React's
+// documented alternative to an effect that copies props into state).
+const [prevProduct, setPrevProduct] = useState(product);
+if (product !== prevProduct) {
+  setPrevProduct(product);
+  setData(product);
+}
 
 
   return (

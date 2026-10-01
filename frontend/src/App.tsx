@@ -1,7 +1,6 @@
 import { useEffect, createContext, useState } from 'react';
 import './App.css';
 import "aos/dist/aos.css";
-import './App.css';
 import AOS from "aos";
 import { useLocation } from 'react-router-dom';
 import Layout from './Layout';
@@ -21,7 +20,7 @@ const App = () => {
   
   useEffect(()=> {
     const fetchContent = async()=> {
-      let res = await getContent()
+      const res = await getContent()
       setContent(res.data[0].publishedContent)
     }
 

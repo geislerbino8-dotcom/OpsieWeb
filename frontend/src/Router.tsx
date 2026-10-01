@@ -114,11 +114,6 @@ const router = createBrowserRouter([
             },
 
             {
-                path: '/buy-now',
-                element: <ProductPage/>
-            },
-
-            {
               path: '/Subscribe-now',
               element: <ProductPage/>
             },

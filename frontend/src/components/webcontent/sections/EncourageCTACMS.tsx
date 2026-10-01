@@ -1,5 +1,5 @@
 import { updateContent } from "@/api/updateContent";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { WebContentContext } from "../WebContentFrom";
 
 interface HeroSection {
@@ -13,11 +13,16 @@ const EncourageCTACMS: React.FC = () => {
   const [formData, setFormData] = useState<HeroSection | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (content?.draftContent.encouragecard) {
-      setFormData(content.draftContent.encouragecard);
-    }
-  }, [content]);
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if (content?.draftContent.encouragecard) {
+  setFormData(content.draftContent.encouragecard);
+  }
+}
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,7 +54,7 @@ const EncourageCTACMS: React.FC = () => {
     try {
       const update = await updateContent({
         id: "69ed83215f12c5a147e02160",
-        path: "encouragecard",
+        path: "draftContent.encouragecard",
         value: formData,
       });
       console.log("Saved successfully:", update);

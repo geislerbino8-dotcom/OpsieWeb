@@ -28,7 +28,7 @@ export default function TicketTimeline({ ticketId }: Props) {
         const data = await getTicketTimeline(ticketId);
         setTimeline(data);
       } catch (error) {
-        console.error('Failed to load timeline');
+        console.error('Failed to load timeline', error);
       } finally {
         setLoading(false);
       }

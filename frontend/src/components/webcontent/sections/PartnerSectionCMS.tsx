@@ -1,5 +1,5 @@
 import { updateContent } from "@/api/updateContent";
-import React, { useEffect, useState, } from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { WebContentContext } from "../WebContentFrom";
 
@@ -17,11 +17,16 @@ const PartnerSectionCMS: React.FC = () => {
   const [formData, setFormData ] = useState<PartnerType | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  useEffect(()=> {
-    if(content?.draftContent.partnersSection){
-      setFormData(content.draftContent.partnersSection)
-    }
-  }, [content])
+  // Adjusting state when the context content loads/changes.
+// React's documented alternative to an effect that only copies
+// props/context into state (avoids a cascading re-render).
+const [prevContent, setPrevContent] = useState(content);
+if (content !== prevContent) {
+  setPrevContent(content);
+  if(content?.draftContent.partnersSection){
+  setFormData(content.draftContent.partnersSection)
+  }
+}
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;

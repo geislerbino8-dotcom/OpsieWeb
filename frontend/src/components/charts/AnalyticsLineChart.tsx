@@ -18,10 +18,6 @@ const AnalyticsLineChart = () => {
 
     const [ ticketVelocity, setTicketVelocity ] = useState()
 
-    useEffect(()=> {
-        fetchTicketVelocity()
-    }, [])
-
     const fetchTicketVelocity = async ()=> {
         try {
 
@@ -33,6 +29,10 @@ const AnalyticsLineChart = () => {
            console.log(error) 
         }
     }
+
+    useEffect(()=> {
+        fetchTicketVelocity()
+    }, [])
 
   return (
     <div className="w-full h-[400px] bg-white dark:bg-slate-900 p-6 rounded-xl border border-gray-200 dark:border-slate-800 shadow-sm">

@@ -14,7 +14,7 @@ function WebContentFrom() {
 
   useEffect(()=> {
       const fetchContent = async()=> {
-        let res = await getContent()
+        const res = await getContent()
         setContent(res.data[0])
       }
   

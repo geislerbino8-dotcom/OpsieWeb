@@ -54,11 +54,6 @@ const [isProductsHover, setIsProductsHover] = useState(false);
 
   const toggleMobileNav = () => setNavIsOpen(!navIsOpen);
 
-  const directToHome = () => {
-    navigate("/");
-    setNavIsOpen(false);
-  };
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 860) {
@@ -152,7 +147,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                           transition-all duration-100 ease-out
                         "
                       >
-                        {products.map((prod) => (
+                        {products.map((prod: { name: string }) => (
                           <Link
                             key={prod.name}
                             to={`/products/${prod.name}`}

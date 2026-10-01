@@ -19,6 +19,48 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [Unreleased] - 2026-10-01 (error audit)
+
+Full project audit: `tsc -b`, `vite build` and `eslint` were run across `frontend/`, then every reported problem was triaged into *real bug*, *safe fix*, or *out of scope*. Note: the root `tsconfig.json` declares `"files": []`, so `npx tsc --noEmit` type-checks nothing — the authoritative check is `npx tsc -b`, which surfaced two build-breaking errors that had gone unnoticed.
+
+### Fixed
+
+- **Crash: undefined `navigate`** — `frontend/src/pages/WhatWeDo.tsx` — the "Book a Consultation" button called `navigate("/book-a-schedule")` but the hook variable was declared as `Navigate`, so clicking it threw `ReferenceError` (build error TS2552). Renamed the hook variable to the conventional `navigate`.
+- **Build error: implicit `any`** — `frontend/src/components/Navigation.tsx` — `products.map((prod) => …)` had no parameter type while every other consumer of `products` annotates it; annotated `{ name: string }` (build error TS7006).
+- **Duplicate `/buy-now` route** — `frontend/src/Router.tsx` — removed the second identical route entry.
+- **Duplicate CSS import** — `frontend/src/App.tsx` — `import './App.css'` appeared twice.
+- **Non-breaking spaces** — `frontend/src/pages/WhoWeAre.tsx` — 7 × U+00A0 replaced with normal spaces (`no-irregular-whitespace`).
+- **Unresolved-asset build warning** — `frontend/src/styles/ProductSection.css` — deleted the dead `.product-section-container` block that referenced a non-existent `ProductSection.png`; the build warning is gone.
+- **Dead code** — `frontend/src/components/Navigation.tsx` — removed unused `directToHome` left over from the accessibility pass.
+- **CMS Cancel buttons did nothing** — `frontend/src/components/webcontent/sections/FaqSectionCMS.tsx` (`handleCancel;` → `handleCancel();`) and `ClientSectionCMS.tsx` (preview `onClick` never entered edit mode, and Cancel discarded edits instead of reverting them).
+- **CMS crash on Cancel** — `frontend/src/components/webcontent/sections/AboutPageCMS.tsx` — `content?.draftSection…` referenced a field that does not exist (`draftSection`), throwing on Cancel; corrected to `draftContent`.
+- **CMS save silently discarded** — `frontend/src/components/webcontent/sections/EncourageCTACMS.tsx` — saved to top-level `path: "encouragecard"`; `WebContentSchema` only declares `publishedContent` / `draftContent`, so Mongoose strict mode stripped the `$set` and the edit never persisted. Now `draftContent.encouragecard`.
+- **CMS state-sync anti-pattern** — 15 CMS components (`WhatWeDoCMS`, `AboutPageCMS`, `ClientSectionCMS`, `ContactUsSectionCMS`, `EncourageCTACMS`, `FaqSectionCMS`, `FooterCMS`, `HeroPageCMS`, `PartnerSectionCMS`, `ProductItemCTACMs`, `ProductSectionCMS`, `ProductsPageCMS`, `ServicesPageCMS`, `WhoWeAreCMS`, `ViewProductModal`) — replaced the `useEffect` that copied context/props into state with React's render-time state-adjustment pattern (`react-hooks/set-state-in-effect`).
+- **`useAuth` set-state-in-effect** — `frontend/src/hooks/useAuth.tsx` — replaced the mount effect with a lazy `useState` initializer reading `localStorage`.
+- **`useToast` impure call** — `frontend/src/hooks/useToast.ts` — `Date.now()` for toast IDs replaced with a module-level monotonic counter (also guarantees unique IDs for toasts created in the same millisecond).
+- **Use-before-declaration** — `frontend/src/components/MapBox.tsx`, `admin/pages/DashboardPage.tsx`, `charts/AnalyticsLineChart.tsx` — moved function declarations above the effects that call them.
+- **Unused code / lint cleanups** — removed unused `setIsDarkMode` (`admin/common/useTheme.ts`); `let` → `const` in `App.tsx`, `webcontent/WebContentFrom.tsx`, `data/usePageContent.ts`; logged the swallowed error in `admin/ticketing/TicketTimeline.tsx`; documented the intentionally-empty `catch` blocks in `SplitText.tsx`.
+- **ESLint config** — `frontend/eslint.config.js` — `@typescript-eslint/no-unused-vars` now honours the standard `_` prefix (`argsIgnorePattern`, `caughtErrorsIgnorePattern`, `varsIgnorePattern`) so intentionally-unused params are not reported.
+
+### Verified
+
+- `npx tsc -b --force` — **0 errors** (previously 2 build-breaking errors).
+- `npm run build` (`tsc -b && vite build`) — **succeeds**; the `ProductSection.png` unresolved-asset warning no longer appears.
+- `npx eslint` — **196 → 151 errors**; 139 of the remainder are `no-explicit-any` (explicitly out of scope), leaving **12 non-`any` errors**.
+
+### Not changed (per scope decision)
+
+- **139 × `@typescript-eslint/no-explicit-any`** across 54 files — deliberately left alone.
+- **20 × `react-hooks/exhaustive-deps`** warnings and **13 × `react-hooks/unsupported-syntax`** (inline `class` declarations in `LiquidEther.tsx`, which the React Compiler simply skips) — left alone.
+- **Remaining 12 errors**: 4 × `react-refresh/only-export-components` (`App.tsx`, `ConfirmContext.tsx`, `WebContentFrom.tsx`, `useAuth.tsx` — would require moving contexts to separate files), 4 × `set-state-in-effect` (`Carousel.tsx` ×2 [never imported], `DashboardPage.tsx`, `AnalyticsLineChart.tsx`), 2 × `prefer-const` (`LineWaves.tsx`, `SoftAurora.tsx` — `program` is read by `resize()` before its assignment, so converting to `const` requires reordering WebGL init), 1 × `react-hooks/refs` (`TextType.tsx`), 1 × `preserve-manual-memoization` (`CardSwap.tsx`, never imported).
+- **~40 never-imported files** (including 4 with broken asset/CSS imports and 2 empty files) — left in place, not deleted.
+
+### Known issue (needs a decision)
+
+- **`frontend/src/components/webcontent/sections/FooterCMS.tsx` reads `draftContent.faqSection` but saves to top-level `heroSection`.** Because `WebContentSchema` has no top-level `heroSection`, Mongoose strict mode strips the update, so Save is currently a no-op (harmless but broken). The component is clearly an unfinished stub: heading says "Edit Hero Section", it has **no input fields**, and the schema does define an unused `footerSection`. Not auto-fixed — pointing it at `draftContent.faqSection` would make it a second FAQ editor that could overwrite FAQ edits with stale data, and pointing it at `footerSection` would change what is displayed. Needs the intended target confirmed.
+
+---
+
 ## [Unreleased] - 2026-09-30
 
 ### Changed

@@ -37,11 +37,6 @@ const DashboardPage = () => {
   const [category, setCategory] = useState();
   const [product, setProduct] = useState();
 
-  useEffect(() => {
-    getCategoryAnalytics();
-    getProduct();
-  }, []);
-
   const getCategoryAnalytics = async () => {
     try {
       const data = await getCategory();
@@ -59,6 +54,11 @@ const DashboardPage = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getCategoryAnalytics();
+    getProduct();
+  }, []);
 
   return (
     <div className="min-h-screen w-full bg-[#f8fafc] dark:bg-slate-950 pb-12 transition-colors duration-300">

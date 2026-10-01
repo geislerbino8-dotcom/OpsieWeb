@@ -1,15 +1,8 @@
 .product-section-container {
     background: rgba(0, 0, 0, 0.537);
-    background-image: url('../assets/background-images/ProductSection.png');
-    background-blend-mode: darken;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     color: white;
     padding: 1em;
     margin: 2em 0;
-
-    
 }
 
 
