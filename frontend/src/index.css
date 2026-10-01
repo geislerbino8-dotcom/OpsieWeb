@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Marko+One&family=Marmelad&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:wght@500&family=Scheherazade+New:wght@400;500;600;700&display=swap');
 
 @plugin 'tailwindcss-animate';
@@ -71,6 +72,11 @@ button:hover {
 }
 
 /*TEXT STYLES*/
+/* Blackletter / fraktur display font (e.g. booking page heading) */
+.font-fraktur {
+  font-family: 'UnifrakturMaguntia', 'UnifrakturCook', serif;
+}
+
 .header-title {
   font-size: 2.5rem;
   margin: 1em 0;

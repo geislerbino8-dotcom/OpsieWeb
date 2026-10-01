@@ -93,7 +93,7 @@ function BookingPage() {
           <div className="">
             <div className="text-center" data-aos="fade-down">
           
-          <h1 className="text-4xl md:text-6xl font-poppins leading-tight">
+          <h1 className="font-fraktur text-5xl md:text-7xl leading-tight">
             Let's Discuss <span className="text-[#8B5CF6] font-semibold">Your Vision.</span>
           </h1>
           <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-light">
