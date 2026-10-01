@@ -21,6 +21,7 @@ import ContactUsContent from "./components/webcontent/ContactUsContent"
 import ProductsContent from "./components/webcontent/ProductsContent"
 import AddProductCMS from "./components/webcontent/sections/AddProductCMS"
 import ProductCMS from "./components/webcontent/sections/ProductCMS"
+import LayoutPractice from "./components/LayoutPractice"
 
 const token = localStorage.getItem('token')
 
@@ -120,6 +121,11 @@ const router = createBrowserRouter([
             {
               path: '/Subscribe-now',
               element: <ProductPage/>
+            },
+
+            {
+              path: '/layout-practice',
+              element: <LayoutPractice />
             }
             
         ]

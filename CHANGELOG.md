@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-01
+
+### Added
+
+- **`C:\OJT\OpsieWebsite\frontend\src\components\LayoutPractice.tsx`** — new practice component with 6 Flexbox/Grid layout exercises: flex fundamentals, grow/shrink/basis, intrinsic sizing via `auto-fit`, responsive grid columns, sidebar/content/aside with `min-w-0` overflow guard, and a `items-start` / `items-center` / `items-stretch` alignment audit
+- **`/layout-practice` route** — `C:\OJT\OpsieWebsite\frontend\src\Router.tsx` — registers the practice component so it can be inspected at different viewport widths
+
+### Fixed
+
+- **Invalid `xs:` breakpoint** — `C:\OJT\OpsieWebsite\frontend\src\components\LayoutPractice.tsx` — `xs:grid-cols-2` referenced a breakpoint not defined in `tailwind.config.js` (silently ignored); replaced with the `sm` → `md` → `xl` chain
+
+### Verified
+
+- **Responsive check at 360 / 753 / 1265px** — no horizontal overflow (`scrollWidth === clientWidth` at all three widths); grid columns step 1 → 3 → 4; flex direction flips `column` → `row` at `sm`; section gaps hold at a consistent 24px with a single left edge per viewport; alignment audit confirms `flex-start` / `center` / `stretch` behave distinctly at every width
+
+---
+
 ## [Unreleased] - 2026-09-30
 
 ### Changed
