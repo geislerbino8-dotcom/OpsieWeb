@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { WebContentContext } from "../WebContentFrom";
+import { WebContentContext } from "../WebContentContext";
 import { updateContent } from "@/api/updateContent";
 
 interface ButtonLink {

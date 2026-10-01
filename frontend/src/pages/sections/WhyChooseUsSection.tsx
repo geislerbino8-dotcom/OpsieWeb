@@ -1,7 +1,7 @@
 import TextType from '@/components/TextType'
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 function WhyChooseUsSection() {
   const navigate = useNavigate();

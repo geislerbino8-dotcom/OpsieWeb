@@ -1,6 +1,6 @@
 import { updateContent } from "@/api/updateContent";
 import React, { useContext, useState } from "react";
-import { WebContentContext } from "../WebContentFrom";
+import { WebContentContext } from "../WebContentContext";
 
 interface AboutSection {
   header: string;

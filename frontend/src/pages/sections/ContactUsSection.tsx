@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone, PlayCircle } from "lucide-react";
 import MapCard from "@/components/cards/MapCard";
 import ContactForm from "../../components/cards/ContactForm";
 import ShapeGrid from "@/components/ShapeGrid";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 import "aos/dist/aos.css";
 
 const ContactUsSection: React.FC = () => {

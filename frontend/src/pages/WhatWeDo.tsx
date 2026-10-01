@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SoftAurora from "@/components/SoftAurora";
 import { useContext,  } from "react";
 import SuperHeader from "@/types/components/SuperHeader";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 
 export default function WhatWeDo() {

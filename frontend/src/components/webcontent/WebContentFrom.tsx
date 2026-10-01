@@ -1,12 +1,8 @@
 
-import {  createContext, useState, useEffect} from "react"
+import { useState, useEffect} from "react"
 import WebContentLayout from "./WebContentLayout"
 import { getContent } from "@/api/getContent"
-
-type ContentType = Record<string, any>
-
-export const WebContentContext = createContext<ContentType | null>(null)
-
+import { WebContentContext, type ContentType } from "./WebContentContext"
 
 function WebContentFrom() {
   const [ content, setContent ] = useState<ContentType | null>(null)

@@ -7,7 +7,7 @@ import { restoreUser } from '../../../api/restoreUser';
 import { deleteUser } from '../../../api/deleteUser';
 import { useApiState } from '../../../hooks/useApiState';
 import { useToast } from '../../../hooks/useToast';
-import { useConfirm } from '../context/ConfirmContext';
+import { useConfirm } from '../context/useConfirm';
 
 import LoadingOverlay from '../common/LoadingOverlay';
 import ToastContainer from '../common/ToastComponent';

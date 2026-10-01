@@ -1,4 +1,4 @@
-import { useEffect, createContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -6,12 +6,7 @@ import { useLocation } from 'react-router-dom';
 import Layout from './Layout';
 import { getContent } from './api/getContent';
 import { supabase } from './utils/supabase';
-
-type ContentType = Record<string, any>
-
-
-export const ContentContext = createContext<ContentType | null>(null)
-
+import { ContentContext, type ContentType } from './ContentContext';
 
 const App = () => {
 

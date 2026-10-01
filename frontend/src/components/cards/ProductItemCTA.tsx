@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 import bg from '../../assets/background-images/invitation.jpg'
 
 function ProductItemCTA() {

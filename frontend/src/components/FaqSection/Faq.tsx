@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Plus } from "lucide-react";
 import { faqs } from "@/data/faqData";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 import SuperHeader from "@/types/components/SuperHeader";
 
 

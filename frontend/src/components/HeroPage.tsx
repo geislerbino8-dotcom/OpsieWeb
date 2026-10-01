@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LogoOnly from '../assets/icons/opsie_logo_only.png';
 import SplitText from './SplitText';
 import SoftAurora from './SoftAurora';
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 type HeroPageProps = {
   bgImage?: string;

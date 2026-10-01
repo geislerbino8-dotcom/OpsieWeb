@@ -6,7 +6,7 @@ import { products } from "@/data/productsData";
 import "aos/dist/aos.css";
 import { useContext } from "react";
 import LineWaves from "@/components/LineWaves";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 function ProductSection() {
   const navigate = useNavigate();

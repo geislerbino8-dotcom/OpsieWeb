@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/login';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '../../../hooks/authContext';
 import { useApiState } from '../../../hooks/useApiState';
 import { useToast } from '../../../hooks/useToast';
 

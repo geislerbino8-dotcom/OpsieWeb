@@ -18,7 +18,7 @@ import hris from '../assets/Products/HRIS.png';
 import opsync from '../assets/Products/Opsync.png';
 import web from '../assets/Products/WebOpsie.png';
 
-import { ContentContext } from '@/App';
+import { ContentContext } from '@/ContentContext';
 import SuperHeader from '@/types/components/SuperHeader';
 
 // ================= TYPES =================

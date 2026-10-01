@@ -128,6 +128,17 @@ export default function Carousel({
   const [isJumping, setIsJumping] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
+  // Sliding-window state is derived during render rather than in an effect,
+  // so a changed item list / loop mode doesn't cause a cascading re-render.
+  const [resetKey, setResetKey] = useState({ length: items.length, loop, offset: trackItemOffset });
+  if (resetKey.length !== items.length || resetKey.loop !== loop || resetKey.offset !== trackItemOffset) {
+    setResetKey({ length: items.length, loop, offset: trackItemOffset });
+    setPosition(loop ? 1 : 0);
+  }
+  if (!loop && position > itemsForRender.length - 1) {
+    setPosition(Math.max(0, itemsForRender.length - 1));
+  }
+
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (pauseOnHover && containerRef.current) {
@@ -154,17 +165,11 @@ export default function Carousel({
     return () => clearInterval(timer);
   }, [autoplay, autoplayDelay, isHovered, pauseOnHover, itemsForRender.length]);
 
+  // `x` is an external motion value, so syncing it belongs in an effect.
   useEffect(() => {
     const startingPosition = loop ? 1 : 0;
-    setPosition(startingPosition);
     x.set(-startingPosition * trackItemOffset);
-  }, [items.length, loop, trackItemOffset, x]);
-
-  useEffect(() => {
-    if (!loop && position > itemsForRender.length - 1) {
-      setPosition(Math.max(0, itemsForRender.length - 1));
-    }
-  }, [itemsForRender.length, loop, position]);
+  }, [loop, trackItemOffset, x]);
 
   const effectiveTransition = isJumping ? { duration: 0 } : SPRING_OPTIONS;
 

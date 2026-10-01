@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import LogoLoop from "../../components/LogoLoop";
 import SuperHeader from "@/types/components/SuperHeader";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 
 const imageLogos = [

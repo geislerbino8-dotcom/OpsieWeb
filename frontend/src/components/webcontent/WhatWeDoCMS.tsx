@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { updateContent } from "@/api/updateContent";
-import { WebContentContext } from "./WebContentFrom";
+import { WebContentContext } from "./WebContentContext";
 
 interface WhatWeDoContent {
   hero: {

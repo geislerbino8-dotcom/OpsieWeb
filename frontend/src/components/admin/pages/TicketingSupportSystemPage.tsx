@@ -15,7 +15,7 @@ import { updateTicket } from '../../../api/updateTicket';
 import { getActiveUsers } from '../../../api/getActiveUsers';
 import { useApiState } from '../../../hooks/useApiState';
 import { useToast } from '../../../hooks/useToast';
-import { useConfirm } from '../context/ConfirmContext';
+import { useConfirm } from '../context/useConfirm';
 
 import TicketModal from '../ticketing/TicketModal';
 import LoadingOverlay from '../common/LoadingOverlay';

@@ -52,12 +52,39 @@ Full project audit: `tsc -b`, `vite build` and `eslint` were run across `fronten
 
 - **139 × `@typescript-eslint/no-explicit-any`** across 54 files — deliberately left alone.
 - **20 × `react-hooks/exhaustive-deps`** warnings and **13 × `react-hooks/unsupported-syntax`** (inline `class` declarations in `LiquidEther.tsx`, which the React Compiler simply skips) — left alone.
-- **Remaining 12 errors**: 4 × `react-refresh/only-export-components` (`App.tsx`, `ConfirmContext.tsx`, `WebContentFrom.tsx`, `useAuth.tsx` — would require moving contexts to separate files), 4 × `set-state-in-effect` (`Carousel.tsx` ×2 [never imported], `DashboardPage.tsx`, `AnalyticsLineChart.tsx`), 2 × `prefer-const` (`LineWaves.tsx`, `SoftAurora.tsx` — `program` is read by `resize()` before its assignment, so converting to `const` requires reordering WebGL init), 1 × `react-hooks/refs` (`TextType.tsx`), 1 × `preserve-manual-memoization` (`CardSwap.tsx`, never imported).
+- **Remaining errors (batch 1)**: 4 × `react-refresh/only-export-components` (`App.tsx`, `ConfirmContext.tsx`, `WebContentFrom.tsx`, `useAuth.tsx` — fixed in batch 2 below), 4 × `set-state-in-effect` (`Carousel.tsx` ×2 [never imported] — fixed in batch 2 below; `DashboardPage.tsx`, `AnalyticsLineChart.tsx`), 2 × `prefer-const` (`LineWaves.tsx`, `SoftAurora.tsx` — `program` is read by `resize()` before its assignment, so converting to `const` requires reordering WebGL init), 1 × `react-hooks/refs` (`TextType.tsx` — fixed in batch 2 below), 1 × `preserve-manual-memoization` (`CardSwap.tsx`, never imported — still open, see batch 2).
 - **~40 never-imported files** (including 4 with broken asset/CSS imports and 2 empty files) — left in place, not deleted.
 
 ### Known issue (needs a decision)
 
 - **`frontend/src/components/webcontent/sections/FooterCMS.tsx` reads `draftContent.faqSection` but saves to top-level `heroSection`.** Because `WebContentSchema` has no top-level `heroSection`, Mongoose strict mode strips the update, so Save is currently a no-op (harmless but broken). The component is clearly an unfinished stub: heading says "Edit Hero Section", it has **no input fields**, and the schema does define an unused `footerSection`. Not auto-fixed — pointing it at `draftContent.faqSection` would make it a second FAQ editor that could overwrite FAQ edits with stale data, and pointing it at `footerSection` would change what is displayed. Needs the intended target confirmed.
+
+### Batch 2 — context splits & remaining hook fixes
+
+Continues the same audit. Root cause of the 4 `react-refresh/only-export-components` errors was that each of these modules exported a React context/hook alongside a component, which prevents Fast Refresh from preserving component state (every edit did a full page reload).
+
+- **Split contexts out of component modules** — one new file per context, so each module now exports exactly one kind of thing:
+  - `ContentContext` (+ `ContentType`) moved from `frontend/src/App.tsx` → **`frontend/src/ContentContext.ts`** (16 importers).
+  - `WebContentContext` moved from `frontend/src/components/webcontent/WebContentFrom.tsx` → **`frontend/src/components/webcontent/WebContentContext.ts`** (14 importers).
+  - `useConfirm` (+ `ConfirmContext`, `ConfirmOptions`) moved from `frontend/src/components/admin/context/ConfirmContext.tsx` → **`frontend/src/components/admin/context/useConfirm.ts`** (3 importers). `ConfirmContext.tsx` now exports only `ConfirmProvider`.
+  - `useAuth` (+ `AuthContext`) moved from `frontend/src/hooks/useAuth.tsx` → **`frontend/src/hooks/authContext.ts`** (4 importers). `useAuth.tsx` now exports only `AuthProvider`.
+  - All **37 import sites** rewritten to the new module paths; `AuthProvider` / `ConfirmProvider` importers were left untouched.
+  - Side benefit: the 34 consumer modules no longer pull in `App.tsx` / `WebContentFrom.tsx` just to read a context, which decouples them from the app shell.
+- **`react-hooks/refs` false positive** — `frontend/src/components/TextType.tsx` — the compiler could not prove that the `ref` passed to `createElement(Component, …)` was attached to a host element rather than a custom component that might read it during render. Replaced `createElement(...)` with equivalent JSX, narrowed `as` from `ElementType` to `keyof React.JSX.IntrinsicElements` (neither caller ever passes `as`, so it is always a DOM tag), and typed `containerRef` as `HTMLDivElement` to match. **Behaviour unchanged.**
+- **`set-state-in-effect` ×2** — `frontend/src/components/Carousel.tsx` (never imported) — the two effects that clamped/reset the slide index were converted to React's render-time state-adjustment pattern; only the `x.set(...)` sync on the external motion value remains in an effect (dropping `items.length` from its deps is a no-op, since `x.set` only reads `loop` and `trackItemOffset`).
+
+### Batch 2 — Verified
+
+- `npx tsc -b --force` — **0 errors**.
+- `npm run build` — **succeeds** (only the pre-existing >500 kB chunk-size warning).
+- `npx eslint` — **147 → 140 errors**, 33 warnings. Of the 140, **139 are `no-explicit-any`** (out of scope), leaving **1 non-`any` error**:
+  - 1 × `react-hooks/preserve-manual-memoization` in `CardSwap.tsx` line 99 — `useMemo(…, [childArr.length])` where the React Compiler infers `childArr`. **Not auto-fixed**: the file is never imported, and widening the dependency to `childArr` would recreate the GSAP card refs on every parent re-render — a behaviour change in untestable code. It is a "compiler skipped optimising this component" notice, not a correctness bug.
+
+### Batch 2 — Not changed (per scope decision)
+
+- **139 × `no-explicit-any`**, **20 × `react-hooks/exhaustive-deps`**, **13 × `react-hooks/unsupported-syntax`** — untouched as agreed.
+- **`CardSwap.tsx` `preserve-manual-memoization`** — see above; needs a decision if that component is ever wired up.
+- **`FooterCMS.tsx`** — still awaiting the decision described above.
 
 ---
 

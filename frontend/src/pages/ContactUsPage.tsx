@@ -6,7 +6,7 @@ import ContactsCard from '@/components/cards/ContactsCard';
 import ContactBg from '../assets/visuals/Contact-bg.png';
 import MapCard from '@/components/cards/MapCard';
 import { useContext } from 'react';
-import { ContentContext } from '@/App';
+import { ContentContext } from '@/ContentContext';
 import SuperHeader from '@/types/components/SuperHeader';
 
 function ContactUsPage() {

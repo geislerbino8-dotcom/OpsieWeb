@@ -1,7 +1,7 @@
 import { updateContent } from "@/api/updateContent";
 import React, { useState } from "react";
 import { useContext } from "react";
-import { WebContentContext } from "../WebContentFrom";
+import { WebContentContext } from "../WebContentContext";
 
 type PartnerType = {
   header: string;

@@ -2,7 +2,7 @@ import HighlightedText from "@/types/components/SuperHeader";
 import ServicesCards from "../../components/cards/ServicesCards";
 import '../../styles/ServicesSection.css'
 import { useContext  } from "react";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 function ServicesSection() {
 

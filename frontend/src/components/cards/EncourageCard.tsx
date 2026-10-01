@@ -1,4 +1,4 @@
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 import SuperHeader from "@/types/components/SuperHeader";
 import { useContext } from "react";
 

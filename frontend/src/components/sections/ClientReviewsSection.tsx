@@ -7,7 +7,7 @@ import rightArrow from '../../assets/icons/right-arrow.svg'
 
 import { reviews } from "@/data/clientReviewsData";
 import SuperHeader from "@/types/components/SuperHeader";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 
 const ClientReview: React.FC = () => {

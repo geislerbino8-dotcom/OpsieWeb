@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/authContext";
 
 import Header from "../admin/header/Header";
 import LoginPage from "../admin/pages/LoginPage";

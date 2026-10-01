@@ -2,7 +2,7 @@ import OpsieImage from "../../assets/opsie/logo-png.png";
 import { useNavigate } from "react-router-dom";
 import HighlightedText from '../../types/components/SuperHeader'
 import { useContext } from "react";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 
 //const features = [
   //{ title: "Cloud Solutions", desc: "Flexible systems that support remote work and scalability.", icon: "☁️" },

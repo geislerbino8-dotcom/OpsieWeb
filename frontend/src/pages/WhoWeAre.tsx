@@ -6,7 +6,7 @@ import CountUp from "../components/CountUp";
 import MapDesign from "@/components/sections/MapDesign";
 import SuperHeader from "@/types/components/SuperHeader";
 import { useContext } from "react";
-import { ContentContext } from "@/App";
+import { ContentContext } from "@/ContentContext";
 import CoreValuesSection from "./sections/CoreValuesSection";
 import OperationalStructure from "@/components/sections/OperationalStructure";
 import SoftAurora from "@/components/SoftAurora";

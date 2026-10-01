@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../api/getMe';
 import { updateProfile } from '../../../api/updateProfile.ts';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '../../../hooks/authContext';
 import ShowProfileModal from '../modals/ShowProfileModal';
 import EditProfileModal from '../modals/EditProfileModal';
 import { useApiState } from '../../../hooks/useApiState';
 import { useToast } from '../../../hooks/useToast';
-import { useConfirm } from '../context/ConfirmContext';
+import { useConfirm } from '../context/useConfirm';
 
 import LoadingOverlay from '../common/LoadingOverlay';
 import ToastContainer from '../common/ToastComponent';

@@ -1,7 +1,7 @@
 import { updateContent } from "@/api/updateContent";
 import React, { useContext, useState, } from "react";
 import EncourageCTACMS from "./EncourageCTACMS";
-import { WebContentContext } from "../WebContentFrom";
+import { WebContentContext } from "../WebContentContext";
 
 interface HeroSection {
   header: string;
