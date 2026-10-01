@@ -18,20 +18,22 @@ const AnalyticsLineChart = () => {
 
     const [ ticketVelocity, setTicketVelocity ] = useState()
 
-    const fetchTicketVelocity = async ()=> {
-        try {
+    useEffect(() => {
+        let cancelled = false;
 
-            const data = await getTicketVelocity()
+        // Promise callbacks are asynchronous, so state is never set
+        // synchronously from inside the effect body.
+        getTicketVelocity()
+            .then((data) => {
+                if (!cancelled) setTicketVelocity(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
-            setTicketVelocity(data)
-            
-        } catch (error) {
-           console.log(error) 
-        }
-    }
-
-    useEffect(()=> {
-        fetchTicketVelocity()
+        return () => {
+            cancelled = true;
+        };
     }, [])
 
   return (

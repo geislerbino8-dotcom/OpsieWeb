@@ -37,27 +37,30 @@ const DashboardPage = () => {
   const [category, setCategory] = useState();
   const [product, setProduct] = useState();
 
-  const getCategoryAnalytics = async () => {
-    try {
-      const data = await getCategory();
-      setCategory(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getProduct = async () => {
-    try {
-      const data = await getProductAnalytics();
-      setProduct(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getCategoryAnalytics();
-    getProduct();
+    let cancelled = false;
+
+    // Promise callbacks are asynchronous, so state is never set
+    // synchronously from inside the effect body.
+    getCategory()
+      .then((data) => {
+        if (!cancelled) setCategory(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    getProductAnalytics()
+      .then((data) => {
+        if (!cancelled) setProduct(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

@@ -185,7 +185,6 @@ export default function SoftAurora({
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
 
-    let program: Program;
     const currentMouse = [0.5, 0.5];
     let targetMouse = [0.5, 0.5];
 
@@ -203,15 +202,18 @@ export default function SoftAurora({
 
     function resize() {
       renderer.setSize(container.offsetWidth, container.offsetHeight);
-      if (program) {
-        program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height];
-      }
+      program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height];
     }
     window.addEventListener('resize', resize);
-    resize();
+
+    // Size the canvas before the program is created so its initial
+    // uResolution uniform reads the real canvas dimensions. This is what
+    // the previous `resize()` call did here — its uniform update was
+    // skipped because `program` did not exist yet.
+    renderer.setSize(container.offsetWidth, container.offsetHeight);
 
     const geometry = new Triangle(gl);
-    program = new Program(gl, {
+    const program = new Program(gl, {
       vertex: vertexShader,
       fragment: fragmentShader,
       uniforms: {
