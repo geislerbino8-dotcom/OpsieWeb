@@ -21,7 +21,9 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
       onClick={() => navigate(`/products/${encodeURIComponent(itemName)}`)}
       className="
         group relative
-        h-[400px] w-[18rem] flex-shrink-0
+        /* w-full + max-w-full lets the card shrink to narrow (phone) columns
+           instead of being clipped by its overflow-hidden ancestors */
+        h-[400px] w-full max-w-[18rem] flex-shrink-0
         cursor-pointer rounded-2xl overflow-hidden
         bg-white/[0.05] border border-cyan-500/20
         transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]

@@ -11,9 +11,11 @@ type ContactsCardType = {
 function ContactsCard({ title, children, className, color, textColor  }: ContactsCardType) {
   return (
     <div 
-      
+      // backgroundColor must be an inline style: `bg-[${color}]` is composed at
+      // runtime, so Tailwind never generates a matching utility.
+      style={{ backgroundColor: color }}
       className={`
-        flex-1 w-full p-8 rounded-xl bg-[${color}] 
+        flex-1 w-full p-8 rounded-xl
         border border-gray-100 shadow-xl hover:shadow-md 
         transition-shadow duration-300 text-left flex flex-col
         ${className}

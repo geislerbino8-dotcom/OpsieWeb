@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "../Card/ServicesCard";
 import { Button } from "../Button";
 import leftArrow from '../../assets/icons/left-arrow1.svg';
@@ -16,6 +16,17 @@ const cards = [
 
 const ServicesSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  // Track the breakpoint reactively: reading window.innerWidth only at render
+  // left the slide step stale when a phone/tablet was rotated across 768px.
+  const [isNarrow, setIsNarrow] = useState<boolean>(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => setIsNarrow(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleNext = () => setCurrentIndex((prev) => (prev + 1) % cards.length);
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
@@ -45,9 +56,9 @@ const ServicesSection: React.FC = () => {
 
           {/* Cards Slider */}
           <div
-            className="flex transition-transform duration-700 cubic-bezier(0.25, 1, 0.5, 1)"
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
             style={{ 
-              transform: `translateX(-${currentIndex * (window.innerWidth < 768 ? 100 : 33.33)}%)` 
+              transform: `translateX(-${currentIndex * (isNarrow ? 100 : 33.33)}%)` 
             }}
           >
             {cards.map((card, idx) => {

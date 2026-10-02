@@ -58,15 +58,35 @@ const [isProductsHover, setIsProductsHover] = useState(false);
 
   const toggleMobileNav = () => setNavIsOpen(!navIsOpen);
 
+  // Close the sheet as soon as the layout flips to the desktop nav (md = 768px,
+  // matching the `md:hidden`/`max-md:hidden` rules below — previously 860 left a
+  // dead zone where an open sheet overlapped the desktop nav).
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 860) {
+      if (window.innerWidth >= 768) {
         setNavIsOpen(false);
       }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Browser back/forward bypasses the menu link handlers, so close the sheet
+  // whenever the route changes (state adjusted during render per React docs).
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname);
+    if (navIsOpen) setNavIsOpen(false);
+  }
+
+  // Prevent the page behind the fixed sheet from scrolling while it is open.
+  useEffect(() => {
+    if (!navIsOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [navIsOpen]);
 
   const [showNav, setShowNav] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
@@ -108,7 +128,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       }}
     >
       {/* Desktop */}
-      <div className="md:flex flex-col max-w-7xl max-[865px]:hidden mx-auto py-1 px-6">
+      <div className="md:flex flex-col max-w-7xl max-md:hidden mx-auto py-1 px-6">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <Link to="/" className="cursor-pointer" aria-label="Opsie Home">
@@ -202,7 +222,13 @@ const [isProductsHover, setIsProductsHover] = useState(false);
           <img src={logo} alt="Opsie Logo" className="w-24" />
         </Link>
 
-        <button onClick={toggleMobileNav} aria-label="Toggle menu" aria-expanded={navIsOpen}>
+        {/* p-1.5 grows the hit area to 44px; -m-1.5 keeps the icon in place */}
+        <button
+          onClick={toggleMobileNav}
+          aria-label="Toggle menu"
+          aria-expanded={navIsOpen}
+          className="-m-1.5 p-1.5"
+        >
           <img src={burgermenu} alt="Menu" className="w-8" />
         </button>
       </div>

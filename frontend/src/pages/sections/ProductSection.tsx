@@ -61,7 +61,7 @@ function ProductSection() {
                 key={index}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="flex justify-center"
+                className="flex justify-center w-full max-w-[18rem]"
               >
                 <ProductCard
                   logo={item.image}

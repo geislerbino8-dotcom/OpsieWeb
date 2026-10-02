@@ -194,6 +194,10 @@ function ProductPage() {
                 key={item.name}
                 data-aos="fade-up"
                 data-aos-delay={index * 150}
+                /* Caps the flex basis at the card width while letting it track
+                   the column on phones, where the fixed 288px card used to be
+                   clipped by the container's overflow-hidden. */
+                className="w-full max-w-[18rem]"
               >
                 <ProductCard
                   logo={item.image}

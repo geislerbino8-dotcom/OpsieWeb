@@ -22,7 +22,7 @@ const FAQAccordion = () => {
         <div className="lg:w-1/3 sticky top-10">
           <SuperHeader text={content?.faqSection.header} position="left"/>
         
-          <p className="mt-6 text-lg text-gray-400  tect-center md:text-left font-light max-w-sm">
+          <p className="mt-6 text-lg text-gray-400 text-center md:text-left font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for? 
             <span className="text-[#8B5CF6] font-medium cursor-pointer hover:underline ml-1"><a href="/contact-us">Reach out to us.</a></span>
           </p>
