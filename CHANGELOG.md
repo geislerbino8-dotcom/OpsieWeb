@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-02 (booking page redesign)
+
+Redesigned `/book-a-schedule` to match the supplied booking-page design: dark two-column hero, blackletter + gradient headline, and the embedded Timekit widget restyled dark to match the card in the mock.
+
+### Added
+
+- **`C:\OJT\OpsieWebsite\frontend\src\styles\BookingTimekit.css`** — dark theme for the Timekit booking widget. Every selector is prefixed with `#timekit-booking` (specificity `1,x,x`) so it beats Timekit's own `.bookingjs` rules regardless of stylesheet order — Timekit appends its CSS to `<head>` at runtime, so equal-specificity overrides would lose the race. Covers the widget shell, toolbar, day header, time grid, slots, footer, booking form and loading/error states, plus the FullCalendar `--fc-*` theme tokens.
+
+### Changed
+
+- **`C:\OJT\OpsieWebsite\frontend\src\components\BookingPage.tsx`** — rewritten around the design: `#0a0a0a` page with blurred purple (top-right) and cyan (bottom-left) glows; intro column with a `30 Min Consultation` pill, blackletter "Let's Discuss" over a purple-gradient "Your Vision.", body copy, purple rule, and a `mailto:` link using the real address `inquiry@opsiesoftwaresolutions.com` (was `support@example.com`); booking column wrapped in a rounded card with a purple/cyan glow halo and the "Free. No credit card required / Instant confirmation" trust note.
+- **Layout switched from CSS Grid to Flexbox** — `minmax(500px, 1fr)` as a grid floor left ~50px of dead space in the row (the `fr` track could not absorb the minimum). Flex handles it deterministically: intro `basis-[46%]` shrinks and the booking column's `min-w-[500px]` is honoured, so `357 + 48 + 500` exactly fills the container at every width.
+- **Two-column breakpoint at `min-[1000px]`** — chosen because Timekit calls `decideCalendarSize()` and adds `is-small`, switching `timeGridWeek` → `dayGridDay` when the widget root is under **480px**. The booking column carries `min-w-[500px]` so the week view from the design is guaranteed in two-column mode; below the breakpoint the card goes full width (also > 480px).
+- **`C:\OJT\OpsieWebsite\frontend\src\index.css`** — added `.booking-intro` (`container-type: inline-size`) and `.booking-title-fraktur` / `.booking-title-display` (`clamp(40px, 16.24cqi, 80px)`). The intro column is ~40% of the page on desktop and full-width when stacked, so fixed sizes either overflowed the narrow case or undershot the wide one; sizing against the column keeps both layouts filling the space.
+- **`C:\OJT\OpsieWebsite\frontend\src\components\Navigation.tsx`** — nav background is now route-scoped: `rgba(10,10,10,0.82)` + the existing `backdrop-blur-xl` on `/book-a-schedule` only (per the design), `#4C1D95` everywhere else — every other page is untouched.
+- **`C:\OJT\OpsieWebsite\frontend\src\components\buttons\PrimaryButton.tsx`** — primary variant `bg-[#2da9cf] hover:bg-[#242424]` → `bg-[#8B5CF6] hover:bg-[#7C3AED]`. The cyan was a leftover the theme migration missed, and it is the "Get Started" button shown in the design as purple.
+
+### Verified
+
+- **Desktop (1000px)** — intro `357px` / booking `500px` / gap `48px` = `905px` container, no dead space; heading renders on one line each at ratios **0.871** and **0.963** of the column (design: 0.88 / 0.98); paragraph 3 lines; widget root `498px`, `is-small` absent, **7 day columns**, 24 time slots `12am`–`11pm`.
+- **Widget chrome** — shell `#0e0e14` radius `16px`; TODAY button `#8B5CF6` at the card's right edge with prev/next ghosted to its left (toolbar chunk reversed); today column has the rose inset marker + purple wash; footer `#12121a` with timezone floated left and "Powered by Timekit" floated right.
+- **Mobile (480px iframe)** — stacks to one column, headings still 1 line, no horizontal overflow; widget correctly falls back to its single-day view.
+- **Nav routing** — `/book-a-schedule` → `rgba(10, 10, 10, 0.82)`; `/` → `rgb(76, 29, 149)` (`#4C1D95`), unchanged.
+- `npx tsc -b --force` — **0 errors**; `npm run build` — **succeeds**; `npx eslint` — **140 errors / 32 warnings** (identical to the pre-change baseline; one `exhaustive-deps` warning on `BookingPage` was cleared by capturing `widgetRef.current` in a local).
+
+### Known issue (not a code bug)
+
+- **The calendar shows no selectable slots.** The widget requests `GET /v2/bookings/groups?search=project.id:918cccdb…` (because the project sets `booking.graph: "group_customer"`) and the API returns `total: 0, data: []`. The Timekit project `opsie-schedule-a-meeting` has no booking groups configured in the Timekit account — slots have to be created there before anything appears on the calendar.
+
+---
+
 ## [Unreleased] - 2026-10-01
 
 ### Added

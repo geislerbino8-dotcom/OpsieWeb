@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
-import logo from '../assets/icons/opsie_logo_only.png';
+import "../styles/BookingTimekit.css";
 
 const TIMEKIT_CSS = "https://cdn.timekit.io/booking-js/v3/booking.min.css";
 const TIMEKIT_JS = "https://cdn.timekit.io/booking-js/v3/booking.min.js";
 const TIMEKIT_PROJECT_SLUG = "opsie-schedule-a-meeting";
+const CONTACT_EMAIL = "inquiry@opsiesoftwaresolutions.com";
 
 declare global {
   interface Window {
@@ -38,6 +39,7 @@ function BookingPage() {
 
   useEffect(() => {
     let cancelled = false;
+    const mount = widgetRef.current;
 
     if (!document.getElementById("timekit-booking-css")) {
       const link = document.createElement("link");
@@ -49,8 +51,8 @@ function BookingPage() {
 
     loadTimekitScript()
       .then(() => {
-        if (cancelled || !widgetRef.current || !window.TimekitBooking) return;
-        widgetRef.current.innerHTML = "";
+        if (cancelled || !mount || !window.TimekitBooking) return;
+        mount.innerHTML = "";
         new window.TimekitBooking().init({
           el: "#timekit-booking",
           project_slug: TIMEKIT_PROJECT_SLUG,
@@ -62,70 +64,104 @@ function BookingPage() {
 
     return () => {
       cancelled = true;
-      if (widgetRef.current) widgetRef.current.innerHTML = "";
+      if (mount) mount.innerHTML = "";
     };
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-[#FAFBFF] relative overflow-hidden flex flex-col items-center">
-      
+    <div className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
       {/* --- BACKGROUND DECOR --- */}
-      {/* Large faint logo watermark */}
-      <img 
-        src={logo} 
-        alt="" 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] opacity-[0.03] pointer-events-none select-none"
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-56 right-[-14%] h-[70vh] w-[70vh] rounded-full bg-[#8B5CF6]/30 blur-[150px]"
       />
-      
-      {/* Subtle Gradient Blobs for depth */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#8B5CF6]/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-[#8B5CF6]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[-30%] left-[-18%] h-[65vh] w-[65vh] rounded-full bg-cyan-500/15 blur-[150px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_100%_0%,rgba(124,58,237,0.22),transparent_60%)]"
+      />
 
-      {/* --- CONTENT CONTAINER --- */}
-      <div className="relative z-10 w-full max-w-[1280px] px-6 py-20 flex flex-col items-center">
+      {/* --- CONTENT --- */}
+      <div className="relative z-10 mx-auto w-full max-w-[1240px] px-6 pb-24 pt-28 md:px-10 lg:pt-32">
+        {/* Two columns only once the calendar can hold Timekit's 480px
+            week-view threshold; below that it silently collapses to a
+            single-day picker, which isn't the design. Flex (not a grid fr
+            floor) so the 500px minimum is absorbed by the intro column
+            instead of leaving dead space in the row. */}
+        <div className="flex flex-col items-start gap-10 min-[1000px]:flex-row min-[1000px]:gap-12">
+          {/* ---------- INTRO COLUMN ---------- */}
+          <div
+            className="booking-intro w-full max-w-[540px] min-[1000px]:basis-[46%] min-[1000px]:shrink"
+            data-aos="fade-right"
+          >
+            <p className="inline-flex items-center rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C4B5FD]">
+              30 Min Consultation
+            </p>
 
-        {/* --- TIMEKIT WRAPPER --- */}
-        <div 
-          className="w-full max-w-5xl overflow-hidden"
-          data-aos="zoom-in"
-          data-aos-delay="200"
-        >
-          <div className="">
-            <div className="text-center" data-aos="fade-down">
-          
-          <h1 className="font-fraktur text-5xl md:text-7xl leading-tight">
-            Let's Discuss <span className="text-[#8B5CF6] font-semibold">Your Vision.</span>
-          </h1>
-          <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-light">
-            Select a time that works best for you. Our experts are ready to help you 
-            turn complex challenges into simple digital solutions.
-          </p>
-        </div>
-             {/* Timekit booking widget mounts here */}
-             <div id="timekit-booking" ref={widgetRef} className="w-full min-h-[700px]" />
-          </div>
-        </div>
+            <h1 className="mt-7">
+              <span className="booking-title-fraktur font-fraktur block text-white">
+                Let’s Discuss
+              </span>
+              <span className="booking-title-display mt-1 block bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text font-black tracking-tight text-transparent">
+                Your Vision.
+              </span>
+            </h1>
 
-        {/* --- ALTERNATIVE CTA --- */}
-        <div className="text-center space-y-6" data-aos="fade-up" data-aos-delay="400">
-          <div className="h-[1px] w-20 bg-green-300 mx-auto"></div>
-          <p className="text-green-500 font-light">
-            Prefer a different way to connect? 
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-            <a 
-              href="mailto:support@example.com" 
-              className="text-[#242424] font-semibold hover:text-[#8B5CF6] transition-colors flex items-center gap-2"
+            <p className="mt-7 max-w-[440px] text-[15px] leading-[1.95] text-[#9aa0aa]">
+              Select a time that works best for you. Our experts are ready to
+              help you turn complex challenges into simple digital solutions.
+            </p>
+
+            <div className="mt-10 h-px w-16 bg-[#8B5CF6]" />
+
+            <p className="mt-6 text-[13px] text-[#6b7280]">
+              Prefer a different way to connect?
+            </p>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-1.5 inline-flex items-center gap-2 text-[15px] font-semibold text-white transition-colors hover:text-[#A78BFA]"
             >
-              Email us directly →
+              Email us directly <span aria-hidden="true">→</span>
             </a>
-            <span className="hidden md:block text-gray-300">|</span>
-            <button className="text-[#242424] font-semibold hover:text-[#8B5CF6] transition-colors">
-              Chat on Messenger
-            </button>
+          </div>
+
+          {/* ---------- BOOKING COLUMN ---------- */}
+          <div
+            className="w-full min-[1000px]:min-w-[500px] min-[1000px]:flex-1"
+            data-aos="fade-left"
+            data-aos-delay="120"
+          >
+            <div className="relative">
+              {/* glow halos behind the card */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-8 rounded-[32px] bg-[#8B5CF6]/25 blur-3xl"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-8 translate-y-16 rounded-[32px] bg-cyan-500/15 blur-3xl"
+              />
+
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] shadow-[0_0_60px_-20px_rgba(139,92,246,0.7)]">
+                {/* Timekit booking widget mounts here */}
+                <div id="timekit-booking" ref={widgetRef} className="min-h-[560px]" />
+              </div>
+            </div>
+
+            {/* trust note */}
+            <div className="mt-6 inline-flex flex-col rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5">
+              <span className="text-[12px] leading-5 text-[#6b7280]">
+                Free. No credit card required
+              </span>
+              <span className="text-[13px] font-semibold leading-5 text-white">
+                Instant confirmation
+              </span>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   );

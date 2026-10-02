@@ -22,7 +22,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   // 🎨 Variants
   const variants = {
     primary:
-      "text-white bg-[#2da9cf] hover:bg-[#242424]",
+      "text-white bg-[#8B5CF6] hover:bg-[#7C3AED]",
     outline:
       "border border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white",
     ghost:

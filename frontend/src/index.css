@@ -77,6 +77,28 @@ button:hover {
   font-family: 'UnifrakturMaguntia', 'UnifrakturCook', serif;
 }
 
+/* ---------------------------------------------------------------------------
+   Booking page (/book-a-schedule) hero heading.
+
+   The intro column is ~40% of the page on desktop and full-width below the
+   two-column breakpoint, so fixed font sizes either overflow the narrow case
+   or look undersized in the wide one. Sizing against the column with `cqi`
+   keeps both layouts filling the space the way the design does.
+   --------------------------------------------------------------------------- */
+.booking-intro {
+  container-type: inline-size;
+}
+
+.booking-title-fraktur {
+  font-size: clamp(40px, 16.24cqi, 84px);
+  line-height: 1.05;
+}
+
+.booking-title-display {
+  font-size: clamp(40px, 15.6cqi, 80px);
+  line-height: 1.05;
+}
+
 .header-title {
   font-size: 2.5rem;
   margin: 1em 0;

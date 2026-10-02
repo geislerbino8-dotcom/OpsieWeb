@@ -52,6 +52,10 @@ function Navigation() {
   const [navIsOpen, setNavIsOpen] = useState(false);
 const [isProductsHover, setIsProductsHover] = useState(false);
 
+  // /book-a-schedule is a full dark surface; on that route the nav goes
+  // translucent black (per the design) instead of the purple used elsewhere.
+  const isDarkNav = location.pathname === "/book-a-schedule";
+
   const toggleMobileNav = () => setNavIsOpen(!navIsOpen);
 
   useEffect(() => {
@@ -100,7 +104,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       style={{
         top: showNav ? 0 : "-80px",
         transition: "top 0.3s",
-        backgroundColor: '#4C1D95'
+        backgroundColor: isDarkNav ? "rgba(10, 10, 10, 0.82)" : "#4C1D95"
       }}
     >
       {/* Desktop */}
