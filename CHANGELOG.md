@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-02 (Timekit → Cal.com, Poiret One heading)
+
+Swapped the booking widget from Timekit to Cal.com and changed the headline accent line from blackletter to Poiret One. **This supersedes the Timekit and blackletter specifics in the section immediately below**, which is left in place as the record of how the redesign was built.
+
+### Added
+
+- **`C:\OJT\OpsieWebsite\frontend\src\styles\BookingCal.css`** — replaces `BookingTimekit.css` (451 lines, deleted). Cal.com renders inside a cross-origin `<iframe>` and ships its own dark palette through `config.theme`, so the ID-prefixed override layer Timekit needed (to win the stylesheet-order race) is unnecessary. All that is left is the card shell: make the embed wrapper fill the card and strip the iframe border, both scoped under `.booking-card` on the card div.
+- **`@calcom/embed-react`** added to `frontend` — supplies the `<Cal>` component and `getCalApi`.
+
+### Changed
+
+- **`C:\OJT\OpsieWebsite\frontend\src\components\BookingPage.tsx`** — the whole Timekit loader is gone (`loadTimekitScript`, the `Window.TimekitBooking` global declaration, the `TIMEKIT_CSS` / `TIMEKIT_JS` / `TIMEKIT_PROJECT_SLUG` constants, and the mount `useEffect` with its `widgetRef` bookkeeping). The widget is now declarative:
+
+  ```tsx
+  <Cal calLink={CAL_LINK} namespace="booking"
+       config={{ theme: "dark", layout: "month_view" }}
+       style={{ width: "100%", minHeight: 640 }} />
+  ```
+
+  A second effect awaits `getCalApi({ namespace: "booking" })` and applies `cssVarsPerTheme` + `styles.branding.brandColor` in `#8B5CF6` so the embed picks up the site violet instead of Cal.com's default indigo. `Cal` initialises the namespace in its own effect, and React runs a child's effects before its parent's, so the branding call always lands after init. Failures are caught rather than left as an unhandled rejection.
+- **`CAL_LINK` is a clearly-marked placeholder** — `opsie/30min`, with a `TODO` comment. No Cal.com event type has been created yet, so this is the one line to change once one exists (`your-handle/30min`, or `org/team/event-type`).
+- **`C:\OJT\OpsieWebsite\frontend\src\index.css`** — headline accent line moved from UnifrakturMaguntia to **Poiret One**: the Google Font `@import` was swapped, `.font-fraktur` → `.font-poiret` (`'Poiret One', 'Century Gothic', 'Futura', sans-serif` — Poiret ships weight 400 only, so a light geometric face leads the fallback stack), and `.booking-title-fraktur` → `.booking-title-poiret`.
+- **`.booking-title-poiret` retuned to `clamp(42px, 18.63cqi, 102px)`** (was `clamp(40px, 16.24cqi, 84px)`). At the old size the ink ratio dropped to **0.767** against "Your Vision."'s 0.963 — Poiret is a thin, small-capped face and needs a larger point size to sit level with a black-weight sans, which is ordinary optical sizing. `18.63cqi` restores the design's **0.88** exactly, and the ceiling is `540 × 0.1863 = 100.6px` — the intro column's `max-w-[540px]` — so the cap never engages before the column does. Floors were kept low (42px) so the pair still fits a 320px screen.
+
+### Verified
+
+- **Heading ink ratio across 320 / 480 / 768 / 1000 / 1440px** — accent line **0.88** at every width (design: 0.88), display line 0.915–0.963 (design: 0.98; its pre-existing 80px ceiling engages only on the widest layouts). One line each, both fit the column, `font-family` resolves to `"Poiret One"` everywhere, and no horizontal overflow at any width. Two-column layout engages at 1000px and 1440px as designed.
+- **Embed mechanics** — `https://app.cal.com/embed/embed.js` loads; the iframe mounts at `https://app.cal.com/opsie/30min/embed?theme=dark&layout=month_view&embedType=inline&embed=booking` (both `theme=dark` and `layout=month_view` present as chosen), `498px` wide so it fills the card edge to edge, auto-sizing to Cal.com's reported content height on top of the 640px floor.
+- `npx tsc -b --force` — **0 errors**; `npm run build` — **succeeds**; `npx eslint` — **140 errors / 32 warnings** (identical to the baseline — the 139 `no-explicit-any` and the one `preserve-manual-memoization` are out of scope).
+
+### Known issue (not a code bug)
+
+- **The embed shows Cal.com's "not found" page.** `https://app.cal.com/opsie/30min/embed` returns **404** because the event type does not exist yet — this was chosen knowingly when a placeholder was selected over a real link. The identical request against an existing event (`crafy/30min`) returns **200**, so the integration itself is sound; creating the event type and updating `CAL_LINK` is the only remaining step.
+- Because the widget is cross-origin, its internals cannot be inspected or screenshotted from the app — only the wrapper, the iframe URL and its box can be verified.
+
+---
+
 ## [Unreleased] - 2026-10-02 (booking page redesign)
 
 Redesigned `/book-a-schedule` to match the supplied booking-page design: dark two-column hero, blackletter + gradient headline, and the embedded Timekit widget restyled dark to match the card in the mock.

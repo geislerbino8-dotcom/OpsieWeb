@@ -1,70 +1,48 @@
-import { useEffect, useRef } from "react";
-import "../styles/BookingTimekit.css";
+import { useEffect } from "react";
+import Cal, { getCalApi } from "@calcom/embed-react";
+import "../styles/BookingCal.css";
 
-const TIMEKIT_CSS = "https://cdn.timekit.io/booking-js/v3/booking.min.css";
-const TIMEKIT_JS = "https://cdn.timekit.io/booking-js/v3/booking.min.js";
-const TIMEKIT_PROJECT_SLUG = "opsie-schedule-a-meeting";
 const CONTACT_EMAIL = "inquiry@opsiesoftwaresolutions.com";
 
-declare global {
-  interface Window {
-    TimekitBooking?: new () => { init: (config: Record<string, unknown>) => void };
-  }
-}
-
-function loadTimekitScript(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (window.TimekitBooking) return resolve();
-
-    const existing = document.querySelector<HTMLScriptElement>(
-      `script[src="${TIMEKIT_JS}"]`
-    );
-    if (existing) {
-      existing.addEventListener("load", () => resolve());
-      existing.addEventListener("error", reject);
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = TIMEKIT_JS;
-    script.async = true;
-    script.onload = () => resolve();
-    script.onerror = reject;
-    document.body.appendChild(script);
-  });
-}
+/**
+ * The Cal.com event this page embeds — the path after `cal.com/`.
+ * Swap this one line when the real event type exists
+ * (`your-handle/30min`, or `org/team/event-type` for a team event).
+ * TODO: placeholder — no Cal.com event type has been created yet, so the
+ * widget currently renders Cal.com's "not found" page until it's replaced.
+ */
+const CAL_LINK = "opsie/30min";
 
 function BookingPage() {
-  const widgetRef = useRef<HTMLDivElement>(null);
-
+  // Brand the embed with the site's violet. `Cal` inits the namespace in its
+  // own effect, which React runs before this parent effect.
   useEffect(() => {
     let cancelled = false;
-    const mount = widgetRef.current;
 
-    if (!document.getElementById("timekit-booking-css")) {
-      const link = document.createElement("link");
-      link.id = "timekit-booking-css";
-      link.rel = "stylesheet";
-      link.href = TIMEKIT_CSS;
-      document.head.appendChild(link);
-    }
-
-    loadTimekitScript()
-      .then(() => {
-        if (cancelled || !mount || !window.TimekitBooking) return;
-        mount.innerHTML = "";
-        new window.TimekitBooking().init({
-          el: "#timekit-booking",
-          project_slug: TIMEKIT_PROJECT_SLUG,
+    (async () => {
+      try {
+        const cal = await getCalApi({ namespace: "booking" });
+        if (cancelled) return;
+        cal("ui", {
+          cssVarsPerTheme: {
+            light: {
+              "cal-brand": "#8B5CF6",
+              "cal-brand-emphasis": "#7C3AED",
+            },
+            dark: {
+              "cal-brand": "#8B5CF6",
+              "cal-brand-emphasis": "#7C3AED",
+            },
+          },
+          styles: { branding: { brandColor: "#8B5CF6" } },
         });
-      })
-      .catch((error) => {
-        console.error("Failed to load Timekit booking widget:", error);
-      });
+      } catch (error) {
+        console.error("Failed to theme the Cal.com embed:", error);
+      }
+    })();
 
     return () => {
       cancelled = true;
-      if (mount) mount.innerHTML = "";
     };
   }, []);
 
@@ -86,11 +64,10 @@ function BookingPage() {
 
       {/* --- CONTENT --- */}
       <div className="relative z-10 mx-auto w-full max-w-[1240px] px-6 pb-24 pt-28 md:px-10 lg:pt-32">
-        {/* Two columns only once the calendar can hold Timekit's 480px
-            week-view threshold; below that it silently collapses to a
-            single-day picker, which isn't the design. Flex (not a grid fr
-            floor) so the 500px minimum is absorbed by the intro column
-            instead of leaving dead space in the row. */}
+        {/* Two columns only once the calendar has room to show a month grid
+            alongside the intro; below that it collapses to a stacked picker.
+            Flex (not a grid) so the booking column's minimum width is
+            absorbed by the intro column instead of leaving dead space. */}
         <div className="flex flex-col items-start gap-10 min-[1000px]:flex-row min-[1000px]:gap-12">
           {/* ---------- INTRO COLUMN ---------- */}
           <div
@@ -102,7 +79,7 @@ function BookingPage() {
             </p>
 
             <h1 className="mt-7">
-              <span className="booking-title-fraktur font-fraktur block text-white">
+              <span className="booking-title-poiret font-poiret block text-white">
                 Let’s Discuss
               </span>
               <span className="booking-title-display mt-1 block bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text font-black tracking-tight text-transparent">
@@ -145,9 +122,14 @@ function BookingPage() {
                 className="pointer-events-none absolute -inset-8 translate-y-16 rounded-[32px] bg-cyan-500/15 blur-3xl"
               />
 
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] shadow-[0_0_60px_-20px_rgba(139,92,246,0.7)]">
-                {/* Timekit booking widget mounts here */}
-                <div id="timekit-booking" ref={widgetRef} className="min-h-[560px]" />
+              <div className="booking-card relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] shadow-[0_0_60px_-20px_rgba(139,92,246,0.7)]">
+                {/* Cal.com embed mounts here */}
+                <Cal
+                  calLink={CAL_LINK}
+                  namespace="booking"
+                  config={{ theme: "dark", layout: "month_view" }}
+                  style={{ width: "100%", minHeight: 640 }}
+                />
               </div>
             </div>
 

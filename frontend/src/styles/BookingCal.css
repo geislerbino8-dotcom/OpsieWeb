@@ -1,0 +1,19 @@
+/*
+ * Cal.com embed — card shell for /book-a-schedule.
+ *
+ * The embed mounts its own wrapper <div> inside the card and sizes an
+ * <iframe> against it. Everything here targets that wrapper so the widget
+ * fills the card edge-to-edge with no browser scrollbars inside it; the
+ * dark palette itself comes from config.theme = "dark".
+ */
+
+.booking-card > div {
+  width: 100%;
+}
+
+.booking-card iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+}
