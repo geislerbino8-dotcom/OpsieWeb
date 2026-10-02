@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-02 (responsive pass: mobile & tablet adjustments)
+
+Reviewed every public route at 320/375/768/1024px and fixed the mobile/tablet problems the sweep turned up: clipped product cards, a three-way nav breakpoint split, a non-reactive carousel step, and several smaller defects.
+
+### Fixed
+
+- **Product cards were clipped on phones.** `ProductCard` was fixed `w-[18rem]` (288px) + `flex-shrink-0`, and its wrapper flex items had a `min-width: auto` floor of 288px too — but `/products` leaves only a **232px content box** at 375px (`p-10` inside `px-6`), so `overflow-hidden` cut **28px off each side of every card**, unreachable by scroll (`overflow-hidden` on mobile; `md:overflow-x-auto` only from 768px). The homepage grid clipped the same way at 320px. The card is now `w-full max-w-[18rem]` and both wrappers (`ProductPage`, `pages/sections/ProductSection`) are `w-full max-w-[18rem]`, so the flex basis resolves to `min(available, 288px)` deterministically — desktop still renders identical 288px cards, phones get the full column (232px @375, 177px @320).
+- **Nav breakpoint split three ways.** The desktop container hid at `max-[865px]`, the mobile bar at `md:hidden` (768), and the JS close handler ran at `>= 860` — so from 768–859 the desktop nav could show *while* a sheet opened below 767 stayed on top of it. All three signals are now **768**: `max-md:hidden` + `md:hidden` + JS `window.innerWidth >= 768`.
+- **`SuperHeader` dynamic class** — `md:text-${position}` is composed at runtime, so Tailwind never generates it; it emitted `md:text-undefined` whenever `position` was omitted and only aligned correctly because the literal `md:text-left`/`md:text-right` happened to exist elsewhere in the source. Replaced with an explicit `position` → class map (omitted position keeps the base `text-center`).
+- **`/what-we-do` carousel step was read from `window.innerWidth` during render**, so the slide distance went stale when a phone/tablet rotated across 768px. Now a reactive `isNarrow` state updated by a resize listener. Also fixed the invalid `cubic-bezier(0.25, 1, 0.5, 1)` class — not a Tailwind utility, so the custom slide easing had never applied → `ease-[cubic-bezier(0.25,1,0.5,1)]`.
+- **`Faq.tsx` typo `tect-center` → `text-center`** — the support paragraph was left-aligned on mobile (it only had `md:text-left`, whose base class was misspelled).
+- **`ContactsCard` dead `bg-[${color}]`** — a runtime-composed arbitrary class Tailwind can never emit; moved to an inline `style={{ backgroundColor: color }}`. No visual change (callers never pass `color`, and `bg-[undefined]` never applied anyway).
+- **`ChatHelp` pill intercepted taps** — the decorative teaser sits fixed bottom-right over the footer links and the bottom edge of the booking calendar, but has no click handler; added `pointer-events-none` so taps pass through.
+- **Burger tap target 32×32 → 44×44** (`-m-1.5 p-1.5`, negative margin so the icon stays exactly where it was).
+- **Body scroll lock while the mobile sheet is open** (`overflow: hidden`, restored on close) and **the sheet now closes on route change** — the link handlers already closed it, but browser back/forward bypassed them and left the sheet (and the lock) over a new page.
+
+### Verified
+
+- **Overflow sweep: 9 routes × 320/375/768/1024 = `0px` horizontal overflow everywhere**; `.p-cards-container` clip `0` at every width (was 28px @375 on `/products`).
+- Nav states: 375/700/767 → burger only; 768/800 → desktop nav only (previously 768–859 was ambiguous).
+- Sheet E2E at 375: open → body locked → backdrop closes (unlocks) → reopen → menu link click → **navigates to `/products`, sheet gone, scroll released**. Route-change close verified via popstate (`aria-expanded` false, sheet unmounted, lock released).
+- Handlers keyed on `resize` were verified by dispatching the event — this harness never fires `resize` on iframe resize in a hidden tab (measured `hits: 0` after 3.5s), but a synthetic dispatch closes the sheet at ≥768 and recomputes the carousel from `translateX(-100%)` to `translateX(-33.33%)`. Real browsers fire `resize` on window/orientation changes.
+- `SuperHeader`: **0 × `md:text-undefined`** in the DOM across the whole sweep; `position="left"` instances render `text-align: center` @375 → `left` @768.
+- FAQ paragraph: `center` @375 → `left` @800. Burger rect measured **44×44**. ChatHelp computed `pointer-events: none`.
+- `npx tsc -b --force` — **0 errors**; `npm run build` — succeeds; `npx eslint` — **140 errors / 32 warnings** (unchanged from baseline).
+
+---
+
 ## [Unreleased] - 2026-10-02 (booking layout: make the calendar fill the space)
 
 Reworked `/book-a-schedule` so the calendar comes out landscape instead of a tall narrow column, and removed the dead card that sat under it.
