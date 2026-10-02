@@ -60,15 +60,22 @@ function BookingPage() {
       />
 
       {/* --- CONTENT --- */}
-      <div className="relative z-10 mx-auto w-full max-w-[1240px] px-6 pb-24 pt-28 md:px-10 lg:pt-32">
-        {/* Two columns only once the calendar has room to show a month grid
-            alongside the intro; below that it collapses to a stacked picker.
-            Flex (not a grid) so the booking column's minimum width is
-            absorbed by the intro column instead of leaving dead space. */}
-        <div className="flex flex-col items-start gap-10 min-[1000px]:flex-row min-[1000px]:gap-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-6 pb-24 pt-28 md:px-10 lg:pt-32">
+        {/* Two columns only when the calendar can clear Cal.com's reflow
+            threshold. The widget is one stacked column below ~780px of
+            card width — and there it gets TALLER the wider you make it
+            (677px → 1100px, 757px → 1168px) — then snaps to a short
+            two-pane layout above it (787px → 538px, flat from there).
+            Side by side, 480 intro + 48 gap + 780 calendar needs 1308px of
+            content, which only exists from 1440px up, so below that the
+            columns stack and the calendar takes the whole row instead.
+            The intro is capped at every size its children care about
+            (headline 102px, body 440px), so it renders the same either way
+            and only the calendar changes. */}
+        <div className="flex flex-col items-start gap-10 min-[1440px]:flex-row min-[1440px]:gap-12">
           {/* ---------- INTRO COLUMN ---------- */}
           <div
-            className="booking-intro w-full max-w-[540px] min-[1000px]:basis-[46%] min-[1000px]:shrink"
+            className="booking-intro w-full max-w-[480px] min-[1440px]:basis-[42%] min-[1440px]:shrink"
             data-aos="fade-right"
           >
             <p className="inline-flex items-center rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C4B5FD]">
@@ -104,7 +111,7 @@ function BookingPage() {
 
           {/* ---------- BOOKING COLUMN ---------- */}
           <div
-            className="w-full min-[1000px]:min-w-[500px] min-[1000px]:flex-1"
+            className="w-full min-[1440px]:min-w-[780px] min-[1440px]:flex-1"
             data-aos="fade-left"
             data-aos-delay="120"
           >
@@ -121,11 +128,15 @@ function BookingPage() {
 
               <div className="booking-card relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] shadow-[0_0_60px_-20px_rgba(139,92,246,0.7)]">
                 {/* Cal.com embed mounts here */}
+                {/* Cal.com embed mounts here. The floor is deliberately
+                    below Cal.com's shortest layout (538px for the two-pane
+                    view) — anything higher leaves dead card beneath the
+                    widget, which is the whole point of the exercise. */}
                 <Cal
                   calLink={CAL_LINK}
                   namespace="booking"
                   config={{ theme: "dark", layout: "month_view" }}
-                  style={{ width: "100%", minHeight: 640 }}
+                  style={{ width: "100%", minHeight: 480 }}
                 />
               </div>
             </div>

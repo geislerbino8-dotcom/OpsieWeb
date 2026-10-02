@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-02 (booking layout: make the calendar fill the space)
+
+Reworked `/book-a-schedule` so the calendar comes out landscape instead of a tall narrow column, and removed the dead card that sat under it.
+
+### Changed
+
+- **Two-column breakpoint raised `min-[1000px]` → `min-[1440px]`, and below it the intro stacks above a full-width calendar.** The old breakpoint put the widget on the wrong side of a reflow cliff in Cal.com's embed — measured by loading the page in same-origin iframes of increasing width and reading the auto-reported iframe height:
+
+  | card width | embed height | layout |
+  |---|---|---|
+  | 677 | 1100 | stacked, portrait |
+  | 717 | 1134 | stacked, portrait |
+  | 757 | 1168 | stacked, portrait |
+  | **787** | **538** | **two-pane, landscape** |
+  | 817 | 538 | two-pane, landscape |
+
+  Below ~780px the widget gets *taller* the more you widen it; above it, it snaps to two-pane and **halves in height**. Side by side, `480` intro + `48` gap + `780` calendar needs 1308px of content, which only exists from 1440px up — so below that the columns stack and the calendar takes the whole row, where it clears the threshold on its own (a full row reaches 780px at ~875px viewport width).
+- **`C:\OJT\OpsieWebsite\frontend\src\components\BookingPage.tsx` container `max-w-[1240px]` → `max-w-[1500px]`** — the old cap left the booking column at ~579px even on a wide screen, i.e. permanently portrait. Intro `max-w-[540px]` → `max-w-[480px]` and `basis-[46%]` → `basis-[42%]` (only binds above the breakpoint), booking `min-w-[500px]` → `min-w-[780px]` so two-column mode can never land under the reflow threshold.
+- **The `<Cal>` wrapper's `minHeight: 640` → `480`** — this was the actual dead space in the card. The widget reports **538px** in two-pane mode at every width tested, so a 640px floor left **102px of empty card** beneath it. 480px sits below Cal.com's shortest layout (zero gap in every state measured) while still holding the card's shape during the embed's load, when the iframe is only at its 300px default.
+
+### Verified
+
+- **Gap between the widget and the bottom of the card is `0px` at every width** — was `102px` at card 817 and card 892 before the floor was lowered.
+- **Landscape from 1024px up**; 320/480/768 stay portrait as expected for phone and tablet, where a single stacked picker is the right answer:
+
+  | viewport | columns | intro | card | embed H | gap | shape | heading ratio | h-overflow |
+  |---|---|---|---|---|---|---|---|---|
+  | 320 | stacked | 257 | 257 | 664 | 0 | portrait | 0.88 | none |
+  | 480 | stacked | 417 | 417 | 789 | 0 | portrait | 0.88 | none |
+  | 768 | stacked | 480 | 673 | 1008 | 0 | portrait | 0.88 | none |
+  | 1024 | stacked | 480 | 929 | 538 | 0 | landscape | 0.88 | none |
+  | 1280 | stacked | 480 | 1185 | 570 | 0 | landscape | 0.88 | none |
+  | 1440 | two-col | 480 | 817 | 538 | 0 | landscape | 0.88 | none |
+  | 1920 | two-col | 480 | 892 | 538 | 0 | landscape | 0.88 | none |
+
+- **The intro is capped at every size its children care about** (headline `clamp` ceiling 102px, body 440px), so it renders identically in both column modes — only the calendar changes across the breakpoint, and the headline ink ratio stays at the design's **0.88** on one line at all seven widths.
+- `npx tsc -b --force` — **0 errors**; `npx eslint` — **140 errors / 32 warnings** (unchanged from baseline).
+
+---
+
 ## [Unreleased] - 2026-10-02 (Timekit → Cal.com, Poiret One heading)
 
 Swapped the booking widget from Timekit to Cal.com and changed the headline accent line from blackletter to Poiret One. **This supersedes the Timekit and blackletter specifics in the section immediately below**, which is left in place as the record of how the redesign was built.
