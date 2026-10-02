@@ -6,12 +6,9 @@ const CONTACT_EMAIL = "inquiry@opsiesoftwaresolutions.com";
 
 /**
  * The Cal.com event this page embeds — the path after `cal.com/`.
- * Swap this one line when the real event type exists
- * (`your-handle/30min`, or `org/team/event-type` for a team event).
- * TODO: placeholder — no Cal.com event type has been created yet, so the
- * widget currently renders Cal.com's "not found" page until it's replaced.
+ * Team events use `org/team/event-type` instead.
  */
-const CAL_LINK = "opsie/30min";
+const CAL_LINK = "dionizen-geisler-bino-ilohkz/opsie-bookings";
 
 function BookingPage() {
   // Brand the embed with the site's violet. `Cal` inits the namespace in its
