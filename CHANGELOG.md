@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-05 (appointments: the bubble now books through the backend)
+
+The appointment bubble went from a local demo to a real booking: it collects name + email, POSTs the slot to a new public endpoint, saves it in MongoDB and emails the visitor a confirmation — the success view only appears after the server says 201.
+
+### Added
+
+- **`backend/src/models/appointmentModel.ts`** — Mongoose `Appointment`: name, email (`trim`/`lowercase`/`match`), `date` as a Date, `time` kept as the exact slot label the visitor saw, `status` (`pending` → `confirmed`/`cancelled`), timestamps.
+- **`backend/src/controllers/appointmentController.ts` + `routes/appointmentRoute.ts`** — public `POST /api/appointments/create`: validates the four fields (`400 "Name, email, date and time are required"`), creates the document, fires the confirmation email fire-and-forget (an email hiccup can't fail a saved booking — same pattern as tickets), answers `201 { message, appointment }`.
+- **Own rate limiter** — `appointmentLimiter` (20 / 15 min / IP) instead of the ticket route's 5-request budget, so a burst of bookings can't lock a real visitor out.
+- **`appointmentBookedEmail` template + `sendAppointmentBookedEmail`** — reuses `buildEmailTemplate`/the nodemailer Gmail transporter; the date label is rebuilt via a local-date roundtrip so it can never shift a day across UTC.
+- **`frontend/src/api/createAppointment.ts`** — typed axios helper.
+- **Bubble form** — name + email inputs (dark surface, violet focus ring, `autoComplete`), `EMAIL_RE` gate; `Make Appointment` stays disabled until name + valid email + a slot, shows `Booking…` in flight, surfaces the server's message in a `role="alert"` on failure, and flips to the confirmation only on success. `×`/`Done` reset the whole form.
+
+### Verified
+
+- Direct POST → `201` with a real Mongo `_id`, `date: 2026-10-10T00:00:00.000Z`, `status: pending`; both test rows deleted afterwards.
+- Validation: `{}` → `400 {"message":"Name, email, date and time are required"}`; bad email → `400 {"message":"Failed to book appointment"}`.
+- Browser E2E: day 12 → `Monday, October 12, 2026`; Make gated without name/email/slot at every step; `11:00 AM` enables it; confirmation `✓ Appointment requested Monday, October 12, 2026 · 11:00 AM` appears only after the 201; Done closes; reopen (day 13) starts with empty fields.
+- Mobile 375: inputs + Make visible, bubble overflow 0, no page overflow, full-width clamp → `translateX(0px)`.
+- `npx tsc -b --force` — **0** (frontend and backend); frontend eslint **140 / 32**, backend eslint **35 errors** — all pre-existing, the appointment files add none.
+
+---
+
 ## [Unreleased] - 2026-10-05 (calendar: bubble anchored under its date)
 
 The appointment bubble now parks directly beneath the date it is booking, and hovering any other day slides it over to that day.

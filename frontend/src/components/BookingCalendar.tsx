@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import { createAppointment } from "../api/createAppointment";
 
 const weekdays = [
   { full: "Monday", short: "Mon" },
@@ -19,6 +20,8 @@ const timeSlots = [
   "3:00 PM", "4:00 PM", "5:00 PM",
 ];
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const now = new Date(); // today — drives the marker and the past-day shading
@@ -32,6 +35,10 @@ const Calendar = () => {
   const [arrowX, setArrowX] = useState(32); // aim the arrow at the cell
   const gridRef = useRef<HTMLDivElement>(null);
   const bubbleRef = useRef<HTMLDivElement>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const daysInMonth = new Date(
     selectedDate.getFullYear(),
@@ -135,6 +142,49 @@ const Calendar = () => {
     setArrowX(Math.min(Math.max(center - left, 16), bubble.offsetWidth - 16));
   }, [anchorDay, selectedDate]);
 
+  const canBook =
+    name.trim() !== "" &&
+    EMAIL_RE.test(email.trim()) &&
+    selectedTime !== null &&
+    !submitting;
+
+  // POST the slot — only a 201 from the server flips to the confirmation.
+  const book = async () => {
+    if (!canBook || anchorDay === null || selectedTime === null) return;
+
+    const day = anchorDay;
+    const iso = [
+      selectedDate.getFullYear(),
+      String(selectedDate.getMonth() + 1).padStart(2, "0"),
+      String(day).padStart(2, "0"),
+    ].join("-");
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      await createAppointment({
+        name: name.trim(),
+        email: email.trim(),
+        date: iso,
+        time: selectedTime,
+      });
+      setSelectedDay(day);
+      setHoveredDay(null);
+      setBooked(true);
+    } catch (err) {
+      // Axios errors carry the server's message; anything else is a drop.
+      const detail = (
+        err as { response?: { data?: { message?: string } } }
+      )?.response?.data?.message;
+      setSubmitError(
+        detail ?? "Could not book the appointment — please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="p-4">
       <div className="mb-4 flex items-center justify-between gap-3">
@@ -193,6 +243,7 @@ const Calendar = () => {
                 setSelectedDay(day);
                 setHoveredDay(null); // the click locks the previewed date
                 setBooked(false);
+                setSubmitError(null);
               }}
               className={`border rounded p-2 text-center transition-colors disabled:cursor-default ${
                 isPast
@@ -245,6 +296,9 @@ const Calendar = () => {
                   setSelectedDay(null);
                   setSelectedTime(null);
                   setBooked(false);
+                  setName("");
+                  setEmail("");
+                  setSubmitError(null);
                 }}
                 className="mt-4 w-full rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#8B5CF6]/25"
               >
@@ -269,12 +323,34 @@ const Calendar = () => {
                     setSelectedDay(null);
                     setSelectedTime(null);
                     setBooked(false);
+                    setName("");
+                    setEmail("");
+                    setSubmitError(null);
                   }}
                   className="shrink-0 rounded-md p-1 text-[16px] leading-none text-[#9aa0aa] transition-colors hover:text-white"
                 >
                   ×
                 </button>
               </div>
+
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your name"
+                aria-label="Your name"
+                autoComplete="name"
+                className="mt-3 w-full rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-[13px] text-white placeholder:text-[#6b7280] outline-none transition-colors focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6]/50"
+              />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email address"
+                aria-label="Email address"
+                autoComplete="email"
+                className="mt-2 w-full rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-[13px] text-white placeholder:text-[#6b7280] outline-none transition-colors focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6]/50"
+              />
 
               <div className="mt-3 grid grid-cols-3 gap-2">
                 {timeSlots.map(time => (
@@ -294,13 +370,19 @@ const Calendar = () => {
                 ))}
               </div>
 
+              {submitError && (
+                <p role="alert" className="mt-3 text-[12px] text-[#f87171]">
+                  {submitError}
+                </p>
+              )}
+
               <button
                 type="button"
-                disabled={!selectedTime}
-                onClick={() => setBooked(true)}
+                disabled={!canBook}
+                onClick={book}
                 className="mt-3 w-full rounded-lg bg-[#8B5CF6] px-3 py-2.5 text-[13px] font-bold text-white transition-colors enabled:hover:bg-[#7C3AED] disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                Make Appointment
+                {submitting ? "Booking…" : "Make Appointment"}
               </button>
             </div>
           )}

@@ -2,7 +2,8 @@ import nodemailer from 'nodemailer';
 import {
   ticketCreatedEmail,
   ticketUpdatedEmail,
-  ticketClosedEmail
+  ticketClosedEmail,
+  appointmentBookedEmail
 } from '../utils/emailTemplates';
 import dotenv from 'dotenv';
 
@@ -65,6 +66,21 @@ export const sendTicketClosedEmail = async (ticket: any) => {
       html: htmlEmail
     });
 
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sendAppointmentBookedEmail = async (appointment: any) => {
+  const htmlEmail = appointmentBookedEmail(appointment);
+
+  try {
+    await transporter.sendMail({
+      from: `'Opsie Software Solutions Inc.' <${process.env.EMAIL_USER}>`,
+      to: appointment.email,
+      subject: `Appointment Booked - ${appointment.time}`,
+      html: htmlEmail
+    });
   } catch (error) {
     console.log(error);
   }

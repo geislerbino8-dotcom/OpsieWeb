@@ -177,3 +177,40 @@ export const ticketClosedEmail = (ticket: any) => {
     body
   );
 };
+
+export const appointmentBookedEmail = (appointment: any) => {
+  // Mongo hands back a Date — rebuild it as a *local* date so the label
+  // can never shift a day across UTC boundaries.
+  const iso = new Date(appointment.date).toISOString().slice(0, 10);
+  const [year, month, day] = iso.split('-').map(Number);
+  const dateLabel = new Date(year, month - 1, day).toLocaleDateString(
+    'en-US',
+    {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    }
+  );
+
+  const body = `
+    <p>Hello <b>${appointment.name}</b>,</p>
+
+    <p>Your consultation appointment has been booked.</p>
+
+    <h3>Appointment Details</h3>
+
+    <p><b>Date:</b> ${dateLabel}</p>
+
+    <p><b>Time:</b> ${appointment.time}</p>
+
+    <p><b>Duration:</b> 30 minutes</p>
+
+    <p style='margin-top: 28px;'>Our team will reach out to confirm the schedule. If you need to reschedule, reply to this email or book a new slot on our website.</p>
+  `;
+
+  return buildEmailTemplate(
+    'Appointment Booked',
+    body
+  );
+};

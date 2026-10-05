@@ -9,6 +9,7 @@ import ProductRoute from './routes/productRoute';
 import dns from 'dns';
 import { rateLimit } from 'express-rate-limit';
 import WebContentRoute from './routes/webContentRoute';
+import AppointmentRoute from './routes/appointmentRoute';
 // Force Google DNS
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
@@ -18,6 +19,17 @@ const limiter = rateLimit({
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
   ipv6Subnet: 56, // Set to 60 or 64 to be less aggressive, or 52 or 48 to be more aggressive
+  message: { error: 'Too many requests, please try again later.' },
+});
+
+// Bookings are public too, but a spam wave shouldn't lock a real visitor
+// out behind the ticket route's 5-requests-per-IP budget.
+const appointmentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  ipv6Subnet: 56,
   message: { error: 'Too many requests, please try again later.' },
 });
 
@@ -44,6 +56,7 @@ export default class Server {
     const authRoute = new AuthRoute();
     const productRoute = new ProductRoute();
     const webContentRoute = new WebContentRoute();
+    const appointmentRoute = new AppointmentRoute();
     const API_PREFIX = process.env.API_PREFIX || '/api';
     this.app.use(`${API_PREFIX}/ticket/create`, ticketRoute.router, limiter);
     this.app.use(`${API_PREFIX}/ticket`, ticketRoute.router);
@@ -51,6 +64,11 @@ export default class Server {
     this.app.use(`${API_PREFIX}/auth`, authRoute.router);
     this.app.use(`${API_PREFIX}/products`, productRoute.router);
     this.app.use(`${API_PREFIX}/webcontent`, webContentRoute.router);
+    this.app.use(
+      `${API_PREFIX}/appointments`,
+      appointmentRoute.router,
+      appointmentLimiter,
+    );
     this.app.use(`${API_PREFIX}/products`, productRoute.router)
   };
 
