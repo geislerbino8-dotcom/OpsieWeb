@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-05 (study: service-list exercise for OJT records)
+
+Added `study/service-list.js` — the build step of today's JS study block (arrays/objects review → map/filter/find/sorting practice → service-list exercise → explain to supervisor).
+
+### Added
+
+- **`study/service-list.js`** — 8-service sample data plus five functions: `getServiceNames` (map), `getAffordable` (filter), `findService` (find), `sortByPrice` (spread copy + `direction` ternary — original array stays untouched) and `getFeaturedNames` (filter → map chain). Runs with `node study/service-list.js`; all 7 self-checks pass.
+
+---
+
 ## [Unreleased] - 2026-10-05 (appointments: the bubble now books through the backend)
 
 The appointment bubble went from a local demo to a real booking: it collects name + email, POSTs the slot to a new public endpoint, saves it in MongoDB and emails the visitor a confirmation — the success view only appears after the server says 201.
