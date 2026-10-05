@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-05 (booking page: in-house calendar replaces Cal.com)
+
+Replaced the third-party Cal.com embed on `/book-a-schedule` with a self-contained calendar component; the route, the intro column and every site link to it stay as they were.
+
+### Changed
+
+- **Cal.com is fully removed.** Dropped the `@calcom/embed-react` import, the `getCalApi` branding effect, the `CAL_LINK` constant and the `<Cal>` mount from `BookingPage.tsx`; deleted `styles/BookingCal.css` (its only rules sized the embed wrapper and iframe); uninstalled `@calcom/embed-react` (3 packages).
+- **New `components/BookingCalendar.tsx`** — the custom month calendar (useState month header, 7-column day grid) now renders inside the glow card. Component logic unchanged; only colors were adapted to the dark surface and the violet theme: `text-white` on header and cells, `border-white/10` outlines (Tailwind v4's bare `border` resolves against `currentColor`), hover `bg-[#8B5CF6]/25` instead of `hover:bg-blue-100`, plus `transition-colors`. The unused `setSelectedDate` binding and default `React` import were trimmed to satisfy `noUnusedLocals` — re-add the setter when month navigation/date selection lands.
+- **`BookingPage.tsx` cleanup** — the Cal.com reflow commentary is gone (the layout rule it justified is kept in short form: intro 480 + gap 48 + card 780 = 1308px, hence `min-[1440px]`), as are the `booking-card` class hook and the widget's 480px min-height floor — the card now sizes to the calendar.
+
+### Verified
+
+- `npx tsc -b --force` — **0 errors**; `npx eslint` — **140 errors / 32 warnings** (unchanged baseline).
+- `/book-a-schedule`: `#root` mounted, "October 2026" header + **31 day cells** (last = 31), cell color `rgb(255,255,255)` on card `rgb(14,14,20)` (`#0e0e14`), cell border white/10, generated hover rule `color-mix(rgb(139, 92, 246) 25%, transparent)`, **0 iframes**, 0 console errors, 0 horizontal overflow. Intro, trust pill and email link untouched.
+
+### Known issue (pre-existing, surfaced during verification)
+
+- **The frontend cannot boot without the backend.** `data/productsData.ts` does `export const products = await getProducts()` at module scope, so a rejected fetch (backend down → vite proxy `ECONNREFUSED`) fails the whole import chain and `main.tsx` never runs — `#root` stays empty with no visible error. The same top-level-await pattern exists in `data/usePageContent.ts` (currently dead code).
+
+---
+
 ## [Unreleased] - 2026-10-02 (responsive pass: mobile & tablet adjustments)
 
 Reviewed every public route at 320/375/768/1024px and fixed the mobile/tablet problems the sweep turned up: clipped product cards, a three-way nav breakpoint split, a non-reactive carousel step, and several smaller defects.

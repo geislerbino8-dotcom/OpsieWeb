@@ -1,48 +1,8 @@
-import { useEffect } from "react";
-import Cal, { getCalApi } from "@calcom/embed-react";
-import "../styles/BookingCal.css";
+import Calendar from "./BookingCalendar";
 
 const CONTACT_EMAIL = "inquiry@opsiesoftwaresolutions.com";
 
-/**
- * The Cal.com event this page embeds — the path after `cal.com/`.
- * Team events use `org/team/event-type` instead.
- */
-const CAL_LINK = "dionizen-geisler-bino-ilohkz/opsie-bookings";
-
 function BookingPage() {
-  // Brand the embed with the site's violet. `Cal` inits the namespace in its
-  // own effect, which React runs before this parent effect.
-  useEffect(() => {
-    let cancelled = false;
-
-    (async () => {
-      try {
-        const cal = await getCalApi({ namespace: "booking" });
-        if (cancelled) return;
-        cal("ui", {
-          cssVarsPerTheme: {
-            light: {
-              "cal-brand": "#8B5CF6",
-              "cal-brand-emphasis": "#7C3AED",
-            },
-            dark: {
-              "cal-brand": "#8B5CF6",
-              "cal-brand-emphasis": "#7C3AED",
-            },
-          },
-          styles: { branding: { brandColor: "#8B5CF6" } },
-        });
-      } catch (error) {
-        console.error("Failed to theme the Cal.com embed:", error);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
       {/* --- BACKGROUND DECOR --- */}
@@ -61,17 +21,9 @@ function BookingPage() {
 
       {/* --- CONTENT --- */}
       <div className="relative z-10 mx-auto w-full max-w-[1500px] px-6 pb-24 pt-28 md:px-10 lg:pt-32">
-        {/* Two columns only when the calendar can clear Cal.com's reflow
-            threshold. The widget is one stacked column below ~780px of
-            card width — and there it gets TALLER the wider you make it
-            (677px → 1100px, 757px → 1168px) — then snaps to a short
-            two-pane layout above it (787px → 538px, flat from there).
-            Side by side, 480 intro + 48 gap + 780 calendar needs 1308px of
-            content, which only exists from 1440px up, so below that the
-            columns stack and the calendar takes the whole row instead.
-            The intro is capped at every size its children care about
-            (headline 102px, body 440px), so it renders the same either way
-            and only the calendar changes. */}
+        {/* Two columns only from 1440px up: intro 480 + gap 48 + card 780
+            needs 1308px of content, which smaller viewports don't have.
+            Below that the columns stack and the calendar takes the row. */}
         <div className="flex flex-col items-start gap-10 min-[1440px]:flex-row min-[1440px]:gap-12">
           {/* ---------- INTRO COLUMN ---------- */}
           <div
@@ -126,18 +78,8 @@ function BookingPage() {
                 className="pointer-events-none absolute -inset-8 translate-y-16 rounded-[32px] bg-cyan-500/15 blur-3xl"
               />
 
-              <div className="booking-card relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] shadow-[0_0_60px_-20px_rgba(139,92,246,0.7)]">
-                {/* Cal.com embed mounts here */}
-                {/* Cal.com embed mounts here. The floor is deliberately
-                    below Cal.com's shortest layout (538px for the two-pane
-                    view) — anything higher leaves dead card beneath the
-                    widget, which is the whole point of the exercise. */}
-                <Cal
-                  calLink={CAL_LINK}
-                  namespace="booking"
-                  config={{ theme: "dark", layout: "month_view" }}
-                  style={{ width: "100%", minHeight: 480 }}
-                />
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] shadow-[0_0_60px_-20px_rgba(139,92,246,0.7)]">
+                <Calendar />
               </div>
             </div>
 
