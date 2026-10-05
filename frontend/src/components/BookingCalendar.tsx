@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 const weekdays = [
   { full: "Monday", short: "Mon" },
@@ -25,6 +25,13 @@ const Calendar = () => {
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [booked, setBooked] = useState(false);
+  // Hovering a date previews it: the bubble always follows
+  // anchorDay = hoveredDay ?? selectedDay.
+  const [hoveredDay, setHoveredDay] = useState<number | null>(null);
+  const [bubbleX, setBubbleX] = useState(0); // slide the bubble to its column
+  const [arrowX, setArrowX] = useState(32); // aim the arrow at the cell
+  const gridRef = useRef<HTMLDivElement>(null);
+  const bubbleRef = useRef<HTMLDivElement>(null);
 
   const daysInMonth = new Date(
     selectedDate.getFullYear(),
@@ -46,6 +53,7 @@ const Calendar = () => {
 
   const goNextMonth = () => {
     setSelectedDay(null); // a day picked in the old month no longer applies
+    setHoveredDay(null);
     setSelectedDate(prev => {
       const next = new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
       const horizon = new Date(LAST_MONTH.year, LAST_MONTH.month, 1);
@@ -60,6 +68,7 @@ const Calendar = () => {
 
   const goBackMonth = () => {
     setSelectedDay(null); // a day picked in the old month no longer applies
+    setHoveredDay(null);
     setSelectedDate(prev => {
       const firstOfThisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
       const target = new Date(prev.getFullYear(), prev.getMonth() - 1, 1);
@@ -76,12 +85,15 @@ const Calendar = () => {
     selectedDate.getFullYear() === now.getFullYear() &&
     selectedDate.getMonth() === now.getMonth();
 
+  // The bubble previews the hovered date, otherwise the picked one.
+  const anchorDay = hoveredDay ?? selectedDay;
+
   const appointmentDate =
-    selectedDay !== null
+    anchorDay !== null
       ? new Date(
           selectedDate.getFullYear(),
           selectedDate.getMonth(),
-          selectedDay
+          anchorDay
         ).toLocaleDateString("en-US", {
           weekday: "long",
           month: "long",
@@ -89,6 +101,39 @@ const Calendar = () => {
           year: "numeric",
         })
       : "";
+
+  // Park the bubble directly under its date: measure the cell against the
+  // grid, slide the bubble to that column (clamped so it never leaves the
+  // calendar), and aim the arrow at the cell. useLayoutEffect runs before
+  // paint, so an opening bubble never flashes at the wrong spot.
+  useLayoutEffect(() => {
+    if (anchorDay === null) return;
+    const grid = gridRef.current;
+    const bubble = bubbleRef.current;
+    if (!grid || !bubble) return;
+
+    const cell = Array.from(grid.children).find(
+      (el) =>
+        el instanceof HTMLButtonElement &&
+        el.textContent?.trim() === String(anchorDay)
+    );
+    if (!cell) return;
+
+    const gridRect = grid.getBoundingClientRect();
+    const cellRect = cell.getBoundingClientRect();
+    const center = cellRect.left - gridRect.left + cellRect.width / 2;
+    const half = bubble.offsetWidth / 2;
+    // Bubble span allowed: [half, gridWidth - half] (never overhangs).
+    const clamped = Math.min(
+      Math.max(center, half),
+      Math.max(grid.offsetWidth - half, half)
+    );
+    const left = clamped - half;
+
+    setBubbleX(left);
+    // Arrow stays on the bubble but keeps pointing at the cell.
+    setArrowX(Math.min(Math.max(center - left, 16), bubble.offsetWidth - 16));
+  }, [anchorDay, selectedDate]);
 
   return (
     <div className="p-4">
@@ -126,7 +171,7 @@ const Calendar = () => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-2">
+      <div ref={gridRef} className="grid grid-cols-7 gap-2">
         {leadingBlanks.map((i) => (
           <div key={`blank-${i}`} aria-hidden="true" />
         ))}
@@ -141,8 +186,12 @@ const Calendar = () => {
               disabled={isPast}
               aria-pressed={isSelected}
               aria-current={isToday ? "date" : undefined}
+              onMouseEnter={() => {
+                if (!isPast && !booked) setHoveredDay(day);
+              }}
               onClick={() => {
                 setSelectedDay(day);
+                setHoveredDay(null); // the click locks the previewed date
                 setBooked(false);
               }}
               className={`border rounded p-2 text-center transition-colors disabled:cursor-default ${
@@ -164,13 +213,16 @@ const Calendar = () => {
       {/* ---------- APPOINTMENT BUBBLE ---------- */}
       {selectedDay !== null && (
         <div
+          ref={bubbleRef}
           role="region"
           aria-label="Appointment for selected date"
-          className="relative mt-5 max-w-[440px] rounded-2xl border border-[#8B5CF6]/40 bg-[#0e0e14] p-4 shadow-[0_0_40px_-15px_rgba(139,92,246,0.7)]"
+          style={{ transform: `translateX(${bubbleX}px)` }}
+          className="relative mt-5 max-w-[440px] rounded-2xl border border-[#8B5CF6]/40 bg-[#0e0e14] p-4 shadow-[0_0_40px_-15px_rgba(139,92,246,0.7)] transition-transform duration-150"
         >
           <span
             aria-hidden="true"
-            className="absolute -top-2 left-8 h-4 w-4 rotate-45 border-l border-t border-[#8B5CF6]/40 bg-[#0e0e14]"
+            style={{ left: arrowX }}
+            className="absolute -top-2 h-4 w-4 -translate-x-1/2 rotate-45 border-l border-t border-[#8B5CF6]/40 bg-[#0e0e14] transition-[left] duration-150"
           />
           {booked ? (
             <div>

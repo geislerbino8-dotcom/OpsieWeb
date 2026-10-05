@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-05 (calendar: bubble anchored under its date)
+
+The appointment bubble now parks directly beneath the date it is booking, and hovering any other day slides it over to that day.
+
+### Changed
+
+- **Bubble anchored to its cell** — a layout effect measures the date button against the grid, translates the bubble to that column (clamped to `[half, gridWidth − half]` so it never overhangs the calendar) and aims the arrow at the cell. `useLayoutEffect` runs before paint, so an opening bubble never flashes at the wrong spot; bubble and arrow both glide on `duration-150`.
+- **Hover-to-preview** — `onMouseEnter` on selectable cells sets `hoveredDay`; the bubble (label included) follows `anchorDay = hoveredDay ?? selectedDay`. Clicking locks the preview in, month navigation clears it, and a booked confirmation ignores it.
+
+### Verified
+
+- Position math probe: day 10 (right edge) → `translateX(431px)` clamp with arrow at 256px; hover day 20 (left edge) → `0px` with the arrow at the cell; hover/click day 15 (middle) → `215.49px` with the arrow at bubble center — all within 1px of the computed expectation. Labels follow `October 10 → 20 → 15` and click locks.
+- `npx tsc -b --force` — **0 errors**; `npx eslint` — **140 / 32** (baseline).
+
+---
+
 ## [Unreleased] - 2026-10-05 (calendar: navigation, shading, and the appointment bubble)
 
 Gave the in-house calendar on `/book-a-schedule` real month behavior — weekday header, correct first-weekday alignment, bounded Next/Back, a today marker with past days shaded out — plus a click-to-book appointment bubble under the selected date.
