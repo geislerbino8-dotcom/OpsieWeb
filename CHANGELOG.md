@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-05 (calendar: navigation, shading, and the appointment bubble)
+
+Gave the in-house calendar on `/book-a-schedule` real month behavior — weekday header, correct first-weekday alignment, bounded Next/Back, a today marker with past days shaded out — plus a click-to-book appointment bubble under the selected date.
+
+### Added
+
+- **Weekday header row (Monday → Sunday)** above the day grid: full names from 640px up, `Mon…Sun` below (all labels fit, 0 overflow at 320/375/768/1024).
+- **Monday-first alignment** — leading blanks = `(getDay() + 6) % 7`, so Oct 1 2026 sits under Thursday (verified dead-center, 0px offset).
+- **Next / Back month buttons**, bounded to **Oct 2026 – Dec 2026**: `Next →` disables at December, `← Back` at the current month; labels collapse to bare arrows below 640px.
+- **Today marker (Oct 5 2026)** — solid `#8B5CF6` cell, bold, `aria-current="date"`; **past days 1–4 shaded** (`text-[#4b5563]`, `bg-white/[0.04]`) and `disabled` with `disabled:cursor-default`.
+- **Appointment bubble** — clicking any selectable day opens an inline bubble: `BOOK AN APPOINTMENT` eyebrow + full weekday-date label, a 3×3 grid of time slots (9:00 AM – 5:00 PM), `Make Appointment` disabled until a slot is picked, then a local confirmation (`✓ Appointment requested · date · time`) with `Done`. Day cells are real `<button>`s with `aria-pressed`; `×` closes and resets date+time; month navigation closes the bubble.
+
+### Fixed
+
+- **Horizon clamp used exact equality** — a second rapid click on Next could step past December into January 2027; clamping now lives inside the `setSelectedDate` updater (`next > horizon ? prev : next`) where stale closures can't bypass it.
+- **`reachedFirstMonth` compared full dates** — on fresh load (today Oct 5 ≤ Oct 1 was false) Back rendered enabled but did nothing; it now compares month starts.
+
+### Verified
+
+- Full flow E2E: click day 10 → bubble shows `Saturday, October 10, 2026`, Make gated until `10:00 AM` picked → confirmation reads date · time → Done resets; past day 3 refuses to open; today labels `Monday, October 5, 2026`; two Next clicks close an open bubble.
+- Style matrix with transitions force-disabled (hidden-tab reads freeze transitions at t=0, which masquerades as stuck gray/violet): **Oct** day1/3 gray+shaded+disabled, day5 violet+bold+enabled; **Nov/Dec** all white/transparent/400/enabled; back to Oct restores.
+- Mobile 375: bubble fits (`scrollWidth - clientWidth = 0`), no page overflow, all 9 slots + Make visible.
+- `npx tsc -b --force` — **0 errors**; `npx eslint` — **140 errors / 32 warnings** (unchanged baseline).
+
+---
+
 ## [Unreleased] - 2026-10-05 (booking page: in-house calendar replaces Cal.com)
 
 Replaced the third-party Cal.com embed on `/book-a-schedule` with a self-contained calendar component; the route, the intro column and every site link to it stay as they were.
