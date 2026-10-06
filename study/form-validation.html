@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — validation exercise</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #e5e7eb;
+    padding: 16px;
+  }
+  .card {
+    width: min(420px, 100%);
+    background: #111111;
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 28px;
+  }
+  h1 { font-size: 1.3rem; margin-bottom: 4px; }
+  .sub { color: #9ca3af; font-size: 0.9rem; margin-bottom: 20px; }
+  label { display: block; font-size: 0.85rem; margin-bottom: 14px; color: #d1d5db; }
+  input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #374151;
+    background: #0a0a0a;
+    color: #ffffff;
+    font-size: 0.95rem;
+  }
+  input:focus { outline: none; border-color: #3CBDE6; }
+  input.bad { border-color: #f87171; }
+  .error { color: #f87171; font-size: 0.78rem; min-height: 1em; margin-top: 4px; }
+  button {
+    width: 100%;
+    padding: 11px;
+    border: 0;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    background: linear-gradient(90deg, #3CBDE6, #8B5CF6);
+    color: #0a0a0a;
+  }
+  button:disabled { opacity: 0.45; cursor: not-allowed; }
+  .success {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #052e1f;
+    border: 1px solid #10b981;
+    color: #34d399;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1>Create your account</h1>
+    <p class="sub">Exercise: live validation + submit gate</p>
+
+    <form id="signupForm" novalidate>
+      <label for="name">
+        Full name
+        <input type="text" id="name" name="name" placeholder="Jane Cruz" autocomplete="name">
+        <p class="error" id="nameError" role="alert"></p>
+      </label>
+
+      <label for="email">
+        Email
+        <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+        <p class="error" id="emailError" role="alert"></p>
+      </label>
+
+      <label for="password">
+        Password
+        <input type="password" id="password" name="password" placeholder="At least 8 chars, 1 digit" autocomplete="new-password">
+        <p class="error" id="passwordError" role="alert"></p>
+      </label>
+
+      <button type="submit" id="submitBtn" disabled>Sign up</button>
+      <p class="success" id="successMsg" role="status" hidden>&#10003; Account created (demo only — nothing was sent)</p>
+    </form>
+  </main>
+
+<script>
+/* ============================================================
+   SETUP — DOM lookups are given. Write Tasks 1-3 below.
+   ============================================================ */
+const form = document.getElementById("signupForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const passwordError = document.getElementById("passwordError");
+const submitBtn = document.getElementById("submitBtn");
+const successMsg = document.getElementById("successMsg");
+
+/* ============================================================
+   Task 1 — the three rules
+   ============================================================ */
+const isValidName = name => {
+  const trimmed = name.trim();
+  return trimmed.length >= 2 && /^[A-Za-z\- ]+$/.test(trimmed);
+};
+const isValidEmail = email => {
+  const parts = email.split('@');
+  return parts.length === 2 && parts[0].length > 0 && parts[1].length > 0 && !email.includes(' ');
+};
+const isValidPassword = password => password.length >= 8 && /\d/.test(password);
+
+/* ============================================================
+   Task 2 — live validation (fires on every keystroke)
+   ============================================================ */
+function validateField(input, validator, errorId) {
+  const errorEl = document.querySelector(errorId);
+  if (validator(input.value)) {
+    errorEl.textContent = '';
+    input.classList.remove('bad');
+  } else {
+    errorEl.textContent = 'Invalid input';
+    input.classList.add('bad');
+  }
+  updateSubmit();
+}
+
+nameInput.addEventListener('input', () => validateField(nameInput, isValidName, '#nameError'));
+emailInput.addEventListener('input', () => validateField(emailInput, isValidEmail, '#emailError'));
+passwordInput.addEventListener('input', () => validateField(passwordInput, isValidPassword, '#passwordError'));
+
+/* ============================================================
+   Task 3 — the gate
+   ============================================================ */
+function updateSubmit() {
+  const allValid = isValidName(nameInput.value) && isValidEmail(emailInput.value) && isValidPassword(passwordInput.value);
+  submitBtn.disabled = !allValid;
+}
+
+document.querySelector('form').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!isValidName(nameInput.value)) {
+    nameInput.focus();
+    return;
+  }
+  if (!isValidEmail(emailInput.value)) {
+    emailInput.focus();
+    return;
+  }
+  if (!isValidPassword(passwordInput.value)) {
+    passwordInput.focus();
+    return;
+  }
+  successMsg.textContent = 'Form submitted successfully!';
+  successMsg.hidden = false;             // flip the attribute -> green box appears
+});
+</script>
+</body>
+</html>

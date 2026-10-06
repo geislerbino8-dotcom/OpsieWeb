@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-06 (study: form-validation exercise for OJT records)
+
+Added `study/form-validation.html` — the build + test step of today's JS study block (events & input handling → validation rules → interactive form → valid/invalid/empty testing).
+
+### Added
+
+- **`study/form-validation.html`** — sign-up form with three live-validated fields (name / email / password), per-field error messages on `input`, a disabled-until-valid submit gate and a success state unhidden via the `hidden` attribute. All three tasks written from chat, then debugged through a 13-row test matrix that caught three real bugs (double-`@` emails accepted, hyphenated names rejected, whitespace-only names accepted) — final run **13/13**, Node validator tests + live browser run, 0 console errors.
+
+---
+
 ## [Unreleased] - 2026-10-05 (study: service-list exercise for OJT records)
 
 Added `study/service-list.js` — the build step of today's JS study block (arrays/objects review → map/filter/find/sorting practice → service-list exercise → explain to supervisor).
