@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (ui: the booking page's dark nav now covers every page)
+
+The nav bar used to switch style by route: translucent near-black on `/book-a-schedule`, solid violet `#4C1D95` everywhere else. It now uses the booking design on every page.
+
+### Changed
+
+- **`Navigation.tsx`** — removed the `isDarkNav` route check (`location.pathname === "/book-a-schedule"`); `backgroundColor` is now unconditionally `rgba(10, 10, 10, 0.82)` over the existing `backdrop-blur-xl`. The violet fallback and its conditional are gone; the comment now records the site-wide choice. Nothing else touched — the nav is a single shared component, so links, `DateTimeDisplay`, `PrimaryButton`, mobile bar and `MobileMenu` were already identical across routes (the mobile sheet is byte-for-byte what booking already showed).
+
+### Verified
+
+- Computed nav style: `/` → `rgba(10, 10, 10, 0.82)` + `blur(24px)` (was `#4C1D95`), `/who-we-are` → same, `/book-a-schedule` → same (unchanged); no violet left anywhere in the nav.
+- Home page screenshot at mobile width: black bar with cyan logo over the hero, menu button intact.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (ui: every public-site button becomes a full pill)
 
 Every action button on the public site now uses full pill rounding (`rounded-full`). The enabler was one line in `index.css`: the old unlayered `button { border-radius: 0 }` reset outranked every Tailwind v4 utility (unlayered CSS beats `@layer` rules), so radius classes on `<button>` elements were silently ignored.
