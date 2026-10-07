@@ -78,7 +78,7 @@ export default function WhatWeDo() {
               <div className="flex justify-center md:justify-start" data-aos="fade-right" data-aos-delay="400">
                 <button 
                   onClick={() => navigate("/contact-us")}
-                  className="mt-8 bg-white text-black px-12 py-3 font-medium hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-wider"
+                  className="mt-8 bg-white text-black rounded-full px-12 py-3 font-medium hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-wider"
                 >
                  {
                   content?.whatWeDoPage.hero.button.text

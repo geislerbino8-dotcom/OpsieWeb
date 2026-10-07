@@ -27,13 +27,9 @@ body {
   box-sizing: border-box;
 }
 
-button {
-  border-radius: 0;
-}
-
-
-
-
+/* Button radius now comes from utilities (site-wide pill buttons, 2026-10-07);
+   the old unlayered `button { border-radius: 0 }` beat every Tailwind v4
+   utility class because unlayered CSS outranks @layer rules. */
 
 .ai-fe {
   align-items: flex-end;

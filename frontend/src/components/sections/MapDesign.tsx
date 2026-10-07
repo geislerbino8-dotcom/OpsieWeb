@@ -183,7 +183,7 @@ export default function Maps() {
 
             <button 
               onClick={() => { navigate('/contact-us')}}
-              className="flex items-center gap-2 border-2 border-[#8B5CF6] text-[#8B5CF6] font-semibold px-6 py-[10px] rounded-lg transition-all duration-300 hover:bg-[#242424] hover:text-white group"
+              className="flex items-center gap-2 border-2 border-[#8B5CF6] text-[#8B5CF6] font-semibold px-6 py-[10px] rounded-full transition-all duration-300 hover:bg-[#242424] hover:text-white group"
             >
               <PlayCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
               Request Demo

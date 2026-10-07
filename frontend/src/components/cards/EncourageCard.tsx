@@ -33,7 +33,7 @@ function EncourageCard() {
         {/* Button */}
         <button 
           onClick={()=> window.location.href = '/contact-us'}
-          className="bg-white text-[#8B5CF6] text-sm font-semibold tracking-wide uppercase px-8 py-3.5 rounded-xl shadow-md hover:bg-gray-900 hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300">
+          className="bg-white text-[#8B5CF6] text-sm font-semibold tracking-wide uppercase px-8 py-3.5 rounded-full shadow-md hover:bg-gray-900 hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300">
           {content?.encouragecard.button.text}
         </button>
 

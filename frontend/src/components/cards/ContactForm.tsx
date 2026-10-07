@@ -184,7 +184,7 @@ function ContactForm() {
             <button
               type="submit"
               disabled={disabled}
-              className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 shadow-lg ${
+              className={`w-full py-4 rounded-full font-bold text-white transition-all duration-300 shadow-lg ${
                 loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#8B5CF6] hover:bg-neutral-900 group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
               }`}
             >

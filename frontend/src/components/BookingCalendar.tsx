@@ -200,7 +200,7 @@ const Calendar = () => {
             onClick={goBackMonth}
             disabled={reachedFirstMonth}
             aria-label="Previous month"
-            className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12px] font-semibold text-white transition-colors enabled:hover:bg-[#8B5CF6]/25 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12px] font-semibold text-white transition-colors enabled:hover:bg-[#8B5CF6]/25 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             ←<span className="hidden sm:inline"> Back</span>
           </button>
@@ -209,7 +209,7 @@ const Calendar = () => {
             onClick={goNextMonth}
             disabled={reachedLastMonth}
             aria-label="Next month"
-            className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12px] font-semibold text-white transition-colors enabled:hover:bg-[#8B5CF6]/25 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12px] font-semibold text-white transition-colors enabled:hover:bg-[#8B5CF6]/25 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Next<span className="hidden sm:inline"> →</span>
           </button>
@@ -247,7 +247,7 @@ const Calendar = () => {
                 setBooked(false);
                 setSubmitError(null);
               }}
-              className={`border rounded p-2 text-center transition-colors disabled:cursor-default ${
+              className={`border rounded-full p-2 text-center transition-colors disabled:cursor-default ${
                 isPast
                   ? "border-white/5 bg-white/[0.04] text-[#4b5563] cursor-default"
                   : isToday
@@ -303,7 +303,7 @@ const Calendar = () => {
                   setMessage("");
                   setSubmitError(null);
                 }}
-                className="mt-4 w-full rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#8B5CF6]/25"
+                className="mt-4 w-full rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#8B5CF6]/25"
               >
                 Done
               </button>
@@ -331,7 +331,7 @@ const Calendar = () => {
                     setMessage("");
                     setSubmitError(null);
                   }}
-                  className="shrink-0 rounded-md p-1 text-[16px] leading-none text-[#9aa0aa] transition-colors hover:text-white"
+                  className="shrink-0 rounded-full p-1 text-[16px] leading-none text-[#9aa0aa] transition-colors hover:text-white"
                 >
                   ×
                 </button>
@@ -363,7 +363,7 @@ const Calendar = () => {
                     type="button"
                     onClick={() => setSelectedTime(time)}
                     aria-pressed={selectedTime === time}
-                    className={`rounded-lg border px-2 py-2 text-[12px] font-semibold transition-colors ${
+                    className={`rounded-full border px-2 py-2 text-[12px] font-semibold transition-colors ${
                       selectedTime === time
                         ? "border-[#8B5CF6] bg-[#8B5CF6] text-white"
                         : "border-white/10 bg-white/[0.04] text-white hover:bg-[#8B5CF6]/25"
@@ -394,7 +394,7 @@ const Calendar = () => {
                 type="button"
                 disabled={!canBook}
                 onClick={book}
-                className="mt-3 w-full rounded-lg bg-[#8B5CF6] px-3 py-2.5 text-[13px] font-bold text-white transition-colors enabled:hover:bg-[#7C3AED] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="mt-3 w-full rounded-full bg-[#8B5CF6] px-3 py-2.5 text-[13px] font-bold text-white transition-colors enabled:hover:bg-[#7C3AED] disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {submitting ? "Booking…" : "Make Appointment"}
               </button>

@@ -28,7 +28,7 @@ function ProductItemCTA() {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
             onClick={()=> navigate("/book-a-schedule")}
-           className="relative z-10 bg-white text-indigo-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-200 transition ">
+           className="relative z-10 bg-white text-indigo-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition ">
             Get a Demo
           </button>
 
@@ -36,7 +36,7 @@ function ProductItemCTA() {
           onClick={()=> {
             window.location.href = "mailto:nquiry@opsiesoftwaresolutions.com"
           }}
-          className="relative z-10 border border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition">
+          className="relative z-10 border border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition">
             Email Us
           </button>
         </div>

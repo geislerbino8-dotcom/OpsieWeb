@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (ui: every public-site button becomes a full pill)
+
+Every action button on the public site now uses full pill rounding (`rounded-full`). The enabler was one line in `index.css`: the old unlayered `button { border-radius: 0 }` reset outranked every Tailwind v4 utility (unlayered CSS beats `@layer` rules), so radius classes on `<button>` elements were silently ignored.
+
+### Changed
+
+- **27 files, ~35 radius swaps** — booking calendar (month nav, day cells, time slots, ×, Done, Make Appointment), hero/CTA/section buttons, product + pricing + contact + team buttons, `PrimaryButton`, `Button` (inline `50%` → `9999px`), `MapCard`'s `BlackButton` (`borderRadius` `0` → `999`), `Book` default (`0.25` → `999` em), `ServicesCard`/`ClientCard` button bases, `Buttons.ts` variant style; also dropped a conflicting `rounded-2xl` sitting next to `rounded-full` in `Buttons.ts`.
+- **`index.css`** — deleted the global `button { border-radius: 0 }` rule (comment left in its place); radius now comes from each button's own utility classes.
+- Admin panel and webcontent/CMS untouched (standing scope rule); inputs, textareas, selects, cards and status pills unchanged.
+
+### Verified
+
+- Live radius audits: booking page **36/36** buttons pill; home **23** visible buttons / **0** square; `/what-we-do` **13** visible / **0** square.
+- Bubble controls (time slots, Make Appointment, ×) all pill; day cells stadium-shaped with today (violet fill) and selected (violet ring) states intact.
+- 375px iframe emulation: `innerWidth 375`, `overflowX ≤ 0`, every control in view.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (appointments: visitors can attach a note to a booking)
 
 The booking bubble now takes an optional note alongside name, email and time — it rides along in the POST, saves on the appointment document, and is echoed back in the confirmation email.

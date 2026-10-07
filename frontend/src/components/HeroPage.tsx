@@ -108,7 +108,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
           </div>
           <button 
             onClick={() => navigate("/book-a-schedule")}
-            className="group relative bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
+            className="group relative rounded-full bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
           >
           <span className="relative z-10">{buttonText}</span>
           </button>

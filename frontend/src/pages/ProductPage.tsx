@@ -101,14 +101,14 @@ function ProductPage() {
                 data-aos-delay="200"
               >
                 <button
-                  className="bg-[#8B5CF6] text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-violet-500/30 hover:bg-[#7C3AED] hover:-translate-y-1 transition-all"
+                  className="bg-[#8B5CF6] text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-violet-500/30 hover:bg-[#7C3AED] hover:-translate-y-1 transition-all"
                   onClick={() => navigate('/book-a-schedule')}
                 >
                   {content?.productsPage.button1.text}
                 </button>
 
                 <a href="#all-products">
-                  <button className="bg-white/80 backdrop-blur-md border border-gray-200 px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 hover:-translate-y-1 transition-all shadow-sm">
+                  <button className="bg-white/80 backdrop-blur-md border border-gray-200 px-8 py-4 rounded-full font-bold hover:bg-gray-50 hover:-translate-y-1 transition-all shadow-sm">
                     {content?.productsPage.button2.text}
                   </button>
                 </a>

@@ -89,7 +89,7 @@ export default function WhoWeAre() {
             <div data-aos="fade-up" data-aos-delay="400" className="mt-10">
               <button 
                 onClick={() => navigate("/what-we-do")}
-                className="bg-white text-black px-12 py-3 font-semibold hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-widest shadow-lg"
+                className="bg-white text-black rounded-full px-12 py-3 font-semibold hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-widest shadow-lg"
               >
                 Get to Know
               </button>

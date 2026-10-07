@@ -87,7 +87,7 @@ function ProductSection() {
                 onClick={() => navigate('/products')}
                 className="
                   px-10 py-4
-                  rounded-2xl font-bold uppercase tracking-widest text-xs
+                  rounded-full font-bold uppercase tracking-widest text-xs
                   text-[#8B5CF6]
                   bg-[#0a0a0a]
                   border-2 border-[#8B5CF6] border-opacity-30

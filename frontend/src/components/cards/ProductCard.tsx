@@ -143,7 +143,7 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
               w-full py-2.5 px-4
               text-xs font-medium tracking-wide text-white
               bg-neutral-900 hover:bg-neutral-800
-              rounded-xl shadow-sm
+              rounded-full shadow-sm
               transition-all duration-300
             "
           >

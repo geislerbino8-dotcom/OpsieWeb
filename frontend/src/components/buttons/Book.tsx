@@ -12,7 +12,7 @@ function Book({
   text,
   color = '#8B5CF6',
   fontSize = '1',      // in em
-  borderRadius = '0.25', // in em
+  borderRadius = '999', // in em
   margin = '0.5',       // in em
   padding = '0.5 1',    // in em
   image,

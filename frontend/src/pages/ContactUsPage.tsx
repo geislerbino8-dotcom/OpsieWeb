@@ -101,7 +101,7 @@ function ContactUsPage() {
               <p className="mb-8 text-gray-400 font-light leading-relaxed">Rather meet online than in person? We’re just a call away.</p>
               <button 
                 onClick={() => navigate("/book-a-schedule")}
-                className="w-full bg-[#8B5CF6] text-white py-4 rounded-xl font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg relative z-10"
+                className="w-full bg-[#8B5CF6] text-white py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg relative z-10"
               >
                 Book a Discovery Call
               </button>

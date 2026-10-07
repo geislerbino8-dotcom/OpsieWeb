@@ -50,7 +50,7 @@ function MapCard() {
             onPress={() => setDirAction(!dirAction)}
             text={dirAction ? "Clear Route" : "Get Direction"}
             fontSize="1.2"
-            borderRadius="0"
+            borderRadius="999"
             margin="0"
             padding="0"
             color=""

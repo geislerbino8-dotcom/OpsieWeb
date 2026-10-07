@@ -59,7 +59,7 @@ export class CardLogic {
     } = this.options;
 
     const base =
-      "px-2 py-1 rounded-xl font-medium flex items-center justify-center transition";
+      "px-2 py-1 rounded-full font-medium flex items-center justify-center transition";
 
     const variantStyle =
       CardLogic.variantClasses[variant] ?? CardLogic.variantClasses["primary"];

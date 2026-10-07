@@ -167,7 +167,7 @@ function ProductItemPage() {
             <div data-aos="fade-up" data-aos-delay="200" className="pt-2 flex flex-wrap justify-center lg:justify-start gap-4">
               <button 
                 onClick={() => window.location.href = "mailto:sales@example.com"}
-                className="px-8 py-4 bg-gradient-to-r from-violet-500 to-violet-600 rounded-xl font-bold text-sm tracking-wide text-white shadow-lg shadow-violet-500/15 hover:shadow-violet-500/30 hover:-translate-y-0.5 transition-all duration-200"
+                className="px-8 py-4 bg-gradient-to-r from-violet-500 to-violet-600 rounded-full font-bold text-sm tracking-wide text-white shadow-lg shadow-violet-500/15 hover:shadow-violet-500/30 hover:-translate-y-0.5 transition-all duration-200"
               >
                 Request Live Demo
               </button>
