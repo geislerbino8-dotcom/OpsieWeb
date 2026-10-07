@@ -193,6 +193,15 @@ export const appointmentBookedEmail = (appointment: any) => {
     }
   );
 
+  // The note is free text typed by the visitor — HTML-escape it before
+  // it rides along in the confirmation email.
+  const note = appointment.message
+    ? String(appointment.message)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+    : '';
+
   const body = `
     <p>Hello <b>${appointment.name}</b>,</p>
 
@@ -205,6 +214,8 @@ export const appointmentBookedEmail = (appointment: any) => {
     <p><b>Time:</b> ${appointment.time}</p>
 
     <p><b>Duration:</b> 30 minutes</p>
+
+    ${note ? `<p><b>Your note:</b> ${note}</p>` : ''}
 
     <p style='margin-top: 28px;'>Our team will reach out to confirm the schedule. If you need to reschedule, reply to this email or book a new slot on our website.</p>
   `;

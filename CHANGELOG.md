@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (appointments: visitors can attach a note to a booking)
+
+The booking bubble now takes an optional note alongside name, email and time — it rides along in the POST, saves on the appointment document, and is echoed back in the confirmation email.
+
+### Added
+
+- **`message` field on `Appointment`** — string, trimmed, ≤ 500 chars, optional (default `''`); a non-string body value books as "no note" instead of failing the request.
+- **Controller** — accepts the optional `message` and returns it in the 201 payload; the required-fields 400 (`name/email/date/time`) is untouched.
+- **Confirmation email** — shows `Your note: …` only when one was given, HTML-escaped (it's visitor-typed input).
+- **Bubble textarea** — `rows=3`, `maxLength=500`, placeholder "Add a note for your appointment (optional)", same dark surface + violet focus ring; deliberately **not** part of the submit gate; cleared by both `×` and `Done` resets.
+
+### Verified
+
+- API battery: `201` note stored verbatim → `201` no note = `""` → `201` number note = `""` (type guard) → `400` missing name → `400` on a 501-char note.
+- Browser E2E: day 20 → fill → 10:00 AM → note → Make → confirmation `Tuesday, October 20, 2026 · 10:00 AM`, **0 console errors**; DB row holds the note verbatim; 4 test rows deleted afterwards (0 left).
+- 375px iframe emulation: `innerWidth 375`, `overflowX 0`, textarea visible (244px), name + Make visible.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32**, backend **35** — exact baselines.
+
+---
+
 ## [Unreleased] - 2026-10-06 (study: form-validation exercise for OJT records)
 
 Added `study/form-validation.html` — the build + test step of today's JS study block (events & input handling → validation rules → interactive form → valid/invalid/empty testing).

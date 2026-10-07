@@ -15,6 +15,9 @@ const AppointmentSchema = new Schema(
     // Slot label from the booking bubble (e.g. '10:00 AM'), not an
     // instant in time — so it stays exactly what the visitor saw.
     time: { type: String, required: true },
+    // Optional note the visitor attached to the booking — capped at
+    // 500 chars; a note must never block an otherwise-valid booking.
+    message: { type: String, trim: true, maxlength: 500, default: '' },
     status: {
       type: String,
       enum: ['pending', 'confirmed', 'cancelled'],
