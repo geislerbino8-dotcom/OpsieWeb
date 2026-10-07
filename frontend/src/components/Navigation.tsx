@@ -35,11 +35,11 @@ function DateTimeDisplay() {
   });
 
   return (
-    <div className="hidden lg:flex items-center gap-1.5 text-white/70 text-[10px] font-medium px-2 py-1 rounded-md border border-white/10 bg-white/5">
-      <Clock className="w-3 h-3 text-[#8B5CF6]" />
+    <div className="hidden lg:flex h-10 items-center gap-1.5 text-white/70 text-[11px] font-medium px-3 rounded-md border border-white/10 bg-white/5">
+      <Clock className="w-3.5 h-3.5 text-[#8B5CF6]" />
       <div className="flex flex-col leading-tight">
         <span className="font-mono">{time}</span>
-        <span className="text-white/40 text-[9px]">{date}</span>
+        <span className="text-white/40 text-[10px]">{date}</span>
       </div>
     </div>
   );

@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (ui: nav date/time chip matches the Get Started height)
+
+The clock/date chip in the desktop nav (`DateTimeDisplay`) was noticeably shorter than the Get Started button next to it — ~34px vs 40px, with 10px/9px text. It now matches the button's height exactly.
+
+### Changed
+
+- **`Navigation.tsx` (`DateTimeDisplay`)** — chip box `px-2 py-1` → `h-10 px-3` (40px, the exact height of the Get Started `PrimaryButton` at `size="md"`: `text-base` 24px line + `py-2`); time text `text-[10px]` → `text-[11px]`, date text `text-[9px]` → `text-[10px]`, clock icon `w-3 h-3` → `w-3.5 h-3.5`. Desktop-only widget (`hidden lg:flex`) — unchanged everywhere it's hidden.
+
+### Verified
+
+- Computed-style audit at 1440px (same-origin iframe): DateTimeDisplay height **40px** = Get Started height **40px** (`sameHeight: true`), chip font `11px`, padding `0 12px`.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (ui: ChatHelp teaser becomes a visible violet pill)
 
 The floating "How may I help you?" teaser at the bottom-right was carbon `#0a0a0a` with a faint cyan glow — on the now-carbon body it blended into the background. It now uses the site's violet so it reads as a callout again.
