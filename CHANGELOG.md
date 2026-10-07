@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (ui: service cards play the Figma "(simpler way)" GIFs)
+
+The Figma frame `(simpler way)` is the section headed **"A simpler way to run your business"** — six service cards, each with its own exported GIF. Every service card now plays its GIF instead of showing the static photo.
+
+### Added
+
+- **Six GIFs → `frontend/public/services/`** (exported from the Figma file): `cloud.gif` (3.0 MB), `software_integration.gif` (3.2 MB), `cybersecurity.gif` (5.3 MB), `ai_automation.gif` (3.0 MB), `web_mobile_dev.gif` (0.65 MB), `ui_design.gif` (5.0 MB) — ~20 MB total, named to match the existing `.jpg` set. The old JPGs stay on disk (nothing else imports them, but they cost nothing to keep).
+
+### Changed
+
+- **`ServicesSections.tsx` (the `/what-we-do` carousel)** — all six card `image` paths `.jpg` → `.gif`.
+- **CMS content (database, not git)** — `publishedContent` *and* `draftContent` → `servicesSection.services[].image` repointed `.jpg` → `.gif` via `PATCH /api/webcontent/update-content` (the same endpoint the admin CMS uses). This is what feeds the homepage's "(simpler way)" section and the product page's copy of it; updating `draftContent` too so a future publish can't silently revert the site to JPGs.
+- **No component change needed for those two** — `ServicesCards` sets the image as a CSS `background-image`, and browsers animate GIF backgrounds natively.
+
+### Verified
+
+- Homepage `#service-section`: header reads "A simpler way to run your business", all six cards' computed `background-image` → `/services/*.gif`.
+- Re-GET of `/api/webcontent/get-content`: `.gif` in both `publishedContent` and `draftContent` (6/6 each).
+- `/what-we-do` carousel: all six `<img>` `complete && naturalWidth > 0` (800/800/930/500/500/800px).
+- `GET /services/cloud.gif` → 200, 3,149,535 bytes.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (ui: nav date/time chip matches the Get Started height)
 
 The clock/date chip in the desktop nav (`DateTimeDisplay`) was noticeably shorter than the Get Started button next to it — ~34px vs 40px, with 10px/9px text. It now matches the button's height exactly.
