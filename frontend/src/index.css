@@ -21,10 +21,22 @@
 }
 
 body {
-  background-color: #ECEDF1; /* optional */
+  /* Carbon black — the site's base surface (2026-10-07, was #ECEDF1) */
+  background-color: #0a0a0a;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Soft violet side-glow for every public-site card: blurred light
+   bleeding from the left & right edges only (x-offsets do the work;
+   top/bottom stay nearly clean). Unlayered on purpose so it wins over
+   the layered shadow-* utilities - same cascade rule the button fix
+   relies on. */
+.card-side-glow {
+  box-shadow:
+    -24px 0 48px -20px rgba(139, 92, 246, 0.6),
+    24px 0 48px -20px rgba(139, 92, 246, 0.6);
 }
 
 /* Button radius now comes from utilities (site-wide pill buttons, 2026-10-07);

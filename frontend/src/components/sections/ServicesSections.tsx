@@ -77,7 +77,7 @@ const ServicesSection: React.FC = () => {
                     title={card.title} 
                     image={card.image} 
                     description={card.description} 
-                    className={`rounded-3xl border-none transition-shadow ${isActive ? 'shadow-2xl' : 'shadow-sm'}`}
+                    className={`rounded-3xl card-side-glow border-none transition-shadow ${isActive ? 'shadow-2xl' : 'shadow-sm'}`}
                   />
                 </div>
               );
@@ -94,7 +94,7 @@ const ServicesSection: React.FC = () => {
               <div
                 key={idx}
                 className={`h-1.5 transition-all duration-300 rounded-full ${
-                  currentIndex === idx ? "w-8 bg-black" : "w-2 bg-gray-200"
+                  currentIndex === idx ? "w-8 bg-[#8B5CF6]" : "w-2 bg-white/30"
                 }`}
               />
             ))}
@@ -110,7 +110,7 @@ const ServicesSection: React.FC = () => {
             </button>
 
             <div className="text-xs font-bold tracking-[0.2em] text-gray-400">
-              <span className="text-black">{currentIndex + 1}</span> / {cards.length}
+              <span className="text-white">{currentIndex + 1}</span> / {cards.length}
             </div>
 
             <button 

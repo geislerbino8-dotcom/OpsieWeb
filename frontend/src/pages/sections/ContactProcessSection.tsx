@@ -58,7 +58,7 @@ const ContactProcessSection: React.FC = () => {
           {steps.map((step) => (
             <div 
               key={step.id} 
-              className="group relative p-8 rounded-3xl border border-white/5 bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.05] hover:border-white/10"
+              className="group relative p-8 rounded-3xl border border-white/5 bg-white/[0.02] card-side-glow backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.05] hover:border-white/10"
             >
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-start mb-8">

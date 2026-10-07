@@ -167,7 +167,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                         aria-label="Product submenu"
                         className="
 
-                          absolute top-full left-0 w-56 shadow-xl p-2 bg-white
+                          absolute top-full left-0 w-56 shadow-xl p-2 bg-[#0f0f15] border border-white/10
                           transition-all duration-100 ease-out
                         "
                       >
@@ -175,8 +175,8 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                           <Link
                             key={prod.name}
                             to={`/products/${prod.name}`}
-                            className="text-black cursor-pointer block px-2 py-2 text-sm
-                            hover:bg-blue-50 hover:text-[#8B5CF6] transition"
+                            className="text-gray-100 cursor-pointer block px-2 py-2 text-sm
+                            hover:bg-[#8B5CF6]/15 hover:text-[#8B5CF6] transition"
                           >
                             {prod.name}
                           </Link>

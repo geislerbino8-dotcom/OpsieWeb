@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (ui: cards glow violet on their sides; light surfaces become carbon)
+
+The public site finishes its dark pass: every content card now carries the booking bubble's soft violet side glow, and every remaining white/light surface — section backgrounds, cards, panels, the products dropdown — flips to the site's carbon `#0a0a0a` with its text flipped to light so contrast holds. Admin panel and webcontent/CMS stay excluded (standing scope rule); white pill buttons stay white.
+
+### Changed
+
+- **`index.css`** — `body` background `#ECEDF1` → `#0a0a0a`; new unlayered `.card-side-glow` utility: two x-offset shadows (`±24px 0 48px -20px rgba(139, 92, 246, 0.6)`) so the violet light bleeds only from the left and right edges. Unlayered on purpose so it outranks the layered `shadow-*` utilities — the same cascade rule the pill-button fix relies on.
+- **~20 files, light surfaces → carbon** — Homepage analytics band, ProductPage root gradient + frosted preview tiles + review band (its three blur blobs recolored violet), ContactUsPage root + contact block, WhoWeAre's floating rating/vision/stat cards + LogoLoop fade edge, Faq closed items + plus chip, ClientReviews edge fade, Navigation's products dropdown (`bg-white` → `#0f0f15` + `border-white/10` + light items).
+- **Text contrast flips** — Footer column headings (were default-black on carbon), ChatHelp typed line, WhoWeAre/ClientReviews roots, CoreValues h2, ServicesCard title + description, WhatWeDo fallback h1 + body copy, AnalyticsCards numbers (were `text-[#242424]`, dark-on-dark), ClientCard/ServicesCard hover text, ServicesSections counter + dots, ContactsCard, ContactForm inputs/selects.
+- **~24 cards → `.card-side-glow`** — replaced cyan all-around glows, white neumorph shadows and plain `shadow-*` on ProductCard, EncourageCard, MapCard/MapBox, ContactForm, ProductItemCTA, WhyChooseUs (×4), ServicesSection, OperationalStructure (×2), ContactUs/ContactProcess cards, CoreValues image + rows, HeroPage promo, Faq open item, ProductItemPage cards (×4 + gallery), ServicesSections slide, WhyChooseUsSection, WhoWeAre's 12 neumorph frames + map box, plus the inline `boxShadow` in `ClientCard`/`ServicesCard` and `getCardStyle()` in both types files; their light hover gradients (`cyan-50 → blue-100`) → violet.
+- **Kept white by design** — CTA buttons (pill rule), OperationalStructure's white icon chip on its violet card, ContactProcess's light gradient heading.
+- **Dead code skipped** — `Team.tsx`, `PlanPricing/*`, `ContactUs.tsx`, `Analytics.tsx`, `Carousel.tsx`, `AboutUsSection.css` are unimported; not touched.
+
+### Verified
+
+- Computed-style audit on `/`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/products`: body `rgb(10, 10, 10)`, nav `rgba(10, 10, 10, 0.82)` + `blur(24px)`, glow sample `rgba(139, 92, 246, 0.6) -24px 0 48px -20px ×2`, zero light surfaces beyond the intentional chip, zero dark-on-dark text.
+- Products dropdown (hover-simulated): `rgb(15, 15, 21)`, white/10 border, near-white items (was white bg + black text).
+- Responsive: **0px** horizontal overflow at **320/375/768/1024** on every public route (same-origin iframe emulation).
+- Screenshots: home hero carbon + violet promo card; WhoWeAre cards show the violet side bleed.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (ui: the booking page's dark nav now covers every page)
 
 The nav bar used to switch style by route: translucent near-black on `/book-a-schedule`, solid violet `#4C1D95` everywhere else. It now uses the booking design on every page.

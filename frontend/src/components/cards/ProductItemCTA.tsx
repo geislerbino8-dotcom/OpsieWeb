@@ -11,7 +11,7 @@ function ProductItemCTA() {
 
   return (
     <section className="group w-full flex justify-center md:py-10">
-      <div className="w-full relative overflow-hidden md:w-[65%] smx-auto bg-gradient-to-r from-indigo-600 to-purple-600 md:rounded-2xl p-10 md:p-14 text-white text-center shadow-xl">
+      <div className="w-full relative overflow-hidden md:w-[65%] smx-auto bg-gradient-to-r from-indigo-600 to-purple-600 md:rounded-2xl p-10 md:p-14 text-white text-center card-side-glow">
         <img src={bg} alt=""  className="group-hover:scale-120 transition-all duration-1000 opacity-20 absolute inset-0 w-full h-full object-cover z-0"/>
         <h2 className="text-3xl relative z-10 md:text-4xl font-bold mb-4">
           {

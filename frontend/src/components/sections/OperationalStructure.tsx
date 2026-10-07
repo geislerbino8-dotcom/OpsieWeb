@@ -25,7 +25,7 @@ function OperationalStructure() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         {/* Core Functions - Sophisticated Dark Slate */}
-        <div className="relative group overflow-hidden bg-[#8B5CF6] text-white p-8 lg:p-10 rounded-3xl border border-cyan-500/20 shadow-xl shadow-[0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        <div className="relative group overflow-hidden bg-[#8B5CF6] text-white p-8 lg:p-10 rounded-3xl border border-cyan-500/20 shadow-xl card-side-glow transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
           {/* Subtle Background Accent Gradient */}
           <div className="absolute -right-16 -top-16 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-500" />
           
@@ -60,7 +60,7 @@ function OperationalStructure() {
         </div>
 
         {/* Delivery Approach - Ultra-Clean Bordered Design */}
-        <div className="relative group overflow-hidden bg-[#1a1a1a] text-gray-100 p-8 lg:p-10 rounded-3xl border border-cyan-500/20 shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div className="relative group overflow-hidden bg-[#1a1a1a] text-gray-100 p-8 lg:p-10 rounded-3xl border border-cyan-500/20 shadow-md card-side-glow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
           {/* Subtle Background Accent Gradient */}
           <div className="absolute -right-16 -top-16 w-40 h-40 bg-sky-500/5 rounded-full blur-3xl group-hover:bg-sky-500/10 transition-all duration-500" />
           

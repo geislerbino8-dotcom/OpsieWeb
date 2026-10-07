@@ -111,7 +111,7 @@ const ContactDetail = ({ icon, title, detail, href, paddingClass = "px-0" }: Con
   <a 
     href={href}
     target="_blank"
-    className="group bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:bg-slate-900/50 hover:border-white/20 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3"
+    className="group bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-xl card-side-glow flex flex-col items-center text-center transition-all duration-500 hover:bg-slate-900/50 hover:border-white/20 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3"
   >
     {/* Cleaned up the inner icon wrapper to blend with a dark design style */}
     <div className="w-16 h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 shadow-xl group-hover:bg-[#8B5CF6] group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]">

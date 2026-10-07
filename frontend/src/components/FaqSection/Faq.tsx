@@ -38,8 +38,8 @@ const FAQAccordion = () => {
                 key={index}
                 className={`group rounded-2xl transition-all duration-500 ease-in-out border
                   ${isOpen 
-                    ? "bg-[#0a0a0a] border-cyan-500/20 shadow-[0_20px_40px_rgba(60,189,230,0.1),0_0_30px_rgba(6,182,212,0.15)] scale-[1.01]" 
-                    : "bg-[#ECEDF1]/50 border-transparent hover:border-gray-300 shadow-sm hover:bg-[#4C1D95]/60"
+                    ? "bg-[#0a0a0a] border-cyan-500/20 card-side-glow scale-[1.01]" 
+                    : "bg-white/[0.04] border-transparent hover:border-white/20 shadow-sm hover:bg-[#4C1D95]/60"
                   }`}
               >
                 <button
@@ -53,8 +53,8 @@ const FAQAccordion = () => {
                   
                   {/* Animated Icon Container */}
                   <div className={`relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-500
-                    ${isOpen ? "bg-[#8B5CF6] rotate-45" : "bg-gray-200"}`}>
-                    <Plus className={`h-5 w-5 transition-colors ${isOpen ? "text-white" : "text-gray-600"}`} />
+                    ${isOpen ? "bg-[#8B5CF6] rotate-45" : "bg-white/20"}`}>
+                    <Plus className={`h-5 w-5 transition-colors ${isOpen ? "text-white" : "text-white/70"}`} />
                   </div>
                 </button>
 
@@ -65,7 +65,7 @@ const FAQAccordion = () => {
                 >
                   <div className="overflow-hidden">
                     <div className="px-8 pb-8 text-gray-300 leading-relaxed text-[16px]">
-                      <div className="pt-2 border-t border-gray-100">
+                      <div className="pt-2 border-t border-white/10">
                         {Array.isArray(faq.answer) ? (
                           <ul className="list-disc ml-5 space-y-2 mt-4">
                             {faq.answer.map((item, i) => (

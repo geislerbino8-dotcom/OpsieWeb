@@ -29,7 +29,7 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
         transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
         
         /* Base Premium Soft Shadow */
-        shadow-[0_8px_32px_0_rgba(0,0,0,0.08),0_0_30px_rgba(6,182,212,0.15)]
+        card-side-glow
         
         /* Subtle elevation shift instead of layout-breaking margins */
         hover:-translate-y-2

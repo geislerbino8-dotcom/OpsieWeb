@@ -16,12 +16,12 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
         group rounded-3xl w-full p-6 bg-[#0a0a0a] ${props.className || ""}
         
         transition-all duration-500 ease-out
-        hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-100
+        hover:bg-gradient-to-br hover:from-[#8B5CF6]/20 hover:to-[#4C1D95]/40
         hover:shadow-[0_10px_30px_rgba(0,0,0,0.12),0_0_30px_rgba(6,182,212,0.15)]
         hover:scale-[1.02]
       `}
       style={{
-        boxShadow: "5px 5px 10px 0px rgba(166, 171, 189, 0.25)",
+        boxShadow: "-24px 0 48px -20px rgba(139, 92, 246, 0.6), 24px 0 48px -20px rgba(139, 92, 246, 0.6)",
       }}
     >
       {/* Header */}
@@ -39,14 +39,14 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
           <h3 className="
             text-[20px] font-poppins font-semibold text-gray-100
             transition-colors duration-300
-            group-hover:text-violet-600
+            group-hover:text-[#A78BFA]
           ">
             {props.name}
           </h3>
           <p className="
             text-sm font-poppins text-gray-400
             transition-colors duration-300
-            group-hover:text-gray-700
+            group-hover:text-gray-200
           ">
             {props.role}
           </p>
@@ -57,7 +57,7 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
       <p className="
         text-[16px] font-poppins text-white leading-[22px] mb-4 text-start
         transition-colors duration-300
-        group-hover:text-gray-800
+        group-hover:text-white
       ">
         {props.review}
       </p>

@@ -24,7 +24,7 @@ function WhyChooseUsSection() {
               data-aos="fade-up"
               data-aos-delay={index * 150}
               className="
-                group relative overflow-hidden rounded-2xl shadow-2xl 
+                group relative overflow-hidden rounded-2xl card-side-glow
                 flex items-end 
                 p-6 md:p-8 
                 text-white 

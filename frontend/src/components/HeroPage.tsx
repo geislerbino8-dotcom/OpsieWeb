@@ -96,7 +96,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
           </p>
         )}
 
-        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 shadow-md max-w-md w-full">
+        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 card-side-glow max-w-md w-full">
           <div className="flex items-center space-x-3">
             <div className="bg-violet-700 rounded-full w-10 h-10 flex items-center justify-center">
               <span className="font-bold text-lg">O</span>
