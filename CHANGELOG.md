@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (ui: service card artwork sits in the middle)
+
+The service cards set `background-size: cover` but never a position, so the browser's default `0% 0%` showed each GIF's **top-left corner**. Cybersecurity's 930px-wide GIF lost its whole focal scene (the desk, the monitors, "ACCESS DENIED") to the crop — only the left window panels were visible.
+
+### Changed
+
+- **`ServicesCards.tsx`** — added `backgroundPosition: 'center'` to the card's inline style. With `cover`, the artwork now center-crops on every card: Cybersecurity shows the full desk scene in the middle of the card, and the Automation & AI chip is no longer sliced off at the edge. Affects the homepage "(simpler way)" section and the product page (same component); the `/what-we-do` carousel uses an `<img>`, which already defaults to centered `object-fit`.
+
+### Verified
+
+- Computed `background-position: 50% 50%` on the cards; screenshots before/after confirm the scene is centered (was: left-third crop).
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (ui: service cards play the Figma "(simpler way)" GIFs)
 
 The Figma frame `(simpler way)` is the section headed **"A simpler way to run your business"** — six service cards, each with its own exported GIF. Every service card now plays its GIF instead of showing the static photo.
