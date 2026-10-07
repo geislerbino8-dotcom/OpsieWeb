@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-07 (ui: ChatHelp teaser becomes a visible violet pill)
+
+The floating "How may I help you?" teaser at the bottom-right was carbon `#0a0a0a` with a faint cyan glow — on the now-carbon body it blended into the background. It now uses the site's violet so it reads as a callout again.
+
+### Changed
+
+- **`ChatHelp.tsx`** — pill background `#0a0a0a` → violet `#8B5CF6`, glow shadow cyan `rgba(6, 182, 212, 0.15)` → violet `rgba(139, 92, 246, 0.6)` at `0 0 30px`, border `cyan-500/20` → `violet-300/40`; typed text `text-gray-200` → `text-white font-semibold` for contrast on violet. Stays `pointer-events-none` (decorative teaser — never blocks taps on the footer/booking underneath).
+
+### Verified
+
+- Computed style: pill `rgb(139, 92, 246)`, text `rgb(255, 255, 255)` weight 600, shadow ends in `rgba(139, 92, 246, 0.6) 0px 0px 30px`.
+- Screenshot on `/`: pill clearly visible against the carbon hero.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (ui: cards glow violet on their sides; light surfaces become carbon)
 
 The public site finishes its dark pass: every content card now carries the booking bubble's soft violet side glow, and every remaining white/light surface — section backgrounds, cards, panels, the products dropdown — flips to the site's carbon `#0a0a0a` with its text flipped to light so contrast holds. Admin panel and webcontent/CMS stay excluded (standing scope rule); white pill buttons stay white.
