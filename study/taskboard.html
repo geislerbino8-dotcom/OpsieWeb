@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TaskBoard — React state practice</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: start center;
+    padding: 40px 16px;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #e5e7eb;
+  }
+  .board {
+    width: min(520px, 100%);
+    background: #111111;
+    border: 1px solid #1f2937;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 0 60px -20px rgba(139, 92, 246, 0.7);
+  }
+  h1 { font-size: 1.35rem; margin-bottom: 4px; }
+  .sub { color: #9ca3af; font-size: 0.9rem; margin-bottom: 20px; }
+
+  /* ---- stats + progress ---- */
+  .stats { display: flex; justify-content: space-between; font-size: 0.85rem; color: #9ca3af; margin-bottom: 8px; }
+  .stats b { color: #fff; }
+  .track { height: 8px; background: #1f2937; border-radius: 999px; overflow: hidden; margin-bottom: 20px; }
+  .fill { height: 100%; background: linear-gradient(90deg, #3CBDE6, #8B5CF6); border-radius: 999px; transition: width 0.3s ease; }
+
+  /* ---- add form ---- */
+  form { display: flex; gap: 8px; margin-bottom: 16px; }
+  input[type="text"] {
+    flex: 1;
+    padding: 11px 14px;
+    border-radius: 999px;          /* inputs stay rounded-lg-ish; pill only for buttons per site rule */
+    border: 1px solid #374151;
+    background: #0a0a0a;
+    color: #fff;
+    font-size: 0.95rem;
+  }
+  input[type="text"]:focus { outline: none; border-color: #8B5CF6; }
+  button {
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    transition: opacity 0.15s ease, background 0.15s ease;
+  }
+  .add {
+    padding: 0 22px;
+    border-radius: 999px;
+    background: #8B5CF6;
+    color: #fff;
+    font-size: 0.95rem;
+  }
+  .add:disabled { opacity: 0.4; cursor: not-allowed; }
+  .add:not(:disabled):hover { background: #7C3AED; }
+
+  /* ---- filters ---- */
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; }
+  .filters button {
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid #374151;
+    color: #9ca3af;
+    font-size: 0.85rem;
+  }
+  .filters button.on { background: #8B5CF6; border-color: #8B5CF6; color: #fff; }
+
+  /* ---- list ---- */
+  ul { list-style: none; display: flex; flex-direction: column; gap: 8px; min-height: 60px; }
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #0a0a0a;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+  }
+  li .txt { flex: 1; font-size: 0.95rem; }
+  li.done .txt { text-decoration: line-through; color: #6b7280; }
+  li input[type="checkbox"] { width: 17px; height: 17px; accent-color: #8B5CF6; cursor: pointer; }
+  .del {
+    background: transparent;
+    color: #6b7280;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 4px 7px;
+    border-radius: 999px;
+  }
+  .del:hover { color: #f87171; }
+
+  .empty { text-align: center; color: #6b7280; font-size: 0.9rem; padding: 24px 0; }
+
+  /* ---- footer actions ---- */
+  .foot { display: flex; justify-content: flex-end; margin-top: 16px; }
+  .clear {
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid #374151;
+    color: #9ca3af;
+    font-size: 0.85rem;
+  }
+  .clear:hover { border-color: #f87171; color: #f87171; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+
+<script type="text/babel">
+const { useState } = React;
+
+function TaskBoard() {
+  // ------------------------------------------------------------------
+  // STATE — only what changes on its own: the list, the input, the filter.
+  // ------------------------------------------------------------------
+  const [tasks, setTasks] = useState([
+    { id: 1, text: "Read the React state guide", done: true },
+    { id: 2, text: "Answer the check questions", done: false },
+    { id: 3, text: "Build the TaskBoard", done: false },
+  ]);
+  const [text, setText] = useState("");      // controlled input (REQ 1)
+  const [filter, setFilter] = useState("all"); // 'all' | 'active' | 'done' (REQ 4)
+
+  // ------------------------------------------------------------------
+  // DERIVED VALUES — plain consts, never state (REQ 3)
+  // ------------------------------------------------------------------
+  const trimmed = text.trim();
+  const canAdd = trimmed.length > 0;
+
+  const total = tasks.length;
+  const done = tasks.filter((t) => t.done).length;
+  const remaining = total - done;
+  const progress = total === 0 ? 0 : Math.round((done / total) * 100); // ÷0 guard
+
+  const visible = tasks.filter((t) =>
+    filter === "all" ? true : filter === "active" ? !t.done : t.done
+  );
+
+  // ------------------------------------------------------------------
+  // UPDATERS — every one replaces; no mutations (REQ 7)
+  // ------------------------------------------------------------------
+  const addTask = (e) => {
+    e.preventDefault();               // Enter key submits the form
+    if (!canAdd) return;              // belt & braces alongside disabled
+    setTasks((prev) => [...prev, { id: Date.now(), text: trimmed, done: false }]);
+    setText("");                      // clear the controlled input
+  };
+
+  const toggleTask = (id) => {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+    );
+  };
+
+  const deleteTask = (id) => {
+    setTasks((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const clearCompleted = () => {
+    setTasks((prev) => prev.filter((t) => !t.done));   // REQ 5
+  };
+
+  // ------------------------------------------------------------------
+  // EMPTY STATES — distinguish the three situations (REQ 6)
+  // ------------------------------------------------------------------
+  const emptyMessage =
+    total === 0
+      ? "No tasks yet — add one above."
+      : filter === "active"
+        ? "All done! Nothing active left. 🎉"
+        : filter === "done"
+          ? "Nothing completed yet — check one off!"
+          : "No tasks match this filter.";
+
+  return (
+    <div className="board">
+      <h1>TaskBoard</h1>
+      <p className="sub">React state · controlled inputs · derived values</p>
+
+      {/* ---- derived stats + progress bar ---- */}
+      <div className="stats">
+        <span>Total <b>{total}</b></span>
+        <span>Done <b>{done}</b></span>
+        <span>Remaining <b>{remaining}</b></span>
+      </div>
+      <div className="track">
+        <div className="fill" style={{ width: progress + "%" }} />
+      </div>
+
+      {/* ---- controlled input + Add ---- */}
+      <form onSubmit={addTask}>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="What needs doing?"
+          aria-label="New task"
+        />
+        <button className="add" type="submit" disabled={!canAdd}>Add</button>
+      </form>
+
+      {/* ---- filters (state-driven view) ---- */}
+      <div className="filters">
+        {["all", "active", "done"].map((f) => (
+          <button
+            key={f}
+            className={filter === f ? "on" : ""}
+            aria-pressed={filter === f}
+            onClick={() => setFilter(f)}
+          >
+            {f[0].toUpperCase() + f.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      {/* ---- list ---- */}
+      <ul>
+        {visible.map((t) => (
+          <li key={t.id} className={t.done ? "done" : ""}>
+            <input
+              type="checkbox"
+              checked={t.done}
+              onChange={() => toggleTask(t.id)}
+              aria-label={"Toggle " + t.text}
+            />
+            <span className="txt">{t.text}</span>
+            <button className="del" onClick={() => deleteTask(t.id)} aria-label={"Delete " + t.text}>✕</button>
+          </li>
+        ))}
+      </ul>
+
+      {visible.length === 0 && <p className="empty">{emptyMessage}</p>}
+
+      {/* ---- clear completed: rendered only when it makes sense ---- */}
+      {done > 0 && (
+        <div className="foot">
+          <button className="clear" onClick={clearCompleted}>
+            Clear completed ({done})
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<TaskBoard />);
+</script>
+</body>
+</html>
