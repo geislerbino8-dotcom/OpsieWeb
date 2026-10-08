@@ -65,7 +65,7 @@ function ContactForm() {
         Main Card: Kept physically uniform. 
         Uses group-hover properties to turn child elements white/light gray when open.
       */}
-      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl card-side-glow md:p-10 p-6 flex flex-col items-center border border-cyan-500/20 overflow-hidden transition-all duration-500">
+      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl card-side-glow md:p-10 p-6 flex flex-col items-center border border-[#8B5CF6]/25 overflow-hidden transition-all duration-500">
         
         {/* Smooth Gradient Layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black to-[#8B5CF6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />

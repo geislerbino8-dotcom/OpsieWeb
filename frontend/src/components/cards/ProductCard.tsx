@@ -25,7 +25,7 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
            instead of being clipped by its overflow-hidden ancestors */
         h-[400px] w-full max-w-[18rem] flex-shrink-0
         cursor-pointer rounded-2xl overflow-hidden
-        bg-white/[0.05] border border-cyan-500/20
+        bg-white/[0.05] border border-[#8B5CF6]/25
         transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
         
         /* Base Premium Soft Shadow */

@@ -38,7 +38,7 @@ const ContactUsSection: React.FC = () => {
       <div className="relative z-10 flex flex-col items-center w-full">
         {/* Header Area */}
         <div className="text-center mb-16 max-w-3xl" data-aos="fade-up">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold heading-glow text-white mb-6 leading-tight tracking-tight">
             {content?.contactUsSection?.header}
           </h1>
           <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">

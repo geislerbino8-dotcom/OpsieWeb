@@ -38,7 +38,7 @@ const FAQAccordion = () => {
                 key={index}
                 className={`group rounded-2xl transition-all duration-500 ease-in-out border
                   ${isOpen 
-                    ? "bg-[#0a0a0a] border-cyan-500/20 card-side-glow scale-[1.01]" 
+                    ? "bg-[#0a0a0a] border-[#8B5CF6]/25 card-side-glow scale-[1.01]" 
                     : "bg-white/[0.04] border-transparent hover:border-white/20 shadow-sm hover:bg-[#4C1D95]/60"
                   }`}
               >

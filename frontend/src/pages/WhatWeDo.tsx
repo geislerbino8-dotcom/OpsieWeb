@@ -64,7 +64,7 @@ export default function WhatWeDo() {
             
             {/* Left Content */}
             <div className="w-full md:w-[80%]">
-              <h1 data-aos="fade-right" className="text-[40px] leading-[44px] md:text-[60px] md:leading-[65px] lg:text-[75px] lg:leading-[80px] text-center md:text-left font-light text-white">
+              <h1 data-aos="fade-right" className="text-[40px] leading-[44px] md:text-[60px] md:leading-[65px] lg:text-[75px] lg:leading-[80px] text-center md:text-left font-light heading-glow text-white">
                 {
                   content?.whatWeDoPage.hero.header.firstLine
               }<br/> 

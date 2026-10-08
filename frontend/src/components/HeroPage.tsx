@@ -69,7 +69,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
       <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 mb-24 space-y-8">
         
         <div className="max-w-5xl">
-          <h1 className="text-white">
+          <h1 className="text-white heading-glow">
             {headerText && (
               <SplitText
                 text={headerText}

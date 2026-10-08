@@ -153,7 +153,7 @@ export default function Maps() {
 
         <div className="w-full flex flex-col items-center md:items-start gap-6 mb-10">
 
-          <h1 className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px]">
+          <h1 className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px] heading-glow">
             Let's start our
             <span className="text-[#8B5CF6] font-semibold"><br />Conversation</span>
           </h1>

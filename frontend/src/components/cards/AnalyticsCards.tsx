@@ -10,7 +10,7 @@ function AnalyticsCards({ numbers, unit, desc }: AnalyticsCardsProps) {
   return (
     <div className="group relative bg-[#0a0a0a] rounded-md p-6 w-full h-44 flex flex-col items-center justify-center 
                     transition-all duration-500 ease-out
-                    border border-cyan-500/20 card-side-glow
+                    border border-[#8B5CF6]/25 card-side-glow
                     hover:-translate-y-2 hover:border-[#8B5CF6]/50">
       
       {/* Subtle Background Accent on Hover */}

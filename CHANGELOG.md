@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-08 (ui: decorative polish pass — texture, heading halos, violet borders)
+
+The chosen direction for "add more design to all pages" was a **decorative polish pass** — consistent flourishes in the established violet/carbon language, no new content.
+
+### Added
+
+- **`index.css` — site-wide polish utilities**
+  - Violet `::selection` (`rgba(139, 92, 246, 0.85)` background, white text).
+  - Custom scrollbar: `scrollbar-width: thin` + `scrollbar-color: #8B5CF6 #111114` (standard properties, honored by Firefox and Chrome 121+) with a `::-webkit-scrollbar` set — 10px violet-gradient thumb, near-black track, `#A78BFA` hover.
+  - Body dot-grid texture: violet `radial-gradient` dots (`rgba(167, 139, 250, 0.055)`, 1.1px) on a 26px grid over the carbon base — visible only in the gaps; cards and sections cover it with their own `#0a0a0a`.
+  - `.heading-glow` — soft violet text-shadow halo (`0 0 28px rgba(139, 92, 246, 0.35), 0 0 6px rgba(139, 92, 246, 0.18)`).
+  - `footer::before` — gradient hairline (transparent → `rgba(139, 92, 246, 0.5)` → transparent) closing every page above the footer.
+
+### Changed
+
+- **Heading halos applied** with `.heading-glow`: `SuperHeader.tsx` both variants (hero + section headings on `/who-we-are`, `/contact-us`, `/products`, home), `HeroPage` h1 (homepage hero), `/what-we-do` hero h1, `BookingPage` h1, `ContactUsSection` + `ContactProcessSection` h1s, `MapDesign` h1, and WhoWeAre "The Vision"/"The Mission" h1s.
+- **Legacy cyan → violet sweep (0 cyan matches remain in `frontend/src`)**:
+  - `border-cyan-500/20` → `border-[#8B5CF6]/25` across 13 files (Footer, AnalyticsCards, ContactForm, Faq, EncourageCard, PartnerSection, ServicesSection, SolutionSection, OperationalStructure ×2, ProductCard, MapCard, WhyChooseUs ×4).
+  - Cyan drop-shadows → violet: Footer's inline cyan shadow replaced with the shared `.card-side-glow`, PartnerSection `rgba(139, 92, 246, 0.2)`, ClientCard hover `rgba(139, 92, 246, 0.3)`.
+  - `EncourageCard` gradient `#2FAEC8 → #8B5CF6 → #59CCEE` remapped to the violet family `#7C3AED → #8B5CF6 → #A78BFA` (border → `white/20` so the edge reads against the bright gradient).
+  - `BookingPage`'s two `bg-cyan-500/15` auras → `bg-[#8B5CF6]/15`; `ContactProcessSection` indigo/rose blurs → `#8B5CF6`/`#A78BFA`; stale "Cyan branding pulse" comment in `ProductPage` corrected to violet.
+
+### Verified
+
+- Computed on `/`: body `background-image: radial-gradient(...)` at `26px 26px`; hero h1 text-shadow = both violet halos (8 `.heading-glow` elements on the homepage, 2 on `/contact-us`); `footer::before` gradient hairline; footer card border `#8B5CF6/25` + `.card-side-glow`; `::selection` violet; `scrollbar-color: rgb(139, 92, 246)`.
+- Grep sweep `cyan|6,182,212|2FAEC8|59CCEE|indigo-600/10|rose-600/5` → **no matches**.
+- Responsive audit (hidden same-origin iframes) at **320 / 375 / 768 / 1024** on `/`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/products`, `/book-a-schedule` → **0px overflow everywhere**.
+- Console: **0 errors** on `/` and `/contact-us`; screenshots confirm the hero halo and the footer card's violet side-glow.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-07 (ui: service card artwork sits in the middle)
 
 The service cards set `background-size: cover` but never a position, so the browser's default `0% 0%` showed each GIF's **top-left corner**. Cybersecurity's 930px-wide GIF lost its whole focal scene (the desk, the monitors, "ACCESS DENIED") to the crop — only the left window panels were visible.

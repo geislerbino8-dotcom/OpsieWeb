@@ -11,7 +11,7 @@ function EncourageCard() {
         1. Applied a smooth diagonal gradient (from bottom-left to top-right)
         2. Added a relative positioning context and overflow-hidden to house ambient background effects
       */
-      className="relative flex flex-col items-center justify-center bg-gradient-to-br from-[#2FAEC8] via-[#8B5CF6] to-[#59CCEE] rounded-3xl p-8 md:p-16 text-center overflow-hidden card-side-glow border border-cyan-500/20"
+      className="relative flex flex-col items-center justify-center bg-gradient-to-br from-[#7C3AED] via-[#8B5CF6] to-[#A78BFA] rounded-3xl p-8 md:p-16 text-center overflow-hidden card-side-glow border border-white/20"
     >
       {/* Soft, modern ambient lens flare inside the card */}
       <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/10 blur-3xl rounded-full pointer-events-none" />

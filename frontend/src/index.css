@@ -23,6 +23,9 @@
 body {
   /* Carbon black — the site's base surface (2026-10-07, was #ECEDF1) */
   background-color: #0a0a0a;
+  /* Subtle violet dot-grid texture over the carbon base (decorative polish, 2026-10-08) */
+  background-image: radial-gradient(rgba(167, 139, 250, 0.055) 1.1px, transparent 1.15px);
+  background-size: 26px 26px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -339,4 +342,56 @@ h1, h2, h3, h4, h5, h6 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ===== Decorative polish pass (2026-10-08) ===== */
+
+/* Violet text selection */
+::selection {
+  background: rgba(139, 92, 246, 0.85);
+  color: #ffffff;
+}
+
+/* Custom violet scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #8B5CF6 #111114;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B5CF6, #7C3AED);
+  border-radius: 999px;
+  border: 2px solid #0d0d12;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A78BFA;
+}
+
+/* Soft violet halo behind key headings */
+.heading-glow {
+  text-shadow:
+    0 0 28px rgba(139, 92, 246, 0.35),
+    0 0 6px rgba(139, 92, 246, 0.18);
+}
+
+/* Gradient hairline closing every page above the footer */
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+  pointer-events: none;
 }

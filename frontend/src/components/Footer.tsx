@@ -23,7 +23,7 @@ const Footer = () => {
       </span>
 
       {/* MAIN CARD */}
-      <div className="relative w-full max-w-6xl rounded-3xl bg-[#0a0a0a] shadow-[0_0_30px_rgba(6,182,212,0.15)] md:p-10 py-10 px-3 md:mb-30 z-10 border border-cyan-500/20">
+      <div className="relative w-full max-w-6xl rounded-3xl bg-[#0a0a0a] md:p-10 py-10 px-3 md:mb-30 z-10 border border-[#8B5CF6]/25 card-side-glow">
 
         {/* HEADER */}
         <div className="text-center">

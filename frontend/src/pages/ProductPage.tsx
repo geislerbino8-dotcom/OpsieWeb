@@ -120,7 +120,7 @@ function ProductPage() {
               className="relative grid grid-cols-2 gap-4"
               data-aos="zoom-in-left"
             >
-              {/* Cyan branding pulse behind images */}
+              {/* Violet branding pulse behind images */}
               <div className="absolute -inset-4 bg-[#8B5CF6]/10 blur-3xl rounded-full -z-10" />
 
               {[Product1, hris, opsync, web].map((img, idx) => (

@@ -17,7 +17,7 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
         
         transition-all duration-500 ease-out
         hover:bg-gradient-to-br hover:from-[#8B5CF6]/20 hover:to-[#4C1D95]/40
-        hover:shadow-[0_10px_30px_rgba(0,0,0,0.12),0_0_30px_rgba(6,182,212,0.15)]
+        hover:shadow-[0_10px_30px_rgba(0,0,0,0.12),0_0_30px_rgba(139,92,246,0.3)]
         hover:scale-[1.02]
       `}
       style={{

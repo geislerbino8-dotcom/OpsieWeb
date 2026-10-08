@@ -323,7 +323,7 @@ export default function WhoWeAre() {
                         className="mt-6 flex items-center justify-center lg:items-start"
                             >
                             </div>
-                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#8B5CF6] font-semibold">Vision</span></h1>
+                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px] heading-glow">The <span className="text-[#8B5CF6] font-semibold">Vision</span></h1>
                             <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
                              {content?.whoWeArePage.section4.vision}
                             </p>
@@ -409,7 +409,7 @@ export default function WhoWeAre() {
                         className="mt-2 lg:mt-6 flex items-center justify-center lg:items-start"
                             >
                             </div>
-                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#8B5CF6] font-semibold">Mission</span></h1>
+                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px] heading-glow">The <span className="text-[#8B5CF6] font-semibold">Mission</span></h1>
                             <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
                                 {content?.whoWeArePage.section5.mission}
                              </p>
