@@ -65,7 +65,7 @@ function ContactForm() {
         Main Card: Kept physically uniform. 
         Uses group-hover properties to turn child elements white/light gray when open.
       */}
-      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl shadow-2xl shadow-[0_0_30px_rgba(6,182,212,0.15)] md:p-10 p-6 flex flex-col items-center border border-cyan-500/20 overflow-hidden transition-all duration-500">
+      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl card-side-glow md:p-10 p-6 flex flex-col items-center border border-[#8B5CF6]/25 overflow-hidden transition-all duration-500">
         
         {/* Smooth Gradient Layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black to-[#8B5CF6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
@@ -90,7 +90,7 @@ function ContactForm() {
                 value={userData.name}
                 placeholder="Full Name*"
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
               <input
                 onChange={handleUserDataChange}
@@ -99,7 +99,7 @@ function ContactForm() {
                 value={userData.email}
                 placeholder="Your Email*"
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
             </div>
 
@@ -111,7 +111,7 @@ function ContactForm() {
                 name="phone"
                 value={userData.phone}
                 placeholder="Phone (Optional)"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
               <input
                 onChange={handleUserDataChange}
@@ -119,7 +119,7 @@ function ContactForm() {
                 name="address"
                 value={userData.address}
                 placeholder="Address (Optional)"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
             </div>
 
@@ -130,7 +130,7 @@ function ContactForm() {
               value={userData.description}
               placeholder="Tell us about your project or inquiry*"
               required
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 resize-none h-32 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+              className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 resize-none h-32 group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
             ></textarea>
 
             {/* Row 4: Platform & Product */}
@@ -140,7 +140,7 @@ function ContactForm() {
                 name="platform"
                 value={userData.platform}
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
+                className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 text-gray-300 group-hover:bg-[#7C3AED] group-hover:border-neutral-700 group-hover:text-neutral-200"
               >
                 <option value="" disabled>- Platform -</option>
                 <option value="Windows">Windows</option>
@@ -156,7 +156,7 @@ function ContactForm() {
                 name="product"
                 value={userData.product}
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
+                className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 text-gray-300 group-hover:bg-[#7C3AED] group-hover:border-neutral-700 group-hover:text-neutral-200"
               >
                 <option value="" disabled>- Product -</option>
                 {products.map((item: ProductItem, index: number) => (
@@ -171,7 +171,7 @@ function ContactForm() {
               name="category"
               value={userData.category}
               required
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
+              className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all duration-300 text-gray-300 group-hover:bg-[#7C3AED] group-hover:border-neutral-700 group-hover:text-neutral-200"
             >
               <option value="" disabled>- Category -</option>
               <option value="Inquiry">Inquiry</option>
@@ -184,8 +184,8 @@ function ContactForm() {
             <button
               type="submit"
               disabled={disabled}
-              className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 shadow-lg ${
-                loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#8B5CF6] hover:bg-neutral-900 group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
+              className={`w-full py-4 rounded-full font-bold text-white transition-all duration-300 shadow-lg ${
+                loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#8B5CF6] hover:bg-[#7C3AED] group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
               }`}
             >
               {disabled ? "Sorry, please try again later" : ""}
@@ -195,7 +195,7 @@ function ContactForm() {
           </form>
         ) : (
           <div className="py-12 text-center space-y-6 relative z-10" data-aos="zoom-in">
-            <div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white shadow-xl">
+            <div className="w-24 h-24 bg-green-500/15 text-green-400 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white/20 shadow-xl">
               ✓
             </div>
             <div>
@@ -206,7 +206,7 @@ function ContactForm() {
             </div>
             <button
               onClick={() => setTransSucc(false)}
-              className="text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-black transition-colors group-hover:text-white group-hover:hover:text-neutral-300"
+              className="text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-[#A78BFA] transition-colors group-hover:text-white group-hover:hover:text-neutral-300"
             >
               Send Another Inquiry
             </button>

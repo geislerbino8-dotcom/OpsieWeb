@@ -13,7 +13,7 @@ export default function WhatWeDo() {
   const navigate = useNavigate();
   const content = useContext(ContentContext)
 
-  if(!content) return <div><h1>No content</h1></div>
+  if(!content) return <div><h1 className="text-white">No content</h1></div>
 
   return (
     <div className="w-full overflow-hidden">
@@ -64,7 +64,7 @@ export default function WhatWeDo() {
             
             {/* Left Content */}
             <div className="w-full md:w-[80%]">
-              <h1 data-aos="fade-right" className="text-[40px] leading-[44px] md:text-[60px] md:leading-[65px] lg:text-[75px] lg:leading-[80px] text-center md:text-left font-light text-white">
+              <h1 data-aos="fade-right" className="text-[40px] leading-[44px] md:text-[60px] md:leading-[65px] lg:text-[75px] lg:leading-[80px] text-center md:text-left font-light heading-glow text-white">
                 {
                   content?.whatWeDoPage.hero.header.firstLine
               }<br/> 
@@ -78,7 +78,7 @@ export default function WhatWeDo() {
               <div className="flex justify-center md:justify-start" data-aos="fade-right" data-aos-delay="400">
                 <button 
                   onClick={() => navigate("/contact-us")}
-                  className="mt-8 bg-white text-black px-12 py-3 font-medium hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-wider"
+                  className="mt-8 bg-white text-black rounded-full px-12 py-3 font-medium hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-wider"
                 >
                  {
                   content?.whatWeDoPage.hero.button.text
@@ -150,7 +150,7 @@ export default function WhatWeDo() {
   {/* Right: Paragraph - md:mt-2 helps "visually" align the smaller text with the large header text */}
   <p 
     data-aos="fade-left" 
-    className="md:w-1/3 text-lg text-gray-600 font-light text-center md:text-right leading-relaxed md:mt-2"
+    className="md:w-1/3 text-lg text-gray-400 font-light text-center md:text-right leading-relaxed md:mt-2"
   >{
     content?.whatWeDoPage.secondSection.subHeader
   }
@@ -164,7 +164,7 @@ export default function WhatWeDo() {
   {/* Decorative background glow for depth */}
   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#8B5CF6]/10 blur-[100px] -z-10" />
 
-  <div className="relative max-w-4xl w-full p-12 md:p-16 flex flex-col items-center space-y-8 bg-neutral-900 overflow-hidden"
+  <div className="relative max-w-4xl w-full p-12 md:p-16 flex flex-col items-center space-y-8 bg-neutral-900 card-side-glow overflow-hidden"
      style={{ clipPath: 'polygon(0% 0%, 93% 0%, 100% 15%, 100% 100%, 7% 100%, 0% 85%)' }}>
   
   {/* Subtly back-lighting the cut edges */}

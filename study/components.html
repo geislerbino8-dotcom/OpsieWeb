@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Opsie — Reusable Components Practice Set (Item 3 reference)</title>
+<!-- Tailwind v4 browser build — same major as the project (index.css uses @import "tailwindcss") -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- The three LIVE families after the item-2 font trim (Montserrat default, Poppins for cards, Poiret for booking) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700&family=Poiret+One&display=swap" rel="stylesheet" />
+<style>
+  /* ===== mirrored from frontend/src/index.css so the practice env matches the real site ===== */
+  * { font-family: 'Montserrat', sans-serif; }
+  body {
+    background-color: #0a0a0a;
+    /* violet dot-grid texture (decorative polish pass, 2026-10-08) */
+    background-image: radial-gradient(rgba(167, 139, 250, 0.055) 1.1px, transparent 1.15px);
+    background-size: 26px 26px;
+    margin: 0;
+    color: #fff;
+  }
+  ::selection { background: rgba(139, 92, 246, 0.85); color: #ffffff; }
+  *:focus-visible { outline: 2px solid #8B5CF6; outline-offset: 2px; }
+
+  /* UNLAYERED on purpose — plain CSS outranks Tailwind's @layer utilities, so no
+     shadow-* class can erase the glow. Same rule + exact numbers as index.css. */
+  .card-side-glow {
+    box-shadow:
+      -24px 0 48px -20px rgba(139, 92, 246, 0.6),
+      24px 0 48px -20px rgba(139, 92, 246, 0.6);
+  }
+  .heading-glow {
+    text-shadow: 0 0 28px rgba(139, 92, 246, 0.35), 0 0 6px rgba(139, 92, 246, 0.18);
+  }
+  /* practice-page chrome (not part of the design system) */
+  .cite { color: #A78BFA; font-size: 12px; letter-spacing: .02em; }
+  .note { color: #9aa0aa; font-size: 13px; line-height: 1.7; }
+  pre.snip {
+    background: #0e0e14; border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+    padding: 12px 14px; overflow-x: auto; font-size: 12px; line-height: 1.6;
+    color: #C4B5FD; margin: 10px 0 0;
+  }
+  .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #A78BFA; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ================= HEADER ================= -->
+<header class="mx-auto max-w-6xl px-6 pt-14 pb-6 md:px-10">
+  <p class="eyebrow">Item 3 &middot; 4h &middot; reference implementation</p>
+  <h1 class="heading-glow mt-3 text-4xl font-bold md:text-5xl">Reusable Practice Components</h1>
+  <p class="note mt-4 max-w-3xl">
+    Four production patterns extracted from the Opsie codebase, styled with the conventions from
+    items 1–2. Study each block: the <span class="text-[#A78BFA]">cite</span> tells you where the real
+    version lives, the snippet shows the exact classes, the notes say <em>why</em>. Then do the
+    checklist at the bottom without looking.
+  </p>
+  <div class="mt-6 flex flex-wrap gap-2 text-[12px]">
+    <span class="rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-3 py-1 text-[#C4B5FD]">palette: #0a0a0a + violet ramp</span>
+    <span class="rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-3 py-1 text-[#C4B5FD]">buttons: rounded-full</span>
+    <span class="rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-3 py-1 text-[#C4B5FD]">cards: border + .card-side-glow</span>
+    <span class="rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-3 py-1 text-[#C4B5FD]">spacing: 4px scale</span>
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl px-6 pb-24 md:px-10 space-y-16">
+
+<!-- ================= 1. BUTTONS ================= -->
+<section>
+  <div class="flex items-baseline justify-between gap-4 flex-wrap">
+    <h2 class="text-2xl font-bold md:text-3xl">1 &middot; Buttons</h2>
+    <span class="cite">real: HeroPage.tsx:111 &middot; Navigation.tsx (Get Started) &middot; TaskBoard add-btn pattern</span>
+  </div>
+  <p class="note mt-2">House rule: <strong class="text-white">every</strong> button is a pill. White CTAs stay white — they are the accent, not the violet. Hover for primary flips to white/black (that contrast pop is the site's signature).</p>
+
+  <div class="mt-5 rounded-2xl border border-white/10 bg-[#0e0e14]/70 p-6">
+    <div class="flex flex-wrap items-center gap-4">
+      <!-- primary -->
+      <button class="rounded-full bg-[#8B5CF6] px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-white hover:text-black shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)]">
+        Get Started
+      </button>
+      <!-- white CTA — stays white -->
+      <button class="rounded-full bg-white px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-[#8B5CF6] hover:text-white">
+        Book a Schedule
+      </button>
+      <!-- ghost / outline -->
+      <button class="rounded-full border border-[#8B5CF6]/60 bg-transparent px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#C4B5FD] transition-all duration-300 hover:bg-[#8B5CF6]/15 hover:text-white">
+        Learn More
+      </button>
+      <!-- disabled -->
+      <button disabled class="cursor-not-allowed rounded-full bg-[#8B5CF6]/40 px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
+        Add Task
+      </button>
+    </div>
+    <div class="mt-5 flex flex-wrap items-center gap-3">
+      <button class="rounded-full bg-[#8B5CF6] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-black">sm</button>
+      <button class="rounded-full bg-[#8B5CF6] px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-black">md</button>
+      <button class="rounded-full bg-[#8B5CF6] px-12 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-black">lg</button>
+    </div>
+<pre class="snip">class="rounded-full bg-[#8B5CF6] px-8 py-3 text-xs font-bold uppercase tracking-[0.2em]
+       text-white transition-all duration-300 hover:bg-white hover:text-black"</pre>
+    <p class="note mt-3"><strong class="text-white">Why:</strong> radius comes from utilities (site-wide pill rule). Disabled = opacity <em>and</em> <code class="text-[#C4B5FD]">cursor-not-allowed</code> — never kill only one of them. Focus any button: the violet <code class="text-[#C4B5FD]">*:focus-visible</code> outline appears (index.css:332).</p>
+  </div>
+</section>
+
+<!-- ================= 2. CARDS ================= -->
+<section>
+  <div class="flex items-baseline justify-between gap-4 flex-wrap">
+    <h2 class="text-2xl font-bold md:text-3xl">2 &middot; Cards</h2>
+    <span class="cite">real: ContactForm.tsx:68 &middot; MapCard.tsx:12 &middot; WhyChooseUs.tsx:36 &middot; glow: index.css:39</span>
+  </div>
+  <p class="note mt-2">The card recipe is <strong class="text-white">four rules, always together</strong>: carbon surface + violet hairline border + <code class="text-[#C4B5FD]">.card-side-glow</code> + <code class="text-[#C4B5FD]">transition-all duration-500</code> with a lift. Hover both cards to feel the difference.</p>
+
+  <div class="mt-5 grid gap-6 grid-cols-1 md:grid-cols-2">
+    <!-- BEFORE: plain -->
+    <div class="rounded-2xl border border-white/10 bg-[#111] p-6 transition-shadow duration-500 hover:shadow-md">
+      <p class="eyebrow">before — generic</p>
+      <h3 class="mt-3 text-xl font-semibold text-gray-300">Plain card</h3>
+      <p class="note mt-2">Neutral surface, no identity, no glow, hover does almost nothing. Correct markup — wrong skin.</p>
+      <button class="mt-4 rounded-lg bg-[#333] px-5 py-2 text-sm text-gray-200">Details</button>
+    </div>
+    <!-- AFTER: Opsie -->
+    <div class="card-side-glow group rounded-2xl border border-[#8B5CF6]/25 bg-[#0a0a0a] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#8B5CF6]/60 hover:shadow-2xl">
+      <p class="eyebrow">after — Opsie recipe</p>
+      <h3 class="mt-3 text-xl font-semibold text-white">Styled card</h3>
+      <p class="note mt-2"><code class="text-[#C4B5FD]">bg-[#0a0a0a]</code> + <code class="text-[#C4B5FD]">border-[#8B5CF6]/25</code> + glow + <code class="text-[#C4B5FD]">hover:-translate-y-1</code>. The glow bleeds from the left &amp; right edges only (x-offsets ±24px do the work).</p>
+      <button class="mt-4 rounded-full bg-[#8B5CF6] px-5 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:bg-white hover:text-black">Details</button>
+    </div>
+  </div>
+<pre class="snip">class="card-side-glow rounded-2xl border border-[#8B5CF6]/25 bg-[#0a0a0a] p-6
+       transition-all duration-500 hover:-translate-y-1 hover:border-[#8B5CF6]/60"
+
+/* index.css — unlayered so utilities can't override it */
+.card-side-glow { box-shadow: -24px 0 48px -20px rgba(139,92,246,.6),
+                               24px 0 48px -20px rgba(139,92,246,.6); }</pre>
+</section>
+
+<!-- ================= 3. BADGES ================= -->
+<section>
+  <div class="flex items-baseline justify-between gap-4 flex-wrap">
+    <h2 class="text-2xl font-bold md:text-3xl">3 &middot; Badges</h2>
+    <span class="cite">real: BookingPage.tsx:33 (eyebrow) &middot; analytics chips</span>
+  </div>
+  <p class="note mt-2">Small pill chips. The <strong class="text-white">eyebrow</strong> variant (soft violet) labels sections; solid violet shouts a status; outline whispers metadata. Uppercase + wide tracking is the house voice.</p>
+
+  <div class="mt-5 rounded-2xl border border-white/10 bg-[#0e0e14]/70 p-6 flex flex-wrap items-center gap-4">
+    <!-- eyebrow (exact BookingPage pattern) -->
+    <span class="inline-flex items-center rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C4B5FD]">
+      30 Min Consultation
+    </span>
+    <!-- solid -->
+    <span class="inline-flex items-center rounded-full bg-[#8B5CF6] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white">
+      Active
+    </span>
+    <!-- outline / metadata -->
+    <span class="inline-flex items-center rounded-full border border-white/20 px-4 py-2 text-[11px] font-medium text-[#9aa0aa]">
+      v1.0.0
+    </span>
+    <!-- dot status -->
+    <span class="inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/40 bg-[#0a0a0a] px-4 py-2 text-[12px] text-white">
+      <span class="h-2 w-2 rounded-full bg-[#8B5CF6]"></span> Live
+    </span>
+  </div>
+<pre class="snip">class="inline-flex items-center rounded-full border border-[#8B5CF6]/40 bg-[#8B5CF6]/15
+       px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C4B5FD]"</pre>
+</section>
+
+<!-- ================= 4. INPUTS ================= -->
+<section>
+  <div class="flex items-baseline justify-between gap-4 flex-wrap">
+    <h2 class="text-2xl font-bold md:text-3xl">4 &middot; Inputs</h2>
+    <span class="cite">real: ContactForm.tsx:93 (all four fields + textarea)</span>
+  </div>
+  <p class="note mt-2">Exact field recipe from the contact form. Focus = violet ring (no layout shift: ring, not border-width). Error is the only place a non-palette color is allowed — validation only.</p>
+
+  <div class="mt-5 grid gap-6 grid-cols-1 md:grid-cols-2 rounded-2xl border border-white/10 bg-[#0e0e14]/70 p-6">
+    <label class="block">
+      <span class="mb-2 block text-[13px] font-semibold text-[#9aa0aa]">Full name*</span>
+      <input type="text" placeholder="Full Name*"
+        class="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all duration-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]" />
+    </label>
+    <label class="block">
+      <span class="mb-2 block text-[13px] font-semibold text-[#9aa0aa]">Email*</span>
+      <input type="email" value="you@company.com" disabled
+        class="w-full cursor-not-allowed rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-white/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]" />
+      <span class="mt-1.5 block text-[11px] text-[#6b7280]">disabled: dimmed + not-allowed cursor</span>
+    </label>
+    <label class="block md:col-span-2">
+      <span class="mb-2 block text-[13px] font-semibold text-[#9aa0aa]">Message</span>
+      <input type="text" placeholder="Type something then click away…"
+        class="w-full rounded-xl border border-[#EF4444]/70 bg-white/[0.04] px-4 py-3 text-white transition-all duration-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#EF4444]" />
+      <span class="mt-1.5 block text-[11px] text-[#EF4444]">error state — validation only, never brand decoration</span>
+    </label>
+  </div>
+<pre class="snip">class="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3
+       transition-all duration-300 placeholder:text-gray-400
+       focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]"</pre>
+</section>
+
+<!-- ================= YOUR TURN ================= -->
+<section class="rounded-2xl border border-[#8B5CF6]/40 bg-[#8B5CF6]/10 p-6 md:p-8">
+  <h2 class="text-2xl font-bold md:text-3xl">Your turn — the 4h checklist</h2>
+  <ol class="note mt-4 space-y-2 list-decimal list-inside">
+    <li><strong class="text-white">Rebuild all four from memory</strong> in a blank copy of this file — no peeking. Compare class-for-class.</li>
+    <li>Explain out loud: why is <code class="text-[#C4B5FD]">.card-side-glow</code> plain CSS instead of a Tailwind utility? What breaks if it moves into <code class="text-[#C4B5FD]">@layer</code>?</li>
+    <li>Convert every spacing class you used to px (4px scale) — write them in the margin.</li>
+    <li>Add a <strong class="text-white">loading</strong> state to the primary button (spinner or pulsing label) using only violet-palette utilities.</li>
+    <li>Add a <strong class="text-white">card + input</strong> variant I didn't include (e.g., a search field, a clickable stat card).</li>
+    <li>Verify: open DevTools, check 320 / 375 / 768 / 1024 widths → <strong class="text-white">0px horizontal overflow</strong>.</li>
+    <li>Bonus: find one convention in this file that contradicts something you'd have written instinctively — and say why the project does it the other way.</li>
+  </ol>
+  <p class="note mt-4">Done → re-read my item-2 reference report and spot anything you'd add.</p>
+</section>
+
+</main>
+
+<footer class="border-t border-[#8B5CF6]/25 py-8 text-center text-[12px] text-[#6b7280]">
+  Opsie study — reference implementation, not authored by the student. Served at localhost:5199/components.html
+</footer>
+
+</body>
+</html>

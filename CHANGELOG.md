@@ -2,6 +2,250 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-09 (ui: product cards flip to reveal descriptions)
+
+Hover-driven 3D flip on the ProductSection cards (OpsCore / OpSync / OpStudios): the front keeps the product visual + name over the carbon backdrop with a thin theme-color accent strip; hovering unflips the card (`rotateY(180deg)`, 700ms, house cubic-bezier) to the back face — product-colored eyebrow, name, hairline divider, the full CMS description, and a rounded-full "Discover Detail" pill. Click anywhere still navigates to the detail page (touch devices keep the old tap-through behavior; no hover on mobile).
+
+### Changed
+
+- **`ProductCard.tsx` rebuilt as a flip card**: outer = perspective frame (`[perspective:1200px]`, border, `.card-side-glow`, `hover:-translate-y-2` lift, theme-colored inset hover shadow), inner = `[transform-style:preserve-3d]` flip layer (`group-hover:[transform:rotateY(180deg)]`), faces = `[backface-visibility:hidden]` absolute panes (front keeps its image/name/gradient; back is new). The old dual-layer/backdrop-blur stack (including a dead `hexToRgba(...)` string-literal style) was dropped in the process.
+- **Removed Vite boilerplate `.card { padding: 2em; }` from `index.css`** — it was live ammunition: the legacy rule matched the bare word `card` appearing as a stray token inside `ProductCard`'s className comment, giving the card a surprise `32px` horizontal padding (inner flip layer laid out at 222px instead of 286px and clipped the description to 166px). The className comments moved into JSX comments so every remaining token is a real class; `.read-the-docs` etc. left untouched.
+
+### Verified
+
+- Flip lifecycle on `/`: rest `transform: none` → hover `matrix3d(-1,0,0,0,0,1,0,0,0,0,-1,0,0,0,0,1)` (= rotateY 180°) after the 700ms transition → unhover back to `none`; hover chain reaches card → inner → back face → button; generated rule `.group-hover\:\[transform\:rotateY\(180deg\)\]:is(:where(.group):hover *)`.
+- Back face: description width 230px, `scrollHeight === clientHeight === 206` for **all three** products (no clipping; longest = OpStudios 276 chars); Discover button in view; card padding `0px`, inner `286px`.
+- Responsive audit (hidden same-origin iframes, post-mount measurement) at **320 / 375 / 768 / 1024** on `/`, `/products`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/book-a-schedule` → **0px overflow everywhere** (strays removed).
+- Console: **0 errors**; `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-09 (ui: last gold → violet, dead font utilities wired; study: components practice set)
+
+Tailwind-inspection batch (item 2 findings applied to the site) plus the item-3 reference artifact.
+
+### Added
+
+- **`study/components.html`** — the item-3 practice set: Button (primary/white/ghost/disabled ×3 sizes), Card (before/after pair with the real `.card-side-glow` recipe), Badge (eyebrow/solid/outline/dot), Input (default/disabled/error with the exact `ContactForm.tsx:93` classes), each with its real-file citation, class snippet, and a "why" note, closing with the 4h self-test checklist. Mirrors the live site's CSS (carbon + dots, `::selection`, focus ring, glow, halo) and loads only the three live font families. Served at `localhost:5199/components.html`.
+
+### Changed
+
+- **`ProductSection.tsx` — last off-palette gold removed** (item-2 finding D1.2):
+  - Heading gradient `#BF953F → #828181 → #B38728` (gold/silver/bronze) → the house violet trio `#7C3AED → #8B5CF6 → #A78BFA`; duplicate `font-bold` on the same tag dropped.
+  - `LineWaves` `color1/2/3` all `#D4AF37` → all `#8B5CF6`.
+  - Grep `#D4AF37|#BF953F|#B38728|#828181` in `frontend/src` → **0 matches**.
+- **`index.css` — the `font-poppins`/`font-montserrat` no-ops made real** (item-2 findings D1.1/D1.4):
+  - `@theme` now defines `--font-poppins` + `--font-montserrat` (dead `--font-playfair` token removed) — Tailwind v4 never loaded `tailwind.config.js` (v3 relic, no `@config`), so the 19 `font-poppins` usages and 2 `font-montserrat` usages had no generated rule at all.
+  - The `* { font-family: 'Montserrat' }` default moved **into `@layer base`** — as unlayered CSS it outranked every layered font utility, so even a generated `.font-poppins` would have lost the cascade.
+  - Google Fonts imports trimmed from 11 families to the 3 actually rendered: Anton, Inter, Marko One, Marmelad, Noto Sans, Playfair Display, Plus Jakarta Sans, Scheherazade New and the duplicate `Poppins:wght@500` removed (grep confirmed zero `fontFamily` inline styles and zero class usages of any of them).
+
+### Verified
+
+- Computed: heading gradient = `rgb(124, 58, 237) → rgb(139, 92, 246) → rgb(167, 139, 250)`; `.font-poppins` → **`Poppins, sans-serif`** with `document.fonts.check('16px Poppins') = true`; default font still Montserrat; `font-poppins` now visible on cards/sections (behavioral change: those 19 usages shift Montserrat → Poppins as originally configured).
+- Responsive audit (hidden same-origin iframes, measured after React mount) at **320 / 375 / 768 / 1024** on `/`, `/products`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/book-a-schedule` → **0px overflow everywhere** (stray iframes removed).
+- Console: **0 errors** on clean load; study page renders with Tailwind CDN (`rounded-full` → infinite radius, glow shadow exact, body `#0a0a0a`).
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+The chosen direction for "add more design to all pages" was a **decorative polish pass** — consistent flourishes in the established violet/carbon language, no new content.
+
+### Added
+
+- **`index.css` — site-wide polish utilities**
+  - Violet `::selection` (`rgba(139, 92, 246, 0.85)` background, white text).
+  - Custom scrollbar: `scrollbar-width: thin` + `scrollbar-color: #8B5CF6 #111114` (standard properties, honored by Firefox and Chrome 121+) with a `::-webkit-scrollbar` set — 10px violet-gradient thumb, near-black track, `#A78BFA` hover.
+  - Body dot-grid texture: violet `radial-gradient` dots (`rgba(167, 139, 250, 0.055)`, 1.1px) on a 26px grid over the carbon base — visible only in the gaps; cards and sections cover it with their own `#0a0a0a`.
+  - `.heading-glow` — soft violet text-shadow halo (`0 0 28px rgba(139, 92, 246, 0.35), 0 0 6px rgba(139, 92, 246, 0.18)`).
+  - `footer::before` — gradient hairline (transparent → `rgba(139, 92, 246, 0.5)` → transparent) closing every page above the footer.
+
+### Changed
+
+- **Heading halos applied** with `.heading-glow`: `SuperHeader.tsx` both variants (hero + section headings on `/who-we-are`, `/contact-us`, `/products`, home), `HeroPage` h1 (homepage hero), `/what-we-do` hero h1, `BookingPage` h1, `ContactUsSection` + `ContactProcessSection` h1s, `MapDesign` h1, and WhoWeAre "The Vision"/"The Mission" h1s.
+- **Legacy cyan → violet sweep (0 cyan matches remain in `frontend/src`)**:
+  - `border-cyan-500/20` → `border-[#8B5CF6]/25` across 13 files (Footer, AnalyticsCards, ContactForm, Faq, EncourageCard, PartnerSection, ServicesSection, SolutionSection, OperationalStructure ×2, ProductCard, MapCard, WhyChooseUs ×4).
+  - Cyan drop-shadows → violet: Footer's inline cyan shadow replaced with the shared `.card-side-glow`, PartnerSection `rgba(139, 92, 246, 0.2)`, ClientCard hover `rgba(139, 92, 246, 0.3)`.
+  - `EncourageCard` gradient `#2FAEC8 → #8B5CF6 → #59CCEE` remapped to the violet family `#7C3AED → #8B5CF6 → #A78BFA` (border → `white/20` so the edge reads against the bright gradient).
+  - `BookingPage`'s two `bg-cyan-500/15` auras → `bg-[#8B5CF6]/15`; `ContactProcessSection` indigo/rose blurs → `#8B5CF6`/`#A78BFA`; stale "Cyan branding pulse" comment in `ProductPage` corrected to violet.
+
+### Verified
+
+- Computed on `/`: body `background-image: radial-gradient(...)` at `26px 26px`; hero h1 text-shadow = both violet halos (8 `.heading-glow` elements on the homepage, 2 on `/contact-us`); `footer::before` gradient hairline; footer card border `#8B5CF6/25` + `.card-side-glow`; `::selection` violet; `scrollbar-color: rgb(139, 92, 246)`.
+- Grep sweep `cyan|6,182,212|2FAEC8|59CCEE|indigo-600/10|rose-600/5` → **no matches**.
+- Responsive audit (hidden same-origin iframes) at **320 / 375 / 768 / 1024** on `/`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/products`, `/book-a-schedule` → **0px overflow everywhere**.
+- Console: **0 errors** on `/` and `/contact-us`; screenshots confirm the hero halo and the footer card's violet side-glow.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (ui: service card artwork sits in the middle)
+
+The service cards set `background-size: cover` but never a position, so the browser's default `0% 0%` showed each GIF's **top-left corner**. Cybersecurity's 930px-wide GIF lost its whole focal scene (the desk, the monitors, "ACCESS DENIED") to the crop — only the left window panels were visible.
+
+### Changed
+
+- **`ServicesCards.tsx`** — added `backgroundPosition: 'center'` to the card's inline style. With `cover`, the artwork now center-crops on every card: Cybersecurity shows the full desk scene in the middle of the card, and the Automation & AI chip is no longer sliced off at the edge. Affects the homepage "(simpler way)" section and the product page (same component); the `/what-we-do` carousel uses an `<img>`, which already defaults to centered `object-fit`.
+
+### Verified
+
+- Computed `background-position: 50% 50%` on the cards; screenshots before/after confirm the scene is centered (was: left-third crop).
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (ui: service cards play the Figma "(simpler way)" GIFs)
+
+The Figma frame `(simpler way)` is the section headed **"A simpler way to run your business"** — six service cards, each with its own exported GIF. Every service card now plays its GIF instead of showing the static photo.
+
+### Added
+
+- **Six GIFs → `frontend/public/services/`** (exported from the Figma file): `cloud.gif` (3.0 MB), `software_integration.gif` (3.2 MB), `cybersecurity.gif` (5.3 MB), `ai_automation.gif` (3.0 MB), `web_mobile_dev.gif` (0.65 MB), `ui_design.gif` (5.0 MB) — ~20 MB total, named to match the existing `.jpg` set. The old JPGs stay on disk (nothing else imports them, but they cost nothing to keep).
+
+### Changed
+
+- **`ServicesSections.tsx` (the `/what-we-do` carousel)** — all six card `image` paths `.jpg` → `.gif`.
+- **CMS content (database, not git)** — `publishedContent` *and* `draftContent` → `servicesSection.services[].image` repointed `.jpg` → `.gif` via `PATCH /api/webcontent/update-content` (the same endpoint the admin CMS uses). This is what feeds the homepage's "(simpler way)" section and the product page's copy of it; updating `draftContent` too so a future publish can't silently revert the site to JPGs.
+- **No component change needed for those two** — `ServicesCards` sets the image as a CSS `background-image`, and browsers animate GIF backgrounds natively.
+
+### Verified
+
+- Homepage `#service-section`: header reads "A simpler way to run your business", all six cards' computed `background-image` → `/services/*.gif`.
+- Re-GET of `/api/webcontent/get-content`: `.gif` in both `publishedContent` and `draftContent` (6/6 each).
+- `/what-we-do` carousel: all six `<img>` `complete && naturalWidth > 0` (800/800/930/500/500/800px).
+- `GET /services/cloud.gif` → 200, 3,149,535 bytes.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (ui: nav date/time chip matches the Get Started height)
+
+The clock/date chip in the desktop nav (`DateTimeDisplay`) was noticeably shorter than the Get Started button next to it — ~34px vs 40px, with 10px/9px text. It now matches the button's height exactly.
+
+### Changed
+
+- **`Navigation.tsx` (`DateTimeDisplay`)** — chip box `px-2 py-1` → `h-10 px-3` (40px, the exact height of the Get Started `PrimaryButton` at `size="md"`: `text-base` 24px line + `py-2`); time text `text-[10px]` → `text-[11px]`, date text `text-[9px]` → `text-[10px]`, clock icon `w-3 h-3` → `w-3.5 h-3.5`. Desktop-only widget (`hidden lg:flex`) — unchanged everywhere it's hidden.
+
+### Verified
+
+- Computed-style audit at 1440px (same-origin iframe): DateTimeDisplay height **40px** = Get Started height **40px** (`sameHeight: true`), chip font `11px`, padding `0 12px`.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (ui: ChatHelp teaser becomes a visible violet pill)
+
+The floating "How may I help you?" teaser at the bottom-right was carbon `#0a0a0a` with a faint cyan glow — on the now-carbon body it blended into the background. It now uses the site's violet so it reads as a callout again.
+
+### Changed
+
+- **`ChatHelp.tsx`** — pill background `#0a0a0a` → violet `#8B5CF6`, glow shadow cyan `rgba(6, 182, 212, 0.15)` → violet `rgba(139, 92, 246, 0.6)` at `0 0 30px`, border `cyan-500/20` → `violet-300/40`; typed text `text-gray-200` → `text-white font-semibold` for contrast on violet. Stays `pointer-events-none` (decorative teaser — never blocks taps on the footer/booking underneath).
+
+### Verified
+
+- Computed style: pill `rgb(139, 92, 246)`, text `rgb(255, 255, 255)` weight 600, shadow ends in `rgba(139, 92, 246, 0.6) 0px 0px 30px`.
+- Screenshot on `/`: pill clearly visible against the carbon hero.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (ui: cards glow violet on their sides; light surfaces become carbon)
+
+The public site finishes its dark pass: every content card now carries the booking bubble's soft violet side glow, and every remaining white/light surface — section backgrounds, cards, panels, the products dropdown — flips to the site's carbon `#0a0a0a` with its text flipped to light so contrast holds. Admin panel and webcontent/CMS stay excluded (standing scope rule); white pill buttons stay white.
+
+### Changed
+
+- **`index.css`** — `body` background `#ECEDF1` → `#0a0a0a`; new unlayered `.card-side-glow` utility: two x-offset shadows (`±24px 0 48px -20px rgba(139, 92, 246, 0.6)`) so the violet light bleeds only from the left and right edges. Unlayered on purpose so it outranks the layered `shadow-*` utilities — the same cascade rule the pill-button fix relies on.
+- **~20 files, light surfaces → carbon** — Homepage analytics band, ProductPage root gradient + frosted preview tiles + review band (its three blur blobs recolored violet), ContactUsPage root + contact block, WhoWeAre's floating rating/vision/stat cards + LogoLoop fade edge, Faq closed items + plus chip, ClientReviews edge fade, Navigation's products dropdown (`bg-white` → `#0f0f15` + `border-white/10` + light items).
+- **Text contrast flips** — Footer column headings (were default-black on carbon), ChatHelp typed line, WhoWeAre/ClientReviews roots, CoreValues h2, ServicesCard title + description, WhatWeDo fallback h1 + body copy, AnalyticsCards numbers (were `text-[#242424]`, dark-on-dark), ClientCard/ServicesCard hover text, ServicesSections counter + dots, ContactsCard, ContactForm inputs/selects.
+- **~24 cards → `.card-side-glow`** — replaced cyan all-around glows, white neumorph shadows and plain `shadow-*` on ProductCard, EncourageCard, MapCard/MapBox, ContactForm, ProductItemCTA, WhyChooseUs (×4), ServicesSection, OperationalStructure (×2), ContactUs/ContactProcess cards, CoreValues image + rows, HeroPage promo, Faq open item, ProductItemPage cards (×4 + gallery), ServicesSections slide, WhyChooseUsSection, WhoWeAre's 12 neumorph frames + map box, plus the inline `boxShadow` in `ClientCard`/`ServicesCard` and `getCardStyle()` in both types files; their light hover gradients (`cyan-50 → blue-100`) → violet.
+- **Kept white by design** — CTA buttons (pill rule), OperationalStructure's white icon chip on its violet card, ContactProcess's light gradient heading.
+- **Dead code skipped** — `Team.tsx`, `PlanPricing/*`, `ContactUs.tsx`, `Analytics.tsx`, `Carousel.tsx`, `AboutUsSection.css` are unimported; not touched.
+
+### Verified
+
+- Computed-style audit on `/`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/products`: body `rgb(10, 10, 10)`, nav `rgba(10, 10, 10, 0.82)` + `blur(24px)`, glow sample `rgba(139, 92, 246, 0.6) -24px 0 48px -20px ×2`, zero light surfaces beyond the intentional chip, zero dark-on-dark text.
+- Products dropdown (hover-simulated): `rgb(15, 15, 21)`, white/10 border, near-white items (was white bg + black text).
+- Responsive: **0px** horizontal overflow at **320/375/768/1024** on every public route (same-origin iframe emulation).
+- Screenshots: home hero carbon + violet promo card; WhoWeAre cards show the violet side bleed.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (ui: the booking page's dark nav now covers every page)
+
+The nav bar used to switch style by route: translucent near-black on `/book-a-schedule`, solid violet `#4C1D95` everywhere else. It now uses the booking design on every page.
+
+### Changed
+
+- **`Navigation.tsx`** — removed the `isDarkNav` route check (`location.pathname === "/book-a-schedule"`); `backgroundColor` is now unconditionally `rgba(10, 10, 10, 0.82)` over the existing `backdrop-blur-xl`. The violet fallback and its conditional are gone; the comment now records the site-wide choice. Nothing else touched — the nav is a single shared component, so links, `DateTimeDisplay`, `PrimaryButton`, mobile bar and `MobileMenu` were already identical across routes (the mobile sheet is byte-for-byte what booking already showed).
+
+### Verified
+
+- Computed nav style: `/` → `rgba(10, 10, 10, 0.82)` + `blur(24px)` (was `#4C1D95`), `/who-we-are` → same, `/book-a-schedule` → same (unchanged); no violet left anywhere in the nav.
+- Home page screenshot at mobile width: black bar with cyan logo over the hero, menu button intact.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (ui: every public-site button becomes a full pill)
+
+Every action button on the public site now uses full pill rounding (`rounded-full`). The enabler was one line in `index.css`: the old unlayered `button { border-radius: 0 }` reset outranked every Tailwind v4 utility (unlayered CSS beats `@layer` rules), so radius classes on `<button>` elements were silently ignored.
+
+### Changed
+
+- **27 files, ~35 radius swaps** — booking calendar (month nav, day cells, time slots, ×, Done, Make Appointment), hero/CTA/section buttons, product + pricing + contact + team buttons, `PrimaryButton`, `Button` (inline `50%` → `9999px`), `MapCard`'s `BlackButton` (`borderRadius` `0` → `999`), `Book` default (`0.25` → `999` em), `ServicesCard`/`ClientCard` button bases, `Buttons.ts` variant style; also dropped a conflicting `rounded-2xl` sitting next to `rounded-full` in `Buttons.ts`.
+- **`index.css`** — deleted the global `button { border-radius: 0 }` rule (comment left in its place); radius now comes from each button's own utility classes.
+- Admin panel and webcontent/CMS untouched (standing scope rule); inputs, textareas, selects, cards and status pills unchanged.
+
+### Verified
+
+- Live radius audits: booking page **36/36** buttons pill; home **23** visible buttons / **0** square; `/what-we-do` **13** visible / **0** square.
+- Bubble controls (time slots, Make Appointment, ×) all pill; day cells stadium-shaped with today (violet fill) and selected (violet ring) states intact.
+- 375px iframe emulation: `innerWidth 375`, `overflowX ≤ 0`, every control in view.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
+## [Unreleased] - 2026-10-07 (appointments: visitors can attach a note to a booking)
+
+The booking bubble now takes an optional note alongside name, email and time — it rides along in the POST, saves on the appointment document, and is echoed back in the confirmation email.
+
+### Added
+
+- **`message` field on `Appointment`** — string, trimmed, ≤ 500 chars, optional (default `''`); a non-string body value books as "no note" instead of failing the request.
+- **Controller** — accepts the optional `message` and returns it in the 201 payload; the required-fields 400 (`name/email/date/time`) is untouched.
+- **Confirmation email** — shows `Your note: …` only when one was given, HTML-escaped (it's visitor-typed input).
+- **Bubble textarea** — `rows=3`, `maxLength=500`, placeholder "Add a note for your appointment (optional)", same dark surface + violet focus ring; deliberately **not** part of the submit gate; cleared by both `×` and `Done` resets.
+
+### Verified
+
+- API battery: `201` note stored verbatim → `201` no note = `""` → `201` number note = `""` (type guard) → `400` missing name → `400` on a 501-char note.
+- Browser E2E: day 20 → fill → 10:00 AM → note → Make → confirmation `Tuesday, October 20, 2026 · 10:00 AM`, **0 console errors**; DB row holds the note verbatim; 4 test rows deleted afterwards (0 left).
+- 375px iframe emulation: `innerWidth 375`, `overflowX 0`, textarea visible (244px), name + Make visible.
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32**, backend **35** — exact baselines.
+
+---
+
+## [Unreleased] - 2026-10-06 (study: form-validation exercise for OJT records)
+
+Added `study/form-validation.html` — the build + test step of today's JS study block (events & input handling → validation rules → interactive form → valid/invalid/empty testing).
+
+### Added
+
+- **`study/form-validation.html`** — sign-up form with three live-validated fields (name / email / password), per-field error messages on `input`, a disabled-until-valid submit gate and a success state unhidden via the `hidden` attribute. All three tasks written from chat, then debugged through a 13-row test matrix that caught three real bugs (double-`@` emails accepted, hyphenated names rejected, whitespace-only names accepted) — final run **13/13**, Node validator tests + live browser run, 0 console errors.
+
+---
+
+## [Unreleased] - 2026-10-05 (study: service-list exercise for OJT records)
+
+Added `study/service-list.js` — the build step of today's JS study block (arrays/objects review → map/filter/find/sorting practice → service-list exercise → explain to supervisor).
+
+### Added
+
+- **`study/service-list.js`** — 8-service sample data plus five functions: `getServiceNames` (map), `getAffordable` (filter), `findService` (find), `sortByPrice` (spread copy + `direction` ternary — original array stays untouched) and `getFeaturedNames` (filter → map chain). Runs with `node study/service-list.js`; all 7 self-checks pass.
+
+---
+
 ## [Unreleased] - 2026-10-05 (appointments: the bubble now books through the backend)
 
 The appointment bubble went from a local demo to a real booking: it collects name + email, POSTs the slot to a new public endpoint, saves it in MongoDB and emails the visitor a confirmation — the success view only appears after the server says 201.

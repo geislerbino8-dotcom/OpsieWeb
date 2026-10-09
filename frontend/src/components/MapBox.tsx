@@ -204,7 +204,7 @@ export default function MapBox({
   return (
     <div
       ref={mapContainer}
-      className="w-full h-[400px] rounded-3xl shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)]"
+      className="w-full h-[400px] rounded-3xl card-side-glow"
     />
   );
 }

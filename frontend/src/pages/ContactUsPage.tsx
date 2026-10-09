@@ -15,7 +15,7 @@ function ContactUsPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full overflow-x-hidden bg-[#FAFBFF]">
+    <div className="w-full overflow-x-hidden bg-[#0a0a0a] text-gray-200">
       {/* --- 1. HERO SECTION --- */}
       <div className="relative w-screen h-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
         <img
@@ -35,7 +35,7 @@ function ContactUsPage() {
           </div>
 
           {/* Floating Stats Card */}
-          <div data-aos="fade-up" className="hidden md:flex absolute right-12 bottom-12 bg-white/10 backdrop-blur-xl p-8 rounded-[2rem] border border-white/20 items-center gap-6 shadow-2xl">
+          <div data-aos="fade-up" className="hidden md:flex absolute right-12 bottom-12 bg-white/10 backdrop-blur-xl p-8 rounded-[2rem] border border-white/20 items-center gap-6 card-side-glow">
             <div className="flex -space-x-3">
               {[780, 816, 818].map((id) => (
                 <img key={id} src={`/profiles/Rectangle ${id}.svg`} className="w-14 h-14 rounded-full border-2 border-[#8B5CF6] object-cover" alt="client" />
@@ -62,10 +62,10 @@ function ContactUsPage() {
           {/* Right: Info Cards */}
           <div className="flex flex-col gap-8" data-aos="fade-left">
             <ContactsCard title="Give us a Call">
-              <div className="space-y-4 text-gray-600">
-                <div className="flex flex-col sm:flex-row justify-between border-b border-gray-50 pb-2 gap-1">
+              <div className="space-y-4 text-gray-300">
+                <div className="flex flex-col sm:flex-row justify-between border-b border-white/10 pb-2 gap-1">
                   <span className="font-medium text-sm">General Inquiries:</span> 
-                  <span className="text-black font-bold"><a href="tel:+63284634039">+632 84634039</a></span>
+                  <span className="text-white font-bold"><a href="tel:+63284634039">+632 84634039</a></span>
                 </div>
                
                 <div className="flex flex-col sm:flex-row justify-between gap-1">
@@ -101,7 +101,7 @@ function ContactUsPage() {
               <p className="mb-8 text-gray-400 font-light leading-relaxed">Rather meet online than in person? We’re just a call away.</p>
               <button 
                 onClick={() => navigate("/book-a-schedule")}
-                className="w-full bg-[#8B5CF6] text-white py-4 rounded-xl font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg relative z-10"
+                className="w-full bg-[#8B5CF6] text-white py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg relative z-10"
               >
                 Book a Discovery Call
               </button>

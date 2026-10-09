@@ -23,7 +23,7 @@ const Footer = () => {
       </span>
 
       {/* MAIN CARD */}
-      <div className="relative w-full max-w-6xl rounded-3xl bg-[#0a0a0a] shadow-[0_0_30px_rgba(6,182,212,0.15)] md:p-10 py-10 px-3 md:mb-30 z-10 border border-cyan-500/20">
+      <div className="relative w-full max-w-6xl rounded-3xl bg-[#0a0a0a] md:p-10 py-10 px-3 md:mb-30 z-10 border border-[#8B5CF6]/25 card-side-glow">
 
         {/* HEADER */}
         <div className="text-center">
@@ -82,7 +82,7 @@ const Footer = () => {
           <nav aria-label="Footer navigation" className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center w-full">
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Quick Links</h3>
+              <h3 className="font-bold text-lg mb-3 text-white">Quick Links</h3>
               <ul className="space-y-2 text-gray-300 text-sm">
                 <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/who-we-are">About Us</Link>
@@ -97,7 +97,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Company</h3>
+              <h3 className="font-bold text-lg mb-3 text-white">Company</h3>
               <ul className="space-y-2 text-gray-300 text-sm">
                 <li className="hover:text-[#8B5CF6] cursor-pointer">
                   <Link to="/what-we-do">Why Opsie</Link>
@@ -112,7 +112,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Who We Are</h3>
+              <h3 className="font-bold text-lg mb-3 text-white">Who We Are</h3>
               <ul className="space-y-2 text-gray-300 text-sm">
                 <li className="hover:text-[#8B5CF6] cursor-pointer"><Link to="/who-we-are">Our Story</Link></li>
                 <li className="hover:text-[#8B5CF6] cursor-pointer"><Link to="/who-we-are">Our Mission</Link></li>

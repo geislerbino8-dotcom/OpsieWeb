@@ -12,7 +12,7 @@ function BookingPage() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-[-30%] left-[-18%] h-[65vh] w-[65vh] rounded-full bg-cyan-500/15 blur-[150px]"
+        className="pointer-events-none absolute bottom-[-30%] left-[-18%] h-[65vh] w-[65vh] rounded-full bg-[#8B5CF6]/15 blur-[150px]"
       />
       <div
         aria-hidden="true"
@@ -34,7 +34,7 @@ function BookingPage() {
               30 Min Consultation
             </p>
 
-            <h1 className="mt-7">
+            <h1 className="mt-7 heading-glow">
               <span className="booking-title-poiret font-poiret block text-white">
                 Let’s Discuss
               </span>
@@ -75,7 +75,7 @@ function BookingPage() {
               />
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -inset-8 translate-y-16 rounded-[32px] bg-cyan-500/15 blur-3xl"
+                className="pointer-events-none absolute -inset-8 translate-y-16 rounded-[32px] bg-[#8B5CF6]/15 blur-3xl"
               />
 
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] shadow-[0_0_60px_-20px_rgba(139,92,246,0.7)]">

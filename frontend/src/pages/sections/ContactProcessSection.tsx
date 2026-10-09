@@ -29,8 +29,8 @@ const ContactProcessSection: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-slate-950 py-24 px-6 font-sans selection:bg-indigo-500/30">
       {/* Subtle Background Glows */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-rose-600/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#8B5CF6]/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#A78BFA]/5 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-20">
@@ -40,7 +40,7 @@ const ContactProcessSection: React.FC = () => {
           </span>
           
           {/* H1 Header */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold heading-glow text-white mb-6 tracking-tight">
             Get Started With <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500">
               Opsie Software Solutions
@@ -58,7 +58,7 @@ const ContactProcessSection: React.FC = () => {
           {steps.map((step) => (
             <div 
               key={step.id} 
-              className="group relative p-8 rounded-3xl border border-white/5 bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.05] hover:border-white/10"
+              className="group relative p-8 rounded-3xl border border-white/5 bg-white/[0.02] card-side-glow backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.05] hover:border-white/10"
             >
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-start mb-8">

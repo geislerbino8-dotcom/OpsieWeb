@@ -103,7 +103,7 @@ export default function PricingPlans() {
               {/* Button */}
               <button
                 onClick={() => navigate("/buy-now")}
-                className="w-full bg-violet-500 hover:bg-violet-400 text-black font-semibold py-3 rounded-lg transition"
+                className="w-full bg-violet-500 hover:bg-violet-400 text-black font-semibold py-3 rounded-full transition"
               >
                 Get Started
               </button>

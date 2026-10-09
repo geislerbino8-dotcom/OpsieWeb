@@ -26,7 +26,7 @@ export default function WhoWeAre() {
 
 
   return (
-    <div className="w-full overflow-x-hidden text-center">
+    <div className="w-full overflow-x-hidden text-center text-gray-200">
       {/* --- 1. FULL PAGE HERO SECTION --- */}
       {/* breakout classes: w-screen and negative margins ensure it hits the browser edges */}
       <div 
@@ -89,7 +89,7 @@ export default function WhoWeAre() {
             <div data-aos="fade-up" data-aos-delay="400" className="mt-10">
               <button 
                 onClick={() => navigate("/what-we-do")}
-                className="bg-white text-black px-12 py-3 font-semibold hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-widest shadow-lg"
+                className="bg-white text-black rounded-full px-12 py-3 font-semibold hover:bg-[#8B5CF6] hover:text-white transition-all duration-500 uppercase tracking-widest shadow-lg"
               >
                 Get to Know
               </button>
@@ -171,7 +171,7 @@ export default function WhoWeAre() {
                     />
                     {/* Floating Card */}
                     <div className="absolute top-1/2 -translate-y-1/2 -left-10 sm:-left-20 md:-left-18 lg:-left-28 z-50">
-                        <div className="skew-x-[-16deg] w-[180px] sm:w-[180px] md:w-[200px] lg:w-[250px] bg-white h-[130px] sm:h-[150px] md:h-[130px] lg:h-[150px] shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl">
+                        <div className="skew-x-[-16deg] w-[180px] sm:w-[180px] md:w-[200px] lg:w-[250px] bg-[#0a0a0a] h-[130px] sm:h-[150px] md:h-[130px] lg:h-[150px] card-side-glow rounded-2xl">
                             <div className="flex flex-col items-center justify-center pt-2 sm:pt-4 md:pt-1 lg:pt-4">
                                 <div className="text-[#8B5CF6] text-3xl">★★★★★</div>
                                     <div className="flex flex-row -space-x-2 ml-4">
@@ -193,7 +193,7 @@ export default function WhoWeAre() {
 
             
          </div>
-       <div className="p-cards-container no-scrollbar  text-gray-600 w-full flex justify-center items-center overflow-hidden ">
+       <div className="p-cards-container no-scrollbar  text-gray-400 w-full flex justify-center items-center overflow-hidden ">
             <div className="w-[90%] mt-20">
                          <LogoLoop
                         logos={myLogos}
@@ -203,7 +203,7 @@ export default function WhoWeAre() {
                         gap={60}
                         scaleOnHover
                         fadeOut
-                        fadeOutColor="#ECEDF1"
+                        fadeOutColor="#0a0a0a"
                    />
             </div>
             </div>
@@ -290,7 +290,7 @@ export default function WhoWeAre() {
                                         </div>
 
                                         {/* Overlapping image */}
-                                        <div className="my-2 bg-[#ECEDF1] w-[200px] sm:w-[270px] h-[140px] sm:h-[160px] shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] flex items-center justify-center rounded-2xl">
+                                        <div className="my-2 bg-[#0a0a0a] w-[200px] sm:w-[270px] h-[140px] sm:h-[160px] card-side-glow flex items-center justify-center rounded-2xl">
                                             <img src="https://images.pexels.com/photos/7644064/pexels-photo-7644064.jpeg" alt="" className="w-[180px] sm:w-[250px] h-[120px] sm:h-[140px] object-cover rounded-2xl" />
                                         </div>
 
@@ -323,7 +323,7 @@ export default function WhoWeAre() {
                         className="mt-6 flex items-center justify-center lg:items-start"
                             >
                             </div>
-                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#8B5CF6] font-semibold">Vision</span></h1>
+                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px] heading-glow">The <span className="text-[#8B5CF6] font-semibold">Vision</span></h1>
                             <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
                              {content?.whoWeArePage.section4.vision}
                             </p>
@@ -333,15 +333,15 @@ export default function WhoWeAre() {
                  <div className="grid grid-cols-[180px_180px] gap-4 lg:gap-y-4 place-items-center">
                     {/* Left Tall Card */}
                     <div  data-aos="fade-right" data-aos-delay="800" className="row-span-2 lg:mr-12">
-                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] w-[190px] h-[380px] lg:w-[210px] lg:h-[440px] xl:w-[250px] xl:h-[500px]  rounded-3xl lg:ml-6 xl:ml-0">
+                        <div className="flex items-center justify-center card-side-glow w-[190px] h-[380px] lg:w-[210px] lg:h-[440px] xl:w-[250px] xl:h-[500px]  rounded-3xl lg:ml-6 xl:ml-0">
                             <img src="/vision1st-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl " />
                         </div>
                     </div>  
 
                     {/* Right Top Small */}
                     <div className="md:col-span-1">
-                        <div data-aos="fade-right"  className="flex items-center justify-center bg-white 
-                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                        <div data-aos="fade-right"  className="flex items-center justify-center bg-[#0a0a0a] 
+                            card-side-glow 
                             w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:ml-8 xl:ml-20 rounded-3xl overflow-hidden">
 
                             <div className="flex flex-col items-center justify-center gap-2 px-2">
@@ -357,7 +357,7 @@ export default function WhoWeAre() {
                     </div>
                     <div className="md:col-start-4 md:row-start-1">
                         <div data-aos="fade-left" data-aos-delay="800" className="flex items-center justify-center 
-                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                            card-side-glow 
                             w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:mr-8  rounded-3xl overflow-hidden">
 
                             <img 
@@ -371,7 +371,7 @@ export default function WhoWeAre() {
                     {/* in lg move to behind of tall card */}
                     
                     <div className="col-span-2 md:col-start-2 md:row-start-1 ">
-                    <div data-aos="fade-right" className="bg-white flex flex-col items-center justify-center p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2">
+                    <div data-aos="fade-right" className="bg-[#0a0a0a] flex flex-col items-center justify-center p-6 gap-4 card-side-glow rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2">
                         <div className="flex flex-row gap-4 ">
                             <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
                                 <img src="/ICONS/digital-leader-icon.svg" alt="" className="w-7 h-7"/>
@@ -395,7 +395,7 @@ export default function WhoWeAre() {
                     </div>
 
                     <div className="col-span-2 md:col-start-3 md:row-start-2  lg:col-span-2 lg:col-start-3 lg:row-start-2">
-                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px]  xl:ml-10  ">
+                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 card-side-glow rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px]  xl:ml-10  ">
                         <img src="vision3rd-pic.svg" alt="" className="w-full h-full object-cover p-2 rounded-3xl  " />
                         </div>
                     </div>
@@ -409,7 +409,7 @@ export default function WhoWeAre() {
                         className="mt-2 lg:mt-6 flex items-center justify-center lg:items-start"
                             >
                             </div>
-                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px]">The <span className="text-[#8B5CF6] font-semibold">Mission</span></h1>
+                            <h1 className="text-center leading-[34px] text-[36px] md:text-[42px] lg:text-[50px] heading-glow">The <span className="text-[#8B5CF6] font-semibold">Mission</span></h1>
                             <p className="md:text-left text-[16px] w-full lg:w-[600px] lg:mt-6">
                                 {content?.whoWeArePage.section5.mission}
                              </p>
@@ -421,7 +421,7 @@ export default function WhoWeAre() {
                  <div className="grid grid-cols-[180px_180px] gap-4 lg:gap-y-4 place-items-center">
                     {/* Left Tall Card */}
                     <div  data-aos="fade-right" data-aos-delay="800" className="row-span-2 lg:mr-12">
-                        <div className="flex items-center justify-center shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                        <div className="flex items-center justify-center card-side-glow 
                         w-[190px] h-[380px] lg:w-[210px] lg:h-[440px] xl:w-[250px] xl:h-[500px]  rounded-3xl lg:ml-6 xl:ml-0 overflow-hidden
                         ">
                             <img src="/empowerment.jpg"  alt="" className="w-full h-full object-cover p-2 rounded-3xl 
@@ -432,8 +432,8 @@ export default function WhoWeAre() {
                     {/* Right Top Small */}
                     <div className="md:col-span-1">
                         <div data-aos="fade-right"  className="flex items-center justify-center 
-                            bg-white
-                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                            bg-[#0a0a0a]
+                            card-side-glow 
                             w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:ml-8 xl:ml-20 rounded-3xl overflow-hidden">
 
                             <div className="flex flex-col items-center justify-center gap-2 px-2">
@@ -449,7 +449,7 @@ export default function WhoWeAre() {
                     </div>
                     <div className="md:col-start-4 md:row-start-1">
                         <div data-aos="fade-left" data-aos-delay="800" className="flex items-center justify-center 
-                            shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] 
+                            card-side-glow 
                             w-[180px] h-[180px] lg:w-[210px] lg:h-[210px] xl:w-[240px] xl:h-[240px] lg:mr-8 rounded-3xl overflow-hidden
                             ">
 
@@ -464,8 +464,8 @@ export default function WhoWeAre() {
                     {/* in lg move to behind of tall card */}
                     
                     <div className="col-span-2 md:col-start-2 md:row-start-1 ">
-                    <div data-aos="fade-right" className="flex flex-col items-center justify-center p-6 gap-4 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2
-                    bg-white
+                    <div data-aos="fade-right" className="flex flex-col items-center justify-center p-6 gap-4 card-side-glow rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px] xl:ml-2
+                    bg-[#0a0a0a]
                     hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-1000 ease-in-out">
                         <div className="flex flex-row gap-4 ">
                             <div className="flex items-center justify-center flex-shrink-0 shadow-[inset_0_1px_3px_0_rgba(0,0,0,0.4)] rounded-full  w-[40px] h-[40px]">
@@ -490,7 +490,7 @@ export default function WhoWeAre() {
                     </div>
 
                     <div className="col-span-2 md:col-start-3 md:row-start-2  lg:col-span-2 lg:col-start-3 lg:row-start-2">
-                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 shadow-[-5px_-5px_10px_0px_#FAFBFF,5px_5px_10px_0px_rgba(166,171,189,0.25)] rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px]  xl:ml-10  overflow-hidden">
+                    <div data-aos="fade-left" data-aos-delay="800" className="flex flex-col p-2 card-side-glow rounded-2xl w-[380px] h-[180px] lg:w-[410px] lg:h-[210px] xl:w-[440px] xl:h-[240px]  xl:ml-10  overflow-hidden">
                         <img src="laptop.png" alt="" className="w-full h-full object-cover p-2 rounded-3xl transition-all duration-1000 hover:scale-120" />
                         </div>
                     </div>
@@ -508,7 +508,7 @@ export default function WhoWeAre() {
                           
              <div className="my-20">
           
-          <div className="bg-[#4C1D95] md:p-10 p-3 text-white rounded-xl">
+          <div className="bg-[#4C1D95] md:p-10 p-3 text-white rounded-xl card-side-glow">
             <MapDesign />
           </div>
         </div>

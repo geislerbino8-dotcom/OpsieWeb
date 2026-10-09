@@ -167,7 +167,7 @@ function ProductItemPage() {
             <div data-aos="fade-up" data-aos-delay="200" className="pt-2 flex flex-wrap justify-center lg:justify-start gap-4">
               <button 
                 onClick={() => window.location.href = "mailto:sales@example.com"}
-                className="px-8 py-4 bg-gradient-to-r from-violet-500 to-violet-600 rounded-xl font-bold text-sm tracking-wide text-white shadow-lg shadow-violet-500/15 hover:shadow-violet-500/30 hover:-translate-y-0.5 transition-all duration-200"
+                className="px-8 py-4 bg-gradient-to-r from-violet-500 to-violet-600 rounded-full font-bold text-sm tracking-wide text-white shadow-lg shadow-violet-500/15 hover:shadow-violet-500/30 hover:-translate-y-0.5 transition-all duration-200"
               >
                 Request Live Demo
               </button>
@@ -178,7 +178,7 @@ function ProductItemPage() {
 
       {/* --- REFINED OVERVIEW SECTION --- */}
       <section className="w-full max-w-5xl px-6 py-20">
-        <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center backdrop-blur-md">
+        <div className="bg-white/[0.02] border border-white/5 card-side-glow rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center backdrop-blur-md">
           <div className="w-full md:w-1/3 flex-shrink-0">
             <img className="w-full rounded-2xl border border-white/10 object-cover shadow-lg" src={content?.image} alt="Product breakdown" />
           </div>
@@ -229,7 +229,7 @@ function ProductItemPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 px-2 md:px-6">
           {Object.entries(content.features).map(([key, feature], index) => (
-            <div key={key} data-aos="fade-up" data-aos-delay={index * 50} className="flex gap-5 items-start p-6 bg-white/[0.01] hover:bg-white/[0.04] rounded-2xl transition-all duration-300 group border border-white/5 hover:border-white/10">
+            <div key={key} data-aos="fade-up" data-aos-delay={index * 50} className="flex gap-5 items-start p-6 bg-white/[0.01] hover:bg-white/[0.04] rounded-2xl transition-all duration-300 group border border-white/5 card-side-glow hover:border-white/10">
               <span className="text-xl text-violet-500 mt-0.5 group-hover:rotate-45 transition-transform duration-300">✦</span>
               <div className="space-y-1">
                 <h3 className="text-xl font-bold group-hover:text-violet-400 transition-colors">{feature.title}</h3>
@@ -254,7 +254,7 @@ function ProductItemPage() {
                 key={index} 
                 data-aos="fade-up" 
                 data-aos-delay={index * 100}
-                className="relative p-8 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 rounded-2xl flex flex-col gap-4 overflow-hidden group hover:border-violet-500/30 transition-all duration-300"
+                className="relative p-8 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 card-side-glow rounded-2xl flex flex-col gap-4 overflow-hidden group hover:border-violet-500/30 transition-all duration-300"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-violet-500/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                 
@@ -294,7 +294,7 @@ function ProductItemPage() {
                   <img 
                     src={url} 
                     alt={`Interface Preview ${index + 1}`} 
-                    className="w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/10"
+                    className="w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-2xl card-side-glow border border-white/10"
                   />
                 </div>
               ))}
@@ -337,7 +337,7 @@ function ProductItemPage() {
       )}
 
       {/* --- IMPLEMENTATION & SUPPORT --- */}
-      <section className="w-full max-w-5xl py-16 px-6 sm:px-10 bg-white/[0.01] rounded-3xl border border-white/5 backdrop-blur-md mb-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+      <section className="w-full max-w-5xl py-16 px-6 sm:px-10 bg-white/[0.01] rounded-3xl border border-white/5 card-side-glow backdrop-blur-md mb-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
         <div className="space-y-3">
           <h4 className="text-lg font-bold flex items-center gap-2.5 text-slate-100">
             <span className="flex h-2 w-2 relative">
