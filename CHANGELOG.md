@@ -2,7 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2026-10-08 (ui: decorative polish pass — texture, heading halos, violet borders)
+## [Unreleased] - 2026-10-09 (ui: last gold → violet, dead font utilities wired; study: components practice set)
+
+Tailwind-inspection batch (item 2 findings applied to the site) plus the item-3 reference artifact.
+
+### Added
+
+- **`study/components.html`** — the item-3 practice set: Button (primary/white/ghost/disabled ×3 sizes), Card (before/after pair with the real `.card-side-glow` recipe), Badge (eyebrow/solid/outline/dot), Input (default/disabled/error with the exact `ContactForm.tsx:93` classes), each with its real-file citation, class snippet, and a "why" note, closing with the 4h self-test checklist. Mirrors the live site's CSS (carbon + dots, `::selection`, focus ring, glow, halo) and loads only the three live font families. Served at `localhost:5199/components.html`.
+
+### Changed
+
+- **`ProductSection.tsx` — last off-palette gold removed** (item-2 finding D1.2):
+  - Heading gradient `#BF953F → #828181 → #B38728` (gold/silver/bronze) → the house violet trio `#7C3AED → #8B5CF6 → #A78BFA`; duplicate `font-bold` on the same tag dropped.
+  - `LineWaves` `color1/2/3` all `#D4AF37` → all `#8B5CF6`.
+  - Grep `#D4AF37|#BF953F|#B38728|#828181` in `frontend/src` → **0 matches**.
+- **`index.css` — the `font-poppins`/`font-montserrat` no-ops made real** (item-2 findings D1.1/D1.4):
+  - `@theme` now defines `--font-poppins` + `--font-montserrat` (dead `--font-playfair` token removed) — Tailwind v4 never loaded `tailwind.config.js` (v3 relic, no `@config`), so the 19 `font-poppins` usages and 2 `font-montserrat` usages had no generated rule at all.
+  - The `* { font-family: 'Montserrat' }` default moved **into `@layer base`** — as unlayered CSS it outranked every layered font utility, so even a generated `.font-poppins` would have lost the cascade.
+  - Google Fonts imports trimmed from 11 families to the 3 actually rendered: Anton, Inter, Marko One, Marmelad, Noto Sans, Playfair Display, Plus Jakarta Sans, Scheherazade New and the duplicate `Poppins:wght@500` removed (grep confirmed zero `fontFamily` inline styles and zero class usages of any of them).
+
+### Verified
+
+- Computed: heading gradient = `rgb(124, 58, 237) → rgb(139, 92, 246) → rgb(167, 139, 250)`; `.font-poppins` → **`Poppins, sans-serif`** with `document.fonts.check('16px Poppins') = true`; default font still Montserrat; `font-poppins` now visible on cards/sections (behavioral change: those 19 usages shift Montserrat → Poppins as originally configured).
+- Responsive audit (hidden same-origin iframes, measured after React mount) at **320 / 375 / 768 / 1024** on `/`, `/products`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/book-a-schedule` → **0px overflow everywhere** (stray iframes removed).
+- Console: **0 errors** on clean load; study page renders with Tailwind CDN (`rounded-full` → infinite radius, glow shadow exact, body `#0a0a0a`).
+- `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
 
 The chosen direction for "add more design to all pages" was a **decorative polish pass** — consistent flourishes in the established violet/carbon language, no new content.
 

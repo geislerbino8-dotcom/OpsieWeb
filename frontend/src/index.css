@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Marko+One&family=Marmelad&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:wght@500&family=Scheherazade+New:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 @plugin 'tailwindcss-animate';
 @import "tailwindcss";
@@ -9,15 +9,24 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-playfair: "Playfair Display", serif;
+  /* Wired 2026-10-09: tailwind.config.js (v3-era) is never loaded by Tailwind v4
+     (no @config directive), so font-poppins (19 usages) and font-montserrat were
+     never generated — both silently rendered Montserrat. Tokens live here now. */
+  --font-poppins: "Poppins", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
 
 
 }
 
 
 
-* {
-  font-family: 'Montserrat', sans-serif;
+/* Layered on purpose (2026-10-09): Tailwind utilities live in a later cascade
+   layer, so now .font-poppins / .font-montserrat actually win over this default.
+   As plain unlayered CSS it outranked every layered font utility. */
+@layer base {
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
 }
 
 body {

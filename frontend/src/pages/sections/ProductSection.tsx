@@ -27,9 +27,9 @@ function ProductSection() {
           edgeFadeWidth={0}
           colorCycleSpeed={1}
           brightness={0.020}
-          color1="#D4AF37"
-          color2="#D4AF37"
-          color3="#D4AF37"
+          color1="#8B5CF6"
+          color2="#8B5CF6"
+          color3="#8B5CF6"
           enableMouseInteraction
           mouseInfluence={2}
         />
@@ -46,7 +46,7 @@ function ProductSection() {
             </div>
             <div className="md:w-1/2">
               
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-[#BF953F] via-[#828181] to-[#B38728] bg-clip-text text-transparent font-bold">
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-[#7C3AED] via-[#8B5CF6] to-[#A78BFA] bg-clip-text text-transparent">
                 Solutions designed for real business operations
               </h1>
             </div>
