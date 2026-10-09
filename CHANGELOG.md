@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-09 (ui: product cards flip to reveal descriptions)
+
+Hover-driven 3D flip on the ProductSection cards (OpsCore / OpSync / OpStudios): the front keeps the product visual + name over the carbon backdrop with a thin theme-color accent strip; hovering unflips the card (`rotateY(180deg)`, 700ms, house cubic-bezier) to the back face — product-colored eyebrow, name, hairline divider, the full CMS description, and a rounded-full "Discover Detail" pill. Click anywhere still navigates to the detail page (touch devices keep the old tap-through behavior; no hover on mobile).
+
+### Changed
+
+- **`ProductCard.tsx` rebuilt as a flip card**: outer = perspective frame (`[perspective:1200px]`, border, `.card-side-glow`, `hover:-translate-y-2` lift, theme-colored inset hover shadow), inner = `[transform-style:preserve-3d]` flip layer (`group-hover:[transform:rotateY(180deg)]`), faces = `[backface-visibility:hidden]` absolute panes (front keeps its image/name/gradient; back is new). The old dual-layer/backdrop-blur stack (including a dead `hexToRgba(...)` string-literal style) was dropped in the process.
+- **Removed Vite boilerplate `.card { padding: 2em; }` from `index.css`** — it was live ammunition: the legacy rule matched the bare word `card` appearing as a stray token inside `ProductCard`'s className comment, giving the card a surprise `32px` horizontal padding (inner flip layer laid out at 222px instead of 286px and clipped the description to 166px). The className comments moved into JSX comments so every remaining token is a real class; `.read-the-docs` etc. left untouched.
+
+### Verified
+
+- Flip lifecycle on `/`: rest `transform: none` → hover `matrix3d(-1,0,0,0,0,1,0,0,0,0,-1,0,0,0,0,1)` (= rotateY 180°) after the 700ms transition → unhover back to `none`; hover chain reaches card → inner → back face → button; generated rule `.group-hover\:\[transform\:rotateY\(180deg\)\]:is(:where(.group):hover *)`.
+- Back face: description width 230px, `scrollHeight === clientHeight === 206` for **all three** products (no clipping; longest = OpStudios 276 chars); Discover button in view; card padding `0px`, inner `286px`.
+- Responsive audit (hidden same-origin iframes, post-mount measurement) at **320 / 375 / 768 / 1024** on `/`, `/products`, `/who-we-are`, `/what-we-do`, `/contact-us`, `/book-a-schedule` → **0px overflow everywhere** (strays removed).
+- Console: **0 errors**; `npx tsc -b --force` → **0 / 0**; eslint frontend **140 / 32** — exact baseline.
+
+---
+
 ## [Unreleased] - 2026-10-09 (ui: last gold → violet, dead font utilities wired; study: components practice set)
 
 Tailwind-inspection batch (item 2 findings applied to the site) plus the item-3 reference artifact.
