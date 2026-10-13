@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-13 (study: track plan doc)
+
+- **`study/PLAN.md`** — study-track tracker: closed/outstanding items with timeboxes, redo requirements, blocked-on-user threads, working order. Markdown only — no code touched, frontend baseline (tsc 0/0 · eslint 140/32) trivially unchanged.
+
+---
+
 ## [Unreleased] - 2026-10-09 (ui: product cards flip to reveal descriptions)
 
 Hover-driven 3D flip on the ProductSection cards (OpsCore / OpSync / OpStudios): the front keeps the product visual + name over the carbon backdrop with a thin theme-color accent strip; hovering unflips the card (`rotateY(180deg)`, 700ms, house cubic-bezier) to the back face — product-colored eyebrow, name, hairline divider, the full CMS description, and a rounded-full "Discover Detail" pill. Click anywhere still navigates to the detail page (touch devices keep the old tap-through behavior; no hover on mobile).
