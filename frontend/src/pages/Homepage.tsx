@@ -49,7 +49,7 @@ function Homepage() {
       }
 
       <ScrollAnimatedSection delay={150}>
-      <section className="w-full bg-[#FCFDFF] py-0">
+      <section className="w-full bg-[#0a0a0a] py-0">
         <div className="max-w-7xl mx-auto px-6">
             {/**<Team /> */}
             <OperationalStructure />

@@ -5,7 +5,7 @@ import { sendAppointmentBookedEmail } from '../services/emailService';
 export class AppointmentController {
   public create = async (req: Request, res: Response) => {
     try {
-      const { name, email, date, time } = req.body;
+      const { name, email, date, time, message } = req.body;
 
       if (!name || !email || !date || !time) {
         res.status(400).json({
@@ -19,6 +19,9 @@ export class AppointmentController {
         email,
         date,
         time,
+        // Optional by design — anything non-string (or absent) books
+        // as "no note" instead of failing the whole request.
+        message: typeof message === 'string' ? message : '',
       });
 
       // The slot is already saved — an email hiccup must not fail the
@@ -33,6 +36,7 @@ export class AppointmentController {
           email: appointment.email,
           date: appointment.date,
           time: appointment.time,
+          message: appointment.message,
           status: appointment.status,
         },
       });

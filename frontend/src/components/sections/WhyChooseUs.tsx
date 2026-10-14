@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
         <div 
           data-aos="fade-up" 
           data-aos-duration="1000" 
-          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md card-side-glow bg-[#0a0a0a] border border-[#8B5CF6]/25 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs1stCard3.svg"
@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
           data-aos="fade-up" 
           data-aos-duration="1000" 
           data-aos-delay="100"
-          className="col-span-1 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="col-span-1 rounded-[2rem] shadow-md card-side-glow bg-[#0a0a0a] border border-[#8B5CF6]/25 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs2ndCard3.svg"
@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
           data-aos="fade-up" 
           data-aos-duration="1000" 
           data-aos-delay="200"
-          className="col-span-1 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="col-span-1 rounded-[2rem] shadow-md card-side-glow bg-[#0a0a0a] border border-[#8B5CF6]/25 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs3rdCard2.svg"
@@ -93,7 +93,7 @@ export default function WhyChooseUs() {
           data-aos="fade-up" 
           data-aos-duration="1000" 
           data-aos-delay="300"
-          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] bg-[#0a0a0a] border border-cyan-500/20 overflow-hidden group hover:shadow-xl transition-all duration-500"
+          className="sm:col-span-2 lg:col-span-2 rounded-[2rem] shadow-md card-side-glow bg-[#0a0a0a] border border-[#8B5CF6]/25 overflow-hidden group hover:shadow-xl transition-all duration-500"
         >
           <img
             src="/whyChooseUs4thCard4.svg"

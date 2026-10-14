@@ -60,17 +60,17 @@ function ProductPage() {
 
   return (
     /* Main wrapper with gradient and relative position to anchor background circles */
-    <div className="relative w-full bg-gradient-to-tr from-slate-100 via-white to-zinc-50 text-gray-800 overflow-hidden text-center md:text-left">
+    <div className="relative w-full bg-[#0a0a0a] text-gray-200 overflow-hidden text-center md:text-left">
       
       {/* ================= BACKGROUND BLURRED CIRCLES ================= */}
       {/* Top Left - Large Soft Dark Blur */}
-      <div className="absolute top-[-10%] left-[-20%] w-[600px] h-[600px] rounded-full bg-slate-900/5 blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-[-10%] left-[-20%] w-[600px] h-[600px] rounded-full bg-[#8B5CF6]/10 blur-[140px] pointer-events-none -z-10" />
       
       {/* Mid Right - Medium Soft Accent Blur */}
-      <div className="absolute top-[35%] right-[-10%] w-[500px] h-[500px] rounded-full bg-zinc-800/5 blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-[35%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#A78BFA]/10 blur-[120px] pointer-events-none -z-10" />
       
       {/* Bottom Left - Subtle Deep Accent Blur */}
-      <div className="absolute bottom-[15%] left-[-15%] w-[550px] h-[550px] rounded-full bg-slate-900/5 blur-[130px] pointer-events-none -z-10" />
+      <div className="absolute bottom-[15%] left-[-15%] w-[550px] h-[550px] rounded-full bg-[#8B5CF6]/10 blur-[130px] pointer-events-none -z-10" />
       {/* ============================================================= */}
 
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
@@ -88,7 +88,7 @@ function ProductPage() {
               />
 
               <p
-                className="text-gray-500 text-xl leading-relaxed max-w-lg"
+                className="text-gray-400 text-xl leading-relaxed max-w-lg"
                 data-aos="fade-up"
                 data-aos-delay="100"
               >
@@ -101,14 +101,14 @@ function ProductPage() {
                 data-aos-delay="200"
               >
                 <button
-                  className="bg-[#8B5CF6] text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-violet-500/30 hover:bg-[#7C3AED] hover:-translate-y-1 transition-all"
+                  className="bg-[#8B5CF6] text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-violet-500/30 hover:bg-[#7C3AED] hover:-translate-y-1 transition-all"
                   onClick={() => navigate('/book-a-schedule')}
                 >
                   {content?.productsPage.button1.text}
                 </button>
 
                 <a href="#all-products">
-                  <button className="bg-white/80 backdrop-blur-md border border-gray-200 px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 hover:-translate-y-1 transition-all shadow-sm">
+                  <button className="bg-white/80 backdrop-blur-md border border-gray-200 px-8 py-4 rounded-full font-bold hover:bg-gray-50 hover:-translate-y-1 transition-all shadow-sm">
                     {content?.productsPage.button2.text}
                   </button>
                 </a>
@@ -120,13 +120,13 @@ function ProductPage() {
               className="relative grid grid-cols-2 gap-4"
               data-aos="zoom-in-left"
             >
-              {/* Cyan branding pulse behind images */}
+              {/* Violet branding pulse behind images */}
               <div className="absolute -inset-4 bg-[#8B5CF6]/10 blur-3xl rounded-full -z-10" />
 
               {[Product1, hris, opsync, web].map((img, idx) => (
                 <div
                   key={idx}
-                  className={`overflow-hidden rounded-2xl shadow-xl border border-white bg-white/50 backdrop-blur-sm transition-all duration-500 hover:z-20 hover:scale-105 ${
+                  className={`overflow-hidden rounded-2xl border-white/10 bg-white/[0.06] card-side-glow backdrop-blur-sm transition-all duration-500 hover:z-20 hover:scale-105 ${
                     idx % 2 !== 0 ? 'mt-8' : ''
                   }`}
                 >
@@ -163,7 +163,7 @@ function ProductPage() {
                 position='left'
               />
 
-              <p className="text-gray-500 mt-4">
+              <p className="text-gray-400 mt-4">
                 {content?.productsPage.section2.subHeader}
               </p>
             </div>
@@ -216,7 +216,7 @@ function ProductPage() {
       <div className="mt-10 relative z-10">
         <WhyChooseUsSection />
 
-        <div className="bg-white/60 backdrop-blur-md py-10 border-y border-gray-200/80">
+        <div className="bg-[#0a0a0a] backdrop-blur-md py-10 border-y border-white/10">
           <ClientReview />
         </div>
 

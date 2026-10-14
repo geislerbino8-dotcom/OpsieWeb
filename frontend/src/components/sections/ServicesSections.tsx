@@ -5,12 +5,12 @@ import leftArrow from '../../assets/icons/left-arrow1.svg';
 import rightArrow from '../../assets/icons/right-arrow.svg';
 
 const cards = [
-  { title: "Cloud Solutions", image: "/services/cloud.jpg", description: "Cloud hosting, remote access systems, centralized database management, securebackup solutions, and scalable SaaS deployment." },
-  { title: "Systems Integration", image: "/services/software_integration.jpg", description: "API integrations, ERP integrations, HRIS integrations, centralized workflows, and connected business systems." },
-  { title: "Cybersecurity", image: "/services/cybersecurity.jpg", description: "Data encryption, access control, firewall protection, backup security, user authentication, and secure cloud infrastructure.." },
-  { title: "Automation & AI", image: "/services/ai_automation.jpg", description: "Workflow automation, AI analytics, AI chatbot solutions, predictive reporting, smart process automation, and intelligent business insights." },
-  { title: "Web and Mobile Development", image: "/services/web_mobile_dev.jpg", description: "Android and iOS mobile applications, web-based systems, custom portals, ERP platforms, and responsive business applications.." },
-  { title: "UI / UX Design", image: "/services/ui_design.jpg", description: "User-focused and responsive designs that enhance usability, engagement, and overall digital experience.." },
+  { title: "Cloud Solutions", image: "/services/cloud.gif", description: "Cloud hosting, remote access systems, centralized database management, securebackup solutions, and scalable SaaS deployment." },
+  { title: "Systems Integration", image: "/services/software_integration.gif", description: "API integrations, ERP integrations, HRIS integrations, centralized workflows, and connected business systems." },
+  { title: "Cybersecurity", image: "/services/cybersecurity.gif", description: "Data encryption, access control, firewall protection, backup security, user authentication, and secure cloud infrastructure.." },
+  { title: "Automation & AI", image: "/services/ai_automation.gif", description: "Workflow automation, AI analytics, AI chatbot solutions, predictive reporting, smart process automation, and intelligent business insights." },
+  { title: "Web and Mobile Development", image: "/services/web_mobile_dev.gif", description: "Android and iOS mobile applications, web-based systems, custom portals, ERP platforms, and responsive business applications.." },
+  { title: "UI / UX Design", image: "/services/ui_design.gif", description: "User-focused and responsive designs that enhance usability, engagement, and overall digital experience.." },
 
 ];
 
@@ -77,7 +77,7 @@ const ServicesSection: React.FC = () => {
                     title={card.title} 
                     image={card.image} 
                     description={card.description} 
-                    className={`rounded-3xl border-none transition-shadow ${isActive ? 'shadow-2xl' : 'shadow-sm'}`}
+                    className={`rounded-3xl card-side-glow border-none transition-shadow ${isActive ? 'shadow-2xl' : 'shadow-sm'}`}
                   />
                 </div>
               );
@@ -94,7 +94,7 @@ const ServicesSection: React.FC = () => {
               <div
                 key={idx}
                 className={`h-1.5 transition-all duration-300 rounded-full ${
-                  currentIndex === idx ? "w-8 bg-black" : "w-2 bg-gray-200"
+                  currentIndex === idx ? "w-8 bg-[#8B5CF6]" : "w-2 bg-white/30"
                 }`}
               />
             ))}
@@ -110,7 +110,7 @@ const ServicesSection: React.FC = () => {
             </button>
 
             <div className="text-xs font-bold tracking-[0.2em] text-gray-400">
-              <span className="text-black">{currentIndex + 1}</span> / {cards.length}
+              <span className="text-white">{currentIndex + 1}</span> / {cards.length}
             </div>
 
             <button 

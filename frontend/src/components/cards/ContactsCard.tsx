@@ -16,7 +16,7 @@ function ContactsCard({ title, children, className, color, textColor  }: Contact
       style={{ backgroundColor: color }}
       className={`
         flex-1 w-full p-8 rounded-xl
-        border border-gray-100 shadow-xl hover:shadow-md 
+        border border-white/10 card-side-glow hover:shadow-md 
         transition-shadow duration-300 text-left flex flex-col
         ${className}
       `}
@@ -25,10 +25,10 @@ function ContactsCard({ title, children, className, color, textColor  }: Contact
         style={{
         color: textColor && textColor
       }}
-        className="font-poppins font-bold text-xl mb-4 text-gray-900 tracking-tight">
+        className="font-poppins font-bold text-xl mb-4 text-white tracking-tight">
         {title}
       </h3>
-      <div className="w-full text-gray-600 leading-relaxed">
+      <div className="w-full text-gray-300 leading-relaxed">
         {children}
       </div>
     </div>

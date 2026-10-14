@@ -36,11 +36,11 @@ export default class WebContentRoute {
         this.router.patch(
             '/publish-content',
             this.controller.publishContent
-        )
+        );
 
         this.router.get(
             '/get-latest-published-date',
             this.controller.getPublishedDate
-        )
+        );
     };
 }

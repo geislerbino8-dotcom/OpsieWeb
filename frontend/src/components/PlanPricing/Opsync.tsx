@@ -84,8 +84,7 @@ export default function PricingPlans() {
 
         {/* Subscribe Button */}
         <div className="flex justify-center mt-10">
-          <button className="bg-green-500 hover:bg-green-700 px-10 py-3 rounded-full text-xl text-white font-semibold
-          rounded-2xl border-3" onClick={() => {window.location.href="/Subscribe-now"}}>
+          <button className="bg-green-500 hover:bg-green-700 px-10 py-3 rounded-full text-xl text-white font-semibold" onClick={() => {window.location.href="/Subscribe-now"}}>
             Subscribe now
           </button>
         </div>

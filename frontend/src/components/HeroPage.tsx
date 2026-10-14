@@ -69,7 +69,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
       <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 mb-24 space-y-8">
         
         <div className="max-w-5xl">
-          <h1 className="text-white">
+          <h1 className="text-white heading-glow">
             {headerText && (
               <SplitText
                 text={headerText}
@@ -96,7 +96,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
           </p>
         )}
 
-        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 shadow-md max-w-md w-full">
+        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 card-side-glow max-w-md w-full">
           <div className="flex items-center space-x-3">
             <div className="bg-violet-700 rounded-full w-10 h-10 flex items-center justify-center">
               <span className="font-bold text-lg">O</span>
@@ -108,7 +108,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
           </div>
           <button 
             onClick={() => navigate("/book-a-schedule")}
-            className="group relative bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
+            className="group relative rounded-full bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
           >
           <span className="relative z-10">{buttonText}</span>
           </button>
