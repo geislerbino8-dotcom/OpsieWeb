@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-14 (chore: repo hygiene — dead assets, backend lint, artifact)
+
+Frontend untouched by this batch (tsc 0/0 · eslint 140/32 baseline intact); backend now tsc 0 · lint 0 problems.
+
+### Removed
+
+- **Six unused hero SVGs** — `frontend/public/WhatWeDo-Hero.svg` + `2`–`6` (~17 MB of dead weight). Only `WhatWeDo-Hero7.svg` is referenced (from `WhoWeAre.tsx`).
+
+### Fixed
+
+- **Backend lint debt: 35 errors → 0** — `eslint --fix` handled the 26 mechanical ones (semicolons etc.); manually: unused `catch (error)` bindings → optional `catch {}` (`productController.ts` ×4, `webContentController.ts` ×3 — the two catches that actually use `error` kept their bindings), unused `mongoose` import removed, unused `create()` result dropped.
+
+### Changed
+
+- **`backend/.gitignore`** — ignore `*.tsbuildinfo` so the TypeScript build artifact stops showing up in `git status`.
+
+---
+
 ## [Unreleased] - 2026-10-14 (study: task-tracker + refactor blocks closed)
 
 Study-work batch — frontend untouched, gates trivially at baseline (tsc 0/0 · eslint 140/32).

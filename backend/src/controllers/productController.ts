@@ -11,7 +11,7 @@ export class ProductController {
             res.status(201).json({ message: 'Product created succesfully' });
 
         
-        } catch (error) {
+        } catch {
 
             res.status(400).json({ message: 'Failed to create Product' });
             
@@ -25,7 +25,7 @@ export class ProductController {
 
             res.status(200).json(Products);
 
-        } catch (error) {
+        } catch {
             res.status(400).json({ message: 'Failed to find products' });
         }
     };
@@ -45,16 +45,16 @@ export class ProductController {
 
             res.status(200).json(product);
             
-        } catch (error) {
+        } catch {
             res.status(400).json({message: 'Failed to find product'});
         }
     };
 
     public updateProduct = async ( req: Request, res: Response) => {
 
-        const { id, data } = req.body
+        const { id, data } = req.body;
 
-        console.log(id, data)
+        console.log(id, data);
 
         try {   
 
@@ -63,16 +63,16 @@ export class ProductController {
                 {
                     new: true,
                 }
-            )
+            );
 
-            if(!product) res.status(404).json({message: "Product not found"})
+            if(!product) res.status(404).json({message: 'Product not found'});
 
-            res.status(200).json({message: "Product updated successfully"})
+            res.status(200).json({message: 'Product updated successfully'});
             
-        } catch (error) {
-            res.status(400).json({message: 'Failed to pudate product'})
+        } catch {
+            res.status(400).json({message: 'Failed to pudate product'});
         }
-    }
+    };
 
     public deleteProduct = async (req: Request, res: Response) => {
 
@@ -83,18 +83,18 @@ export class ProductController {
 
             if (!product) {
             return res.status(404).json({
-                message: "Product not found",
+                message: 'Product not found',
             });
             }
 
             await ProductModel.findByIdAndDelete(id);
 
             return res.status(200).json({
-            message: "Product deleted successfully",
+            message: 'Product deleted successfully',
             });
         } catch (error) {
             return res.status(500).json({
-            message: "Server error",
+            message: 'Server error',
             error,
             });
         }

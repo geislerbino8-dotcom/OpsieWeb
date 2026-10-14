@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import WebContentModel from '../models/webContentModel';
 import { Request, Response } from 'express';
 
@@ -7,25 +6,25 @@ export class WebContentController {
     public create = async (req: Request, res: Response)=> {
 
         try {
-            
-            const content = await WebContentModel.create(req.body);
+             
+            await WebContentModel.create(req.body);
 
             res.status(201).json({message: 'Content created successfully'});
 
-        } catch (error) {
-            
+        } catch {
+             
             res.status(400).json({message: 'Failed to create content'});
         }
     };
 
     public getContent = async (req: Request, res: Response)=> {
         try {
-            
+             
             const content = await WebContentModel.find();
 
             res.status(201).json({message: 'Content fetch successfull', data: content});
 
-        } catch (error) {
+        } catch {
             res.status(400).json({message: 'Content fetch unsuccessfull'});
         }
     };
@@ -48,14 +47,14 @@ export class WebContentController {
 
             if(!updated) return res.status(401).json({message: 'Could not update contnent'});
 
-            console.log(updated)
+            console.log(updated);
 
             res.status(200).json({
                 message: 'Content updated successfully',
                 data: updated
             });
 
-        } catch (error) {
+        } catch {
             res.status(400).json({ message: 'Update failed' });
         }
     };
@@ -67,7 +66,7 @@ export class WebContentController {
 
             if (!existingContent) {
             return res.status(404).json({
-                message: "Content not found",
+                message: 'Content not found',
             });
             }
 
@@ -81,14 +80,14 @@ export class WebContentController {
             await existingContent.save();
 
             res.status(200).json({
-            message: "Content published successfully",
+            message: 'Content published successfully',
             data: existingContent,
             });
         } catch (error) {
             console.error(error);
 
             res.status(400).json({
-            message: "Publish failed",
+            message: 'Publish failed',
             });
         }
     };
@@ -98,13 +97,13 @@ export class WebContentController {
             const content = await WebContentModel.findOne({});
 
             const phDate = content?.lastPublishedAt
-                ? new Date(content.lastPublishedAt).toLocaleString("en-PH", {
-                    timeZone: "Asia/Manila",
+                ? new Date(content.lastPublishedAt).toLocaleString('en-PH', {
+                    timeZone: 'Asia/Manila',
                 })
                 : null;
 
             res.status(200).json({
-                message: "Date published success",
+                message: 'Date published success',
                 data: phDate,
             });
 
@@ -112,7 +111,7 @@ export class WebContentController {
             console.error(error);
 
             res.status(400).json({
-                message: "Publish failed",
+                message: 'Publish failed',
             });
         }
     };

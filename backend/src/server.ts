@@ -69,7 +69,7 @@ export default class Server {
       appointmentRoute.router,
       appointmentLimiter,
     );
-    this.app.use(`${API_PREFIX}/products`, productRoute.router)
+    this.app.use(`${API_PREFIX}/products`, productRoute.router);
   };
 
   private initializeNotFoundHandler = (): void => {
