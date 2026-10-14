@@ -15,33 +15,33 @@ const services = [
 
 // Task 1 — return a new array of just the names.          (map)
 function getServiceNames(list) {
-  return list.map(s => s.name);
+  return list.map(service => service.name);
 }
 
 // Task 2 — services costing maxPrice or less.             (filter)
 function getAffordable(list, maxPrice) {
-  return list.filter(s => s.price <= maxPrice);
+  return list.filter(service => service.price <= maxPrice);
 }
 
 // Task 3 — the ONE service with this id, or undefined.    (find)
 function findService(list, id) {
-  return list.find(s => s.id === id);
+  return list.find(service => service.id === id);
 }
 
 // Task 4 — a NEW array sorted by price.
 // direction: "asc" = cheapest first, "desc" = most expensive first.
 // MUST NOT modify the original `services` array!          (sort)
 function sortByPrice(list, direction) {
-  return [...list].sort((a, b) =>
-    direction === "asc" ? a.price - b.price : b.price - a.price
+  return [...list].sort((serviceA, serviceB) =>
+    direction === "asc" ? serviceA.price - serviceB.price : serviceB.price - serviceA.price
   );
 }
 
 // Task 5 — featured services of one category, names only. (filter + map)
 function getFeaturedNames(list, category) {
   return list
-    .filter(s => s.featured && s.category === category)
-    .map(s => s.name);
+    .filter(service => service.featured && service.category === category)
+    .map(service => service.name);
 }
 
 // ---------- checks (don't edit) ----------

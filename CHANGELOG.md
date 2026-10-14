@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-14 (study: task-tracker + refactor blocks closed)
+
+Study-work batch — frontend untouched, gates trivially at baseline (tsc 0/0 · eslint 140/32).
+
+### Added
+
+- **`study/recall.html`** — E1 rebuild-from-memory of the four `components.html` recipes: pill buttons including a violet loading state (spinner + pulse label), cards including a clickable stat-card variant, badges, inputs including a search-field variant. 0px horizontal overflow verified at 320/375/768/1024.
+- **`study/shared.css`** — extracted reset + body base styles shared by the study HTML files (kills the per-file duplication).
+- **`study/SUMMARY.md`** — learning summary plus an honest fabrication analysis with a "measure, never assume" guardrail.
+
+### Fixed
+
+- **`study/taskboard.html` mobile overflow** — `.board` was pinned to a 361.5px min-content floor (58px overflow at a 320px viewport). Fixed by moving the `@media (max-width: 480px)` overrides AFTER the base rules they override (cascade ties go to the later rule; three of the five rules were silently dead) and adding `#root { width: 100%; min-width: 0 }` to remove the grid item's intrinsic floor. Assistant-measured `[scrollWidth, clientWidth, overflow] = [W, W, 0]` at all four widths — expanded, collapsed and restored.
+- **C2 clarity pass on `study/service-list.js`, `study/form-validation.html`, `study/taskboard.html`** — opaque callback params renamed (`s`→`service`, `(a,b)`→`(serviceA,serviceB)`, `f`→`filterOption`); behavior unchanged (`node study/service-list.js` still exits 0; old-vs-new geometry identical).
+
+### Changed
+
+- **`study/taskboard.html` collapse control** — header pill toggle with `aria-expanded`/`aria-controls`; collapsing hides subtitle/form/filters/list while title, stats and progress bar stay visible.
+- **`study/PLAN.md`** — study tracker closed: all 7 items posted by the student and assistant-verified against the filesystem.
+
+---
+
 ## [Unreleased] - 2026-10-13 (study: track plan doc)
 
 - **`study/PLAN.md`** — study-track tracker: closed/outstanding items with timeboxes, redo requirements, blocked-on-user threads, working order. Markdown only — no code touched, frontend baseline (tsc 0/0 · eslint 140/32) trivially unchanged.
