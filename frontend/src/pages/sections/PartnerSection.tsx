@@ -37,7 +37,7 @@ function PartnerSection() {
 
       {/* Partners Loop Container */}
       <div className="w-full max-w-7xl mb-16" data-aos="fade-up" data-aos-delay="300">
-        <div className="bg-[#1a1a1a]/50 py-12 rounded-[2rem] border border-cyan-500/20 shadow-[0_0_30px_rgba(6,182,212,0.15)]">
+        <div className="bg-[#1a1a1a]/50 py-12 rounded-[2rem] border border-[#8B5CF6]/25 shadow-[0_0_30px_rgba(139,92,246,0.2)]">
           <LogoLoop
             logos={imageLogos}
             speed={40} // Slower speed is often more elegant for logo loops

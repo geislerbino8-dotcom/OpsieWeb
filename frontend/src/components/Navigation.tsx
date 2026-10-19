@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Clock } from "lucide-react";
 import logo from "../assets/opsie/opsie_logo.png";
@@ -35,11 +35,11 @@ function DateTimeDisplay() {
   });
 
   return (
-    <div className="hidden lg:flex items-center gap-1.5 text-white/70 text-[10px] font-medium px-2 py-1 rounded-md border border-white/10 bg-white/5">
-      <Clock className="w-3 h-3 text-[#8B5CF6]" />
+    <div className="hidden lg:flex h-10 items-center gap-1.5 text-white/70 text-[11px] font-medium px-3 rounded-md border border-white/10 bg-white/5">
+      <Clock className="w-3.5 h-3.5 text-[#8B5CF6]" />
       <div className="flex flex-col leading-tight">
         <span className="font-mono">{time}</span>
-        <span className="text-white/40 text-[9px]">{date}</span>
+        <span className="text-white/40 text-[10px]">{date}</span>
       </div>
     </div>
   );
@@ -52,9 +52,9 @@ function Navigation() {
   const [navIsOpen, setNavIsOpen] = useState(false);
 const [isProductsHover, setIsProductsHover] = useState(false);
 
-  // /book-a-schedule is a full dark surface; on that route the nav goes
-  // translucent black (per the design) instead of the purple used elsewhere.
-  const isDarkNav = location.pathname === "/book-a-schedule";
+  // Every page uses the booking page's nav treatment: a translucent
+  // near-black bar (over backdrop-blur) instead of the old solid violet,
+  // so the nav reads the same on dark and light surfaces alike.
 
   const toggleMobileNav = () => setNavIsOpen(!navIsOpen);
 
@@ -88,32 +88,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
     };
   }, [navIsOpen]);
 
-  const [showNav, setShowNav] = useState(true);
-  const [lastScroll, setLastScroll] = useState(0);
-  const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-
-      if (currentScroll > lastScroll && currentScroll > 80) {
-        setShowNav(false);
-        if (hideTimeout.current) clearTimeout(hideTimeout.current);
-        hideTimeout.current = setTimeout(() => setShowNav(true), 1000);
-      } else {
-        setShowNav(true);
-      }
-
-      setLastScroll(currentScroll);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (hideTimeout.current) clearTimeout(hideTimeout.current);
-    };
-  }, [lastScroll]);
+  // Scroll autohide removed 2026-10-19: desktop-review criterion D5 requires
+  // the sticky header to remain visible at every scroll offset (2026-10-19
+  // desktop audit decision — fix, not waive).
 
   return (
     <>
@@ -122,9 +99,8 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 
       w-full fixed left-0 z-20"
       style={{
-        top: showNav ? 0 : "-80px",
-        transition: "top 0.3s",
-        backgroundColor: isDarkNav ? "rgba(10, 10, 10, 0.82)" : "#4C1D95"
+        top: 0,
+        backgroundColor: "rgba(10, 10, 10, 0.82)"
       }}
     >
       {/* Desktop */}
@@ -167,7 +143,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                         aria-label="Product submenu"
                         className="
 
-                          absolute top-full left-0 w-56 shadow-xl p-2 bg-white
+                          absolute top-full left-0 w-56 shadow-xl p-2 bg-[#0f0f15] border border-white/10
                           transition-all duration-100 ease-out
                         "
                       >
@@ -175,8 +151,8 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                           <Link
                             key={prod.name}
                             to={`/products/${prod.name}`}
-                            className="text-black cursor-pointer block px-2 py-2 text-sm
-                            hover:bg-blue-50 hover:text-[#8B5CF6] transition"
+                            className="text-gray-100 cursor-pointer block px-2 py-2 text-sm
+                            hover:bg-[#8B5CF6]/15 hover:text-[#8B5CF6] transition"
                           >
                             {prod.name}
                           </Link>
@@ -186,7 +162,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
                   </li>
                 );
               }
-
+              
               return (
                 <li key={item.link}>
                   <Link

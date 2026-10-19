@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ProductController } from "../controllers/productController";
+import { ProductController } from '../controllers/productController';
 import { authMiddleware } from '../middleware/authMiddleware';
 import { requirePermission } from '../middleware/permissionMiddleware';
 import { PERMISSIONS } from '../constants/permissions';
@@ -43,6 +43,6 @@ export default class ProductRoute {
             authMiddleware,
             requirePermission(PERMISSIONS.TICKET_VIEW) || adminMiddleware,
             this.controller.deleteProduct
-        )
+        );
     }
 }

@@ -41,6 +41,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       onClick={onClick}
       className={`
         flex items-center justify-center gap-2
+        rounded-full
         font-semibold
         transition-all duration-1000 ease-out
         active:scale-95

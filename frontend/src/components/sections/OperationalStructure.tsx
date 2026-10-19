@@ -11,7 +11,7 @@ function OperationalStructure() {
         <h1 data-aos="fade-left" className="text-4xl sm:text-5xl font-black text-[#4C1D95] tracking-tight sm:leading-none">
           Operational Structure
         </h1>
-        <div className="h-1 w-20 bg-gradient-to-r from-violet-500 to-sky-600 rounded-full" />
+        <div className="h-1 w-20 bg-gradient-to-r from-violet-500 to-violet-600 rounded-full" />
         
         <p className="text-lg text-gray-300 font-normal leading-relaxed">
           Opsie Software Solutions Inc. operates through a <span className="font-semibold text-gray-100">lean and agile</span> organizational structure. We fuse a core leadership team with an elite network of technical consultants, developers, project-based specialists, and collaborative partners.
@@ -25,7 +25,7 @@ function OperationalStructure() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         {/* Core Functions - Sophisticated Dark Slate */}
-        <div className="relative group overflow-hidden bg-[#8B5CF6] text-white p-8 lg:p-10 rounded-3xl border border-cyan-500/20 shadow-xl shadow-[0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        <div className="relative group overflow-hidden bg-[#8B5CF6] text-white p-8 lg:p-10 rounded-3xl border border-[#8B5CF6]/25 shadow-xl card-side-glow transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
           {/* Subtle Background Accent Gradient */}
           <div className="absolute -right-16 -top-16 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-500" />
           
@@ -60,13 +60,13 @@ function OperationalStructure() {
         </div>
 
         {/* Delivery Approach - Ultra-Clean Bordered Design */}
-        <div className="relative group overflow-hidden bg-[#1a1a1a] text-gray-100 p-8 lg:p-10 rounded-3xl border border-cyan-500/20 shadow-md shadow-[0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div className="relative group overflow-hidden bg-[#1a1a1a] text-gray-100 p-8 lg:p-10 rounded-3xl border border-[#8B5CF6]/25 shadow-md card-side-glow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
           {/* Subtle Background Accent Gradient */}
-          <div className="absolute -right-16 -top-16 w-40 h-40 bg-sky-500/5 rounded-full blur-3xl group-hover:bg-sky-500/10 transition-all duration-500" />
+          <div className="absolute -right-16 -top-16 w-40 h-40 bg-violet-500/5 rounded-full blur-3xl group-hover:bg-violet-500/10 transition-all duration-500" />
           
           <div className="relative z-10 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-600">
+              <div className="p-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-600">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -74,7 +74,7 @@ function OperationalStructure() {
               <h2 className="text-2xl font-bold tracking-tight text-white">Delivery Approach</h2>
             </div>
 
-            <p className="text-sm font-semibold tracking-wide text-sky-600 uppercase">
+            <p className="text-sm font-semibold tracking-wide text-violet-600 uppercase">
               Our collaborative operational model allows us to:
             </p>
             
@@ -88,7 +88,7 @@ function OperationalStructure() {
               ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3 group/item">
                   <span className="flex-shrink-0 mt-1">
-                    <svg className="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-violet-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>

@@ -23,7 +23,7 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
 
   return (
-    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row px-2 items-center md:px-10 md:py-20 py-10"
+    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row px-2 items-center md:px-10 md:py-20 py-10 text-gray-200"
       data-aos="slide-up" data-aos-delay="500"
     >
       
@@ -44,7 +44,7 @@ const ClientReview: React.FC = () => {
             className="w-8 h-8 flex items-center justify-center pr-3 hover:bg-[#8B5CF6] transition-all-ease"
             onClick={handlePrev}
           />
-          <hr className="w-[100px] border border-black" />
+          <hr className="w-[100px] border border-white/30" />
           <Button
             variant="shadow"
             iconImage={rightArrow}
@@ -107,7 +107,7 @@ const ClientReview: React.FC = () => {
   {/* Right gradient overlay */}
 <div
     className="pointer-events-none absolute top-0 right-0 h-full w-24 
-      bg-gradient-to-l from-[#ECEDF1] via-[#ECEDF1]/10 to-transparent"
+      bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/10 to-transparent"
   ></div>
 
 </div>
@@ -121,7 +121,7 @@ const ClientReview: React.FC = () => {
             className="w-8 h-8 flex items-center justify-center pr-3"
             onClick={handlePrev}
           />
-          <hr className="w-[100px] border border-black" />
+          <hr className="w-[100px] border border-white/30" />
           <Button
             variant="shadow"
             iconImage={rightArrow}

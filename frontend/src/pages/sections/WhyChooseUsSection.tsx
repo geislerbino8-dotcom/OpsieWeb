@@ -24,7 +24,7 @@ function WhyChooseUsSection() {
               data-aos="fade-up"
               data-aos-delay={index * 150}
               className="
-                group relative overflow-hidden rounded-2xl shadow-2xl 
+                group relative overflow-hidden rounded-2xl card-side-glow
                 flex items-end 
                 p-6 md:p-8 
                 text-white 
@@ -94,7 +94,7 @@ function WhyChooseUsSection() {
           <div className='flex justify-center md:justify-start'>
             <button
               onClick={() => navigate("/what-we-do")}
-              className=' bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#8B5CF6] border-[#8B5CF6] hover:bg-white transition duration-600'>See how we work</button>
+              className='rounded-full bg-black/60 md:w-[50%] p-3 border-2 font-bold text-[#8B5CF6] border-[#8B5CF6] hover:bg-white transition duration-600'>See how we work</button>
 
           </div>
 
