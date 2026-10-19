@@ -42,6 +42,10 @@ const FAQAccordion = () => {
                     : "bg-white/[0.04] border-transparent hover:border-white/20 shadow-sm hover:bg-[#4C1D95]/60"
                   }`}
               >
+                {/* Site rule "buttons are rounded-full" is waived for this
+                    full-width accordion trigger by documented exception
+                    (2026-10-19 desktop audit decision — the rounded-2xl
+                    wrapper supplies the visible corners). */}
                 <button
                   onClick={() => toggle(index)}
                   className="flex justify-between items-center w-full py-7 px-8 text-left group"

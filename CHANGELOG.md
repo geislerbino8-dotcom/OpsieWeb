@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-19 (fix: desktop-audit decision batch — D5 nav, sky tokens, service copy, hero tagline)
+
+Gates: frontend tsc 0/0 · eslint 140/32 baseline intact · backend lint 0. Implements the accepted recommendations from `study/2026-10-19-layout-typography-content-audit.md` (D5 fix · sky cleanup scoped to OperationalStructure · FAQ waiver documented · copy fixes N-01/N-02/N-03).
+
+### Fixed
+
+- **Desktop nav no longer autohides on scroll (criterion D5)** — removed the scroll-direction hide machinery in `Navigation.tsx` (`showNav`/`lastScroll`/`hideTimeout` + the `top: -80px` transition); the fixed header now stays at `top: 0` at every scroll offset.
+- **Legacy sky tokens removed from `OperationalStructure.tsx` (criterion D3 residual)** — all five `sky-500`/`sky-600` uses (gradient end, accent glow, icon container, uppercase label, check icons) now use the violet family (`violet-500`/`violet-600`); zero `sky-`/`cyan-` classes remain in `frontend/src`.
+- **WhatWeDo service copy (audit N-01/N-02)** — `securebackup` → `secure backup` (`ServicesSections.tsx:8`); three doubled terminal periods removed (`:10`, `:12`, `:13`).
+- **Hero mini-card tagline (audit N-03)** — dropped the trailing `---` placeholder from `HeroPage.tsx:106` (revert if the dashes are intentional brand copy).
+
+### Changed
+
+- **FAQ trigger `rounded-full` waiver documented (audit D4)** — no visual change; a comment at the accordion trigger in `Faq.tsx` records the exception (the rounded-2xl wrapper supplies the visible corners).
+
+---
+
+## [Unreleased] - 2026-10-19 (study: desktop review track — inspection, trace, audit report)
+
+Documentation-only batch — no code, gates trivially at baseline.
+
+### Added
+
+- **`study/2026-10-19-layout-typography-content-audit.md`** — desktop layout/typography/content audit of `/` + `/what-we-do`: section-by-section coverage receipt, four new content findings (two confirmed copy defects, one candidate, one owner-pending), rerunnable evidence snippets, severity-ranked punch list + decision queue (graded 9.5/10).
+- **`study/2026-10-15.md`** — daily log for the entry/routing + components/assets/styles blocks.
+- **`docs/user-journeys.md`** — public/admin/CMS journey map with Appendix A fix punch list.
+
+### Changed
+
+- **`study/PLAN.md`** — tracker updated through 2026-10-19: desktop criteria rubric D1–D10, graded items (inspection 9.5 · trace 7.5 · audit 9.5 ×2), AOS thread resolved DEFER.
+
+---
+
 ## [Unreleased] - 2026-10-14 (chore: repo hygiene — dead assets, backend lint, artifact)
 
 Frontend untouched by this batch (tsc 0/0 · eslint 140/32 baseline intact); backend now tsc 0 · lint 0 problems.

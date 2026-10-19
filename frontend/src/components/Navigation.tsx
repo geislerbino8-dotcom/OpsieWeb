@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Clock } from "lucide-react";
 import logo from "../assets/opsie/opsie_logo.png";
@@ -88,32 +88,9 @@ const [isProductsHover, setIsProductsHover] = useState(false);
     };
   }, [navIsOpen]);
 
-  const [showNav, setShowNav] = useState(true);
-  const [lastScroll, setLastScroll] = useState(0);
-  const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-
-      if (currentScroll > lastScroll && currentScroll > 80) {
-        setShowNav(false);
-        if (hideTimeout.current) clearTimeout(hideTimeout.current);
-        hideTimeout.current = setTimeout(() => setShowNav(true), 1000);
-      } else {
-        setShowNav(true);
-      }
-
-      setLastScroll(currentScroll);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (hideTimeout.current) clearTimeout(hideTimeout.current);
-    };
-  }, [lastScroll]);
+  // Scroll autohide removed 2026-10-19: desktop-review criterion D5 requires
+  // the sticky header to remain visible at every scroll offset (2026-10-19
+  // desktop audit decision — fix, not waive).
 
   return (
     <>
@@ -122,8 +99,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 
       w-full fixed left-0 z-20"
       style={{
-        top: showNav ? 0 : "-80px",
-        transition: "top 0.3s",
+        top: 0,
         backgroundColor: "rgba(10, 10, 10, 0.82)"
       }}
     >

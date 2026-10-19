@@ -103,7 +103,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
             </div>
             <div className="text-left">
               <h1 className="text-xl font-bold">Opsie</h1>
-              <p className="text-sm">Operate The Opsie Way --- </p>
+              <p className="text-sm">Operate The Opsie Way</p>
             </div>
           </div>
           <button 
