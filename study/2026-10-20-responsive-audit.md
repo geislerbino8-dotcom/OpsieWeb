@@ -353,8 +353,7 @@ and this section quoted it in error — R-C10). Post-restart + 120 s timeout the
 **not** entered as a site defect, and §7 approved a prod-build re-test before any verdict.
 
 **Prod re-test run 2026-10-23 (approved §7.3) → `hangtest-prod.json`.** `vite build` (tsc + build,
-`dist/index-CAfaGtxV.js` 3,221.37 kB / 917.87 kB gzip) served by `vite preview` on :4173. Three
-1440×900/1280×800 trials, poll-readiness harness (`hangtest.mjs`, re-pointed :5173→:4173): **A, B, C
+`dist/index-CAfaGtxV.js` 3,221.37 kB / 917.87 kB gzip) served by `vite preview` on :4173. Three trials **labeled** 1440×900/1280×800 *(PB-C1 corrected 2026-10-27: this section previously presented "Three 1440×900/1280×800 trials" flatly — `hangtest-prod.json` shows `w:1416` at **every** sample of trial B, so its 1280 leg never applied (the receipt's `width: 1280` label is void); the 2026-10-23 assistant note recorded this and §5 omitted the disclosure)*, poll-readiness harness (`hangtest.mjs`, re-pointed :5173→:4173): **A, B, C
 all reached `readyState: complete` by ~3.4–3.7 s, zero eval timeouts**, and the final probe shows
 `scrollWidth == clientWidth == 1406` (delta 0, no overflow). **The dev-stack hang does not reproduce
 on the production build.** Confirms §0.3 caveat #1: the observation was dev-environment overhead, not
