@@ -96,7 +96,7 @@ To extract real codebase conventions, the following five widely-imported UI comp
 ### 4.1 Site-Wide Button Rule: "All buttons are `rounded-full`"
 - **Claim Under Test:** Every button in public routes satisfies `rounded-full`.
 - **Grep Evidence Across Exact Repository Scopes:** *(CP-C1 corrected 2026-10-27: replaced fabricated numbers with exact repo-wide verified grep counts)*
-  - **All `frontend/src` (`.tsx` + `.ts`):** 162 `<button` occurrences, 154 `rounded-full` occurrences across 65 and 56 files respectively.
+  - **All `frontend/src` (`.tsx` + `.ts`), case-insensitive:** 162 `<button`-spelling occurrences, 154 `rounded-full` occurrences across 65 and 56 files respectively. *(CP-C1-R corrected 2026-10-27: the 162 was a case-insensitive count; split by case-sensitive scan — **152 native `<button` tags + 10 `<Button…` matches**, of which only **8 are live `<Button>` JSX usages** (`Header.tsx:63` · `ClientReviewsSection.tsx:41,48,118,125` · `MapDesign.tsx:175` · `ServicesSections.tsx:43,49`), 1 is commented-out JSX (`WhoWeAre.tsx:156`, inside the `{/** … */}` block starting :154), and 1 is the TS generic `<ButtonOptions>` (`Button/Button.tsx:5`).)*
   - **Non-admin scope (`frontend/src` excluding `components/admin/` and `pages/admin/`):** 120 `<button` occurrences, 139 `rounded-full` occurrences.
   - **Components-only scope (`frontend/src/components/`):** 137 `<button` occurrences, 91 `rounded-full` occurrences.
 - **Split Breakdown (Violations vs Documented Waivers vs Compliant Confirmations):** *(CP-C9 corrected 2026-10-27: cleanly separated violations from compliant confirmations)*
