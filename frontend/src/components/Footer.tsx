@@ -13,7 +13,7 @@ const Footer = () => {
     {/* 🔵 BIG BACKGROUND TEXT */}
       <span aria-hidden="true" className="
         absolute w-full left-1/2 -translate-x-1/2 text-center
-        font-bold text-gray-300 opacity-40 whitespace-nowrap
+        font-bold text-[#8B5CF6] opacity-30 whitespace-nowrap
         pointer-events-none select-none
 
         text-[120px] sm:text-[180px] md:text-[260px] lg:text-[380px] xl:text-[500px]

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-10-29 (footer wordmark picks up the brand violet)
+
+### Changed
+
+- **`frontend/src/components/Footer.tsx`** — the oversized decorative "Opsie" background wordmark changes from flat gray (`text-gray-300 opacity-40`) to the brand violet `#8B5CF6` at `opacity-30`, tying the footer watermark to the site's violet theme. Purely decorative (`aria-hidden`), no behavior or layout change.
+
 ## [Unreleased] - 2026-10-05 (appointments: the bubble now books through the backend)
 
 The appointment bubble went from a local demo to a real booking: it collects name + email, POSTs the slot to a new public endpoint, saves it in MongoDB and emails the visitor a confirmation — the success view only appears after the server says 201.
