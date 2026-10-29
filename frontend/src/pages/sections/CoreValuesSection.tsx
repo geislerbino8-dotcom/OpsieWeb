@@ -30,7 +30,7 @@ const CoreValuesSection = () => {
         
         {/* Section Header */}
         <div className="text-center mb-5 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
             Our <span className="text-[#8B5CF6]">Core Values</span>
           </h2>
         </div>
@@ -39,7 +39,7 @@ const CoreValuesSection = () => {
           
           {/* Left Side: Image */}
           <div className="w-full lg:w-1/2">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-100">
+            <div className="relative rounded-3xl overflow-hidden card-side-glow">
               <img 
                 src="/corevalues.jpg" 
                 alt="Opsie Core Values" 
@@ -61,7 +61,7 @@ const CoreValuesSection = () => {
                 key={i}
                 data-aos="fade-down"
                 data-aos-delay={i*400}
-                className="group flex flex-col p-6 rounded-2xl border border-transparent hover:border-[#8B5CF6]/20 hover:bg-white/5 transition-all duration-300 shadow-sm hover:shadow-md"
+                className="group flex flex-col p-6 rounded-2xl border border-transparent hover:border-[#8B5CF6]/20 hover:bg-white/5 transition-all duration-300 card-side-glow"
               >
                 <div className="flex items-center gap-4">
                   {/* Numbering or Bullet */}

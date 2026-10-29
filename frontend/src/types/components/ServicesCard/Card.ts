@@ -30,8 +30,8 @@ export class CardLogic {
     const { className, bg = "gray" } = this.options;
   
     const backgroundClasses: Record<string, string> = {
-      gray: "bg-[#ECEDF1]",
-      white: "bg-white",
+      gray: "bg-[#0f0f15]",
+      white: "bg-[#0a0a0a]",
     };
   
     const base = "rounded-xl overflow-hidden";
@@ -42,7 +42,7 @@ export class CardLogic {
   public getCardStyle(): React.CSSProperties {
     return {
       borderRadius: "25px",
-      boxShadow: "-5px -5px 10px 0px #FAFBFF, 5px 5px 10px 0px rgba(166, 171, 189, 0.25) ",
+      boxShadow: "-24px 0 48px -20px rgba(139, 92, 246, 0.6), 24px 0 48px -20px rgba(139, 92, 246, 0.6) ",
     };
   }
 
@@ -59,7 +59,7 @@ export class CardLogic {
     } = this.options;
 
     const base =
-      "px-2 py-1 rounded-xl font-medium flex items-center justify-center transition";
+      "px-2 py-1 rounded-full font-medium flex items-center justify-center transition";
 
     const variantStyle =
       CardLogic.variantClasses[variant] ?? CardLogic.variantClasses["primary"];

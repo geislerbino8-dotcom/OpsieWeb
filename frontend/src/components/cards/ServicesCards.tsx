@@ -11,6 +11,7 @@ function ServicesCards({ serviceName, image }: ServicesCardsProps) {
         <div style={{
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
+        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundBlendMode: 'darken',
         borderRadius: '1rem',

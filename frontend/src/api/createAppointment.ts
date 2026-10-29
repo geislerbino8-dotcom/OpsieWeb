@@ -7,6 +7,8 @@ export interface AppointmentData {
   date: string;
   /** Slot label, e.g. '10:00 AM'. */
   time: string;
+  /** Optional note the visitor typed into the bubble (≤ 500 chars). */
+  message?: string;
 }
 
 export const createAppointment = async (data: AppointmentData) => {

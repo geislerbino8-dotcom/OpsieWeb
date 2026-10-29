@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Marko+One&family=Marmelad&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:wght@500&family=Scheherazade+New:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 @plugin 'tailwindcss-animate';
 @import "tailwindcss";
@@ -9,31 +9,51 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-playfair: "Playfair Display", serif;
+  /* Wired 2026-10-09: tailwind.config.js (v3-era) is never loaded by Tailwind v4
+     (no @config directive), so font-poppins (19 usages) and font-montserrat were
+     never generated — both silently rendered Montserrat. Tokens live here now. */
+  --font-poppins: "Poppins", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
 
 
 }
 
 
 
-* {
-  font-family: 'Montserrat', sans-serif;
+/* Layered on purpose (2026-10-09): Tailwind utilities live in a later cascade
+   layer, so now .font-poppins / .font-montserrat actually win over this default.
+   As plain unlayered CSS it outranked every layered font utility. */
+@layer base {
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
 }
 
 body {
-  background-color: #ECEDF1; /* optional */
+  /* Carbon black — the site's base surface (2026-10-07, was #ECEDF1) */
+  background-color: #0a0a0a;
+  /* Subtle violet dot-grid texture over the carbon base (decorative polish, 2026-10-08) */
+  background-image: radial-gradient(rgba(167, 139, 250, 0.055) 1.1px, transparent 1.15px);
+  background-size: 26px 26px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-button {
-  border-radius: 0;
+/* Soft violet side-glow for every public-site card: blurred light
+   bleeding from the left & right edges only (x-offsets do the work;
+   top/bottom stay nearly clean). Unlayered on purpose so it wins over
+   the layered shadow-* utilities - same cascade rule the button fix
+   relies on. */
+.card-side-glow {
+  box-shadow:
+    -24px 0 48px -20px rgba(139, 92, 246, 0.6),
+    24px 0 48px -20px rgba(139, 92, 246, 0.6);
 }
 
-
-
-
+/* Button radius now comes from utilities (site-wide pill buttons, 2026-10-07);
+   the old unlayered `button { border-radius: 0 }` beat every Tailwind v4
+   utility class because unlayered CSS outranks @layer rules. */
 
 .ai-fe {
   align-items: flex-end;
@@ -284,10 +304,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
 }
@@ -331,4 +347,56 @@ h1, h2, h3, h4, h5, h6 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ===== Decorative polish pass (2026-10-08) ===== */
+
+/* Violet text selection */
+::selection {
+  background: rgba(139, 92, 246, 0.85);
+  color: #ffffff;
+}
+
+/* Custom violet scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #8B5CF6 #111114;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B5CF6, #7C3AED);
+  border-radius: 999px;
+  border: 2px solid #0d0d12;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A78BFA;
+}
+
+/* Soft violet halo behind key headings */
+.heading-glow {
+  text-shadow:
+    0 0 28px rgba(139, 92, 246, 0.35),
+    0 0 6px rgba(139, 92, 246, 0.18);
+}
+
+/* Gradient hairline closing every page above the footer */
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+  pointer-events: none;
 }

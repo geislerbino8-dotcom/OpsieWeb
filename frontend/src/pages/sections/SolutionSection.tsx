@@ -15,7 +15,7 @@ const SolutionSection: React.FC = () => {
       </div>
 
       {/* Comparison Table */}
-      <div className="grid md:grid-cols-2 border border-cyan-500/20 rounded-sm overflow-hidden">
+      <div className="grid md:grid-cols-2 border border-[#8B5CF6]/25 rounded-sm overflow-hidden">
         
         {/* Traditional Setup */}
         <div className="p-8 md:p-12 border-b md:border-b-0 md:border-r border-slate-300">
