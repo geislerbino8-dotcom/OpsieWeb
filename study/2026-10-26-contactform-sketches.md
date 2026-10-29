@@ -14,7 +14,7 @@
 | Viewport | Reason |
 |---|---|
 | **1440×900** | Primary desktop; form measured here (b2-contactform.json) |
-| **375×812** | Primary mobile; field stacking + touch sweep measured here (19 under-44 this pass) |
+| **375×812** | Primary mobile; field stacking + touch sweep measured here (19 under-44 this pass) *(G12 corrected 2026-10-29: the 19 are **not** form fields — see the §2 touch-sweep note; receipted field boxes are all ≥44)* |
 
 *(No 320 sketch: the form is a single-column stack at all widths with no wrapping/clipping history — the long CMS strings live in labels/placeholders, not a fixed-width box. 375 covers the mobile stack.)*
 
@@ -66,7 +66,7 @@
 └──────────────────────────────────┘
 ```
 
-- **Touch sweep @375** (`b2-contactform.json → vp375`): **19 interactive elements under 44px** on the contact route (inputs + selects + the send button). Inputs are typically ~40px tall at default Tailwind padding — the R5 sub-44 cluster (F4 family).
+- **Touch sweep @375** (`b2-contactform.json → vp375`): **19 interactive elements under 44px** on the contact route. *(G12 corrected 2026-10-29: the parenthetical "(inputs + selects + the send button)" is **false** — the receipted field boxes @375 are inputs `[309,50]` ×4, selects `[309,47]` ×3, textarea `[309,128]`, all ≥44, and the send button is `py-4` (~56px), so none of the three named classes is sub-44. The 19 is `vp375.touchUnder44`, a route-wide count with no itemized list in the receipt — it belongs to the footer/nav cluster (the REG-24 rows: 18-tall links, 40×40 socials, 22-tall FAQ link), not the form. The "Inputs are typically ~40px tall" line is an unmeasured assertion contradicted by the receipt.)* These are **inline text links**, not icon buttons, so their *visual* size is the text; the *touch* box is what R5 measures.
 - Fields stack to one column; no horizontal overflow (0px bar PASS).
 
 ---
@@ -95,7 +95,7 @@
 
 - **Label association (proposal):** for each of the 8 fields, add `<label for="<id>">` + a matching `id` on the `<input>`/`<select>`/`<textarea>`. Keep the visible text (placeholder can stay as a hint, but the label is the accessible name). This is the F2 fix in the shared component; whether it **clears both routes** depends on §5 (route-roster identity unconfirmed — *(G1 amended 2026-10-26: was "clears both routes because ContactForm is shared", contradicting §5)*).
 - **Required marking (proposal):** keep the `*` in the label text + add `aria-required="true"` (or the native `required`) so required state is programmatically exposed (supports U7 + the F7 error-affordance family).
-- **Touch ≥44 (proposal):** bump input/select vertical padding (`py-3`) so fields reach ≥44px tall, reducing the 19 sub-44 cluster (R5). Send button already ≥44 in most cases — verify in pass-B.
+- **Touch ≥44 (proposal):** bump input/select vertical padding (`py-3`) so fields reach ≥44px tall, reducing the 19 sub-44 cluster (R5). Send button already ≥44 in most cases — verify in pass-B. *(G12 ruled 2026-10-29: this `py-3` proposal is **superseded** — rejected by ruling B2-CF-3 (`2026-10-29-finalize-rulings.md` §3); the receipted field boxes are all already ≥44, so the proposal's premise is false and no padding change ships.)*
 - **Error affordance (proposal, ties to F7/REG):** pair each field with `aria-invalid` + `aria-describedby` pointing at its error text when validation fails (the F2/F7 pattern from the U-track). Not a new finding — a co-fix while the labels are being added.
 - **No `index.css:336` change** (REG-21 intact).
 
@@ -106,7 +106,7 @@
 | Bar | Current | Proposal | Verdict |
 |---|---|---|---|
 | 0px overflow @375 | PASS (b2) | unchanged | PASS |
-| R5 touch ≥44 | 19 under-44 @375 (b2) | inputs `py-3` → ≥44 | reduces cluster |
+| R5 touch ≥44 | 19 under-44 @375 (b2, route-wide — **not** the fields) *(G12)* | ~~inputs `py-3` → ≥44~~ **superseded** — rejected by ruling B2-CF-3 (fields already ≥44: `[309,50]`/`[309,47]`/`[309,128]`) | no change ships; F4 stays with its owning elements (footer → ruling B2-FT-1) |
 | U7 labels/instructions | **FAIL (F2)** — label-for null ×8 (measured @`/contact-us` ×2 vps; ×2-route identity pending §5) | `<label for>` ×8 | closes F2 on `/contact-us`; `/book-a-schedule` pending §5 *(G1)* |
 | Contrast of field text | white-on-#8B5CF6 submit 4.23 (F8, inherited) | not in scope (token fix) | noted |
 

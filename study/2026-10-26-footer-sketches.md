@@ -66,7 +66,7 @@ Footer stacks to a single column below 640; link text remains the same line-heig
 └──────────────────────────────────┘
 ```
 
-- **Touch sweep @375** (`b2-footer.json → vp375`, cross-checked `passb-touch-375.json`): **24 interactive elements under 44px of 52 total** on the home route. The footer links are the smallest cluster — receipted link boxes are **18 tall × 39–94 wide** (`[65,18]` About Us … `[94,18]`, `b2-footer.json → vp1440.links`) *(G4 amended 2026-10-26: the earlier "~18×28" matches no receipt — no 28 appears in any receipted box)*. These are **inline text links**, not icon buttons, so their *visual* size is the text; the *touch* box is what R5 measures.
+- **Touch sweep @375** (`b2-footer.json → vp375`, cross-checked `passb-touch-375.json`): **24 interactive elements under 44px of 52 total** on the home route. The footer links are the smallest cluster — receipted link boxes are **18 tall × 39–94 wide** (`[65,18]` About Us … `[94,18]`, `b2-footer.json → vp1440.links`) *(G4 amended 2026-10-26: the earlier "~18×28" matches no receipt — no 28 appears in any receipted box)*. These are **inline text links**, not icon buttons, so their *visual* size is the text; the *touch* box is what R5 measures. *(G10 corrected 2026-10-29: the "cross-checked `passb-touch-375.json`" claim is retracted — passB records `interactiveTotal: 46` (topPass + afterFullScroll), not 52; the two sweeps agree on 24 under-44 at topPass, but b2-footer stores counts only (no itemized list), so the differing totals (52 vs 46) are **not reconcilable from the receipts**. The 24/52 stands as b2-footer's own sweep; the 24/46 stands as passB's.)*
 - 1-column stack, no horizontal overflow (0px bar PASS).
 
 ---
