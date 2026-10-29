@@ -61,7 +61,7 @@
 | Card padding | `p-4` (16px) | hero CTA card `HeroPage.tsx:99` |
 | Button padding (hero CTA) | `px-14 py-5` | `HeroPage.tsx:111` *(G9: className line)* |
 | Shared button base | `px-2 py-1` | `Buttons.ts:55` (the review arrows inherit this) |
-| Form input padding | `py-3` **(proposal)** → to reach ≥44px | contactform sketch §3 |
+| Form input padding | ~~`py-3` **(proposal)** → to reach ≥44px~~ **superseded** *(DS-6 mechanical 2026-10-29: rejected by ruling B2-CF-3 — the receipted field boxes are all already ≥44; no padding change ships)* | contactform sketch §3 *(struck)* |
 | Footer link hit box | `block py-2.5` **(proposal)** → ≥44px | footer sketch §3 |
 | Card radius | `rounded-lg` | `HeroPage.tsx:99` |
 | Pill / button radius | `rounded-full` | `HeroPage.tsx:111` *(G9: className line)* · badge `:105` |
@@ -79,12 +79,12 @@ Every state the phase-1 docs enumerate (default / hover / focus-visible / presse
 | State | Hero CTA (current → proposal) | General rule | Notes |
 |---|---|---|---|
 | **default** | `bg-[#8B5CF6]` white text → `bg-violet-700` **(proposal)** | fill = brand violet, text = white | violet-700 clears REG-09 (7.1/7.3:1) |
-| **hover** | `hover:bg-white hover:text-black` (21:1) **or** `hover:bg-violet-900` (honest unknown) | hover is **decoration only** — never the sole path to an action (see no-hover-only below) | reviewarrows `hover:bg-[#8B5CF6]`, footer links `hover:text-[#8B5CF6]` |
+| **hover** | `hover:bg-white hover:text-black` (21:1) **or** `hover:bg-violet-900` (honest unknown) *(DS-8 ruled 2026-10-29: the violet-900 fork is **rejected** — ruling P-2 kept `hover:bg-white hover:text-black` (21:1 receipted); the "or" no longer presents an open option)* | hover is **decoration only** — never the sole path to an action (see no-hover-only below) | reviewarrows `hover:bg-[#8B5CF6]`, footer links `hover:text-[#8B5CF6]` |
 | **focus-visible** | dual-tone ring (see §5) | **R-B rule applies** | the F4 lesson: ring must clear vs BOTH surfaces |
-| **pressed** | **(proposal)** darken fill one step (`bg-violet-800`) | instant, no layout shift | no current receipt — no pressed state measured |
-| **disabled** | **(proposal)** `opacity-50` + `cursor-not-allowed`, `aria-disabled="true"` | keep in tab order or `disabled` attr consistently | none of the 6 components currently ships a disabled state (honest gap) |
-| **loading** | **(proposal)** label swap + `aria-busy="true"` | submit/send buttons (contactform) | not measured — proposal |
-| **empty** | **(proposal)** FAQ no-answers, review no-data | render a text fallback, not a blank box | FAQ + reviewarrows relevant |
+| **pressed** | **(proposal)** darken fill one step (`bg-violet-800`) *(DS-1 ruled 2026-10-29: **accepted as documented norm — no implementation in this pack**; the fill-darken does not conflict with the existing `active:` transform-press states)* | instant, no layout shift | no current receipt — no pressed state measured *(DS-1 corrected 2026-10-29: accurate as to receipts — no receipt measures any `active:` state — but `active:` transform states do ship at 16 sites; see §9)* |
+| **disabled** | **(proposal)** `opacity-50` + `cursor-not-allowed`, `aria-disabled="true"` *(DS-2 ruled 2026-10-29: **accepted with fork resolved — `aria-disabled` + stays in tab order**. Divergence note: the shipped shared Button uses **native** `disabled` (`Button.tsx:14` → `Buttons.ts:58` `opacity-50 cursor-not-allowed` — the norm's first two clauses match `:58` exactly, but there is **no `aria-disabled` anywhere repo-wide**), so current code ≠ norm — reconciliation recorded as future **out-of-pack** work; implementation must not assume conformance)* | stay in tab order via `aria-disabled` (ruled) | ~~none of the 6 components currently ships a disabled state~~ *(DS-2 corrected 2026-10-29: false — the shared Button ships native `disabled`; see left cell)* |
+| **loading** | **(proposal)** label swap + `aria-busy="true"` *(DS-3 ruled 2026-10-29: **accepted as documented norm — no implementation in this pack**; rides whichever future component needs it)* | submit/send buttons (contactform) | not measured — proposal |
+| **empty** | **(proposal)** FAQ no-answers, review no-data *(DS-4 ruled 2026-10-29: **accepted as documented norm — no implementation in this pack**; correctly guards the REG-26/27 never-assume-CMS-content rule)* | render a text fallback, not a blank box | FAQ + reviewarrows relevant |
 
 ---
 
@@ -113,7 +113,7 @@ You **cannot** win with plain layered `focus:ring-*` utilities against the globa
 - Review arrows: `hover:bg-[#8B5CF6]` is decoration; the buttons are fully operable via click/Enter without hover → **compliant**.
 - Footer links: `hover:text-[#8B5CF6]` is decoration; links navigate on click/Enter → **compliant**.
 - Mobile sheet: opens on burger click/Enter (not hover) → **compliant**; the F11 fix (§mobilemenu sketch) restores keyboard containment, which this rule reinforces.
-- Mega-menu product sub-links (inherited, `Navigation.tsx:124-125`, hover-only, no `onFocus`) remain a **known exception** — reachable via the parent `/products` link, so not a 🔴, but flagged as a hover-only candidate for a future fix.
+- Mega-menu product sub-links (inherited, `Navigation.tsx:124-125`, hover-only, no `onFocus`) remain a **known exception** — reachable via the parent `/products` link, so not a 🔴, but flagged as a hover-only candidate for a future fix. *(DS-5 ruled 2026-10-29: **defer with reason — terminal** (P-6 pattern); registered as a hover-only candidate finding for the findings track, not this pack. Strengthened cite: `Navigation.tsx:124–125` is the `onMouseEnter`/`onMouseLeave` pair, and `onFocus` has **0 hits repo-wide** (verified 2026-10-29), not just in Navigation.)*
 
 ---
 
@@ -125,7 +125,7 @@ You **cannot** win with plain layered `focus:ring-*` utilities against the globa
 |---|---|---|
 | Hero CTA | 128×104 ✅ | none needed |
 | Mobile sheet links | 327×48 ✅ | close button → `h-11 w-11` (proposal) |
-| ContactForm fields | 19 under-44 @375 | `py-3` inputs (proposal) |
+| ContactForm fields | ~~19 under-44 @375~~ *(DS-6 mechanical 2026-10-29: disproven — receipted boxes `[309,50]`/`[309,47]`/`[309,128]` all ≥44; the 19 is route-wide, not the fields — G12/B2-CF-3)* | ~~`py-3` inputs (proposal)~~ **superseded** (B2-CF-3 reject) |
 | FAQ triggers | full-width ≥44 ✅ | none needed |
 | Review arrows | 32×32 **FAIL** (F4-family/R5, new instance) *(G3 propagated 2026-10-26: was "(F6)" — F6/REG-14 is the ServicesSections arrows)* | `h-11 w-11` (proposal) |
 | Footer links / socials | links **18 tall × 39–94 wide** (receipted `[65,18]`…`[94,18]`), socials **40×40** (`passb-touch-375.json:248–273`) **FAIL** (F4) *(G8 amended 2026-10-26: was "~18×28, ~40×40" — no 28 in any receipt; socials are not in b2-footer.json)* | `block py-2.5` / `h-11 w-11` (proposal) |
@@ -135,7 +135,7 @@ You **cannot** win with plain layered `focus:ring-*` utilities against the globa
 ## 8. REG references (by ID)
 
 - **REG-09** — white-on-fill ≥4.5:1 (U9). Hero instance closed (violet-700, 7.1/7.3); **10 other instances OPEN site-wide** (H-C10 scope).
-- **REG-18** — canonical `<Link href>` (U3+U16). Hero instance closed; **`Faq.tsx:27` + 5 navigate sites OPEN**.
+- **REG-18** — canonical `<Link href>` (U3+U16). Hero instance closed; **`Faq.tsx:27` + 5 navigate sites OPEN** *(DS-7 mechanical 2026-10-29: stale count — per REG-18a the post-hero open count is **`Faq.tsx:27` + 6 navigate sites**; `pages/ProductPage.tsx:105` was missing from the original 6-site list)*.
 - **REG-21** — unlayered `index.css:336` load-bearing; untouched by these designs.
 - **REG-23** — 0px overflow at 320 (D1). **PROVISIONAL 🟡** — measured @320: FAQ only (`b2-faq.json → vp320`, triggers 270 wide); reasoned/inherited: the other 5 (mobilemenu = reasoning only "verify in pass-B", contactform/reviewarrows/footer have **no 320 capture at all**, hero carries an open 320 wrap history F1 🟡) — **pass-B re-capture pending** *(G7 amended 2026-10-26: was "All 6 components pass" — presented provisional-as-final; only FAQ has a receipted vp320 measurement)*.
 - **REG-25** — focus indicator ≥3:1 vs BOTH surfaces (U5). Dual-tone ring spec §5; **PROVISIONAL** pending pass-B geometry.
@@ -148,7 +148,7 @@ You **cannot** win with plain layered `focus:ring-*` utilities against the globa
 
 | Gap | Reason | Status |
 |---|---|---|
-| Pressed / disabled / loading states | no component currently ships them; no receipts | all **(proposal)** — never measured |
+| Pressed / disabled / loading states | **(DS-1/DS-2 corrected 2026-10-29:** "no component currently ships them" is false on two counts — **pressed**: `active:` transform/cursor states ship at **16 sites** (public exemplars `PrimaryButton.tsx:47` active:scale-95 · `ServicesSections.tsx:107,118` active:scale-90 · `WhatWeDo.tsx:182` · `EncourageCard.tsx:36` · `ContactProcessSection.tsx:88` · `ContactUsSection.tsx:51` · `Team.tsx:155` · `Carousel.tsx:85` · `WebContentLayout.tsx:104,156`; admin/CMS `DashboardPage.tsx:124` · `UserManagementPage.tsx:128` · `ProductCMS.tsx:194` · `ProductsPageCMS.tsx:125` · `UpdateProductModal.tsx:561`) — **disabled**: the shared Button ships native `disabled` (`Button.tsx:14` → `Buttons.ts:58` opacity-50/cursor-not-allowed). Accurate claim: no component ships a pressed **fill** state, no receipt measures any `active:` state, and no component ships `aria-disabled`/loading states. Ruled: pressed/disabled/loading accepted as documented norms, no implementation in this pack**)** | all **(proposal)** — never measured (pressed fill / loading) |
 | Poiret body usage | Poiret is booking-display only | not a body face; excluded from body scale |
 | Pre-10-09 "Poppins" measurements | `font-poppins` ungenerated → rendered Montserrat (D9) | post-token truth only |
 | Mega-menu hover-only sub-links | inherited exception (`Navigation.tsx:124-125`) | flagged, not fixed here |

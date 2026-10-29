@@ -44,8 +44,8 @@ Shared = currently-shared reusable component (yes/no); Props API cited `file:lin
 | 16 | `Footer` | Site footer (links, socials, EncourageCard) | `components/Footer.tsx:171` | **all public routes** (Layout:21) | yes | none | 1 import, 1 render |
 | 17 | `MobileMenu` | Mobile nav sheet | `components/MobileMenu.tsx:71` | **all public routes** (Navigation:215) | yes | `MobileMenuProps` `MobileMenu.tsx:10` ({closeMenu} :14) — only roster component with props | 1 import, 1 render |
 | 18 | `BookingCalendar` (bound as `Calendar`) | Booking date picker | `components/BookingCalendar.tsx:25` | **/book-a-schedule** (BookingPage:82) | no — 1 consumer, but generic-looking | none (`:25`) | 1 import, 1 render |
-| 19 | `CountUp` | Animated number counter | `src/CountUp.tsx:4` (component ~:24-29) | `/who-we-are` ×3 (WhoWeAre:217,235,255) + via AnalyticsCards:21 → `/products`, `/products/:id` | yes | `CountUpProps` `CountUp.tsx:4-29` | 2 imports, 4 renders |
-| 20 | `LogoLoop` | Scrolling logo marquee | `src/LogoLoop.tsx:21` (props interface) | `/who-we-are` ×1 **live** (WhoWeAre:198); PartnerSection:41 (dead file); WhatWeDo:124 + Footer:51 = **commented out** | nominally yes — effectively 1 live consumer | `LogoLoopProps` `LogoLoop.tsx:21`, `LogoItem` `:3` | 2 imports, 4 renders (**2 live**) |
+| 19 | `CountUp` | Animated number counter | `src/CountUp.tsx:4` (component ~:24-29) *(EI-C2 corrected 2026-10-29: `src/CountUp.tsx` is a **phantom path** — real file `frontend/src/components/CountUp.tsx`; the `src/` prefix implied a nonexistent subdirectory)* | `/who-we-are` ×3 (WhoWeAre:217,235,255) + via AnalyticsCards:21 → `/products`, `/products/:id` | yes | `CountUpProps` `CountUp.tsx:4-29` | 2 imports, 4 renders |
+| 20 | `LogoLoop` | Scrolling logo marquee | `src/LogoLoop.tsx:21` (props interface) *(EI-C2 corrected 2026-10-29: `src/LogoLoop.tsx` is a **phantom path** — real file `frontend/src/components/LogoLoop.tsx`)* | `/who-we-are` ×1 **live** (WhoWeAre:198); PartnerSection:41 (dead file); WhatWeDo:124 + Footer:51 = **commented out** | nominally yes — effectively 1 live consumer | `LogoLoopProps` `LogoLoop.tsx:21`, `LogoItem` `:3` | 2 imports, 4 renders (**2 live**) |
 
 **Honest gap:** no badge or chip components exist in `frontend/src` — the badge role is served by inline
 spans in section files, so no badge row can be produced. Fields exist only inside `ContactForm`
@@ -115,8 +115,13 @@ RULE: import = from-source path tail match; render = <Name word-boundary anywher
 - `ClientCard.tsx (dead)`: the `WhatWeDo.tsx:212 <ClientCard` render is a **local alias** — WhatWeDo:2
   imports `ClientReviewsSection` bound as `ClientCard`; the file `cards/ClientCard.tsx` itself has **0
   importers**.
-- `root Card.tsx`: the 2 imports are the two barrel `index.ts` files re-exporting it
-  (`Card/ClientCard/index.ts:1`, `Card/ServicesCard/index.ts:1`); no component file imports it.
+- `root Card.tsx`: the 2 import matches are the two barrel `index.ts` files — but their
+  `export * from "./Card"` is **sibling-relative**, resolving to each directory's own `Card.tsx`
+  (`Card/ClientCard/Card.tsx` · `Card/ServicesCard/Card.tsx`, both present), NOT the root file.
+  *(EI-C1 corrected 2026-10-29: the earlier "barrels re-export it" attribution is false — the
+  scan's path-tail regex matched `./Card` as `/Card`; an exact-scan for root-Card imports
+  (`@/components/Card` · `../Card` · `../../Card`) returns **0 hits**, so `components/Card.tsx`
+  has **0 importers** and is fully zero-use.)*
 - `BookingCalendar`/`FAQAccordion`/`CountUp`/`LogoLoop`: zero same-name renders are alias artifacts
   (`Calendar` BookingPage:82; `Faq` Homepage:82; `CountUp`/`LogoLoop` renders listed).
 
@@ -149,7 +154,9 @@ page sections", a distinct dead-code class from the orphan components CP §5.1 l
    (TestimonialCard, 2 renders) — the alias collision at WhatWeDo:2 (`ClientCard` = ClientReviewsSection)
    is a third, unrelated meaning of the same name in the same page.
 4. **PartnerSection pair** — dead `pages/sections/PartnerSection.tsx` vs live CMS twin
-   `webcontent/sections/PartnerSectionCMS.tsx` (PartnerSectionCMS.tsx:14, rendered :22).
+   `webcontent/sections/PartnerSectionCMS.tsx` (PartnerSectionCMS.tsx:14, rendered `HomepageContent.tsx:22`)
+   *(EI-C3 corrected 2026-10-29: the bare "rendered :22" read as `PartnerSectionCMS.tsx:22` — the render
+   site is `webcontent/HomepageContent.tsx:22` (`<PartnerSectionCMS />`)*).
 5. **ServicesSection vs ServicesSections** — `pages/sections/ServicesSection.tsx` (Homepage:3,
    ProductPage) vs `components/sections/ServicesSections.tsx` (WhatWeDo:1) — one letter apart, split by
    route; both import SuperHeader (ServicesSection.tsx:1 as `HighlightedText`, ServicesSections.tsx:3
