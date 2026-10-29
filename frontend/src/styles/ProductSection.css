@@ -51,11 +51,11 @@ box-shadow: inset 7px 6px 56px -6px rgba(66, 68, 90, 1);
     padding: 1em;
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.24);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px rgba(37, 23, 23, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
+    color: #b62323;
     border-radius: 1.5em;
     position: relative;
     top: 0;
