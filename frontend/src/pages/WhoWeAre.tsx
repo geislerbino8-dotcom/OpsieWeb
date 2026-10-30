@@ -12,9 +12,9 @@ import OperationalStructure from "@/components/sections/OperationalStructure";
 import SoftAurora from "@/components/SoftAurora";
 
 const myLogos = [
-  { node: <span className="font-bold overflow-hidden">Simple</span> },
+  { node: <span className="font-bold overflow-hidden">"Simple</span> },
   { node: <span className="font-bold overflow-hidden">Connected</span> },
-  { node: <span className="font-bold overflow-hidden">Reliable</span> },
+  { node: <span className="font-bold overflow-hidden">Reliable"</span> },
 ];
 
 
