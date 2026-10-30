@@ -51,6 +51,10 @@ flowchart TB
     * Users can submit inquiries through a contact form
     * Inquiry data stored in the database
 
+* Appointment Booking
+    * Visitors can choose an available date and time and submit a booking request
+    * Appointment requests are stored by the backend and confirmed by email
+
 * Bug/issue reporting
     * Users can report bugs with detailed descriptions
     * Issue data stored in the database
