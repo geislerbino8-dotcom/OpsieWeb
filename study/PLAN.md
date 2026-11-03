@@ -179,6 +179,15 @@ Phase 3 (feasibility + log) precedes block 1 — feasibility caveats feed the fi
 - [ ] Add hover/focus states — est. 1.5h — hover decoration-only (no-hover-only rule) · focus-visible via the R-B mechanism · pressed/disabled/loading only if the component needs them (DS-1–DS-3 are documented norms, no-code defaults). Done when gates green + every applicable matrix state is implemented or explicitly N/A with reason.
 - [ ] Compare against design — est. 1.5h — component-level visual conformance vs the finalized design doc at the sketch's named Viewports. **Distinct from PLAN:171:** this block asks "does it look like the design" (judgment vs the token/state list); PLAN:171 produces the receipted after-capture evidence vs block-4 baselines (build identity + 0px bar + AC re-run). Done when every deviation is listed as accepted/needs-fix.
 
+### Responsive pass — 4 blocks · 7.5h total (recorded 2026-11-03)
+
+**Presumption (flagged — same flag as Component A itself):** the responsive pass of **this same Component-A track**, following the styling pass — same implementation branch, same PLAN:6 gates. Hours as posted: **0.5h · 3.5h · 2h · 1.5h = 7.5h**. Not confirmable from the repo (the study plan is the external doc); if it targets a different component or a standalone responsive track, re-place it — block structure holds, only the target changes.
+
+- [ ] Review responsive requirements — est. 0.5h — collect the viewport/breakpoint requirements for Component A (320/375/768/1024/1440 per the standing rule, desktop 1440×900 primary) and the behavior expected at each; cite the source for every requirement. Done when the requirement list is doc-cited with zero uncited values.
+- [ ] Implement mobile and tablet layouts — est. 3.5h — apply the mobile + tablet layout rules under the standing preconditions (`Buttons.ts:55` untouched · `index.css:336` inviolate · R-B ring mechanism · 0px horizontal overflow at 320/375/768/1024). Done when gates green + the layout diff matches the requirement list.
+- [ ] Test long content and different viewport widths — est. 2h — exercise long-text / long-label content at 320, 375, 768, 1024, 1440×900; record overflow (0px bar), wrapping, and truncation behavior. Done when every viewport has a recorded result and every deviation is listed.
+- [ ] Fix responsive issues — est. 1.5h — fix the deviations from the test pass (overflow, cramped spacing, broken stacking) under the same gates. Done when the test pass re-runs clean at every viewport and gates are green.
+
 ## 🔓 Open — Left-out tasks (recovered from study plan, 2026-10-27)
 
 Mapping note: posted tasks 1–2 are existing open items — conventions/practices review → **PLAN:58** · component inventory → **PLAN:59** · cross-page variant comparison → **PLAN:64** (each annotated with the posted deltas above; no duplicate entries kept). Tasks 3–4 below are new consolidation work. PDF + PNG artifacts stay working-tree per the receipts/screenshots precedent (non-md, never committed); docs ride an md-only commit per PLAN:6.
