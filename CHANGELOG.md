@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-11-03 (chat teaser glow moves to the brand violet)
+
+### Changed
+
+- **`frontend/src/components/ChatHelp.tsx`** - the floating "How may I help you" teaser pill swaps its cyan accent for the brand violet: shadow `rgba(6,182,212,0.15)` -> `rgba(139,92,246,0.15)` and border `border-cyan-500/20` -> `border-[#8B5CF6]/30`. Decorative and `pointer-events-none`; no behavior, layout, or touch-target change.
+
 ## [Unreleased] - 2026-10-29 (footer wordmark picks up the brand violet)
 
 ### Changed
