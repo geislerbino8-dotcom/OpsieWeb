@@ -21,7 +21,7 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
       onClick={() => navigate(`/products/${encodeURIComponent(itemName)}`)}
       className="
         group relative
-        h-[400px] w-[18rem] flex-shrink-0
+        h-[400px] w-full max-w-[18rem] flex-shrink-0
         cursor-pointer rounded-2xl overflow-hidden
         bg-white/[0.03] border border-white/10
         transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
@@ -108,7 +108,7 @@ function ProductCard({ itemName, image, desc, bgColor = "#FFFFFF", logo }: Produ
               group-hover:text-white
               group-hover:font-bold
               transition-colors duration-300
-              truncate w-full px-2
+              w-full min-w-0 break-words [overflow-wrap:anywhere] px-2
             "
           >
             {itemName}

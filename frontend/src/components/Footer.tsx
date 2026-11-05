@@ -7,13 +7,13 @@ const Footer = () => {
 
 
   return (
-    <div className="relative w-full  flex justify-center py-6 md:px-4 px-2 overflow-hidden">
+    <div className="relative w-full flex justify-center py-6 md:px-4 px-2 overflow-hidden">
 
-    {/* 🔵 BIG BACKGROUND TEXT */}
+    {/* 🔵 BIG BACKGROUND TEXT — clipped by parent overflow-hidden */}
       <h1 className="
         absolute w-full left-1/2 -translate-x-1/2 text-center
         font-bold text-gray-300 opacity-40 whitespace-nowrap
-        pointer-events-none select-none
+        pointer-events-none select-none overflow-hidden
 
         text-[120px] sm:text-[180px] md:text-[260px] lg:text-[380px] xl:text-[500px]
         bottom-[-40px] sm:bottom-[-80px] md:bottom-[-120px] lg:bottom-[-270px]
@@ -22,7 +22,7 @@ const Footer = () => {
       </h1>
 
       {/* MAIN CARD */}
-      <div className="relative w-full max-w-6xl rounded-3xl bg-white md:p-10 py-10 px-3 md:mb-30 z-10">
+      <div className="relative w-full max-w-6xl rounded-3xl bg-white md:p-10 py-8 px-4 sm:px-6 mb-6 sm:mb-10 z-10">
 
         {/* HEADER */}
         <div className="text-center">
@@ -48,37 +48,37 @@ const Footer = () => {
           /**
            * <div className="flex justify-center items-center gap-10 opacity-60 mb-10 flex-wrap">
           <LogoLoop
-                            logos={imageLogos}
-                            speed={100}
-                            direction="left"
-                            logoHeight={60}
-                            gap={60}
-                            hoverSpeed={0}
-                            scaleOnHover
-                            fadeOut
-                            fadeOutColor="#ffffff"
-                            ariaLabel="Technology partners"
-                          />
+                          logos={imageLogos}
+                          speed={100}
+                          direction="left"
+                          logoHeight={60}
+                          gap={60}
+                          hoverSpeed={0}
+                          scaleOnHover
+                          fadeOut
+                          fadeOutColor="#ffffff"
+                          ariaLabel="Technology partners"
+                        />
         </div>
            */
         }
 
         {/* CTA CARD */}
-        <div className="mb-10">
+        <div className="mb-8 sm:mb-10">
           <EncourageCard />
         </div>
 
         {/* MAIN FOOTER */}
-        <div className="flex flex-col md:flex-row gap-12 items-start">
+        <div className="flex flex-col md:flex-row gap-8 sm:gap-12 items-start">
 
           {/* LEFT SIDE */}
-          <div className="w-full flex justify-center align-center md:w-1/3 text-center md:text-left">
-            <img src={logoOnly} className="w-70 mx-auto md:mx-0" />
+          <div className="w-full flex justify-center md:w-1/3 text-center md:text-left">
+            <img src={logoOnly} className="w-52 sm:w-70 mx-auto md:mx-0" />
         
           </div>
 
           {/* RIGHT LINKS */}
-          <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center w-full">
+          <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center w-full">
 
             <div>
               <h3 className="font-bold text-lg mb-3">Quick Links</h3>
@@ -123,12 +123,12 @@ const Footer = () => {
         </div>
 
         {/* DIVIDER */}
-        <hr className="my-8 border-gray-200" />
+        <hr className="my-6 sm:my-8 border-gray-200" />
 
         {/* BOTTOM */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
 
-          <p className="text-sm text-gray-500 text-center md:text-left`">
+          <p className="text-sm text-gray-500 text-center md:text-left">
             © {new Date().getFullYear()} <span><a href="/">Opsie Software Solutions. </a></span>All Rights Reserved
           </p>
 

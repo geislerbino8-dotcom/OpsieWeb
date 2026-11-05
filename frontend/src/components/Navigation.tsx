@@ -101,6 +101,20 @@ function Navigation() {
   const isActive = (path: string) =>
     location.pathname === path || location.pathname.startsWith(`${path}/`);
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const desktopBreakpoint = window.matchMedia("(min-width: 1536px)");
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) closeMobileMenu();
+    };
+
+    desktopBreakpoint.addEventListener("change", closeOnDesktop);
+
+    return () => desktopBreakpoint.removeEventListener("change", closeOnDesktop);
+  }, [closeMobileMenu, mobileMenuOpen]);
+
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
     localStorage.setItem("opsie-navbar-theme", nextTheme);
@@ -119,7 +133,7 @@ function Navigation() {
       >
         <nav
           aria-label="Main navigation"
-          className="relative mx-auto flex h-20 w-full items-center justify-between gap-3 px-6 sm:px-8"
+          className="relative mx-auto flex h-20 w-full items-center justify-between gap-3 px-6 sm:px-6 lg:px-4 2xl:px-8"
         >
           <Link
             to="/"
@@ -129,7 +143,7 @@ function Navigation() {
             <img src={logo} alt="Opsie" className="w-[70px]" />
           </Link>
 
-          <div className="hidden items-center gap-3 md:flex lg:gap-8">
+          <div className="hidden items-center gap-3 2xl:flex 2xl:gap-8">
             {navItems.map((item) => {
               const isOpen = openMenu === item.label;
               const content = menuContent[item.label];
@@ -278,7 +292,7 @@ function Navigation() {
             })}
           </div>
 
-          <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0 md:gap-3">
+          <div className="ml-auto flex shrink-0 items-center gap-2 2xl:ml-0 2xl:gap-3">
             <button
               type="button"
               onClick={toggleTheme}
@@ -299,7 +313,7 @@ function Navigation() {
 
             <Link
               to="/book-a-schedule"
-              className="hidden items-center justify-center whitespace-nowrap rounded-md bg-[#00C0E8] px-3 py-2 text-xs font-semibold text-[#0B1220] transition-colors hover:bg-[#36d2f2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00C0E8] sm:inline-flex lg:px-4 lg:text-sm"
+              className="hidden items-center justify-center whitespace-nowrap rounded-md bg-[#00C0E8] px-3 py-2 text-xs font-semibold text-[#0B1220] transition-colors hover:bg-[#36d2f2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00C0E8] 2xl:inline-flex 2xl:px-4 2xl:text-sm"
             >
               Get started
             </Link>
@@ -309,7 +323,7 @@ function Navigation() {
               aria-label="Open navigation menu"
               aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(true)}
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-lg border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00C0E8] md:hidden ${
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-lg border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00C0E8] 2xl:hidden ${
                 isDark
                   ? "border-white/15 text-white hover:border-[#00C0E8] hover:text-[#00C0E8]"
                   : "border-slate-300 text-[#0B1220] hover:border-[#00C0E8] hover:text-[#00C0E8]"

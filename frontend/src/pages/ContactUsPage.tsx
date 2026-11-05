@@ -17,7 +17,7 @@ function ContactUsPage() {
   return (
     <div className="w-full overflow-x-hidden bg-[#FAFBFF] bg-[#ECEDF1] ">
       {/* --- 1. HERO SECTION --- */}
-      <div className="relative w-screen h-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
+      <div className="relative w-full min-h-[100svh] overflow-hidden">
         <img
           src={ContactBg}
           alt="Contact Hero"
@@ -25,7 +25,7 @@ function ContactUsPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 md:bg-gradient-to-r md:from-black/95 md:via-black/60 to-transparent"></div>
 
-        <div className="relative z-10 h-full w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-24 px-6 md:px-12 text-white text-left">
+        <div className="relative z-10 min-h-[100svh] w-full max-w-[1280px] mx-auto flex flex-col justify-end pb-16 sm:pb-24 px-4 sm:px-6 md:px-12 text-white text-left">
           <div data-aos="fade-right">
             <SuperHeader text={content?.contactUsPage.header} type='hero' position='left'/>
         
@@ -50,9 +50,9 @@ function ContactUsPage() {
       </div>
 
       {/* --- 2. CONTACT FORM & CARDS --- */}
-      <div className="max-w-[1280px] mx-auto px-2 md:px-6 py-24 ">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-2 md:px-6 py-16 sm:py-24 ">
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-start">
           {/* Left: Contact Form */}
           <div data-aos="fade-right">
 
@@ -95,7 +95,7 @@ function ContactUsPage() {
                */
             }
 
-            <div className="bg-[#242424] p-8 md:p-10 rounded-3xl text-white relative overflow-hidden group">
+            <div className="bg-[#242424] p-6 sm:p-8 md:p-10 rounded-3xl text-white relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3CBDE6] opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
               <h3 className="text-3xl font-bold mb-4">Meet With Us Online</h3>
               <p className="mb-8 text-gray-400 font-light leading-relaxed">Rather meet online than in person? We’re just a call away.</p>
@@ -110,9 +110,9 @@ function ContactUsPage() {
         </div>
 
         {/* --- 3. OFFICES & MAP --- */}
-        <div className="pt-24">
+        <div className="pt-12 sm:pt-24">
           <div 
-            className="flex flex-col md:flex-row justify-between items-center p-2 gap-10 md:p-16 rounded-[2.5rem] overflow-hidden"
+            className="flex flex-col md:flex-row justify-between items-center p-4 sm:p-6 gap-8 md:gap-10 md:p-16 rounded-[2.5rem] overflow-hidden"
             style={{
               backgroundColor: '#242424',
               backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${Sunplazaimg})`,
@@ -121,9 +121,9 @@ function ContactUsPage() {
             }}
           >
             {/* Text Side */}
-            <div className="w-full md:w-1/2 text-white p-5" data-aos="fade-up">
+            <div className="w-full md:w-1/2 text-white p-2 sm:p-5" data-aos="fade-up">
               
-              <h2 className="text-4xl text-center md:text-left md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl text-center md:text-left md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Visit our office <br /> at
                 <span className="text-[#3CBDE6]"> Sun Plaza.</span>
               </h2>

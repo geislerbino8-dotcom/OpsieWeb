@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -58,15 +58,43 @@ function MobileMenu({
 }: MobileMenuProps) {
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const isDark = theme === "dark";
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement;
     document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         closeMenu();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const focusableElements = Array.from(
+          dialogRef.current?.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ) ?? [],
+        ).filter((element) => element.tabIndex >= 0);
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (!firstElement || !lastElement) {
+          event.preventDefault();
+        } else if (!dialogRef.current?.contains(document.activeElement)) {
+          event.preventDefault();
+          (event.shiftKey ? lastElement : firstElement).focus();
+        } else if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
       }
     };
 
@@ -75,6 +103,14 @@ function MobileMenu({
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
+      if (
+        previousFocus instanceof HTMLElement &&
+        previousFocus.isConnected &&
+        window.getComputedStyle(previousFocus).display !== "none" &&
+        window.getComputedStyle(previousFocus).visibility !== "hidden"
+      ) {
+        previousFocus.focus();
+      }
     };
   }, [closeMenu]);
 
@@ -86,11 +122,14 @@ function MobileMenu({
       role="dialog"
       aria-modal="true"
       aria-label="Mobile navigation"
-      className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm md:hidden"
+      tabIndex={-1}
+      ref={dialogRef}
+      className="fixed inset-0 z-[2147483647] bg-slate-950/70 backdrop-blur-sm 2xl:hidden"
     >
       <button
         type="button"
-        aria-label="Dismiss navigation backdrop"
+        aria-hidden="true"
+        tabIndex={-1}
         onClick={closeMenu}
         className="absolute inset-0 h-full w-full cursor-default"
       />
@@ -131,6 +170,7 @@ function MobileMenu({
             <button
               type="button"
               aria-label="Close navigation menu"
+              ref={closeButtonRef}
               onClick={closeMenu}
               className={`inline-flex h-10 w-10 items-center justify-center rounded-lg border transition-colors hover:border-[#00C0E8] hover:text-[#00C0E8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00C0E8] ${
                 isDark
@@ -205,8 +245,8 @@ function MobileMenu({
                                   : "bg-[#0B1220] text-white"
                               }`}
                             >
-                              <span>
-                                <span className="block text-sm font-semibold">
+                              <span className="min-w-0 break-words [overflow-wrap:anywhere]">
+                                <span className="block text-sm font-semibold break-words [overflow-wrap:anywhere]">
                                   {link.label}
                                 </span>
                                 <span

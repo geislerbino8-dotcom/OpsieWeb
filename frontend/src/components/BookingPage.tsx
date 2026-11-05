@@ -3,7 +3,7 @@ import logo from '../assets/icons/opsie_logo_only.png';
 
 function BookingPage() {
   return (
-    <div className="min-h-screen w-full bg-[#FAFBFF] relative overflow-hidden flex flex-col items-center">
+    <div className="min-h-[100svh] w-full bg-[#FAFBFF] relative overflow-hidden flex flex-col items-center">
       
       {/* --- BACKGROUND DECOR --- */}
       {/* Large faint logo watermark */}
@@ -18,7 +18,7 @@ function BookingPage() {
       <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-[#3CBDE6]/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* --- CONTENT CONTAINER --- */}
-      <div className="relative z-10 w-full max-w-[1280px] px-6 py-20 flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-[1280px] px-4 sm:px-6 py-12 sm:py-20 flex flex-col items-center">
 
         {/* --- CALENDLY WRAPPER --- */}
         <div 
@@ -29,10 +29,10 @@ function BookingPage() {
           <div className="">
             <div className="text-center" data-aos="fade-down">
           
-          <h1 className="text-4xl md:text-6xl font-poppins leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-poppins leading-tight">
             Let’s Discuss <span className="text-[#3CBDE6] font-semibold">Your Vision.</span>
           </h1>
-          <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-light">
+          <p className="text-gray-500 text-base sm:text-lg md:text-xl max-w-2xl mx-auto font-light">
             Select a time that works best for you. Our experts are ready to help you 
             turn complex challenges into simple digital solutions.
           </p>

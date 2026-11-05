@@ -19,11 +19,12 @@ function HeroPage({ bgImage }: HeroPageProps) {
 
   return (
     <div
-      className="w-full h-screen relative flex flex-col justify-end overflow-hidden"
+      className="w-full min-h-[100svh] relative flex flex-col justify-end overflow-hidden"
       style={{
         backgroundColor: '#000000',
         backgroundImage: bgImage ? `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${bgImage})` : undefined,
-        backgroundAttachment: 'fixed',
+        // NOTE: backgroundAttachment: 'fixed' is intentionally omitted — it is
+        // unsupported on iOS Safari and causes rendering glitches on mobile devices.
         backgroundPosition: 'center',
         backgroundSize: 'cover',
       }}
@@ -61,19 +62,19 @@ function HeroPage({ bgImage }: HeroPageProps) {
         <img 
           src={LogoOnly} 
           alt="Logo" 
-          className="animate-[spin_20s_linear_infinite] w-72 md:w-[500px] opacity-[30%] select-none" 
+          className="animate-[spin_20s_linear_infinite] w-48 sm:w-64 md:w-[500px] opacity-[30%] select-none"
         />
       </div>
 
       {/* Content Area */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 mb-24 space-y-8">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 mb-16 sm:mb-20 md:mb-24 space-y-6 sm:space-y-8">
         
         <div className="max-w-5xl">
           <h1 className="text-white">
             {headerText && (
               <SplitText
                 text={headerText}
-                className="text-[48px] md:text-[80px] lg:text-[90px] font-bold leading-[1.1] tracking-tight"
+                className="text-[36px] sm:text-[48px] md:text-[80px] lg:text-[90px] font-bold leading-[1.1] tracking-tight"
                 delay={50}
                 duration={1}
                 ease="back.out(1.7)"
@@ -87,7 +88,7 @@ function HeroPage({ bgImage }: HeroPageProps) {
 
         {subHeaderText && (
           <p
-            className="text-gray-300 text-lg md:text-xl max-w-2xl font-light leading-relaxed"
+            className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl font-light leading-relaxed"
             data-aos="fade-up"
             data-aos-delay="800"
             data-aos-duration="1000"
@@ -97,13 +98,13 @@ function HeroPage({ bgImage }: HeroPageProps) {
         )}
 
         <div 
-          className="pt-4"
+          className="pt-2 sm:pt-4"
           data-aos="zoom-in"
           data-aos-delay="1200"
         >
           <button 
             onClick={() => navigate("/book-a-schedule")}
-            className="group relative bg-[#3CBDE6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
+            className="group relative bg-[#3CBDE6] text-white px-8 sm:px-14 py-4 sm:py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
           >
             <span className="relative z-10">{buttonText}</span>
           </button>

@@ -8,7 +8,7 @@ type AnalyticsCardsProps = {
 
 function AnalyticsCards({ numbers, unit, desc }: AnalyticsCardsProps) {
   return (
-    <div className="group relative bg-white rounded-md p-6 w-full h-44 flex flex-col items-center justify-center 
+    <div className="group relative bg-white rounded-md p-3 sm:p-6 w-full min-h-[140px] sm:min-h-44 h-full flex flex-col items-center justify-center
                     transition-all duration-500 ease-out
                     border border-slate-100 shadow-sm
                     hover:shadow-2xl hover:shadow-indigo-100 hover:-translate-y-2 hover:border-indigo-100">
@@ -24,14 +24,14 @@ function AnalyticsCards({ numbers, unit, desc }: AnalyticsCardsProps) {
           separator=","
           direction="up"
           duration={3}
-          className="count-up-text text-5xl text-[#242424] font-extrabold tracking-tight 
+          className="count-up-text text-3xl sm:text-5xl text-[#242424] font-extrabold tracking-tight
                      transition-transform duration-500 group-hover:scale-110 group-hover:text-[#3CDBE6]"
         />
         <h1 className="text-black">{unit}</h1>
         </div>
         
-        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-400   
-                       mt-3 transition-colors duration-500 group-hover:text-[#010f4d]">
+        <h4 className="text-[10px] sm:text-sm font-bold uppercase tracking-wide sm:tracking-widest text-slate-400
+                       mt-2 sm:mt-3 text-center transition-colors duration-500 group-hover:text-[#010f4d]">
           {desc}
         </h4>
       </div>

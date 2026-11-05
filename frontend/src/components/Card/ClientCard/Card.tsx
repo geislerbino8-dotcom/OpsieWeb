@@ -30,14 +30,14 @@ export const TestimonialCard: React.FC<ClientCard> = (props) => {
           src={props.avatar}
           alt={props.name}
           className="
-            w-16 h-16 rounded-full object-cover
+            w-16 h-16 rounded-full object-cover flex-shrink-0
             transition-transform duration-500
             group-hover:scale-110
           "
         />
-        <div className="flex flex-col items-start justify-start">
+        <div className="flex flex-col items-start justify-start min-w-0">
           <h3 className="
-            text-[20px] font-poppins font-semibold text-gray-800
+            text-[18px] sm:text-[20px] font-poppins font-semibold text-gray-800 break-words
             transition-colors duration-300
             group-hover:text-cyan-600
           ">

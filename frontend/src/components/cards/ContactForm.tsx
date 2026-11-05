@@ -71,9 +71,14 @@ function ContactForm() {
         <div className="absolute inset-0 bg-gradient-to-t from-black to-[#3CBDE6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
 
         {!transSucc ? (
-          <form onSubmit={handleCreateInquiry} className="w-full space-y-4 relative z-10">
+          <form
+            onSubmit={handleCreateInquiry}
+            aria-labelledby="contact-form-title"
+            aria-busy={loading}
+            className="w-full space-y-4 relative z-10"
+          >
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-gray-900 tracking-tight transition-colors duration-500 group-hover:text-white">
+              <h3 id="contact-form-title" className="text-3xl font-bold text-gray-900 tracking-tight transition-colors duration-500 group-hover:text-white">
                 Not sure where to start?
               </h3>
               <p className="text-gray-500 text-sm mt-2 transition-colors duration-500 group-hover:text-neutral-200">
@@ -84,6 +89,7 @@ function ContactForm() {
             {/* Row 1: Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
+                id="inquiry-name"
                 onChange={handleUserDataChange}
                 type="text"
                 name="name"
@@ -92,7 +98,9 @@ function ContactForm() {
                 required
                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
+              <label htmlFor="inquiry-name" className="sr-only">Full name</label>
               <input
+                id="inquiry-email"
                 onChange={handleUserDataChange}
                 type="email"
                 name="email"
@@ -101,19 +109,23 @@ function ContactForm() {
                 required
                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
+              <label htmlFor="inquiry-email" className="sr-only">Email address</label>
             </div>
 
             {/* Row 2: Phone & Address */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
+                id="inquiry-phone"
                 onChange={handleUserDataChange}
-                type="text"
+                type="tel"
                 name="phone"
                 value={userData.phone}
                 placeholder="Phone (Optional)"
                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
+              <label htmlFor="inquiry-phone" className="sr-only">Phone number (optional)</label>
               <input
+                id="inquiry-address"
                 onChange={handleUserDataChange}
                 type="text"
                 name="address"
@@ -121,10 +133,12 @@ function ContactForm() {
                 placeholder="Address (Optional)"
                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
               />
+              <label htmlFor="inquiry-address" className="sr-only">Address (optional)</label>
             </div>
 
             {/* Row 3: Message */}
             <textarea
+              id="inquiry-description"
               onChange={handleUserDataChange}
               name="description"
               value={userData.description}
@@ -132,10 +146,12 @@ function ContactForm() {
               required
               className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 resize-none h-32 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
             ></textarea>
+            <label htmlFor="inquiry-description" className="sr-only">Project or inquiry details</label>
 
             {/* Row 4: Platform & Product */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select
+                id="inquiry-platform"
                 onChange={handleUserDataChange}
                 name="platform"
                 value={userData.platform}
@@ -150,8 +166,10 @@ function ContactForm() {
                 <option value="IOS">IOS</option>
                 <option value="Web">Web Application</option>
               </select>
+              <label htmlFor="inquiry-platform" className="sr-only">Platform</label>
 
               <select
+                id="inquiry-product"
                 onChange={handleUserDataChange}
                 name="product"
                 value={userData.product}
@@ -163,10 +181,12 @@ function ContactForm() {
                   <option key={index} value={item.name}>{item.name}</option>
                 ))}
               </select>
+              <label htmlFor="inquiry-product" className="sr-only">Product</label>
             </div>
 
             {/* Row 5: Category */}
             <select
+              id="inquiry-category"
               onChange={handleUserDataChange}
               name="category"
               value={userData.category}
@@ -180,10 +200,11 @@ function ContactForm() {
               <option value="Bug Report">Bug Report</option>
               <option value="Feature Request">Feature Request</option>
             </select>
+            <label htmlFor="inquiry-category" className="sr-only">Inquiry category</label>
 
             <button
               type="submit"
-              disabled={disabled}
+              disabled={disabled || loading}
               className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 shadow-lg ${
                 loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#3CBDE6] hover:bg-neutral-900 group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
               }`}
@@ -194,7 +215,7 @@ function ContactForm() {
             </button>
           </form>
         ) : (
-          <div className="py-12 text-center space-y-6 relative z-10" data-aos="zoom-in">
+          <div className="py-12 text-center space-y-6 relative z-10" data-aos="zoom-in" role="status" aria-live="polite">
             <div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white shadow-xl">
               ✓
             </div>
@@ -205,6 +226,7 @@ function ContactForm() {
               </p>
             </div>
             <button
+              type="button"
               onClick={() => setTransSucc(false)}
               className="text-[#3CBDE6] font-bold uppercase tracking-widest text-xs hover:text-black transition-colors group-hover:text-white group-hover:hover:text-neutral-300"
             >

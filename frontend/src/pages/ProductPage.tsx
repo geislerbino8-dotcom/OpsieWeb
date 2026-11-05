@@ -78,11 +78,11 @@ function ProductPage() {
       <div className="absolute bottom-[15%] left-[-15%] w-[550px] h-[550px] rounded-full bg-slate-900/5 blur-[130px] pointer-events-none -z-10" />
       {/* ============================================================= */}
 
-      <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 relative z-10">
 
         {/* --- HERO SECTION --- */}
-        <section className="min-h-[90vh] cflex items-center py-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <section className="min-h-[70vh] sm:min-h-[90vh] flex items-center py-16 sm:py-20">
+          <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
 
             <div className="flex flex-col gap-8">
 
@@ -188,9 +188,9 @@ function ProductPage() {
               md:flex-row
               md:overflow-x-auto
               overflow-hidden
-              gap-8
+              gap-6 sm:gap-8
               flex-wrap
-              p-10
+              p-4 sm:p-6 md:p-10
               items-start
             "
           >

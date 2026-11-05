@@ -1,26 +1,36 @@
 import { createBrowserRouter } from "react-router-dom"
+import { lazy, Suspense, type ReactNode } from "react"
 import App from "./App"
-import ProductPage from "./pages/ProductPage"
-import WhoWeAre from "./pages/WhoWeAre"
-import ContactUsPage from "./pages/ContactUsPage"
-import Homepage from "./pages/Homepage"
-import ProductItemPage from "./pages/ProductItemPage"
-import Admin from "./pages/Admin"
-import WhatWeDo from "./pages/WhatWeDo"
-import BookingPage from './components/BookingPage'
-import TicketingSupportSystemPage from "./components/admin/pages/TicketingSupportSystemPage"
-import UserManagementPage from "./components/admin/pages/UserManagementPage"
-import LoginPage from "./components/admin/pages/LoginPage"
 import ErrorPage from "./components/ErrorPage"
-import DashboardPage from "./components/admin/pages/DashboardPage"
-import WebContentFrom from "./components/webcontent/WebContentFrom"
-import HomepageContent from "./components/webcontent/HomepageContent"
-import WhoWeAreContent from "./components/webcontent/WhoWeAreContent"
-import WhatWeDoContent from "./components/webcontent/WhatWeDoContent"
-import ContactUsContent from "./components/webcontent/ContactUsContent"
-import ProductsContent from "./components/webcontent/ProductsContent"
-import AddProductCMS from "./components/webcontent/sections/AddProductCMS"
-import ProductCMS from "./components/webcontent/sections/ProductCMS"
+
+const ProductPage = lazy(() => import("./pages/ProductPage"))
+const WhoWeAre = lazy(() => import("./pages/WhoWeAre"))
+const ContactUsPage = lazy(() => import("./pages/ContactUsPage"))
+const Homepage = lazy(() => import("./pages/Homepage"))
+const ProductItemPage = lazy(() => import("./pages/ProductItemPage"))
+const Admin = lazy(() => import("./pages/Admin"))
+const WhatWeDo = lazy(() => import("./pages/WhatWeDo"))
+const BookingPage = lazy(() => import("./components/BookingPage"))
+const TicketingSupportSystemPage = lazy(() => import("./components/admin/pages/TicketingSupportSystemPage"))
+const UserManagementPage = lazy(() => import("./components/admin/pages/UserManagementPage"))
+const LoginPage = lazy(() => import("./components/admin/pages/LoginPage"))
+const DashboardPage = lazy(() => import("./components/admin/pages/DashboardPage"))
+const WebContentFrom = lazy(() => import("./components/webcontent/WebContentFrom"))
+const HomepageContent = lazy(() => import("./components/webcontent/HomepageContent"))
+const WhoWeAreContent = lazy(() => import("./components/webcontent/WhoWeAreContent"))
+const WhatWeDoContent = lazy(() => import("./components/webcontent/WhatWeDoContent"))
+const ContactUsContent = lazy(() => import("./components/webcontent/ContactUsContent"))
+const ProductsContent = lazy(() => import("./components/webcontent/ProductsContent"))
+const AddProductCMS = lazy(() => import("./components/webcontent/sections/AddProductCMS"))
+const ProductCMS = lazy(() => import("./components/webcontent/sections/ProductCMS"))
+
+function loadRoute(element: ReactNode) {
+  return (
+    <Suspense fallback={<div className="min-h-[40vh]" role="status">Loading page…</div>}>
+      {element}
+    </Suspense>
+  )
+}
 
 const token = localStorage.getItem('token')
 
@@ -28,43 +38,43 @@ const pageContent = [
     {
         pageName: "Homepage",
         path: 'homepage',
-        element: <HomepageContent />
+        element: loadRoute(<HomepageContent />)
     },
 
     {
         pageName: "Who We Are",
         path: 'whoweare',
-        element: <WhoWeAreContent />
+        element: loadRoute(<WhoWeAreContent />)
     },
 
     {
         pageName: "What We Do",
         path: 'whatwedo',
-        element: <WhatWeDoContent />
+        element: loadRoute(<WhatWeDoContent />)
     },
 
     {
         pageName: "Contact Us",
         path: 'contacts',
-        element: <ContactUsContent />
+        element: loadRoute(<ContactUsContent />)
     },
 
     {
         pageName: "Products",
         path: 'prod',
-        element: <ProductsContent />
+        element: loadRoute(<ProductsContent />)
     },
 
     {
         pageName: "Product",
         path: 'add-product',
-        element: <AddProductCMS/>
+        element: loadRoute(<AddProductCMS />)
     }, 
     
     {
         pageName: "Product",
         path: 'view-products',
-        element: <ProductCMS/>
+        element: loadRoute(<ProductCMS />)
     }
 ]
 
@@ -76,50 +86,50 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Homepage />
+                element: loadRoute(<Homepage />)
             },
             {
                 path: '/products',
-                element: <ProductPage />
+                element: loadRoute(<ProductPage />)
             },
 
             {
                 path: '/who-we-are',
-                element: <WhoWeAre />
+                element: loadRoute(<WhoWeAre />)
             },
 
             {
                 path: '/what-we-do',
-                element: <WhatWeDo />
+                element: loadRoute(<WhatWeDo />)
             },
 
             {
                 path: '/contact-us',
-                element: <ContactUsPage />
+                element: loadRoute(<ContactUsPage />)
             },
             {
                 path: '/products/:id',
-                element: <ProductItemPage />
+                element: loadRoute(<ProductItemPage />)
             },
 
             {
                 path: '/book-a-schedule',
-                element: <BookingPage />
+                element: loadRoute(<BookingPage />)
             },
 
             {
                 path: '/buy-now',
-                element: <ProductPage/>
+                element: loadRoute(<ProductPage />)
             },
 
             {
                 path: '/buy-now',
-                element: <ProductPage/>
+                element: loadRoute(<ProductPage />)
             },
 
             {
               path: '/Subscribe-now',
-              element: <ProductPage/>
+              element: loadRoute(<ProductPage />)
             }
             
         ]
@@ -128,27 +138,27 @@ const router = createBrowserRouter([
 
     {
         path: '/admin',
-        element: token ? <Admin />  : <LoginPage /> ,
+        element: token ? loadRoute(<Admin />) : loadRoute(<LoginPage />),
 
         children: [
             {
                 index: true,
-                element: <DashboardPage />
+                element: loadRoute(<DashboardPage />)
             },
 
             {
                 path: 'tickets',
-                element: <TicketingSupportSystemPage />
+                element: loadRoute(<TicketingSupportSystemPage />)
             },
 
             {
                 path: 'users',
-                element: <UserManagementPage />
+                element: loadRoute(<UserManagementPage />)
             },
 
              {
                 path: 'content',
-                element: <WebContentFrom />,
+                element: loadRoute(<WebContentFrom />),
                 children: pageContent
             }
         ]

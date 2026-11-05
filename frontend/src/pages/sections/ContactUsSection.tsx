@@ -13,7 +13,7 @@ const ContactUsSection: React.FC = () => {
 
   return (
     // Changed base background to a premium deep dark tint
-    <section className="relative w-full flex flex-col items-center pt-24 pb-20 px-2 md:px-6 overflow-hidden bg-[#0A0F1D]">
+    <section className="relative w-full flex flex-col items-center pt-16 sm:pt-24 pb-16 sm:pb-20 px-2 md:px-6 overflow-hidden bg-[#0A0F1D]">
       
       {/* 1. Muted Dark Mesh Gradient Overlay */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,_#1E3A8A_0%,_transparent_60%),_radial-gradient(circle_at_bottom_left,_#0F172A_0%,_transparent_60%)]" />
@@ -37,58 +37,58 @@ const ContactUsSection: React.FC = () => {
 
       <div className="relative z-10 flex flex-col items-center w-full">
         {/* Header Area */}
-        <div className="text-center mb-16 max-w-3xl" data-aos="fade-up">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+        <div className="text-center mb-10 sm:mb-16 max-w-3xl px-4" data-aos="fade-up">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight tracking-tight">
             {content?.contactUsSection?.header}
           </h1>
-          <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-slate-300 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
             {content?.contactUsSection?.subHeader}
           </p>
 
           <div className="flex justify-center">
             <button 
               onClick={() => navigate('/contact-us')}
-              className="group relative my-10 flex items-center gap-3 bg-white text-[#29A6CC] px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 hover:bg-[#29A6CC] hover:text-white hover:-translate-y-1 active:scale-95"
+              className="group relative my-8 sm:my-10 flex items-center gap-3 bg-white text-[#29A6CC] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 hover:bg-[#29A6CC] hover:text-white hover:-translate-y-1 active:scale-95"
             >
-              <PlayCircle className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+              <PlayCircle className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:scale-110" />
               Request a Demo
             </button>
           </div>
         </div>
 
         {/* Form & Map Section */}
-        <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-5 md:gap-2 items-stretch">
+        <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-4 sm:gap-5 md:gap-2 items-stretch px-2 sm:px-4">
           <div className="flex-1" data-aos="fade-right">
             <ContactForm />
           </div>
           
-          <div className="flex-1 min-h-[450px]" data-aos="fade-left">
+          <div className="flex-1 min-h-[350px] sm:min-h-[450px]" data-aos="fade-left">
             <MapCard />
           </div>
         </div>
 
         {/* Quick Connect Grid */}
         <div 
-          className="mt-16 w-full max-w-6xl grid grid-cols-1 sm:grid-cols-3 gap-8"
+          className="mt-12 sm:mt-16 w-full max-w-6xl grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 px-2 sm:px-4"
           data-aos="fade-up"
           data-aos-delay="300"
         >
           <ContactDetail 
-            icon={<Mail className="w-6 h-6" />}
+            icon={<Mail className="w-5 h-5 sm:w-6 sm:h-6" />}
             title="Email Us"
             detail="inquiry@opsiesoftwaresolutions.com"
             href="mailto:inquiry@opsiesoftwaresolutions.com"
-            paddingClass="px-4" 
+            paddingClass="px-2 sm:px-4"
           />
           <ContactDetail 
-            icon={<MapPin className="w-6 h-6" />}
+            icon={<MapPin className="w-5 h-5 sm:w-6 sm:h-6" />}
             title="Visit Us"
             detail="Sunplaza Bldg. Princeton St. Shaw Blvd., Mandaluyong City"
             href="https://maps.app.goo.gl/8R6dXVvQutf6x1Pm9"
              
           />
           <ContactDetail 
-            icon={<Phone className="w-6 h-6" />}
+            icon={<Phone className="w-5 h-5 sm:w-6 sm:h-6" />}
             title="Call Us"
             detail="+632 84634039"
             href="tel:+63284634039"
@@ -111,16 +111,16 @@ const ContactDetail = ({ icon, title, detail, href, paddingClass = "px-0" }: Con
   <a 
     href={href}
     target="_blank"
-    className="group bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:bg-slate-900/50 hover:border-white/20 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3"
+    className="group bg-white/5 backdrop-blur-md border border-white/10 p-6 sm:p-10 rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:bg-slate-900/50 hover:border-white/20 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3"
   >
     {/* Cleaned up the inner icon wrapper to blend with a dark design style */}
-    <div className="w-16 h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 shadow-xl group-hover:bg-[#3CBDE6] group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]">
+    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-4 sm:mb-6 shadow-xl group-hover:bg-[#3CBDE6] group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]">
       {icon}
     </div>
-    <h4 className="text-slate-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-3 transition-colors group-hover:text-white">
+    <h4 className="text-slate-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-2 sm:mb-3 transition-colors group-hover:text-white">
       {title}
     </h4>
-    <p className={`${paddingClass} text-slate-200 group-hover:text-[#3CBDE6] font-semibold text-lg transition-colors break-all md:break-normal`}>
+    <p className={`${paddingClass} text-slate-200 group-hover:text-[#3CBDE6] font-semibold text-base sm:text-lg transition-colors break-all md:break-normal`}>
       {detail}
     </p>
   </a>

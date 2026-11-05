@@ -16,7 +16,7 @@ function Layout() {
           {productsLoadError && (
             <div
               role="alert"
-              className="fixed left-0 right-0 top-[76px] z-30 bg-amber-100 px-4 py-3 text-center text-sm text-amber-950 shadow-md"
+              className="fixed left-0 right-0 top-[76px] z-30 min-w-0 break-words px-4 py-3 text-center text-sm leading-5 text-amber-950 shadow-md [overflow-wrap:anywhere]"
             >
               The product catalog is temporarily unavailable. Please try again
               later.

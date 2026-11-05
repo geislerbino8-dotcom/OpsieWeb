@@ -123,19 +123,18 @@ function ProductItemPage() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center bg-gray-950 text-white overflow-x-hidden selection:bg-cyan-500/30 font-sans antialiased">
+    <div className="relative w-full flex flex-col items-center bg-gray-950 text-white overflow-x-hidden selection:bg-cyan-500/30 font-sans antialiased">
       {/* Ambient Radial Lights */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full -z-10 pointer-events-none" />
       <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-cyan-600/5 blur-[130px] rounded-full -z-10 pointer-events-none" />
 
       {/* --- HERO SECTION --- */}
       <section 
-        className="w-full min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative border-b border-white/5 bg-no-repeat"
+        className="w-full min-h-[70vh] sm:min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative border-b border-white/5 bg-no-repeat"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(3, 7, 18, 0.8), rgba(3, 7, 18, 0.95)), url(${content.image})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
         }}
       >
         <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -153,7 +152,7 @@ function ProductItemPage() {
               src={content.logo}
               alt={content.name}
               className=""
-            /> : <h1 className='font-bold text-[5rem]'>{content.name}</h1>
+            /> : <h1 className='font-bold text-[clamp(2.5rem,12vw,5rem)] break-words'>{content.name}</h1>
             }
           </div>    
           
@@ -177,8 +176,8 @@ function ProductItemPage() {
       </section>
 
       {/* --- REFINED OVERVIEW SECTION --- */}
-      <section className="w-full max-w-5xl px-6 py-20">
-        <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center backdrop-blur-md">
+      <section className="w-full max-w-5xl px-4 sm:px-6 py-16 sm:py-20">
+        <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center backdrop-blur-md">
           <div className="w-full md:w-1/3 flex-shrink-0">
             <img className="w-full rounded-2xl border border-white/10 object-cover shadow-lg" src={content?.image} alt="Product breakdown" />
           </div>
@@ -190,8 +189,8 @@ function ProductItemPage() {
       </section>
 
       {/* --- STATS SECTION --- */}
-      <section className="w-full flex justify-center item-center max-w-6xl pb-16 px-6">
-        <div className="flex justify-center items-center">
+      <section className="w-full max-w-6xl pb-16 px-4 sm:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full">
           {content.analytics.map((item, index) => (
             <div key={index}>
               <AnalyticsCards numbers={item.value} desc={item.title} unit={item.unit} />
@@ -305,7 +304,7 @@ function ProductItemPage() {
               <>
                 <button 
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80 z-30"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80 z-30"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -313,7 +312,7 @@ function ProductItemPage() {
                 </button>
                 <button 
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80 z-30"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:bg-black/80 z-30"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

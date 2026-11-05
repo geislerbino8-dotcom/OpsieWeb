@@ -35,8 +35,8 @@ function AboutUsSection() {
 
 
   return (
-    <section id="about-section" className="w-full py-24 md:py-32 px-6 overflow-hidden bg-white select-none">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 lg:gap-24">
+    <section id="about-section" className="w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden bg-white select-none">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 sm:gap-16 lg:gap-24">
         
         {/* Left Side: Visual/Logo */}
         <div
@@ -49,7 +49,7 @@ function AboutUsSection() {
           <img 
             src={OpsieImage} 
             alt="Opsie Logo" 
-            className="w-64 md:w-80 lg:w-[400px] object-contain drop-shadow-2xl" 
+            className="w-52 sm:w-64 md:w-80 lg:w-[400px] object-contain drop-shadow-2xl"
           />
         </div>
 
@@ -62,7 +62,7 @@ function AboutUsSection() {
             
           </div>
 
-          <div className="space-y-6 text-gray-600 text-lg font-light leading-relaxed">
+          <div className="space-y-6 text-gray-600 text-base sm:text-lg font-light leading-relaxed">
             <p data-aos="fade-up" data-aos-delay="200">
               {
                 content?.aboutUsSection?.description
@@ -91,7 +91,7 @@ function AboutUsSection() {
           <div data-aos="fade-up" data-aos-delay="400" className="pt-6 w-full flex justify-center items-center">
             <button 
               onClick={() => navigate('/contact-us')}
-              className="group w-[50%] relative flex items-center justify-center  gap-3 px-8 py-4 bg-white border-1 border-gray-300  rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
+              className="group w-full sm:w-auto sm:px-10 relative flex items-center justify-center gap-3 px-8 py-4 bg-white border-1 border-gray-300 rounded-2xl font-bold text-gray-900 transition-all duration-700 hover:border-[#3CBDE6] hover:bg-[#3CBDE6] hover:text-white hover:shadow-lg hover:shadow-[#3CBDE6]/10"
             >
               <span>{content?.aboutUsSection?.buttonText}</span>
              

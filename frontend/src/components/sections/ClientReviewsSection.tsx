@@ -23,7 +23,7 @@ const ClientReview: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
 
   return (
-    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row px-2 items-center md:px-10 md:py-20 py-10"
+    <section className="max-w-[1280px] mx-auto flex flex-col md:flex-row px-4 sm:px-2 items-center md:px-10 md:py-20 py-10"
       data-aos="slide-up" data-aos-delay="500"
     >
       
@@ -77,7 +77,7 @@ const ClientReview: React.FC = () => {
         
 
         {/* Slider */}
-        <div className="relative w-full flex h-[300px] overflow-x-hidden overflow-y-visible">
+        <div className="relative w-full flex min-h-[300px] overflow-x-hidden overflow-y-visible">
   {/* Slider */}
   <div
     className="flex transition-transform duration-700 ease-in-out"

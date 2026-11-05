@@ -18,6 +18,10 @@ type Location = {
   lat: number;
 };
 
+type DirectionsResponse = {
+  routes?: Array<{ geometry: GeoJSON.LineString }>;
+};
+
 export default function Maps() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
@@ -65,7 +69,7 @@ export default function Maps() {
       `https://api.mapbox.com/directions/v5/mapbox/driving/${origin.lng},${origin.lat};${OFFICE_LOCATION.lng},${OFFICE_LOCATION.lat}?geometries=geojson&access_token=${MAPBOX_TOKEN}`
     );
 
-    const data = await res.json();
+    const data = (await res.json()) as DirectionsResponse;
 
     if (!data.routes || data.routes.length === 0) {
       alert("No route found.");
@@ -74,14 +78,15 @@ export default function Maps() {
 
     const route = data.routes[0].geometry;
 
-    const routeData = {
+    const routeData: GeoJSON.Feature<GeoJSON.LineString> = {
       type: "Feature",
       geometry: route,
+      properties: {},
     };
 
     if (mapRef.current.getSource("route")) {
       (mapRef.current.getSource("route") as mapboxgl.GeoJSONSource).setData(
-        routeData as any
+        routeData
       );
     } else {
       mapRef.current.addLayer({
@@ -89,7 +94,7 @@ export default function Maps() {
         type: "line",
         source: {
           type: "geojson",
-          data: routeData as any,
+          data: routeData,
         },
         paint: {
           "line-color": "#3CBDE6",
@@ -98,7 +103,9 @@ export default function Maps() {
       });
     }
 
-    const coordinates = route.coordinates;
+    const coordinates: [number, number][] = route.coordinates.map(
+      (coordinate) => [coordinate[0], coordinate[1]],
+    );
 
     const bounds = coordinates.reduce(
         (bounds: mapboxgl.LngLatBounds, coord: [number, number]) =>
@@ -148,10 +155,10 @@ export default function Maps() {
   };
 
   return (
-    <div className="w-full flex items-center justify-center lg:items-start gap-14 py-10 md:py-0">
-      <div className="w-full flex flex-col md:flex-row lg:items-start gap-4">
+    <div className="w-full flex items-center justify-center lg:items-start gap-4 sm:gap-8 py-6 sm:py-10 md:py-0">
+      <div className="w-full min-w-0 flex flex-col xl:flex-row xl:items-start gap-6 xl:gap-8">
 
-        <div className="w-full flex flex-col items-center md:items-start gap-6 mb-10">
+        <div className="mb-6 flex w-full min-w-0 flex-col items-center gap-6 md:items-start xl:mb-0 xl:w-0 xl:flex-1">
 
           <h1 className="font-poppins text-center md:text-start leading-[34px] md:leading-[44px] lg:leading-[62px] text-[36px] md:text-[42px] lg:text-[50px]">
             Let's start our
@@ -164,7 +171,7 @@ export default function Maps() {
 
             <div className="space-y-2 text-center md:text-start font-poppins text-sm md:text-base">
                 <p>📍 8F Sun Plaza Bldg., 1507 Shaw Blvd. Cor. Princeton St., Wack-Wack, Mandaluyong City 1555, Philippines</p>
-                <p>📧 <a href="mailto:inquiry@opsiesoftwaresolutions.com" type="email">inquiry@opsiesoftwaresolutions.com</a></p>
+                <p className="min-w-0 break-words [overflow-wrap:anywhere]">📧 <a href="mailto:inquiry@opsiesoftwaresolutions.com">inquiry@opsiesoftwaresolutions.com</a></p>
                 <p><a href="tel:(02) 84634039">☎️ (02) 84634039</a></p>
                 <p><a href="tel:+63 915 059 6410">📞 +63 915 059 6410</a></p>
             </div>
@@ -193,10 +200,10 @@ export default function Maps() {
 
         </div>
 
-        <div className="flex items-center justify-center mx-2 ">
+        <div className="flex w-full min-w-0 items-center justify-center xl:w-0 xl:flex-1">
           <div
             ref={mapContainer}
-            className="w-[500px] md:w-[400px] lg:min-w-[600px] h-[400px] rounded-3xl"
+            className="h-[300px] w-full max-w-[600px] min-w-0 rounded-3xl sm:h-[400px] xl:max-w-none"
           />
         </div>
 

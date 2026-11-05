@@ -15,11 +15,11 @@ const FAQAccordion = () => {
   };
 
   return (
-    <section className="py-10 md:py-24 px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+    <section className="py-10 md:py-24 px-4 sm:px-6 md:px-10">
+      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-20 items-start">
         
         {/* Left Side: Header Content */}
-        <div className="lg:w-1/3 sticky top-10">
+        <div className="lg:w-1/3 lg:sticky lg:top-10">
           <SuperHeader text={content?.faqSection.header} position="left"/>
         
           <p className="mt-6 text-lg text-gray-500  tect-center md:text-left font-light max-w-sm">
@@ -32,6 +32,7 @@ const FAQAccordion = () => {
         <div className="w-full lg:w-2/3 flex flex-col gap-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
+            const answerId = `faq-answer-${index}`;
             
             return (
               <div
@@ -43,16 +44,19 @@ const FAQAccordion = () => {
                   }`}
               >
                 <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
                   onClick={() => toggle(index)}
-                  className="flex justify-between items-center w-full py-7 px-8 text-left group"
+                  className="flex justify-between items-center w-full py-5 sm:py-7 px-5 sm:px-8 text-left group"
                 >
-                  <span className={`text-lg font-semibold transition-colors duration-300 
+                  <span className={`min-w-0 break-words [overflow-wrap:anywhere] pr-4 text-base sm:text-lg font-semibold transition-colors duration-300
                     ${isOpen ? "text-[#3CBDE6]" : "text-gray-800"}`}>
                     {faq.question}
                   </span>
                   
                   {/* Animated Icon Container */}
-                  <div className={`relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-500
+                  <div className={`relative flex shrink-0 items-center justify-center w-8 h-8 rounded-full transition-all duration-500
                     ${isOpen ? "bg-[#3CBDE6] rotate-45" : "bg-gray-200"}`}>
                     <Plus className={`h-5 w-5 transition-colors ${isOpen ? "text-white" : "text-gray-600"}`} />
                   </div>
@@ -60,11 +64,13 @@ const FAQAccordion = () => {
 
                 {/* Smooth Height Transition */}
                 <div 
+                  id={answerId}
+                  aria-hidden={!isOpen}
                   className="grid transition-all duration-500 ease-in-out"
                   style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-8 pb-8 text-gray-600 leading-relaxed text-[16px]">
+                    <div className="px-5 sm:px-8 pb-6 sm:pb-8 text-gray-600 leading-relaxed text-[15px] sm:text-[16px]">
                       <div className="pt-2 border-t border-gray-100">
                         {Array.isArray(faq.answer) ? (
                           <ul className="list-disc ml-5 space-y-2 mt-4">
