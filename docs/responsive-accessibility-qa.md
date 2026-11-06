@@ -65,9 +65,10 @@ Improve responsive layouts and accessible interactions
 - Component tests, axe semantic checks, production build, and focused lint pass.
 - Initial JavaScript bundle is about 650 KB before gzip; Mapbox loads as a separate route chunk.
 - Full-project lint, screen-reader checks, and exact tablet/desktop viewport checks have outstanding items listed above.
+- 2026-11-06 Component B follow-up: the contact inquiry form now has 8 regression tests; the full frontend suite is 14/14 passing. See [component-b-contact-form-qa.md](component-b-contact-form-qa.md).
 
 ### Evidence
 
 - Component scenarios and results: this document.
-- Automated checks: 6 component tests passed; production build and focused lint passed.
+- Automated checks: 6 component tests passed; production build and focused lint passed. The 2026-11-06 contact-form follow-up adds 8 tests for 14 total.
 - Browser evidence: phone-sized view confirmed mobile menu, FAQ interaction, labeled form controls, and chat launch; catalog API was unavailable during the check. The default Botpress launcher still needs dashboard-side custom-toggle setup to remove its duplicate unnamed control.

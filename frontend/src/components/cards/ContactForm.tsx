@@ -1,18 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { isAxiosError } from "axios";
 import { createTicket } from "@/api/createTicket";
-import { useToast } from "@/hooks/useToast";
-import ToastContainer from "../admin/common/ToastComponent";
 import { products } from "@/data/productsData";
 
 interface ProductItem {
   name: string;
 }
 
+function getErrorMessage(error: unknown): string {
+  if (isAxiosError(error)) {
+    const status = error.response?.status;
+
+    if (status === 429) {
+      return "Too many requests. Please wait a moment and try again.";
+    }
+
+    if (status && status >= 500) {
+      return "Something went wrong on our side. Please try again.";
+    }
+
+    if (status === 400 || status === 422) {
+      return "Please check the form details and try again.";
+    }
+
+    return "We couldn't send your message. Please try again.";
+  }
+
+  return "We couldn't send your message. Please check your connection and try again.";
+}
+
 function ContactForm() {
   const [transSucc, setTransSucc] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [disabled, setDisabled] = useState(false);
-  const { toasts, addToast } = useToast();
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const successRef = useRef<HTMLDivElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
   const [, setProductList] = useState<string[]>([]); 
   const initialUserInfo = {
     name: "",
@@ -32,8 +54,15 @@ function ContactForm() {
     setProductList(lists);
   }, []);
 
+  useEffect(() => {
+    if (transSucc) {
+      successRef.current?.focus();
+    }
+  }, [transSucc]);
+
   const handleCreateInquiry = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError(null);
     setLoading(true);
 
     try {
@@ -43,9 +72,7 @@ function ContactForm() {
       setUserData(initialUserInfo);
     } catch (error: unknown) {
       console.error("Error creating ticket:", error);
-      const message = error instanceof Error ? "Too many requests. Try again later." : "An error occurred.";
-      addToast(message, "error");
-      setDisabled(true);
+      setSubmitError(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -53,10 +80,17 @@ function ContactForm() {
 
   const handleUserDataChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    setSubmitError(null);
     setUserData((prev) => ({
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleSendAnother = () => {
+    setTransSucc(false);
+    setSubmitError(null);
+    setTimeout(() => nameInputRef.current?.focus(), 0);
   };
 
   return (
@@ -89,14 +123,16 @@ function ContactForm() {
             {/* Row 1: Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
+                ref={nameInputRef}
                 id="inquiry-name"
                 onChange={handleUserDataChange}
                 type="text"
                 name="name"
+                autoComplete="name"
                 value={userData.name}
                 placeholder="Full Name*"
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
               />
               <label htmlFor="inquiry-name" className="sr-only">Full name</label>
               <input
@@ -104,10 +140,11 @@ function ContactForm() {
                 onChange={handleUserDataChange}
                 type="email"
                 name="email"
+                autoComplete="email"
                 value={userData.email}
                 placeholder="Your Email*"
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
               />
               <label htmlFor="inquiry-email" className="sr-only">Email address</label>
             </div>
@@ -119,9 +156,10 @@ function ContactForm() {
                 onChange={handleUserDataChange}
                 type="tel"
                 name="phone"
+                autoComplete="tel"
                 value={userData.phone}
                 placeholder="Phone (Optional)"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
               />
               <label htmlFor="inquiry-phone" className="sr-only">Phone number (optional)</label>
               <input
@@ -129,9 +167,10 @@ function ContactForm() {
                 onChange={handleUserDataChange}
                 type="text"
                 name="address"
+                autoComplete="street-address"
                 value={userData.address}
                 placeholder="Address (Optional)"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
               />
               <label htmlFor="inquiry-address" className="sr-only">Address (optional)</label>
             </div>
@@ -144,7 +183,7 @@ function ContactForm() {
               value={userData.description}
               placeholder="Tell us about your project or inquiry*"
               required
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 resize-none h-32 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-400 group-hover:placeholder-neutral-400"
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 resize-none h-32 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
             ></textarea>
             <label htmlFor="inquiry-description" className="sr-only">Project or inquiry details</label>
 
@@ -156,7 +195,7 @@ function ContactForm() {
                 name="platform"
                 value={userData.platform}
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
               >
                 <option value="" disabled>- Platform -</option>
                 <option value="Windows">Windows</option>
@@ -174,7 +213,7 @@ function ContactForm() {
                 name="product"
                 value={userData.product}
                 required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
               >
                 <option value="" disabled>- Product -</option>
                 {products.map((item: ProductItem, index: number) => (
@@ -191,7 +230,7 @@ function ContactForm() {
               name="category"
               value={userData.category}
               required
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3CBDE6] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
             >
               <option value="" disabled>- Category -</option>
               <option value="Inquiry">Inquiry</option>
@@ -204,18 +243,36 @@ function ContactForm() {
 
             <button
               type="submit"
-              disabled={disabled || loading}
-              className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 shadow-lg ${
-                loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#3CBDE6] hover:bg-neutral-900 group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
+              disabled={loading}
+              aria-describedby={submitError ? "contact-form-error" : undefined}
+              className={`w-full py-4 rounded-xl font-bold transition-all duration-300 shadow-lg ${
+                loading
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : "bg-[#3CBDE6] text-[#0A0F1D] hover:bg-neutral-900 hover:text-white group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
               }`}
             >
-              {disabled ? "Sorry, please try again later" : ""}
-              {loading && !disabled && "Sending..."}
-              {!disabled && !loading && "Send Message"}
+              {loading ? "Sending..." : "Send Message"}
             </button>
+
+            {submitError && (
+              <p
+                id="contact-form-error"
+                role="alert"
+                className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
+              >
+                {submitError}
+              </p>
+            )}
           </form>
         ) : (
-          <div className="py-12 text-center space-y-6 relative z-10" data-aos="zoom-in" role="status" aria-live="polite">
+          <div
+            ref={successRef}
+            tabIndex={-1}
+            className="py-12 text-center space-y-6 relative z-10 focus:outline-none"
+            data-aos="zoom-in"
+            role="status"
+            aria-live="polite"
+          >
             <div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white shadow-xl">
               ✓
             </div>
@@ -227,17 +284,13 @@ function ContactForm() {
             </div>
             <button
               type="button"
-              onClick={() => setTransSucc(false)}
-              className="text-[#3CBDE6] font-bold uppercase tracking-widest text-xs hover:text-black transition-colors group-hover:text-white group-hover:hover:text-neutral-300"
+              onClick={handleSendAnother}
+              className="text-[#0B6A86] font-bold uppercase tracking-widest text-xs hover:text-black transition-colors group-hover:text-white group-hover:hover:text-neutral-300"
             >
               Send Another Inquiry
             </button>
           </div>
         )}
-      </div>
-
-      <div className="absolute top-0 left-0 right-0 pointer-events-none">
-        <ToastContainer toasts={toasts} />
       </div>
     </div>
   );

@@ -6,8 +6,8 @@ type Props = {
 
 const ToastContainer = ({ toasts }: Props) => {
   return (
-    <div className='fixed top-6 right-6 z-200 flex flex-col gap-3'>
-      {toasts.map((toast, index) => {
+    <div className='fixed top-6 right-6 z-[200] flex flex-col gap-3'>
+      {toasts.map((toast) => {
         const color =
           toast.type === 'success'
             ? 'bg-green-600'
@@ -17,7 +17,9 @@ const ToastContainer = ({ toasts }: Props) => {
 
         return (
           <div
-            key={index}
+            key={toast.id}
+            role={toast.type === 'error' ? 'alert' : 'status'}
+            aria-live={toast.type === 'error' ? 'assertive' : 'polite'}
             className={`text-white px-4 py-3 rounded-lg shadow-lg text-sm ${color} animate-slideIn`}
           >
             {toast.message}
