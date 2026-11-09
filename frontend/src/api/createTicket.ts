@@ -1,3 +1,4 @@
+import { isAxiosError } from 'axios';
 import axiosClient from './axiosClient';
 
 export interface TicketData {
@@ -6,6 +7,9 @@ export interface TicketData {
   description: string;
   platform: string;
   category: string;
+  phone?: string;
+  address?: string;
+  product?: string;
 }
 
 export const createTicket = async (data: TicketData) => {
@@ -16,8 +20,14 @@ export const createTicket = async (data: TicketData) => {
     );
 
     return response.data;
-  } catch (error: any) {
-    console.error('Failed to create ticket:', error.response?.data || error.message);
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      console.error('Failed to create ticket:', error.response?.data || error.message);
+    } else if (error instanceof Error) {
+      console.error('Failed to create ticket:', error.message);
+    } else {
+      console.error('Failed to create ticket:', error);
+    }
     throw error;
   }
 }
