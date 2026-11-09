@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { isAxiosError } from "axios";
 import { createTicket } from "@/api/createTicket";
 import { products } from "@/data/productsData";
@@ -6,6 +6,46 @@ import { products } from "@/data/productsData";
 interface ProductItem {
   name: string;
 }
+
+type UserInfo = {
+  name: string;
+  email: string;
+  description: string;
+  platform: string;
+  category: string;
+  phone: string;
+  address: string;
+  product: string;
+};
+
+type FieldName = keyof UserInfo;
+
+type FieldErrors = Partial<Record<FieldName, string>>;
+
+const EMPTY_USER_INFO: UserInfo = {
+  name: "",
+  email: "",
+  description: "",
+  platform: "",
+  category: "",
+  phone: "",
+  address: "",
+  product: "",
+};
+
+const REQUIRED_FIELDS: FieldName[] = [
+  "name",
+  "email",
+  "description",
+  "platform",
+  "product",
+  "category",
+];
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const FIELD_CLASS =
+  "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] aria-invalid:border-red-400 aria-invalid:bg-red-50 transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400";
 
 function getErrorMessage(error: unknown): string {
   if (isAxiosError(error)) {
@@ -29,30 +69,88 @@ function getErrorMessage(error: unknown): string {
   return "We couldn't send your message. Please check your connection and try again.";
 }
 
+function validate(userData: UserInfo): FieldErrors {
+  const errors: FieldErrors = {};
+
+  if (!userData.name.trim()) {
+    errors.name = "Please enter your full name.";
+  }
+
+  if (!userData.email.trim()) {
+    errors.email = "Please enter your email address.";
+  } else if (!EMAIL_PATTERN.test(userData.email.trim())) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (!userData.description.trim()) {
+    errors.description = "Please tell us about your project or inquiry.";
+  }
+
+  if (!userData.platform) {
+    errors.platform = "Please choose a platform.";
+  }
+
+  if (!userData.product) {
+    errors.product = "Please choose a product.";
+  }
+
+  if (!userData.category) {
+    errors.category = "Please choose an inquiry category.";
+  }
+
+  return errors;
+}
+
+type FieldProps = {
+  id: string;
+  label: string;
+  required?: boolean;
+  optional?: boolean;
+  error?: string;
+  children: ReactNode;
+};
+
+function Field({ id, label, required, optional, error, children }: FieldProps) {
+  return (
+    <div className="space-y-1.5">
+      <label
+        htmlFor={id}
+        className="block text-sm font-medium text-gray-700 transition-colors duration-500 group-hover:text-neutral-200"
+      >
+        {label}
+        {required && (
+          <span aria-hidden="true" className="ml-0.5 text-red-600 transition-colors duration-500 group-hover:text-red-300">
+            *
+          </span>
+        )}
+        {optional && (
+          <span className="font-normal text-gray-500 transition-colors duration-500 group-hover:text-neutral-400">
+            {" (optional)"}
+          </span>
+        )}
+      </label>
+      {children}
+      {error && (
+        <p
+          id={`${id}-error`}
+          className="text-sm font-medium text-red-600 transition-colors duration-500 group-hover:text-red-300"
+        >
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
 function ContactForm() {
   const [transSucc, setTransSucc] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [userData, setUserData] = useState<UserInfo>(EMPTY_USER_INFO);
   const successRef = useRef<HTMLDivElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
-  const [, setProductList] = useState<string[]>([]); 
-  const initialUserInfo = {
-    name: "",
-    email: "",
-    description: "",
-    platform: "",
-    category: "",
-    phone: "",
-    address: "",
-    product: "",
-  };
-
-  const [userData, setUserData] = useState(initialUserInfo);
-
-  useEffect(() => {
-    const lists = products.map((prev: ProductItem) => prev.name);
-    setProductList(lists);
-  }, []);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (transSucc) {
@@ -63,13 +161,26 @@ function ContactForm() {
   const handleCreateInquiry = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitError(null);
+
+    const nextErrors = validate(userData);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      const firstInvalid = REQUIRED_FIELDS.find((field) => nextErrors[field]);
+      formRef.current
+        ?.querySelector<HTMLElement>(`#inquiry-${firstInvalid}`)
+        ?.focus();
+      return;
+    }
+
+    setErrors({});
     setLoading(true);
 
     try {
       const response = await createTicket(userData);
       console.log("Inquiry Sent:", response);
       setTransSucc(true);
-      setUserData(initialUserInfo);
+      setUserData(EMPTY_USER_INFO);
     } catch (error: unknown) {
       console.error("Error creating ticket:", error);
       setSubmitError(getErrorMessage(error));
@@ -80,32 +191,53 @@ function ContactForm() {
 
   const handleUserDataChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setSubmitError(null);
+    const field = name as FieldName;
+
     setUserData((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    setErrors((prev) => {
+      if (!prev[field]) {
+        return prev;
+      }
+
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+
+    setSubmitError(null);
   };
 
   const handleSendAnother = () => {
     setTransSucc(false);
     setSubmitError(null);
+    setErrors({});
     setTimeout(() => nameInputRef.current?.focus(), 0);
   };
 
+  const describedBy = (field: FieldName) =>
+    errors[field] ? `inquiry-${field}-error` : undefined;
+
+  const hasFieldErrors = Object.keys(errors).length > 0;
+
   return (
     <div className="flex justify-center relative" data-aos="fade-up">
-      {/* 
-        Main Card: Kept physically uniform. 
+      {/*
+        Main Card: Kept physically uniform.
         Uses group-hover properties to turn child elements white/light gray when open.
       */}
       <div className="group relative w-full max-w-lg bg-white rounded-xl shadow-2xl md:p-10 p-6 flex flex-col items-center border border-gray-100 overflow-hidden transition-all duration-500">
-        
+
         {/* Smooth Gradient Layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black to-[#3CBDE6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
 
         {!transSucc ? (
           <form
+            ref={formRef}
+            noValidate
             onSubmit={handleCreateInquiry}
             aria-labelledby="contact-form-title"
             aria-busy={loading}
@@ -120,126 +252,152 @@ function ContactForm() {
               </p>
             </div>
 
+            {hasFieldErrors && (
+              <p role="alert" className="sr-only">
+                Please correct the highlighted fields and try again.
+              </p>
+            )}
+
             {/* Row 1: Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                ref={nameInputRef}
-                id="inquiry-name"
-                onChange={handleUserDataChange}
-                type="text"
-                name="name"
-                autoComplete="name"
-                value={userData.name}
-                placeholder="Full Name*"
-                required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
-              />
-              <label htmlFor="inquiry-name" className="sr-only">Full name</label>
-              <input
-                id="inquiry-email"
-                onChange={handleUserDataChange}
-                type="email"
-                name="email"
-                autoComplete="email"
-                value={userData.email}
-                placeholder="Your Email*"
-                required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
-              />
-              <label htmlFor="inquiry-email" className="sr-only">Email address</label>
+              <Field id="inquiry-name" label="Full name" required error={errors.name}>
+                <input
+                  ref={nameInputRef}
+                  id="inquiry-name"
+                  onChange={handleUserDataChange}
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  value={userData.name}
+                  placeholder="e.g. Juan Dela Cruz"
+                  required
+                  aria-invalid={errors.name ? true : undefined}
+                  aria-describedby={describedBy("name")}
+                  className={FIELD_CLASS}
+                />
+              </Field>
+              <Field id="inquiry-email" label="Email address" required error={errors.email}>
+                <input
+                  id="inquiry-email"
+                  onChange={handleUserDataChange}
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  value={userData.email}
+                  placeholder="you@company.com"
+                  required
+                  aria-invalid={errors.email ? true : undefined}
+                  aria-describedby={describedBy("email")}
+                  className={FIELD_CLASS}
+                />
+              </Field>
             </div>
 
             {/* Row 2: Phone & Address */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                id="inquiry-phone"
-                onChange={handleUserDataChange}
-                type="tel"
-                name="phone"
-                autoComplete="tel"
-                value={userData.phone}
-                placeholder="Phone (Optional)"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
-              />
-              <label htmlFor="inquiry-phone" className="sr-only">Phone number (optional)</label>
-              <input
-                id="inquiry-address"
-                onChange={handleUserDataChange}
-                type="text"
-                name="address"
-                autoComplete="street-address"
-                value={userData.address}
-                placeholder="Address (Optional)"
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
-              />
-              <label htmlFor="inquiry-address" className="sr-only">Address (optional)</label>
+              <Field id="inquiry-phone" label="Phone number" optional>
+                <input
+                  id="inquiry-phone"
+                  onChange={handleUserDataChange}
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  value={userData.phone}
+                  placeholder="+63 917 000 0000"
+                  className={FIELD_CLASS}
+                />
+              </Field>
+              <Field id="inquiry-address" label="Address" optional>
+                <input
+                  id="inquiry-address"
+                  onChange={handleUserDataChange}
+                  type="text"
+                  name="address"
+                  autoComplete="street-address"
+                  value={userData.address}
+                  placeholder="Street, city, province"
+                  className={FIELD_CLASS}
+                />
+              </Field>
             </div>
 
             {/* Row 3: Message */}
-            <textarea
-              id="inquiry-description"
-              onChange={handleUserDataChange}
-              name="description"
-              value={userData.description}
-              placeholder="Tell us about your project or inquiry*"
-              required
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 resize-none h-32 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400"
-            ></textarea>
-            <label htmlFor="inquiry-description" className="sr-only">Project or inquiry details</label>
+            <Field id="inquiry-description" label="Project or inquiry details" required error={errors.description}>
+              <textarea
+                id="inquiry-description"
+                onChange={handleUserDataChange}
+                name="description"
+                value={userData.description}
+                placeholder="Tell us about your project or inquiry"
+                required
+                aria-invalid={errors.description ? true : undefined}
+                aria-describedby={describedBy("description")}
+                className={`${FIELD_CLASS} resize-none h-32`}
+              ></textarea>
+            </Field>
 
             {/* Row 4: Platform & Product */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <select
-                id="inquiry-platform"
-                onChange={handleUserDataChange}
-                name="platform"
-                value={userData.platform}
-                required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
-              >
-                <option value="" disabled>- Platform -</option>
-                <option value="Windows">Windows</option>
-                <option value="macOS">macOS</option>
-                <option value="Linux">Linux</option>
-                <option value="Android">Android</option>
-                <option value="IOS">IOS</option>
-                <option value="Web">Web Application</option>
-              </select>
-              <label htmlFor="inquiry-platform" className="sr-only">Platform</label>
+              <Field id="inquiry-platform" label="Platform" required error={errors.platform}>
+                <select
+                  id="inquiry-platform"
+                  onChange={handleUserDataChange}
+                  name="platform"
+                  value={userData.platform}
+                  required
+                  aria-invalid={errors.platform ? true : undefined}
+                  aria-describedby={describedBy("platform")}
+                  className={`${FIELD_CLASS} text-gray-500 group-hover:text-neutral-200`}
+                >
+                  <option value="" disabled>- Platform -</option>
+                  <option value="Windows">Windows</option>
+                  <option value="macOS">macOS</option>
+                  <option value="Linux">Linux</option>
+                  <option value="Android">Android</option>
+                  <option value="IOS">IOS</option>
+                  <option value="Web">Web Application</option>
+                </select>
+              </Field>
 
-              <select
-                id="inquiry-product"
-                onChange={handleUserDataChange}
-                name="product"
-                value={userData.product}
-                required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
-              >
-                <option value="" disabled>- Product -</option>
-                {products.map((item: ProductItem, index: number) => (
-                  <option key={index} value={item.name}>{item.name}</option>
-                ))}
-              </select>
-              <label htmlFor="inquiry-product" className="sr-only">Product</label>
+              <Field id="inquiry-product" label="Product" required error={errors.product}>
+                <select
+                  id="inquiry-product"
+                  onChange={handleUserDataChange}
+                  name="product"
+                  value={userData.product}
+                  required
+                  aria-invalid={errors.product ? true : undefined}
+                  aria-describedby={describedBy("product")}
+                  className={`${FIELD_CLASS} text-gray-500 group-hover:text-neutral-200`}
+                >
+                  <option value="" disabled>- Product -</option>
+                  {products.map((item: ProductItem, index: number) => (
+                    <option key={index} value={item.name}>{item.name}</option>
+                  ))}
+                </select>
+              </Field>
             </div>
 
             {/* Row 5: Category */}
-            <select
-              id="inquiry-category"
-              onChange={handleUserDataChange}
-              name="category"
-              value={userData.category}
-              required
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] transition-all duration-300 text-gray-500 group-hover:bg-neutral-900 group-hover:border-neutral-700 group-hover:text-neutral-200"
-            >
-              <option value="" disabled>- Category -</option>
-              <option value="Inquiry">Inquiry</option>
-              <option value="Question">Question</option>
-              <option value="Complaint">Complaint</option>
-              <option value="Bug Report">Bug Report</option>
-              <option value="Feature Request">Feature Request</option>
-            </select>
-            <label htmlFor="inquiry-category" className="sr-only">Inquiry category</label>
+            <Field id="inquiry-category" label="Inquiry category" required error={errors.category}>
+              <select
+                id="inquiry-category"
+                onChange={handleUserDataChange}
+                name="category"
+                value={userData.category}
+                required
+                aria-invalid={errors.category ? true : undefined}
+                aria-describedby={describedBy("category")}
+                className={`${FIELD_CLASS} text-gray-500 group-hover:text-neutral-200`}
+              >
+                <option value="" disabled>- Category -</option>
+                <option value="Inquiry">Inquiry</option>
+                <option value="Question">Question</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Bug Report">Bug Report</option>
+                <option value="Feature Request">Feature Request</option>
+              </select>
+            </Field>
 
             <button
               type="submit"

@@ -27,8 +27,8 @@ async function fillRequiredFields(user: ReturnType<typeof userEvent.setup>) {
     screen.getByLabelText(/project or inquiry details/i),
     "Please contact me about Opsie Core.",
   );
-  await user.selectOptions(screen.getByLabelText(/^platform$/i), "Web");
-  await user.selectOptions(screen.getByLabelText(/^product$/i), "Opsie HRIS");
+  await user.selectOptions(screen.getByLabelText(/^platform/i), "Web");
+  await user.selectOptions(screen.getByLabelText(/^product/i), "Opsie HRIS");
   await user.selectOptions(screen.getByLabelText(/inquiry category/i), "Inquiry");
 }
 
@@ -41,14 +41,14 @@ describe("contact inquiry form (Component B)", () => {
     render(<ContactForm />);
 
     const expectedLabels = [
-      "Full name",
-      "Email address",
-      "Phone number (optional)",
-      "Address (optional)",
-      "Project or inquiry details",
-      "Platform",
-      "Product",
-      "Inquiry category",
+      /^full name/i,
+      /^email address/i,
+      /^phone number/i,
+      /^address/i,
+      /^project or inquiry details/i,
+      /^platform/i,
+      /^product/i,
+      /^inquiry category/i,
     ];
 
     for (const label of expectedLabels) {
@@ -61,8 +61,8 @@ describe("contact inquiry form (Component B)", () => {
     expect(screen.getByLabelText(/full name/i)).toBeRequired();
     expect(screen.getByLabelText(/email address/i)).toBeRequired();
     expect(screen.getByLabelText(/project or inquiry details/i)).toBeRequired();
-    expect(screen.getByLabelText(/^platform$/i)).toBeRequired();
-    expect(screen.getByLabelText(/^product$/i)).toBeRequired();
+    expect(screen.getByLabelText(/^platform/i)).toBeRequired();
+    expect(screen.getByLabelText(/^product/i)).toBeRequired();
     expect(screen.getByLabelText(/inquiry category/i)).toBeRequired();
   });
 
@@ -72,13 +72,13 @@ describe("contact inquiry form (Component B)", () => {
     expect(screen.getByLabelText(/full name/i)).toHaveAttribute("autocomplete", "name");
     expect(screen.getByLabelText(/email address/i)).toHaveAttribute("autocomplete", "email");
     expect(screen.getByLabelText(/phone number/i)).toHaveAttribute("autocomplete", "tel");
-    expect(screen.getByLabelText("Address (optional)")).toHaveAttribute("autocomplete", "street-address");
+    expect(screen.getByLabelText(/^address/i)).toHaveAttribute("autocomplete", "street-address");
   });
 
   it("uses contrast-safe placeholder and submit styles", () => {
     render(<ContactForm />);
 
-    for (const label of [/full name/i, /email address/i, /phone number/i, "Address (optional)", /project or inquiry details/i]) {
+    for (const label of [/^full name/i, /^email address/i, /^phone number/i, /^address/i, /^project or inquiry details/i]) {
       expect(screen.getByLabelText(label).className).toContain("placeholder-gray-500");
     }
 
@@ -168,5 +168,58 @@ describe("contact inquiry form (Component B)", () => {
     await user.type(screen.getByLabelText(/full name/i), " Jr");
 
     await waitFor(() => expect(screen.queryByRole("alert")).not.toBeInTheDocument());
+  });
+
+  it("shows per-field errors, announces the summary, and focuses the first invalid field", async () => {
+    const user = userEvent.setup();
+
+    render(<ContactForm />);
+    await user.click(screen.getByRole("button", { name: /send message/i }));
+
+    expect(createTicketMock).not.toHaveBeenCalled();
+    expect(screen.getByRole("alert")).toHaveTextContent(/correct the highlighted fields/i);
+
+    const name = screen.getByLabelText(/^full name/i);
+    expect(name).toHaveAttribute("aria-invalid", "true");
+    expect(name).toHaveAttribute("aria-describedby", "inquiry-name-error");
+    expect(screen.getByText("Please enter your full name.")).toBeInTheDocument();
+    expect(screen.getByText("Please enter your email address.")).toBeInTheDocument();
+    expect(screen.getByText("Please tell us about your project or inquiry.")).toBeInTheDocument();
+    expect(screen.getByText("Please choose a platform.")).toBeInTheDocument();
+    expect(screen.getByText("Please choose a product.")).toBeInTheDocument();
+    expect(screen.getByText("Please choose an inquiry category.")).toBeInTheDocument();
+
+    await waitFor(() => expect(name).toHaveFocus());
+  });
+
+  it("shows a format error for an invalid email address", async () => {
+    const user = userEvent.setup();
+
+    render(<ContactForm />);
+    await user.type(screen.getByLabelText(/^full name/i), "Test User");
+    await user.type(screen.getByLabelText(/^email address/i), "not-an-email");
+    await user.type(screen.getByLabelText(/^project or inquiry details/i), "Testing an inquiry.");
+    await user.selectOptions(screen.getByLabelText(/^platform/i), "Web");
+    await user.selectOptions(screen.getByLabelText(/^product/i), "Opsie HRIS");
+    await user.selectOptions(screen.getByLabelText(/inquiry category/i), "Inquiry");
+    await user.click(screen.getByRole("button", { name: /send message/i }));
+
+    expect(createTicketMock).not.toHaveBeenCalled();
+    expect(screen.getByLabelText(/^email address/i)).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByText("Please enter a valid email address.")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByLabelText(/^email address/i)).toHaveFocus());
+  });
+
+  it("clears a field error as soon as the user edits that field", async () => {
+    const user = userEvent.setup();
+
+    render(<ContactForm />);
+    await user.click(screen.getByRole("button", { name: /send message/i }));
+    expect(screen.getByLabelText(/^full name/i)).toHaveAttribute("aria-invalid", "true");
+
+    await user.type(screen.getByLabelText(/^full name/i), "Test User");
+
+    expect(screen.getByLabelText(/^full name/i)).not.toHaveAttribute("aria-invalid");
+    expect(screen.queryByText("Please enter your full name.")).not.toBeInTheDocument();
   });
 });
