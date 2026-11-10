@@ -79,12 +79,13 @@ describe("contact inquiry form (Component B)", () => {
     render(<ContactForm />);
 
     for (const label of [/^full name/i, /^email address/i, /^phone number/i, /^address/i, /^project or inquiry details/i]) {
-      expect(screen.getByLabelText(label).className).toContain("placeholder-gray-500");
+      expect(screen.getByLabelText(label).className).toContain("placeholder-gray-400");
     }
 
     const submit = screen.getByRole("button", { name: /send message/i });
-    expect(submit.className).toContain("bg-[#3CBDE6]");
-    expect(submit.className).toContain("text-[#0A0F1D]");
+    expect(submit.className).toContain("bg-[#7C3AED]");
+    expect(submit.className).toContain("text-white");
+    expect(submit.className).toContain("rounded-full");
   });
 
   it("submits a valid inquiry, shows the confirmation, and moves focus to it", async () => {

@@ -44,8 +44,12 @@ const REQUIRED_FIELDS: FieldName[] = [
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const FIELD_CLASS =
-  "w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0B6A86] aria-invalid:border-red-400 aria-invalid:bg-red-50 transition-all duration-300 group-hover:bg-neutral-900/40 group-hover:border-neutral-700 group-hover:text-white placeholder-gray-500 group-hover:placeholder-neutral-400";
+const FIELD_BASE =
+  "w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] aria-invalid:border-[#EF4444]/70 aria-invalid:focus:ring-[#EF4444] group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:placeholder-neutral-300";
+
+const INPUT_CLASS = `${FIELD_BASE} text-white group-hover:text-white`;
+
+const SELECT_CLASS = `${FIELD_BASE} text-gray-300 group-hover:text-neutral-200`;
 
 function getErrorMessage(error: unknown): string {
   if (isAxiosError(error)) {
@@ -112,19 +116,19 @@ type FieldProps = {
 
 function Field({ id, label, required, optional, error, children }: FieldProps) {
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-2">
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-gray-700 transition-colors duration-500 group-hover:text-neutral-200"
+        className="block text-sm font-medium text-[#9aa0aa] transition-colors duration-500 group-hover:text-white"
       >
         {label}
         {required && (
-          <span aria-hidden="true" className="ml-0.5 text-red-600 transition-colors duration-500 group-hover:text-red-300">
+          <span aria-hidden="true" className="ml-0.5 text-[#EF4444] transition-colors duration-500 group-hover:text-red-200">
             *
           </span>
         )}
         {optional && (
-          <span className="font-normal text-gray-500 transition-colors duration-500 group-hover:text-neutral-400">
+          <span className="font-normal text-gray-400 transition-colors duration-500 group-hover:text-neutral-300">
             {" (optional)"}
           </span>
         )}
@@ -133,7 +137,7 @@ function Field({ id, label, required, optional, error, children }: FieldProps) {
       {error && (
         <p
           id={`${id}-error`}
-          className="text-sm font-medium text-red-600 transition-colors duration-500 group-hover:text-red-300"
+          className="text-sm font-medium text-[#EF4444] transition-colors duration-500 group-hover:text-red-200"
         >
           {error}
         </p>
@@ -229,10 +233,10 @@ function ContactForm() {
         Main Card: Kept physically uniform.
         Uses group-hover properties to turn child elements white/light gray when open.
       */}
-      <div className="group relative w-full max-w-lg bg-white rounded-xl shadow-2xl md:p-10 p-6 flex flex-col items-center border border-gray-100 overflow-hidden transition-all duration-500">
+      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl card-side-glow md:p-10 p-6 flex flex-col items-center border border-[#8B5CF6]/25 overflow-hidden transition-all duration-500">
 
         {/* Smooth Gradient Layer overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-[#3CBDE6] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black to-[#6D28D9] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
 
         {!transSucc ? (
           <form
@@ -244,10 +248,10 @@ function ContactForm() {
             className="w-full space-y-4 relative z-10"
           >
             <div className="text-center mb-8">
-              <h3 id="contact-form-title" className="text-3xl font-bold text-gray-900 tracking-tight transition-colors duration-500 group-hover:text-white">
+              <h3 id="contact-form-title" className="text-3xl font-bold text-white tracking-tight transition-colors duration-500 group-hover:text-white">
                 Not sure where to start?
               </h3>
-              <p className="text-gray-500 text-sm mt-2 transition-colors duration-500 group-hover:text-neutral-200">
+              <p className="text-gray-400 text-sm mt-2 transition-colors duration-500 group-hover:text-neutral-200">
                 Fill out the contact form and we’ll get back to you shortly.
               </p>
             </div>
@@ -273,7 +277,7 @@ function ContactForm() {
                   required
                   aria-invalid={errors.name ? true : undefined}
                   aria-describedby={describedBy("name")}
-                  className={FIELD_CLASS}
+                  className={INPUT_CLASS}
                 />
               </Field>
               <Field id="inquiry-email" label="Email address" required error={errors.email}>
@@ -288,7 +292,7 @@ function ContactForm() {
                   required
                   aria-invalid={errors.email ? true : undefined}
                   aria-describedby={describedBy("email")}
-                  className={FIELD_CLASS}
+                  className={INPUT_CLASS}
                 />
               </Field>
             </div>
@@ -304,7 +308,7 @@ function ContactForm() {
                   autoComplete="tel"
                   value={userData.phone}
                   placeholder="+63 917 000 0000"
-                  className={FIELD_CLASS}
+                  className={INPUT_CLASS}
                 />
               </Field>
               <Field id="inquiry-address" label="Address" optional>
@@ -316,7 +320,7 @@ function ContactForm() {
                   autoComplete="street-address"
                   value={userData.address}
                   placeholder="Street, city, province"
-                  className={FIELD_CLASS}
+                  className={INPUT_CLASS}
                 />
               </Field>
             </div>
@@ -332,7 +336,7 @@ function ContactForm() {
                 required
                 aria-invalid={errors.description ? true : undefined}
                 aria-describedby={describedBy("description")}
-                className={`${FIELD_CLASS} resize-none h-32`}
+                className={`${INPUT_CLASS} resize-none h-32`}
               ></textarea>
             </Field>
 
@@ -347,7 +351,7 @@ function ContactForm() {
                   required
                   aria-invalid={errors.platform ? true : undefined}
                   aria-describedby={describedBy("platform")}
-                  className={`${FIELD_CLASS} text-gray-500 group-hover:text-neutral-200`}
+                  className={SELECT_CLASS}
                 >
                   <option value="" disabled>- Platform -</option>
                   <option value="Windows">Windows</option>
@@ -368,7 +372,7 @@ function ContactForm() {
                   required
                   aria-invalid={errors.product ? true : undefined}
                   aria-describedby={describedBy("product")}
-                  className={`${FIELD_CLASS} text-gray-500 group-hover:text-neutral-200`}
+                  className={SELECT_CLASS}
                 >
                   <option value="" disabled>- Product -</option>
                   {products.map((item: ProductItem, index: number) => (
@@ -388,7 +392,7 @@ function ContactForm() {
                 required
                 aria-invalid={errors.category ? true : undefined}
                 aria-describedby={describedBy("category")}
-                className={`${FIELD_CLASS} text-gray-500 group-hover:text-neutral-200`}
+                className={SELECT_CLASS}
               >
                 <option value="" disabled>- Category -</option>
                 <option value="Inquiry">Inquiry</option>
@@ -403,10 +407,10 @@ function ContactForm() {
               type="submit"
               disabled={loading}
               aria-describedby={submitError ? "contact-form-error" : undefined}
-              className={`w-full py-4 rounded-xl font-bold transition-all duration-300 shadow-lg ${
+              className={`w-full py-4 rounded-full font-bold text-white shadow-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
                 loading
-                  ? "bg-gray-400 text-white cursor-not-allowed"
-                  : "bg-[#3CBDE6] text-[#0A0F1D] hover:bg-neutral-900 hover:text-white group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
+                  ? "bg-[#7C3AED] opacity-60 cursor-not-allowed"
+                  : "bg-[#7C3AED] hover:bg-[#6D28D9] group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
               }`}
             >
               {loading ? "Sending..." : "Send Message"}
@@ -416,7 +420,7 @@ function ContactForm() {
               <p
                 id="contact-form-error"
                 role="alert"
-                className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
+                className="rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300"
               >
                 {submitError}
               </p>
@@ -431,19 +435,19 @@ function ContactForm() {
             role="status"
             aria-live="polite"
           >
-            <div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white shadow-xl">
+            <div className="w-24 h-24 bg-green-500/15 text-green-400 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white/20 shadow-xl">
               ✓
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 transition-colors duration-500 group-hover:text-white">Thank You!</h2>
-              <p className="text-gray-500 mt-4 leading-relaxed max-w-xs mx-auto transition-colors duration-500 group-hover:text-neutral-200">
+              <h2 className="text-3xl font-bold text-white transition-colors duration-500 group-hover:text-white">Thank You!</h2>
+              <p className="text-gray-400 mt-4 leading-relaxed max-w-xs mx-auto transition-colors duration-500 group-hover:text-neutral-200">
                 Your message has been sent successfully. We'll get back to you within 24 hours.
               </p>
             </div>
             <button
               type="button"
               onClick={handleSendAnother}
-              className="text-[#0B6A86] font-bold uppercase tracking-widest text-xs hover:text-black transition-colors group-hover:text-white group-hover:hover:text-neutral-300"
+              className="text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-[#A78BFA] transition-colors group-hover:text-white group-hover:hover:text-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5CF6]"
             >
               Send Another Inquiry
             </button>
