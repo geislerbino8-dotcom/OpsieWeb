@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createTicket } from "@/api/createTicket";
@@ -79,13 +79,58 @@ describe("contact inquiry form (Component B)", () => {
     render(<ContactForm />);
 
     for (const label of [/^full name/i, /^email address/i, /^phone number/i, /^address/i, /^project or inquiry details/i]) {
-      expect(screen.getByLabelText(label).className).toContain("placeholder-gray-400");
+      expect(screen.getByLabelText(label).className).toContain("placeholder:text-gray-400");
     }
 
     const submit = screen.getByRole("button", { name: /send message/i });
     expect(submit.className).toContain("bg-[#7C3AED]");
     expect(submit.className).toContain("text-white");
     expect(submit.className).toContain("rounded-full");
+    expect(submit.className).toContain("shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)]");
+  });
+
+  it("applies the shared card lift and keeps the success action tappable", async () => {
+    const user = userEvent.setup();
+    createTicketMock.mockResolvedValue({ message: "Ticket created successfully" });
+
+    render(<ContactForm />);
+
+    const card = screen.getByRole("form").parentElement;
+    expect(card?.className).toContain("hover:-translate-y-1");
+    expect(card?.className).toContain("hover:border-[#8B5CF6]/60");
+
+    await fillRequiredFields(user);
+    await user.click(screen.getByRole("button", { name: /send message/i }));
+
+    const sendAnother = await screen.findByRole("button", { name: /send another inquiry/i });
+    expect(sendAnother.className).toContain("min-h-11");
+    expect(sendAnother.className).toContain("rounded-full");
+  });
+
+  it("keeps submit focusable while sending and ignores duplicate submits", async () => {
+    const user = userEvent.setup();
+    let resolveTicket: ((value: { message: string }) => void) | undefined;
+    createTicketMock.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          resolveTicket = resolve;
+        }),
+    );
+
+    render(<ContactForm />);
+    await fillRequiredFields(user);
+    await user.click(screen.getByRole("button", { name: /send message/i }));
+
+    const sending = await screen.findByRole("button", { name: /sending/i });
+    expect(sending).toHaveAttribute("aria-disabled", "true");
+    expect(sending).toHaveAttribute("aria-busy", "true");
+    expect((sending as HTMLButtonElement).disabled).toBe(false);
+
+    fireEvent.submit(screen.getByRole("form", { name: /not sure where to start/i }));
+    expect(createTicketMock).toHaveBeenCalledTimes(1);
+
+    resolveTicket?.({ message: "Ticket created successfully" });
+    expect(await screen.findByRole("status")).toHaveTextContent(/thank you/i);
   });
 
   it("submits a valid inquiry, shows the confirmation, and moves focus to it", async () => {

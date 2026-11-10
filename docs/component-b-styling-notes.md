@@ -26,7 +26,7 @@ Every value below is cited. Where the approved docs disagree, the component-leve
 | Card radius | `rounded-xl` | `main` ContactForm (component-level approved state) |
 | Card glow | `.card-side-glow` | DS §3 / `index.css:48-52` on main; `components.html` §2 |
 | Card padding | `p-6` mobile · `md:p-10` desktop | `main` ContactForm |
-| Card motion | `transition-all duration-500` | DS §3 card rhythm; `components.html` §2 |
+| Card motion | `transition-all duration-500` + `hover:-translate-y-1 hover:border-[#8B5CF6]/60` | DS §3 card rhythm; `components.html` §2 (lift + border intensification) |
 | Hover wash | `bg-gradient-to-t from-black to-[#6D28D9]`, `opacity-0 → 100`, `duration-700` | `main` ContactForm (violet stop darkened to violet-700 for white-text contrast; DS §1 violet-700 7.1:1 ✅) |
 | Heading | `text-3xl font-bold text-white tracking-tight` | `main` ContactForm; DS §2 display scale |
 | Sub-copy | `text-sm text-gray-400` | `main` ContactForm; DS §2 |
@@ -48,7 +48,10 @@ Every value below is cited. Where the approved docs disagree, the component-leve
 | Submit fill | `bg-[#7C3AED]`, hover `#6D28D9` | DS §1 violet-600 5.9:1 ✅ / violet-700 7.1:1 ✅ (see §6) |
 | Submit text | `text-white font-bold`, `py-4` (≥44 px) | `main` ContactForm; sketch §4 touch bar |
 | Submit motion | `hover:-translate-y-0.5`, `duration-300` | `components.html` §1; DS §4 pressed/hover norms |
-| Submit disabled/loading | `opacity-60 cursor-not-allowed` | DS §4 disabled norm (opacity + cursor) |
+| Submit shadow | `shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)]` | `components.html` §1 shared violet CTA glow |
+| Submit pressed | `active:translate-y-0 active:bg-[#5B21B6]` | DS §4 pressed norm (DS-1) |
+| Submit disabled/loading | `opacity-50 cursor-not-allowed`, `aria-disabled` + `aria-busy`, stays focusable | DS §4 disabled/loading norm (DS-2/DS-3) |
+| Success action touch | `inline-flex min-h-11 items-center justify-center rounded-full px-4` | DS §7 (R5 ≥44×44) |
 | Submit focus | `focus-visible:outline-2 outline-offset-2 outline-white` | DS §5 R-B (white clears the violet fill 5.7:1 and the card 19.8:1) |
 | Server-error box | `border-red-400/40 bg-red-500/10 text-red-300` | DS §1 (validation-only red); dark-surface adaptation of the prior box |
 | Success icon | `bg-green-500/15 text-green-400 border-white/20` | `main` ContactForm |
@@ -76,7 +79,7 @@ Every value below is cited. Where the approved docs disagree, the component-leve
 
 **Automated**
 
-- `npm test` — **17/17 passing** (2 files). The contrast test now asserts `placeholder-gray-400`, `bg-[#7C3AED]`, `text-white`, and `rounded-full`.
+- `npm test` — **19/19 passing** (2 files). The contrast test asserts `placeholder:text-gray-400`, `bg-[#7C3AED]`, `text-white`, `rounded-full`, and the shared violet shadow; new cases cover the card lift, the success-action touch target, and the focusable loading state.
 - `npx tsc --noEmit` — clean.
 - `npm run build` — passes (only the pre-existing chunk-size warning).
 - Focused `eslint` on `ContactForm.tsx` and `contact-form.test.tsx` — clean.
@@ -90,6 +93,8 @@ Every value below is cited. Where the approved docs disagree, the component-leve
 | Empty submit | 0 API calls; 6 fields marked invalid; focus moves to `inquiry-name`. |
 | Placeholder contrast | **7.08:1** on the composited `white/[0.04]` field over the carbon card. |
 | Submit contrast | **5.7:1** (violet-600 fill, white text), 56 px tall at every width. |
+| Success action | **215×44 px** at every width (R5 touch bar). |
+| Card hover | Computed `translate: 0px -4px`; hover border resolves to violet at 0.6 alpha. |
 | Success | `role="status"`, `aria-live="polite"`, form removed, focus moved to the panel. |
 | Failure / retry | Inline `role="alert"`, submit stays enabled, retry reaches the API (`before=2`, `after=3`). |
 | Hover wash | Overlay reaches opacity 1 on desktop hover; submit contrast remains 5.7:1. |
@@ -108,3 +113,4 @@ Every value below is cited. Where the approved docs disagree, the component-leve
 | Error text `text-sm` rather than `components.html`'s `text-[11px]` | 11 px is below the DS type scale; `text-sm` matches the approved form-label token and keeps the error readable. |
 | Hover-wash top `#6D28D9` (violet-700) instead of `main`'s `#8B5CF6` (violet-500) | White labels/headings sit on the wash top on hover; violet-500 gives 4.23:1, violet-700 gives 7.1:1 ✅. The wash stays violet and the bottom remains black. |
 | Hover error/asterisk `red-200` instead of `red-300` | On the violet-700 wash, red-300 is ~3.75:1; red-200 is ~4.9:1 ✅. The default error color stays `#EF4444` (5.24:1 on the card). |
+| Submit uses `aria-disabled` instead of native `disabled` | DS-2 ruled that the disabled state stays in tab order via `aria-disabled`; the handler guard prevents duplicate in-flight requests. The prior native `disabled` was removed. |

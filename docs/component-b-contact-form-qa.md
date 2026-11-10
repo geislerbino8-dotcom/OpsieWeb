@@ -95,7 +95,7 @@ Re-ran the same 10 route/viewport combinations and the automated suites on 2026-
 | Defect | Resolution | After-fix evidence |
 | --- | --- | --- |
 | DEF-01 Autocomplete missing | Added `autoComplete="name"`, `"email"`, `"tel"`, and `"street-address"`. | `autocomplete` map populated for all four identity fields at all widths. |
-| DEF-02 No retry after failure | Removed the permanent `disabled` state. The button is disabled only while a request is in flight. | Retry probe: `{"retryable":true,"disabled":false,"before":2,"after":3}` at all 10 combinations. |
+| DEF-02 No retry after failure | Removed the permanent `disabled` state. The button is marked `aria-disabled` + `aria-busy` only while a request is in flight (DS-2; 2026-11-10), stays focusable, and an in-flight guard blocks duplicate submits. | Retry probe: `{"retryable":true,"disabled":false,"before":2,"after":3}` at all 10 combinations. |
 | DEF-03 Error not announced | Added a persistent inline error with `role="alert"` and `aria-describedby` on submit. Error toasts in `ToastComponent` now use `role="alert"` / `role="status"` with `aria-live`. | `role=alert` on the inline error at all 10 combinations. |
 | DEF-04 Wrong error message | Classified failures with `isAxiosError` and the HTTP status: 429 rate limit, 5xx server error, 400/422 validation, network fallback. | 500 mode now shows "Something went wrong on our side. Please try again."; 429 mode shows the rate-limit message. |
 | DEF-05 Success focus lost | Added a `tabIndex={-1}` confirmation panel with a ref; focus moves to it when success renders. "Send Another Inquiry" returns focus to the name field. | `active=DIV`, `statusFocused=true` at all 10 combinations. |

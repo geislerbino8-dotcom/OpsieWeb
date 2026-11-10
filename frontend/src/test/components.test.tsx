@@ -229,7 +229,9 @@ describe("responsive component behavior and accessibility", () => {
 
     const submitButton = screen.getByRole("button", { name: "Send Message" });
     await user.click(submitButton);
-    expect(submitButton).toBeDisabled();
+    // DS-2: the submit stays focusable and is marked aria-disabled while sending.
+    expect(submitButton).toHaveAttribute("aria-disabled", "true");
+    expect((submitButton as HTMLButtonElement).disabled).toBe(false);
     expect(screen.getByRole("form", { name: "Not sure where to start?" })).toHaveAttribute("aria-busy", "true");
 
     await user.click(submitButton);

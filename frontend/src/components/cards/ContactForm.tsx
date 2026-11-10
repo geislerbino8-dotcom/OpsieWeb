@@ -45,7 +45,7 @@ const REQUIRED_FIELDS: FieldName[] = [
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const FIELD_BASE =
-  "w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] aria-invalid:border-[#EF4444]/70 aria-invalid:focus:ring-[#EF4444] group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:placeholder-neutral-300";
+  "w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] aria-invalid:border-[#EF4444]/70 aria-invalid:focus:ring-[#EF4444] group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:placeholder:text-neutral-300";
 
 const INPUT_CLASS = `${FIELD_BASE} text-white group-hover:text-white`;
 
@@ -164,6 +164,13 @@ function ContactForm() {
 
   const handleCreateInquiry = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // The submit uses aria-disabled (DS-2) so it stays focusable; guard the
+    // handler so an in-flight request cannot be duplicated.
+    if (loading) {
+      return;
+    }
+
     setSubmitError(null);
 
     const nextErrors = validate(userData);
@@ -233,7 +240,7 @@ function ContactForm() {
         Main Card: Kept physically uniform.
         Uses group-hover properties to turn child elements white/light gray when open.
       */}
-      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl card-side-glow md:p-10 p-6 flex flex-col items-center border border-[#8B5CF6]/25 overflow-hidden transition-all duration-500">
+      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl card-side-glow md:p-10 p-6 flex flex-col items-center border border-[#8B5CF6]/25 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-[#8B5CF6]/60">
 
         {/* Smooth Gradient Layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black to-[#6D28D9] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
@@ -405,12 +412,13 @@ function ContactForm() {
 
             <button
               type="submit"
-              disabled={loading}
+              aria-disabled={loading}
+              aria-busy={loading}
               aria-describedby={submitError ? "contact-form-error" : undefined}
-              className={`w-full py-4 rounded-full font-bold text-white shadow-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+              className={`w-full py-4 rounded-full font-bold text-white shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)] transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
                 loading
-                  ? "bg-[#7C3AED] opacity-60 cursor-not-allowed"
-                  : "bg-[#7C3AED] hover:bg-[#6D28D9] group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5"
+                  ? "bg-[#7C3AED] opacity-50 cursor-not-allowed"
+                  : "bg-[#7C3AED] hover:bg-[#6D28D9] group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5 active:translate-y-0 active:bg-[#5B21B6]"
               }`}
             >
               {loading ? "Sending..." : "Send Message"}
@@ -447,7 +455,7 @@ function ContactForm() {
             <button
               type="button"
               onClick={handleSendAnother}
-              className="text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-[#A78BFA] transition-colors group-hover:text-white group-hover:hover:text-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5CF6]"
+              className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-[#A78BFA] transition-colors group-hover:text-white group-hover:hover:text-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5CF6]"
             >
               Send Another Inquiry
             </button>
