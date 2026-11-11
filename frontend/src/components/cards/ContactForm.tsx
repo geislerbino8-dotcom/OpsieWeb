@@ -459,7 +459,7 @@ function ContactForm() {
               className={`w-full py-4 rounded-full font-bold text-white shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)] transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
                 loading
                   ? "bg-[#7C3AED] opacity-50 cursor-not-allowed"
-                  : "bg-[#7C3AED] hover:bg-[#6D28D9] group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5 active:translate-y-0 active:bg-[#5B21B6]"
+                  : "bg-[#7C3AED] hover:bg-[#6D28D9] group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5 active:translate-y-0 active:bg-[#5B21B6] group-hover:hover:active:bg-[#5B21B6] group-hover:hover:active:text-white"
               }`}
             >
               {loading ? "Sending..." : "Send Message"}

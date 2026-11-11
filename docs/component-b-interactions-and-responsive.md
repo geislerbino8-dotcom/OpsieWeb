@@ -76,7 +76,52 @@ Run on 2026-11-11 against the Vite dev server (`:5173`) and the local mock (`:50
 
 Screenshots (30 files) and `probe-results.json` are local/untracked in `shots/component-b/`.
 
-## 4. Deliberate scope boundaries
+## 4. Interaction and viewport test pass (2026-11-11)
+
+Dedicated CDP suite (`component-b-interaction-tests.mjs`, local/untracked) on `/contact-us` and `/`, with focus emulation enabled so `:focus`/`:focus-visible` render in headless Edge. Results are in `shots/component-b/interaction-results.json`.
+
+### Keyboard and focus visibility
+
+| Check | 1440 px | 320 px |
+| --- | --- | --- |
+| Tab order | name → email → phone → address → description → platform → product → category → submit | same |
+| Visible indicator on every stop | yes | yes |
+| Enter on empty submit | alert “Please correct…”, focus `inquiry-name`, 6 invalid, 0 API calls | same |
+| Space on valid submit | success panel, focus on `[role="status"]` | same |
+
+### State transitions
+
+| Check | Observed |
+| --- | --- |
+| Pressed fill (mouse held) | `rgb(91, 33, 182)` = `#5B21B6` |
+| Loading | form `aria-busy=true`; button text “Sending…”, `aria-disabled=true`, `aria-busy=true`, native `disabled=false` |
+| Duplicate submit during loading | total requests stay **1** |
+| Success | `[role="status"]` focused; action 44 px tall |
+| Send Another via Enter | form returns, focus `inquiry-name`, all values cleared |
+| Error (500) | `role="alert"` server message; submit enabled |
+| Retry | second request succeeds; 2 calls total |
+
+### Viewport changes without reload
+
+Resized `1440 → 1024 → 768 → 375 → 320 → 768 → 1440` on `/` after filling the form:
+
+| Width | Form width | Grid columns | Overflow | Values preserved |
+| --- | --- | --- | --- | --- |
+| 1440 | 430 px | 2 | none | yes |
+| 1024 | 386 px | 2 | none | yes |
+| 768 | 430 px | 2 | none | yes |
+| 375 | 293 px | 1 | none | yes |
+| 320 | 238 px | 1 | none | yes |
+| 768 | 431 px | 2 | none | yes |
+| 1440 | 430 px | 2 | none | yes |
+
+The success panel was also resized `320 → 768 → 1440 → 320`: it stayed visible with no horizontal overflow at every width.
+
+### Defect found and fixed
+
+The card-hover recipe turns the submit white (`group-hover:hover:bg-white`, specificity 0,4,0). That outranked the plain pressed utility (`active:bg-[#5B21B6]`, 0,2,0), so a mouse press while hovering showed no fill change. Added `group-hover:hover:active:bg-[#5B21B6]` and `group-hover:hover:active:text-white` (0,5,0). The held-press measurement now reads `rgb(91, 33, 182)`, and a regression assertion locks the classes.
+
+## 5. Deliberate scope boundaries
 
 - The floating chat launcher overlap at 320/375 is a global Botpress affordance, not part of Component B; it is recorded rather than restyled.
 - The unlayered global focus rule is absent on this branch, so the field `focus:ring-*` utilities are the actual indicator. No global CSS was added or changed for focus.

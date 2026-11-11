@@ -112,6 +112,9 @@ describe("contact inquiry form (Component B)", () => {
     expect(submit.className).toContain("text-white");
     expect(submit.className).toContain("rounded-full");
     expect(submit.className).toContain("shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)]");
+    // The pressed fill must beat the card-hover white fill (higher specificity).
+    expect(submit.className).toContain("group-hover:hover:active:bg-[#5B21B6]");
+    expect(submit.className).toContain("group-hover:hover:active:text-white");
   });
 
   it("applies the shared card lift and keeps the success action tappable", async () => {
