@@ -64,6 +64,31 @@ describe("contact inquiry form (Component B)", () => {
     expect(screen.getByLabelText(/^platform/i)).toBeRequired();
     expect(screen.getByLabelText(/^product/i)).toBeRequired();
     expect(screen.getByLabelText(/inquiry category/i)).toBeRequired();
+
+    // B2-CF-2: required state is exposed programmatically as well as natively.
+    for (const label of [
+      /^full name/i,
+      /^email address/i,
+      /^project or inquiry details/i,
+      /^platform/i,
+      /^product/i,
+      /inquiry category/i,
+    ]) {
+      expect(screen.getByLabelText(label)).toHaveAttribute("aria-required", "true");
+    }
+
+    for (const label of [/^phone number/i, /^address/i]) {
+      expect(screen.getByLabelText(label)).not.toHaveAttribute("aria-required");
+    }
+  });
+
+  it("stacks the field rows on phones and pairs them from the md breakpoint", () => {
+    render(<ContactForm />);
+
+    const grid = screen.getByLabelText(/^full name/i).closest("div.grid");
+    expect(grid?.className).toContain("grid-cols-1");
+    expect(grid?.className).toContain("md:grid-cols-2");
+    expect(screen.getByLabelText(/^full name/i).closest(".space-y-2")).toHaveClass("min-w-0");
   });
 
   it("exposes autocomplete hints for the identity fields", () => {
@@ -105,6 +130,7 @@ describe("contact inquiry form (Component B)", () => {
     const sendAnother = await screen.findByRole("button", { name: /send another inquiry/i });
     expect(sendAnother.className).toContain("min-h-11");
     expect(sendAnother.className).toContain("rounded-full");
+    expect(sendAnother.className).toContain("active:opacity-70");
   });
 
   it("keeps submit focusable while sending and ignores duplicate submits", async () => {
@@ -254,6 +280,47 @@ describe("contact inquiry form (Component B)", () => {
     expect(screen.getByLabelText(/^email address/i)).toHaveAttribute("aria-invalid", "true");
     expect(screen.getByText("Please enter a valid email address.")).toBeInTheDocument();
     await waitFor(() => expect(screen.getByLabelText(/^email address/i)).toHaveFocus());
+  });
+
+  it("re-validates a corrected field when it loses focus after a failed submit", async () => {
+    const user = userEvent.setup();
+
+    render(<ContactForm />);
+    await user.click(screen.getByRole("button", { name: /send message/i }));
+
+    const name = screen.getByLabelText(/^full name/i);
+    expect(name).toHaveAttribute("aria-invalid", "true");
+
+    await user.type(name, "Test User");
+    await user.tab();
+
+    expect(name).not.toHaveAttribute("aria-invalid");
+    expect(screen.queryByText("Please enter your full name.")).not.toBeInTheDocument();
+  });
+
+  it("keeps the error when an invalid field is blurred again", async () => {
+    const user = userEvent.setup();
+
+    render(<ContactForm />);
+    await user.click(screen.getByRole("button", { name: /send message/i }));
+
+    const name = screen.getByLabelText(/^full name/i);
+    await user.click(name);
+    await user.tab();
+
+    expect(name).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByText("Please enter your full name.")).toBeInTheDocument();
+  });
+
+  it("does not validate on blur before the first submit attempt", async () => {
+    const user = userEvent.setup();
+
+    render(<ContactForm />);
+    await user.click(screen.getByLabelText(/^full name/i));
+    await user.tab();
+
+    expect(screen.getByLabelText(/^full name/i)).not.toHaveAttribute("aria-invalid");
+    expect(screen.queryByText("Please enter your full name.")).not.toBeInTheDocument();
   });
 
   it("clears a field error as soon as the user edits that field", async () => {

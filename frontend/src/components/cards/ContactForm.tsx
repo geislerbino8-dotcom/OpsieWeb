@@ -116,7 +116,7 @@ type FieldProps = {
 
 function Field({ id, label, required, optional, error, children }: FieldProps) {
   return (
-    <div className="space-y-2">
+    <div className="min-w-0 space-y-2">
       <label
         htmlFor={id}
         className="block text-sm font-medium text-[#9aa0aa] transition-colors duration-500 group-hover:text-white"
@@ -151,6 +151,7 @@ function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [userData, setUserData] = useState<UserInfo>(EMPTY_USER_INFO);
   const successRef = useRef<HTMLDivElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
@@ -177,6 +178,7 @@ function ContactForm() {
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
+      setHasAttemptedSubmit(true);
       const firstInvalid = REQUIRED_FIELDS.find((field) => nextErrors[field]);
       formRef.current
         ?.querySelector<HTMLElement>(`#inquiry-${firstInvalid}`)
@@ -185,6 +187,7 @@ function ContactForm() {
     }
 
     setErrors({});
+    setHasAttemptedSubmit(false);
     setLoading(true);
 
     try {
@@ -222,10 +225,34 @@ function ContactForm() {
     setSubmitError(null);
   };
 
+  // After a failed submit, re-check a field when the user leaves it so the
+  // error clears (or updates) without waiting for another submit.
+  const handleFieldBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (!hasAttemptedSubmit) {
+      return;
+    }
+
+    const field = e.target.name as FieldName;
+    const nextErrors = validate(userData);
+
+    setErrors((prev) => {
+      const next = { ...prev };
+
+      if (nextErrors[field]) {
+        next[field] = nextErrors[field];
+      } else {
+        delete next[field];
+      }
+
+      return next;
+    });
+  };
+
   const handleSendAnother = () => {
     setTransSucc(false);
     setSubmitError(null);
     setErrors({});
+    setHasAttemptedSubmit(false);
     setTimeout(() => nameInputRef.current?.focus(), 0);
   };
 
@@ -276,12 +303,14 @@ function ContactForm() {
                   ref={nameInputRef}
                   id="inquiry-name"
                   onChange={handleUserDataChange}
+                  onBlur={handleFieldBlur}
                   type="text"
                   name="name"
                   autoComplete="name"
                   value={userData.name}
                   placeholder="e.g. Juan Dela Cruz"
                   required
+                  aria-required="true"
                   aria-invalid={errors.name ? true : undefined}
                   aria-describedby={describedBy("name")}
                   className={INPUT_CLASS}
@@ -291,12 +320,14 @@ function ContactForm() {
                 <input
                   id="inquiry-email"
                   onChange={handleUserDataChange}
+                  onBlur={handleFieldBlur}
                   type="email"
                   name="email"
                   autoComplete="email"
                   value={userData.email}
-                  placeholder="you@company.com"
+                  placeholder="you@email.com"
                   required
+                  aria-required="true"
                   aria-invalid={errors.email ? true : undefined}
                   aria-describedby={describedBy("email")}
                   className={INPUT_CLASS}
@@ -310,6 +341,7 @@ function ContactForm() {
                 <input
                   id="inquiry-phone"
                   onChange={handleUserDataChange}
+                  onBlur={handleFieldBlur}
                   type="tel"
                   name="phone"
                   autoComplete="tel"
@@ -322,11 +354,12 @@ function ContactForm() {
                 <input
                   id="inquiry-address"
                   onChange={handleUserDataChange}
+                  onBlur={handleFieldBlur}
                   type="text"
                   name="address"
                   autoComplete="street-address"
                   value={userData.address}
-                  placeholder="Street, city, province"
+                  placeholder="Street, city"
                   className={INPUT_CLASS}
                 />
               </Field>
@@ -337,10 +370,12 @@ function ContactForm() {
               <textarea
                 id="inquiry-description"
                 onChange={handleUserDataChange}
+                onBlur={handleFieldBlur}
                 name="description"
                 value={userData.description}
                 placeholder="Tell us about your project or inquiry"
                 required
+                aria-required="true"
                 aria-invalid={errors.description ? true : undefined}
                 aria-describedby={describedBy("description")}
                 className={`${INPUT_CLASS} resize-none h-32`}
@@ -353,9 +388,11 @@ function ContactForm() {
                 <select
                   id="inquiry-platform"
                   onChange={handleUserDataChange}
+                  onBlur={handleFieldBlur}
                   name="platform"
                   value={userData.platform}
                   required
+                  aria-required="true"
                   aria-invalid={errors.platform ? true : undefined}
                   aria-describedby={describedBy("platform")}
                   className={SELECT_CLASS}
@@ -374,9 +411,11 @@ function ContactForm() {
                 <select
                   id="inquiry-product"
                   onChange={handleUserDataChange}
+                  onBlur={handleFieldBlur}
                   name="product"
                   value={userData.product}
                   required
+                  aria-required="true"
                   aria-invalid={errors.product ? true : undefined}
                   aria-describedby={describedBy("product")}
                   className={SELECT_CLASS}
@@ -394,9 +433,11 @@ function ContactForm() {
               <select
                 id="inquiry-category"
                 onChange={handleUserDataChange}
+                onBlur={handleFieldBlur}
                 name="category"
                 value={userData.category}
                 required
+                aria-required="true"
                 aria-invalid={errors.category ? true : undefined}
                 aria-describedby={describedBy("category")}
                 className={SELECT_CLASS}
@@ -455,7 +496,7 @@ function ContactForm() {
             <button
               type="button"
               onClick={handleSendAnother}
-              className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-[#A78BFA] transition-colors group-hover:text-white group-hover:hover:text-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5CF6]"
+              className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-[#A78BFA] active:opacity-70 transition-all group-hover:text-white group-hover:hover:text-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5CF6]"
             >
               Send Another Inquiry
             </button>
