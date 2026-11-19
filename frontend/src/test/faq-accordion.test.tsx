@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import axe from "axe-core";
 import { ContentContext } from "@/App";
@@ -12,9 +13,11 @@ vi.mock("@/App", async () => {
 
 function renderFaq() {
   return render(
-    <ContentContext.Provider value={{ faqSection: { header: "Frequently asked questions" } }}>
-      <FAQAccordion />
-    </ContentContext.Provider>,
+    <MemoryRouter>
+      <ContentContext.Provider value={{ faqSection: { header: "Frequently asked questions" } }}>
+        <FAQAccordion />
+      </ContentContext.Provider>
+    </MemoryRouter>,
   );
 }
 
@@ -108,9 +111,11 @@ describe("FAQ accordion (Component C)", () => {
 
   it("renders a fallback heading when CMS content is unavailable", () => {
     render(
-      <ContentContext.Provider value={null}>
-        <FAQAccordion />
-      </ContentContext.Provider>,
+      <MemoryRouter>
+        <ContentContext.Provider value={null}>
+          <FAQAccordion />
+        </ContentContext.Provider>
+      </MemoryRouter>,
     );
 
     const heading = screen.getByRole("heading", { level: 2 });
@@ -119,12 +124,33 @@ describe("FAQ accordion (Component C)", () => {
   });
 
   it("uses the contrast-safe intro colour on the light page", () => {
+    renderFaq();
+
+    const intro = screen.getByText(/Everything you need to know about Opsie/i);
+    // #475569 on #ECEDF1 = 6.48:1; the previous text-gray-500 was 4.13:1.
+    expect(intro.className).toContain("text-[#475569]");
+  });
+
+  it("renders the mono kicker and hides decorative index numbers from AT", () => {
     const { container } = renderFaq();
 
-    const intro = container.querySelector("section p");
-    expect(intro).not.toBeNull();
-    // #475569 on #ECEDF1 = 6.48:1; the previous text-gray-500 was 4.13:1.
-    expect(intro?.className).toContain("text-[#475569]");
+    expect(screen.getByText("Opsie Support // FAQ")).toBeInTheDocument();
+    expect(screen.getByText("Answers / 05")).toBeInTheDocument();
+
+    const indices = container.querySelectorAll("button > span > span[aria-hidden='true']");
+    expect(indices).toHaveLength(5);
+    for (const index of indices) {
+      expect(index.textContent?.trim()).toMatch(/^0[1-5]$/);
+    }
+  });
+
+  it("renders the contact link through the router", () => {
+    renderFaq();
+
+    const link = screen.getByRole("link", { name: /reach out to us/i });
+    expect(link).toHaveAttribute("href", "/contact-us");
+    expect(link.tagName).toBe("A");
+    expect(link.className).toContain("focus-visible:outline-2");
   });
 
   it("has no automated accessibility violations", async () => {

@@ -152,9 +152,11 @@ describe("responsive component behavior and accessibility", () => {
   it("keeps FAQ answer visibility and disclosure state in sync", async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <ContentContext.Provider value={{ faqSection: { header: "Frequently asked questions" } }}>
-        <FAQAccordion />
-      </ContentContext.Provider>,
+      <MemoryRouter>
+        <ContentContext.Provider value={{ faqSection: { header: "Frequently asked questions" } }}>
+          <FAQAccordion />
+        </ContentContext.Provider>
+      </MemoryRouter>,
     );
 
     const [firstQuestion, secondQuestion] = screen.getAllByRole("button");
