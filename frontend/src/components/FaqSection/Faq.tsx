@@ -10,6 +10,10 @@ const FAQAccordion = () => {
   const content = useContext(ContentContext)
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // The CMS header arrives asynchronously (and may be absent); fall back so the
+  // section never renders an empty <h2> or throws on a missing faqSection.
+  const heading = content?.faqSection?.header || "Frequently asked questions";
+
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -20,9 +24,9 @@ const FAQAccordion = () => {
         
         {/* Left Side: Header Content */}
         <div className="lg:w-1/3 lg:sticky lg:top-10">
-          <SuperHeader text={content?.faqSection.header} position="left"/>
+          <SuperHeader text={heading} position="left"/>
         
-          <p className="mt-6 text-lg text-gray-500 text-center md:text-left font-light max-w-sm">
+          <p className="mt-6 text-lg text-[#475569] text-center md:text-left font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for?{" "}
             <a
               href="/contact-us"

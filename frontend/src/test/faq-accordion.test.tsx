@@ -106,6 +106,27 @@ describe("FAQ accordion (Component C)", () => {
     expect(screen.getByText(/end-to-end solutions including web and mobile development/i)).toBeInTheDocument();
   });
 
+  it("renders a fallback heading when CMS content is unavailable", () => {
+    render(
+      <ContentContext.Provider value={null}>
+        <FAQAccordion />
+      </ContentContext.Provider>,
+    );
+
+    const heading = screen.getByRole("heading", { level: 2 });
+    expect(heading).toHaveTextContent("Frequently asked questions");
+    expect(heading.textContent?.trim()).not.toBe("");
+  });
+
+  it("uses the contrast-safe intro colour on the light page", () => {
+    const { container } = renderFaq();
+
+    const intro = container.querySelector("section p");
+    expect(intro).not.toBeNull();
+    // #475569 on #ECEDF1 = 6.48:1; the previous text-gray-500 was 4.13:1.
+    expect(intro?.className).toContain("text-[#475569]");
+  });
+
   it("has no automated accessibility violations", async () => {
     const { container } = renderFaq();
     await expectAccessible(container);
