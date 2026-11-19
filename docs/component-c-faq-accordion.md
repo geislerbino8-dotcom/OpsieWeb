@@ -30,20 +30,24 @@ state/contrast bars.
 
 **Structure**
 
+- The left column opens with a mono kicker row: `Opsie Support // FAQ` (teal, dot) and
+  `Answers / 05` (hidden below `sm`), mirroring Component B's `Opsie Control // Inquiry`.
 - Each item is a card: `rounded-2xl border bg-white`, teal border + soft teal shadow when open, hairline navy border when closed.
 - The trigger is wrapped in an `<h3>` so the question list is navigable by heading.
 - Trigger: native `<button type="button">` with `id="faq-trigger-<i>"`, `aria-expanded`, `aria-controls="faq-answer-<i>"`.
 - Panel: `id="faq-answer-<i>"`, `role="region"`, `aria-labelledby="faq-trigger-<i>"`, `aria-hidden={!isOpen}`.
 - Panel reveal uses the existing CSS-grid technique: `grid-template-rows: 0fr → 1fr` inside an `overflow-hidden` wrapper, so height animates without measuring.
-- Decorative pieces (`01` numbering, plus/minus icon) are `aria-hidden="true"`.
+- Decorative pieces (`01` numbering, plus/minus icon, kicker dot, meta count) are `aria-hidden="true"`.
+- The “Reach out to us” action is a React Router `<Link to="/contact-us">` (AC-07).
 
 **States**
 
 | State | Treatment |
 | --- | --- |
 | Closed | White card, `border-[#0B1622]/10`, navy question, `#ECEDF1` icon chip with a `+`. |
-| Closed hover | Border shifts to `#3CBDE6/50` — colour only, no hover-only information. |
-| Open | `border-[#3CBDE6]/50`, teal shadow, question in `#0E7490`, icon chip `#3CBDE6` with the `+` rotated 45°. |
+| Closed hover | Card tint `#F8FAFC` + border `#3CBDE6/60` — colour only, no hover-only information and no row movement. |
+| Pressed | Trigger fills `#F1F5F9`; the row stays in place. |
+| Open | `border-[#3CBDE6]/60`, teal shadow, question and index in `#0E7490`, icon chip `#3CBDE6` with the `+` rotated 45°. |
 | Focus-visible | `outline-2 outline-offset-2 outline-[#0E7490]` on the trigger and on the “Reach out to us” link. |
 | Keyboard | Enter opens, Space closes/opens; single-open model retained (opening one closes the previous). |
 | Reduced motion | The global `@media (prefers-reduced-motion: reduce)` rule (`index.css:102`) collapses the transition to 0.01 ms. |
@@ -69,8 +73,26 @@ visually.
 - Cleaned `faqData.ts`: added the missing `?` to the first question, trimmed trailing
   spaces, and collapsed the single-item answer array for “How do you ensure quality?” to a
   plain string. No question or answer wording was otherwise changed.
-- Added `frontend/src/test/faq-accordion.test.tsx` (6 cases) and tightened the shared FAQ
-  assertion in `components.test.tsx` (heading wrapper, `role="region"`, `aria-labelledby`).
+- Added `frontend/src/test/faq-accordion.test.tsx` (6 cases at the rebuild) and tightened the
+  shared FAQ assertion in `components.test.tsx` (heading wrapper, `role="region"`,
+  `aria-labelledby`).
+
+**Styling pass (2026-11-19).** The visual language now matches Component B's Figma recipe
+(white card, navy `#0B1622`, teal `#3CBDE6`/`#0E7490`, mono micro-labels):
+
+- Added the kicker row (`Opsie Support // FAQ` + `Answers / 05`) with the same
+  `.font-mono-label` 9/10 px `tracking-[0.14em]` recipe as B.
+- Added closed hover tint (`#F8FAFC`), pressed fill (`#F1F5F9`), a teal open index, and an
+  inset ring on the closed icon chip.
+- Indented the answer (`sm:pl-[26px]`) to align with the question text.
+- Converted the contact action to `<Link>` (AC-07); the tests now render inside
+  `MemoryRouter`.
+- Aligned the emphasis border to B's `#3CBDE6/60` token.
+- Deliberately skipped B's card hover lift, corner brackets, blueprint grid, and deep card
+  shadow — see `docs/component-c-styling-notes.md` §4 for the rationale.
+
+Full recipe, state matrix, shared-pattern audit, and measurements:
+`docs/component-c-styling-notes.md`.
 
 ## 4. Verification (2026-11-19)
 
@@ -78,13 +100,14 @@ visually.
 
 | Gate | Result |
 | --- | --- |
-| Vitest | **31/31** pass across 3 files (8 new FAQ cases) |
+| Vitest | **33/33** pass across 3 files (10 FAQ cases) |
 | `npx tsc -b` | clean |
 | Focused ESLint (`Faq.tsx`, `faqData.ts`, `faq-accordion.test.tsx`, `components.test.tsx`) | clean |
 | `npm run build` | pass |
 | axe (`faq-accordion.test.tsx`) | 0 violations (colour-contrast rule disabled in axe; measured manually below) |
 
-**Browser pass** (`audit-faq.mjs` / `contrast-faq.mjs`, local/untracked; Edge via CDP)
+**Browser pass** (`audit-faq-style.mjs` / `open-faq.mjs` / `focus-active-faq.mjs`,
+local/untracked; Edge via CDP)
 
 All three mounts × 1440/1024/768/375/320 = **15 combinations**.
 
@@ -96,23 +119,29 @@ All three mounts × 1440/1024/768/375/320 = **15 combinations**.
 | Trigger heights | 72–112 px (all ≥ 44 px) |
 | Heading-wrapped triggers | 5/5 on every combination |
 | `role="region"` + `aria-labelledby` | 5/5 on every combination |
+| Kicker / meta | kicker present at every width; meta hidden below 640 px as designed |
 | CMS heading | “Frequently asked questions” on every combination; fallback holds when the CMS request is blocked |
 
-**Interaction pass**
+**Interaction pass** (`open-faq.mjs`, settled by polling computed values)
 
 | Check | Result |
 | --- | --- |
-| Click opens item 1 | `aria-expanded="true"`, `aria-hidden="false"`, panel 109 px |
+| Click opens item 1 | `aria-expanded="true"`, `aria-hidden="false"`; answer height 135 px at ≥1024, 195 px at 375, 220 px at 320 |
+| Open styling | teal question/index `#0E7490`, icon `#3CBDE6` at `45deg`, teal `/60` border + glow |
 | Click item 2 | item 1 closes, item 2 opens (single-open) |
 | Enter on a focused trigger | opens |
 | Space on the open trigger | closes |
-| Focus outline | `2px #0E7490`, offset 2 px |
+| Closed hover | card tint `#F8FAFC` + teal `/60` border |
+| Pressed | trigger `#F1F5F9`; row does not move |
+| Focus outline (keyboard Tab) | `2px #0E7490`, offset 2 px; 5.36:1 on white / 4.58:1 on the page |
 
 **Contrast** (measured from computed styles)
 
 | Element | Ratio | Bar |
 | --- | --- | --- |
 | Section heading (gray-900) on `#ECEDF1` | **15.17:1** | 4.5:1 ✅ |
+| Kicker `#0E7490` on `#ECEDF1` | **4.58:1** | 4.5:1 ✅ |
+| Kicker meta `#475569` on `#ECEDF1` | **6.48:1** | 4.5:1 ✅ |
 | Intro paragraph `#475569` on `#ECEDF1` | **6.48:1** | 4.5:1 ✅ (was `text-gray-500` at **4.13:1**) |
 | Closed question `#0B1622` on white | **18.23:1** | 4.5:1 ✅ |
 | Open question `#0E7490` on white | **5.36:1** | 4.5:1 ✅ |
@@ -121,9 +150,10 @@ All three mounts × 1440/1024/768/375/320 = **15 combinations**.
 | Index number `#64748B` on white | **4.76:1** | 4.5:1 ✅ (also `aria-hidden`) |
 | Open icon `#06212E` on `#3CBDE6` | **7.6:1** | 4.5:1 ✅ |
 
-Screenshots: `shots/faq-audit/c-home-*.png`, `c-what-we-do-*.png`, and
-`c-who-we-are-*.png` across the five widths (local/untracked). Structured results:
-`shots/faq-audit/audit-results.json`.
+Screenshots: `shots/faq-style/c-home-*.png`, `c-what-we-do-*.png`, and
+`c-who-we-are-*.png` across the five widths, plus `c-home-open-*.png`
+(local/untracked). Structured results: `shots/faq-style/style-results.json` and
+`open-results.json`.
 
 ## 5. Known limitations and out-of-scope items
 

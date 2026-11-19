@@ -184,27 +184,33 @@ It was lightened to `#1F93B5` (**4.66:1**) and the probe now asserts the pressed
 >   `role="region"` labelled by its trigger (closes F3 / U6 4.1.2).
 > - Wrap each trigger in an `<h3>` so the question list is heading-navigable.
 > - Keep the single-open model and the CSS-grid reveal.
+> - Restyle to the same Figma light/teal/navy language as Component B: white cards, navy
+>   `#0B1622`, teal `#3CBDE6`/`#0E7490`, mono kicker row (`Opsie Support // FAQ` /
+>   `Answers / 05`), hover tint, pressed fill, and a teal open state.
 > - Fix light-surface contrast: closed question 18.23:1, open question 5.36:1, answer
 >   7.58:1, contact link 4.58:1.
 > - Move the intro paragraph to `#475569` (6.48:1, was 4.13:1) and fall back to a default
 >   heading when CMS content is absent.
+> - Convert the contact action to `<Link to="/contact-us">` (AC-07).
 > - Add focus-visible outlines and clean up `faqData.ts` (question marks, trailing spaces,
 >   single-item array).
 >
 > **Validation**
 >
-> - `npm test`: 31/31 pass across 3 files (8 FAQ cases).
+> - `npm test`: 33/33 pass across 3 files (10 FAQ cases).
 > - `npx tsc -b`: clean.
 > - `npm run build`: pass.
 > - Focused ESLint: clean.
 > - Browser probe: 0 defect signals — Component B at 1440/1024/768/375/320 on
 >   `/contact-us`; Component C across `/`, `/what-we-do`, and `/who-we-are` at
->   1440/1024/768/375/320.
+>   1440/1024/768/375/320. FAQ triggers 72–112 px, no overflow, focus ring 5.36:1 on
+>   white / 4.58:1 on the page, hover/pressed/open states measured.
 >
 > **Screenshots**
 >
-> Local, untracked: `shots/redesign/b-*.png`, `shots/redesign/c-*.png`, and
-> `shots/faq-audit/c-*-{1440,1024,768,375,320}.png`.
+> Local, untracked: `shots/redesign/b-*.png`, `shots/redesign/c-*.png`,
+> `shots/faq-audit/c-*-{1440,1024,768,375,320}.png`, and
+> `shots/faq-style/c-*-{1440,1024,768,375,320}.png` + `c-home-open-*.png`.
 >
 > **Scope**
 >
