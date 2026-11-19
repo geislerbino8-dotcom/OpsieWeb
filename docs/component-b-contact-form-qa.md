@@ -129,7 +129,7 @@ suites.
 | Check | Result |
 | --- | --- |
 | Probe defect signals | **0** across 5 widths on `/contact-us` |
-| Vitest | **29/29** pass (3 files) |
+| Vitest | **31/31** pass (3 files) |
 | `tsc -b` | clean |
 | Production build | pass |
 | Focused ESLint | clean |
@@ -186,25 +186,29 @@ It was lightened to `#1F93B5` (**4.66:1**) and the probe now asserts the pressed
 > - Keep the single-open model and the CSS-grid reveal.
 > - Fix light-surface contrast: closed question 18.23:1, open question 5.36:1, answer
 >   7.58:1, contact link 4.58:1.
+> - Move the intro paragraph to `#475569` (6.48:1, was 4.13:1) and fall back to a default
+>   heading when CMS content is absent.
 > - Add focus-visible outlines and clean up `faqData.ts` (question marks, trailing spaces,
 >   single-item array).
 >
 > **Validation**
 >
-> - `npm test`: 29/29 pass across 3 files (6 new FAQ cases).
+> - `npm test`: 31/31 pass across 3 files (8 FAQ cases).
 > - `npx tsc -b`: clean.
 > - `npm run build`: pass.
 > - Focused ESLint: clean.
 > - Browser probe: 0 defect signals — Component B at 1440/1024/768/375/320 on
->   `/contact-us`, Component C at 1440/375/320 on `/`.
+>   `/contact-us`; Component C across `/`, `/what-we-do`, and `/who-we-are` at
+>   1440/1024/768/375/320.
 >
 > **Screenshots**
 >
-> Local, untracked: `shots/redesign/b-*.png` and `shots/redesign/c-*.png`.
+> Local, untracked: `shots/redesign/b-*.png`, `shots/redesign/c-*.png`, and
+> `shots/faq-audit/c-*-{1440,1024,768,375,320}.png`.
 >
 > **Scope**
 >
 > No backend changes. The mock API and probe scripts are local QA tooling and are not
-> committed. The shared `SuperHeader` teal emphasis (2.36:1 on light) and the floating chat
-> launcher are documented risks outside these components.
+> committed. The shared `SuperHeader` teal emphasis (2.36:1 on light; latent for the current
+> FAQ copy) and the floating chat launcher are documented risks outside these components.
 

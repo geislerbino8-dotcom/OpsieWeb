@@ -56,11 +56,14 @@ visually.
 
 - Rewrote `Faq.tsx` around the structure above. IDs are stable per index (`faq-trigger-0`,
   `faq-answer-0`, …), which keeps `aria-controls`/`aria-labelledby` resolvable.
+- Guarded the CMS heading with `content?.faqSection?.header || "Frequently asked questions"`.
+  The previous `content?.faqSection.header` threw when `faqSection` was absent and left an
+  empty `<h2>` while the asynchronous CMS fetch was still in flight.
 - Replaced the dark/violet panel styling with light white cards, navy ink `#0B1622`, and
   the teal `#3CBDE6` / `#0E7490` accent used by Component B and the site chrome.
-- Fixed two contrast problems introduced by the old styling: the open question had been
-  rendered in a low-contrast accent, and the “Reach out to us” link was below 4.5:1 on the
-  light page. Both now use `#0E7490`.
+- Fixed three contrast problems on the light page: the open question and the “Reach out to
+  us” link now use `#0E7490`, and the intro paragraph moved from `text-gray-500`
+  (**4.13:1** on the `#ECEDF1` body) to `text-[#475569]` (**6.48:1**).
 - Added `font-mono-label` for the `01`–`05` index numbers (Tailwind’s layered `font-mono`
   loses to the unlayered `* { font-family: Montserrat }` rule — same fix as Component B).
 - Cleaned `faqData.ts`: added the missing `?` to the first question, trimmed trailing
@@ -75,21 +78,25 @@ visually.
 
 | Gate | Result |
 | --- | --- |
-| Vitest | **29/29** pass across 3 files (6 new FAQ cases) |
+| Vitest | **31/31** pass across 3 files (8 new FAQ cases) |
 | `npx tsc -b` | clean |
 | Focused ESLint (`Faq.tsx`, `faqData.ts`, `faq-accordion.test.tsx`, `components.test.tsx`) | clean |
 | `npm run build` | pass |
 | axe (`faq-accordion.test.tsx`) | 0 violations (colour-contrast rule disabled in axe; measured manually below) |
 
-**Browser pass** (`verify-b-c.mjs`, local/untracked; Edge via CDP)
+**Browser pass** (`audit-faq.mjs` / `contrast-faq.mjs`, local/untracked; Edge via CDP)
 
-| Check | 1440 px | 375 px | 320 px |
-| --- | --- | --- | --- |
-| Triggers rendered | 5 | 5 | 5 |
-| Horizontal overflow | none | none | none |
-| Trigger heights | 88 px each | 72–88 px | 72–112 px |
-| Heading-wrapped triggers | 5/5 | 5/5 | 5/5 |
-| `role="region"` + `aria-labelledby` | 5/5 | 5/5 | 5/5 |
+All three mounts × 1440/1024/768/375/320 = **15 combinations**.
+
+| Check | Result |
+| --- | --- |
+| Triggers rendered | 5 on every combination |
+| Horizontal overflow | none on any combination |
+| Section bounds | inside the viewport at every width |
+| Trigger heights | 72–112 px (all ≥ 44 px) |
+| Heading-wrapped triggers | 5/5 on every combination |
+| `role="region"` + `aria-labelledby` | 5/5 on every combination |
+| CMS heading | “Frequently asked questions” on every combination; fallback holds when the CMS request is blocked |
 
 **Interaction pass**
 
@@ -105,6 +112,8 @@ visually.
 
 | Element | Ratio | Bar |
 | --- | --- | --- |
+| Section heading (gray-900) on `#ECEDF1` | **15.17:1** | 4.5:1 ✅ |
+| Intro paragraph `#475569` on `#ECEDF1` | **6.48:1** | 4.5:1 ✅ (was `text-gray-500` at **4.13:1**) |
 | Closed question `#0B1622` on white | **18.23:1** | 4.5:1 ✅ |
 | Open question `#0E7490` on white | **5.36:1** | 4.5:1 ✅ |
 | Answer `#475569` on white | **7.58:1** | 4.5:1 ✅ |
@@ -112,16 +121,19 @@ visually.
 | Index number `#64748B` on white | **4.76:1** | 4.5:1 ✅ (also `aria-hidden`) |
 | Open icon `#06212E` on `#3CBDE6` | **7.6:1** | 4.5:1 ✅ |
 
-Screenshots: `shots/redesign/c-{1440,375,320}.png`, `c-1440-open.png`,
-`c-1440-second-open.png`, `c-375-open.png` (local/untracked). Structured results:
-`shots/redesign/verify-results.json`.
+Screenshots: `shots/faq-audit/c-home-*.png`, `c-what-we-do-*.png`, and
+`c-who-we-are-*.png` across the five widths (local/untracked). Structured results:
+`shots/faq-audit/audit-results.json`.
 
 ## 5. Known limitations and out-of-scope items
 
-- **Shared `SuperHeader` teal fragments.** The `*…*` emphasis spans render `#3CBDE6` at
-  **2.36:1** on the light section. This is a cross-cutting `SuperHeader` concern (used far
-  beyond the FAQ) and was left unchanged; fixing it needs a design decision about the
-  emphasis colour on light backgrounds.
+- **Shared `SuperHeader` teal fragments (latent).** `SuperHeader` renders `*…*` emphasis
+  spans in `#3CBDE6` (**2.36:1** on the light section). The current CMS FAQ heading has no
+  emphasis span, so the shipped page passes; adding one would fail. This is a cross-cutting
+  `SuperHeader` concern and was left unchanged.
+- **App-level CMS failure.** With the content request blocked, `App.fetchContent` throws an
+  unhandled `TypeError` on `res.data`; the FAQ still renders with its fallback heading.
+  This is an `App.tsx` concern, not Component C.
 - **Floating chat launcher.** The global Botpress launcher overlaps the FAQ at 320–375 px
   when scrolled to the bottom. It is outside this component.
 - **Screen-reader announcement of the region.** The harness has no screen-reader emulation;
