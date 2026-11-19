@@ -43,14 +43,11 @@ body {
   min-height: 100%;
 }
 
-/* Soft violet side-glow for public-site cards: blurred light bleeding from the
-   left and right edges only (x-offsets do the work; top/bottom stay clean).
-   Unlayered on purpose so it wins over layered shadow-* utilities — same
-   cascade rule the old button-radius reset relied on. */
-.card-side-glow {
-  box-shadow:
-    -24px 0 48px -20px rgba(139, 92, 246, 0.6),
-    24px 0 48px -20px rgba(139, 92, 246, 0.6);
+/* Figma redesign micro-labels (2026-11-19). Unlayered so it wins over the
+   unlayered `* { font-family: Montserrat }` rule above; Tailwind's `font-mono`
+   utility lives in a layer and loses to that universal rule. */
+.font-mono-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 img,

@@ -69,12 +69,15 @@ Run on 2026-11-11 against the Vite dev server (`:5173`) and the local mock (`:50
 | Failure / retry | 500 → server message; retry `before=2 after=3`, `disabled=false` |
 | `aria-required` | `name`, `email`, `description`, `platform`, `product`, `category` |
 | Blur re-validation | `before=true → afterBlur=null`, `errorStill=false` |
-| Focus ring | valid `2px #8B5CF6`; invalid `2px #EF4444` |
-| Contrast | placeholder **7.08:1**; submit **5.7:1** |
-| Touch | inputs 50 px, selects 47 px, textarea 128 px, submit 56 px, success action 215×44 px |
-| Card hover | `translate: 0px -4px`, border α `0.6`, overlay `1` |
+| Focus ring | valid `2px #0E7490`; invalid `2px #B91C1C` (2026-11-19 Figma restyle) |
+| Contrast | placeholder **5.1:1**; submit **7.6:1**; pressed **4.66:1** |
+| Touch | inputs 50 px, selects 47 px, textarea 128 px, submit 52 px, success action 215×44 px |
+| Card hover | `translate: 0px -4px`, teal border α `0.6`, navy/teal shadow |
 
 Screenshots (30 files) and `probe-results.json` are local/untracked in `shots/component-b/`.
+
+> **2026-11-19 re-verification after the Figma restyle.** The interaction contract is unchanged; only the palette and surface moved from carbon/violet to white/teal/navy. Re-ran the CDP suite (`verify-b-c.mjs`, local/untracked): **0 defect signals**. Keyboard order and Enter/Space still pass at 1440 and 320; pressed fill is `#1F93B5` (4.66:1); loading still exposes `aria-busy`/`aria-disabled` with native `disabled=false`; duplicate submit stays at 1 request; success stays focused with a 44 px action; Send Another restores the form and `inquiry-name` focus; 500 error announces and retries; no overflow at 320/375/768/1024/1440. The white-card hover recipe removed the violet wash, so the old `group-hover:hover:active` specificity workaround was deleted.
+
 
 ## 4. Interaction and viewport test pass (2026-11-11)
 

@@ -104,17 +104,17 @@ describe("contact inquiry form (Component B)", () => {
     render(<ContactForm />);
 
     for (const label of [/^full name/i, /^email address/i, /^phone number/i, /^address/i, /^project or inquiry details/i]) {
-      expect(screen.getByLabelText(label).className).toContain("placeholder:text-gray-400");
+      expect(screen.getByLabelText(label).className).toContain("placeholder:text-[#5B6B7A]");
     }
 
     const submit = screen.getByRole("button", { name: /send message/i });
-    expect(submit.className).toContain("bg-[#7C3AED]");
-    expect(submit.className).toContain("text-white");
+    expect(submit.className).toContain("bg-[#3CBDE6]");
+    expect(submit.className).toContain("text-[#06212E]");
     expect(submit.className).toContain("rounded-full");
-    expect(submit.className).toContain("shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)]");
-    // The pressed fill must beat the card-hover white fill (higher specificity).
-    expect(submit.className).toContain("group-hover:hover:active:bg-[#5B21B6]");
-    expect(submit.className).toContain("group-hover:hover:active:text-white");
+    expect(submit.className).toContain("shadow-[0_14px_34px_-14px_rgba(60,189,230,0.9)]");
+    // Navy text on teal = 7.6:1; hover/active teal keep it above 4.5:1.
+    expect(submit.className).toContain("hover:bg-[#29A6CC]");
+    expect(submit.className).toContain("active:bg-[#1F93B5]");
   });
 
   it("applies the shared card lift and keeps the success action tappable", async () => {
@@ -125,7 +125,7 @@ describe("contact inquiry form (Component B)", () => {
 
     const card = screen.getByRole("form").parentElement;
     expect(card?.className).toContain("hover:-translate-y-1");
-    expect(card?.className).toContain("hover:border-[#8B5CF6]/60");
+    expect(card?.className).toContain("hover:border-[#3CBDE6]/60");
 
     await fillRequiredFields(user);
     await user.click(screen.getByRole("button", { name: /send message/i }));

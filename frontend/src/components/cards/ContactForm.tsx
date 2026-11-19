@@ -44,12 +44,15 @@ const REQUIRED_FIELDS: FieldName[] = [
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Figma redesign: light "control panel" surface, navy ink, teal accent.
+// Field fill #F4F7F9 with #5B6B7A placeholder = 5.09:1; the teal focus ring
+// #0E7490 is 5.36:1 on white, well above the 3:1 non-text bar.
 const FIELD_BASE =
-  "w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-xl placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] aria-invalid:border-[#EF4444]/70 aria-invalid:focus:ring-[#EF4444] group-hover:bg-[#7C3AED]/40 group-hover:border-neutral-700 group-hover:placeholder:text-neutral-300";
+  "w-full rounded-xl border border-[#C9D5DE] bg-[#F4F7F9] px-4 py-3 text-[#0B1622] placeholder:text-[#5B6B7A] transition-all duration-300 focus:border-[#0E7490] focus:outline-none focus:ring-2 focus:ring-[#0E7490] aria-invalid:border-[#B91C1C] aria-invalid:focus:ring-[#B91C1C]";
 
-const INPUT_CLASS = `${FIELD_BASE} text-white group-hover:text-white`;
+const INPUT_CLASS = FIELD_BASE;
 
-const SELECT_CLASS = `${FIELD_BASE} text-gray-300 group-hover:text-neutral-200`;
+const SELECT_CLASS = FIELD_BASE;
 
 function getErrorMessage(error: unknown): string {
   if (isAxiosError(error)) {
@@ -119,16 +122,16 @@ function Field({ id, label, required, optional, error, children }: FieldProps) {
     <div className="min-w-0 space-y-2">
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-[#9aa0aa] transition-colors duration-500 group-hover:text-white"
+        className="font-mono-label block text-[11px] font-medium uppercase tracking-[0.14em] text-[#475569]"
       >
         {label}
         {required && (
-          <span aria-hidden="true" className="ml-0.5 text-[#EF4444] transition-colors duration-500 group-hover:text-red-200">
+          <span aria-hidden="true" className="ml-0.5 text-[#B91C1C]">
             *
           </span>
         )}
         {optional && (
-          <span className="font-normal text-gray-400 transition-colors duration-500 group-hover:text-neutral-300">
+          <span className="font-normal text-[#5B6B7A]">
             {" (optional)"}
           </span>
         )}
@@ -137,7 +140,7 @@ function Field({ id, label, required, optional, error, children }: FieldProps) {
       {error && (
         <p
           id={`${id}-error`}
-          className="text-sm font-medium text-[#EF4444] transition-colors duration-500 group-hover:text-red-200"
+          className="text-sm font-medium text-[#B91C1C]"
         >
           {error}
         </p>
@@ -264,13 +267,29 @@ function ContactForm() {
   return (
     <div className="flex justify-center relative" data-aos="fade-up">
       {/*
-        Main Card: Kept physically uniform.
-        Uses group-hover properties to turn child elements white/light gray when open.
+        Main card: light "mission control" panel from the Figma redesign —
+        white surface, blueprint grid, teal corner brackets, navy ink.
       */}
-      <div className="group relative w-full max-w-lg bg-[#0a0a0a] rounded-xl card-side-glow md:p-10 p-6 flex flex-col items-center border border-[#8B5CF6]/25 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-[#8B5CF6]/60">
+      <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-[#0B1622]/10 bg-white p-6 shadow-[0_24px_60px_-28px_rgba(11,22,34,0.35)] transition-all duration-500 hover:-translate-y-1 hover:border-[#3CBDE6]/60 hover:shadow-[0_32px_70px_-28px_rgba(60,189,230,0.45)] md:p-10">
 
-        {/* Smooth Gradient Layer overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-[#6D28D9] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none z-0" />
+        {/* Blueprint grid, faded out toward the middle of the card */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(11, 22, 34, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(11, 22, 34, 0.05) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+            maskImage: "radial-gradient(ellipse at top, black 0%, transparent 80%)",
+            WebkitMaskImage: "radial-gradient(ellipse at top, black 0%, transparent 80%)",
+          }}
+        />
+
+        {/* Corner brackets */}
+        <span aria-hidden="true" className="pointer-events-none absolute left-3 top-3 z-10 h-4 w-4 border-l-2 border-t-2 border-[#3CBDE6]" />
+        <span aria-hidden="true" className="pointer-events-none absolute right-3 top-3 z-10 h-4 w-4 border-r-2 border-t-2 border-[#3CBDE6]" />
+        <span aria-hidden="true" className="pointer-events-none absolute bottom-3 left-3 z-10 h-4 w-4 border-b-2 border-l-2 border-[#3CBDE6]" />
+        <span aria-hidden="true" className="pointer-events-none absolute bottom-3 right-3 z-10 h-4 w-4 border-b-2 border-r-2 border-[#3CBDE6]" />
 
         {!transSucc ? (
           <form
@@ -282,10 +301,19 @@ function ContactForm() {
             className="w-full space-y-4 relative z-10"
           >
             <div className="text-center mb-8">
-              <h3 id="contact-form-title" className="text-3xl font-bold text-white tracking-tight transition-colors duration-500 group-hover:text-white">
+              <div className="mb-5 flex items-center justify-between gap-3">
+                <p className="font-mono-label flex items-center gap-2 text-[9px] uppercase tracking-[0.14em] text-[#0E7490] sm:text-[10px]">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#3CBDE6]" />
+                  Opsie Control // Inquiry
+                </p>
+                <span aria-hidden="true" className="font-mono-label hidden text-[10px] uppercase tracking-[0.14em] text-[#64748B] sm:inline">
+                  Form / 01
+                </span>
+              </div>
+              <h3 id="contact-form-title" className="text-3xl font-bold text-[#0B1622] tracking-tight">
                 Not sure where to start?
               </h3>
-              <p className="text-gray-400 text-sm mt-2 transition-colors duration-500 group-hover:text-neutral-200">
+              <p className="text-sm text-[#475569] mt-2">
                 Fill out the contact form and we’ll get back to you shortly.
               </p>
             </div>
@@ -456,10 +484,10 @@ function ContactForm() {
               aria-disabled={loading}
               aria-busy={loading}
               aria-describedby={submitError ? "contact-form-error" : undefined}
-              className={`w-full py-4 rounded-full font-bold text-white shadow-[0_0_24px_-6px_rgba(139,92,246,0.7)] transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+              className={`w-full rounded-full py-4 text-sm font-bold uppercase tracking-[0.12em] text-[#06212E] shadow-[0_14px_34px_-14px_rgba(60,189,230,0.9)] transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B1622] ${
                 loading
-                  ? "bg-[#7C3AED] opacity-50 cursor-not-allowed"
-                  : "bg-[#7C3AED] hover:bg-[#6D28D9] group-hover:hover:bg-white group-hover:hover:text-black hover:-translate-y-0.5 active:translate-y-0 active:bg-[#5B21B6] group-hover:hover:active:bg-[#5B21B6] group-hover:hover:active:text-white"
+                  ? "cursor-not-allowed bg-[#3CBDE6] opacity-50"
+                  : "bg-[#3CBDE6] hover:-translate-y-0.5 hover:bg-[#29A6CC] active:translate-y-0 active:bg-[#1F93B5]"
               }`}
             >
               {loading ? "Sending..." : "Send Message"}
@@ -469,7 +497,7 @@ function ContactForm() {
               <p
                 id="contact-form-error"
                 role="alert"
-                className="rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300"
+                className="rounded-xl border border-[#B91C1C]/30 bg-[#B91C1C]/5 px-4 py-3 text-sm font-medium text-[#B91C1C]"
               >
                 {submitError}
               </p>
@@ -484,19 +512,22 @@ function ContactForm() {
             role="status"
             aria-live="polite"
           >
-            <div className="w-24 h-24 bg-green-500/15 text-green-400 rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-white/20 shadow-xl">
+            <div className="w-24 h-24 bg-[#3CBDE6]/15 text-[#0E7490] rounded-full flex items-center justify-center text-5xl mx-auto border-4 border-[#3CBDE6]/30 shadow-xl">
               ✓
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-white transition-colors duration-500 group-hover:text-white">Thank You!</h2>
-              <p className="text-gray-400 mt-4 leading-relaxed max-w-xs mx-auto transition-colors duration-500 group-hover:text-neutral-200">
+              <p className="font-mono-label mb-3 text-[10px] uppercase tracking-[0.18em] text-[#0E7490]">
+                Transmission complete
+              </p>
+              <h2 className="text-3xl font-bold text-[#0B1622]">Thank You!</h2>
+              <p className="text-[#475569] mt-4 leading-relaxed max-w-xs mx-auto">
                 Your message has been sent successfully. We'll get back to you within 24 hours.
               </p>
             </div>
             <button
               type="button"
               onClick={handleSendAnother}
-              className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-[#8B5CF6] font-bold uppercase tracking-widest text-xs hover:text-[#A78BFA] active:opacity-70 transition-all group-hover:text-white group-hover:hover:text-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5CF6]"
+              className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-[#0E7490] font-bold uppercase tracking-widest text-xs hover:text-[#0B5E73] active:opacity-70 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7490]"
             >
               Send Another Inquiry
             </button>

@@ -1,8 +1,10 @@
 # Component B — visual requirements and styling notes
 
-**Date:** 2026-11-10
+**Date:** 2026-11-10 (updated 2026-11-19)
 **Component B:** contact inquiry form (`frontend/src/components/cards/ContactForm.tsx`)
 **Mounts:** `/contact-us` (`ContactUsPage`) and `/` (`ContactUsSection`).
+
+> **2026-11-19:** the card now follows the linked Figma **"Redesign banner"** (node `26-3`): light surface, navy ink, teal accent, mono micro-labels, blueprint grid, and corner brackets. §1–§6 remain the record of the earlier dark/violet pass and are superseded; **§7 is the current recipe**.
 
 ## 1. Approved visual state
 
@@ -114,3 +116,52 @@ Every value below is cited. Where the approved docs disagree, the component-leve
 | Hover-wash top `#6D28D9` (violet-700) instead of `main`'s `#8B5CF6` (violet-500) | White labels/headings sit on the wash top on hover; violet-500 gives 4.23:1, violet-700 gives 7.1:1 ✅. The wash stays violet and the bottom remains black. |
 | Hover error/asterisk `red-200` instead of `red-300` | On the violet-700 wash, red-300 is ~3.75:1; red-200 is ~4.9:1 ✅. The default error color stays `#EF4444` (5.24:1 on the card). |
 | Submit uses `aria-disabled` instead of native `disabled` | DS-2 ruled that the disabled state stays in tab order via `aria-disabled`; the handler guard prevents duplicate in-flight requests. The prior native `disabled` was removed. |
+
+## 7. Figma redesign pass — current recipe (2026-11-19)
+
+Source: Figma **"Redesign banner"**, node `26-3` (light frame, teal accent `#3CBDE6`, navy panel `#0B1622`, mono uppercase micro-labels, blueprint grid, corner brackets). The contact page is already light (`#ECEDF1`) with teal and `#242424` panels, so the banner's language maps directly onto the form. All measured values below come from the 2026-11-19 browser pass (`shots/redesign/verify-results.json`, local/untracked).
+
+| Element | Value | Measured / note |
+| --- | --- | --- |
+| Card surface | `bg-white` | 18.23:1 for the heading |
+| Card border / radius | `border-[#0B1622]/10`, `rounded-2xl` | — |
+| Card shadow | `shadow-[0_24px_60px_-28px_rgba(11,22,34,0.35)]` | navy-tinted, replaces the violet side-glow |
+| Card motion | `hover:-translate-y-1`, `hover:border-[#3CBDE6]/60`, teal shadow | measured `translate: 0px -4px` |
+| Blueprint grid | 32 px lines at `rgba(11,22,34,0.05)`, radial mask to 80 % | decorative, `aria-hidden` |
+| Corner brackets | 16 px, 2 px `#3CBDE6`, four corners | decorative, `aria-hidden` |
+| Eyebrow | `Opsie Control // Inquiry`, `font-mono-label` 9–10 px uppercase, `#0E7490` | 5.36:1 on white |
+| Eyebrow meta | `Form / 01`, mono 10 px `#64748B`, `hidden sm:inline` | hidden at 320 so the row fits |
+| Heading | `text-3xl font-bold text-[#0B1622]` | 18.23:1 |
+| Sub-copy | `text-sm text-[#475569]` | 7.58:1 |
+| Labels | `font-mono-label` 11 px uppercase, `tracking-[0.14em]`, `#475569` | 7.58:1 |
+| Required mark | `*` in `#B91C1C` | 6.52:1 |
+| Optional text | `(optional)` in `#5B6B7A`, normal weight | 5.47:1 on white |
+| Field surface | `bg-[#F4F7F9]` | — |
+| Field border | `border-[#C9D5DE]` | — |
+| Field text | `text-[#0B1622]` | 18.23:1 |
+| Placeholder | `placeholder:text-[#5B6B7A]` | **5.1:1** on `#F4F7F9` |
+| Field focus | `focus:ring-2 focus:ring-[#0E7490]`, `focus:border-[#0E7490]` | 5.36:1 on white |
+| Error border / ring | `#B91C1C` | 6.52:1 |
+| Error text | `text-[#B91C1C]` | 6.52:1 |
+| Submit fill | `bg-[#3CBDE6]`, text `#06212E` | **7.6:1** |
+| Submit hover | `hover:bg-[#29A6CC]`, same text | 5.87:1 |
+| Submit pressed | `active:bg-[#1F93B5]`, same text | **4.66:1** (the first draft `#1E8FB0` measured 4.44:1 and was lightened) |
+| Submit shape / motion | `rounded-full`, `py-4` (52 px), `hover:-translate-y-0.5`, `active:translate-y-0` | touch target 52 px |
+| Submit focus | `focus-visible:outline-2 outline-offset-2 outline-[#0B1622]` | 18.23:1 on white |
+| Loading | `bg-[#3CBDE6] opacity-50 cursor-not-allowed`, `aria-disabled` + `aria-busy` | disabled state is contrast-exempt |
+| Server-error box | `border-[#B91C1C]/30 bg-[#B91C1C]/5 text-[#B91C1C]` | 6.2:1 composited |
+| Success icon | `bg-[#3CBDE6]/15 text-[#0E7490] border-[#3CBDE6]/30` | 5.36:1 |
+| Success eyebrow | `Transmission complete`, mono 10 px `#0E7490` | 5.36:1 |
+| Success heading / body | `#0B1622` / `#475569` | 18.23:1 / 7.58:1 |
+| Success action | `text-[#0E7490]`, hover `#0B5E73`, `min-h-11` | 5.36:1, 44 px tall |
+
+### What was removed
+
+- The violet hover wash (`bg-gradient-to-t from-black to-[#6D28D9]`) and every `group-hover:text-white` swap. On a white card those swaps would have produced white text on white.
+- `.card-side-glow` from `index.css` (only Component B used it); the card now uses a navy-tinted Tailwind shadow.
+- The `group-hover:hover:active:bg-[#5B21B6]` specificity workaround. With the white-fill hover recipe gone, the pressed fill no longer competes with an ancestor hover rule.
+
+### Mono type and the cascade
+
+`font-mono` cannot be used directly: `index.css:20` has an unlayered `* { font-family: 'Montserrat', sans-serif }`, which outranks Tailwind's layered utilities. A scoped unlayered `.font-mono-label` class was added next to the removed `.card-side-glow` rule. No global focus rule was touched (the study's `index.css:336` rule is absent on this branch).
+
