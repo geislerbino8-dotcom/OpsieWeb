@@ -16,7 +16,7 @@ on the booking page is corrected here.
 | --- | --- |
 | Frontend | Vite dev server, `http://localhost:5173` |
 | API | Local mock on `http://localhost:5000` with `POST /api/ticket/create` |
-| Browser | Headless Microsoft Edge via CDP (`component-b-probe.mjs`) |
+| Browser | Headless Microsoft Edge via CDP (`component-b-probe.mjs` for the 2026-11-06 pass; `verify-b-c.mjs` for the 2026-11-19 pass) |
 | Viewports | 320, 375, 768, 1024, 1440 CSS px |
 | Routes | `/contact-us`, `/` |
 | Mock modes | `success` (200), `error` (500), `rate` (429), `slow` (3 s) |
@@ -115,38 +115,96 @@ At 320 and 375 px the fixed chat launcher overlaps the bottom-right of the form 
 form is near the viewport bottom. The page has content below the form, so the submit control
 can be scrolled clear; the launcher is a global affordance rather than part of Component B.
 
+## 2026-11-19 redesign verification
+
+The card was restyled to the linked Figma “Redesign banner” (node `26-3`): white surface,
+navy ink `#0B1622`, teal accent `#3CBDE6`, mono micro-labels, a 32 px blueprint grid, and
+teal corner brackets. The interaction contract (labels, per-field validation, retry,
+success focus, autocomplete, contrast, touch, overflow) is unchanged. Recipe and values:
+[component-b-styling-notes.md](component-b-styling-notes.md) §7.
+
+Re-ran the combined B/C CDP suite (`verify-b-c.mjs`, local/untracked) and the automated
+suites.
+
+| Check | Result |
+| --- | --- |
+| Probe defect signals | **0** across 5 widths on `/contact-us` |
+| Vitest | **29/29** pass (3 files) |
+| `tsc -b` | clean |
+| Production build | pass |
+| Focused ESLint | clean |
+| Overflow | none at 1440/1024/768/375/320 |
+| Field grid | 2 columns ≥ 768, 1 column < 768 |
+| Card width | 512 / 456 / 512 / 343 / 288 px |
+| Inputs / submit height | 50 px / 52 px |
+| Placeholder | **5.1:1** on `#F4F7F9` |
+| Label / body / heading | 7.58:1 / 7.58:1 / 18.23:1 |
+| Submit | **7.6:1**; hover 5.87:1; pressed `#1F93B5` **4.66:1** |
+| Loading | `aria-busy`, `aria-disabled`, native `disabled=false` |
+| Success | focused, 44 px action |
+| Send Another | restores form and `inquiry-name` focus |
+| 500 error / retry | announced, retry succeeds (3 total calls) |
+| Empty submit | 6 invalid fields, 0 API calls, focus `inquiry-name` |
+
+Screenshots: `shots/redesign/b-{1440,1024,768,375,320}.png`, plus pressed/loading/success/
+error/validation/hover states (local/untracked).
+
+### Observation (not counted as a defect)
+
+The pressed-fill first draft `#1E8FB0` measured **4.44:1** with navy text, just under 4.5.
+It was lightened to `#1F93B5` (**4.66:1**) and the probe now asserts the pressed contrast.
+
 ## PR description draft
 
-> **Title:** Fix contact inquiry form accessibility and error handling
+> **Title:** Redesign the contact form and rebuild the FAQ accordion for accessibility
 >
 > **Summary**
 >
-> Component B QA of the contact inquiry form found seven defects across `/contact-us` and
-> the home page section at 320, 375, 768, 1024, and 1440 px. This PR fixes all seven and adds
-> an 8-case regression suite.
+> Two public-site components were revised. Component B (the contact inquiry form on
+> `/contact-us` and `/`) now follows the linked Figma redesign; its behaviour and
+> accessibility contract are unchanged. Component C (the FAQ accordion on `/`,
+> `/what-we-do`, and `/who-we-are`) was rebuilt to expose its disclosure state to assistive
+> technology and to fix its light-surface contrast.
 >
-> **Changes**
+> **Component B — contact inquiry form**
 >
-> - Add autocomplete hints (`name`, `email`, `tel`, `street-address`).
-> - Allow retry after a failed submission; disable submit only while sending.
-> - Classify 429, 5xx, 400/422, and network failures with distinct messages.
-> - Announce failures with an inline `role="alert"` region linked to the submit button.
-> - Move focus to the success confirmation and back to the first field on reset.
-> - Raise submit contrast from 2.18:1 to 8.75:1 and placeholder contrast from 2.49:1 to 4.63:1.
-> - Fix toast live-region roles and positioning for other consumers.
+> - Restyle to the Figma light/teal/navy language: white card, navy ink, teal accent,
+>   mono micro-labels, 32 px blueprint grid, teal corner brackets.
+> - Remove the violet hover wash, the `group-hover` white-text swaps, and `.card-side-glow`.
+> - Add `.font-mono-label` (unlayered, so it wins over the global Montserrat rule).
+> - Keep visible labels, per-field validation with `aria-invalid`/`aria-describedby`,
+>   focus-to-first-invalid, autocomplete tokens, retry after failure, success focus,
+>   `aria-disabled` + `aria-busy` loading, and the in-flight duplicate guard.
+> - Contrast: placeholder 5.1:1, label/body 7.58:1, heading 18.23:1, submit 7.6:1,
+>   pressed 4.66:1 (was 4.44:1 in the first draft).
+>
+> **Component C — FAQ accordion**
+>
+> - Add `aria-expanded` + `aria-controls` to every trigger and wire each panel as a
+>   `role="region"` labelled by its trigger (closes F3 / U6 4.1.2).
+> - Wrap each trigger in an `<h3>` so the question list is heading-navigable.
+> - Keep the single-open model and the CSS-grid reveal.
+> - Fix light-surface contrast: closed question 18.23:1, open question 5.36:1, answer
+>   7.58:1, contact link 4.58:1.
+> - Add focus-visible outlines and clean up `faqData.ts` (question marks, trailing spaces,
+>   single-item array).
 >
 > **Validation**
 >
-> - `npm test -- --reporter=verbose`: 14/14 pass.
+> - `npm test`: 29/29 pass across 3 files (6 new FAQ cases).
+> - `npx tsc -b`: clean.
 > - `npm run build`: pass.
-> - Focused ESLint: pass.
-> - Browser probe: 0 defect signals across 10 route/viewport combinations (was 69).
+> - Focused ESLint: clean.
+> - Browser probe: 0 defect signals — Component B at 1440/1024/768/375/320 on
+>   `/contact-us`, Component C at 1440/375/320 on `/`.
 >
 > **Screenshots**
 >
-> Local, untracked: `shots/component-b/after_{320,375,768,1024,1440}_{form,success,error}.png`.
+> Local, untracked: `shots/redesign/b-*.png` and `shots/redesign/c-*.png`.
 >
 > **Scope**
 >
-> No backend changes. The mock API and probe scripts are local QA tooling and are not committed.
+> No backend changes. The mock API and probe scripts are local QA tooling and are not
+> committed. The shared `SuperHeader` teal emphasis (2.36:1 on light) and the floating chat
+> launcher are documented risks outside these components.
 
