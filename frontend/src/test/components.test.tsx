@@ -161,7 +161,13 @@ describe("responsive component behavior and accessibility", () => {
     const firstAnswer = document.getElementById(firstQuestion.getAttribute("aria-controls")!);
 
     expect(firstQuestion).toHaveAttribute("aria-expanded", "false");
+    expect(firstQuestion).toHaveAttribute("id", "faq-trigger-0");
     expect(firstAnswer).toHaveAttribute("aria-hidden", "true");
+    // Each panel is a labelled region tied to its trigger, and the trigger sits
+    // inside a heading so screen-reader users can navigate the list by heading.
+    expect(firstAnswer).toHaveAttribute("role", "region");
+    expect(firstAnswer).toHaveAttribute("aria-labelledby", firstQuestion.id);
+    expect(firstQuestion.closest("h3")).not.toBeNull();
 
     await user.click(firstQuestion);
     expect(firstQuestion).toHaveAttribute("aria-expanded", "true");
