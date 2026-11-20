@@ -87,7 +87,7 @@ const FAQAccordion = () => {
                     aria-expanded={isOpen}
                     aria-controls={answerId}
                     onClick={() => toggle(index)}
-                    className="flex justify-between items-center gap-4 w-full py-5 sm:py-7 px-5 sm:px-8 text-left rounded-2xl transition-colors duration-300 active:bg-[#F1F5F9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7490]"
+                    className="flex justify-between items-center gap-4 w-full py-5 sm:py-7 px-5 sm:px-8 text-left rounded-2xl transition-colors duration-300 active:bg-[#F1F5F9] active:duration-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7490]"
                   >
                     <span className="flex min-w-0 items-baseline gap-3">
                       <span

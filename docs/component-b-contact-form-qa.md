@@ -199,10 +199,12 @@ It was lightened to `#1F93B5` (**4.66:1**) and the probe now asserts the pressed
 >   `lg:top-24` (96 px) to clear the 80 px fixed header.
 > - Add the DS-4 empty state (text fallback + contact link, no blank column) and cover the
 >   `string[]` answer branch with a test.
+> - Make pressed feedback immediate (`active:duration-0`); the fill previously inherited the
+>   300 ms colour transition and was barely visible on a normal click.
 >
 > **Validation**
 >
-> - `npm test`: 38/38 pass across 5 files (15 FAQ cases).
+> - `npm test`: 39/39 pass across 5 files (16 FAQ cases).
 > - `npx tsc -b`: clean.
 > - `npm run build`: pass.
 > - Focused ESLint: clean.
@@ -211,7 +213,8 @@ It was lightened to `#1F93B5` (**4.66:1**) and the probe now asserts the pressed
 >   1440/1024/768/375/320. FAQ triggers 72–112 px, no overflow, focus ring 5.36:1 on
 >   white / 4.58:1 on the page, hover/pressed/open states measured. The FAQ sticky column
 >   pins at 96 px below the 81 px header on all three mounts, and 27 route × width
->   combinations show no horizontal overflow.
+>   combinations show no horizontal overflow. Pressed fill lands at
+>   `rgb(241, 245, 249)` on mousedown with a `0s` transition.
 >
 > **Screenshots**
 >

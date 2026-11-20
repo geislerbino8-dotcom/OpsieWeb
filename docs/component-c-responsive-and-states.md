@@ -8,8 +8,8 @@
 > This pass reviews the responsive and state requirements after the accessible rebuild
 > ([component-c-faq-accordion.md](component-c-faq-accordion.md)) and the styling pass
 > ([component-c-styling-notes.md](component-c-styling-notes.md)). The disclosure contract is
-> unchanged. Two gaps were found and fixed: an inert sticky column, and a missing empty
-> content state.
+> unchanged. Three gaps were found and fixed: an inert sticky column, a missing empty
+> content state, and pressed feedback that faded in too slowly to perceive.
 
 ## 1. Requirements reviewed
 
@@ -36,7 +36,7 @@ REG-21 (do not edit the unlayered global focus rule).
 | Default (closed) | Yes | White card, hairline navy border, `+` chip. |
 | Hover | Yes | Card tint `#F8FAFC` + `#3CBDE6/60` border. Colour only — no lift, no information revealed. |
 | Focus-visible | Yes | `outline-2 outline-offset-2 outline-[#0E7490]` on triggers and the contact link; 5.36:1 on white, 4.58:1 on the page. |
-| Pressed | Yes | Trigger fill `#F1F5F9`; the row does not move. |
+| Pressed | Yes | Trigger fill `#F1F5F9` applied instantly (`active:duration-0`); the row does not move. |
 | Open | Yes | Teal `/60` border + soft teal shadow, question/index `#0E7490`, icon rotated 45°. |
 | Keyboard | Yes | Enter/Space via the native `<button>`; single-open model retained. |
 | Reduced motion | Yes | The global `prefers-reduced-motion` rule (`index.css:102`) collapses transitions to 0.01 ms; the `0fr → 1fr` reveal snaps open instead of animating. |
@@ -142,25 +142,46 @@ branch had no coverage. A mocked dataset now asserts that an array answer render
 `ul.list-disc` with one `li` per entry inside the disclosure region, and that a string answer
 still renders a paragraph with no `<ul>`.
 
+### 4.3 Pressed feedback (timing fix)
+
+The trigger already had `active:bg-[#F1F5F9]`, but it inherited `transition-colors
+duration-300`. A normal click lasts well under 300 ms, so the fill had barely progressed when
+the pointer came back up — the state existed but was invisible. `active:duration-0` now
+applies the fill on mousedown while the 300 ms transition still governs hover and open.
+
+Measured with a mousedown-then-read probe (no polling, no wait), on `/` at 1440 and 375:
+
+| Width | `:active` | Background on mousedown | Transition duration |
+| --- | --- | --- | --- |
+| 1440 | true | `rgb(241, 245, 249)` | `0s` |
+| 375 | true | `rgb(241, 245, 249)` | `0s` |
+
+The fill is decorative: pressing does not move the row and does not gate any action, so the
+no-hover-only rule (DS §6) still holds. A regression test asserts `active:bg-[#F1F5F9]` and
+`active:duration-0` are present on every trigger.
+
 ## 5. Tests added
 
 | File | Cases | Covers |
 | --- | --- | --- |
+| `frontend/src/test/faq-accordion.test.tsx` | 11 | Disclosure contract, Enter/Space, single-open, contrast, mono labels, router link, axe, and immediate pressed feedback. |
 | `frontend/src/test/faq-empty-state.test.tsx` | 3 | No triggers when empty; fallback copy + `Answers / 00` + contact link; heading survives; axe clean. |
 | `frontend/src/test/faq-array-answer.test.tsx` | 2 | Array answer renders `ul`/`li` inside the open region; string answer stays a paragraph. |
 
-Suite: **38/38** across 5 files (15 FAQ cases).
+Suite: **39/39** across 5 files (16 FAQ cases).
 
 ## 6. Verification
 
 | Gate | Result |
 | --- | --- |
-| `npm test` | **38/38** pass, 5 files |
+| `npm test` | **39/39** pass, 5 files |
 | `npx tsc -b` | clean |
 | Focused ESLint (`Faq.tsx`, 3 page files, 2 new tests) | clean |
 | `npm run build` | pass |
 | Browser overflow pass | 27/27 combinations, no overflow, 5 triggers each |
 | Browser sticky pass | 6/6 pinned at 96 px, header bottom 81 px |
+| Browser interaction pass | 15 route × width combinations; states, keyboard, single-open, reduced motion, no console errors |
+| Pressed timing | `rgb(241, 245, 249)` on mousedown, `0s` transition at 1440 and 375 |
 
 Method note: the FAQ sits inside `ScrollAnimatedSection`, which fades in over 700 ms after a
 300–700 ms delay. Measurements taken immediately after a programmatic scroll can read a
@@ -177,3 +198,9 @@ partial opacity (0.40 observed), so the probe waits ~1 s before sampling.
 - **Shared `SuperHeader` teal emphasis** (2.36:1 on light) remains latent — the current CMS
   FAQ heading contains no `*…*` span.
 - **Floating chat launcher** overlaps the last card at 320–375 px; global, outside Component C.
+- **`/what-we-do` testimonial entrance covers the FAQ briefly.** The preceding
+  `ClientReviewsSection` uses `data-aos="slide-up"` and starts translated down by its own
+  height (≈482 px), so for ~1.2 s it hit-tests over the FAQ trigger while it animates into
+  place. The FAQ itself is correct; the overlap is visible content self-resolving once AOS
+  settles. Left as-is because it is an adjacent section's animation, not a Component C defect;
+  fixing it would mean changing the testimonial reveal.

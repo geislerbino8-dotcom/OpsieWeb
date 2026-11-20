@@ -86,6 +86,18 @@ describe("FAQ accordion (Component C)", () => {
     expect(first).toHaveAttribute("aria-expanded", "true");
   });
 
+  it("gives immediate pressed feedback instead of fading it in", () => {
+    renderFaq();
+
+    for (const trigger of screen.getAllByRole("button")) {
+      // The fill must land on mousedown, so it cannot inherit the 300ms fade.
+      expect(trigger.className).toContain("active:bg-[#F1F5F9]");
+      expect(trigger.className).toContain("active:duration-0");
+      expect(trigger.className).toContain("transition-colors");
+      expect(trigger.className).toContain("duration-300");
+    }
+  });
+
   it("closes an open item when its trigger is activated again", async () => {
     const user = userEvent.setup();
     renderFaq();
