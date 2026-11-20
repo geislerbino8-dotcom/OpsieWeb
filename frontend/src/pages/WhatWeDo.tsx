@@ -16,7 +16,9 @@ export default function WhatWeDo() {
   if(!content) return <div><h1>No content</h1></div>
 
   return (
-    <div className="w-full overflow-hidden">
+    // overflow-x-clip keeps the horizontal clip without creating the scroll
+    // container that would disable the FAQ's lg:sticky column.
+    <div className="w-full overflow-x-clip">
       
       {/* HERO SECTION - Now truly Full Width */}
       <section className="bg-[#0F4C5C] relative w-full min-h-[max(90svh,500px)] sm:min-h-[max(90svh,600px)] overflow-hidden">

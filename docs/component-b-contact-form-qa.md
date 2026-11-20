@@ -194,17 +194,24 @@ It was lightened to `#1F93B5` (**4.66:1**) and the probe now asserts the pressed
 > - Convert the contact action to `<Link to="/contact-us">` (AC-07).
 > - Add focus-visible outlines and clean up `faqData.ts` (question marks, trailing spaces,
 >   single-item array).
+> - Fix the inert `lg:sticky` header column: the host pages clipped with `overflow-hidden`
+>   (a scroll container), so the wrappers now use `overflow-x-clip` and the column uses
+>   `lg:top-24` (96 px) to clear the 80 px fixed header.
+> - Add the DS-4 empty state (text fallback + contact link, no blank column) and cover the
+>   `string[]` answer branch with a test.
 >
 > **Validation**
 >
-> - `npm test`: 33/33 pass across 3 files (10 FAQ cases).
+> - `npm test`: 38/38 pass across 5 files (15 FAQ cases).
 > - `npx tsc -b`: clean.
 > - `npm run build`: pass.
 > - Focused ESLint: clean.
 > - Browser probe: 0 defect signals — Component B at 1440/1024/768/375/320 on
 >   `/contact-us`; Component C across `/`, `/what-we-do`, and `/who-we-are` at
 >   1440/1024/768/375/320. FAQ triggers 72–112 px, no overflow, focus ring 5.36:1 on
->   white / 4.58:1 on the page, hover/pressed/open states measured.
+>   white / 4.58:1 on the page, hover/pressed/open states measured. The FAQ sticky column
+>   pins at 96 px below the 81 px header on all three mounts, and 27 route × width
+>   combinations show no horizontal overflow.
 >
 > **Screenshots**
 >

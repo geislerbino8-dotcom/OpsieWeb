@@ -15,7 +15,9 @@ function Homepage() {
 
 
   return (
-    <div className="overflow-hidden">
+    // overflow-x-clip (not overflow-hidden): clipping must not create a scroll
+    // container, or the FAQ's lg:sticky column can never stick.
+    <div className="overflow-x-clip">
 
 
         <HeroPage bgImage={'/background/landing-hero.jpg'} />

@@ -50,6 +50,7 @@ state/contrast bars.
 | Open | `border-[#3CBDE6]/60`, teal shadow, question and index in `#0E7490`, icon chip `#3CBDE6` with the `+` rotated 45°. |
 | Focus-visible | `outline-2 outline-offset-2 outline-[#0E7490]` on the trigger and on the “Reach out to us” link. |
 | Keyboard | Enter opens, Space closes/opens; single-open model retained (opening one closes the previous). |
+| Empty | `faqs.length === 0` renders a text-fallback card with a contact link instead of an empty column (DS-4). |
 | Reduced motion | The global `@media (prefers-reduced-motion: reduce)` rule (`index.css:102`) collapses the transition to 0.01 ms. |
 
 **Single-open model:** `openIndex: number | null` is unchanged. Only the previously open
@@ -93,6 +94,14 @@ visually.
 
 Full recipe, state matrix, shared-pattern audit, and measurements:
 `docs/component-c-styling-notes.md`.
+
+**Responsive and state pass (2026-11-20).** The `lg:sticky` header column never stuck:
+every host page wrapped its content in an `overflow-hidden` div (a scroll container), and the
+`lg:top-10` offset sat under the 80 px fixed header. The three page wrappers now use
+`overflow-x-clip`, the column uses `lg:top-24` (96 px), and the column pins below the header
+on all three mounts. The DS-4 empty state (text fallback, no blank list) was added, and the
+`string[]` answer branch gained its first test. Requirements, breakpoint table, measurements,
+and limits: `docs/component-c-responsive-and-states.md`.
 
 ## 4. Verification (2026-11-19)
 

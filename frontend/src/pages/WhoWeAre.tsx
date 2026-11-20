@@ -26,7 +26,9 @@ export default function WhoWeAre() {
 
 
   return (
-    <div className="w-full overflow-x-hidden text-center">
+    // overflow-x-clip (not overflow-x-hidden): hidden on one axis forces the
+    // other to auto, which makes this a scroll container and kills lg:sticky.
+    <div className="w-full overflow-x-clip text-center">
       {/* --- 1. FULL PAGE HERO SECTION --- */}
       {/* breakout classes: w-screen and negative margins ensure it hits the browser edges */}
       <div 
