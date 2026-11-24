@@ -66,8 +66,8 @@ Result: **0 defect signals**. Recorded in `shots/integration/integration.json`
 | Form card | `rgb(255, 255, 255)` on both the dark band (`rgb(10, 15, 29)`) and the light page; `rounded-2xl`; width 512/468/512/343/288 px |
 | Form targets | Inputs 50 px, submit 52 px |
 | Form text contrast | Minimum 4.76:1 (`Form / 01`, `#64748B` on white); 5.36:1 at 375/320 |
-| FAQ h2 | Wraps at 1024 (288/288 px on home, 221/221 on `/what-we-do`), never clipped |
-| FAQ sticky | `position: sticky`, `top: 96px`, pins at 96 px on all three mounts at 1440/1024; travel 213 px (home, `/what-we-do`, `/who-we-are` at 1440), 185/112 px at 1024 |
+| FAQ h2 | Wraps at 1024 between words, never clipped and never split mid-word: column 380 px on home, 295 px on `/what-we-do`, 373 px on `/who-we-are` (longest word 270 px) |
+| FAQ sticky | `position: sticky`, `top: 96px`, pins at 96 px on all three mounts at 1440/1024; travel 213 px at 1440, 233–237 px at 1024 |
 | FAQ targets | Trigger heights 88 px desktop, 72 px mobile |
 | FAQ text contrast | Minimum 4.58:1 (kicker, meta, contact link on `#ECEDF1`) |
 | Disclosure contract | 5/5 triggers inside `h3`; 5/5 panels `role="region"` + `aria-labelledby` = trigger id; all start collapsed |
@@ -87,6 +87,12 @@ Screenshots: `home-dark-band-form-1440.png`, `contact-us-form-1440.png`,
    removed.
 5. Tests — form heading level, plus the FAQ emphasised-heading contrast case.
 
+A sixth correction came out of the demo capture rather than this pass: at 1024 the
+`w-1/3` header column on `/what-we-do` was 217 px and split "Frequently" mid-word. The `lg`
+split is now `42% / 58%` (`lg:gap-10`), keeping `xl` at `1/3 / 2/3` (`gap-20`). Measured
+after: 380 px on home, 295 px on `/what-we-do`, 373 px on `/who-we-are` at 1024, with the
+longest word at 270 px and no splits.
+
 Gates: `npm test` **41/41** (5 files), `npx tsc -b` clean, focused ESLint clean,
 `npm run build` pass.
 
@@ -105,6 +111,7 @@ Gates: `npm test` **41/41** (5 files), `npx tsc -b` clean, focused ESLint clean,
 
 ## 6. Integration state
 
-Branch `codex/pr-duke` at `396084a` plus this pass. PR #8 remains open and
-`mergeable_state: dirty` (28 conflicting files against `main`), because this branch and
-`main` describe different design systems. Nothing was pushed in this pass.
+Branch `codex/pr-duke`: `8c2328c` (integration pass) plus the demo-prep commit on top
+(which also carries the 1024 heading fix). PR #8 remains open and `mergeable_state: dirty`
+(28 conflicting files against `main`), because this branch and `main` describe different
+design systems. Nothing was pushed after `396084a`.

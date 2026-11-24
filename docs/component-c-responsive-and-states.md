@@ -60,7 +60,8 @@ values below were measured in the 2026-11-20 browser pass.
 | 640 (`sm`) | Single column, `px-6` | `Answers / 05` meta and the `01`–`05` indices appear; `gap-12`. |
 | 768 (`md`) | Single column, `px-10`, `py-24` | Intro centres (`text-center md:text-left` keeps the copy readable); no layout change to the list. |
 | 1023 | Single column | Still stacked — one pixel below `lg`, as designed. |
-| 1024 (`lg`) | Two columns: `w-1/3` header + `w-2/3` list, `gap-20` | Header column becomes `sticky` at `top-24` (96 px). |
+| 1024 (`lg`) | Two columns: `w-[42%]` header + `w-[58%]` list, `gap-10` | Header column becomes `sticky` at `top-24` (96 px). The split is 42/58 rather than 1/3–2/3 because `/what-we-do` nests the FAQ in an 85%-wide main: a third of that at 1024 is 217 px, narrower than "Frequently" at 48 px (270 px), which split the word mid-letter. 42% gives 295 px. |
+| 1280 (`xl`) | Two columns: `w-1/3` header + `w-2/3` list, `gap-20` | The 1280 px container has room for the original third, so the wider `lg` split relaxes back to 1/3–2/3. |
 | 1280+ | Capped at `max-w-[1280px]`, centred | Section spans the full viewport; content stays inside the 1280 px grid. |
 
 ### 3.1 Sticky column was inert (fixed)
@@ -101,7 +102,9 @@ The header column carried `lg:sticky lg:top-10` but never stuck. Two independent
 The kicker and `<h2>` both start at 96 px in the pinned state, i.e. below the header. The
 column releases at the end of its containing row; the travel range is
 `rowHeight − columnHeight` (514 − 301 = 213 px at 1440), which is expected sticky behaviour,
-not a defect.
+not a defect. After the 1024 split was widened, the header column is shorter there, so travel
+grew to 237 px on `/` and `/who-we-are` and 233 px on `/what-we-do` (the list column is taller
+than the header, so the row height sets the bound).
 
 ### 3.2 Overflow and bounds
 

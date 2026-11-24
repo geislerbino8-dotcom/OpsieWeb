@@ -21,11 +21,14 @@ const FAQAccordion = () => {
 
   return (
     <section className="py-10 md:py-24 px-4 sm:px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-20 items-start">
+      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-10 xl:gap-20 items-start">
         
         {/* Left Side: Header Content — sticks 96px down so the 80px fixed
-            header never covers the kicker or heading. */}
-        <div className="lg:w-1/3 lg:sticky lg:top-24">
+            header never covers the kicker or heading. At `lg` the header column
+            is 42% (not 1/3): `/what-we-do` nests the FAQ in an 85%-wide main,
+            and a third of that is narrower than "Frequently" at 48px, which
+            broke the word mid-letter. */}
+        <div className="lg:w-[42%] xl:w-1/3 lg:sticky lg:top-24">
           {/* Kicker and count, mirroring the form's mono micro-labels. */}
           <div className="mb-5 flex items-center justify-between gap-3">
             <p className="font-mono-label flex items-center gap-2 text-[9px] uppercase tracking-[0.14em] text-[#0E7490] sm:text-[10px]">
@@ -51,7 +54,7 @@ const FAQAccordion = () => {
         </div>
 
         {/* Right Side: Accordion List */}
-        <div className="w-full lg:w-2/3 flex flex-col gap-4">
+        <div className="w-full lg:w-[58%] xl:w-2/3 flex flex-col gap-4">
           {/* DS-4 empty state: a text fallback, never a blank column. */}
           {faqs.length === 0 && (
             <p className="rounded-2xl border border-[#0B1622]/10 bg-white px-5 py-8 text-[15px] leading-relaxed text-[#475569] shadow-sm sm:px-8">
