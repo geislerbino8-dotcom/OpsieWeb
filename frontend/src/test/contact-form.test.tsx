@@ -82,6 +82,17 @@ describe("contact inquiry form (Component B)", () => {
     }
   });
 
+  it("titles the card at h2 so host pages never skip a heading level", () => {
+    render(<ContactForm />);
+
+    const title = screen.getByRole("heading", { level: 2, name: /not sure where to start/i });
+    expect(title).toHaveAttribute("id", "contact-form-title");
+    expect(screen.getByRole("form", { name: /not sure where to start/i })).toHaveAttribute(
+      "aria-labelledby",
+      "contact-form-title",
+    );
+  });
+
   it("stacks the field rows on phones and pairs them from the md breakpoint", () => {
     render(<ContactForm />);
 

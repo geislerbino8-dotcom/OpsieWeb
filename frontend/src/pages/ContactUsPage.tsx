@@ -15,7 +15,7 @@ function ContactUsPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full overflow-x-hidden bg-[#FAFBFF] bg-[#ECEDF1] ">
+    <div className="w-full overflow-x-clip bg-[#ECEDF1]">
       {/* --- 1. HERO SECTION --- */}
       <div className="relative w-full min-h-[100svh] overflow-hidden">
         <img

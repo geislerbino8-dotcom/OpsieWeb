@@ -310,9 +310,12 @@ function ContactForm() {
                   Form / 01
                 </span>
               </div>
-              <h3 id="contact-form-title" className="text-3xl font-bold text-[#0B1622] tracking-tight">
+              {/* h2 matches the section-level headings used by the FAQ
+                  (SuperHeader), so the page outline stays h1 -> h2 and the
+                  card title never skips a level on either host page. */}
+              <h2 id="contact-form-title" className="text-3xl font-bold text-[#0B1622] tracking-tight">
                 Not sure where to start?
-              </h3>
+              </h2>
               <p className="text-sm text-[#475569] mt-2">
                 Fill out the contact form and we’ll get back to you shortly.
               </p>

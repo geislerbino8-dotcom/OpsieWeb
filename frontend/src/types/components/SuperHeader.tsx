@@ -1,4 +1,4 @@
-const SuperHeader = ({ text, type, defColor, position }: { text: string, type?: string, defColor?: string, position?: string }) => {
+const SuperHeader = ({ text, type, defColor, emphasisColor, position }: { text: string, type?: string, defColor?: string, emphasisColor?: string, position?: string }) => {
 
   const parts = text?.split(/(\*.*?\*)/g);
 
@@ -14,7 +14,7 @@ const SuperHeader = ({ text, type, defColor, position }: { text: string, type?: 
       type === 'hero' ? `w-full break-words text-center md:text-${position} max-w-[850px] text-[clamp(2rem,6vw,42px)] leading-[1.1] md:text-[72px] md:leading-[82px]` : `text-4xl  text-center md:text-${position} font-montserrat md:text-5xl font-semibold leading-[1.1] text-gray-900`}>
       {parts?.map((part, i) =>
         part.startsWith("*") && part.endsWith("*") ? (
-          <span key={i} className="text-[#3CBDE6] font-bold">
+          <span key={i} className="text-[#3CBDE6] font-bold" style={emphasisColor ? { color: emphasisColor } : undefined}>
             {part.replaceAll("*", "")}
           </span>
         ) : (

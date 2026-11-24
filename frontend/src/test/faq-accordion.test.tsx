@@ -11,10 +11,10 @@ vi.mock("@/App", async () => {
   return { ContentContext: React.createContext(null) };
 });
 
-function renderFaq() {
+function renderFaq(header = "Frequently asked questions") {
   return render(
     <MemoryRouter>
-      <ContentContext.Provider value={{ faqSection: { header: "Frequently asked questions" } }}>
+      <ContentContext.Provider value={{ faqSection: { header } }}>
         <FAQAccordion />
       </ContentContext.Provider>
     </MemoryRouter>,
@@ -133,6 +133,16 @@ describe("FAQ accordion (Component C)", () => {
     const heading = screen.getByRole("heading", { level: 2 });
     expect(heading).toHaveTextContent("Frequently asked questions");
     expect(heading.textContent?.trim()).not.toBe("");
+  });
+
+  it("keeps optional heading emphasis contrast-safe on the light FAQ surface", () => {
+    renderFaq("A *better* FAQ");
+
+    const heading = screen.getByRole("heading", { level: 2 });
+    const emphasis = heading.querySelector("span");
+
+    expect(emphasis).toHaveTextContent("better");
+    expect(emphasis).toHaveStyle({ color: "#0E7490" });
   });
 
   it("uses the contrast-safe intro colour on the light page", () => {

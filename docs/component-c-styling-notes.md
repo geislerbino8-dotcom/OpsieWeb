@@ -43,6 +43,7 @@ Measured from computed styles in the 2026-11-19 browser pass
 | Section heading | CMS `faqSection.header`, gray-900, 48 px | 15.17:1 on `#ECEDF1`; fallback “Frequently asked questions” |
 | Intro | 18 px `font-light` `#475569`, `max-w-sm` | 6.48:1 on `#ECEDF1` (was `text-gray-500` at 4.13:1) |
 | Contact link | `<Link to="/contact-us">`, `#0E7490`, `font-medium`, hover underline | 4.58:1 on `#ECEDF1` |
+| Optional emphasized heading words | `SuperHeader` `emphasisColor="#0E7490"` | 4.58:1 on `#ECEDF1`; default brand teal remains available on dark surfaces |
 | Card surface | `bg-white`, `rounded-2xl` | radius supplies the D4 visible corners |
 | Card border | `border-[#0B1622]/10` | hairline navy |
 | Card shadow (closed) | `shadow-sm` | keeps the list quiet |
@@ -69,6 +70,7 @@ Measured from computed styles in the 2026-11-19 browser pass
 | Open | Teal `/60` border + soft teal glow, teal question/index, teal icon chip with `×`. |
 | Focus-visible | 2 px `#0E7490` outline at 2 px offset on the trigger and the contact link. |
 | Keyboard | Enter/Space operate the native button; single-open model unchanged. |
+| Empty | Text-fallback card with a `/contact-us` link; `Answers / 00` remains visible from `faqs.length`. |
 | Reduced motion | `index.css:102` collapses every transition to 0.01 ms. |
 
 ## 4. Shared patterns
@@ -173,12 +175,12 @@ Structured results: `shots/faq-style/style-results.json` and `open-results.json`
 
 ## 7. Known limitations
 
-- **Shared `SuperHeader` teal fragments (latent).** `*…*` emphasis spans render `#3CBDE6`
-  at **2.36:1** on the light section. The current CMS heading has no emphasis span, so the
-  shipped page passes; adding one would fail. Cross-cutting `SuperHeader` concern.
+- **Resolved: emphasized FAQ heading words use contrast-safe teal.** Component C passes
+  `emphasisColor="#0E7490"` to `SuperHeader` (4.58:1 on `#ECEDF1`); the default
+  `#3CBDE6` remains unchanged on other surfaces.
 - **App-level CMS failure.** With the content request blocked, `App.fetchContent` throws an
   unhandled `TypeError` on `res.data`; the FAQ still renders its fallback heading.
 - **Floating chat launcher.** Botpress's `#fab-root` overlaps the FAQ at 320–375 px when
   scrolled to the bottom. It is a global affordance, hidden in the QA captures.
-- **Empty state.** The DS-4 no-answers fallback remains documented-only; the FAQ content is
-  a static import in this pack, so there is no runtime empty path to style.
+- **Empty state.** The DS-4 text fallback is implemented and covered by the responsive/state
+  pass; the statically imported FAQ data means it appears only if that data array is empty.

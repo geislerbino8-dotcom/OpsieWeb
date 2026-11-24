@@ -37,7 +37,7 @@ const FAQAccordion = () => {
             </span>
           </div>
 
-          <SuperHeader text={heading} position="left"/>
+          <SuperHeader text={heading} position="left" emphasisColor="#0E7490" />
         
           <p className="mt-6 text-lg text-[#475569] text-center md:text-left font-light max-w-sm">
             Everything you need to know about Opsie. Can't find what you're looking for?{" "}

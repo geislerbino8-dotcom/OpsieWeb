@@ -198,9 +198,7 @@ partial opacity (0.40 observed), so the probe waits ~1 s before sampling.
 - **Shared `SuperHeader` teal emphasis** (2.36:1 on light) remains latent — the current CMS
   FAQ heading contains no `*…*` span.
 - **Floating chat launcher** overlaps the last card at 320–375 px; global, outside Component C.
-- **`/what-we-do` testimonial entrance covers the FAQ briefly.** The preceding
-  `ClientReviewsSection` uses `data-aos="slide-up"` and starts translated down by its own
-  height (≈482 px), so for ~1.2 s it hit-tests over the FAQ trigger while it animates into
-  place. The FAQ itself is correct; the overlap is visible content self-resolving once AOS
-  settles. Left as-is because it is an adjacent section's animation, not a Component C defect;
-  fixing it would mean changing the testimonial reveal.
+- **Resolved: `/what-we-do` testimonial entrance no longer covers FAQ controls.**
+  `ClientReviewsSection` now uses an opacity-only AOS fade instead of translating down by
+  its full height over the FAQ during entrance. This preserves the entrance feedback while
+  keeping the FAQ triggers reachable throughout the animation.
