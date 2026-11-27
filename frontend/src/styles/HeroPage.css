@@ -1,69 +1,353 @@
-.hero-page-container {
-    background-color: rgba(0, 0, 0, 0.707);
-    background-image: url('../assets/background-images/landing-hero.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-    text-align: center;
-    background-blend-mode: darken;
-
+.opsie-banner {
+  --banner-bg: #dff4fa;
+  --panel: rgba(239, 251, 255, 0.95);
+  --footer: rgba(239, 251, 255, 0.88);
+  --navy: #103a49;
+  --body: #3f5964;
+  --muted: #3b6672;
+  --cyan: #3cbde7;
+  position: relative;
+  width: 100%;
+  min-height: 760px;
+  overflow: hidden;
+  background: var(--banner-bg);
+  isolation: isolate;
 }
 
-.hero-content p{
-    margin: 1em 0;
+.opsie-banner--dark {
+  --banner-bg: #0a1218;
+  --panel: rgba(16, 35, 46, 0.97);
+  --footer: rgba(11, 25, 34, 0.97);
+  --navy: #f0f7fb;
+  --body: #a5bac7;
+  --muted: #a5bac7;
 }
 
-.hero-title {
-    color: red  ;
+.opsie-banner__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 702px;
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
 }
 
-.hero-content {
-    margin-bottom: 5em;
+.opsie-banner__night {
+  position: absolute;
+  inset: 0 0 58px;
+  background: rgba(3, 22, 38, 0.56);
+  z-index: -1;
 }
 
-.hero-text-content {
-    z-index: 1;
-    overflow: hidden;
+.opsie-banner__main {
+  position: relative;
+  min-height: 702px;
+  padding: 111px 40px 50px;
 }
 
-
-
-.btn-hero {
-    width: 90vw;
-    border-radius: 1em;
-    border: 1px solid rgb(160, 14, 14);
-    background-color: #8B5CF6;
-    padding: 1em 2em;
-    color: white;
-    font-size: 1.2em;
-    margin: 1em;
-    font-weight: bold;
-    border: 0;
+.opsie-banner__welcome {
+  width: 473px;
+  min-height: 412px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  background: var(--panel);
+  padding: 30px 28px 28px;
 }
 
-.hero-visual {
-    margin: 2em;
-    position: absolute;
-    right:  25%;
-    top: 25%;
-    opacity: 30%;
+.opsie-banner__eyebrow {
+  margin: 0 0 25px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
-@media (min-width: 550px) {
-    
+.opsie-banner__title {
+  margin: 0;
+  color: var(--navy);
+  font-size: 61px;
+  line-height: 1.16;
+  letter-spacing: -2.44px;
+  font-weight: 700;
+  max-width: 420px;
+}
 
-    .hero-content {
-        width: 70%;
+.opsie-banner__title span,
+.opsie-banner__title strong {
+  display: block;
+  font-weight: 700;
+}
 
-      
+.opsie-banner__subtitle {
+  width: 410px;
+  margin: 36px 0 0;
+  color: var(--body);
+  font-size: 18px;
+  line-height: 1.35;
+  white-space: pre-line;
+}
 
-        button {
-            width: 70%;
-        }
-    }
+.opsie-banner__cta,
+.opsie-banner__footer button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
 
-    .hero-visual {
-        left: 25%;
-    }
+.opsie-banner__cta {
+  width: 219px;
+  height: 48px;
+  margin-top: 38px;
+  border-radius: 24px;
+  background: var(--cyan);
+  color: #062e3b;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.opsie-banner__cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.opsie-banner__statement {
+  position: absolute;
+  top: 45px;
+  right: 80px;
+  margin: 0;
+  color: var(--navy);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 800;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.opsie-banner__features {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.opsie-banner__feature {
+  height: 88px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background: var(--panel);
+  padding: 17px 20px;
+}
+
+.opsie-banner__feature p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.opsie-banner__feature strong {
+  color: var(--navy);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.opsie-banner__theme {
+  position: absolute;
+  top: 25px;
+  right: 196px;
+  z-index: 4;
+  display: flex;
+  width: 58px;
+  height: 26px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 13px;
+  background: #cde4ec;
+  padding: 2px;
+}
+
+.opsie-banner--dark .opsie-banner__theme {
+  background: #263f4c;
+}
+
+.opsie-banner__theme-button {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.opsie-banner__theme-button.is-selected {
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 2px 5px rgba(16, 58, 73, 0.12);
+}
+
+.opsie-banner--dark .opsie-banner__theme-button.is-selected {
+  background: #263f4c;
+  border: 1px solid #526c78;
+}
+
+.opsie-banner__sun,
+.opsie-banner__moon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.opsie-banner__sun {
+  background: #fff;
+  box-shadow: 0 0 0 2px #3cbde7 inset;
+  border: 1px solid #3cbde7;
+}
+
+.opsie-banner__moon {
+  background: #7e99a5;
+  clip-path: polygon(55% 0, 100% 0, 100% 100%, 55% 100%, 25% 78%, 12% 50%, 25% 22%);
+}
+
+.opsie-banner__footer {
+  height: 58px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--footer);
+  padding: 0 40px;
+  color: var(--body);
+  font-size: 12px;
+}
+
+.opsie-banner__footer p {
+  margin: 0;
+}
+
+.opsie-banner__footer button {
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .opsie-banner {
+    min-height: 820px;
+  }
+
+  .opsie-banner__image,
+  .opsie-banner__night {
+    height: 762px;
+  }
+
+  .opsie-banner__main {
+    min-height: 762px;
+    padding: 116px 24px 34px;
+  }
+
+  .opsie-banner__welcome {
+    width: min(473px, calc(100vw - 48px));
+  }
+
+  .opsie-banner__statement {
+    display: none;
+  }
+
+  .opsie-banner__features {
+    left: 24px;
+    right: 24px;
+    bottom: 34px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .opsie-banner__feature {
+    height: 72px;
+  }
+
+  .opsie-banner__theme {
+    top: 96px;
+    right: 24px;
+  }
+
+  .opsie-banner__footer {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .opsie-banner {
+    min-height: 790px;
+  }
+
+  .opsie-banner__main {
+    min-height: 732px;
+    padding: 112px 16px 24px;
+  }
+
+  .opsie-banner__image,
+  .opsie-banner__night {
+    height: 732px;
+  }
+
+  .opsie-banner__welcome {
+    width: 100%;
+    min-height: 390px;
+    border-radius: 20px;
+    padding: 28px 22px;
+  }
+
+  .opsie-banner__title {
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .opsie-banner__subtitle {
+    width: 100%;
+    margin-top: 28px;
+    font-size: 16px;
+  }
+
+  .opsie-banner__cta {
+    margin-top: 28px;
+  }
+
+  .opsie-banner__features {
+    left: 16px;
+    right: 16px;
+    bottom: 24px;
+  }
+
+  .opsie-banner__feature {
+    height: 68px;
+  }
+
+  .opsie-banner__feature p {
+    margin-bottom: 7px;
+  }
+
+  .opsie-banner__theme {
+    top: 86px;
+  }
+
+  .opsie-banner__footer {
+    height: 58px;
+    padding: 0 16px;
+  }
+
+  .opsie-banner__footer p {
+    max-width: 210px;
+  }
 }
