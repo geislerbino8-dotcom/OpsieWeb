@@ -28,10 +28,9 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       <div
   className={`w-full px-4 py-2 flex items-center justify-center  gap-2 ${badgeClassName}`}
   style={{
-    backgroundColor: "rgb(240, 242, 245)",
-    borderRadius: "50px",
-    boxShadow:
-      "rgba(60, 189, 230, 0.25) 2px 3px 4px 0px inset , rgba(250, 251, 255, 1) -2px -2px 4px 0px inset",
+    backgroundColor: "rgba(255,255,255,0.04)",
+    borderRadius: "2px",
+    border: "1px solid rgba(255,255,255,0.14)",
   }}
 >
     <div className="w-7 h-7 rounded-full bg-[#8B5CF6] flex items-center justify-center">

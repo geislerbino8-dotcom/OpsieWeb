@@ -405,3 +405,181 @@ footer::before {
   background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
   pointer-events: none;
 }
+
+/* ===== Arc'teryx System 0 visual system =====
+   Technical, high-contrast, monochrome interface language.
+   Signal orange is reserved for active actions and status. */
+:root {
+  --sys0-ink: #090a0a;
+  --sys0-panel: #111313;
+  --sys0-panel-raised: #171919;
+  --sys0-line: rgba(255, 255, 255, 0.14);
+  --sys0-line-strong: rgba(255, 255, 255, 0.28);
+  --sys0-text: #f4f4f0;
+  --sys0-muted: #a9adab;
+  --sys0-signal: #ff4d00;
+  --sys0-signal-hover: #ff6840;
+  --sys0-radius: 2px;
+}
+
+html {
+  background: var(--sys0-ink);
+  color: var(--sys0-text);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--sys0-ink);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--sys0-text);
+  min-width: 320px;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Montserrat", "Arial Narrow", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "DM Serif Display", "Times New Roman", serif;
+  letter-spacing: -0.02em;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  border-radius: var(--sys0-radius);
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--sys0-signal);
+  outline-offset: 3px;
+}
+
+button:disabled,
+button[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Shared component surfaces */
+.card,
+.card-side-glow,
+[class*="rounded-2xl"],
+[class*="rounded-xl"],
+[class*="rounded-3xl"] {
+  border-radius: var(--sys0-radius) !important;
+}
+
+.card-side-glow {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34) !important;
+  border-color: var(--sys0-line) !important;
+}
+
+/* Keep the legacy violet utilities visually on the System 0 palette. */
+[class*="bg-[#8B5CF6]"],
+[class*="bg-violet"],
+[class*="bg-[#7C3AED]"],
+[class*="bg-[#A78BFA]"] {
+  background-color: var(--sys0-signal) !important;
+}
+
+[class*="text-[#8B5CF6]"],
+[class*="text-violet"],
+[class*="text-[#A78BFA]"] {
+  color: var(--sys0-signal) !important;
+}
+
+[class*="border-[#8B5CF6]"],
+[class*="border-violet"] {
+  border-color: var(--sys0-signal) !important;
+}
+
+input,
+select,
+textarea {
+  min-height: 44px;
+  background-color: rgba(255, 255, 255, 0.035) !important;
+  border: 1px solid var(--sys0-line) !important;
+  color: var(--sys0-text) !important;
+  caret-color: var(--sys0-signal);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #858a88 !important;
+  opacity: 1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--sys0-signal) !important;
+  box-shadow: inset 0 -1px 0 var(--sys0-signal);
+}
+
+option {
+  background: #151717;
+  color: var(--sys0-text);
+}
+
+/* Technical labels and ruled sections */
+[class*="tracking-[0.2em]"],
+[aria-label="Footer navigation"] h3,
+[aria-label="Mobile navigation"] {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+nav.fixed {
+  border-bottom: 1px solid var(--sys0-line);
+  background: rgba(9, 10, 10, 0.94) !important;
+  backdrop-filter: blur(18px);
+}
+
+footer {
+  border-top: 1px solid var(--sys0-line);
+  background: var(--sys0-ink);
+}
+
+footer [aria-label="Footer navigation"] a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-size: 24px 24px;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

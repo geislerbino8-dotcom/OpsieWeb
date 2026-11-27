@@ -23,7 +23,7 @@ const Footer = () => {
       </span>
 
       {/* MAIN CARD */}
-      <div className="relative w-full max-w-6xl rounded-3xl bg-[#0a0a0a] md:p-10 py-10 px-3 md:mb-30 z-10 border border-[#8B5CF6]/25 card-side-glow">
+      <div className="relative w-full max-w-6xl rounded-[2px] bg-[#0a0a0a] md:p-10 py-10 px-3 md:mb-30 z-10 border border-white/14 card-side-glow">
 
         {/* HEADER */}
         <div className="text-center">
@@ -141,7 +141,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Follow us on Facebook"
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-[#1a1a1a] hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+              className="group w-11 h-11 p-2 flex items-center justify-center rounded-[2px] bg-[#1a1a1a] hover:bg-[#ff4d00] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
                 <SiFacebook aria-hidden="true" className="group-hover:text-white text-gray-400 w-5 h-5"/>
             </a>
             <a
@@ -149,13 +149,13 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Follow us on Instagram"
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-[#1a1a1a] hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+              className="group w-11 h-11 p-2 flex items-center justify-center rounded-[2px] bg-[#1a1a1a] hover:bg-[#ff4d00] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
                 <SiInstagram aria-hidden="true" className="group-hover:text-white text-gray-400 w-5 h-5"/>
             </a>
             <a
               href="mailto:hello@opsie.com"
               aria-label="Email us at hello@opsie.com"
-              className="group w-10 h-10 p-2 flex items-center justify-center rounded-full bg-[#1a1a1a] hover:bg-[#8B5CF6] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
+              className="group w-11 h-11 p-2 flex items-center justify-center rounded-[2px] bg-[#1a1a1a] hover:bg-[#ff4d00] hover:text-white transition shadow-[0_10px_40px_rgba(0,0,0,0.20)]">
                 <SiGmail aria-hidden="true" className="group-hover:text-white text-gray-400 w-5 h-5"/>
             </a>
 

@@ -23,10 +23,10 @@ function MobileMenu({ closeMenu }: MobileMenuProps) {
 
       <div
         className="
-          bg-[#8B5CF6]
+          bg-[#090a0a]
           relative w-full max-w-full h-[75vh]
           text-white
-          rounded-t-3xl
+          rounded-t-[2px]
           shadow-xl
           flex flex-col p-6 space-y-8
           transform transition-transform duration-300

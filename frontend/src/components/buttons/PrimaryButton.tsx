@@ -22,11 +22,11 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   // 🎨 Variants
   const variants = {
     primary:
-      "text-white bg-[#8B5CF6] hover:bg-[#7C3AED]",
+      "text-white bg-[#ff4d00] hover:bg-[#ff6840] border border-[#ff4d00]",
     outline:
-      "border border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white",
+      "border border-[#ff4d00] text-[#ff4d00] hover:bg-[#ff4d00] hover:text-white",
     ghost:
-      "text-[#8B5CF6] hover:bg-[#8B5CF6]/10",
+      "text-[#ff4d00] hover:bg-[#ff4d00]/10",
   };
 
   // 📏 Sizes
@@ -41,7 +41,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       onClick={onClick}
       className={`
         flex items-center justify-center gap-2
-        rounded-full
+        rounded-[2px]
         font-semibold
         transition-all duration-1000 ease-out
         active:scale-95

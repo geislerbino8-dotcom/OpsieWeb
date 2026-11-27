@@ -203,7 +203,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
           onClick={toggleMobileNav}
           aria-label="Toggle menu"
           aria-expanded={navIsOpen}
-          className="-m-1.5 p-1.5"
+          className="-m-1.5 p-1.5 h-11 w-11 flex items-center justify-center"
         >
           <img src={burgermenu} alt="Menu" className="w-8" />
         </button>
