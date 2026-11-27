@@ -1,125 +1,140 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import LogoOnly from '../assets/icons/opsie_logo_only.png';
-import SplitText from './SplitText';
-import SoftAurora from './SoftAurora';
 import { ContentContext } from "@/ContentContext";
+import { Moon, Sun } from "lucide-react";
 
 type HeroPageProps = {
   bgImage?: string;
 };
 
-function HeroPage({ bgImage }: HeroPageProps) {
+function HeroPage({ bgImage: _bgImage }: HeroPageProps) {
   const navigate = useNavigate();
   const content = useContext(ContentContext);
+  const [isDark, setIsDark] = useState(false);
 
   const headerText = content?.heroSection?.header || "";
   const subHeaderText = content?.heroSection?.subHeader || "";
   const buttonText = content?.heroSection?.button || "";
 
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("opsie-banner-theme");
+    if (savedTheme === "dark") setIsDark(true);
+  }, []);
+
+  const toggleTheme = (dark: boolean) => {
+    setIsDark(dark);
+    window.localStorage.setItem("opsie-banner-theme", dark ? "dark" : "light");
+  };
+
   return (
-    <div
-      className="w-full h-screen relative flex flex-col justify-end overflow-hidden"
+    <section
+      className="relative w-full min-h-[760px] overflow-hidden text-white"
       style={{
-        backgroundColor: '#000000',
-        backgroundImage: bgImage ? `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${bgImage})` : undefined,
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
+        backgroundColor: isDark ? "#070c10" : "#141b1d",
+        backgroundImage: `url(${isDark ? "/background/opsie-banner-dark.png" : "/background/opsie-banner-light.png"})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
       }}
+      aria-label="Opsie enterprise operations platform"
     >
-      {/* Centered Aurora Layer Wrapper */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <div 
-          className="relative w-[600px] h-[600px] md:w-[900px] md:h-[900px] aspect-square opacity-40 mix-blend-screen flex items-center justify-center"
-          style={{
-            WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)',
-            maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)'
-          }}
-        >
-          <SoftAurora
-            speed={0.5}
-            scale={1.0}
-            brightness={3}
-            color1="#5B21B6"
-            color2="#8B5CF6"
-            noiseFrequency={2.5}
-            noiseAmplitude={1}
-            bandHeight={0.4}
-            bandSpread={0.8}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction
-            mouseInfluence={0.25}
-          />
-        </div>
-      </div>
+      <div
+        className="absolute inset-x-0 top-[76px] h-[626px]"
+        style={{ backgroundColor: isDark ? "rgba(7,16,20,0.56)" : "rgba(7,16,20,0.35)" }}
+      />
 
-      {/* Central Spinning Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <img 
-          src={LogoOnly} 
-          alt="Logo" 
-          className="animate-[spin_20s_linear_infinite] w-72 md:w-[500px] opacity-[30%] select-none" 
-        />
-      </div>
-
-      {/* Content Area */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 mb-24 space-y-8">
-        
-        <div className="max-w-5xl">
-          <h1 className="text-white heading-glow">
-            {headerText && (
-              <SplitText
-                text={headerText}
-                className="text-[48px] md:text-[80px] lg:text-[90px] font-bold leading-[1.1] tracking-tight"
-                delay={50}
-                duration={1}
-                ease="back.out(1.7)"
-                splitType="chars"
-                from={{ opacity: 0, y: 80 }}
-                to={{ opacity: 1, y: 0 }}
-              />
-            )}
-          </h1>
+      <div className="relative z-10 mx-auto flex min-h-[760px] max-w-[1200px] flex-col">
+        <div className="relative h-[76px] shrink-0">
+          <div className="absolute right-0 top-[25px] flex h-[26px] items-center rounded-full bg-[#263f4c] p-[2px]">
+            <button
+              type="button"
+              aria-label="Use light banner"
+              aria-pressed={!isDark}
+              onClick={() => toggleTheme(false)}
+              className={`grid h-[22px] w-[22px] place-items-center rounded-full transition-colors ${isDark ? "text-white/70" : "bg-white text-[#263f4c]"}`}
+            >
+              <Sun className="h-[13px] w-[13px]" />
+            </button>
+            <button
+              type="button"
+              aria-label="Use dark banner"
+              aria-pressed={isDark}
+              onClick={() => toggleTheme(true)}
+              className={`grid h-[22px] w-[22px] place-items-center rounded-full transition-colors ${isDark ? "bg-[#263f4c] text-white" : "text-white/70"}`}
+            >
+              <Moon className="h-[13px] w-[13px]" />
+            </button>
+          </div>
         </div>
 
-        {subHeaderText && (
-          <p
-            className="text-gray-300 text-lg md:text-xl max-w-2xl font-light leading-relaxed"
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="1000"
-          >
-            {subHeaderText}
+        <div className="relative h-[626px]">
+          <p className="absolute left-0 top-[40px] text-[12px] font-medium leading-[1.2]">
+            01 / CONNECTED BY DESIGN
           </p>
-        )}
+          <p className="absolute right-0 top-[40px] text-right text-[12px] font-medium leading-[1.2]">
+            SECURE / CONNECTED / INTELLIGENT
+          </p>
 
-        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 card-side-glow max-w-md w-full">
-          <div className="flex items-center space-x-3">
-            <div className="bg-violet-700 rounded-full w-10 h-10 flex items-center justify-center">
-              <span className="font-bold text-lg">O</span>
+          <div className="absolute left-1/2 top-[171px] w-[min(1000px,calc(100%-32px))] -translate-x-1/2 text-center">
+            <h1 className="hero-design-title text-[84px] leading-[1.1] tracking-[-3.36px] text-white">
+              <span className="block">{headerText || "Operate With"}</span>
+              <span className="block">{headerText ? "" : "Opsie Way."}</span>
+            </h1>
+            {subHeaderText && (
+              <p className="mx-auto mt-[38px] max-w-[780px] text-[18px] leading-[1.2] text-white">
+                {subHeaderText}
+              </p>
+            )}
+            {!subHeaderText && (
+              <p className="mx-auto mt-[38px] max-w-[780px] text-[18px] leading-[1.2] text-white">
+                Make your day-to-day operations easier with Opsie.
+              </p>
+            )}
+            <button
+              type="button"
+              onClick={() => navigate("/book-a-schedule")}
+              className="mx-auto mt-[34px] flex h-[46px] w-[248px] items-center justify-center border border-[#3cbde7] bg-[rgba(6,46,59,0.94)] text-[14px] font-medium text-[#3cbde7] transition-colors hover:bg-[#3cbde7] hover:text-[#071014]"
+            >
+              {buttonText || "See how it works"} <span className="ml-2" aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          <div
+            className="absolute inset-x-[-50vw] bottom-0 h-[94px]"
+            style={{ backgroundColor: isDark ? "rgba(7,16,20,0.9)" : "rgba(7,16,20,0.72)" }}
+          />
+          <div className="absolute bottom-0 left-0 right-0 grid h-[94px] grid-cols-3 items-start pt-[19px]">
+            <div>
+              <p className="text-[12px] font-medium leading-[1.2]">WORKFLOW ORCHESTRATION</p>
+              <p className="mt-[10px] text-[14px] leading-[1.2] text-[#cfd7d9]">Workflows synchronized</p>
             </div>
-            <div className="text-left">
-              <h1 className="text-xl font-bold">Opsie</h1>
-              <p className="text-sm">Operate The Opsie Way</p>
+            <div>
+              <p className="text-[12px] font-medium leading-[1.2]">TEAM ALIGNMENT</p>
+              <p className="mt-[10px] text-[14px] leading-[1.2] text-[#cfd7d9]">Command layer active</p>
+            </div>
+            <div>
+              <p className="text-[12px] font-medium leading-[1.2]">LIVE COMMAND</p>
+              <p className="mt-[10px] text-[14px] leading-[1.2] text-[#cfd7d9]">Automation policy compliant</p>
             </div>
           </div>
-          <button 
-            onClick={() => navigate("/book-a-schedule")}
-            className="group relative rounded-full bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
-          >
-          <span className="relative z-10">{buttonText}</span>
-          </button>
         </div>
 
-
+        <div
+          className="relative h-[58px] shrink-0"
+          style={{ backgroundColor: isDark ? "rgba(7,16,20,0.96)" : "rgba(7,16,20,0.88)" }}
+        >
+          <p className="absolute left-0 top-[22px] text-[13px] leading-[1.2] text-[#d8e0e1]">
+            The operating layer for modern enterprise.
+          </p>
+          <button
+            type="button"
+            onClick={() => navigate("/contact-us")}
+            className="absolute right-0 top-[22px] text-[13px] font-medium leading-[1.2] text-white"
+          >
+            Talk to an expert <span aria-hidden="true">↗</span>
+          </button>
+        </div>
       </div>
-
-      {/* Bottom Gradient for smoother section transitions */}
-      <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
-    </div>
+    </section>
   );
 }
 
