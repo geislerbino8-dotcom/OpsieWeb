@@ -7,6 +7,7 @@ import Layout from './Layout';
 import { getContent } from './api/getContent';
 import { supabase } from './utils/supabase';
 import { ContentContext, type ContentType } from './ContentContext';
+import BrunoSimonMotion from './components/BrunoSimonMotion';
 
 const App = () => {
 
@@ -57,6 +58,7 @@ const App = () => {
 
   return (
    <ContentContext.Provider value={content}>
+      <BrunoSimonMotion />
       <Layout />
    </ContentContext.Provider>
   );
