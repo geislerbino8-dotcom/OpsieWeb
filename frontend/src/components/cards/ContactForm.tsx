@@ -3,6 +3,7 @@ import { createTicket } from "@/api/createTicket";
 import { useToast } from "@/hooks/useToast";
 import ToastContainer from "../admin/common/ToastComponent";
 import { products } from "@/data/productsData";
+import NewsletterSignup from "../NewsletterSignup";
 
 interface ProductItem {
   name: string;
@@ -60,7 +61,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="flex justify-center relative" data-aos="fade-up">
+    <div className="flex flex-col items-center gap-6 relative" data-aos="fade-up">
       {/* 
         Main Card: Kept physically uniform. 
         Uses group-hover properties to turn child elements white/light gray when open.
@@ -212,6 +213,10 @@ function ContactForm() {
             </button>
           </div>
         )}
+      </div>
+
+      <div className="w-full max-w-lg relative z-10">
+        <NewsletterSignup showName />
       </div>
 
       <div className="absolute top-0 left-0 right-0 pointer-events-none">

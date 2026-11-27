@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logoOnly from "../assets/opsie/opsie_logo.png";
 import EncourageCard from "./cards/EncourageCard";
 import { SiFacebook, SiInstagram, SiGmail } from "react-icons/si";
+import NewsletterSignup from "./NewsletterSignup";
 
 
 const Footer = () => {
@@ -121,6 +122,10 @@ const Footer = () => {
             </div>
 
           </nav>
+        </div>
+
+        <div className="mt-10">
+          <NewsletterSignup compact />
         </div>
 
         {/* DIVIDER */}

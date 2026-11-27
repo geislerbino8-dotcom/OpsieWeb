@@ -18,6 +18,59 @@
 
 }
 
+/* Original editorial warm-neutral style inspired by approachable newsletter
+   marketing: this is a shared visual direction, not copied Mailchimp markup,
+   assets, or page layouts. */
+:root {
+  --opsie-editorial-ink: #241c15;
+  --opsie-editorial-cream: #fffdf5;
+  --opsie-editorial-yellow: #f4c542;
+  --opsie-editorial-yellow-hover: #dfad20;
+  --opsie-editorial-mint: #dff4e8;
+  --opsie-editorial-border: rgba(36, 28, 21, 0.18);
+}
+
+.mailchimp-inspired-card {
+  border: 1px solid var(--opsie-editorial-border);
+  border-radius: 24px;
+  background: var(--opsie-editorial-cream);
+  color: var(--opsie-editorial-ink);
+  box-shadow: 8px 8px 0 rgba(36, 28, 21, 0.12);
+}
+
+.mailchimp-inspired-button {
+  min-height: 44px;
+  border: 1.5px solid var(--opsie-editorial-ink);
+  border-radius: 999px;
+  background: var(--opsie-editorial-yellow);
+  color: var(--opsie-editorial-ink);
+  font-weight: 800;
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.mailchimp-inspired-button:hover {
+  background: var(--opsie-editorial-yellow-hover);
+  transform: translateY(-2px);
+}
+
+.mailchimp-inspired-button:active {
+  transform: translateY(0);
+}
+
+.mailchimp-inspired-input {
+  min-height: 48px;
+  border: 1.5px solid var(--opsie-editorial-border);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--opsie-editorial-ink);
+  outline: none;
+}
+
+.mailchimp-inspired-input:focus-visible {
+  border-color: var(--opsie-editorial-ink);
+  box-shadow: 0 0 0 3px var(--opsie-editorial-yellow);
+}
+
 
 
 /* Layered on purpose (2026-10-09): Tailwind utilities live in a later cascade

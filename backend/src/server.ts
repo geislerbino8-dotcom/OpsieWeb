@@ -10,6 +10,7 @@ import dns from 'dns';
 import { rateLimit } from 'express-rate-limit';
 import WebContentRoute from './routes/webContentRoute';
 import AppointmentRoute from './routes/appointmentRoute';
+import NewsletterRoute from './routes/newsletterRoute';
 // Force Google DNS
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
@@ -31,6 +32,15 @@ const appointmentLimiter = rateLimit({
   legacyHeaders: false,
   ipv6Subnet: 56,
   message: { error: 'Too many requests, please try again later.' },
+});
+
+const newsletterLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  ipv6Subnet: 56,
+  message: { error: 'Too many subscription attempts. Please try again later.' },
 });
 
 export default class Server {
@@ -57,6 +67,7 @@ export default class Server {
     const productRoute = new ProductRoute();
     const webContentRoute = new WebContentRoute();
     const appointmentRoute = new AppointmentRoute();
+    const newsletterRoute = new NewsletterRoute();
     const API_PREFIX = process.env.API_PREFIX || '/api';
     this.app.use(`${API_PREFIX}/ticket/create`, ticketRoute.router, limiter);
     this.app.use(`${API_PREFIX}/ticket`, ticketRoute.router);
@@ -68,6 +79,11 @@ export default class Server {
       `${API_PREFIX}/appointments`,
       appointmentRoute.router,
       appointmentLimiter,
+    );
+    this.app.use(
+      `${API_PREFIX}/newsletter`,
+      newsletterRoute.router,
+      newsletterLimiter,
     );
     this.app.use(`${API_PREFIX}/products`, productRoute.router);
   };
