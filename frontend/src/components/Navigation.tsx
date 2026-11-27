@@ -97,7 +97,7 @@ const [isProductsHover, setIsProductsHover] = useState(false);
       <nav
       className="
       bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 
-      w-full fixed left-0 z-20"
+        w-full fixed left-0 z-20 opsie-a24-navigation"
       style={{
         top: 0,
         backgroundColor: "rgba(10, 10, 10, 0.82)"

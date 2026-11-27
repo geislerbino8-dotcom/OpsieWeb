@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import './styles/A24Theme.css'
 import router from './Router.tsx'
 import { RouterProvider } from 'react-router-dom'
 import { AuthProvider } from './hooks/useAuth.tsx'

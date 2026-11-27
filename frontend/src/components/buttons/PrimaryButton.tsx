@@ -22,11 +22,11 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   // 🎨 Variants
   const variants = {
     primary:
-      "text-white bg-[#8B5CF6] hover:bg-[#7C3AED]",
+      "text-[#062e3b] bg-[#3cbde7] hover:bg-[#77d8f5]",
     outline:
-      "border border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white",
+      "border border-[#3cbde7] text-[#3cbde7] hover:bg-[#3cbde7] hover:text-[#062e3b]",
     ghost:
-      "text-[#8B5CF6] hover:bg-[#8B5CF6]/10",
+      "text-[#3cbde7] hover:bg-[#3cbde7]/10",
   };
 
   // 📏 Sizes

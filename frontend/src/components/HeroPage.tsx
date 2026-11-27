@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { useNavigate } from 'react-router-dom';
-import LogoOnly from '../assets/icons/opsie_logo_only.png';
-import SplitText from './SplitText';
-import SoftAurora from './SoftAurora';
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { ContentContext } from "@/ContentContext";
+import "./HeroBanner.css";
 
 type HeroPageProps = {
   bgImage?: string;
@@ -12,114 +11,120 @@ type HeroPageProps = {
 function HeroPage({ bgImage }: HeroPageProps) {
   const navigate = useNavigate();
   const content = useContext(ContentContext);
+  const [isDark, setIsDark] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const headerText = content?.heroSection?.header || "";
-  const subHeaderText = content?.heroSection?.subHeader || "";
-  const buttonText = content?.heroSection?.button || "";
+  const subHeaderText =
+    content?.heroSection?.subHeader ||
+    "Make your day-to-day operations easier with Opsie.";
+
+  const portrait = isDark
+    ? "/background/opsie-banner-dark.png"
+    : "/background/opsie-banner-light.png";
 
   return (
-    <div
-      className="w-full h-screen relative flex flex-col justify-end overflow-hidden"
-      style={{
-        backgroundColor: '#000000',
-        backgroundImage: bgImage ? `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${bgImage})` : undefined,
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-      }}
-    >
-      {/* Centered Aurora Layer Wrapper */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <div 
-          className="relative w-[600px] h-[600px] md:w-[900px] md:h-[900px] aspect-square opacity-40 mix-blend-screen flex items-center justify-center"
-          style={{
-            WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)',
-            maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)'
-          }}
-        >
-          <SoftAurora
-            speed={0.5}
-            scale={1.0}
-            brightness={3}
-            color1="#5B21B6"
-            color2="#8B5CF6"
-            noiseFrequency={2.5}
-            noiseAmplitude={1}
-            bandHeight={0.4}
-            bandSpread={0.8}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction
-            mouseInfluence={0.25}
-          />
-        </div>
-      </div>
+    <section className={`opsie-banner ${isDark ? "opsie-banner-dark" : ""}`}>
+      <img
+        className="opsie-banner-portrait"
+        src={isDark ? "/background/opsie-banner-dark.png" : (bgImage || portrait)}
+        alt=""
+        aria-hidden="true"
+      />
+      <div className="opsie-banner-cinematic-scrim" />
 
-      {/* Central Spinning Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <img 
-          src={LogoOnly} 
-          alt="Logo" 
-          className="animate-[spin_20s_linear_infinite] w-72 md:w-[500px] opacity-[30%] select-none" 
-        />
-      </div>
+      <header className="opsie-banner-nav">
+        <nav className="opsie-banner-links" aria-label="Primary navigation">
+          <Link to="/what-we-do">Why Opsie</Link>
+          <Link to="/who-we-are">About Us</Link>
+          <Link to="/contact-us">Contact Us</Link>
+          <Link to="/products">Products</Link>
+        </nav>
 
-      {/* Content Area */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 mb-24 space-y-8">
-        
-        <div className="max-w-5xl">
-          <h1 className="text-white heading-glow">
-            {headerText && (
-              <SplitText
-                text={headerText}
-                className="text-[48px] md:text-[80px] lg:text-[90px] font-bold leading-[1.1] tracking-tight"
-                delay={50}
-                duration={1}
-                ease="back.out(1.7)"
-                splitType="chars"
-                from={{ opacity: 0, y: 80 }}
-                to={{ opacity: 1, y: 0 }}
-              />
-            )}
-          </h1>
-        </div>
+        <Link className="opsie-banner-logo" to="/" aria-label="Opsie Home">
+          <img           src={isDark ? "/Opsie-banner-logo-dark.png" : "/Opsie-banner-logo.png"} alt="Opsie" />
+        </Link>
 
-        {subHeaderText && (
-          <p
-            className="text-gray-300 text-lg md:text-xl max-w-2xl font-light leading-relaxed"
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="1000"
+        <div className="opsie-banner-actions">
+          <button
+            className="opsie-appearance-switch"
+            type="button"
+            role="switch"
+            aria-checked={isDark}
+            aria-label={isDark ? "Use light appearance" : "Use dark appearance"}
+            onClick={() => setIsDark((current) => !current)}
           >
-            {subHeaderText}
-          </p>
-        )}
-
-        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 card-side-glow max-w-md w-full">
-          <div className="flex items-center space-x-3">
-            <div className="bg-violet-700 rounded-full w-10 h-10 flex items-center justify-center">
-              <span className="font-bold text-lg">O</span>
-            </div>
-            <div className="text-left">
-              <h1 className="text-xl font-bold">Opsie</h1>
-              <p className="text-sm">Operate The Opsie Way</p>
-            </div>
-          </div>
-          <button 
+            <Sun className={!isDark ? "opsie-appearance-selected" : ""} />
+            <Moon className={isDark ? "opsie-appearance-selected" : ""} />
+            <span className={isDark ? "opsie-switch-knob dark" : "opsie-switch-knob"} />
+          </button>
+          <button
+            className="opsie-banner-get-started"
+            type="button"
             onClick={() => navigate("/book-a-schedule")}
-            className="group relative rounded-full bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
           >
-          <span className="relative z-10">{buttonText}</span>
+            Get started <span aria-hidden="true">↗</span>
           </button>
         </div>
 
+        <button
+          className="opsie-banner-menu-button"
+          type="button"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen((current) => !current)}
+        >
+          {menuOpen ? <X /> : <Menu />}
+        </button>
 
+        {menuOpen && (
+          <nav className="opsie-banner-mobile-menu" aria-label="Mobile navigation">
+            <Link to="/what-we-do" onClick={() => setMenuOpen(false)}>Why Opsie</Link>
+            <Link to="/who-we-are" onClick={() => setMenuOpen(false)}>About Us</Link>
+            <Link to="/contact-us" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>Products</Link>
+            <button type="button" onClick={() => navigate("/book-a-schedule")}>Get started ↗</button>
+          </nav>
+        )}
+      </header>
+
+      <div className="opsie-banner-hero">
+        <p className="opsie-banner-eyebrow">Enterprise operations platform</p>
+        <p className="opsie-banner-subtitle">{subHeaderText}</p>
+        <h1 className="opsie-banner-title">
+          <span>Operate With</span>
+          <span>Opsie Way.</span>
+        </h1>
+        <button
+          className="opsie-banner-demo"
+          type="button"
+          onClick={() => navigate("/what-we-do")}
+        >
+          See how it works <span aria-hidden="true">↗</span>
+        </button>
+        <p className="opsie-banner-operating-copy">
+          The operating layer for modern enterprise.
+        </p>
+        <p className="opsie-banner-trust">Secure / Connected / Intelligent</p>
       </div>
 
-      {/* Bottom Gradient for smoother section transitions */}
-      <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
-    </div>
+      <footer className="opsie-banner-footer">
+        <div>
+          <strong>Workflow orchestration</strong>
+          <span>Workflows synchronized</span>
+        </div>
+        <div>
+          <strong>Team alignment</strong>
+          <span>Command layer active</span>
+        </div>
+        <div>
+          <strong>Live command</strong>
+          <span>Automation policy compliant</span>
+        </div>
+        <button type="button" onClick={() => navigate("/contact-us")}>
+          Talk to an expert <span aria-hidden="true">↗</span>
+        </button>
+      </footer>
+    </section>
   );
 }
 
