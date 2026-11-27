@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Clock } from "lucide-react";
-import logo from "../assets/opsie/opsie_logo.png";
+import { Moon, Sun } from "lucide-react";
+import lightLogo from "/figma/opsie-logo-light.png";
+import darkLogo from "/figma/opsie-logo-dark.png";
 import PrimaryButton from "./buttons/PrimaryButton";
 import MobileMenu from "./MobileMenu";
 import burgermenu from "../assets/icons/burger-bar.png";
@@ -9,48 +10,27 @@ import { products } from "@/data/productsData";
 
 
 const menuLists = [
-  { name: "Why Opsie", link: "/what-we-do" },
-  { name: "About Us", link: "/who-we-are" },
-  { name: "Contact Us", link: "/contact-us" },
-  { name: "Products", link: "/products" },
+  { name: "Platform", link: "/what-we-do" },
+  { name: "Company", link: "/who-we-are" },
+  { name: "Contact", link: "/contact-us" },
+  { name: "Solutions", link: "/products" },
 ];
-
-function DateTimeDisplay() {
-  const [now, setNow] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const time = now.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
-
-  const date = now.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-  });
-
-  return (
-    <div className="hidden lg:flex h-10 items-center gap-1.5 text-white/70 text-[11px] font-medium px-3 rounded-md border border-white/10 bg-white/5">
-      <Clock className="w-3.5 h-3.5 text-[#8B5CF6]" />
-      <div className="flex flex-col leading-tight">
-        <span className="font-mono">{time}</span>
-        <span className="text-white/40 text-[10px]">{date}</span>
-      </div>
-    </div>
-  );
-}
 
 
 function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
   const [navIsOpen, setNavIsOpen] = useState(false);
-const [isProductsHover, setIsProductsHover] = useState(false);
+  const [isProductsHover, setIsProductsHover] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    localStorage.getItem("theme") === "dark" ||
+    (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)
+  );
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode);
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
 
   // Every page uses the booking page's nav treatment: a translucent
   // near-black bar (over backdrop-blur) instead of the old solid violet,
@@ -95,26 +75,22 @@ const [isProductsHover, setIsProductsHover] = useState(false);
   return (
     <>
       <nav
-      className="
-      bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 
-      w-full fixed left-0 z-20"
-      style={{
-        top: 0,
-        backgroundColor: "rgba(10, 10, 10, 0.82)"
-      }}
+      className={`w-full h-[76px] fixed left-0 top-0 z-20 transition-colors duration-300 ${
+        isDarkMode ? "bg-[#101a22]" : "bg-[#f2fafd]"
+      }`}
     >
       {/* Desktop */}
       <div className="md:flex flex-col max-w-7xl max-md:hidden mx-auto py-1 px-6">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <Link to="/" className="cursor-pointer" aria-label="Opsie Home">
-            <img src={logo} alt="Opsie Logo" className="w-32" />
+            <img src={isDarkMode ? darkLogo : lightLogo} alt="Opsie Logo" className="h-10 w-auto object-contain" />
           </Link>
 
           {/* Menu */}
-          <ul className="flex px-6 py-2 text-white relative">
+          <ul className={`flex px-6 py-2 relative ${isDarkMode ? "text-[#f0f7fb]" : "text-[#103a49]"}`}>
             {menuLists.map((item) => {
-              const isProducts = item.name === "Products";
+              const isProducts = item.name === "Solutions";
 
               if (isProducts) {
                 return (
@@ -182,20 +158,39 @@ const [isProductsHover, setIsProductsHover] = useState(false);
             })}
           </ul>
 
-          {/* Date/Time Display */}
-          <DateTimeDisplay />
-
-          {/* Button */}
-          <PrimaryButton text="Get Started" variant="primary" onClick={()=> {
-            navigate("/book-a-schedule")
-          }}/>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              role="switch"
+              aria-label="Toggle color mode"
+              aria-checked={isDarkMode}
+              onClick={() => setIsDarkMode((value) => !value)}
+              className={`relative h-[26px] w-[58px] rounded-full transition-colors ${
+                isDarkMode ? "bg-[#263f4c]" : "bg-[#d6e7ed]"
+              }`}
+            >
+              <span
+                className={`absolute top-[2px] size-[22px] rounded-full bg-[#fffdf5] shadow-sm transition-all ${
+                  isDarkMode ? "left-[34px]" : "left-[2px]"
+                }`}
+              />
+              <Sun className={`absolute left-[6px] top-[6px] size-[14px] ${isDarkMode ? "text-[#a5bac7]" : "text-[#103a49]"}`} />
+              <Moon className={`absolute right-[6px] top-[6px] size-[14px] ${isDarkMode ? "text-[#103a49]" : "text-[#506d78]"}`} />
+            </button>
+            <PrimaryButton
+              text="Get started"
+              variant="primary"
+              className="h-[42px] min-w-[158px] rounded-full !bg-[#3cbde7] !text-[#062e3b] !font-medium hover:!bg-[#62cced]"
+              onClick={() => navigate("/book-a-schedule")}
+            />
+          </div>
         </div>
       </div>
 
       {/* Mobile */}
       <div className="flex items-center justify-between px-6 py-4 md:hidden">
         <Link to="/" className="cursor-pointer" aria-label="Opsie Home">
-          <img src={logo} alt="Opsie Logo" className="w-24" />
+          <img src={isDarkMode ? darkLogo : lightLogo} alt="Opsie Logo" className="h-9 w-auto object-contain" />
         </Link>
 
         {/* p-1.5 grows the hit area to 44px; -m-1.5 keeps the icon in place */}

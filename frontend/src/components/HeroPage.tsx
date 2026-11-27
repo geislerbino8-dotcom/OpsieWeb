@@ -1,125 +1,80 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import LogoOnly from '../assets/icons/opsie_logo_only.png';
-import SplitText from './SplitText';
-import SoftAurora from './SoftAurora';
-import { ContentContext } from "@/ContentContext";
+import '../styles/HeroPage.css';
 
-type HeroPageProps = {
-  bgImage?: string;
-};
-
-function HeroPage({ bgImage }: HeroPageProps) {
+function HeroPage() {
   const navigate = useNavigate();
-  const content = useContext(ContentContext);
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    document.documentElement.classList.contains("dark")
+  );
 
-  const headerText = content?.heroSection?.header || "";
-  const subHeaderText = content?.heroSection?.subHeader || "";
-  const buttonText = content?.heroSection?.button || "";
+  useEffect(() => {
+    const syncTheme = () => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    };
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    window.addEventListener("storage", syncTheme);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("storage", syncTheme);
+    };
+  }, []);
 
   return (
-    <div
-      className="w-full h-screen relative flex flex-col justify-end overflow-hidden"
-      style={{
-        backgroundColor: '#000000',
-        backgroundImage: bgImage ? `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${bgImage})` : undefined,
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-      }}
-    >
-      {/* Centered Aurora Layer Wrapper */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <div 
-          className="relative w-[600px] h-[600px] md:w-[900px] md:h-[900px] aspect-square opacity-40 mix-blend-screen flex items-center justify-center"
-          style={{
-            WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)',
-            maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)'
-          }}
-        >
-          <SoftAurora
-            speed={0.5}
-            scale={1.0}
-            brightness={3}
-            color1="#5B21B6"
-            color2="#8B5CF6"
-            noiseFrequency={2.5}
-            noiseAmplitude={1}
-            bandHeight={0.4}
-            bandSpread={0.8}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction
-            mouseInfluence={0.25}
-          />
-        </div>
-      </div>
+    <section className={`opsie-hero ${isDarkMode ? "opsie-hero--dark" : ""}`}>
+      <div
+        className="opsie-hero__image"
+        style={{
+          backgroundImage: `url(${isDarkMode ? "/figma/hero-desk-dark.png" : "/figma/hero-desk-light.png"})`,
+        }}
+        aria-hidden="true"
+      />
+      <div className="opsie-hero__scrim" aria-hidden="true" />
 
-      {/* Central Spinning Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <img 
-          src={LogoOnly} 
-          alt="Logo" 
-          className="animate-[spin_20s_linear_infinite] w-72 md:w-[500px] opacity-[30%] select-none" 
-        />
-      </div>
+      <div className="opsie-hero__content">
+        <p className="opsie-hero__eyebrow">Enterprise Operations Platform</p>
+        <h1 className="opsie-hero__title">
+          <span>Operate With</span>
+          <span className="opsie-hero__title-accent">Opsie Way.</span>
+        </h1>
+        <p className="opsie-hero__subtitle">Make your day-to-day operations easier with Opsie.</p>
 
-      {/* Content Area */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12 mb-24 space-y-8">
-        
-        <div className="max-w-5xl">
-          <h1 className="text-white heading-glow">
-            {headerText && (
-              <SplitText
-                text={headerText}
-                className="text-[48px] md:text-[80px] lg:text-[90px] font-bold leading-[1.1] tracking-tight"
-                delay={50}
-                duration={1}
-                ease="back.out(1.7)"
-                splitType="chars"
-                from={{ opacity: 0, y: 80 }}
-                to={{ opacity: 1, y: 0 }}
-              />
-            )}
-          </h1>
-        </div>
-
-        {subHeaderText && (
-          <p
-            className="text-gray-300 text-lg md:text-xl max-w-2xl font-light leading-relaxed"
-            data-aos="fade-up"
-            data-aos-delay="800"
-            data-aos-duration="1000"
-          >
-            {subHeaderText}
-          </p>
-        )}
-
-        <div className="flex items-center justify-between bg-violet-600 text-white rounded-lg p-4 card-side-glow max-w-md w-full">
-          <div className="flex items-center space-x-3">
-            <div className="bg-violet-700 rounded-full w-10 h-10 flex items-center justify-center">
-              <span className="font-bold text-lg">O</span>
-            </div>
-            <div className="text-left">
-              <h1 className="text-xl font-bold">Opsie</h1>
-              <p className="text-sm">Operate The Opsie Way</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => navigate("/book-a-schedule")}
-            className="group relative rounded-full bg-[#8B5CF6] text-white px-14 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-white hover:text-black shadow-2xl overflow-hidden"
-          >
-          <span className="relative z-10">{buttonText}</span>
+        <div className="opsie-hero__actions">
+          <button type="button" className="opsie-hero__primary" onClick={() => navigate("/products")}>
+            See how it works
+          </button>
+          <button type="button" className="opsie-hero__secondary" onClick={() => navigate("/contact-us")}>
+            Talk to an expert <span aria-hidden="true">↗</span>
           </button>
         </div>
 
-
+        <div className="opsie-hero__tagline">
+          <p>The operating layer for modern enterprise.</p>
+          <p>Secure / Connected / Intelligent</p>
+        </div>
       </div>
 
-      {/* Bottom Gradient for smoother section transitions */}
-      <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
-    </div>
+      <div className="opsie-hero__status" aria-label="Platform status">
+        <div>
+          <p>Workflow orchestration</p>
+          <strong>Workflows synchronized</strong>
+        </div>
+        <div>
+          <p>Team alignment</p>
+          <strong>Command layer active</strong>
+        </div>
+        <div>
+          <p>Live command</p>
+          <strong>Automation policy compliant</strong>
+        </div>
+      </div>
+    </section>
   );
 }
 
