@@ -3,7 +3,8 @@
 **Block:** PLAN:159 — walk the finalized design set (hero CTA redesign + interactions · 5 Block-2 sketches · shared design system · phase-3 feasibility verdicts) with the supervisor; record every accept/amend/reject.
 **Pattern:** findings-review §2 (Row | Ruling | Ruler | one-line reason).
 **Exit bar:** every proposal in the pack carries a recorded ruling; zero open TBD. **Defer-with-reason is a terminal state**, not a TBD violation (supervisor-confirmed on P-6).
-**Batches:** 1 hero CTA ✅ ruled · 2 five sketches ✅ ruled · 3 shared design system ✅ ruled · 4 phase-3 feasibility caveats — posted 2026-10-29, awaiting rulings.
+**Batches:** 1 hero CTA ✅ ruled · 2 five sketches ✅ ruled · 3 shared design system ✅ ruled · 4 phase-3 feasibility caveats ✅ ruled — **45/45 rows ruled, zero open TBD (2026-10-29)**.
+**Stop-ship cleared 2026-10-29:** the unpushed local commit `f8d1b37` (stray `border: 1px solid rgb(160,14,14)` edit on `HeroPage.css`, committed "update" directly on main) was dispositioned by the supervisor as a revert — history dropped back to the pushed tip `1a1af41`, working-tree border restored to `white`. No code commit was made; local main is byte-identical to both remotes. (`HeroPage.css:18` `.hero-title { color: red }` verified **pre-existing** — introduced by old merge `2736110`, ancestor of the pushed tip; the class has zero usages in any `.tsx`, so it is dead CSS, not part of the stray commit.)
 **Commit:** md-only. Batches 2–3 transcription + queue corrections G10 · G11 · G12 · REG-18a (commit `919e2fe`) · EI-C1/C2/C3 + styling-blocks recording ride the batch-3 commit; PLAN:159 flips at block-1 completion (zero TBD across all four batches).
 
 ---
@@ -79,11 +80,22 @@ Source: `study/2026-10-26-shared-design-system.md` (PLAN:146 · graded 8.5, G6�
 
 **Batch-3 exit: 8/8 rows ruled, 0 open TBD.** Totals: 4 accept-norms (no code) · 1 defer-with-reason (DS-5, terminal) · 3 accept-mechanical (DS-6/7/8). All eight markers applied to the design-system doc 2026-10-29.
 
-## §5 Batch 4 — phase-3 feasibility caveats (posted 2026-10-29, awaiting rulings)
+## §5 Batch 4 — phase-3 feasibility caveats (ruled 2026-10-29, "all as recommended" + sharpened reasons)
 
-Item IDs B4-1…B4-6 posted in chat against `study/2026-10-26-feasibility-review.md`; table to be transcribed here on the supervisor's rulings.
+Sources: `study/2026-10-26-feasibility-review.md` caveat lines :27 · :37 · :48 · :49 · :61 · :70 (all re-verified against the doc + code on 2026-10-29).
+
+| Row | Ruling (accept / amend / reject / defer) | Ruler | One-line reason |
+|-----|------------------------------------------|-------|-----------------|
+| B4-1 | **Accept — conditional pre-approval (terminal)** | Supervisor ("all as recommended") | `px-6 sm:px-14` ships **iff** the 320 after-capture (block 4 / P-5 re-capture) shows spill; else `px-14` stands. Condition resolves at the capture — not a TBD; pre-approved under full gates, no second walk. |
+| B4-2 | **Accept — reject sr-only (fork closed)** | Supervisor | `sr-only` present at :48 (2 hits verified); visible labels are the design intent (sketch §3 diagram, CF-1 accepted); placeholder stays hint (CF-5). |
+| B4-3 | **Accept — mechanical propagation** | Supervisor | :49 tail verified verbatim ("bounding client rect … yielded sub-44px … `min-h-[44px]`") — same disproven premise as G12; dated marker supersedes via B2-CF-3 (receipted boxes [309,50]/[309,47]/[309,128] all ≥44). |
+| B4-4 | **Defer with reason (terminal)** | Supervisor | Sharpened: REG-18's fix column already prescribes `<a>` → `Link`, so **no design question remains** — it rides the findings/implementation track with the other 6 navigate sites. Hero-only scope holds (P-1/P-4). |
+| B4-5 | **Accept** | Supervisor | Mechanism re-verified 2026-10-29: `Buttons.ts:3–14` `ButtonOptions` has no `ariaLabel`; `Button.tsx:6–33` renders the native button with no aria forwarding. Add optional `ariaLabel?: string` → `<button aria-label>`; rest-props alternative rejected (named prop is the PLAN:169 precondition); **`Buttons.ts:55` base untouched**; implementation rides the first gated code commit. |
+| B4-6 | **Accept — "no createPortal"** | Supervisor | Re-verified 2026-10-29: `MobileMenu.tsx:18` mounts in-tree (`fixed top-0 inset-0 z-50`); `createPortal` = 0 hits repo-wide. Inert driven by open state on the existing tree. **Obligation attached:** the exact wrapper/selector must appear in the PLAN:169 props plan — that is a **done-condition for block 169**, not a TBD (fails that block's grade if missing). Focus cycle stays the always-available fallback (MM-5). |
+
+**Batch-4 totals:** 3 accept (B4-2 fork-close · B4-5 · B4-6) · 1 conditional pre-approval (B4-1, terminal at the 320 capture) · 1 mechanical (B4-3) · 1 defer-with-reason (B4-4, terminal). **Walk exit bar met: 45/45 rows ruled, zero open TBD.** Carried conditions that resolve at later blocks (not TBDs): B4-1/P-5-latent at the 320 capture · CF-6/G1 + G2 captures ride block 4 (B2-SEQ-1) · P-7/REG-25/REG-23 resolve at block-4 after-captures.
 
 ## §6 Post-record notes
 
-- **Styling pass (4 blocks, 7.5h)** — recorded 2026-10-29 under the Component-A track (PLAN, after the markup/rendering blocks) with the presumption flagged: same track, inserted between PLAN:170 and PLAN:171, same branch/gates; "Compare against design" disambiguated from PLAN:171 (visual-conformance judgment vs receipted after-capture evidence). Per-block hour splits unset (post stated total only).
+- **Styling pass (4 blocks, 7.5h)** — recorded 2026-10-29 under the Component-A track (PLAN, after the markup/rendering blocks) with the presumption flagged: same track, inserted between PLAN:170 and PLAN:171, same branch/gates; "Compare against design" disambiguated from PLAN:171 (visual-conformance judgment vs receipted after-capture evidence — split sanity-checked by supervisor 2026-10-29, kept separate). Per-block hours corrected 2026-10-29: the post **did** carry the split (0.5h · 4h · 1.5h · 1.5h = 7.5h); the earlier "total only" note was wrong — hours now written into the PLAN blocks.
 - **Queue (2026-10-29):** G10 · G11 · G12 · REG-18a committed `919e2fe`; EI-C1/C2/C3 applied same day (batch-3 commit) — queue genuinely empty after.
